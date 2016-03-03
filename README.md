@@ -21,3 +21,4 @@ It requires access to the Internet and to external storage to be able to upload 
 - Download [APK](https://github.com/scoute-dich/Diaspora/releases)
 - Watch [Changelog](https://github.com/scoute-dich/Diaspora/blob/master/CHANGELOG.md)
 - See [license](https://github.com/scoute-dich/Diaspora/blob/master/LICENSE.md)
+- See [screenshots](https://github.com/scoute-dich/Diaspora/blob/master/SCREENSHOTS.md)
