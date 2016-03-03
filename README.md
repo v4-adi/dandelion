@@ -1,6 +1,6 @@
 # Diaspora
 
-This is an unofficial webview based client for the social network "Diaspora". It's currently under development and should be used with that in mind. Please submit any bugs you might find.
+This is an unofficial webview based client for the community-run, distributed social network "Diaspora". It's currently under development and should be used with that in mind. Please submit any bugs you might find.
 
 ### License
 It's released under GNU GENERAL PUBLIC LICENSE (see LICENCE).
