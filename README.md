@@ -19,5 +19,5 @@ The minimum version supported is Ice Cream Sandwitch, Android version 4.0.3 (or 
 It requires access to the Internet and to external storage to be able to upload photos when creating a new post and for taking screenshots.
 
 - Download [APK](https://github.com/scoute-dich/Diaspora/releases)
-- Watch [Changelog](https://github.com/scoute-dich/Diaspora/blob/master/changelog.mg)
-- See [license](https://github.com/scoute-dich/Diaspora/blob/master/license.md)
+- Watch [Changelog](https://github.com/scoute-dich/Diaspora/blob/master/CHANGELOG.mg)
+- See [license](https://github.com/scoute-dich/Diaspora/blob/master/LICENSE.md)
