@@ -109,6 +109,18 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        toolbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (Helpers.isOnline(MainActivity.this)) {
+                    webView.loadUrl("https://" + podDomain + "/stream");
+                    setTitle(R.string.jb_stream);
+                } else {
+                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_LONG).show();
+                }
+            }
+        });
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
