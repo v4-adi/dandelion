@@ -1,3 +1,7 @@
+### v1.0.1
+- click toolbar to load strem
+
+
 ### v1.0
 
 First release:
