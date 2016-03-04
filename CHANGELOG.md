@@ -6,3 +6,4 @@ First release:
 - share function (link, screenshot)
 - design improvements
 - implemented android marshmallow perimssion model
+- implemented swipe to refresh
