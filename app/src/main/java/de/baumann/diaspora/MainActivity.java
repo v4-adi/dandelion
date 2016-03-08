@@ -48,6 +48,10 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
+import android.text.SpannableString;
+import android.text.method.LinkMovementMethod;
+import android.text.util.Linkify;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -116,7 +120,7 @@ public class MainActivity extends AppCompatActivity
                     webView.loadUrl("https://" + podDomain + "/stream");
                     setTitle(R.string.jb_stream);
                 } else {
-                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_LONG).show();
+                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
                 }
             }
         });
@@ -186,7 +190,7 @@ public class MainActivity extends AppCompatActivity
                 if (Helpers.isOnline(MainActivity.this)) {
                     webView.reload();
                 } else {
-                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_LONG).show();
+                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
                     swipeView.setRefreshing(false);
                 }
             }
@@ -278,7 +282,7 @@ public class MainActivity extends AppCompatActivity
                 webView.loadData("", "text/html", null);
                 webView.loadUrl("https://"+podDomain);
             } else {
-                Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_LONG).show();
+                Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
             }
         }
 
@@ -294,7 +298,7 @@ public class MainActivity extends AppCompatActivity
             webView.loadUrl("https://" + podDomain + "/status_messages/new");
             setTitle(R.string.fab1_title);
         } else {
-            Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_LONG).show();
+            Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
         }
     }
 
@@ -336,7 +340,7 @@ public class MainActivity extends AppCompatActivity
             alert.show();
         }
         else {
-            Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_LONG).show();
+            Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
         }
     }
 
@@ -482,7 +486,7 @@ public class MainActivity extends AppCompatActivity
                 setTitle(R.string.jb_notifications);
                 return true;
             } else {
-                Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_LONG).show();
+                Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
                 return false;
             }
         }
@@ -493,7 +497,7 @@ public class MainActivity extends AppCompatActivity
                 setTitle(R.string.jb_conversations);
                 return true;
             } else {
-                Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_LONG).show();
+                Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
                 return false;
             }
         }
@@ -511,7 +515,7 @@ public class MainActivity extends AppCompatActivity
         }
 
         if (id == R.id.help_license) {
-            final CharSequence[] options = { getString(R.string.help_license), getString(R.string.help_help), getString(R.string.help_donate) };
+            final CharSequence[] options = { getString(R.string.help_license), getString(R.string.help_about), getString(R.string.help_help), getString(R.string.help_donate) };
             new AlertDialog.Builder(MainActivity.this)
                     .setItems(options, new DialogInterface.OnClickListener() {
 
@@ -522,30 +526,48 @@ public class MainActivity extends AppCompatActivity
                             if (options[item].equals(getString(R.string.help_license)))
 
                             {
-                                new AlertDialog.Builder(MainActivity.this)
-                                        .setMessage(getString(R.string.about_text))
-                                        .setPositiveButton(getString(R.string.about_yes),
-                                                new DialogInterface.OnClickListener() {
-                                                    public void onClick(DialogInterface dialog, int id) {
-                                                        Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/scoute-dich/Diaspora-Native-WebApp"));
-                                                        startActivity(i);
-                                                        dialog.cancel();
-                                                    }
-                                                })
-                                        .setNegativeButton(getString(R.string.about_no),
+                                final SpannableString s = new SpannableString(Html.fromHtml(getString(R.string.license_text)));
+                                Linkify.addLinks(s, Linkify.WEB_URLS);
+
+                                final AlertDialog d = new AlertDialog.Builder(MainActivity.this)
+                                        .setTitle(R.string.license_title)
+                                        .setMessage( s )
+                                        .setPositiveButton(getString(R.string.yes),
                                                 new DialogInterface.OnClickListener() {
                                                     public void onClick(DialogInterface dialog, int id) {
                                                         dialog.cancel();
                                                     }
                                                 }).show();
+                                d.show();
+                                ((TextView)d.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
+                            }
+
+                            if (options[item].equals(getString(R.string.help_about)))
+
+                            {
+                                final SpannableString s = new SpannableString(Html.fromHtml(getString(R.string.about_text)));
+                                Linkify.addLinks(s, Linkify.WEB_URLS);
+
+                                final AlertDialog d = new AlertDialog.Builder(MainActivity.this)
+                                        .setTitle(R.string.help_about)
+                                        .setMessage(s)
+                                        .setPositiveButton(getString(R.string.yes),
+                                                new DialogInterface.OnClickListener() {
+                                                    public void onClick(DialogInterface dialog, int id) {
+                                                        dialog.cancel();
+                                                    }
+                                                }).show();
+                                d.show();
+                                ((TextView)d.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
                             }
 
                             if (options[item].equals(getString(R.string.help_help)))
 
                             {
                                 new AlertDialog.Builder(MainActivity.this)
-                                        .setMessage(getString(R.string.markdown_text))
-                                        .setNegativeButton(getString(R.string.about_no),
+                                        .setTitle(R.string.help_help)
+                                        .setMessage(Html.fromHtml(getString(R.string.markdown_text)))
+                                        .setPositiveButton(getString(R.string.yes),
                                                 new DialogInterface.OnClickListener() {
                                                     public void onClick(DialogInterface dialog, int id) {
                                                         dialog.cancel();
@@ -558,17 +580,17 @@ public class MainActivity extends AppCompatActivity
                             {
                                 new AlertDialog.Builder(MainActivity.this)
                                         .setMessage(getString(R.string.donate_text))
-                                        .setPositiveButton(getString(R.string.donate_1),
+                                        .setPositiveButton(getString(R.string.yes),
+                                                new DialogInterface.OnClickListener() {
+                                                    public void onClick(DialogInterface dialog, int id) {
+                                                        dialog.cancel();
+                                                    }
+                                                })
+                                        .setNegativeButton(getString(R.string.donate_1),
                                                 new DialogInterface.OnClickListener() {
                                                     public void onClick(DialogInterface dialog, int id) {
                                                         Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://martinv.tip.me/"));
                                                         startActivity(i);
-                                                        dialog.cancel();
-                                                    }
-                                                })
-                                        .setNegativeButton(getString(R.string.about_no),
-                                                new DialogInterface.OnClickListener() {
-                                                    public void onClick(DialogInterface dialog, int id) {
                                                         dialog.cancel();
                                                     }
                                                 }).show();
@@ -581,48 +603,30 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.view) {
             final CharSequence[] options = { getString(R.string.settings_font), getString(R.string.settings_view),getString(R.string.settings_image) };
-            new AlertDialog.Builder(MainActivity.this)
-                    .setItems(options, new DialogInterface.OnClickListener() {
+            if (Helpers.isOnline(MainActivity.this)) {
+                new AlertDialog.Builder(MainActivity.this)
+                        .setItems(options, new DialogInterface.OnClickListener() {
 
-                        @Override
+                            @Override
 
-                        public void onClick(DialogInterface dialog, int item) {
+                            public void onClick(DialogInterface dialog, int item) {
 
-                            if (options[item].equals(getString(R.string.settings_font)))
-
-                            {
-                                if (Helpers.isOnline(MainActivity.this)) {
+                                if (options[item].equals(getString(R.string.settings_font)))
                                     alertFormElements();
-                                } else {
-                                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_LONG).show();
-                                }
-                            }
 
-                            if (options[item].equals(getString(R.string.settings_view)))
-
-                            {
-                                if (Helpers.isOnline(MainActivity.this)) {
+                                if (options[item].equals(getString(R.string.settings_view)))
                                     webView.loadUrl("https://" + podDomain + "/mobile/toggle");
-                                } else {  // No Internet connection
-                                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_LONG).show();
-                                }
-                            }
 
-                            if (options[item].equals(getString(R.string.settings_image)))
-
-                            {
-                                if (Helpers.isOnline(MainActivity.this)) {
+                                if (options[item].equals(getString(R.string.settings_image)))
                                     wSettings.setLoadsImagesAutomatically(!pm.getLoadImages());
-                                    pm.setLoadImages(!pm.getLoadImages());
-                                    webView.loadUrl(webView.getUrl());
-                                } else {
-                                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_LONG).show();
-                                }
+                                pm.setLoadImages(!pm.getLoadImages());
+                                webView.loadUrl(webView.getUrl());
                             }
 
-                        }
-
-                    }).show();
+                        }).show();
+            } else {
+                Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
+            }
         }
 
         if (id == R.id.share) {
@@ -839,7 +843,7 @@ public class MainActivity extends AppCompatActivity
                         if (Helpers.isOnline(MainActivity.this)) {
                             webView.loadUrl(webView.getUrl());
                         } else {
-                            Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_LONG).show();
+                            Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
                         }
                         dialog.cancel();
                     }
@@ -859,6 +863,20 @@ public class MainActivity extends AppCompatActivity
                     if (item != null) {
                         if (notificationCount > 0) {
                             item.setIcon(R.drawable.ic_bell_ring_white_24dp);
+                            Snackbar snackbar = Snackbar
+                                    .make(swipeView, R.string.new_notifications, Snackbar.LENGTH_INDEFINITE)
+                                    .setAction(R.string.yes, new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            if (Helpers.isOnline(MainActivity.this)) {
+                                                webView.loadUrl("https://" + podDomain + "/notifications");
+                                                setTitle(R.string.jb_notifications);
+                                            } else {
+                                                Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
+                                            }
+                                        }
+                                    });
+                            snackbar.show();
                         } else {
                             item.setIcon(R.drawable.ic_bell_outline_white_24dp);
                         }
@@ -881,6 +899,21 @@ public class MainActivity extends AppCompatActivity
                     if (item != null) {
                         if (conversationCount > 0) {
                             item.setIcon(R.drawable.ic_message_text_white_24dp);
+                            item.setIcon(R.drawable.ic_bell_ring_white_24dp);
+                            Snackbar snackbar = Snackbar
+                                    .make(swipeView, R.string.new_conversations, Snackbar.LENGTH_INDEFINITE)
+                                    .setAction(R.string.yes, new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            if (Helpers.isOnline(MainActivity.this)) {
+                                                webView.loadUrl("https://" + podDomain + "/conversations");
+                                                setTitle(R.string.jb_notifications);
+                                            } else {
+                                                Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
+                                            }
+                                        }
+                                    });
+                            snackbar.show();
                         } else {
                             item.setIcon(R.drawable.ic_message_text_outline_white_24dp);
                         }
@@ -903,7 +936,7 @@ public class MainActivity extends AppCompatActivity
                 webView.loadUrl("https://" + podDomain + "/stream");
                 setTitle(R.string.jb_stream);
             } else {
-                Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_LONG).show();
+                Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
             }
 
         } else if (id == R.id.jb_followed_tags) {
@@ -911,7 +944,7 @@ public class MainActivity extends AppCompatActivity
                 webView.loadUrl("https://" + podDomain + "/followed_tags");
                 setTitle(R.string.jb_followed_tags);
             } else {
-                Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_LONG).show();
+                Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
             }
 
         } else if (id == R.id.jb_aspects) {
@@ -919,7 +952,7 @@ public class MainActivity extends AppCompatActivity
                 webView.loadUrl("https://" + podDomain + "/aspects");
                 setTitle(R.string.jb_aspects);
             } else {
-                Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_LONG).show();
+                Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
             }
 
         } else if (id == R.id.jb_activities) {
@@ -927,7 +960,7 @@ public class MainActivity extends AppCompatActivity
                 webView.loadUrl("https://" + podDomain + "/activity");
                 setTitle(R.string.jb_activities);
             } else {
-                Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_LONG).show();
+                Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
             }
 
         } else if (id == R.id.jb_liked) {
@@ -935,7 +968,7 @@ public class MainActivity extends AppCompatActivity
                 webView.loadUrl("https://" + podDomain + "/liked");
                 setTitle(R.string.jb_liked);
             } else {
-                Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_LONG).show();
+                Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
             }
 
         } else if (id == R.id.jb_commented) {
@@ -943,7 +976,7 @@ public class MainActivity extends AppCompatActivity
                 webView.loadUrl("https://" + podDomain + "/commented");
                 setTitle(R.string.jb_commented);
             } else {
-                Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_LONG).show();
+                Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
             }
 
         } else if (id == R.id.jb_mentions) {
@@ -951,7 +984,7 @@ public class MainActivity extends AppCompatActivity
                 webView.loadUrl("https://" + podDomain + "/mentions");
                 setTitle(R.string.jb_mentions);
             } else {
-                Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_LONG).show();
+                Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
             }
 
         } else if (id == R.id.jb_public) {
@@ -959,101 +992,55 @@ public class MainActivity extends AppCompatActivity
                 webView.loadUrl("https://" + podDomain + "/public");
                 setTitle(R.string.jb_public);
             } else {
-                Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_LONG).show();
+                Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
             }
 
         } else if (id == R.id.jb_settings_view) {
             final CharSequence[] options = { getString(R.string.settings_font), getString(R.string.settings_view),getString(R.string.settings_image) };
-            new AlertDialog.Builder(MainActivity.this)
-                    .setItems(options, new DialogInterface.OnClickListener() {
+            if (Helpers.isOnline(MainActivity.this)) {
+                new AlertDialog.Builder(MainActivity.this)
+                        .setItems(options, new DialogInterface.OnClickListener() {
 
-                        @Override
+                            @Override
+                            public void onClick(DialogInterface dialog, int item) {
 
-                        public void onClick(DialogInterface dialog, int item) {
-
-                            if (options[item].equals(getString(R.string.settings_font)))
-
-                            {
-                                if (Helpers.isOnline(MainActivity.this)) {
+                                if (options[item].equals(getString(R.string.settings_font)))
                                     alertFormElements();
-                                } else {
-                                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_LONG).show();
-                                }
-                            }
 
-                            if (options[item].equals(getString(R.string.settings_view)))
-
-                            {
-                                if (Helpers.isOnline(MainActivity.this)) {
+                                if (options[item].equals(getString(R.string.settings_view)))
                                     webView.loadUrl("https://" + podDomain + "/mobile/toggle");
-                                } else {  // No Internet connection
-                                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_LONG).show();
-                                }
-                            }
 
-                            if (options[item].equals(getString(R.string.settings_image)))
-
-                            {
-                                if (Helpers.isOnline(MainActivity.this)) {
+                                if (options[item].equals(getString(R.string.settings_image)))
                                     wSettings.setLoadsImagesAutomatically(!pm.getLoadImages());
-                                    pm.setLoadImages(!pm.getLoadImages());
-                                    webView.loadUrl(webView.getUrl());
-                                } else {
-                                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_LONG).show();
-                                }
+                                pm.setLoadImages(!pm.getLoadImages());
+                                webView.loadUrl(webView.getUrl());
                             }
-
-                        }
-
-                    }).show();
+                        }).show();
+            } else {
+                Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
+            }
 
         } else if (id == R.id.jb_settings_diaspora) {
+
             final CharSequence[] options2 = { getString(R.string.jb_settings), getString(R.string.jb_manage_tags),
                     getString(R.string.jb_contacts), getString(R.string.jb_pod) };
-            new AlertDialog.Builder(MainActivity.this)
-                    .setItems(options2, new DialogInterface.OnClickListener() {
+            if (Helpers.isOnline(MainActivity.this)) {
+                new AlertDialog.Builder(MainActivity.this)
+                        .setItems(options2, new DialogInterface.OnClickListener() {
 
-                        @Override
+                            @Override
+                            public void onClick(DialogInterface dialog, int item) {
 
-                        public void onClick(DialogInterface dialog, int item) {
-
-                            if (options2[item].equals(getString(R.string.jb_settings)))
-
-                            {
-                                setTitle(R.string.jb_settings);
-                                if (Helpers.isOnline(MainActivity.this)) {
+                                if (options2[item].equals(getString(R.string.jb_settings)))
                                     webView.loadUrl("https://" + podDomain + "/user/edit");
-                                } else {  // No Internet connection
-                                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_LONG).show();
-                                }
-                            }
 
-                            if (options2[item].equals(getString(R.string.jb_manage_tags)))
-
-                            {
-                               setTitle(R.string.jb_manage_tags);
-                                if (Helpers.isOnline(MainActivity.this)) {
+                                if (options2[item].equals(getString(R.string.jb_manage_tags)))
                                     webView.loadUrl("https://" + podDomain + "/tag_followings/manage");
-                                } else {  // No Internet connection
-                                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_LONG).show();
-                                }
-                            }
 
-                            if (options2[item].equals(getString(R.string.jb_contacts)))
-
-                            {
-                                setTitle(R.string.jb_contacts);
-                                if (Helpers.isOnline(MainActivity.this)) {
+                                if (options2[item].equals(getString(R.string.jb_contacts)))
                                     webView.loadUrl("https://" + podDomain + "/contacts");
-                                } else {  // No Internet connection
-                                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_LONG).show();
-                                }
-                            }
 
-                            if (options2[item].equals(getString(R.string.jb_pod)))
-
-                            {
-                                if (Helpers.isOnline(MainActivity.this)) {
+                                if (options2[item].equals(getString(R.string.jb_pod)))
                                     new AlertDialog.Builder(MainActivity.this)
                                             .setTitle(getString(R.string.confirmation))
                                             .setMessage(getString(R.string.change_pod_warning))
@@ -1074,17 +1061,14 @@ public class MainActivity extends AppCompatActivity
                                                     dialog.cancel();
                                                 }
                                             }).show();
-                                } else {
-                                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_LONG).show();
-                                }
                             }
-
-                        }
-
-                    }).show();
+                        }).show();
+            } else {
+                Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
+            }
 
         } else if (id == R.id.jb_license_help) {
-            final CharSequence[] options = { getString(R.string.help_license), getString(R.string.help_help), getString(R.string.help_donate) };
+            final CharSequence[] options = { getString(R.string.help_license), getString(R.string.help_about), getString(R.string.help_help), getString(R.string.help_donate) };
             new AlertDialog.Builder(MainActivity.this)
                     .setItems(options, new DialogInterface.OnClickListener() {
 
@@ -1095,31 +1079,48 @@ public class MainActivity extends AppCompatActivity
                             if (options[item].equals(getString(R.string.help_license)))
 
                             {
-                                new AlertDialog.Builder(MainActivity.this)
-                                        .setTitle(R.string.about_title)
-                                        .setMessage(getString(R.string.about_text))
-                                        .setPositiveButton(getString(R.string.about_yes),
-                                                new DialogInterface.OnClickListener() {
-                                                    public void onClick(DialogInterface dialog, int id) {
-                                                        Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/scoute-dich/Diaspora-Native-WebApp"));
-                                                        startActivity(i);
-                                                        dialog.cancel();
-                                                    }
-                                                })
-                                        .setNegativeButton(getString(R.string.about_no),
+                                final SpannableString s = new SpannableString(Html.fromHtml(getString(R.string.license_text)));
+                                Linkify.addLinks(s, Linkify.WEB_URLS);
+
+                                final AlertDialog d = new AlertDialog.Builder(MainActivity.this)
+                                        .setTitle(R.string.license_title)
+                                        .setMessage( s )
+                                        .setPositiveButton(getString(R.string.yes),
                                                 new DialogInterface.OnClickListener() {
                                                     public void onClick(DialogInterface dialog, int id) {
                                                         dialog.cancel();
                                                     }
                                                 }).show();
+                                d.show();
+                                ((TextView)d.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
+                            }
+
+                            if (options[item].equals(getString(R.string.help_about)))
+
+                            {
+                                final SpannableString s = new SpannableString(Html.fromHtml(getString(R.string.about_text)));
+                                Linkify.addLinks(s, Linkify.WEB_URLS);
+
+                                final AlertDialog d = new AlertDialog.Builder(MainActivity.this)
+                                        .setTitle(R.string.help_about)
+                                        .setMessage( s )
+                                        .setPositiveButton(getString(R.string.yes),
+                                                new DialogInterface.OnClickListener() {
+                                                    public void onClick(DialogInterface dialog, int id) {
+                                                        dialog.cancel();
+                                                    }
+                                                }).show();
+                                d.show();
+                                ((TextView)d.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
                             }
 
                             if (options[item].equals(getString(R.string.help_help)))
 
                             {
                                 new AlertDialog.Builder(MainActivity.this)
-                                        .setMessage(getString(R.string.markdown_text))
-                                        .setNegativeButton(getString(R.string.about_no),
+                                        .setTitle(R.string.help_help)
+                                        .setMessage(Html.fromHtml(getString(R.string.markdown_text)))
+                                        .setPositiveButton(getString(R.string.yes),
                                                 new DialogInterface.OnClickListener() {
                                                     public void onClick(DialogInterface dialog, int id) {
                                                         dialog.cancel();
@@ -1132,17 +1133,17 @@ public class MainActivity extends AppCompatActivity
                             {
                                 new AlertDialog.Builder(MainActivity.this)
                                         .setMessage(getString(R.string.donate_text))
-                                        .setPositiveButton(getString(R.string.donate_1),
+                                        .setPositiveButton(getString(R.string.yes),
+                                                new DialogInterface.OnClickListener() {
+                                                    public void onClick(DialogInterface dialog, int id) {
+                                                        dialog.cancel();
+                                                    }
+                                                })
+                                        .setNegativeButton(getString(R.string.donate_1),
                                                 new DialogInterface.OnClickListener() {
                                                     public void onClick(DialogInterface dialog, int id) {
                                                         Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://martinv.tip.me/"));
                                                         startActivity(i);
-                                                        dialog.cancel();
-                                                    }
-                                                })
-                                        .setNegativeButton(getString(R.string.about_no),
-                                                new DialogInterface.OnClickListener() {
-                                                    public void onClick(DialogInterface dialog, int id) {
                                                         dialog.cancel();
                                                     }
                                                 }).show();

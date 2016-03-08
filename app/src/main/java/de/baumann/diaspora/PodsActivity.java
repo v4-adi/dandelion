@@ -77,7 +77,7 @@ public class PodsActivity extends ActionBarActivity {
                 if (filter.getText().length() > 4 && filter.getText().toString().contains("."))
                     askConfirmation(filter.getText().toString());
                 else
-                    Snackbar.make(lv, R.string.valid_pod, Snackbar.LENGTH_LONG).show();
+                    Snackbar.make(lv, R.string.valid_pod, Snackbar.LENGTH_INDEFINITE).show();
             }
         });
 
@@ -112,7 +112,7 @@ public class PodsActivity extends ActionBarActivity {
         if (Helpers.isOnline(PodsActivity.this)) {
             progressDialog.show();
         } else {
-            Snackbar.make(lv, R.string.no_internet, Snackbar.LENGTH_LONG).show();
+            Snackbar.make(lv, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
         }
 
     }
@@ -207,7 +207,7 @@ public class PodsActivity extends ActionBarActivity {
                     }).show();
 
         } else {
-            Snackbar.make(lv, R.string.no_internet, Snackbar.LENGTH_LONG).show();
+            Snackbar.make(lv, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
         }
     }
 
@@ -248,7 +248,7 @@ public class PodsActivity extends ActionBarActivity {
                 startService(i);
                 return true;
             } else {
-                Snackbar.make(lv, R.string.no_internet, Snackbar.LENGTH_LONG).show();
+                Snackbar.make(lv, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
                 return false;
             }
         }

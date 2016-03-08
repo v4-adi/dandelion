@@ -1,6 +1,9 @@
 ### v1.0.1
-- click toolbar to load strem
+- new about app and help dialogs
+- better snackbar integration
 
+### v1.0.1
+- click toolbar to load strem
 
 ### v1.0
 

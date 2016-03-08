@@ -57,7 +57,6 @@ public class ShareActivity extends MainActivity {
     private String podDomain;
     private ValueCallback<Uri[]> mFilePathCallback;
     private String mCameraPhotoPath;
-    private com.getbase.floatingactionbutton.FloatingActionsMenu fab;
     private TextView txtTitle;
     private ProgressBar progressBar;
 
@@ -88,7 +87,7 @@ public class ShareActivity extends MainActivity {
         SharedPreferences config = getSharedPreferences("PodSettings", MODE_PRIVATE);
         podDomain = config.getString("podDomain", null);
 
-        fab = (com.getbase.floatingactionbutton.FloatingActionsMenu) findViewById(R.id.multiple_actions);
+        com.getbase.floatingactionbutton.FloatingActionsMenu fab = (com.getbase.floatingactionbutton.FloatingActionsMenu) findViewById(R.id.multiple_actions);
         fab.setVisibility(View.GONE);
 
         webView = (WebView)findViewById(R.id.webView);
@@ -296,7 +295,7 @@ public class ShareActivity extends MainActivity {
                 webView.reload();
                 return true;
             } else {  
-                Snackbar.make(getWindow().findViewById(R.id.drawer_layout), R.string.no_internet, Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(getWindow().findViewById(R.id.drawer_layout), R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
                 return false;
             }
         }
