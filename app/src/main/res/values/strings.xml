@@ -133,11 +133,12 @@
     <string name="donate_1">Via Bitcoin</string>
 
     <string name="about_text">
+        &lt;i>For more informations visit the Projectsite on github:&lt;br>
+        https://github.com/scoute-dich/Diaspora&lt;/i>&lt;br>&lt;br>
 
         &lt;b>v1.1:&lt;/b>&lt;br>
         &#8226; new about app and help dialogs&lt;br>
-        &#8226; better snackbar integration&lt;br>
-        &#8226; click on titelbar to load stream&lt;br>&lt;br>
+        &#8226; better snackbar integration&lt;br>&lt;br>
 
         &lt;b>v1.0.1:&lt;/b>&lt;br>
         &#8226; click on titelbar to load stream&lt;br>&lt;br>
@@ -148,10 +149,7 @@
         &#8226; share function (link, screenshot)&lt;br>
         &#8226; design improvements&lt;br>
         &#8226; implemented android marshmallow perimssion model&lt;br>
-        &#8226; implemented swipe to refresh&lt;br>&lt;br>
-
-        &lt;i>Projectsite on github:&lt;br>
-        https://github.com/scoute-dich/Diaspora/&lt;/i>
+        &#8226; implemented swipe to refresh
     </string>
 
     <string name="license_yes">OK</string>

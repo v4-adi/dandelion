@@ -1,4 +1,4 @@
-### v1.0.1
+### v1.1
 - new about app and help dialogs
 - better snackbar integration
 
