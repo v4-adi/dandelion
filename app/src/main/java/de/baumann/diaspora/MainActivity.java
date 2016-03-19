@@ -148,7 +148,6 @@ public class MainActivity extends AppCompatActivity
                 R.color.fab_big);
 
         webView = (WebView)findViewById(R.id.webView);
-        webView.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
         webView.addJavascriptInterface(new JavaScriptInterface(), "NotificationCounter");
 
         if (savedInstanceState != null) {

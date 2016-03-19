@@ -1,3 +1,7 @@
+### v1.2
+- using strings in podactivity
+- improved share activity
+
 ### v1.1
 - new about app and help dialogs
 - better snackbar integration

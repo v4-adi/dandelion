@@ -29,6 +29,8 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.design.widget.Snackbar;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -49,7 +51,6 @@ import java.util.Date;
 
 import de.baumann.diaspora.utils.Helpers;
 
-
 public class ShareActivity extends MainActivity {
 
     private WebView webView;
@@ -57,28 +58,34 @@ public class ShareActivity extends MainActivity {
     private String podDomain;
     private ValueCallback<Uri[]> mFilePathCallback;
     private String mCameraPhotoPath;
-    private TextView txtTitle;
+    private com.getbase.floatingactionbutton.FloatingActionsMenu fab;
     private ProgressBar progressBar;
+    private SwipeRefreshLayout swipeView;
 
     @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         progressBar = (ProgressBar)findViewById(R.id.progressBar);
 
-        txtTitle.setOnClickListener(new View.OnClickListener() {
+        swipeView = (SwipeRefreshLayout) findViewById(R.id.swipe);
+        swipeView.setColorSchemeResources(R.color.colorPrimary,
+                R.color.fab_big);
+
+        toolbar.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 if (Helpers.isOnline(ShareActivity.this)) {
-                    txtTitle.setText(R.string.jb_stream);
-                    Intent i = new Intent(ShareActivity.this, MainActivity.class);
-                    i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(i);
-                    finish();
+                    Intent intent = new Intent(ShareActivity.this, MainActivity.class);
+                    startActivityForResult(intent, 100);
+                    overridePendingTransition(0, 0);
                 } else {
-                    Snackbar.make(v, R.string.no_internet, Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
                 }
             }
         });
@@ -87,7 +94,7 @@ public class ShareActivity extends MainActivity {
         SharedPreferences config = getSharedPreferences("PodSettings", MODE_PRIVATE);
         podDomain = config.getString("podDomain", null);
 
-        com.getbase.floatingactionbutton.FloatingActionsMenu fab = (com.getbase.floatingactionbutton.FloatingActionsMenu) findViewById(R.id.multiple_actions);
+        fab = (com.getbase.floatingactionbutton.FloatingActionsMenu) findViewById(R.id.multiple_actions);
         fab.setVisibility(View.GONE);
 
         webView = (WebView)findViewById(R.id.webView);
@@ -127,6 +134,18 @@ public class ShareActivity extends MainActivity {
                         .setMessage(description)
                         .setPositiveButton("CLOSE", null)
                         .show();
+            }
+        });
+
+        swipeView.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                if (Helpers.isOnline(ShareActivity.this)) {
+                    webView.reload();
+                } else {
+                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
+                    swipeView.setRefreshing(false);
+                }
             }
         });
 
@@ -230,7 +249,7 @@ public class ShareActivity extends MainActivity {
 
                                 finish();
 
-                                Snackbar.make(webView, R.string.please_reload, Snackbar.LENGTH_LONG).show();
+                                Snackbar.make(swipeView, R.string.please_reload, Snackbar.LENGTH_INDEFINITE).show();
 
                                 Intent i = new Intent(ShareActivity.this, MainActivity.class);
                                 i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -242,7 +261,40 @@ public class ShareActivity extends MainActivity {
 
                         webView.loadUrl("javascript:(function() { " +
                                 "document.getElementsByTagName('textarea')[0].style.height='110px'; " +
-                                "document.getElementsByTagName('textarea')[0].innerHTML = '[" + extraSubject + "](" + extraText + ") #ViaDiasporaNativeWebApp'; " +
+                                "document.getElementsByTagName('textarea')[0].innerHTML = '[" + extraSubject + "] (" + extraText + ") shared with #DiasporaWebApp'; " +
+                                "    if(document.getElementById(\"main_nav\")) {" +
+                                "        document.getElementById(\"main_nav\").parentNode.removeChild(" +
+                                "        document.getElementById(\"main_nav\"));" +
+                                "    } else if (document.getElementById(\"main-nav\")) {" +
+                                "        document.getElementById(\"main-nav\").parentNode.removeChild(" +
+                                "        document.getElementById(\"main-nav\"));" +
+                                "    }" +
+                                "})();");
+
+                    }
+
+                    if (extras.containsKey(Intent.EXTRA_TEXT)) {
+                        final String extraText = (String) extras.get(Intent.EXTRA_TEXT);
+
+                        webView.setWebViewClient(new WebViewClient() {
+                            @Override
+                            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+
+                                finish();
+
+                                Snackbar.make(swipeView, R.string.please_reload, Snackbar.LENGTH_INDEFINITE).show();
+
+                                Intent i = new Intent(ShareActivity.this, MainActivity.class);
+                                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(i);
+
+                                return false;
+                            }
+                        });
+
+                        webView.loadUrl("javascript:(function() { " +
+                                "document.getElementsByTagName('textarea')[0].style.height='110px'; " +
+                                "document.getElementsByTagName('textarea')[0].innerHTML = ' > " + extraText + " [shared with #DiasporaWebApp]'; " +
                                 "    if(document.getElementById(\"main_nav\")) {" +
                                 "        document.getElementById(\"main_nav\").parentNode.removeChild(" +
                                 "        document.getElementById(\"main_nav\"));" +
@@ -294,13 +346,41 @@ public class ShareActivity extends MainActivity {
             if (Helpers.isOnline(ShareActivity.this)) {
                 webView.reload();
                 return true;
-            } else {  
-                Snackbar.make(getWindow().findViewById(R.id.drawer_layout), R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
+            } else {
+                Snackbar.make(getWindow().findViewById(R.id.drawer_layout), R.string.no_internet, Snackbar.LENGTH_SHORT).show();
                 return false;
             }
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        fab.collapse();
+        if (webView.canGoBack()) {
+            webView.goBack();
+            setTitle(R.string.app_name);
+            Snackbar snackbar = Snackbar
+                    .make(swipeView, R.string.confirm_exit, Snackbar.LENGTH_LONG)
+                    .setAction(R.string.yes, new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            moveTaskToBack(true);
+                        }
+                    });
+            snackbar.show();
+        } else {
+            Snackbar snackbar = Snackbar
+                    .make(swipeView, R.string.confirm_exit, Snackbar.LENGTH_LONG)
+                    .setAction(R.string.yes, new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            finish();
+                        }
+                    });
+            snackbar.show();
+        }
     }
 
 }

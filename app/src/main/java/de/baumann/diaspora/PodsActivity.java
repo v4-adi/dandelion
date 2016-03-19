@@ -168,7 +168,7 @@ public class PodsActivity extends ActionBarActivity {
             new AlertDialog.Builder(PodsActivity.this)
                     .setTitle(getString(R.string.confirmation))
                     .setMessage(getString(R.string.confirm_pod)+podDomain+"?")
-                    .setPositiveButton("YES",
+                    .setPositiveButton(R.string.yes,
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
 
@@ -199,7 +199,7 @@ public class PodsActivity extends ActionBarActivity {
                                     finish();
                                 }
                             })
-                    .setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                    .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
                         @TargetApi(11)
                         public void onClick(DialogInterface dialog, int id) {
                             dialog.cancel();

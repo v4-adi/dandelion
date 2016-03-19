@@ -136,6 +136,10 @@
         &lt;i>For more informations visit the Projectsite on github:&lt;br>
         https://github.com/scoute-dich/Diaspora&lt;/i>&lt;br>&lt;br>
 
+        &lt;b>v1.2:&lt;/b>&lt;br>
+        &#8226; using strings in podactivity&lt;br>
+        &#8226; improved share activity&lt;br>&lt;br>
+
         &lt;b>v1.1:&lt;/b>&lt;br>
         &#8226; new about app and help dialogs&lt;br>
         &#8226; better snackbar integration&lt;br>&lt;br>
