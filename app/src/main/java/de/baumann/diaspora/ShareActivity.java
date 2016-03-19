@@ -20,6 +20,7 @@
 package de.baumann.diaspora;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -249,11 +250,10 @@ public class ShareActivity extends MainActivity {
 
                                 finish();
 
-                                Snackbar.make(swipeView, R.string.please_reload, Snackbar.LENGTH_INDEFINITE).show();
-
                                 Intent i = new Intent(ShareActivity.this, MainActivity.class);
                                 i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                 startActivity(i);
+                                overridePendingTransition(0, 0);
 
                                 return false;
                             }
@@ -282,11 +282,10 @@ public class ShareActivity extends MainActivity {
 
                                 finish();
 
-                                Snackbar.make(swipeView, R.string.please_reload, Snackbar.LENGTH_INDEFINITE).show();
-
                                 Intent i = new Intent(ShareActivity.this, MainActivity.class);
                                 i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                 startActivity(i);
+                                overridePendingTransition(0, 0);
 
                                 return false;
                             }
@@ -294,7 +293,7 @@ public class ShareActivity extends MainActivity {
 
                         webView.loadUrl("javascript:(function() { " +
                                 "document.getElementsByTagName('textarea')[0].style.height='110px'; " +
-                                "document.getElementsByTagName('textarea')[0].innerHTML = ' > " + extraText + " [shared with #DiasporaWebApp]'; " +
+                                "document.getElementsByTagName('textarea')[0].innerHTML = '> " + extraText + " *[shared with #DiasporaWebApp]*'; " +
                                 "    if(document.getElementById(\"main_nav\")) {" +
                                 "        document.getElementById(\"main_nav\").parentNode.removeChild(" +
                                 "        document.getElementById(\"main_nav\"));" +
@@ -317,6 +316,31 @@ public class ShareActivity extends MainActivity {
             }
         }
 
+    }
+
+
+    @Override
+    public void onActivityResult (int requestCode, int resultCode, Intent data) {
+        if(requestCode != INPUT_FILE_REQUEST_CODE || mFilePathCallback == null) {
+            super.onActivityResult(requestCode, resultCode, data);
+            return;
+        }
+        Uri[] results = null;
+        if(resultCode == Activity.RESULT_OK) {
+            if(data == null) {
+                if(mCameraPhotoPath != null) {
+                    results = new Uri[]{Uri.parse(mCameraPhotoPath)};
+                }
+            } else {
+                String dataString = data.getDataString();
+                if (dataString != null) {
+                    results = new Uri[]{Uri.parse(dataString)};
+                }
+            }
+        }
+
+        mFilePathCallback.onReceiveValue(results);
+        mFilePathCallback = null;
     }
 
     private File createImageFile() throws IOException {
