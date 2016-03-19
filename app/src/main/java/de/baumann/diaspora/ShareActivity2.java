@@ -43,7 +43,6 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import java.io.File;
 import java.io.IOException;
@@ -52,7 +51,7 @@ import java.util.Date;
 
 import de.baumann.diaspora.utils.Helpers;
 
-public class ShareActivity extends MainActivity {
+public class ShareActivity2 extends MainActivity {
 
     private WebView webView;
     private static final String TAG = "Diaspora Share";
@@ -81,8 +80,8 @@ public class ShareActivity extends MainActivity {
         toolbar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (Helpers.isOnline(ShareActivity.this)) {
-                    Intent intent = new Intent(ShareActivity.this, MainActivity.class);
+                if (Helpers.isOnline(ShareActivity2.this)) {
+                    Intent intent = new Intent(ShareActivity2.this, MainActivity.class);
                     startActivityForResult(intent, 100);
                     overridePendingTransition(0, 0);
                 } else {
@@ -130,7 +129,7 @@ public class ShareActivity extends MainActivity {
             public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
                 Log.e(TAG, "Error: " + description);
 
-                new AlertDialog.Builder(ShareActivity.this)
+                new AlertDialog.Builder(ShareActivity2.this)
                         .setIcon(android.R.drawable.ic_dialog_alert)
                         .setMessage(description)
                         .setPositiveButton("CLOSE", null)
@@ -141,7 +140,7 @@ public class ShareActivity extends MainActivity {
         swipeView.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                if (Helpers.isOnline(ShareActivity.this)) {
+                if (Helpers.isOnline(ShareActivity2.this)) {
                     webView.reload();
                 } else {
                     Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
@@ -240,8 +239,9 @@ public class ShareActivity extends MainActivity {
 
                 public void onPageFinished(WebView view, String url) {
 
-                    if (extras.containsKey(Intent.EXTRA_TEXT)) {
+                    if (extras.containsKey(Intent.EXTRA_TEXT) && extras.containsKey(Intent.EXTRA_SUBJECT)) {
                         final String extraText = (String) extras.get(Intent.EXTRA_TEXT);
+                        final String extraSubject = (String) extras.get(Intent.EXTRA_SUBJECT);
 
                         webView.setWebViewClient(new WebViewClient() {
                             @Override
@@ -249,7 +249,7 @@ public class ShareActivity extends MainActivity {
 
                                 finish();
 
-                                Intent i = new Intent(ShareActivity.this, MainActivity.class);
+                                Intent i = new Intent(ShareActivity2.this, MainActivity.class);
                                 i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                 startActivity(i);
                                 overridePendingTransition(0, 0);
@@ -260,7 +260,7 @@ public class ShareActivity extends MainActivity {
 
                         webView.loadUrl("javascript:(function() { " +
                                 "document.getElementsByTagName('textarea')[0].style.height='110px'; " +
-                                "document.getElementsByTagName('textarea')[0].innerHTML = '> " + extraText + " *[shared with #DiasporaWebApp]*'; " +
+                                "document.getElementsByTagName('textarea')[0].innerHTML = '**[" + extraSubject + "]** " + extraText + " *[shared with #DiasporaWebApp]*'; " +
                                 "    if(document.getElementById(\"main_nav\")) {" +
                                 "        document.getElementById(\"main_nav\").parentNode.removeChild(" +
                                 "        document.getElementById(\"main_nav\"));" +
@@ -276,7 +276,7 @@ public class ShareActivity extends MainActivity {
         }
 
         if (savedInstanceState == null) {
-            if (Helpers.isOnline(ShareActivity.this)) {
+            if (Helpers.isOnline(ShareActivity2.this)) {
                 webView.loadUrl("https://"+podDomain+"/status_messages/new");
             } else {
                 Snackbar.make(getWindow().findViewById(R.id.drawer_layout), R.string.no_internet, Snackbar.LENGTH_SHORT).show();
@@ -334,7 +334,7 @@ public class ShareActivity extends MainActivity {
         int id = item.getItemId();
 
         if (id == R.id.reload) {
-            if (Helpers.isOnline(ShareActivity.this)) {
+            if (Helpers.isOnline(ShareActivity2.this)) {
                 webView.reload();
                 return true;
             } else {
