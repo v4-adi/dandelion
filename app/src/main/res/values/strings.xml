@@ -196,4 +196,7 @@
         <item>@drawable/splashscreen5</item>
         <item>@drawable/splashscreen6</item>
     </array>
+
+    <string name="exit_app">Exit app</string>
+    <string name="diaspora" translatable="false">Diaspora</string>
 </resources>
