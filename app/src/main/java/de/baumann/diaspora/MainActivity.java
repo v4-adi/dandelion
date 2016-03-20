@@ -898,7 +898,6 @@ public class MainActivity extends AppCompatActivity
                     if (item != null) {
                         if (conversationCount > 0) {
                             item.setIcon(R.drawable.ic_message_text_white_24dp);
-                            item.setIcon(R.drawable.ic_bell_ring_white_24dp);
                             Snackbar snackbar = Snackbar
                                     .make(swipeView, R.string.new_conversations, Snackbar.LENGTH_INDEFINITE)
                                     .setAction(R.string.yes, new View.OnClickListener() {
