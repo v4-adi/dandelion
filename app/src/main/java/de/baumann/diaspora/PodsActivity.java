@@ -241,7 +241,7 @@ public class PodsActivity extends ActionBarActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.reload) {
+        if (id == R.id.action_reload) {
             if (Helpers.isOnline(PodsActivity.this)) {
                 progressDialog.show();
                 Intent i= new Intent(PodsActivity.this, GetPodsService.class);

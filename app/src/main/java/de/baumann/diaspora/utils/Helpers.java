@@ -33,7 +33,7 @@ public class Helpers {
         return ni != null && ni.isConnectedOrConnecting();
     }
 
-    public static void hideTopBar(WebView wv) {
+    public static void hideTopBar(final WebView wv) {
         wv.loadUrl("javascript: ( function() {" +
                 "    if(document.getElementById('main_nav')) {" +
                 "        document.getElementById('main_nav').parentNode.removeChild(" +
@@ -45,20 +45,29 @@ public class Helpers {
                 "})();");
     }
 
-    public static void getNotificationCount(WebView wv) {
+    public static void getNotificationCount(final WebView wv) {
         wv.loadUrl("javascript: ( function() {" +
-                "    if (document.getElementById('notification')) {" +
+                    "if (document.getElementById('notification')) {" +
                 "       var count = document.getElementById('notification').innerHTML;" +
-                "       NotificationCounter.setNotificationCount(count.replace(/(\\r\\n|\\n|\\r)/gm, \"\"));" +
+                "       AndroidBridge.setNotificationCount(count.replace(/(\\r\\n|\\n|\\r)/gm, \"\"));" +
                 "    } else {" +
-                "       NotificationCounter.setNotificationCount('0');" +
+                "       AndroidBridge.setNotificationCount('0');" +
                 "    }" +
                 "    if (document.getElementById('conversation')) {" +
                 "       var count = document.getElementById('conversation').innerHTML;" +
-                "       NotificationCounter.setConversationCount(count.replace(/(\\r\\n|\\n|\\r)/gm, \"\"));" +
+                "       AndroidBridge.setConversationCount(count.replace(/(\\r\\n|\\n|\\r)/gm, \"\"));" +
                 "    } else {" +
-                "       NotificationCounter.setConversationCount('0');" +
+                "       AndroidBridge.setConversationCount('0');" +
                 "    }" +
+                "})();");
+    }
+
+    public static void getProfileId(final WebView wv) {
+        wv.loadUrl("javascript: ( function() {" +
+                "    if (typeof gon !== 'undefined' && typeof gon.user !== 'undefined' && typeof gon.user.guid !== 'undefined') {" +
+                "       var guid = gon.user.guid;" +
+                "       AndroidBridge.setProfileId(guid.toString());" +
+                "    } " +
                 "})();");
     }
 }

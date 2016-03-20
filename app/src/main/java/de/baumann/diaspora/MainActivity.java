@@ -57,7 +57,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.JavascriptInterface;
-import android.webkit.JsResult;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -82,24 +81,26 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
 
-    private static final String URL_MESSAGE = "URL_MESSAGE";
-    final Handler myHandler = new Handler();
-    WebView webView;
-    static final String TAG = "Diaspora Main";
-    String podDomain;
-    Menu menu;
-    int notificationCount = 0;
-    int conversationCount = 0;
-    ValueCallback<Uri[]> mFilePathCallback;
-    String mCameraPhotoPath;
     public static final int INPUT_FILE_REQUEST_CODE = 1;
-    com.getbase.floatingactionbutton.FloatingActionsMenu fab;
-    TextView txtTitle;
-    ProgressBar progressBar;
-    WebSettings wSettings;
-    PrefManager pm;
+    private static final int REQUEST_CODE_ASK_PERMISSIONS = 123;
+    private static final String URL_MESSAGE = "URL_MESSAGE";
+
+    private AppSettings appSettings;
+    private final Handler myHandler = new Handler();
+    private WebView webView;
+    private String podDomain;
+    private Menu menu;
+    private int notificationCount = 0;
+    private int conversationCount = 0;
+    private String profileId = "";
+    private ValueCallback<Uri[]> mFilePathCallback;
+    private String mCameraPhotoPath;
+    private com.getbase.floatingactionbutton.FloatingActionsMenu fab;
+    private TextView txtTitle;
+    private ProgressBar progressBar;
+    private WebSettings wSettings;
+    private PrefManager pm;
     private SwipeRefreshLayout swipeView;
-    final private int REQUEST_CODE_ASK_PERMISSIONS = 123;
 
     @SuppressLint("SetJavaScriptEnabled")
     @Override
@@ -125,6 +126,11 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+
+        // Load app settings
+        appSettings = new AppSettings(getApplicationContext());
+        profileId = appSettings.getProfileId();
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -134,7 +140,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        progressBar = (ProgressBar)findViewById(R.id.progressBar);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
         pm = new PrefManager(MainActivity.this);
 
         SharedPreferences config = getSharedPreferences("PodSettings", MODE_PRIVATE);
@@ -147,8 +153,8 @@ public class MainActivity extends AppCompatActivity
         swipeView.setColorSchemeResources(R.color.colorPrimary,
                 R.color.fab_big);
 
-        webView = (WebView)findViewById(R.id.webView);
-        webView.addJavascriptInterface(new JavaScriptInterface(), "NotificationCounter");
+        webView = (WebView) findViewById(R.id.webView);
+        webView.addJavascriptInterface(new JavaScriptInterface(), "AndroidBridge");
 
         if (savedInstanceState != null) {
             webView.restoreState(savedInstanceState);
@@ -209,6 +215,7 @@ public class MainActivity extends AppCompatActivity
 
                 if (progress > 60) {
                     Helpers.hideTopBar(wv);
+                    Helpers.getProfileId(wv);
                     fab.setVisibility(View.VISIBLE);
                 }
 
@@ -269,17 +276,13 @@ public class MainActivity extends AppCompatActivity
 
                 return true;
             }
-
-            public boolean onJsAlert(WebView view, String url, String message, JsResult result) {
-                return super.onJsAlert(view, url, message, result);
-            }
         });
 
 
         if (savedInstanceState == null) {
             if (Helpers.isOnline(MainActivity.this)) {
                 webView.loadData("", "text/html", null);
-                webView.loadUrl("https://"+podDomain);
+                webView.loadUrl("https://" + podDomain);
             } else {
                 Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
             }
@@ -291,7 +294,7 @@ public class MainActivity extends AppCompatActivity
      * Fab button events
      */
 
-    public void fab1_click (View v){
+    public void fab1_click(View v) {
         fab.collapse();
         if (Helpers.isOnline(MainActivity.this)) {
             webView.loadUrl("https://" + podDomain + "/status_messages/new");
@@ -301,51 +304,52 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    public void fab2_click(View v){
+    public void fab2_click(View v) {
         fab.collapse();
         if (Helpers.isOnline(MainActivity.this)) {
-            final AlertDialog.Builder alert = new AlertDialog.Builder(this);
             final EditText input = new EditText(this);
-            alert.setView(input);
-            alert.setTitle(R.string.search_alert_title);
-            alert.setPositiveButton(R.string.search_alert_people, new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int whichButton) {
-                    String inputTag = input.getText().toString().trim();
-                    String cleanTag = inputTag.replaceAll("\\*", "");
-                    // this validate the input data for tagfind
-                    if (cleanTag == null || cleanTag.equals("")) {
-                        dialog.cancel(); // if user don�t have added a tag
-                        Snackbar.make(swipeView, R.string.search_alert_bypeople_validate_needsomedata, Snackbar.LENGTH_LONG).show();
-                    } else { // User have added a search tag
-                        webView.loadUrl("https://" + podDomain + "/people.mobile?q=" + cleanTag);
-                        setTitle(R.string.fab2_title_person);
-                    }
-                }
-            }).setNegativeButton(R.string.search_alert_tag,
-                    new DialogInterface.OnClickListener() {
+            final AlertDialog.Builder dialog = new AlertDialog.Builder(this)
+                    .setView(input)
+                    .setIcon(R.drawable.ic_launcher)
+                    .setTitle(R.string.search_alert_title)
+                    .setPositiveButton(R.string.search_alert_people, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int whichButton) {
                             String inputTag = input.getText().toString().trim();
-                            String cleanTag = inputTag.replaceAll("\\#", "");
+                            String cleanTag = inputTag.replaceAll("\\*", "");
                             // this validate the input data for tagfind
                             if (cleanTag == null || cleanTag.equals("")) {
-                                dialog.cancel(); // if user hasn't added a tag
-                                Snackbar.make(swipeView, R.string.search_alert_bytags_validate_needsomedata, Snackbar.LENGTH_LONG).show();
+                                dialog.cancel(); // if user don�t have added a tag
+                                Snackbar.make(swipeView, R.string.search_alert_bypeople_validate_needsomedata, Snackbar.LENGTH_LONG).show();
                             } else { // User have added a search tag
-                                webView.loadUrl("https://" + podDomain + "/tags/" + cleanTag);
-                                setTitle(R.string.fab2_title_tag);
+                                webView.loadUrl("https://" + podDomain + "/people.mobile?q=" + cleanTag);
+                                setTitle(R.string.fab2_title_person);
                             }
                         }
-                    });
-            alert.show();
-        }
-        else {
+                    })
+                    .setNegativeButton(R.string.search_alert_tag,
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int whichButton) {
+                                    String inputTag = input.getText().toString().trim();
+                                    String cleanTag = inputTag.replaceAll("\\#", "");
+                                    // this validate the input data for tagfind
+                                    if (cleanTag == null || cleanTag.equals("")) {
+                                        dialog.cancel(); // if user hasn't added a tag
+                                        Snackbar.make(swipeView, R.string.search_alert_bytags_validate_needsomedata, Snackbar.LENGTH_LONG).show();
+                                    } else { // User have added a search tag
+                                        webView.loadUrl("https://" + podDomain + "/tags/" + cleanTag);
+                                        setTitle(R.string.fab2_title_tag);
+                                    }
+                                }
+                            });
+            dialog.show();
+        } else {
             Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
         }
     }
 
-    public void fab3_click(View v){
+    public void fab3_click(View v) {
         fab.collapse();
-        webView.scrollTo(0,0);
+        webView.scrollTo(0, 0);
     }
 
     private File createImageFile() throws IOException {
@@ -363,15 +367,15 @@ public class MainActivity extends AppCompatActivity
 
 
     @Override
-    public void onActivityResult (int requestCode, int resultCode, Intent data) {
-        if(requestCode != INPUT_FILE_REQUEST_CODE || mFilePathCallback == null) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode != INPUT_FILE_REQUEST_CODE || mFilePathCallback == null) {
             super.onActivityResult(requestCode, resultCode, data);
             return;
         }
         Uri[] results = null;
-        if(resultCode == Activity.RESULT_OK) {
-            if(data == null) {
-                if(mCameraPhotoPath != null) {
+        if (resultCode == Activity.RESULT_OK) {
+            if (data == null) {
+                if (mCameraPhotoPath != null) {
                     results = new Uri[]{Uri.parse(mCameraPhotoPath)};
                 }
             } else {
@@ -432,7 +436,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    private BroadcastReceiver brLoadUrl = new BroadcastReceiver() {
+    private final BroadcastReceiver brLoadUrl = new BroadcastReceiver() {
 
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -457,7 +461,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         this.menu = menu;
-        MenuItem itemNotification = menu.findItem(R.id.notifications);
+        MenuItem itemNotification = menu.findItem(R.id.action_notifications);
         if (itemNotification != null) {
             if (notificationCount > 0) {
                 itemNotification.setIcon(R.drawable.ic_bell_ring_white_24dp);
@@ -465,7 +469,7 @@ public class MainActivity extends AppCompatActivity
                 itemNotification.setIcon(R.drawable.ic_bell_outline_white_24dp);
             }
 
-            MenuItem itemConversation = menu.findItem(R.id.conversations);
+            MenuItem itemConversation = menu.findItem(R.id.action_conversations);
             if (conversationCount > 0) {
                 itemConversation.setIcon(R.drawable.ic_message_text_white_24dp);
             } else {
@@ -477,332 +481,183 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.notifications) {
-            if (Helpers.isOnline(MainActivity.this)) {
-                webView.loadUrl("https://" + podDomain + "/notifications");
-                setTitle(R.string.jb_notifications);
-                return true;
-            } else {
-                Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
-                return false;
+        switch (item.getItemId()) {
+            case R.id.action_notifications: {
+                if (Helpers.isOnline(MainActivity.this)) {
+                    webView.loadUrl("https://" + podDomain + "/notifications");
+                    setTitle(R.string.jb_notifications);
+                    return true;
+                } else {
+                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
+                    return false;
+                }
             }
-        }
 
-        if (id == R.id.conversations) {
-            if (Helpers.isOnline(MainActivity.this)) {
-                webView.loadUrl("https://" + podDomain + "/conversations");
-                setTitle(R.string.jb_conversations);
-                return true;
-            } else {
-                Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
-                return false;
+            case R.id.action_conversations: {
+                if (Helpers.isOnline(MainActivity.this)) {
+                    webView.loadUrl("https://" + podDomain + "/conversations");
+                    setTitle(R.string.jb_conversations);
+                    return true;
+                } else {
+                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
+                    return false;
+                }
             }
-        }
 
-        if (id == R.id.exit) {
-            Snackbar snackbar = Snackbar
-                    .make(swipeView, R.string.confirm_exit, Snackbar.LENGTH_LONG)
-                    .setAction(R.string.yes, new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            moveTaskToBack(true);
-                        }
-                    });
-            snackbar.show();
-        }
-
-        if (id == R.id.help_license) {
-            final CharSequence[] options = { getString(R.string.help_license), getString(R.string.help_about), getString(R.string.help_help), getString(R.string.help_donate) };
-            new AlertDialog.Builder(MainActivity.this)
-                    .setItems(options, new DialogInterface.OnClickListener() {
-
-                        @Override
-
-                        public void onClick(DialogInterface dialog, int item) {
-
-                            if (options[item].equals(getString(R.string.help_license)))
-
-                            {
-                                final SpannableString s = new SpannableString(Html.fromHtml(getString(R.string.license_text)));
-                                Linkify.addLinks(s, Linkify.WEB_URLS);
-
-                                final AlertDialog d = new AlertDialog.Builder(MainActivity.this)
-                                        .setTitle(R.string.license_title)
-                                        .setMessage( s )
-                                        .setPositiveButton(getString(R.string.yes),
-                                                new DialogInterface.OnClickListener() {
-                                                    public void onClick(DialogInterface dialog, int id) {
-                                                        dialog.cancel();
-                                                    }
-                                                }).show();
-                                d.show();
-                                ((TextView)d.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
+            case R.id.action_exit: {
+                Snackbar snackbar = Snackbar
+                        .make(swipeView, R.string.confirm_exit, Snackbar.LENGTH_LONG)
+                        .setAction(R.string.yes, new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                moveTaskToBack(true);
                             }
+                        });
+                snackbar.show();
+            }
+            break;
 
-                            if (options[item].equals(getString(R.string.help_about)))
-
-                            {
-                                final SpannableString s = new SpannableString(Html.fromHtml(getString(R.string.about_text)));
-                                Linkify.addLinks(s, Linkify.WEB_URLS);
-
-                                final AlertDialog d = new AlertDialog.Builder(MainActivity.this)
-                                        .setTitle(R.string.help_about)
-                                        .setMessage(s)
-                                        .setPositiveButton(getString(R.string.yes),
-                                                new DialogInterface.OnClickListener() {
-                                                    public void onClick(DialogInterface dialog, int id) {
-                                                        dialog.cancel();
-                                                    }
-                                                }).show();
-                                d.show();
-                                ((TextView)d.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
-                            }
-
-                            if (options[item].equals(getString(R.string.help_help)))
-
-                            {
-                                new AlertDialog.Builder(MainActivity.this)
-                                        .setTitle(R.string.help_help)
-                                        .setMessage(Html.fromHtml(getString(R.string.markdown_text)))
-                                        .setPositiveButton(getString(R.string.yes),
-                                                new DialogInterface.OnClickListener() {
-                                                    public void onClick(DialogInterface dialog, int id) {
-                                                        dialog.cancel();
-                                                    }
-                                                }).show();
-                            }
-
-                            if (options[item].equals(getString(R.string.help_donate)))
-
-                            {
-                                new AlertDialog.Builder(MainActivity.this)
-                                        .setMessage(getString(R.string.donate_text))
-                                        .setPositiveButton(getString(R.string.yes),
-                                                new DialogInterface.OnClickListener() {
-                                                    public void onClick(DialogInterface dialog, int id) {
-                                                        dialog.cancel();
-                                                    }
-                                                })
-                                        .setNegativeButton(getString(R.string.donate_1),
-                                                new DialogInterface.OnClickListener() {
-                                                    public void onClick(DialogInterface dialog, int id) {
-                                                        Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://martinv.tip.me/"));
-                                                        startActivity(i);
-                                                        dialog.cancel();
-                                                    }
-                                                }).show();
-                            }
-
-                        }
-
-                    }).show();
-        }
-
-        if (id == R.id.view) {
-            final CharSequence[] options = { getString(R.string.settings_font), getString(R.string.settings_view),getString(R.string.settings_image) };
-            if (Helpers.isOnline(MainActivity.this)) {
+            case R.id.action_share: {
+                final CharSequence[] options = {getString(R.string.share_link), getString(R.string.share_screenshot), getString(R.string.take_screenshot)};
                 new AlertDialog.Builder(MainActivity.this)
                         .setItems(options, new DialogInterface.OnClickListener() {
-
                             @Override
-
                             public void onClick(DialogInterface dialog, int item) {
-
-                                if (options[item].equals(getString(R.string.settings_font)))
-                                    alertFormElements();
-
-                                if (options[item].equals(getString(R.string.settings_view)))
-                                    webView.loadUrl("https://" + podDomain + "/mobile/toggle");
-
-                                if (options[item].equals(getString(R.string.settings_image)))
-                                    wSettings.setLoadsImagesAutomatically(!pm.getLoadImages());
-                                pm.setLoadImages(!pm.getLoadImages());
-                                webView.loadUrl(webView.getUrl());
+                                if (options[item].equals(getString(R.string.share_link))) {
+                                    Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+                                    sharingIntent.setType("image/png");
+                                    sharingIntent.putExtra(Intent.EXTRA_SUBJECT, webView.getTitle());
+                                    sharingIntent.putExtra(Intent.EXTRA_TEXT, webView.getUrl());
+                                    startActivity(Intent.createChooser(sharingIntent, "Share using"));
+                                }
+                                if (options[item].equals(getString(R.string.share_screenshot))) {
+                                    if (android.os.Build.VERSION.SDK_INT >= 23) {
+                                        int hasWRITE_EXTERNAL_STORAGE = checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+                                        if (hasWRITE_EXTERNAL_STORAGE != PackageManager.PERMISSION_GRANTED) {
+                                            if (!shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                                                new AlertDialog.Builder(MainActivity.this)
+                                                        .setMessage(R.string.permissions)
+                                                        .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(DialogInterface dialog, int which) {
+                                                                if (android.os.Build.VERSION.SDK_INT >= 23)
+                                                                    requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                                                                            REQUEST_CODE_ASK_PERMISSIONS);
+                                                            }
+                                                        })
+                                                        .setNegativeButton(getString(R.string.no), null)
+                                                        .show();
+                                                return;
+                                            }
+                                            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                                                    REQUEST_CODE_ASK_PERMISSIONS);
+                                            return;
+                                        }
+                                    }
+                                    Snackbar.make(swipeView, R.string.toast_screenshot, Snackbar.LENGTH_LONG).show();
+                                    File directory = new File(Environment.getExternalStorageDirectory() + "/Pictures/Diaspora/");
+                                    if (!directory.exists()) {
+                                        directory.mkdirs();
+                                    }
+                                    Date date = new Date();
+                                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH-mm");
+                                    Picture picture = webView.capturePicture();
+                                    Bitmap b = Bitmap.createBitmap(picture.getWidth(), picture.getHeight(), Bitmap.Config.ARGB_8888);
+                                    Canvas c = new Canvas(b);
+                                    File screen = new File(Environment.getExternalStorageDirectory() + "/Pictures/Diaspora/"
+                                            + dateFormat.format(date) + ".jpg");
+                                    if (screen.exists())
+                                        screen.delete();
+                                    picture.draw(c);
+                                    FileOutputStream fos = null;
+                                    try {
+                                        fos = new FileOutputStream(screen);
+                                        if (fos != null) {
+                                            b.compress(Bitmap.CompressFormat.JPEG, 90, fos);
+                                            fos.close();
+                                        }
+                                    } catch (Exception e) {
+                                        e.getMessage();
+                                    }
+                                    Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+                                    sharingIntent.setType("image/png");
+                                    sharingIntent.putExtra(Intent.EXTRA_SUBJECT, webView.getTitle());
+                                    sharingIntent.putExtra(Intent.EXTRA_TEXT, webView.getUrl());
+                                    Uri bmpUri = Uri.fromFile(new File(Environment.getExternalStorageDirectory() + "/Pictures/Diaspora/"
+                                            + dateFormat.format(date) + ".jpg"));
+                                    sharingIntent.putExtra(Intent.EXTRA_STREAM, bmpUri);
+                                    startActivity(Intent.createChooser(sharingIntent, "Share using"));
+                                    File file = new File(Environment.getExternalStorageDirectory() + "/Pictures/Diaspora/"
+                                            + dateFormat.format(date) + ".jpg");
+                                    Uri uri = Uri.fromFile(file);
+                                    Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, uri);
+                                    sendBroadcast(intent);
+                                }
+                                if (options[item].equals(getString(R.string.take_screenshot))) {
+                                    if (android.os.Build.VERSION.SDK_INT >= 23) {
+                                        int hasWRITE_EXTERNAL_STORAGE = checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+                                        if (hasWRITE_EXTERNAL_STORAGE != PackageManager.PERMISSION_GRANTED) {
+                                            if (!shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                                                new AlertDialog.Builder(MainActivity.this)
+                                                        .setMessage(R.string.permissions)
+                                                        .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(DialogInterface dialog, int which) {
+                                                                if (android.os.Build.VERSION.SDK_INT >= 23)
+                                                                    requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                                                                            REQUEST_CODE_ASK_PERMISSIONS);
+                                                            }
+                                                        })
+                                                        .setNegativeButton(getString(R.string.no), null)
+                                                        .show();
+                                                return;
+                                            }
+                                            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                                                    REQUEST_CODE_ASK_PERMISSIONS);
+                                            return;
+                                        }
+                                    }
+                                    Snackbar.make(swipeView, R.string.toast_screenshot, Snackbar.LENGTH_LONG).show();
+                                    File directory = new File(Environment.getExternalStorageDirectory() + "/Pictures/Diaspora/");
+                                    if (!directory.exists()) {
+                                        directory.mkdirs();
+                                    }
+                                    Date date = new Date();
+                                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH-mm");
+                                    Picture picture = webView.capturePicture();
+                                    Bitmap b = Bitmap.createBitmap(picture.getWidth(), picture.getHeight(), Bitmap.Config.ARGB_8888);
+                                    Canvas c = new Canvas(b);
+                                    File screen = new File(Environment.getExternalStorageDirectory() + "/Pictures/Diaspora/"
+                                            + dateFormat.format(date) + ".jpg");
+                                    if (screen.exists())
+                                        screen.delete();
+                                    picture.draw(c);
+                                    FileOutputStream fos = null;
+                                    try {
+                                        fos = new FileOutputStream(screen);
+                                        if (fos != null) {
+                                            b.compress(Bitmap.CompressFormat.JPEG, 90, fos);
+                                            fos.close();
+                                        }
+                                    } catch (Exception e) {
+                                        e.getMessage();
+                                    }
+                                    File file = new File(Environment.getExternalStorageDirectory() + "/Pictures/Diaspora/"
+                                            + dateFormat.format(date) + ".jpg");
+                                    Uri uri = Uri.fromFile(file);
+                                    Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, uri);
+                                    sendBroadcast(intent);
+                                }
                             }
-
                         }).show();
-            } else {
-                Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
             }
-        }
-
-        if (id == R.id.share) {
-            final CharSequence[] options = { getString(R.string.share_link), getString(R.string.share_screenshot),getString(R.string.take_screenshot) };
-            new AlertDialog.Builder(MainActivity.this)
-                    .setItems(options, new DialogInterface.OnClickListener() {
-
-                        @Override
-
-                        public void onClick(DialogInterface dialog, int item) {
-
-                            if (options[item].equals(getString(R.string.share_link)))
-
-                            {
-                                Intent sharingIntent = new Intent(Intent.ACTION_SEND);
-                                sharingIntent.setType("image/png");
-                                sharingIntent.putExtra(Intent.EXTRA_SUBJECT, webView.getTitle());
-                                sharingIntent.putExtra(Intent.EXTRA_TEXT, webView.getUrl());
-                                startActivity(Intent.createChooser(sharingIntent, "Share using"));
-                            }
-
-                            if (options[item].equals(getString(R.string.share_screenshot)))
-
-                            {
-                                if (android.os.Build.VERSION.SDK_INT >= 23) {
-                                    int hasWRITE_EXTERNAL_STORAGE = checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE);
-                                    if (hasWRITE_EXTERNAL_STORAGE != PackageManager.PERMISSION_GRANTED) {
-                                        if (!shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-                                            new AlertDialog.Builder(MainActivity.this)
-                                                    .setMessage(R.string.permissions)
-                                                    .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
-                                                        @Override
-                                                        public void onClick(DialogInterface dialog, int which) {
-                                                            if (android.os.Build.VERSION.SDK_INT >= 23)
-                                                                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                                                                        REQUEST_CODE_ASK_PERMISSIONS);
-                                                        }
-                                                    })
-                                                    .setNegativeButton(getString(R.string.no), null)
-                                                    .show();
-                                            return;
-                                        }
-                                        requestPermissions(new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                                                REQUEST_CODE_ASK_PERMISSIONS);
-                                        return;
-                                    }
-                                }
-
-                                Snackbar.make(swipeView, R.string.toast_screenshot, Snackbar.LENGTH_LONG).show();
-                                File directory = new File(Environment.getExternalStorageDirectory() + "/Pictures/Diaspora/");
-                                if (!directory.exists()) {
-                                    directory.mkdirs();
-                                }
-
-                                Date date = new Date();
-                                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH-mm");
-
-                                Picture picture = webView.capturePicture();
-                                Bitmap b = Bitmap.createBitmap(picture.getWidth(), picture.getHeight(), Bitmap.Config.ARGB_8888);
-                                Canvas c = new Canvas(b);
-
-                                File screen = new File(Environment.getExternalStorageDirectory() + "/Pictures/Diaspora/"
-                                        + dateFormat.format(date) + ".jpg");
-                                if (screen.exists())
-                                    screen.delete();
-
-                                picture.draw(c);
-
-                                FileOutputStream fos = null;
-                                try {
-
-                                    fos = new FileOutputStream(screen);
-                                    if (fos != null) {
-                                        b.compress(Bitmap.CompressFormat.JPEG, 90, fos);
-
-                                        fos.close();
-                                    }
-                                } catch (Exception e) {
-                                    e.getMessage();
-
-                                }
-
-                                Intent sharingIntent = new Intent(Intent.ACTION_SEND);
-                                sharingIntent.setType("image/png");
-                                sharingIntent.putExtra(Intent.EXTRA_SUBJECT, webView.getTitle());
-                                sharingIntent.putExtra(Intent.EXTRA_TEXT, webView.getUrl());
-                                Uri bmpUri = Uri.fromFile(new File(Environment.getExternalStorageDirectory() + "/Pictures/Diaspora/"
-                                        + dateFormat.format(date) + ".jpg"));
-                                sharingIntent.putExtra(Intent.EXTRA_STREAM, bmpUri);
-                                startActivity(Intent.createChooser(sharingIntent, "Share using"));
-
-                                File file = new File(Environment.getExternalStorageDirectory() + "/Pictures/Diaspora/"
-                                        + dateFormat.format(date) + ".jpg");
-                                Uri uri = Uri.fromFile(file);
-                                Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, uri);
-                                sendBroadcast(intent);
-                            }
-
-                            if (options[item].equals(getString(R.string.take_screenshot)))
-
-                            {
-                                if (android.os.Build.VERSION.SDK_INT >= 23) {
-                                    int hasWRITE_EXTERNAL_STORAGE = checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE);
-                                    if (hasWRITE_EXTERNAL_STORAGE != PackageManager.PERMISSION_GRANTED) {
-                                        if (!shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-                                            new AlertDialog.Builder(MainActivity.this)
-                                                    .setMessage(R.string.permissions)
-                                                    .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
-                                                        @Override
-                                                        public void onClick(DialogInterface dialog, int which) {
-                                                            if (android.os.Build.VERSION.SDK_INT >= 23)
-                                                                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                                                                        REQUEST_CODE_ASK_PERMISSIONS);
-                                                        }
-                                                    })
-                                                    .setNegativeButton(getString(R.string.no), null)
-                                                    .show();
-                                            return;
-                                        }
-                                        requestPermissions(new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                                                REQUEST_CODE_ASK_PERMISSIONS);
-                                        return;
-                                    }
-                                }
-
-                                Snackbar.make(swipeView, R.string.toast_screenshot, Snackbar.LENGTH_LONG).show();
-
-                                File directory = new File(Environment.getExternalStorageDirectory() + "/Pictures/Diaspora/");
-                                if (!directory.exists()) {
-                                    directory.mkdirs();
-                                }
-
-                                Date date = new Date();
-                                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH-mm");
-
-                                Picture picture = webView.capturePicture();
-                                Bitmap b = Bitmap.createBitmap(picture.getWidth(), picture.getHeight(), Bitmap.Config.ARGB_8888);
-                                Canvas c = new Canvas(b);
-
-                                File screen = new File(Environment.getExternalStorageDirectory() + "/Pictures/Diaspora/"
-                                        + dateFormat.format(date) + ".jpg");
-                                if (screen.exists())
-                                    screen.delete();
-
-                                picture.draw(c);
-
-                                FileOutputStream fos = null;
-                                try {
-
-                                    fos = new FileOutputStream(screen);
-                                    if (fos != null) {
-                                        b.compress(Bitmap.CompressFormat.JPEG, 90, fos);
-
-                                        fos.close();
-                                    }
-                                } catch (Exception e) {
-                                    e.getMessage();
-
-                                }
-
-                                File file = new File(Environment.getExternalStorageDirectory() + "/Pictures/Diaspora/"
-                                        + dateFormat.format(date) + ".jpg");
-                                Uri uri = Uri.fromFile(file);
-                                Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, uri);
-                                sendBroadcast(intent);
-                            }
-
-                        }
-
-                    }).show();
+            break;
         }
         return super.onOptionsItemSelected(item);
     }
 
 
-
-    public void alertFormElements() {
+    private void alertFormElements() {
 
     /*
      * Inflate the XML view. activity_main is in
@@ -851,13 +706,13 @@ public class MainActivity extends AppCompatActivity
 
     public class JavaScriptInterface {
         @JavascriptInterface
-        public void setNotificationCount(final String webMessage){
+        public void setNotificationCount(final String webMessage) {
             myHandler.post(new Runnable() {
                 @Override
                 public void run() {
                     notificationCount = Integer.valueOf(webMessage);
 
-                    MenuItem item = menu.findItem(R.id.notifications);
+                    MenuItem item = menu.findItem(R.id.action_notifications);
 
                     if (item != null) {
                         if (notificationCount > 0) {
@@ -887,13 +742,23 @@ public class MainActivity extends AppCompatActivity
         }
 
         @JavascriptInterface
-        public void setConversationCount(final String webMessage){
+        public void setProfileId(final String webMessage) {
+            if(profileId.equals("") || !profileId.equals(webMessage)) {
+                profileId = webMessage;
+                appSettings.setProfileId(profileId);
+            }
+        }
+
+
+
+            @JavascriptInterface
+        public void setConversationCount(final String webMessage) {
             myHandler.post(new Runnable() {
                 @Override
                 public void run() {
                     conversationCount = Integer.valueOf(webMessage);
 
-                    MenuItem item = menu.findItem(R.id.conversations);
+                    MenuItem item = menu.findItem(R.id.action_conversations);
 
                     if (item != null) {
                         if (conversationCount > 0) {
@@ -928,229 +793,233 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.jb_stream) {
-            if (Helpers.isOnline(MainActivity.this)) {
-                webView.loadUrl("https://" + podDomain + "/stream");
-                setTitle(R.string.jb_stream);
-            } else {
-                Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
+        switch (item.getItemId()) {
+            case R.id.nav_stream: {
+                if (Helpers.isOnline(MainActivity.this)) {
+                    webView.loadUrl("https://" + podDomain + "/stream");
+                    setTitle(R.string.jb_stream);
+                } else {
+                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
+                }
             }
+            break;
 
-        } else if (id == R.id.jb_followed_tags) {
-            if (Helpers.isOnline(MainActivity.this)) {
-                webView.loadUrl("https://" + podDomain + "/followed_tags");
-                setTitle(R.string.jb_followed_tags);
-            } else {
-                Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
+            case R.id.nav_profile: {
+                if (Helpers.isOnline(MainActivity.this)) {
+                    webView.loadUrl("https://" + podDomain + "/people/" + profileId);
+                    setTitle(R.string.jb_profile);
+                } else {
+                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
+                }
             }
+            break;
 
-        } else if (id == R.id.jb_aspects) {
-            if (Helpers.isOnline(MainActivity.this)) {
-                webView.loadUrl("https://" + podDomain + "/aspects");
-                setTitle(R.string.jb_aspects);
-            } else {
-                Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
+            // TODO followed_tags currently not implemented as single viewable page (0.5.7.1-paf04894e, 2016 March 20)
+            case R.id.nav_followed_tags: {
+                if (Helpers.isOnline(MainActivity.this)) {
+                    webView.loadUrl("https://" + podDomain + "/followed_tags");
+                    setTitle(R.string.jb_followed_tags);
+                } else {
+                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
+                }
             }
+            break;
 
-        } else if (id == R.id.jb_activities) {
-            if (Helpers.isOnline(MainActivity.this)) {
-                webView.loadUrl("https://" + podDomain + "/activity");
-                setTitle(R.string.jb_activities);
-            } else {
-                Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
+            case R.id.nav_aspects: {
+                if (Helpers.isOnline(MainActivity.this)) {
+                    webView.loadUrl("https://" + podDomain + "/aspects");
+                    setTitle(R.string.jb_aspects);
+                } else {
+                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
+                }
             }
+            break;
 
-        } else if (id == R.id.jb_liked) {
-            if (Helpers.isOnline(MainActivity.this)) {
-                webView.loadUrl("https://" + podDomain + "/liked");
-                setTitle(R.string.jb_liked);
-            } else {
-                Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
+            case R.id.nav_activities: {
+                if (Helpers.isOnline(MainActivity.this)) {
+                    webView.loadUrl("https://" + podDomain + "/activity");
+                    setTitle(R.string.jb_activities);
+                } else {
+                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
+                }
             }
+            break;
 
-        } else if (id == R.id.jb_commented) {
-            if (Helpers.isOnline(MainActivity.this)) {
-                webView.loadUrl("https://" + podDomain + "/commented");
-                setTitle(R.string.jb_commented);
-            } else {
-                Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
+            case R.id.nav_liked: {
+                if (Helpers.isOnline(MainActivity.this)) {
+                    webView.loadUrl("https://" + podDomain + "/liked");
+                    setTitle(R.string.jb_liked);
+                } else {
+                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
+                }
             }
+            break;
 
-        } else if (id == R.id.jb_mentions) {
-            if (Helpers.isOnline(MainActivity.this)) {
-                webView.loadUrl("https://" + podDomain + "/mentions");
-                setTitle(R.string.jb_mentions);
-            } else {
-                Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
+            case R.id.nav_commented: {
+                if (Helpers.isOnline(MainActivity.this)) {
+                    webView.loadUrl("https://" + podDomain + "/commented");
+                    setTitle(R.string.jb_commented);
+                } else {
+                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
+                }
             }
+            break;
 
-        } else if (id == R.id.jb_public) {
-            if (Helpers.isOnline(MainActivity.this)) {
-                webView.loadUrl("https://" + podDomain + "/public");
-                setTitle(R.string.jb_public);
-            } else {
-                Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
+            case R.id.nav_mentions: {
+                if (Helpers.isOnline(MainActivity.this)) {
+                    webView.loadUrl("https://" + podDomain + "/mentions");
+                    setTitle(R.string.jb_mentions);
+                } else {
+                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
+                }
             }
+            break;
 
-        } else if (id == R.id.jb_settings_view) {
-            final CharSequence[] options = { getString(R.string.settings_font), getString(R.string.settings_view),getString(R.string.settings_image) };
-            if (Helpers.isOnline(MainActivity.this)) {
+            case R.id.nav_public: {
+                if (Helpers.isOnline(MainActivity.this)) {
+                    webView.loadUrl("https://" + podDomain + "/public");
+                    setTitle(R.string.jb_public);
+                } else {
+                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
+                }
+            }
+            break;
+
+            case R.id.nav_settings_view: {
+                final CharSequence[] options = {getString(R.string.settings_font), getString(R.string.settings_view), getString(R.string.settings_image)};
+                if (Helpers.isOnline(MainActivity.this)) {
+                    new AlertDialog.Builder(MainActivity.this)
+                            .setItems(options, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int item) {
+                                    if (options[item].equals(getString(R.string.settings_font)))
+                                        alertFormElements();
+                                    if (options[item].equals(getString(R.string.settings_view)))
+                                        webView.loadUrl("https://" + podDomain + "/mobile/toggle");
+                                    if (options[item].equals(getString(R.string.settings_image)))
+                                        wSettings.setLoadsImagesAutomatically(!pm.getLoadImages());
+                                    pm.setLoadImages(!pm.getLoadImages());
+                                    webView.loadUrl(webView.getUrl());
+                                }
+                            }).show();
+                } else {
+                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
+                }
+            }
+            break;
+
+            case R.id.nav_settings_diaspora: {
+                final CharSequence[] options2 = {getString(R.string.jb_settings), getString(R.string.jb_manage_tags),
+                        getString(R.string.jb_contacts), getString(R.string.jb_pod)};
+                if (Helpers.isOnline(MainActivity.this)) {
+                    new AlertDialog.Builder(MainActivity.this)
+                            .setItems(options2, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int item) {
+                                    if (options2[item].equals(getString(R.string.jb_settings)))
+                                        webView.loadUrl("https://" + podDomain + "/user/edit");
+                                    if (options2[item].equals(getString(R.string.jb_manage_tags)))
+                                        webView.loadUrl("https://" + podDomain + "/tag_followings/manage");
+                                    if (options2[item].equals(getString(R.string.jb_contacts)))
+                                        webView.loadUrl("https://" + podDomain + "/contacts");
+                                    if (options2[item].equals(getString(R.string.jb_pod)))
+                                        new AlertDialog.Builder(MainActivity.this)
+                                                .setTitle(getString(R.string.confirmation))
+                                                .setMessage(getString(R.string.change_pod_warning))
+                                                .setPositiveButton(getString(R.string.yes),
+                                                        new DialogInterface.OnClickListener() {
+                                                            @TargetApi(11)
+                                                            public void onClick(DialogInterface dialog, int id) {
+                                                                webView.clearCache(true);
+                                                                dialog.cancel();
+                                                                Intent i = new Intent(MainActivity.this, PodsActivity.class);
+                                                                startActivity(i);
+                                                                finish();
+                                                            }
+                                                        })
+                                                .setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
+                                                    @TargetApi(11)
+                                                    public void onClick(DialogInterface dialog, int id) {
+                                                        dialog.cancel();
+                                                    }
+                                                }).show();
+                                }
+                            }).show();
+                } else {
+                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
+                }
+            }
+            break;
+
+            case R.id.nav_license_help: {
+                final CharSequence[] options = {getString(R.string.help_license), getString(R.string.help_about), getString(R.string.help_help), getString(R.string.help_donate)};
                 new AlertDialog.Builder(MainActivity.this)
                         .setItems(options, new DialogInterface.OnClickListener() {
-
                             @Override
                             public void onClick(DialogInterface dialog, int item) {
-
-                                if (options[item].equals(getString(R.string.settings_font)))
-                                    alertFormElements();
-
-                                if (options[item].equals(getString(R.string.settings_view)))
-                                    webView.loadUrl("https://" + podDomain + "/mobile/toggle");
-
-                                if (options[item].equals(getString(R.string.settings_image)))
-                                    wSettings.setLoadsImagesAutomatically(!pm.getLoadImages());
-                                pm.setLoadImages(!pm.getLoadImages());
-                                webView.loadUrl(webView.getUrl());
-                            }
-                        }).show();
-            } else {
-                Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
-            }
-
-        } else if (id == R.id.jb_settings_diaspora) {
-
-            final CharSequence[] options2 = { getString(R.string.jb_settings), getString(R.string.jb_manage_tags),
-                    getString(R.string.jb_contacts), getString(R.string.jb_pod) };
-            if (Helpers.isOnline(MainActivity.this)) {
-                new AlertDialog.Builder(MainActivity.this)
-                        .setItems(options2, new DialogInterface.OnClickListener() {
-
-                            @Override
-                            public void onClick(DialogInterface dialog, int item) {
-
-                                if (options2[item].equals(getString(R.string.jb_settings)))
-                                    webView.loadUrl("https://" + podDomain + "/user/edit");
-
-                                if (options2[item].equals(getString(R.string.jb_manage_tags)))
-                                    webView.loadUrl("https://" + podDomain + "/tag_followings/manage");
-
-                                if (options2[item].equals(getString(R.string.jb_contacts)))
-                                    webView.loadUrl("https://" + podDomain + "/contacts");
-
-                                if (options2[item].equals(getString(R.string.jb_pod)))
-                                    new AlertDialog.Builder(MainActivity.this)
-                                            .setTitle(getString(R.string.confirmation))
-                                            .setMessage(getString(R.string.change_pod_warning))
+                                if (options[item].equals(getString(R.string.help_license))) {
+                                    final SpannableString s = new SpannableString(Html.fromHtml(getString(R.string.license_text)));
+                                    Linkify.addLinks(s, Linkify.WEB_URLS);
+                                    final AlertDialog d = new AlertDialog.Builder(MainActivity.this)
+                                            .setTitle(R.string.license_title)
+                                            .setMessage(s)
                                             .setPositiveButton(getString(R.string.yes),
                                                     new DialogInterface.OnClickListener() {
-                                                        @TargetApi(11)
                                                         public void onClick(DialogInterface dialog, int id) {
-                                                            webView.clearCache(true);
                                                             dialog.cancel();
-                                                            Intent i = new Intent(MainActivity.this, PodsActivity.class);
-                                                            startActivity(i);
-                                                            finish();
+                                                        }
+                                                    }).show();
+                                    d.show();
+                                    ((TextView) d.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
+                                }
+                                if (options[item].equals(getString(R.string.help_about))) {
+                                    final SpannableString s = new SpannableString(Html.fromHtml(getString(R.string.about_text)));
+                                    Linkify.addLinks(s, Linkify.WEB_URLS);
+                                    final AlertDialog d = new AlertDialog.Builder(MainActivity.this)
+                                            .setTitle(R.string.help_about)
+                                            .setMessage(s)
+                                            .setPositiveButton(getString(R.string.yes),
+                                                    new DialogInterface.OnClickListener() {
+                                                        public void onClick(DialogInterface dialog, int id) {
+                                                            dialog.cancel();
+                                                        }
+                                                    }).show();
+                                    d.show();
+                                    ((TextView) d.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
+                                }
+                                if (options[item].equals(getString(R.string.help_help))) {
+                                    new AlertDialog.Builder(MainActivity.this)
+                                            .setTitle(R.string.help_help)
+                                            .setMessage(Html.fromHtml(getString(R.string.markdown_text)))
+                                            .setPositiveButton(getString(R.string.yes),
+                                                    new DialogInterface.OnClickListener() {
+                                                        public void onClick(DialogInterface dialog, int id) {
+                                                            dialog.cancel();
+                                                        }
+                                                    }).show();
+                                }
+                                if (options[item].equals(getString(R.string.help_donate))) {
+                                    new AlertDialog.Builder(MainActivity.this)
+                                            .setMessage(getString(R.string.donate_text))
+                                            .setPositiveButton(getString(R.string.yes),
+                                                    new DialogInterface.OnClickListener() {
+                                                        public void onClick(DialogInterface dialog, int id) {
+                                                            dialog.cancel();
                                                         }
                                                     })
-                                            .setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
-                                                @TargetApi(11)
-                                                public void onClick(DialogInterface dialog, int id) {
-                                                    dialog.cancel();
-                                                }
-                                            }).show();
+                                            .setNegativeButton(getString(R.string.donate_1),
+                                                    new DialogInterface.OnClickListener() {
+                                                        public void onClick(DialogInterface dialog, int id) {
+                                                            Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://martinv.tip.me/"));
+                                                            startActivity(i);
+                                                            dialog.cancel();
+                                                        }
+                                                    }).show();
+                                }
                             }
                         }).show();
-            } else {
-                Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
             }
-
-        } else if (id == R.id.jb_license_help) {
-            final CharSequence[] options = { getString(R.string.help_license), getString(R.string.help_about), getString(R.string.help_help), getString(R.string.help_donate) };
-            new AlertDialog.Builder(MainActivity.this)
-                    .setItems(options, new DialogInterface.OnClickListener() {
-
-                        @Override
-
-                        public void onClick(DialogInterface dialog, int item) {
-
-                            if (options[item].equals(getString(R.string.help_license)))
-
-                            {
-                                final SpannableString s = new SpannableString(Html.fromHtml(getString(R.string.license_text)));
-                                Linkify.addLinks(s, Linkify.WEB_URLS);
-
-                                final AlertDialog d = new AlertDialog.Builder(MainActivity.this)
-                                        .setTitle(R.string.license_title)
-                                        .setMessage( s )
-                                        .setPositiveButton(getString(R.string.yes),
-                                                new DialogInterface.OnClickListener() {
-                                                    public void onClick(DialogInterface dialog, int id) {
-                                                        dialog.cancel();
-                                                    }
-                                                }).show();
-                                d.show();
-                                ((TextView)d.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
-                            }
-
-                            if (options[item].equals(getString(R.string.help_about)))
-
-                            {
-                                final SpannableString s = new SpannableString(Html.fromHtml(getString(R.string.about_text)));
-                                Linkify.addLinks(s, Linkify.WEB_URLS);
-
-                                final AlertDialog d = new AlertDialog.Builder(MainActivity.this)
-                                        .setTitle(R.string.help_about)
-                                        .setMessage( s )
-                                        .setPositiveButton(getString(R.string.yes),
-                                                new DialogInterface.OnClickListener() {
-                                                    public void onClick(DialogInterface dialog, int id) {
-                                                        dialog.cancel();
-                                                    }
-                                                }).show();
-                                d.show();
-                                ((TextView)d.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
-                            }
-
-                            if (options[item].equals(getString(R.string.help_help)))
-
-                            {
-                                new AlertDialog.Builder(MainActivity.this)
-                                        .setTitle(R.string.help_help)
-                                        .setMessage(Html.fromHtml(getString(R.string.markdown_text)))
-                                        .setPositiveButton(getString(R.string.yes),
-                                                new DialogInterface.OnClickListener() {
-                                                    public void onClick(DialogInterface dialog, int id) {
-                                                        dialog.cancel();
-                                                    }
-                                                }).show();
-                            }
-
-                            if (options[item].equals(getString(R.string.help_donate)))
-
-                            {
-                                new AlertDialog.Builder(MainActivity.this)
-                                        .setMessage(getString(R.string.donate_text))
-                                        .setPositiveButton(getString(R.string.yes),
-                                                new DialogInterface.OnClickListener() {
-                                                    public void onClick(DialogInterface dialog, int id) {
-                                                        dialog.cancel();
-                                                    }
-                                                })
-                                        .setNegativeButton(getString(R.string.donate_1),
-                                                new DialogInterface.OnClickListener() {
-                                                    public void onClick(DialogInterface dialog, int id) {
-                                                        Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://martinv.tip.me/"));
-                                                        startActivity(i);
-                                                        dialog.cancel();
-                                                    }
-                                                }).show();
-                            }
-
-                        }
-
-                    }).show();
+            break;
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

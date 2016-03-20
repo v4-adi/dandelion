@@ -43,7 +43,6 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import java.io.File;
 import java.io.IOException;
@@ -333,7 +332,7 @@ public class ShareActivity extends MainActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.reload) {
+        if (id == R.id.action_reload) {
             if (Helpers.isOnline(ShareActivity.this)) {
                 webView.reload();
                 return true;

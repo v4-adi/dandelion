@@ -21,7 +21,7 @@
     <string name="podlist_source_note">Note: This list is populated with only the secure pods from podupti.me</string>
     <string name="valid_pod">Please enter a valid domain name</string>
     <string name="podlist_error">Error: Could not retrieve list of pods!</string>
-    <string name="loading_podlist">Loading pod list ...</string>
+    <string name="loading_podlist">Loading pod list …</string>
 
 
     <string name="no_internet">Sorry, you must be connected to the Internet to proceed</string>
@@ -48,11 +48,11 @@
     <string name="jb_commented">Commented</string>
     <string name="jb_contacts">Contacts</string>
     <string name="jb_mentions">Mentions</string>
-    <string name="jb_activities">My activity</string>
+    <string name="jb_activities">Activities</string>
     <string name="jb_followed_tags">Followed Hashtags</string>
     <string name="jb_manage_tags">Manage Hashtags</string>
     <string name="jb_settings">Personal settings</string>
-    <string name="jb_aspects">My aspects</string>
+    <string name="jb_aspects">Aspects</string>
     <string name="jb_pod">Change pod</string>
     <string name="jb_public">Public activities</string>
     <string name="jb_settings_view">View settings</string>
@@ -71,15 +71,15 @@
     <string name="help_donate">Donate</string>
     <string name="help_about">Changelog</string>
 
-    <string name="toast_screenshot">Taking screenshot ...</string>
+    <string name="toast_screenshot">Taking screenshot …</string>
 
 
     // Floating Action Buttons - Titles
 
     <string name="fab3_title">Go to top</string>
     <string name="fab2_title">Search by tags or persons</string>
-    <string name="fab2_title_tag">Search for tag ...</string>
-    <string name="fab2_title_person">Search for person ...</string>
+    <string name="fab2_title_tag">Search for tag …</string>
+    <string name="fab2_title_person">Search for person …</string>
     <string name="fab1_title">New message</string>
 
 
@@ -186,6 +186,7 @@
     <string name="large">Large</string>
     <string name="huge">Huge</string>
     <string name="image">Unable to get image</string>
+    <string name="jb_profile">Profile</string>
 
     <array name="splash_images">
         <item>@drawable/splashscreen1</item>
