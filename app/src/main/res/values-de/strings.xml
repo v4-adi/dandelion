@@ -29,15 +29,15 @@
     <string name="jb_stream">Stream</string>
     <string name="jb_notifications">Benachrichtigungen</string>
     <string name="jb_conversations">Unterhaltungen</string>
-    <string name="jb_liked">Gelikete Beiträge</string>
+    <string name="jb_liked">Gelikte Beiträge</string>
     <string name="jb_commented">Kommentierte Beiträge</string>
     <string name="jb_contacts">Kontakte</string>
     <string name="jb_mentions">Erwähnungen</string>
-    <string name="jb_activities">Meine Aktivitäten</string>
+    <string name="jb_activities">Aktivitäten</string>
     <string name="jb_followed_tags">Verfolgte Tags</string>
     <string name="jb_manage_tags">Tags verwalten</string>
     <string name="jb_settings">Persönliche Einstellungen</string>
-    <string name="jb_aspects">Meine Aspekte</string>
+    <string name="jb_aspects">Aspekte</string>
     <string name="jb_pod">Pod wechseln</string>
     <string name="jb_public">Öffentliche Aktivitäten</string>
 
@@ -144,8 +144,8 @@ along with this program.  If not, see http://www.gnu.org/licenses.&lt;br> &lt;br
         &lt;i>Die Bilder des Startbildschirms können auf Flickr gefunden werden:
         https://www.flickr.com/photos/129581906@N06/sets/72157651933980136/with/16594947123.
         Sie wurden von \"Lydia\" veröffentlicht und stehen unter der cc by-nc-sa Lizenz.&lt;/i></string>
-    <string name="fab2_title_person">Suche nach Personen ...</string>
-    <string name="fab2_title_tag">Suche nach Tags ...</string>
+    <string name="fab2_title_person">Suche nach Personen …</string>
+    <string name="fab2_title_tag">Suche nach Tags …</string>
     <string name="donate_1">per Bitcoin</string>
     <string name="donate_text">Wenn dir die App gefällt, kannst du dem Entwickler der original \"DiasporaNativeWebApp\"
         eine Kleinigkeit spenden:</string>
@@ -155,5 +155,6 @@ along with this program.  If not, see http://www.gnu.org/licenses.&lt;br> &lt;br
     <string name="new_notifications">Ungelesene Benachrichtigung. Lesen?</string>
     <string name="help_about">Changelog</string>
     <string name="new_post2">Titel und Text</string>
+    <string name="jb_profile">Profil</string>
 
 </resources>

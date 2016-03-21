@@ -333,7 +333,7 @@ public class ShareActivity2 extends MainActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.reload) {
+        if (id == R.id.action_reload) {
             if (Helpers.isOnline(ShareActivity2.this)) {
                 webView.reload();
                 return true;
