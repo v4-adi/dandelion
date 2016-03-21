@@ -137,18 +137,27 @@
         &lt;i>For more informations visit the Projectsite on github:&lt;br>
         https://github.com/scoute-dich/Diaspora&lt;/i>&lt;br>&lt;br>
 
-        &lt;b>v1.2:&lt;/b>&lt;br>
+        &lt;b>v1.3.&lt;/b>&lt;br>
+        &lt;i>big thanks to de-live-gdev&lt;/i>&lt;br>
+
+        &#8226; gitignore&lt;br>
+        &#8226; Link to profile&lt;br>
+        &#8226; Move menu actions&lt;br>
+        &#8226; Refactoring part1&lt;br>
+        &#8226; bump libs&lt;br>&lt;br>
+
+        &lt;b>v1.2.&lt;/b>&lt;br>
         &#8226; using strings in podactivity&lt;br>
         &#8226; improved share activity&lt;br>&lt;br>
 
-        &lt;b>v1.1:&lt;/b>&lt;br>
+        &lt;b>v1.1.&lt;/b>&lt;br>
         &#8226; new about app and help dialogs&lt;br>
         &#8226; better snackbar integration&lt;br>&lt;br>
 
-        &lt;b>v1.0.1:&lt;/b>&lt;br>
+        &lt;b>v1.0.1.&lt;/b>&lt;br>
         &#8226; click on titelbar to load stream&lt;br>&lt;br>
 
-        &lt;b>v1.0:&lt;/b>&lt;br>
+        &lt;b>v1.0.&lt;/b>&lt;br>
         &#8226; all features of original Diaspora-Native-Webapp&lt;br>
         &#8226; popup menus (view settings, diaspora settings, share function)&lt;br>
         &#8226; share function (link, screenshot)&lt;br>

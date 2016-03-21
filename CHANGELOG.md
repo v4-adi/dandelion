@@ -1,3 +1,11 @@
+### v1.3
+*big thanks to de-live-gdev*
+- gitignore
+- Link to profile
+- Move menu actions
+- Refactoring part1
+- bump libs 
+
 ### v1.2
 - using strings in podactivity
 - improved share activity
