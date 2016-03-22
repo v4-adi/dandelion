@@ -85,7 +85,7 @@ public class ShareActivity extends MainActivity {
                     startActivityForResult(intent, 100);
                     overridePendingTransition(0, 0);
                 } else {
-                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
+                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_LONG).show();
                 }
             }
         });
@@ -143,7 +143,7 @@ public class ShareActivity extends MainActivity {
                 if (Helpers.isOnline(ShareActivity.this)) {
                     webView.reload();
                 } else {
-                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
+                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_LONG).show();
                     swipeView.setRefreshing(false);
                 }
             }
@@ -188,7 +188,7 @@ public class ShareActivity extends MainActivity {
                         takePictureIntent.putExtra("PhotoPath", mCameraPhotoPath);
                     } catch (IOException ex) {
                         // Error occurred while creating the File
-                        Snackbar.make(getWindow().findViewById(R.id.drawer_layout), "Unable to get image", Snackbar.LENGTH_SHORT).show();
+                        Snackbar.make(getWindow().findViewById(R.id.drawer_layout), "Unable to get image", Snackbar.LENGTH_LONG).show();
                     }
 
                     // Continue only if the File was successfully created
@@ -278,7 +278,7 @@ public class ShareActivity extends MainActivity {
             if (Helpers.isOnline(ShareActivity.this)) {
                 webView.loadUrl("https://"+podDomain+"/status_messages/new");
             } else {
-                Snackbar.make(getWindow().findViewById(R.id.drawer_layout), R.string.no_internet, Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(getWindow().findViewById(R.id.drawer_layout), R.string.no_internet, Snackbar.LENGTH_LONG).show();
             }
         }
 
@@ -337,7 +337,7 @@ public class ShareActivity extends MainActivity {
                 webView.reload();
                 return true;
             } else {
-                Snackbar.make(getWindow().findViewById(R.id.drawer_layout), R.string.no_internet, Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(getWindow().findViewById(R.id.drawer_layout), R.string.no_internet, Snackbar.LENGTH_LONG).show();
                 return false;
             }
         }

@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity
                     webView.loadUrl("https://" + podDomain + "/stream");
                     setTitle(R.string.jb_stream);
                 } else {
-                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
+                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_LONG).show();
                 }
             }
         });
@@ -195,7 +195,7 @@ public class MainActivity extends AppCompatActivity
                 if (Helpers.isOnline(MainActivity.this)) {
                     webView.reload();
                 } else {
-                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
+                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_LONG).show();
                     swipeView.setRefreshing(false);
                 }
             }
@@ -284,7 +284,7 @@ public class MainActivity extends AppCompatActivity
                 webView.loadData("", "text/html", null);
                 webView.loadUrl("https://" + podDomain);
             } else {
-                Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
+                Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_LONG).show();
             }
         }
 
@@ -300,7 +300,7 @@ public class MainActivity extends AppCompatActivity
             webView.loadUrl("https://" + podDomain + "/status_messages/new");
             setTitle(R.string.fab1_title);
         } else {
-            Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
+            Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_LONG).show();
         }
     }
 
@@ -343,7 +343,7 @@ public class MainActivity extends AppCompatActivity
                             });
             dialog.show();
         } else {
-            Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
+            Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_LONG).show();
         }
     }
 
@@ -414,15 +414,6 @@ public class MainActivity extends AppCompatActivity
         if (webView.canGoBack()) {
             webView.goBack();
             setTitle(R.string.app_name);
-            Snackbar snackbar = Snackbar
-                    .make(swipeView, R.string.confirm_exit, Snackbar.LENGTH_LONG)
-                    .setAction(R.string.yes, new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            moveTaskToBack(true);
-                        }
-                    });
-            snackbar.show();
         } else {
             Snackbar snackbar = Snackbar
                     .make(swipeView, R.string.confirm_exit, Snackbar.LENGTH_LONG)
@@ -488,7 +479,7 @@ public class MainActivity extends AppCompatActivity
                     setTitle(R.string.jb_notifications);
                     return true;
                 } else {
-                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
+                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_LONG).show();
                     return false;
                 }
             }
@@ -499,7 +490,7 @@ public class MainActivity extends AppCompatActivity
                     setTitle(R.string.jb_conversations);
                     return true;
                 } else {
-                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
+                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_LONG).show();
                     return false;
                 }
             }
@@ -697,7 +688,7 @@ public class MainActivity extends AppCompatActivity
                         if (Helpers.isOnline(MainActivity.this)) {
                             webView.loadUrl(webView.getUrl());
                         } else {
-                            Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
+                            Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_LONG).show();
                         }
                         dialog.cancel();
                     }
@@ -718,7 +709,7 @@ public class MainActivity extends AppCompatActivity
                         if (notificationCount > 0) {
                             item.setIcon(R.drawable.ic_bell_ring_white_24dp);
                             Snackbar snackbar = Snackbar
-                                    .make(swipeView, R.string.new_notifications, Snackbar.LENGTH_INDEFINITE)
+                                    .make(swipeView, R.string.new_notifications, Snackbar.LENGTH_LONG)
                                     .setAction(R.string.yes, new View.OnClickListener() {
                                         @Override
                                         public void onClick(View view) {
@@ -726,7 +717,7 @@ public class MainActivity extends AppCompatActivity
                                                 webView.loadUrl("https://" + podDomain + "/notifications");
                                                 setTitle(R.string.jb_notifications);
                                             } else {
-                                                Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
+                                                Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_LONG).show();
                                             }
                                         }
                                     });
@@ -764,7 +755,7 @@ public class MainActivity extends AppCompatActivity
                         if (conversationCount > 0) {
                             item.setIcon(R.drawable.ic_message_text_white_24dp);
                             Snackbar snackbar = Snackbar
-                                    .make(swipeView, R.string.new_conversations, Snackbar.LENGTH_INDEFINITE)
+                                    .make(swipeView, R.string.new_conversations, Snackbar.LENGTH_LONG)
                                     .setAction(R.string.yes, new View.OnClickListener() {
                                         @Override
                                         public void onClick(View view) {
@@ -772,7 +763,7 @@ public class MainActivity extends AppCompatActivity
                                                 webView.loadUrl("https://" + podDomain + "/conversations");
                                                 setTitle(R.string.jb_notifications);
                                             } else {
-                                                Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
+                                                Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_LONG).show();
                                             }
                                         }
                                     });
@@ -798,7 +789,7 @@ public class MainActivity extends AppCompatActivity
                     webView.loadUrl("https://" + podDomain + "/stream");
                     setTitle(R.string.jb_stream);
                 } else {
-                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
+                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_LONG).show();
                 }
             }
             break;
@@ -808,7 +799,7 @@ public class MainActivity extends AppCompatActivity
                     webView.loadUrl("https://" + podDomain + "/people/" + profileId);
                     setTitle(R.string.jb_profile);
                 } else {
-                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
+                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_LONG).show();
                 }
             }
             break;
@@ -819,7 +810,7 @@ public class MainActivity extends AppCompatActivity
                     webView.loadUrl("https://" + podDomain + "/followed_tags");
                     setTitle(R.string.jb_followed_tags);
                 } else {
-                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
+                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_LONG).show();
                 }
             }
             break;
@@ -829,7 +820,7 @@ public class MainActivity extends AppCompatActivity
                     webView.loadUrl("https://" + podDomain + "/aspects");
                     setTitle(R.string.jb_aspects);
                 } else {
-                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
+                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_LONG).show();
                 }
             }
             break;
@@ -839,7 +830,7 @@ public class MainActivity extends AppCompatActivity
                     webView.loadUrl("https://" + podDomain + "/activity");
                     setTitle(R.string.jb_activities);
                 } else {
-                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
+                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_LONG).show();
                 }
             }
             break;
@@ -849,7 +840,7 @@ public class MainActivity extends AppCompatActivity
                     webView.loadUrl("https://" + podDomain + "/liked");
                     setTitle(R.string.jb_liked);
                 } else {
-                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
+                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_LONG).show();
                 }
             }
             break;
@@ -859,7 +850,7 @@ public class MainActivity extends AppCompatActivity
                     webView.loadUrl("https://" + podDomain + "/commented");
                     setTitle(R.string.jb_commented);
                 } else {
-                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
+                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_LONG).show();
                 }
             }
             break;
@@ -869,7 +860,7 @@ public class MainActivity extends AppCompatActivity
                     webView.loadUrl("https://" + podDomain + "/mentions");
                     setTitle(R.string.jb_mentions);
                 } else {
-                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
+                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_LONG).show();
                 }
             }
             break;
@@ -879,7 +870,7 @@ public class MainActivity extends AppCompatActivity
                     webView.loadUrl("https://" + podDomain + "/public");
                     setTitle(R.string.jb_public);
                 } else {
-                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
+                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_LONG).show();
                 }
             }
             break;
@@ -902,7 +893,7 @@ public class MainActivity extends AppCompatActivity
                                 }
                             }).show();
                 } else {
-                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
+                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_LONG).show();
                 }
             }
             break;
@@ -945,7 +936,7 @@ public class MainActivity extends AppCompatActivity
                                 }
                             }).show();
                 } else {
-                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
+                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_LONG).show();
                 }
             }
             break;

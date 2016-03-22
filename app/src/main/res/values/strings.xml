@@ -31,8 +31,9 @@
     <string name="yes">YES</string>
     <string name="no">NO</string>
     <string name="change_pod_warning">This will erase all cookies and session data. Do you really want to change pods?</string>
-    <string name="new_post">Text only</string>
-    <string name="new_post2">Title and text</string>
+    <string name="new_post">New message</string>
+    <string name="new_post1">D* Text only</string>
+    <string name="new_post2">D* Title and text</string>
     <string name="notifications">Notifications</string>
     <string name="messages">Conversations</string>
 

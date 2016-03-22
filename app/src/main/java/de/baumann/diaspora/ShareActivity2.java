@@ -85,7 +85,7 @@ public class ShareActivity2 extends MainActivity {
                     startActivityForResult(intent, 100);
                     overridePendingTransition(0, 0);
                 } else {
-                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
+                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_LONG).show();
                 }
             }
         });
@@ -143,7 +143,7 @@ public class ShareActivity2 extends MainActivity {
                 if (Helpers.isOnline(ShareActivity2.this)) {
                     webView.reload();
                 } else {
-                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_INDEFINITE).show();
+                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_LONG).show();
                     swipeView.setRefreshing(false);
                 }
             }

@@ -58,7 +58,7 @@
 
     //Dialog
     <string name="messages">Unterhaltungen</string>
-    <string name="new_post">Nur Text</string>
+    <string name="new_post">Neuer Beitrag</string>
     <string name="notifications">Benachrichtigungen</string>
     <string name="settings_font">Schriftgröße ändern</string>
     <string name="settings_image">Bilder laden umschalten</string>
@@ -154,7 +154,8 @@ along with this program.  If not, see http://www.gnu.org/licenses.&lt;br> &lt;br
     <string name="new_conversations">Ungelesene Unterhaltung. Öffnen?</string>
     <string name="new_notifications">Ungelesene Benachrichtigung. Lesen?</string>
     <string name="help_about">Changelog</string>
-    <string name="new_post2">Titel und Text</string>
+    <string name="new_post2">D* Titel und Text</string>
     <string name="jb_profile">Profil</string>
+    <string name="new_post1">D* nur Text</string>
 
 </resources>
