@@ -1,3 +1,5 @@
+[![F-Droid](https://f-droid.org/wiki/images/0/06/F-Droid-button_get-it-on.png)](https://f-droid.org/repository/browse/?fdfilter=diaspora&fdid=de.baumann.diaspora)
+
 # Diaspora
 
 This is an unofficial webview based client for the community-run, distributed social network "Diaspora". It's currently under development and should be used with that in mind. Please submit any bugs you might find.
