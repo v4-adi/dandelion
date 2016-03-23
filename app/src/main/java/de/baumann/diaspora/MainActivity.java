@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
 
-    public static final int INPUT_FILE_REQUEST_CODE = 1;
+    static final int INPUT_FILE_REQUEST_CODE = 1;
     private static final int REQUEST_CODE_ASK_PERMISSIONS = 123;
     private static final String URL_MESSAGE = "URL_MESSAGE";
 
@@ -96,7 +96,6 @@ public class MainActivity extends AppCompatActivity
     private ValueCallback<Uri[]> mFilePathCallback;
     private String mCameraPhotoPath;
     private com.getbase.floatingactionbutton.FloatingActionsMenu fab;
-    private TextView txtTitle;
     private ProgressBar progressBar;
     private WebSettings wSettings;
     private PrefManager pm;
@@ -134,7 +133,7 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
+        drawer.addDrawerListener(toggle);
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -236,7 +235,7 @@ public class MainActivity extends AppCompatActivity
                 Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
                     // Create the File where the photo should go
-                    File photoFile = null;
+                    File photoFile;
                     try {
                         photoFile = createImageFile();
                         takePictureIntent.putExtra("PhotoPath", mCameraPhotoPath);
@@ -432,7 +431,7 @@ public class MainActivity extends AppCompatActivity
         @Override
         public void onReceive(Context context, Intent intent) {
             String url = intent.getStringExtra("url");
-            txtTitle.setText(R.string.app_name);
+            setTitle(R.string.app_name);
             webView.loadUrl(url);
         }
     };
@@ -615,7 +614,7 @@ public class MainActivity extends AppCompatActivity
                                     if (screen.exists())
                                         screen.delete();
                                     picture.draw(c);
-                                    FileOutputStream fos = null;
+                                    FileOutputStream fos;
                                     try {
                                         fos = new FileOutputStream(screen);
                                         if (fos != null) {
@@ -687,7 +686,7 @@ public class MainActivity extends AppCompatActivity
                 }).show();
     }
 
-    public class JavaScriptInterface {
+    private class JavaScriptInterface {
         @JavascriptInterface
         public void setNotificationCount(final String webMessage) {
             myHandler.post(new Runnable() {

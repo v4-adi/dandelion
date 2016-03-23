@@ -35,7 +35,7 @@ public class PrefManager {
 		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
         Editor edit = sp.edit();
         edit.putBoolean("loadImages", loadImages);
-        edit.commit();
+        edit.apply();
 	}
 
     public int getMinimumFontSize() {
@@ -47,6 +47,6 @@ public class PrefManager {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
         Editor edit = sp.edit();
         edit.putInt("minimumFontSize", minimumFontSize);
-        edit.commit();
+        edit.apply();
     }
 }

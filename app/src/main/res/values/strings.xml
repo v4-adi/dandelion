@@ -134,7 +134,7 @@
     <string name="donate_text">If you like the app fell free to donate to the devoloper of the original \"DiasporaNativeWebApp\":</string>
     <string name="donate_1">Via Bitcoin</string>
 
-    <string name="about_text">
+    <string name="about_text" translatable="false">
         &lt;i>For more informations visit the Projectsite on github:&lt;br>
         https://github.com/scoute-dich/Diaspora&lt;/i>&lt;br>&lt;br>
 
@@ -167,7 +167,6 @@
         &#8226; implemented swipe to refresh
     </string>
 
-    <string name="license_yes">OK</string>
     <string name="license_title" translatable="false">Copyright © 2016  by scoute-dich</string>
     <string name="license_text">&lt;i>First of all: I am not a developer. I understand a few basics and most of my work is done
         by copy and paste. This app is a fork of the original \"DiasporaNativeWebApp\"
@@ -191,7 +190,6 @@
         They were published by \"Lydia\" and are licensed under cc by-nc-sa.&lt;/i></string>
 
     <string name="splash_screen_description">Splash screen</string>
-    <string name="please_reload">Please reload the stream</string>
     <string name="normal">Normal</string>
     <string name="large">Large</string>
     <string name="huge">Huge</string>

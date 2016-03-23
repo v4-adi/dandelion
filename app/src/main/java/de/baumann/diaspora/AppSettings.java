@@ -4,15 +4,14 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 /**
- * Created by de-live-gdev on 20.03.16.
+ * Created by de-live-gdev on 20.03.16. Part of Diaspora WebApp.
  */
-public class AppSettings {
-    private Context context;
-    private SharedPreferences pref;
+class AppSettings {
+    private final SharedPreferences pref;
 
     public AppSettings(Context context){
-        this.context = context.getApplicationContext();
-        pref = this.context.getSharedPreferences("app", Context.MODE_PRIVATE);
+        Context context1 = context.getApplicationContext();
+        pref = context1.getSharedPreferences("app", Context.MODE_PRIVATE);
     }
 
     private void setString(String key, String value){

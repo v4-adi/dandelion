@@ -31,7 +31,7 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
@@ -52,14 +52,12 @@ import de.baumann.diaspora.services.GetPodsService;
 import de.baumann.diaspora.utils.Helpers;
 
 
-public class PodsActivity extends ActionBarActivity {
+public class PodsActivity extends AppCompatActivity {
 
-    BroadcastReceiver podListReceiver;
-    EditText filter;
-    ListView lv;
-    ImageView imgSelectPod;
-    ProgressDialog progressDialog;
-    private static final String TAG = "Diaspora Pods";
+    private BroadcastReceiver podListReceiver;
+    private EditText filter;
+    private ListView lv;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +68,7 @@ public class PodsActivity extends ActionBarActivity {
         lv = (ListView) findViewById(R.id.lstPods);
         lv.setTextFilterEnabled(true);
 
-        imgSelectPod = (ImageView) findViewById(R.id.imgSelectPod);
+        ImageView imgSelectPod = (ImageView) findViewById(R.id.imgSelectPod);
         imgSelectPod.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,8 +94,6 @@ public class PodsActivity extends ActionBarActivity {
                     else {
                         Snackbar.make(lv, R.string.podlist_error, Snackbar.LENGTH_LONG).show();
                     }
-                } else {
-                    // List of pods empty
                 }
             }
         };
@@ -128,12 +124,12 @@ public class PodsActivity extends ActionBarActivity {
     private void updateListview(String[] source) {
         final ArrayList<String> podList = new ArrayList<>();
 
-        for (int i = 0 ; i < source.length ; i++) {
-            podList.add(source[i].toLowerCase());
+        for (String aSource : source) {
+            podList.add(aSource.toLowerCase());
         }
         Collections.sort(podList);
 
-        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+        final ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 PodsActivity.this,
                 android.R.layout.simple_list_item_1,
                 podList);
@@ -163,7 +159,7 @@ public class PodsActivity extends ActionBarActivity {
 
     }
 
-    public void askConfirmation(final String podDomain) {
+    private void askConfirmation(final String podDomain) {
         if (Helpers.isOnline(PodsActivity.this)) {
             new AlertDialog.Builder(PodsActivity.this)
                     .setTitle(getString(R.string.confirmation))

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:re="http://schemas.android.com/tools" xmlns:href="urn:oasis:names:tc:xliff:document:1.2">
+<resources>
     <string name="reload">Neu laden</string>
     <string name="title_activity_pods">Pod auswählen</string>
     <string name="filter_hint">Pod-Domain eingeben</string>
@@ -8,7 +8,7 @@
     <string name="podlist_source_note">Anmerkung: Auf dieser Liste finden sich nur Einträge von podupti.me</string>
     <string name="valid_pod">Bitte einen gültigen Domain-Namen (URL) eingeben</string>
     <string name="podlist_error">Fehler: Konnte die Podliste nicht abfragen!</string>
-    <string name="loading_podlist">Podliste wird geladen...</string>
+    <string name="loading_podlist">Podliste wird geladen…</string>
     <string name="no_internet">Entschuldigung, du musst mit dem Internet verbunden sein um fortzufahren.</string>
     <string name="confirmation">Bestätigung</string>
     <string name="confirm_pod">Willst du folgenden Pod benutzen: </string>
@@ -44,7 +44,7 @@
     // Floating Action Buttons - Titles
 
     <string name="fab3_title">Nach oben scrollen</string>
-    <string name="fab2_title">Suche nach Tags oder Personen ...</string>
+    <string name="fab2_title">Suche nach Tags oder Personen …</string>
     <string name="fab1_title">Neuer Beitrag</string>
 
     <string name="search_alert_title">Suche</string>
@@ -63,16 +63,15 @@
     <string name="settings_font">Schriftgröße ändern</string>
     <string name="settings_image">Bilder laden umschalten</string>
     <string name="settings_view">Ansicht wechseln</string>
-    <string name="please_reload">Bitte den Stream neu laden.</string>
     <string name="normal">normal</string>
     <string name="large">groß</string>
     <string name="huge">riesig</string>
-    <string name="image">Konnte Bild nicht laden ...</string>
+    <string name="image">Konnte Bild nicht laden …</string>
     <string name="jb_share">Inhalt Teilen</string>
     <string name="share_link">Link als Text teilen</string>
     <string name="share_screenshot">Bildschirmfoto teilen</string>
     <string name="take_screenshot">Bildschirmfoto machen</string>
-    <string name="toast_screenshot">Bildschirmfoto wird gespeichert...</string>
+    <string name="toast_screenshot">Bildschirmfoto wird gespeichert…</string>
     <string name="jb_settings_diaspora">Diaspora Einstellungen</string>
     <string name="jb_settings_view">Ansichtseinstellungen</string>
     <string name="help_help">Markdown Formatierung</string>
@@ -122,7 +121,6 @@
         &lt;b>Sonderzeichen&lt;/b>&lt;br>
         Du kannst Symbole und Sonderzeichen nutzen, indem du bestimmte Zeichenfolgen verwendest. Z.B.:&lt;br>
         (c) = © ; (r) = ® ; x^2 = x²"</string>
-    <string name="license_yes">OK</string>
     <string name="license_text">&lt;i>Zuerst einmal: ich bin kein Entwickler. Ich verstehe ein paar Grundlagen, aber das Meiste meiner
         Arbeit ist mit \"Copy and Paste\" passiert. Diese App ist ein Fork der original \"DiasporaNativeWebApp\"
         von \"martinchodev\" (der die allermeiste Arbeit erledigt hat -> mein großer Dank gilt ihm), welche unter der GPL-Lizenz

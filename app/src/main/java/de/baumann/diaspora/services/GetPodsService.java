@@ -99,7 +99,7 @@ public class GetPodsService extends Service {
                     JSONObject j = new JSONObject(builder.toString());
                     JSONArray jr = j.getJSONArray("pods");
                     Log.d(TAG, "Number of entries " + jr.length());
-                    list = new ArrayList<String>();
+                    list = new ArrayList<>();
                     for (int i = 0; i < jr.length(); i++) {
                         JSONObject jo = jr.getJSONObject(i);
                         Log.d(TAG, jo.getString("domain"));

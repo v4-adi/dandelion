@@ -33,8 +33,6 @@ import java.util.TimerTask;
 
 public class SplashActivity extends AppCompatActivity {
 
-    ImageView imgSplash;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +40,7 @@ public class SplashActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash);
 
-        imgSplash = (ImageView) findViewById(R.id.imgSplash);
+        ImageView imgSplash = (ImageView) findViewById(R.id.imgSplash);
 
         TypedArray images = getResources().obtainTypedArray(R.array.splash_images);
         int choice = (int) (Math.random() * images.length());
