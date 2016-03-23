@@ -74,8 +74,7 @@ public class ShareActivity extends MainActivity {
         progressBar = (ProgressBar)findViewById(R.id.progressBar);
 
         swipeView = (SwipeRefreshLayout) findViewById(R.id.swipe);
-        swipeView.setColorSchemeResources(R.color.colorPrimary,
-                R.color.fab_big);
+        swipeView.setEnabled(false);
 
         toolbar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,18 +133,6 @@ public class ShareActivity extends MainActivity {
                         .setMessage(description)
                         .setPositiveButton("CLOSE", null)
                         .show();
-            }
-        });
-
-        swipeView.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                if (Helpers.isOnline(ShareActivity.this)) {
-                    webView.reload();
-                } else {
-                    Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_LONG).show();
-                    swipeView.setRefreshing(false);
-                }
             }
         });
 
@@ -332,14 +319,8 @@ public class ShareActivity extends MainActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.action_reload) {
-            if (Helpers.isOnline(ShareActivity.this)) {
-                webView.reload();
-                return true;
-            } else {
-                Snackbar.make(getWindow().findViewById(R.id.drawer_layout), R.string.no_internet, Snackbar.LENGTH_LONG).show();
-                return false;
-            }
+        if (id == R.id.action_exit) {
+            moveTaskToBack(true);
         }
 
         return super.onOptionsItemSelected(item);

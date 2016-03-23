@@ -496,15 +496,7 @@ public class MainActivity extends AppCompatActivity
             }
 
             case R.id.action_exit: {
-                Snackbar snackbar = Snackbar
-                        .make(swipeView, R.string.confirm_exit, Snackbar.LENGTH_LONG)
-                        .setAction(R.string.yes, new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                moveTaskToBack(true);
-                            }
-                        });
-                snackbar.show();
+                moveTaskToBack(true);
             }
             break;
 
