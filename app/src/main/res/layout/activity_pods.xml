@@ -13,7 +13,7 @@
         android:id="@+id/lstPods"
         android:choiceMode="singleChoice"
         android:layout_below="@+id/edtFilter"
-        android:layout_above="@+id/textView" />
+        android:layout_above="@+id/navheader_description" />
 
     <EditText
         android:layout_width="match_parent"
@@ -43,7 +43,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="@string/podlist_source_note"
-        android:id="@+id/textView"
+        android:id="@+id/navheader_description"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />

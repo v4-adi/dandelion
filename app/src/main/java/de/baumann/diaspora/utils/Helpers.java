@@ -62,15 +62,6 @@ public class Helpers {
                 "})();");
     }
 
-    public static void getProfileId(final WebView wv) {
-        wv.loadUrl("javascript: ( function() {" +
-                "    if (typeof gon !== 'undefined' && typeof gon.user !== 'undefined' && typeof gon.user.guid !== 'undefined') {" +
-                "       var guid = gon.user.guid;" +
-                "       AndroidBridge.setProfileId(guid.toString());" +
-                "    } " +
-                "})();");
-    }
-
     public static void getUserProfile(final WebView wv) {
         wv.loadUrl("javascript: ( function() {" +
                 "    if (typeof gon !== 'undefined' && typeof gon.user !== 'undefined') {" +

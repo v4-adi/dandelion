@@ -58,11 +58,13 @@ public class PodsActivity extends AppCompatActivity {
     private EditText filter;
     private ListView lv;
     private ProgressDialog progressDialog;
+    private App app;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pods);
+        app = (App) getApplication();
         
         filter = (EditText) findViewById(R.id.edtFilter);
         lv = (ListView) findViewById(R.id.lstPods);
@@ -168,10 +170,7 @@ public class PodsActivity extends AppCompatActivity {
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
 
-                                    SharedPreferences sp = getSharedPreferences("PodSettings", MODE_PRIVATE);
-                                    SharedPreferences.Editor editor = sp.edit();
-                                    editor.putString("podDomain", podDomain);
-                                    editor.apply();
+                                    app.getSettings().setPodDomain(podDomain);
 
                                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                                         try {

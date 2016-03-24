@@ -88,10 +88,9 @@ public class ShareActivity2 extends MainActivity {
         });
 
 
-        SharedPreferences config = getSharedPreferences("PodSettings", MODE_PRIVATE);
-        podDomain = config.getString("podDomain", null);
+        podDomain = ((App)getApplication()).getSettings().getPodDomain();
 
-        fab = (com.getbase.floatingactionbutton.FloatingActionsMenu) findViewById(R.id.multiple_actions);
+        fab = (com.getbase.floatingactionbutton.FloatingActionsMenu) findViewById(R.id.fab_expand_menu_button);
         fab.setVisibility(View.GONE);
 
         webView = (WebView)findViewById(R.id.webView);
