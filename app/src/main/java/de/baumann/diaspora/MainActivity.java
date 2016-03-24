@@ -75,7 +75,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import de.baumann.diaspora.utils.Helpers;
-import de.baumann.diaspora.utils.PrefManager;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -85,7 +84,6 @@ public class MainActivity extends AppCompatActivity
     private static final int REQUEST_CODE_ASK_PERMISSIONS = 123;
     private static final String URL_MESSAGE = "URL_MESSAGE";
 
-    private AppSettings appSettings;
     private final Handler myHandler = new Handler();
     private WebView webView;
     private String podDomain;
@@ -98,7 +96,7 @@ public class MainActivity extends AppCompatActivity
     private com.getbase.floatingactionbutton.FloatingActionsMenu fab;
     private ProgressBar progressBar;
     private WebSettings wSettings;
-    private PrefManager pm;
+    private AppSettings appSettings;
     private SwipeRefreshLayout swipeView;
 
     @SuppressLint("SetJavaScriptEnabled")
@@ -140,7 +138,6 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
-        pm = new PrefManager(MainActivity.this);
 
         SharedPreferences config = getSharedPreferences("PodSettings", MODE_PRIVATE);
         podDomain = config.getString("podDomain", null);
@@ -164,8 +161,8 @@ public class MainActivity extends AppCompatActivity
         wSettings.setUseWideViewPort(true);
         wSettings.setLoadWithOverviewMode(true);
         wSettings.setDomStorageEnabled(true);
-        wSettings.setMinimumFontSize(pm.getMinimumFontSize());
-        wSettings.setLoadsImagesAutomatically(pm.getLoadImages());
+        wSettings.setMinimumFontSize(appSettings.getMinimumFontSize());
+        wSettings.setLoadsImagesAutomatically(appSettings.isLoadImages());
 
         if (android.os.Build.VERSION.SDK_INT >= 21)
             wSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
@@ -667,14 +664,14 @@ public class MainActivity extends AppCompatActivity
                                 .findViewById(selectedId);
 
                         if (selectedRadioButton.getId() == R.id.radNormal) {
-                            pm.setMinimumFontSize(8);
+                            appSettings.setMinimumFontSize(8);
                         } else if (selectedRadioButton.getId() == R.id.radLarge) {
-                            pm.setMinimumFontSize(16);
+                            appSettings.setMinimumFontSize(16);
                         } else if (selectedRadioButton.getId() == R.id.radLarger) {
-                            pm.setMinimumFontSize(20);
+                            appSettings.setMinimumFontSize(20);
                         }
 
-                        wSettings.setMinimumFontSize(pm.getMinimumFontSize());
+                        wSettings.setMinimumFontSize(appSettings.getMinimumFontSize());
 
                         if (Helpers.isOnline(MainActivity.this)) {
                             webView.loadUrl(webView.getUrl());
@@ -878,8 +875,8 @@ public class MainActivity extends AppCompatActivity
                                     if (options[item].equals(getString(R.string.settings_view)))
                                         webView.loadUrl("https://" + podDomain + "/mobile/toggle");
                                     if (options[item].equals(getString(R.string.settings_image)))
-                                        wSettings.setLoadsImagesAutomatically(!pm.getLoadImages());
-                                    pm.setLoadImages(!pm.getLoadImages());
+                                        wSettings.setLoadsImagesAutomatically(!appSettings.isLoadImages());
+                                    appSettings.setLoadImages(!appSettings.isLoadImages());
                                     webView.loadUrl(webView.getUrl());
                                 }
                             }).show();
