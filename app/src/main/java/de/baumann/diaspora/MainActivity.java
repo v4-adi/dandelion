@@ -68,6 +68,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -84,6 +87,7 @@ public class MainActivity extends AppCompatActivity
     private static final int REQUEST_CODE_ASK_PERMISSIONS = 123;
     private static final String URL_MESSAGE = "URL_MESSAGE";
 
+    private App app;
     private final Handler myHandler = new Handler();
     private WebView webView;
     private String podDomain;
@@ -109,6 +113,7 @@ public class MainActivity extends AppCompatActivity
 
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        app = (App) getApplication();
         setSupportActionBar(toolbar);
 
         toolbar.setOnClickListener(new View.OnClickListener() {
@@ -125,7 +130,7 @@ public class MainActivity extends AppCompatActivity
 
 
         // Load app settings
-        appSettings = new AppSettings(getApplicationContext());
+        appSettings = app.getSettings();
         profileId = appSettings.getProfileId();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -207,6 +212,7 @@ public class MainActivity extends AppCompatActivity
 
                 if (progress > 0 && progress <= 60) {
                     Helpers.getNotificationCount(wv);
+                    Helpers.getUserProfile(wv);
                 }
 
                 if (progress > 60) {
@@ -494,7 +500,7 @@ public class MainActivity extends AppCompatActivity
             case R.id.action_exit: {
                 moveTaskToBack(true);
             }
-            break;
+            return true;
 
             case R.id.action_share: {
                 final CharSequence[] options = {getString(R.string.share_link), getString(R.string.share_screenshot), getString(R.string.take_screenshot)};
@@ -630,7 +636,7 @@ public class MainActivity extends AppCompatActivity
                             }
                         }).show();
             }
-            break;
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -722,15 +728,22 @@ public class MainActivity extends AppCompatActivity
 
         @JavascriptInterface
         public void setProfileId(final String webMessage) {
-            if(profileId.equals("") || !profileId.equals(webMessage)) {
+            if (profileId.equals("") || !profileId.equals(webMessage)) {
                 profileId = webMessage;
                 appSettings.setProfileId(profileId);
             }
         }
 
 
+        @JavascriptInterface
+        public void setUserProfile(final String webMessage) throws JSONException {
+            JSONObject d = new JSONObject(webMessage);
 
-            @JavascriptInterface
+            int id = d.getInt("id");
+            System.out.print(id);
+        }
+
+        @JavascriptInterface
         public void setConversationCount(final String webMessage) {
             myHandler.post(new Runnable() {
                 @Override
