@@ -22,7 +22,6 @@ package de.baumann.diaspora;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -229,7 +228,8 @@ public class ShareActivity extends MainActivity {
 
                         webView.loadUrl("javascript:(function() { " +
                                 "document.getElementsByTagName('textarea')[0].style.height='110px'; " +
-                                "document.getElementsByTagName('textarea')[0].innerHTML = '> " + extraText + " *[shared with #DiasporaWebApp]*'; " +
+                                "document.getElementsByTagName('textarea')[0].innerHTML = '> " +
+                                String.format("%s %s'; ",extraText,getString(R.string.shared_by_diaspora_android)) +
                                 "    if(document.getElementById(\"main_nav\")) {" +
                                 "        document.getElementById(\"main_nav\").parentNode.removeChild(" +
                                 "        document.getElementById(\"main_nav\"));" +
