@@ -81,6 +81,7 @@ import java.util.Date;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import de.baumann.diaspora.utils.Helpers;
+import de.baumann.diaspora.utils.SoftKeyboardStateWatcher;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, WebUserProfileChangedListener {
@@ -150,6 +151,22 @@ public class MainActivity extends AppCompatActivity
                 } else {
                     Snackbar.make(swipeRefreshLayout, R.string.no_internet, Snackbar.LENGTH_LONG).show();
                 }
+            }
+        });
+
+
+        // Keyboard State Watcher
+        final SoftKeyboardStateWatcher softKeyboardStateWatcher
+                = new SoftKeyboardStateWatcher(findViewById(R.id.swipe));
+
+        softKeyboardStateWatcher.addSoftKeyboardStateListener(new SoftKeyboardStateWatcher.SoftKeyboardStateListener() {
+            @Override
+            public void onSoftKeyboardOpened(int keyboardHeightInPx) {
+                fab.setVisibility(View.GONE);
+            }
+            @Override
+            public void onSoftKeyboardClosed() {
+                fab.setVisibility(View.VISIBLE);
             }
         });
 
