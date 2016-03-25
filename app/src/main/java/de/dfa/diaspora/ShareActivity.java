@@ -17,12 +17,11 @@
     If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.baumann.diaspora;
+package de.dfa.diaspora;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -47,9 +46,9 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import de.baumann.diaspora.utils.Helpers;
+import de.dfa.diaspora.utils.Helpers;
 
-public class ShareActivity2 extends MainActivity {
+public class ShareActivity extends MainActivity {
 
     private WebView webView;
     private static final String TAG = "Diaspora Share";
@@ -77,8 +76,8 @@ public class ShareActivity2 extends MainActivity {
         toolbar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (Helpers.isOnline(ShareActivity2.this)) {
-                    Intent intent = new Intent(ShareActivity2.this, MainActivity.class);
+                if (Helpers.isOnline(ShareActivity.this)) {
+                    Intent intent = new Intent(ShareActivity.this, MainActivity.class);
                     startActivityForResult(intent, 100);
                     overridePendingTransition(0, 0);
                 } else {
@@ -90,7 +89,7 @@ public class ShareActivity2 extends MainActivity {
 
         podDomain = ((App)getApplication()).getSettings().getPodDomain();
 
-        fab = (com.getbase.floatingactionbutton.FloatingActionsMenu) findViewById(R.id.fab_expand_menu_button);
+        fab = (com.getbase.floatingactionbutton.FloatingActionsMenu) findViewById(R.id.fab_menubutton);
         fab.setVisibility(View.GONE);
 
         webView = (WebView)findViewById(R.id.webView);
@@ -162,7 +161,7 @@ public class ShareActivity2 extends MainActivity {
                         takePictureIntent.putExtra("PhotoPath", mCameraPhotoPath);
                     } catch (IOException ex) {
                         // Error occurred while creating the File
-                        Snackbar.make(getWindow().findViewById(R.id.drawer_layout), "Unable to get image", Snackbar.LENGTH_SHORT).show();
+                        Snackbar.make(getWindow().findViewById(R.id.drawer_layout), "Unable to get image", Snackbar.LENGTH_LONG).show();
                     }
 
                     // Continue only if the File was successfully created
@@ -209,9 +208,8 @@ public class ShareActivity2 extends MainActivity {
 
                 public void onPageFinished(WebView view, String url) {
 
-                    if (extras.containsKey(Intent.EXTRA_TEXT) && extras.containsKey(Intent.EXTRA_SUBJECT)) {
+                    if (extras.containsKey(Intent.EXTRA_TEXT)) {
                         final String extraText = (String) extras.get(Intent.EXTRA_TEXT);
-                        final String extraSubject = (String) extras.get(Intent.EXTRA_SUBJECT);
 
                         webView.setWebViewClient(new WebViewClient() {
                             @Override
@@ -219,7 +217,7 @@ public class ShareActivity2 extends MainActivity {
 
                                 finish();
 
-                                Intent i = new Intent(ShareActivity2.this, MainActivity.class);
+                                Intent i = new Intent(ShareActivity.this, MainActivity.class);
                                 i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                 startActivity(i);
                                 overridePendingTransition(0, 0);
@@ -230,7 +228,8 @@ public class ShareActivity2 extends MainActivity {
 
                         webView.loadUrl("javascript:(function() { " +
                                 "document.getElementsByTagName('textarea')[0].style.height='110px'; " +
-                                "document.getElementsByTagName('textarea')[0].innerHTML = '**[" + extraSubject + "]** " + extraText + " *[shared with #DiasporaWebApp]*'; " +
+                                "document.getElementsByTagName('textarea')[0].innerHTML = '> " +
+                                String.format("%s %s'; ",extraText,getString(R.string.shared_by_diaspora_android)) +
                                 "    if(document.getElementById(\"main_nav\")) {" +
                                 "        document.getElementById(\"main_nav\").parentNode.removeChild(" +
                                 "        document.getElementById(\"main_nav\"));" +
@@ -246,10 +245,10 @@ public class ShareActivity2 extends MainActivity {
         }
 
         if (savedInstanceState == null) {
-            if (Helpers.isOnline(ShareActivity2.this)) {
+            if (Helpers.isOnline(ShareActivity.this)) {
                 webView.loadUrl("https://"+podDomain+"/status_messages/new");
             } else {
-                Snackbar.make(getWindow().findViewById(R.id.drawer_layout), R.string.no_internet, Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(getWindow().findViewById(R.id.drawer_layout), R.string.no_internet, Snackbar.LENGTH_LONG).show();
             }
         }
 

@@ -1,10 +1,8 @@
-package de.baumann.diaspora;
+package de.dfa.diaspora;
 
 import android.app.Application;
 
-import java.io.File;
-
-import de.baumann.diaspora.utils.AvatarImageLoader;
+import de.dfa.diaspora.utils.AvatarImageLoader;
 
 /**
  * Created by gregor on 24.03.16.

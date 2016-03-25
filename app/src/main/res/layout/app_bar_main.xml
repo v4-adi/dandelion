@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="de.baumann.myapplication.MainActivity">
+    tools:context="de.dfa.myapplication.MainActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -37,7 +37,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="4dp"
         android:layout_marginEnd="8dp"
-        app:layout_behavior="de.baumann.diaspora.FloatingActionsMenuBehavior">
+        app:layout_behavior="de.dfa.diaspora.FloatingActionsMenuBehavior">
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_top"

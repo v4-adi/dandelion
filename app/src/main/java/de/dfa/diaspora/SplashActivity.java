@@ -17,10 +17,9 @@
     If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.baumann.diaspora;
+package de.dfa.diaspora;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

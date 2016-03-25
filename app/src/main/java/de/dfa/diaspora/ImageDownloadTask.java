@@ -1,4 +1,4 @@
-package de.baumann.diaspora;
+package de.dfa.diaspora;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

@@ -1,4 +1,4 @@
-package de.baumann.diaspora;
+package de.dfa.diaspora;
 
 import android.content.Context;
 import android.content.SharedPreferences;

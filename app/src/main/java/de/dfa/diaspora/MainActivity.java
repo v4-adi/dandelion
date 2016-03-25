@@ -17,7 +17,7 @@
     If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.baumann.diaspora;
+package de.dfa.diaspora;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -80,8 +80,8 @@ import java.util.Date;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import de.baumann.diaspora.utils.Helpers;
-import de.baumann.diaspora.utils.SoftKeyboardStateWatcher;
+import de.dfa.diaspora.utils.Helpers;
+import de.dfa.diaspora.utils.SoftKeyboardStateWatcher;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, WebUserProfileChangedListener {

@@ -1,4 +1,4 @@
-package de.baumann.diaspora.utils;
+package de.dfa.diaspora.utils;
 
 /**
  * Created by juergen on 25.03.16. Part of Diaspora WebApp.

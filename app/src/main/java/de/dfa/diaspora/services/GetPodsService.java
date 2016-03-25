@@ -17,7 +17,7 @@
     If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.baumann.diaspora.services;
+package de.dfa.diaspora.services;
 
 import android.app.Service;
 import android.content.Intent;
@@ -42,7 +42,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GetPodsService extends Service {
-    public static final String MESSAGE = "de.baumann.diaspora.podsreceived";
+    public static final String MESSAGE = "de.dfa.diaspora.podsreceived";
 
     private static final String TAG = "Diaspora Pod Service";
 

@@ -1,4 +1,4 @@
-package de.baumann.diaspora.utils;
+package de.dfa.diaspora.utils;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -7,7 +7,7 @@ import android.widget.ImageView;
 
 import java.io.File;
 
-import de.baumann.diaspora.ImageDownloadTask;
+import de.dfa.diaspora.ImageDownloadTask;
 
 /**
  * Created by Gregor Santner (de-live-gdev) on 24.03.16.

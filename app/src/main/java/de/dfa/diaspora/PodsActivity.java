@@ -17,7 +17,7 @@
     If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.baumann.diaspora;
+package de.dfa.diaspora;
 
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
@@ -27,7 +27,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -48,8 +47,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import de.baumann.diaspora.services.GetPodsService;
-import de.baumann.diaspora.utils.Helpers;
+import de.dfa.diaspora.services.GetPodsService;
+import de.dfa.diaspora.utils.Helpers;
 
 
 public class PodsActivity extends AppCompatActivity {

@@ -1,12 +1,10 @@
-package de.baumann.diaspora;
+package de.dfa.diaspora;
 
 import android.os.Handler;
 import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.File;
 
 /**
  * Created by de-live-gdev on 24.03.16.  Part of Diaspora WebApp.
