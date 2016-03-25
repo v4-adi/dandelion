@@ -69,7 +69,6 @@
 
     <string name="help_license">License</string>
     <string name="help_help">Markdown formating</string>
-    <string name="help_donate">Donate</string>
     <string name="help_about">Changelog</string>
 
     <string name="toast_screenshot">Taking screenshot …</string>
@@ -131,9 +130,6 @@
         You can create the following symbols and other special characters using a combination of characters:&lt;br>
         (c) = © ; (r) = ® ; x^2 = x²"</string>
 
-    <string name="donate_text">If you like the app fell free to donate to the devoloper of the original \"DiasporaNativeWebApp\":</string>
-    <string name="donate_1">Via Bitcoin</string>
-
     <string name="about_text" translatable="false">
         &lt;i>For more informations visit the Projectsite on github:&lt;br>
         https://github.com/scoute-dich/Diaspora&lt;/i>&lt;br>&lt;br>
@@ -167,10 +163,11 @@
         &#8226; implemented swipe to refresh
     </string>
 
-    <string name="license_title" translatable="false">Copyright © 2016  by scoute-dich</string>
-    <string name="license_text">&lt;i>First of all: I am not a developer. I understand a few basics and most of my work is done
-        by copy and paste. This app is a fork of the original \"DiasporaNativeWebApp\"
-        from \"martinchodev\" (who did most of the work -> big thanks to him), which is released under the GPL-license.&lt;/i> &lt;br> &lt;br>
+    <string name="license_title" translatable="false">Copyright © 2016</string>
+    <string name="license_text">&lt;b>Contributors:&lt;/b>&lt;br>
+
+        &#8226; de-live-gdev https://de-live-gdev.github.io&lt;br>
+        &#8226; scoute-dich https://github.com/scoute-dich&lt;br> &lt;br>
 
         This program is free software: you can redistribute it and/or modify
         it under the terms of the GNU General Public License as published by
@@ -185,7 +182,8 @@
         You should have received a copy of the GNU General Public License
         along with this program.  If not, see http://www.gnu.org/licenses.&lt;br> &lt;br>
 
-        &lt;i>The splashscreen images can be found on flickr:
+        &lt;i>This app is a fork of the original \"DiasporaNativeWebApp\"
+        from \"martinchodev\". The splashscreen images can be found on flickr:
         https://www.flickr.com/photos/129581906@N06/sets/72157651933980136/with/16594947123.
         They were published by \"Lydia\" and are licensed under cc by-nc-sa.&lt;/i></string>
 

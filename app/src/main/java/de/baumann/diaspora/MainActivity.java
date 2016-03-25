@@ -991,7 +991,7 @@ public class MainActivity extends AppCompatActivity
             break;
 
             case R.id.nav_license_help: {
-                final CharSequence[] options = {getString(R.string.help_license), getString(R.string.help_about), getString(R.string.help_help), getString(R.string.help_donate)};
+                final CharSequence[] options = {getString(R.string.help_license), getString(R.string.help_about), getString(R.string.help_help)};
                 new AlertDialog.Builder(MainActivity.this)
                         .setItems(options, new DialogInterface.OnClickListener() {
                             @Override
@@ -1033,24 +1033,6 @@ public class MainActivity extends AppCompatActivity
                                             .setPositiveButton(getString(R.string.yes),
                                                     new DialogInterface.OnClickListener() {
                                                         public void onClick(DialogInterface dialog, int id) {
-                                                            dialog.cancel();
-                                                        }
-                                                    }).show();
-                                }
-                                if (options[item].equals(getString(R.string.help_donate))) {
-                                    new AlertDialog.Builder(MainActivity.this)
-                                            .setMessage(getString(R.string.donate_text))
-                                            .setPositiveButton(getString(R.string.yes),
-                                                    new DialogInterface.OnClickListener() {
-                                                        public void onClick(DialogInterface dialog, int id) {
-                                                            dialog.cancel();
-                                                        }
-                                                    })
-                                            .setNegativeButton(getString(R.string.donate_1),
-                                                    new DialogInterface.OnClickListener() {
-                                                        public void onClick(DialogInterface dialog, int id) {
-                                                            Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://martinv.tip.me/"));
-                                                            startActivity(i);
                                                             dialog.cancel();
                                                         }
                                                     }).show();

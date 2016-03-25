@@ -121,10 +121,10 @@
         &lt;b>Sonderzeichen&lt;/b>&lt;br>
         Du kannst Symbole und Sonderzeichen nutzen, indem du bestimmte Zeichenfolgen verwendest. Z.B.:&lt;br>
         (c) = © ; (r) = ® ; x^2 = x²"</string>
-    <string name="license_text">&lt;i>Zuerst einmal: ich bin kein Entwickler. Ich verstehe ein paar Grundlagen, aber das Meiste meiner
-        Arbeit ist mit \"Copy and Paste\" passiert. Diese App ist ein Fork der original \"DiasporaNativeWebApp\"
-        von \"martinchodev\" (der die allermeiste Arbeit erledigt hat -> mein großer Dank gilt ihm), welche unter der GPL-Lizenz
-        veröffentlicht wurde.&lt;/i> &lt;br> &lt;br>
+    <string name="license_text">&lt;b>Beteiligte:&lt;/b>&lt;br>
+
+        &#8226; de-live-gdev https://de-live-gdev.github.io&lt;br>
+        &#8226; scoute-dich https://github.com/scoute-dich&lt;br> &lt;br>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -139,15 +139,12 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see http://www.gnu.org/licenses.&lt;br> &lt;br>
 
-        &lt;i>Die Bilder des Startbildschirms können auf Flickr gefunden werden:
+        &lt;i>Die App ist ein Fork von \"DiasporaNativeWebApp\"
+        von \"martinchodev\". Die Bilder des Startbildschirms können auf Flickr gefunden werden:
         https://www.flickr.com/photos/129581906@N06/sets/72157651933980136/with/16594947123.
         Sie wurden von \"Lydia\" veröffentlicht und stehen unter der cc by-nc-sa Lizenz.&lt;/i></string>
     <string name="fab2_title_person">Suche nach Personen …</string>
     <string name="fab2_title_tag">Suche nach Tags …</string>
-    <string name="donate_1">per Bitcoin</string>
-    <string name="donate_text">Wenn dir die App gefällt, kannst du dem Entwickler der original \"DiasporaNativeWebApp\"
-        eine Kleinigkeit spenden:</string>
-    <string name="help_donate">Spenden</string>
     <string name="splash_screen_description">Startbildschirm</string>
     <string name="new_conversations">Ungelesene Unterhaltung. Öffnen?</string>
     <string name="new_notifications">Ungelesene Benachrichtigung. Lesen?</string>
