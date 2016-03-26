@@ -17,7 +17,7 @@
     If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.dfa.diaspora.utils;
+package de.dfa.diaspora_android.util;
 
 
 import android.content.Context;
@@ -27,7 +27,7 @@ import android.webkit.WebView;
 
 public class Helpers {
 
-    public static boolean isOnline(Context context){
+    public static boolean isOnline(Context context) {
         ConnectivityManager cnm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo ni = cnm.getActiveNetworkInfo();
         return ni != null && ni.isConnectedOrConnecting();
@@ -47,7 +47,7 @@ public class Helpers {
 
     public static void getNotificationCount(final WebView wv) {
         wv.loadUrl("javascript: ( function() {" +
-                    "if (document.getElementById('notification')) {" +
+                "if (document.getElementById('notification')) {" +
                 "       var count = document.getElementById('notification').innerHTML;" +
                 "       AndroidBridge.setNotificationCount(count.replace(/(\\r\\n|\\n|\\r)/gm, \"\"));" +
                 "    } else {" +

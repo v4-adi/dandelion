@@ -17,7 +17,7 @@
     If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.dfa.diaspora;
+package de.dfa.diaspora_android.activity;
 
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
@@ -47,8 +47,10 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import de.dfa.diaspora.services.GetPodsService;
-import de.dfa.diaspora.utils.Helpers;
+import de.dfa.diaspora_android.App;
+import de.dfa.diaspora_android.R;
+import de.dfa.diaspora_android.task.GetPodsService;
+import de.dfa.diaspora_android.util.Helpers;
 
 
 public class PodsActivity extends AppCompatActivity {
@@ -64,7 +66,7 @@ public class PodsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pods);
         app = (App) getApplication();
-        
+
         filter = (EditText) findViewById(R.id.edtFilter);
         lv = (ListView) findViewById(R.id.lstPods);
         lv.setTextFilterEnabled(true);
@@ -73,7 +75,7 @@ public class PodsActivity extends AppCompatActivity {
         imgSelectPod.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (filter.getText().length() > 4 && filter.getText().toString().contains("."))
+                if (filter.getText().length() > 4 && filter.getText().toString().contains(""))
                     askConfirmation(filter.getText().toString());
                 else
                     Snackbar.make(lv, R.string.valid_pod, Snackbar.LENGTH_LONG).show();
@@ -90,7 +92,7 @@ public class PodsActivity extends AppCompatActivity {
                     if (progressDialog != null)
                         progressDialog.dismiss();
 
-                    if (pods != null && pods.length>0)
+                    if (pods != null && pods.length > 0)
                         updateListview(pods);
                     else {
                         Snackbar.make(lv, R.string.podlist_error, Snackbar.LENGTH_LONG).show();
@@ -117,7 +119,7 @@ public class PodsActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Intent i= new Intent(PodsActivity.this, GetPodsService.class);
+        Intent i = new Intent(PodsActivity.this, GetPodsService.class);
         startService(i);
     }
 
@@ -164,7 +166,7 @@ public class PodsActivity extends AppCompatActivity {
         if (Helpers.isOnline(PodsActivity.this)) {
             new AlertDialog.Builder(PodsActivity.this)
                     .setTitle(getString(R.string.confirmation))
-                    .setMessage(getString(R.string.confirm_pod)+podDomain+"?")
+                    .setMessage(getString(R.string.confirm_pod) + podDomain + "?")
                     .setPositiveButton(R.string.yes,
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
@@ -238,7 +240,7 @@ public class PodsActivity extends AppCompatActivity {
         if (id == R.id.action_reload) {
             if (Helpers.isOnline(PodsActivity.this)) {
                 progressDialog.show();
-                Intent i= new Intent(PodsActivity.this, GetPodsService.class);
+                Intent i = new Intent(PodsActivity.this, GetPodsService.class);
                 startService(i);
                 return true;
             } else {

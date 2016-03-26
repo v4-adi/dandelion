@@ -17,7 +17,7 @@
     If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.dfa.diaspora;
+package de.dfa.diaspora_android.activity;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -80,8 +80,13 @@ import java.util.Date;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import de.dfa.diaspora.utils.Helpers;
-import de.dfa.diaspora.utils.SoftKeyboardStateWatcher;
+import de.dfa.diaspora_android.App;
+import de.dfa.diaspora_android.R;
+import de.dfa.diaspora_android.data.AppSettings;
+import de.dfa.diaspora_android.data.WebUserProfile;
+import de.dfa.diaspora_android.listener.SoftKeyboardStateWatcher;
+import de.dfa.diaspora_android.listener.WebUserProfileChangedListener;
+import de.dfa.diaspora_android.util.Helpers;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, WebUserProfileChangedListener {
@@ -138,7 +143,7 @@ public class MainActivity extends AppCompatActivity
 
         app = (App) getApplication();
         appSettings = app.getSettings();
-        webUserProfile = new WebUserProfile(app,uiHandler,this);
+        webUserProfile = new WebUserProfile(app, uiHandler, this);
 
         // Setup toolbar
         setSupportActionBar(toolbar);
@@ -164,6 +169,7 @@ public class MainActivity extends AppCompatActivity
             public void onSoftKeyboardOpened(int keyboardHeightInPx) {
                 fab.setVisibility(View.GONE);
             }
+
             @Override
             public void onSoftKeyboardClosed() {
                 fab.setVisibility(View.VISIBLE);
@@ -315,7 +321,7 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    private void setupNavigationSlider(){
+    private void setupNavigationSlider() {
         DrawerLayout drawer = ButterKnife.findById(this, R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -326,19 +332,19 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         View navHeader = navigationView.getHeaderView(0);
-        navheaderTitle = ButterKnife.findById(navHeader,R.id.navheader_title);
-        navheaderDescription = ButterKnife.findById(navHeader,R.id.navheader_description);
-        navheaderImage = ButterKnife.findById(navHeader,R.id.navheader_user_image);
+        navheaderTitle = ButterKnife.findById(navHeader, R.id.navheader_title);
+        navheaderDescription = ButterKnife.findById(navHeader, R.id.navheader_description);
+        navheaderImage = ButterKnife.findById(navHeader, R.id.navheader_user_image);
 
-        if(!appSettings.getName().equals("")) {
+        if (!appSettings.getName().equals("")) {
             navheaderTitle.setText(appSettings.getName());
         }
-        if(!appSettings.getPodDomain().equals("")){
+        if (!appSettings.getPodDomain().equals("")) {
             navheaderDescription.setText(appSettings.getPodDomain());
         }
-        if(!appSettings.getAvatarUrl().equals("")){
+        if (!appSettings.getAvatarUrl().equals("")) {
             // Try to load image
-            if(!app.getAvatarImageLoader().loadToImageView(navheaderImage)){
+            if (!app.getAvatarImageLoader().loadToImageView(navheaderImage)) {
                 // If not yet loaded, start download
                 app.getAvatarImageLoader().startImageDownload(navheaderImage, appSettings.getAvatarUrl());
             }
@@ -803,7 +809,7 @@ public class MainActivity extends AppCompatActivity
 
         @JavascriptInterface
         public void setUserProfile(final String webMessage) throws JSONException {
-            if (webUserProfile.isRefreshNeeded()){
+            if (webUserProfile.isRefreshNeeded()) {
                 webUserProfile.parseJson(webMessage);
             }
         }

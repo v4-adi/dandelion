@@ -152,6 +152,6 @@ along with this program.  If not, see http://www.gnu.org/licenses.&lt;br> &lt;br
     <string name="new_post2">D* Titel und Text</string>
     <string name="jb_profile">Profil</string>
     <string name="new_post1">D* nur Text</string>
-    <string name="shared_by_diaspora_android">*[geteilt durch #DiasporaAndroid]*</string>
+    <string name="shared_by_diaspora_android">*[geteilt durch #diaspora-android]*</string>
 
 </resources>

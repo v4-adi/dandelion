@@ -1,4 +1,4 @@
-package de.dfa.diaspora.utils;
+package de.dfa.diaspora_android.util;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -7,7 +7,7 @@ import android.widget.ImageView;
 
 import java.io.File;
 
-import de.dfa.diaspora.ImageDownloadTask;
+import de.dfa.diaspora_android.task.ImageDownloadTask;
 
 /**
  * Created by Gregor Santner (de-live-gdev) on 24.03.16.
@@ -15,11 +15,11 @@ import de.dfa.diaspora.ImageDownloadTask;
 public class AvatarImageLoader {
     private File avatarFile;
 
-    public AvatarImageLoader(Context context){
+    public AvatarImageLoader(Context context) {
         avatarFile = new File(context.getFilesDir(), "avatar.png");
     }
 
-    public void clearAvatarImage(){
+    public void clearAvatarImage() {
         if (isAvatarDownloaded()) {
             avatarFile.delete();
         }
@@ -39,7 +39,7 @@ public class AvatarImageLoader {
     }
 
     public void startImageDownload(ImageView imageView, String avatarUrl) {
-        if(!avatarUrl.equals("")) {
+        if (!avatarUrl.equals("")) {
             new ImageDownloadTask(imageView, avatarFile.getAbsolutePath()).execute(avatarUrl);
         }
     }

@@ -17,7 +17,7 @@
     If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.dfa.diaspora.services;
+package de.dfa.diaspora_android.task;
 
 import android.app.Service;
 import android.content.Intent;
@@ -46,7 +46,8 @@ public class GetPodsService extends Service {
 
     private static final String TAG = "Diaspora Pod Service";
 
-    public GetPodsService() { }
+    public GetPodsService() {
+    }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="de.dfa.diaspora">
+    package="de.dfa.diaspora_android">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -10,11 +10,11 @@
         android:allowBackup="true"
         android:fullBackupContent="true"
         android:icon="@drawable/ic_launcher"
-        android:name="de.dfa.diaspora.App"
+        android:name="de.dfa.diaspora_android.App"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="de.dfa.diaspora.SplashActivity"
+            android:name=".activity.SplashActivity"
             android:launchMode="singleInstance"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/app_name"
@@ -26,7 +26,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="de.dfa.diaspora.PodsActivity"
+            android:name=".activity.PodsActivity"
             android:launchMode="singleInstance"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/title_activity_pods"
@@ -34,7 +34,7 @@
             android:windowSoftInputMode="stateHidden" >
         </activity>
         <activity
-            android:name="de.dfa.diaspora.MainActivity"
+            android:name=".activity.MainActivity"
             android:launchMode="singleInstance"
             android:windowSoftInputMode="adjustResize"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -43,7 +43,7 @@
         </activity>
 
         <activity
-            android:name="de.dfa.diaspora.ShareActivity"
+            android:name=".activity.ShareActivity"
             android:launchMode="singleInstance"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/new_post"
@@ -58,7 +58,7 @@
         </activity>
 
         <activity
-            android:name="de.dfa.diaspora.ShareActivity2"
+            android:name=".activity.ShareActivity2"
             android:launchMode="singleInstance"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/new_post"
@@ -74,7 +74,7 @@
         </activity>
 
         <service
-            android:name="de.dfa.diaspora.services.GetPodsService"
+            android:name=".task.GetPodsService"
             android:enabled="true"
             android:exported="false" >
         </service>

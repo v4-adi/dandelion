@@ -1,10 +1,13 @@
-package de.dfa.diaspora;
+package de.dfa.diaspora_android.data;
 
 import android.os.Handler;
 import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import de.dfa.diaspora_android.App;
+import de.dfa.diaspora_android.listener.WebUserProfileChangedListener;
 
 /**
  * Created by de-live-gdev on 24.03.16.  Part of Diaspora WebApp.
@@ -155,11 +158,4 @@ public class WebUserProfile {
      *   array  "configured_services"
      *      ? ?
      */
-}
-
-interface WebUserProfileChangedListener {
-    void onUserProfileNameChanged(String name);
-    void onUserProfileAvatarChanged(String avatarUrl);
-    void onNotificationCountChanged(int notificationCount);
-    void onUnreadMessageCountChanged(int unreadMessageCount);
 }

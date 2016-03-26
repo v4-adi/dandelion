@@ -17,10 +17,9 @@
     If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.dfa.diaspora;
+package de.dfa.diaspora_android.activity;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -46,7 +45,9 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import de.dfa.diaspora.utils.Helpers;
+import de.dfa.diaspora_android.App;
+import de.dfa.diaspora_android.R;
+import de.dfa.diaspora_android.util.Helpers;
 
 public class ShareActivity extends MainActivity {
 
@@ -68,7 +69,7 @@ public class ShareActivity extends MainActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        progressBar = (ProgressBar)findViewById(R.id.progressBar);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
         swipeView = (SwipeRefreshLayout) findViewById(R.id.swipe);
         swipeView.setEnabled(false);
@@ -87,12 +88,12 @@ public class ShareActivity extends MainActivity {
         });
 
 
-        podDomain = ((App)getApplication()).getSettings().getPodDomain();
+        podDomain = ((App) getApplication()).getSettings().getPodDomain();
 
         fab = (com.getbase.floatingactionbutton.FloatingActionsMenu) findViewById(R.id.fab_menubutton);
         fab.setVisibility(View.GONE);
 
-        webView = (WebView)findViewById(R.id.webView);
+        webView = (WebView) findViewById(R.id.webView);
         webView.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
 
         WebSettings wSettings = webView.getSettings();
@@ -197,8 +198,6 @@ public class ShareActivity extends MainActivity {
         });
 
 
-
-
         Intent intent = getIntent();
         final Bundle extras = intent.getExtras();
         String action = intent.getAction();
@@ -229,7 +228,7 @@ public class ShareActivity extends MainActivity {
                         webView.loadUrl("javascript:(function() { " +
                                 "document.getElementsByTagName('textarea')[0].style.height='110px'; " +
                                 "document.getElementsByTagName('textarea')[0].innerHTML = '> " +
-                                String.format("%s %s'; ",extraText,getString(R.string.shared_by_diaspora_android)) +
+                                String.format("%s %s'; ", extraText, getString(R.string.shared_by_diaspora_android)) +
                                 "    if(document.getElementById(\"main_nav\")) {" +
                                 "        document.getElementById(\"main_nav\").parentNode.removeChild(" +
                                 "        document.getElementById(\"main_nav\"));" +
@@ -246,7 +245,7 @@ public class ShareActivity extends MainActivity {
 
         if (savedInstanceState == null) {
             if (Helpers.isOnline(ShareActivity.this)) {
-                webView.loadUrl("https://"+podDomain+"/status_messages/new");
+                webView.loadUrl("https://" + podDomain + "/status_messages/new");
             } else {
                 Snackbar.make(getWindow().findViewById(R.id.drawer_layout), R.string.no_internet, Snackbar.LENGTH_LONG).show();
             }
@@ -256,15 +255,15 @@ public class ShareActivity extends MainActivity {
 
 
     @Override
-    public void onActivityResult (int requestCode, int resultCode, Intent data) {
-        if(requestCode != INPUT_FILE_REQUEST_CODE || mFilePathCallback == null) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode != INPUT_FILE_REQUEST_CODE || mFilePathCallback == null) {
             super.onActivityResult(requestCode, resultCode, data);
             return;
         }
         Uri[] results = null;
-        if(resultCode == Activity.RESULT_OK) {
-            if(data == null) {
-                if(mCameraPhotoPath != null) {
+        if (resultCode == RESULT_OK) {
+            if (data == null) {
+                if (mCameraPhotoPath != null) {
                     results = new Uri[]{Uri.parse(mCameraPhotoPath)};
                 }
             } else {

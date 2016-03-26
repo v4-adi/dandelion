@@ -1,4 +1,4 @@
-package de.dfa.diaspora.utils;
+package de.dfa.diaspora_android.listener;
 
 /**
  * Created by juergen on 25.03.16. Part of Diaspora WebApp.
@@ -16,20 +16,21 @@ public class SoftKeyboardStateWatcher implements ViewTreeObserver.OnGlobalLayout
 
     public interface SoftKeyboardStateListener {
         void onSoftKeyboardOpened(int keyboardHeightInPx);
+
         void onSoftKeyboardClosed();
     }
 
     private final List<SoftKeyboardStateListener> listeners = new LinkedList<>();
     private final View activityRootView;
-    private int        lastSoftKeyboardHeightInPx;
-    private boolean    isSoftKeyboardOpened;
+    private int lastSoftKeyboardHeightInPx;
+    private boolean isSoftKeyboardOpened;
 
     public SoftKeyboardStateWatcher(View activityRootView) {
         this(activityRootView, false);
     }
 
     public SoftKeyboardStateWatcher(View activityRootView, boolean isSoftKeyboardOpened) {
-        this.activityRootView     = activityRootView;
+        this.activityRootView = activityRootView;
         this.isSoftKeyboardOpened = isSoftKeyboardOpened;
         activityRootView.getViewTreeObserver().addOnGlobalLayoutListener(this);
     }

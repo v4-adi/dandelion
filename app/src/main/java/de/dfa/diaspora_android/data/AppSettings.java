@@ -1,4 +1,4 @@
-package de.dfa.diaspora;
+package de.dfa.diaspora_android.data;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -6,7 +6,7 @@ import android.content.SharedPreferences;
 /**
  * Created by de-live-gdev on 20.03.16. Part of Diaspora WebApp.
  */
-class AppSettings {
+public class AppSettings {
     private final SharedPreferences pref;
     private final Context context;
 
@@ -18,9 +18,11 @@ class AppSettings {
     private void setString(String key, String value) {
         pref.edit().putString(key, value).apply();
     }
+
     private void setInt(String key, int value) {
         pref.edit().putInt(key, value).apply();
     }
+
     private void setBool(String key, boolean value) {
         pref.edit().putBoolean(key, value).apply();
     }
@@ -34,7 +36,6 @@ class AppSettings {
     private static final String PREF_AVATAR_URL = "webUserProfile_avatar";
     private static final String PREF_WEBUSERPROFILE_NAME = "webUserProfile_name";
     private static final String PREF_PODDOMAIN = "podDomain";
-
 
 
     /*
@@ -74,19 +75,19 @@ class AppSettings {
         setString(PREF_AVATAR_URL, avatarUrl);
     }
 
-    public String getName(){
+    public String getName() {
         return pref.getString(PREF_WEBUSERPROFILE_NAME, "");
     }
 
-    public void setName(String name){
+    public void setName(String name) {
         setString(PREF_WEBUSERPROFILE_NAME, name);
     }
 
-    public String getPodDomain(){
+    public String getPodDomain() {
         return pref.getString(PREF_PODDOMAIN, "");
     }
 
-    public void setPodDomain(String podDomain){
+    public void setPodDomain(String podDomain) {
         setString(PREF_PODDOMAIN, podDomain);
     }
 

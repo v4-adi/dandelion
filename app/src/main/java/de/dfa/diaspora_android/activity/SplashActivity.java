@@ -17,7 +17,7 @@
     If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.dfa.diaspora;
+package de.dfa.diaspora_android.activity;
 
 import android.content.Intent;
 import android.content.res.TypedArray;
@@ -29,6 +29,9 @@ import android.widget.ImageView;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import de.dfa.diaspora_android.App;
+import de.dfa.diaspora_android.R;
+
 
 public class SplashActivity extends AppCompatActivity {
     private App app;
@@ -39,7 +42,7 @@ public class SplashActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash);
-        app = (App)getApplication();
+        app = (App) getApplication();
 
         ImageView imgSplash = (ImageView) findViewById(R.id.imgSplash);
 

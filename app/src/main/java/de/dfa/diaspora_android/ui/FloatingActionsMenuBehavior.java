@@ -1,13 +1,15 @@
-package de.dfa.diaspora;
+package de.dfa.diaspora_android.ui;
 
 /**
  * Created by juergen on 29.02.16. Part of Diaspora WebApp.
  */
+
 import android.content.Context;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar.SnackbarLayout;
 import android.util.AttributeSet;
 import android.view.View;
+
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
 
 public class FloatingActionsMenuBehavior extends CoordinatorLayout.Behavior<FloatingActionsMenu> {

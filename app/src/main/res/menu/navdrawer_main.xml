@@ -15,10 +15,10 @@
         <!-- TODO followed_tags currently not implemented as single viewable page
                    (0.5.7.1-paf04894e, 2016 March 20) -->
         <item
-            android:visible="false"
             android:id="@+id/nav_followed_tags"
             android:icon="@drawable/jb_tag2"
-            android:title="@string/jb_followed_tags" />
+            android:title="@string/jb_followed_tags"
+            android:visible="false" />
         <item
             android:id="@+id/nav_aspects"
             android:icon="@drawable/jb_aspects"
