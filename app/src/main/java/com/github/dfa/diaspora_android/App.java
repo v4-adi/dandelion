@@ -1,9 +1,9 @@
-package de.dfa.diaspora_android;
+package com.github.dfa.diaspora_android;
 
 import android.app.Application;
 
-import de.dfa.diaspora_android.data.AppSettings;
-import de.dfa.diaspora_android.util.AvatarImageLoader;
+import com.github.dfa.diaspora_android.data.AppSettings;
+import com.github.dfa.diaspora_android.util.AvatarImageLoader;
 
 /**
  * Created by gregor on 24.03.16.

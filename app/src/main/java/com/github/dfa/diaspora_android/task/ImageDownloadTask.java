@@ -1,4 +1,4 @@
-package de.dfa.diaspora_android.task;
+package com.github.dfa.diaspora_android.task;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -7,11 +7,11 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.ImageView;
 
+import com.github.dfa.diaspora_android.App;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-
-import de.dfa.diaspora_android.App;
 
 /**
  * Created by Gregor Santner (de-live-gdev) on 24.03.16.

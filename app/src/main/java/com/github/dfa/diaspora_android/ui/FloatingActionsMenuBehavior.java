@@ -1,4 +1,4 @@
-package de.dfa.diaspora_android.ui;
+package com.github.dfa.diaspora_android.ui;
 
 /**
  * Created by juergen on 29.02.16. Part of Diaspora WebApp.

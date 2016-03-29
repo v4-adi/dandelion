@@ -17,7 +17,7 @@
     If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.dfa.diaspora_android.activity;
+package com.github.dfa.diaspora_android.activity;
 
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
@@ -44,13 +44,13 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.github.dfa.diaspora_android.App;
+import com.github.dfa.diaspora_android.R;
+import com.github.dfa.diaspora_android.task.GetPodsService;
+import com.github.dfa.diaspora_android.util.Helpers;
+
 import java.util.ArrayList;
 import java.util.Collections;
-
-import de.dfa.diaspora_android.App;
-import de.dfa.diaspora_android.R;
-import de.dfa.diaspora_android.task.GetPodsService;
-import de.dfa.diaspora_android.util.Helpers;
 
 
 public class PodsActivity extends AppCompatActivity {

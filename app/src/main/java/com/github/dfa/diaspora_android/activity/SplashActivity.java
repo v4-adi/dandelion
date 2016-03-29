@@ -17,7 +17,7 @@
     If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.dfa.diaspora_android.activity;
+package com.github.dfa.diaspora_android.activity;
 
 import android.content.Intent;
 import android.content.res.TypedArray;
@@ -26,11 +26,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
+import com.github.dfa.diaspora_android.App;
+import com.github.dfa.diaspora_android.R;
+
 import java.util.Timer;
 import java.util.TimerTask;
-
-import de.dfa.diaspora_android.App;
-import de.dfa.diaspora_android.R;
 
 
 public class SplashActivity extends AppCompatActivity {

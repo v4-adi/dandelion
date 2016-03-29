@@ -1,4 +1,4 @@
-package de.dfa.diaspora_android.listener;
+package com.github.dfa.diaspora_android.listener;
 
 /**
  * Created by juergen on 25.03.16. Part of Diaspora WebApp.

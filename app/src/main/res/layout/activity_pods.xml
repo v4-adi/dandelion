@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".activity.PodsActivity">
+    tools:context="com.github.dfa.diaspora_android.activity.PodsActivity">
 
     <ListView
         android:id="@+id/lstPods"

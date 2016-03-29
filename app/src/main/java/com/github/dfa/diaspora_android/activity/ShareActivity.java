@@ -17,7 +17,7 @@
     If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.dfa.diaspora_android.activity;
+package com.github.dfa.diaspora_android.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -40,14 +40,14 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
+import com.github.dfa.diaspora_android.App;
+import com.github.dfa.diaspora_android.R;
+import com.github.dfa.diaspora_android.util.Helpers;
+
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import de.dfa.diaspora_android.App;
-import de.dfa.diaspora_android.R;
-import de.dfa.diaspora_android.util.Helpers;
 
 public class ShareActivity extends MainActivity {
 

@@ -6,7 +6,7 @@ android {
     useLibrary 'org.apache.http.legacy'
 
     defaultConfig {
-        applicationId "de.dfa.diaspora_android"
+        applicationId "com.github.dfa.diaspora_android"
         minSdkVersion 15
         targetSdkVersion 23
         versionCode 1

@@ -1,4 +1,4 @@
-package de.dfa.diaspora_android.listener;
+package com.github.dfa.diaspora_android.listener;
 
 /**
  * Created by Gregor Santner (de-live-gdev) on 26.03.16.

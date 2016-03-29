@@ -1,4 +1,4 @@
-package de.dfa.diaspora_android.data;
+package com.github.dfa.diaspora_android.data;
 
 import android.content.Context;
 import android.content.SharedPreferences;

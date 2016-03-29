@@ -17,7 +17,7 @@
     If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.dfa.diaspora_android.util;
+package com.github.dfa.diaspora_android.util;
 
 
 import android.content.Context;

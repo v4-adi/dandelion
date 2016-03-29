@@ -1,13 +1,13 @@
-package de.dfa.diaspora_android.util;
+package com.github.dfa.diaspora_android.util;
 
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.widget.ImageView;
 
-import java.io.File;
+import com.github.dfa.diaspora_android.task.ImageDownloadTask;
 
-import de.dfa.diaspora_android.task.ImageDownloadTask;
+import java.io.File;
 
 /**
  * Created by Gregor Santner (de-live-gdev) on 24.03.16.

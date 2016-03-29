@@ -17,7 +17,7 @@
     If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.dfa.diaspora_android.task;
+package com.github.dfa.diaspora_android.task;
 
 import android.app.Service;
 import android.content.Intent;
@@ -42,7 +42,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GetPodsService extends Service {
-    public static final String MESSAGE = "de.dfa.diaspora.podsreceived";
+    public static final String MESSAGE = "com.github.dfa.diaspora.podsreceived";
 
     private static final String TAG = "Diaspora Pod Service";
 

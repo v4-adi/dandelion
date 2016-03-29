@@ -17,7 +17,7 @@
     If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.dfa.diaspora_android.activity;
+package com.github.dfa.diaspora_android.activity;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -69,6 +69,13 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
+import com.github.dfa.diaspora_android.App;
+import com.github.dfa.diaspora_android.R;
+import com.github.dfa.diaspora_android.data.AppSettings;
+import com.github.dfa.diaspora_android.data.WebUserProfile;
+import com.github.dfa.diaspora_android.listener.SoftKeyboardStateWatcher;
+import com.github.dfa.diaspora_android.listener.WebUserProfileChangedListener;
+import com.github.dfa.diaspora_android.util.Helpers;
 
 import org.json.JSONException;
 
@@ -80,13 +87,6 @@ import java.util.Date;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import de.dfa.diaspora_android.App;
-import de.dfa.diaspora_android.R;
-import de.dfa.diaspora_android.data.AppSettings;
-import de.dfa.diaspora_android.data.WebUserProfile;
-import de.dfa.diaspora_android.listener.SoftKeyboardStateWatcher;
-import de.dfa.diaspora_android.listener.WebUserProfileChangedListener;
-import de.dfa.diaspora_android.util.Helpers;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, WebUserProfileChangedListener {
