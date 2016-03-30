@@ -1,6 +1,8 @@
 [![F-Droid](https://f-droid.org/wiki/images/0/06/F-Droid-button_get-it-on.png)](https://f-droid.org/repository/browse/?fdfilter=diaspora&fdid=de.baumann.diaspora)
 
-Project was moved to  <https://github.com/Diaspora-for-Android/diaspora-android>, README and paths need to be updated.
+**NOTICE:** Project was moved to  <https://github.com/Diaspora-for-Android/diaspora-android>, README and paths need to be updated.
+
+[![Build Status](https://travis-ci.org/Diaspora-for-Android/diaspora-android.svg?branch=master)](https://travis-ci.org/Diaspora-for-Android/diaspora-android)
 
 ## Main developers:
 
