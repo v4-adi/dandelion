@@ -3,10 +3,10 @@
 **NOTICE:** Project was moved to  <https://github.com/Diaspora-for-Android/diaspora-android>, README and paths need to be updated.
 
 [![Build Status](https://travis-ci.org/Diaspora-for-Android/diaspora-android.svg?branch=master)](https://travis-ci.org/Diaspora-for-Android/diaspora-android)
+[![Join the chat at https://gitter.im/Diaspora-for-Android/diaspora-android](https://badges.gitter.im/Diaspora-for-Android/diaspora-android.svg)](https://gitter.im/Diaspora-for-Android/diaspora-android?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ## Main developers:
 
-[![Join the chat at https://gitter.im/Diaspora-for-Android/diaspora-android](https://badges.gitter.im/Diaspora-for-Android/diaspora-android.svg)](https://gitter.im/Diaspora-for-Android/diaspora-android?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 - de-live-gdev (<https://de-live-gdev.github.io>)
 - martinchodev (<https://github.com/martinchodev>)
