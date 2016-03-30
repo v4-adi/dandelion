@@ -15,7 +15,7 @@ import org.json.JSONObject;
 public class WebUserProfile {
     private static final int MINIMUM_WEBUSERPROFILE_LOAD_TIMEDIFF = 5000;
 
-    private Handler uiHandler;
+    private Handler callbackHandler;
     private WebUserProfileChangedListener listener;
     private App app;
     private AppSettings appSettings;
@@ -29,15 +29,20 @@ public class WebUserProfile {
     private int notificationCount;
     private int unreadMessagesCount;
 
-    public WebUserProfile(App app, Handler uiHandler, WebUserProfileChangedListener listener) {
-        this.listener = listener;
-        this.uiHandler = uiHandler;
+
+    public WebUserProfile(App app) {
         this.app = app;
         appSettings = app.getSettings();
 
         avatarUrl = appSettings.getAvatarUrl();
         guid = appSettings.getProfileId();
         name = appSettings.getName();
+    }
+
+    public WebUserProfile(App app, Handler callbackHandler, WebUserProfileChangedListener listener) {
+        this(app);
+        this.listener = listener;
+        this.callbackHandler = callbackHandler;
     }
 
     public boolean isRefreshNeeded() {
@@ -50,67 +55,38 @@ public class WebUserProfile {
 
     public boolean parseJson(String jsonStr) {
         try {
-            this.json = new JSONObject(jsonStr);
+            json = new JSONObject(jsonStr);
             lastLoaded = System.currentTimeMillis();
-
-            String str;
-            int integer;
 
             // Avatar
             if (json.has("avatar")) {
                 JSONObject avatarJson = json.getJSONObject("avatar");
-                if (avatarJson.has("medium") && !((str = avatarJson.getString("medium")).equals(avatarUrl))) {
+                if (avatarJson.has("medium") && setAvatarUrl(avatarJson.getString("medium"))) {
                     app.getAvatarImageLoader().clearAvatarImage();
-                    avatarUrl = str;
-                    appSettings.setAvatarUrl(str);
-                    uiHandler.post(new Runnable() {
-                        public void run() {
-                            listener.onUserProfileAvatarChanged(avatarUrl);
-                        }
-                    });
+                    appSettings.setAvatarUrl(avatarUrl);
                 }
             }
 
             // GUID (User id)
-            if (json.has("guid") && !((str = json.getString("guid")).equals(guid))) {
-                guid = str;
+            if (json.has("guid") && loadGuid(json.getString("guid"))) {
                 appSettings.setProfileId(guid);
             }
 
             // Name
-            if (json.has("name") && !((str = json.getString("name")).equals(name))) {
-                name = str;
+            if (json.has("name") && loadName(json.getString("name"))) {
                 appSettings.setName(name);
-                uiHandler.post(new Runnable() {
-                    public void run() {
-                        listener.onUserProfileNameChanged(name);
-                    }
-                });
             }
 
             // Unread message count
-            if (json.has("notifications_count") && (integer = json.getInt("notifications_count")) != notificationCount) {
-                notificationCount = integer;
-                uiHandler.post(new Runnable() {
-                    public void run() {
-                        listener.onNotificationCountChanged(notificationCount);
-                    }
-                });
+            if (json.has("notifications_count") && loadNotificationCount(json.getInt("notifications_count"))) {
             }
 
             // Unread message count
-            if (json.has("unread_messages_count") && (integer = json.getInt("unread_messages_count")) != unreadMessagesCount) {
-                unreadMessagesCount = integer;
-                uiHandler.post(new Runnable() {
-                    public void run() {
-                        listener.onUnreadMessageCountChanged(unreadMessagesCount);
-                    }
-                });
+            if (json.has("unread_messages_count") && loadUnreadMessagesCount(json.getInt("unread_messages_count"))) {
             }
-
             isWebUserProfileLoaded = true;
         } catch (JSONException e) {
-            Log.d(App.APP_LOG_TAG, e.getMessage());
+            Log.d(App.TAG, e.getMessage());
             isWebUserProfileLoaded = false;
         }
         lastLoaded = System.currentTimeMillis();
@@ -139,6 +115,77 @@ public class WebUserProfile {
 
     public int getUnreadMessagesCount() {
         return unreadMessagesCount;
+    }
+
+    /*
+     * Private property setters
+     */
+    private boolean setAvatarUrl(final String avatarUrl) {
+        if (!this.avatarUrl.equals(avatarUrl)) {
+            this.avatarUrl = avatarUrl;
+            if (listener != null && callbackHandler != null) {
+                callbackHandler.post(new Runnable() {
+                    public void run() {
+                        listener.onUserProfileAvatarChanged(avatarUrl);
+                    }
+                });
+            }
+            return true;
+        }
+        return false;
+    }
+
+    private boolean loadGuid(final String guid) {
+        if (!this.guid.equals(guid)) {
+            this.guid = guid;
+            return true;
+        }
+        return false;
+    }
+
+    private boolean loadName(final String name) {
+        if (!this.name.equals(name)) {
+            this.name = name;
+            if (listener != null && callbackHandler != null) {
+                callbackHandler.post(new Runnable() {
+                    public void run() {
+                        listener.onUserProfileNameChanged(name);
+                    }
+                });
+            }
+            return true;
+        }
+        return false;
+    }
+
+    private boolean loadNotificationCount(final int notificationCount) {
+        if (this.notificationCount != notificationCount) {
+            this.notificationCount = notificationCount;
+            if (listener != null && callbackHandler != null) {
+                callbackHandler.post(new Runnable() {
+                    public void run() {
+                        listener.onNotificationCountChanged(notificationCount);
+                    }
+                });
+            }
+            return true;
+        }
+        return false;
+    }
+
+    private boolean loadUnreadMessagesCount(final int unreadMessagesCount) {
+        if (this.unreadMessagesCount != unreadMessagesCount) {
+            this.unreadMessagesCount = unreadMessagesCount;
+            if (listener != null && callbackHandler != null) {
+                callbackHandler.post(new Runnable() {
+                    public void run() {
+                        listener.onUnreadMessageCountChanged(unreadMessagesCount);
+                    }
+                });
+            }
+            return true;
+        }
+        return false;
     }
 
     /*

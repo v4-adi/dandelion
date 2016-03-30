@@ -46,7 +46,7 @@ public class ImageDownloadTask extends AsyncTask<String, Void, Bitmap> {
             }
 
         } catch (Exception e) {
-            Log.e(App.APP_LOG_TAG, e.getMessage());
+            Log.e(App.TAG, e.getMessage());
         } finally {
             try {
                 if (out != null) {

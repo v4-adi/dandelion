@@ -51,10 +51,13 @@ import android.text.Html;
 import android.text.SpannableString;
 import android.text.method.LinkMovementMethod;
 import android.text.util.Linkify;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.CookieManager;
+import android.webkit.CookieSyncManager;
 import android.webkit.JavascriptInterface;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
@@ -75,6 +78,7 @@ import com.github.dfa.diaspora_android.data.AppSettings;
 import com.github.dfa.diaspora_android.data.WebUserProfile;
 import com.github.dfa.diaspora_android.listener.SoftKeyboardStateWatcher;
 import com.github.dfa.diaspora_android.listener.WebUserProfileChangedListener;
+import com.github.dfa.diaspora_android.task.ProfileFetchTask;
 import com.github.dfa.diaspora_android.util.Helpers;
 
 import org.json.JSONException;
@@ -217,7 +221,24 @@ public class MainActivity extends AppCompatActivity
 
             public void onPageFinished(WebView view, String url) {
                 swipeRefreshLayout.setRefreshing(false);
+
+
+                final CookieManager cookieManager = app.getCookieManager();
+                String cookies = cookieManager.getCookie(url);
+                Log.d(App.TAG, "All the cookies in a string:" + cookies);
+
+                if(cookies != null) {
+                    cookieManager.setCookie(url, cookies);
+                    cookieManager.setCookie("https://"+appSettings.getPodDomain(),cookies);
+                    for(String c:cookies.split(";")){
+                        Log.d(App.TAG, "Cookie: " + c.split("=")[0]+ " Value:"+c.split("=")[1]);
+                    }
+                    //new ProfileFetchTask(app).execute();
+                }
+
             }
+
+
         });
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
