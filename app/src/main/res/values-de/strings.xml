@@ -153,5 +153,7 @@ along with this program.  If not, see http://www.gnu.org/licenses.&lt;br> &lt;br
     <string name="jb_profile">Profil</string>
     <string name="new_post1">D* nur Text</string>
     <string name="shared_by_diaspora_android">*[geteilt durch #diaspora-android]*</string>
+    <string name="settings_images_switch_off">Bilder nicht laden</string>
+    <string name="settings_images_switch_on">Bilder laden</string>
 
 </resources>

@@ -62,6 +62,8 @@
 
     <string name="settings_font">Change font size</string>
     <string name="settings_image">Toggle image loading</string>
+    <string name="settings_images_switch_on">Do load images</string>
+    <string name="settings_images_switch_off">Do not load images</string>
     <string name="settings_view">Change view</string>
     <string name="share_link">Share link as text</string>
     <string name="share_screenshot">Share screenshot of webpage</string>

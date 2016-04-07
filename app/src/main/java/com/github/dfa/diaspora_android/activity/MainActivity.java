@@ -968,21 +968,26 @@ public class MainActivity extends AppCompatActivity
             }
             break;
 
-            case R.id.nav_settings_view: {
-                final CharSequence[] options = {getString(R.string.settings_font), getString(R.string.settings_view), getString(R.string.settings_image)};
+            case R.id.nav_settings_view:
+            {
+                final CharSequence[] options = {getString(R.string.settings_font), getString(R.string.settings_view), appSettings.isLoadImages() ?
+                        getString(R.string.settings_images_switch_off) : getString(R.string.settings_images_switch_on)};
+
                 if (Helpers.isOnline(MainActivity.this)) {
                     new AlertDialog.Builder(MainActivity.this)
                             .setItems(options, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int item) {
-                                    if (options[item].equals(getString(R.string.settings_font)))
-                                        alertFormElements();
-                                    if (options[item].equals(getString(R.string.settings_view)))
-                                        webView.loadUrl("https://" + podDomain + "/mobile/toggle");
-                                    if (options[item].equals(getString(R.string.settings_image)))
-                                        webSettings.setLoadsImagesAutomatically(!appSettings.isLoadImages());
-                                    appSettings.setLoadImages(!appSettings.isLoadImages());
-                                    webView.loadUrl(webView.getUrl());
+                                    switch(item) {
+                                        case 0: alertFormElements();
+                                            break;
+                                        case 1: webView.loadUrl("https://" + podDomain + "/mobile/toggle");
+                                            break;
+                                        case 2: webSettings.setLoadsImagesAutomatically(!appSettings.isLoadImages());
+                                            appSettings.setLoadImages(!appSettings.isLoadImages());
+                                            webView.loadUrl(webView.getUrl());
+                                            break;
+                                    }
                                 }
                             }).show();
                 } else {
