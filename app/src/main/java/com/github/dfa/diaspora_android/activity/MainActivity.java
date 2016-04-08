@@ -57,7 +57,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.CookieManager;
-import android.webkit.CookieSyncManager;
 import android.webkit.JavascriptInterface;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
@@ -78,7 +77,6 @@ import com.github.dfa.diaspora_android.data.AppSettings;
 import com.github.dfa.diaspora_android.data.WebUserProfile;
 import com.github.dfa.diaspora_android.listener.SoftKeyboardStateWatcher;
 import com.github.dfa.diaspora_android.listener.WebUserProfileChangedListener;
-import com.github.dfa.diaspora_android.task.ProfileFetchTask;
 import com.github.dfa.diaspora_android.util.Helpers;
 
 import org.json.JSONException;

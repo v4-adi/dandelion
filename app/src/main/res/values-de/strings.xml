@@ -61,7 +61,6 @@
     <string name="new_post">D* Neuer Beitrag</string>
     <string name="notifications">Benachrichtigungen</string>
     <string name="settings_font">Schriftgröße ändern</string>
-    <string name="settings_image">Bilder laden umschalten</string>
     <string name="settings_view">Ansicht wechseln</string>
     <string name="normal">normal</string>
     <string name="large">groß</string>
@@ -152,7 +151,7 @@ along with this program.  If not, see http://www.gnu.org/licenses.&lt;br> &lt;br
     <string name="new_post2">D* Titel und Text</string>
     <string name="jb_profile">Profil</string>
     <string name="new_post1">D* nur Text</string>
-    <string name="shared_by_diaspora_android">*[geteilt durch #diaspora-android]*</string>
+    <string name="shared_by_diaspora_android">*[geteilt durch #DiasporaForAndroid]*</string>
     <string name="settings_images_switch_off">Bilder nicht laden</string>
     <string name="settings_images_switch_on">Bilder laden</string>
 

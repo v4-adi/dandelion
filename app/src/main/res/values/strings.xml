@@ -61,7 +61,6 @@
     <string name="jb_share">Share content</string>
 
     <string name="settings_font">Change font size</string>
-    <string name="settings_image">Toggle image loading</string>
     <string name="settings_images_switch_on">Do load images</string>
     <string name="settings_images_switch_off">Do not load images</string>
     <string name="settings_view">Change view</string>
@@ -196,16 +195,7 @@
     <string name="image">Unable to get image</string>
     <string name="jb_profile">Profile</string>
 
-    <array name="splash_images">
-        <item>@drawable/splashscreen1</item>
-        <item>@drawable/splashscreen2</item>
-        <item>@drawable/splashscreen3</item>
-        <item>@drawable/splashscreen4</item>
-        <item>@drawable/splashscreen5</item>
-        <item>@drawable/splashscreen6</item>
-    </array>
-
     <string name="exit_app">Exit app</string>
     <string name="diaspora" translatable="false">Diaspora</string>
-    <string name="shared_by_diaspora_android">*[shared by #diaspora-android]*</string>
+    <string name="shared_by_diaspora_android">*[shared by #DiasporaForAndroid]*</string>
 </resources>
