@@ -69,6 +69,7 @@ import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.github.dfa.diaspora_android.App;
@@ -77,6 +78,7 @@ import com.github.dfa.diaspora_android.data.AppSettings;
 import com.github.dfa.diaspora_android.data.WebUserProfile;
 import com.github.dfa.diaspora_android.listener.SoftKeyboardStateWatcher;
 import com.github.dfa.diaspora_android.listener.WebUserProfileChangedListener;
+import com.github.dfa.diaspora_android.ui.ContextMenuWebView;
 import com.github.dfa.diaspora_android.util.Helpers;
 
 import org.json.JSONException;
@@ -96,6 +98,7 @@ public class MainActivity extends AppCompatActivity
 
     static final int INPUT_FILE_REQUEST_CODE = 1;
     private static final int REQUEST_CODE_ASK_PERMISSIONS = 123;
+    public static final int REQUEST_CODE_ASK_PERMISSIONS_SAVE_IMAGE = 124;
     private static final String URL_MESSAGE = "URL_MESSAGE";
 
     private App app;
@@ -120,7 +123,7 @@ public class MainActivity extends AppCompatActivity
     Toolbar toolbar;
 
     @Bind(R.id.webView)
-    WebView webView;
+    ContextMenuWebView webView;
 
     @Bind(R.id.fab_menubutton)
     FloatingActionsMenu fab;
@@ -146,6 +149,9 @@ public class MainActivity extends AppCompatActivity
         app = (App) getApplication();
         appSettings = app.getSettings();
         webUserProfile = new WebUserProfile(app, uiHandler, this);
+
+        this.registerForContextMenu(webView);
+        webView.setParentActivity(this);
 
         // Setup toolbar
         setSupportActionBar(toolbar);
@@ -599,7 +605,7 @@ public class MainActivity extends AppCompatActivity
                                         if (hasWRITE_EXTERNAL_STORAGE != PackageManager.PERMISSION_GRANTED) {
                                             if (!shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
                                                 new AlertDialog.Builder(MainActivity.this)
-                                                        .setMessage(R.string.permissions)
+                                                        .setMessage(R.string.permissions_screenshot)
                                                         .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
                                                             @Override
                                                             public void onClick(DialogInterface dialog, int which) {
@@ -662,7 +668,7 @@ public class MainActivity extends AppCompatActivity
                                         if (hasWRITE_EXTERNAL_STORAGE != PackageManager.PERMISSION_GRANTED) {
                                             if (!shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
                                                 new AlertDialog.Builder(MainActivity.this)
-                                                        .setMessage(R.string.permissions)
+                                                        .setMessage(R.string.permissions_screenshot)
                                                         .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
                                                             @Override
                                                             public void onClick(DialogInterface dialog, int which) {
@@ -1093,6 +1099,24 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case REQUEST_CODE_ASK_PERMISSIONS_SAVE_IMAGE:
+                if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(this, R.string.permission_granted_try_again, Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Toast.makeText(this, R.string.permission_denied, Toast.LENGTH_SHORT).show();
+                }
+                return;
+
+            default:
+                super.onRequestPermissionsResult(requestCode, permissions,
+                        grantResults);
+        }
     }
 
 }

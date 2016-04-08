@@ -8,10 +8,16 @@
     <string name="reload">Reload</string>
     <string name="new_notifications">Unread notification. Want to read it?</string>
     <string name="new_conversations">Unread conversation. Open it?</string>
-    <string name="permissions">You must grant \"Access Storage Permission\" to save screenshots. After that you should
+    <string name="permissions_screenshot">You must grant \"Access Storage Permission\" to save screenshots. After that you should
         completely close the app or restart the phone. If you don\'t permit the storage access but want to use the
         screenshot function at a later time, you can grant the permission later. Please open then: systemsettings - apps -
         weather. In the permissions section you can grant the \"write storage permission\".</string>
+    <string name="permissions_image">You must grant \"Access Storage Permission\" to save images. After that you should
+        completely close the app or restart the phone. If you don\'t permit the storage access but want to save images
+        at a later time, you can grant the permission later. Please open then: systemsettings - apps -
+        weather. In the permissions section you can grant the \"write storage permission\".</string>
+    <string name="permission_denied">Permission denied.</string>
+    <string name="permission_granted_try_again">Permission granted. Please try again.</string>
 
     //Pod Activity
 
@@ -198,4 +204,10 @@
     <string name="exit_app">Exit app</string>
     <string name="diaspora" translatable="false">Diaspora</string>
     <string name="shared_by_diaspora_android">*[shared by #DiasporaForAndroid]*</string>
+    <string name="toast_link_address_copied">Link address copied …</string>
+    <string name="context_menu_share_link">Share link address</string>
+    <string name="context_menu_save_image">Save image</string>
+    <string name="context_menu_open_external_browser">Open in external browser …</string>
+    <string name="context_menu_copy_link">Copy link address to clipboard</string>
+    <string name="toast_saved_image_to_location">Saving image to</string>
 </resources>
