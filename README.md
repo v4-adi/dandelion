@@ -4,6 +4,7 @@
 
 [![Build Status](https://travis-ci.org/Diaspora-for-Android/diaspora-android.svg?branch=master)](https://travis-ci.org/Diaspora-for-Android/diaspora-android)
 [![Join the chat at https://gitter.im/Diaspora-for-Android/diaspora-android](https://badges.gitter.im/Diaspora-for-Android/diaspora-android.svg)](https://gitter.im/Diaspora-for-Android/diaspora-android?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Stories in Start](https://badge.waffle.io/Diaspora-for-Android/diaspora-android.svg?label=help%20wanted&title=waffle.io)](http://waffle.io/Diaspora-for-Android/diaspora-android)
 
 ## Main developers:
 
