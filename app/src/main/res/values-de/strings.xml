@@ -22,7 +22,7 @@
         Wenn du den Zugriff verweigerst und die Funktion später doch nutzen willst, kannst du die Berechtigung
         nachträglich erteilen. Öffne dafür: Systemeinstellungen - Apps - Wetter. Im Bereich Berechtigungen kannst
         dann die entsprechende Einstellung vornehmen.</string>
-    <string name="permissions_images">Du musst der App Zugriff auf den Gerätespeicher gewähren, damit das Bild
+    <string name="permissions_image">Du musst der App Zugriff auf den Gerätespeicher gewähren, damit das Bild
         gespeichert werden kann. Danach solltest du die Anwendung komplett schließen oder das Telefon neu starten.
         Wenn du den Zugriff verweigerst und die Funktion später doch nutzen willst, kannst du die Berechtigung
         nachträglich erteilen. Öffne dafür: Systemeinstellungen - Apps - Wetter. Im Bereich Berechtigungen kannst

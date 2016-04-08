@@ -67,7 +67,7 @@ public class ContextMenuWebView extends WebView {
                                 writeToStoragePermitted = false;
                                 if (!parentActivity.shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
                                     new AlertDialog.Builder(parentActivity)
-                                            .setMessage(R.string.permissions_images)
+                                            .setMessage(R.string.permissions_image)
                                             .setPositiveButton(context.getText(R.string.yes), new DialogInterface.OnClickListener() {
                                                 @Override
                                                 public void onClick(DialogInterface dialog, int which) {
