@@ -65,7 +65,7 @@ public class ProfileFetchTask extends AsyncTask<Void, Void, Void> {
         if (extractedProfileData != null) {
             WebUserProfile profile = new WebUserProfile(app);
             profile.parseJson(extractedProfileData);
-            Log.d(App.TAG, "Extracted new_messages (service):"+profile.getUnreadMessagesCount());
+            Log.d(App.TAG, "Extracted new_messages (service):" + profile.getUnreadMessagesCount());
         }
 
         return null;

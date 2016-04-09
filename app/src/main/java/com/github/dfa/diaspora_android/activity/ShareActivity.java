@@ -51,8 +51,8 @@ import java.util.Date;
 
 public class ShareActivity extends MainActivity {
 
-    private WebView webView;
     private static final String TAG = "Diaspora Share";
+    private WebView webView;
     private String podDomain;
     private ValueCallback<Uri[]> mFilePathCallback;
     private String mCameraPhotoPath;

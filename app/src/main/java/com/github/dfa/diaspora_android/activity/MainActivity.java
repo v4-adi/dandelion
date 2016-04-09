@@ -231,11 +231,11 @@ public class MainActivity extends AppCompatActivity
                 String cookies = cookieManager.getCookie(url);
                 Log.d(App.TAG, "All the cookies in a string:" + cookies);
 
-                if(cookies != null) {
+                if (cookies != null) {
                     cookieManager.setCookie(url, cookies);
-                    cookieManager.setCookie("https://"+appSettings.getPodDomain(),cookies);
-                    for(String c:cookies.split(";")){
-                        Log.d(App.TAG, "Cookie: " + c.split("=")[0]+ " Value:"+c.split("=")[1]);
+                    cookieManager.setCookie("https://" + appSettings.getPodDomain(), cookies);
+                    for (String c : cookies.split(";")) {
+                        Log.d(App.TAG, "Cookie: " + c.split("=")[0] + " Value:" + c.split("=")[1]);
                     }
                     //new ProfileFetchTask(app).execute();
                 }
@@ -972,8 +972,7 @@ public class MainActivity extends AppCompatActivity
             }
             break;
 
-            case R.id.nav_settings_view:
-            {
+            case R.id.nav_settings_view: {
                 final CharSequence[] options = {getString(R.string.settings_font), getString(R.string.settings_view), appSettings.isLoadImages() ?
                         getString(R.string.settings_images_switch_off) : getString(R.string.settings_images_switch_on)};
 
@@ -982,12 +981,15 @@ public class MainActivity extends AppCompatActivity
                             .setItems(options, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int item) {
-                                    switch(item) {
-                                        case 0: alertFormElements();
+                                    switch (item) {
+                                        case 0:
+                                            alertFormElements();
                                             break;
-                                        case 1: webView.loadUrl("https://" + podDomain + "/mobile/toggle");
+                                        case 1:
+                                            webView.loadUrl("https://" + podDomain + "/mobile/toggle");
                                             break;
-                                        case 2: webSettings.setLoadsImagesAutomatically(!appSettings.isLoadImages());
+                                        case 2:
+                                            webSettings.setLoadsImagesAutomatically(!appSettings.isLoadImages());
                                             appSettings.setLoadImages(!appSettings.isLoadImages());
                                             webView.loadUrl(webView.getUrl());
                                             break;
@@ -1107,8 +1109,7 @@ public class MainActivity extends AppCompatActivity
             case REQUEST_CODE_ASK_PERMISSIONS_SAVE_IMAGE:
                 if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     Toast.makeText(this, R.string.permission_granted_try_again, Toast.LENGTH_SHORT).show();
-                }
-                else {
+                } else {
                     Toast.makeText(this, R.string.permission_denied, Toast.LENGTH_SHORT).show();
                 }
                 return;

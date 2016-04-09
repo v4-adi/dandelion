@@ -57,7 +57,7 @@ public class ContextMenuWebView extends WebView {
             public boolean onMenuItemClick(MenuItem item) {
                 HitTestResult result = getHitTestResult();
                 String url = result.getExtra();
-                switch(item.getItemId()) {
+                switch (item.getItemId()) {
                     //Save image to external memory
                     case ID_SAVE_IMAGE: {
                         boolean writeToStoragePermitted = true;
@@ -83,7 +83,7 @@ public class ContextMenuWebView extends WebView {
                                         MainActivity.REQUEST_CODE_ASK_PERMISSIONS_SAVE_IMAGE);
                             }
                         }
-                        if(writeToStoragePermitted) {
+                        if (writeToStoragePermitted) {
                             if (url != null) {
                                 Uri source = Uri.parse(url);
                                 DownloadManager.Request request = new DownloadManager.Request(source);
@@ -96,10 +96,10 @@ public class ContextMenuWebView extends WebView {
                             }
                         }
                     }
-                        break;
+                    break;
 
                     case ID_EXTERNAL_BROWSER:
-                        if(url != null) {
+                        if (url != null) {
                             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                             context.startActivity(intent);
                         }
@@ -107,7 +107,7 @@ public class ContextMenuWebView extends WebView {
 
                     //Copy url to clipboard
                     case ID_COPY_LINK:
-                        if(url != null) {
+                        if (url != null) {
                             ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
                             clipboard.setPrimaryClip(ClipData.newPlainText("text", url));
                             Toast.makeText(context, R.string.toast_link_address_copied, Toast.LENGTH_SHORT).show();
@@ -116,7 +116,7 @@ public class ContextMenuWebView extends WebView {
 
                     //Try to share link to other apps
                     case ID_SHARE_LINK:
-                        if(url != null) {
+                        if (url != null) {
                             Intent sendIntent = new Intent();
                             sendIntent.setAction(Intent.ACTION_SEND);
                             sendIntent.putExtra(Intent.EXTRA_TEXT, url);
@@ -137,8 +137,7 @@ public class ContextMenuWebView extends WebView {
             menu.setHeaderTitle(result.getExtra());
             menu.add(0, ID_SAVE_IMAGE, 0, context.getString(R.string.context_menu_save_image)).setOnMenuItemClickListener(handler);
             menu.add(0, ID_EXTERNAL_BROWSER, 0, context.getString(R.string.context_menu_open_external_browser)).setOnMenuItemClickListener(handler);
-        }
-        else if (result.getType() == HitTestResult.ANCHOR_TYPE ||
+        } else if (result.getType() == HitTestResult.ANCHOR_TYPE ||
                 result.getType() == HitTestResult.SRC_ANCHOR_TYPE) {
             // Menu options for a hyperlink.
             menu.setHeaderTitle(result.getExtra());
