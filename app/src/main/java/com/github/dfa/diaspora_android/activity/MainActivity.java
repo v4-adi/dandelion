@@ -32,7 +32,7 @@ import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Picture;
+import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -86,6 +86,7 @@ import org.json.JSONException;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -630,23 +631,38 @@ public class MainActivity extends AppCompatActivity
                                     }
                                     Date date = new Date();
                                     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH-mm");
-                                    Picture picture = webView.capturePicture();
-                                    Bitmap b = Bitmap.createBitmap(picture.getWidth(), picture.getHeight(), Bitmap.Config.ARGB_8888);
-                                    Canvas c = new Canvas(b);
-                                    File screen = new File(Environment.getExternalStorageDirectory() + "/Pictures/Diaspora/"
-                                            + dateFormat.format(date) + ".jpg");
-                                    if (screen.exists())
-                                        screen.delete();
-                                    picture.draw(c);
-                                    FileOutputStream fos = null;
+
+                                    webView.measure(View.MeasureSpec.makeMeasureSpec(
+                                            View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED),
+                                            View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+                                    webView.layout(0, 0, webView.getMeasuredWidth(),
+                                            webView.getMeasuredHeight());
+                                    webView.setDrawingCacheEnabled(true);
+                                    webView.buildDrawingCache();
+                                    Bitmap bm = Bitmap.createBitmap(webView.getMeasuredWidth(),
+                                            webView.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
+
+                                    Canvas bigcanvas = new Canvas(bm);
+                                    Paint paint = new Paint();
+                                    int iHeight = bm.getHeight();
+                                    bigcanvas.drawBitmap(bm, 0, iHeight, paint);
+                                    webView.draw(bigcanvas);
+                                    System.out.println("1111111111111111111111="
+                                            + bigcanvas.getWidth());
+                                    System.out.println("22222222222222222222222="
+                                            + bigcanvas.getHeight());
+
                                     try {
-                                        fos = new FileOutputStream(screen);
-                                        if (fos != null) {
-                                            b.compress(Bitmap.CompressFormat.JPEG, 90, fos);
-                                            fos.close();
-                                        }
+                                        OutputStream fOut;
+                                        File file = new File(Environment.getExternalStorageDirectory() + "/Pictures/Diaspora/", dateFormat.format(date) + ".jpg");
+                                        fOut = new FileOutputStream(file);
+
+                                        bm.compress(Bitmap.CompressFormat.PNG, 50, fOut);
+                                        fOut.flush();
+                                        fOut.close();
+                                        bm.recycle();
                                     } catch (Exception e) {
-                                        e.getMessage();
+                                        e.printStackTrace();
                                     }
                                     Intent sharingIntent = new Intent(Intent.ACTION_SEND);
                                     sharingIntent.setType("image/png");
@@ -693,23 +709,38 @@ public class MainActivity extends AppCompatActivity
                                     }
                                     Date date = new Date();
                                     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH-mm");
-                                    Picture picture = webView.capturePicture();
-                                    Bitmap b = Bitmap.createBitmap(picture.getWidth(), picture.getHeight(), Bitmap.Config.ARGB_8888);
-                                    Canvas c = new Canvas(b);
-                                    File screen = new File(Environment.getExternalStorageDirectory() + "/Pictures/Diaspora/"
-                                            + dateFormat.format(date) + ".jpg");
-                                    if (screen.exists())
-                                        screen.delete();
-                                    picture.draw(c);
-                                    FileOutputStream fos;
+
+                                    webView.measure(View.MeasureSpec.makeMeasureSpec(
+                                            View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED),
+                                            View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+                                    webView.layout(0, 0, webView.getMeasuredWidth(),
+                                            webView.getMeasuredHeight());
+                                    webView.setDrawingCacheEnabled(true);
+                                    webView.buildDrawingCache();
+                                    Bitmap bm = Bitmap.createBitmap(webView.getMeasuredWidth(),
+                                            webView.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
+
+                                    Canvas bigcanvas = new Canvas(bm);
+                                    Paint paint = new Paint();
+                                    int iHeight = bm.getHeight();
+                                    bigcanvas.drawBitmap(bm, 0, iHeight, paint);
+                                    webView.draw(bigcanvas);
+                                    System.out.println("1111111111111111111111="
+                                            + bigcanvas.getWidth());
+                                    System.out.println("22222222222222222222222="
+                                            + bigcanvas.getHeight());
+
                                     try {
-                                        fos = new FileOutputStream(screen);
-                                        if (fos != null) {
-                                            b.compress(Bitmap.CompressFormat.JPEG, 90, fos);
-                                            fos.close();
-                                        }
+                                        OutputStream fOut;
+                                        File file = new File(Environment.getExternalStorageDirectory() + "/Pictures/Diaspora/", dateFormat.format(date) + ".jpg");
+                                        fOut = new FileOutputStream(file);
+
+                                        bm.compress(Bitmap.CompressFormat.PNG, 50, fOut);
+                                        fOut.flush();
+                                        fOut.close();
+                                        bm.recycle();
                                     } catch (Exception e) {
-                                        e.getMessage();
+                                        e.printStackTrace();
                                     }
                                     File file = new File(Environment.getExternalStorageDirectory() + "/Pictures/Diaspora/"
                                             + dateFormat.format(date) + ".jpg");
