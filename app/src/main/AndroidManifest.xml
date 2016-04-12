@@ -49,22 +49,7 @@
             android:label="@string/new_post"
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait" >
-            <intent-filter android:label="@string/new_post1"
-                android:icon="@drawable/ic_launcher">
-                <action android:name="android.intent.action.SEND" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="text/*" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name="com.github.dfa.diaspora_android.activity.ShareActivity2"
-            android:launchMode="singleInstance"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:label="@string/new_post"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait" >
-            <intent-filter android:label="@string/new_post2"
+            <intent-filter android:label="@string/new_post"
                 android:icon="@drawable/ic_launcher">
                 <action android:name="android.intent.action.SEND" />
                 <category android:name="android.intent.category.DEFAULT" />

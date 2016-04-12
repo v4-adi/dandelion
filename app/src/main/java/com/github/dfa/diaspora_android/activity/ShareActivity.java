@@ -20,6 +20,9 @@
 package com.github.dfa.diaspora_android.activity;
 
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -207,37 +210,76 @@ public class ShareActivity extends MainActivity {
 
                 public void onPageFinished(WebView view, String url) {
 
-                    if (extras.containsKey(Intent.EXTRA_TEXT)) {
-                        final String extraText = (String) extras.get(Intent.EXTRA_TEXT);
+                    final String extraText = (String) extras.get(Intent.EXTRA_TEXT);
+                    final String extraSubject = (String) extras.get(Intent.EXTRA_SUBJECT);
 
-                        webView.setWebViewClient(new WebViewClient() {
-                            @Override
-                            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                    final CharSequence[] options2 = {getString(R.string.new_post1), getString(R.string.new_post2)};
+                    if (Helpers.isOnline(ShareActivity.this)) {
+                        new AlertDialog.Builder(ShareActivity.this)
+                                .setItems(options2, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int item) {
+                                        if (options2[item].equals(getString(R.string.new_post1)))
 
-                                finish();
+                                        webView.setWebViewClient(new WebViewClient() {
+                                            @Override
+                                            public boolean shouldOverrideUrlLoading(WebView view, String url) {
 
-                                Intent i = new Intent(ShareActivity.this, MainActivity.class);
-                                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                startActivity(i);
-                                overridePendingTransition(0, 0);
+                                                finish();
 
-                                return false;
-                            }
-                        });
+                                                Intent i = new Intent(ShareActivity.this, MainActivity.class);
+                                                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                startActivity(i);
+                                                overridePendingTransition(0, 0);
 
-                        webView.loadUrl("javascript:(function() { " +
-                                "document.getElementsByTagName('textarea')[0].style.height='110px'; " +
-                                "document.getElementsByTagName('textarea')[0].innerHTML = '> " +
-                                String.format("%s %s'; ", extraText, getString(R.string.shared_by_diaspora_android)) +
-                                "    if(document.getElementById(\"main_nav\")) {" +
-                                "        document.getElementById(\"main_nav\").parentNode.removeChild(" +
-                                "        document.getElementById(\"main_nav\"));" +
-                                "    } else if (document.getElementById(\"main-nav\")) {" +
-                                "        document.getElementById(\"main-nav\").parentNode.removeChild(" +
-                                "        document.getElementById(\"main-nav\"));" +
-                                "    }" +
-                                "})();");
+                                                return false;
+                                            }
+                                        });
+                                        
+                                        webView.loadUrl("javascript:(function() { " +
+                                                "document.getElementsByTagName('textarea')[0].style.height='110px'; " +
+                                                "document.getElementsByTagName('textarea')[0].innerHTML = '> " +
+                                                String.format("%s %s'; ", extraText, getString(R.string.shared_by_diaspora_android)) +
+                                                "    if(document.getElementById(\"main_nav\")) {" +
+                                                "        document.getElementById(\"main_nav\").parentNode.removeChild(" +
+                                                "        document.getElementById(\"main_nav\"));" +
+                                                "    } else if (document.getElementById(\"main-nav\")) {" +
+                                                "        document.getElementById(\"main-nav\").parentNode.removeChild(" +
+                                                "        document.getElementById(\"main-nav\"));" +
+                                                "    }" +
+                                                "})();");
+                                        if (options2[item].equals(getString(R.string.new_post2)))
+                                            webView.setWebViewClient(new WebViewClient() {
+                                                @Override
+                                                public boolean shouldOverrideUrlLoading(WebView view, String url) {
 
+                                                    finish();
+
+                                                    Intent i = new Intent(ShareActivity.this, MainActivity.class);
+                                                    i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                    startActivity(i);
+                                                    overridePendingTransition(0, 0);
+
+                                                    return false;
+                                                }
+                                            });
+
+                                        webView.loadUrl("javascript:(function() { " +
+                                                "document.getElementsByTagName('textarea')[0].style.height='110px'; " +
+                                                "document.getElementsByTagName('textarea')[0].innerHTML = '**" + extraSubject + "** " +
+                                                String.format("%s %s'; ", extraText, getString(R.string.shared_by_diaspora_android)) +
+                                                "    if(document.getElementById(\"main_nav\")) {" +
+                                                "        document.getElementById(\"main_nav\").parentNode.removeChild(" +
+                                                "        document.getElementById(\"main_nav\"));" +
+                                                "    } else if (document.getElementById(\"main-nav\")) {" +
+                                                "        document.getElementById(\"main-nav\").parentNode.removeChild(" +
+                                                "        document.getElementById(\"main-nav\"));" +
+                                                "    }" +
+                                                "})();");
+                                    }
+                                }).show();
+                    } else {
+                        Snackbar.make(swipeRefreshLayout, R.string.no_internet, Snackbar.LENGTH_LONG).show();
                     }
                 }
             });
@@ -302,7 +344,7 @@ public class ShareActivity extends MainActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_exit) {
-            moveTaskToBack(true);
+            finish();
         }
 
         return super.onOptionsItemSelected(item);
@@ -319,7 +361,7 @@ public class ShareActivity extends MainActivity {
                     .setAction(R.string.yes, new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            moveTaskToBack(true);
+                            finish();
                         }
                     });
             snackbar.show();
