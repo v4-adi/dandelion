@@ -208,14 +208,10 @@ public class ShareActivity extends MainActivity {
         Intent intent = getIntent();
         String action = intent.getAction();
         String type = intent.getType();
-        String sharedSubject = intent.getStringExtra(Intent.EXTRA_SUBJECT);
 
         if (Intent.ACTION_SEND.equals(action) && type != null) {
             if ("text/plain".equals(type)) {
-                handleSendText(intent); // Handle text being sent
-            } else if (sharedSubject != null) {
-                // TODO difference of ALL intents with and without EXTRA_SUBJECT
-                handleSendSubject(intent); // Handle intent with extra_subject being sent
+                handleSendText(intent); // Handle text being sent TODO difference of "text/plain" intents with and without EXTRA_SUBJECT
             } else if (type.startsWith("image/")) {
                 // TODO Handle single image being sent
                 handleSendImage(intent);
@@ -252,6 +248,7 @@ public class ShareActivity extends MainActivity {
         }
     }
 
+    // TODO difference of "text/plain" intents with and without EXTRA_SUBJECT
     void handleSendSubject(Intent intent) {
         final String sharedText = intent.getStringExtra(Intent.EXTRA_TEXT);
         final String sharedSubject = intent.getStringExtra(Intent.EXTRA_SUBJECT);
