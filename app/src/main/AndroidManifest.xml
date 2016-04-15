@@ -49,13 +49,19 @@
             android:label="@string/new_post"
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait" >
-            <intent-filter android:label="@string/new_post"
-                android:icon="@drawable/ic_launcher">
+            <intent-filter>
                 <action android:name="android.intent.action.SEND" />
                 <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="text/*" />
-                <data android:mimeType="image/*" />
+                <data android:mimeType="text/plain" />
             </intent-filter>
+
+            <!-- //TODO Handle single image being sent
+                    <intent-filter>
+                           <action android:name="android.intent.action.SEND_MULTIPLE" />
+                           <category android:name="android.intent.category.DEFAULT" />
+                           <data android:mimeType="image/*" />
+                       </intent-filter>-->
+
         </activity>
 
         <service
@@ -66,3 +72,6 @@
 
     </application>
 </manifest>
+
+
+

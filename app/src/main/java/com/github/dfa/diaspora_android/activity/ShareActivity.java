@@ -79,6 +79,7 @@ public class ShareActivity extends MainActivity {
                         Intent intent = new Intent(ShareActivity.this, MainActivity.class);
                         startActivityForResult(intent, 100);
                         overridePendingTransition(0, 0);
+                        finish();
                     } else {
                         Snackbar.make(swipeView, R.string.no_internet, Snackbar.LENGTH_LONG).show();
                     }
@@ -211,12 +212,15 @@ public class ShareActivity extends MainActivity {
 
         if (Intent.ACTION_SEND.equals(action) && type != null) {
             if ("text/plain".equals(type)) {
-                handleSendText(intent); // Handle text being sent TODO difference of "text/plain" intents with and without EXTRA_SUBJECT
+                if (intent.hasExtra(Intent.EXTRA_SUBJECT)) {
+                    handleSendSubject(intent);
+                } else {
+                    handleSendText(intent);}
             } else if (type.startsWith("image/")) {
-                // TODO Handle single image being sent
+                // TODO Handle single image being sent -> see manifest
                 handleSendImage(intent);
             }
-        } else {
+        //} else {
             // Handle other intents, such as being started from the home screen
         }
 
@@ -231,6 +235,20 @@ public class ShareActivity extends MainActivity {
 
                 public void onPageFinished(WebView view, String url) {
 
+                    webView.setWebViewClient(new WebViewClient() {
+                        @Override
+                        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+
+                            finish();
+
+                            Intent i = new Intent(ShareActivity.this, MainActivity.class);
+                            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(i);
+
+                            return false;
+                        }
+                    });
+
                     webView.loadUrl("javascript:(function() { " +
                             "document.getElementsByTagName('textarea')[0].style.height='110px'; " +
                             "document.getElementsByTagName('textarea')[0].innerHTML = '> " + sharedText + " " + sharedBy + "'; " +
@@ -244,11 +262,9 @@ public class ShareActivity extends MainActivity {
                             "})();");
                 }
             });
-            // Update UI to reflect text being shared
         }
     }
 
-    // TODO difference of "text/plain" intents with and without EXTRA_SUBJECT
     void handleSendSubject(Intent intent) {
         final String sharedText = intent.getStringExtra(Intent.EXTRA_TEXT);
         final String sharedSubject = intent.getStringExtra(Intent.EXTRA_SUBJECT);
@@ -257,6 +273,20 @@ public class ShareActivity extends MainActivity {
             webView.setWebViewClient(new WebViewClient() {
 
                 public void onPageFinished(WebView view, String url) {
+
+                    webView.setWebViewClient(new WebViewClient() {
+                        @Override
+                        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+
+                            finish();
+
+                            Intent i = new Intent(ShareActivity.this, MainActivity.class);
+                            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(i);
+
+                            return false;
+                        }
+                    });
 
                     webView.loadUrl("javascript:(function() { " +
                             "document.getElementsByTagName('textarea')[0].style.height='110px'; " +
@@ -271,11 +301,10 @@ public class ShareActivity extends MainActivity {
                             "})();");
                 }
             });
-            // Update UI to reflect text being shared
         }
     }
 
-    // TODO Handle single image being sent
+    // TODO Handle single image being sent -> see manifest
 
     void handleSendImage(Intent intent) {
         final Uri imageUri = (Uri) intent.getParcelableExtra(Intent.EXTRA_STREAM);
