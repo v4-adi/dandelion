@@ -87,6 +87,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -629,8 +630,9 @@ public class MainActivity extends AppCompatActivity
                                     if (!directory.exists()) {
                                         directory.mkdirs();
                                     }
+
                                     Date date = new Date();
-                                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH-mm");
+                                    DateFormat dateFormat = android.text.format.DateFormat.getDateFormat(getApplicationContext());
 
                                     webView.measure(View.MeasureSpec.makeMeasureSpec(
                                             View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED),
@@ -707,8 +709,9 @@ public class MainActivity extends AppCompatActivity
                                     if (!directory.exists()) {
                                         directory.mkdirs();
                                     }
+
                                     Date date = new Date();
-                                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH-mm");
+                                    DateFormat dateFormat = android.text.format.DateFormat.getDateFormat(getApplicationContext());
 
                                     webView.measure(View.MeasureSpec.makeMeasureSpec(
                                             View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED),
