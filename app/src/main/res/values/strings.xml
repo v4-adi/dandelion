@@ -78,7 +78,7 @@
     <string name="help_help">Markdown formating</string>
     <string name="help_about">Changelog</string>
 
-    <string name="toast_screenshot">Taking screenshot …</string>
+    <string name="toast_screenshot">Saving screenshot as:</string>
 
 
     // Floating Action Buttons - Titles

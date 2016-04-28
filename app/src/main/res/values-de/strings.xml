@@ -76,8 +76,8 @@
     <string name="jb_share">Inhalt Teilen</string>
     <string name="share_link">Link als Text teilen</string>
     <string name="share_screenshot">Bildschirmfoto teilen</string>
-    <string name="take_screenshot">Bildschirmfoto machen</string>
-    <string name="toast_screenshot">Bildschirmfoto wird gespeichert…</string>
+    <string name="take_screenshot">Bildschirmfoto speichern</string>
+    <string name="toast_screenshot">Bildschirmfoto wird gespeichert unter:</string>
     <string name="jb_settings_diaspora">Diaspora Einstellungen</string>
     <string name="jb_settings_view">Ansichtseinstellungen</string>
     <string name="help_help">Markdown Formatierung</string>

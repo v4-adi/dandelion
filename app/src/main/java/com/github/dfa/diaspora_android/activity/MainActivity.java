@@ -90,6 +90,7 @@ import java.io.OutputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -442,7 +443,7 @@ public class MainActivity extends AppCompatActivity
 
     private File createImageFile() throws IOException {
         // Create an image file name
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String timeStamp = new SimpleDateFormat("dd-MM-yy_HH-mm", Locale.getDefault()).format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
         File storageDir = Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_PICTURES);
@@ -625,14 +626,17 @@ public class MainActivity extends AppCompatActivity
                                             return;
                                         }
                                     }
-                                    Snackbar.make(swipeRefreshLayout, R.string.toast_screenshot, Snackbar.LENGTH_LONG).show();
+
                                     File directory = new File(Environment.getExternalStorageDirectory() + "/Pictures/Diaspora/");
                                     if (!directory.exists()) {
                                         directory.mkdirs();
                                     }
 
                                     Date date = new Date();
-                                    DateFormat dateFormat = android.text.format.DateFormat.getDateFormat(getApplicationContext());
+                                    DateFormat dateFormat = new SimpleDateFormat("dd-MM-yy_HH-mm", Locale.getDefault());
+
+                                    String filename = getString(R.string.toast_screenshot) + " " + Environment.getExternalStorageDirectory() + "/Pictures/Diaspora/" + dateFormat.format(date) + ".jpg";
+                                    Snackbar.make(swipeRefreshLayout, filename, Snackbar.LENGTH_LONG).show();
 
                                     webView.measure(View.MeasureSpec.makeMeasureSpec(
                                             View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED),
@@ -704,14 +708,17 @@ public class MainActivity extends AppCompatActivity
                                             return;
                                         }
                                     }
-                                    Snackbar.make(swipeRefreshLayout, R.string.toast_screenshot, Snackbar.LENGTH_LONG).show();
+
                                     File directory = new File(Environment.getExternalStorageDirectory() + "/Pictures/Diaspora/");
                                     if (!directory.exists()) {
                                         directory.mkdirs();
                                     }
 
                                     Date date = new Date();
-                                    DateFormat dateFormat = android.text.format.DateFormat.getDateFormat(getApplicationContext());
+                                    DateFormat dateFormat = new SimpleDateFormat("dd-MM-yy_HH-mm", Locale.getDefault());
+
+                                    String filename = getString(R.string.toast_screenshot) + " " + Environment.getExternalStorageDirectory() + "/Pictures/Diaspora/" + dateFormat.format(date) + ".jpg";
+                                    Snackbar.make(swipeRefreshLayout, filename, Snackbar.LENGTH_LONG).show();
 
                                     webView.measure(View.MeasureSpec.makeMeasureSpec(
                                             View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED),
