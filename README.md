@@ -1,21 +1,14 @@
 [![F-Droid](https://f-droid.org/wiki/images/0/06/F-Droid-button_get-it-on.png)](https://f-droid.org/repository/browse/?fdid=com.github.dfa.diaspora_android)
 
-**NOTICE:** Project was moved to  <https://github.com/Diaspora-for-Android/diaspora-android>, README and paths need to be updated.
-
 [![Build Status](https://travis-ci.org/Diaspora-for-Android/diaspora-android.svg?branch=master)](https://travis-ci.org/Diaspora-for-Android/diaspora-android)
 [![Join the chat at https://gitter.im/Diaspora-for-Android/diaspora-android](https://badges.gitter.im/Diaspora-for-Android/diaspora-android.svg)](https://gitter.im/Diaspora-for-Android/diaspora-android?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Stories in Start](https://badge.waffle.io/Diaspora-for-Android/diaspora-android.svg?label=help%20wanted&title=waffle.io)](http://waffle.io/Diaspora-for-Android/diaspora-android)
 
-## Main developers:
 
+# Diaspora for Android
 
-- de-live-gdev (<https://de-live-gdev.github.io>)
-- martinchodev (<https://github.com/martinchodev>)
-- scoute-dich (<https://github.com/scoute-dich>)
-
-# Diaspora
-
-This is an unofficial webview based client for the community-run, distributed social network "Diaspora". It's currently under development and should be used with that in mind. Please submit any bugs you might find.
+This is an unofficial webview based client for the community-run, distributed social network **[Diaspora](https://joindiaspora.com/)**. It's currently under development and should be used with that in mind. Please submit any bugs you might find.  
+**Notice:** This is the repo of the latest version of the unoffical Diaspora Android App.
 
 ### License
 It's released under GNU GENERAL PUBLIC LICENSE (see LICENCE).
@@ -37,3 +30,14 @@ It requires access to the Internet and to external storage to be able to upload 
 - Watch [Changelog](https://github.com/scoute-dich/Diaspora/blob/master/CHANGELOG.md)
 - See [license](https://github.com/scoute-dich/Diaspora/blob/master/LICENSE.md)
 - See [screenshots](https://github.com/scoute-dich/Diaspora/blob/master/SCREENSHOTS.md)
+
+## Contributions
+We are always open for any kind of contribution. (PR's, bug reports, feature requests, ..)  
+If you got any questions feel free to ask at [Gitter](https://gitter.im/Diaspora-for-Android/diaspora-android).  
+Note that the main project members are mostly busy with their job/university/school and may not react or start coding immediately.
+
+## Project members:
+
+- de-live-gdev (<https://de-live-gdev.github.io>)
+- martinchodev (<https://github.com/martinchodev>)
+- scoute-dich (<https://github.com/scoute-dich>)
