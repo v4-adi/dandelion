@@ -10,8 +10,17 @@
 This is an unofficial webview based client for the community-run, distributed social network **[Diaspora](https://joindiaspora.com/)**. It's currently under development and should be used with that in mind. Please submit any bugs you might find.  
 **Notice:** This is the repo of the latest version of the unoffical Diaspora Android App.
 
+- [Download App](https://github.com/Diaspora-for-Android/diaspora-android/releases)
+- Watch [Changelog](https://github.com/Diaspora-for-Android/diaspora-android/blob/master/CHANGELOG.md)
+- See [Screenshots](https://github.com/Diaspora-for-Android/diaspora-android/blob/master/SCREENSHOTS.md)
+
+## Contributions
+We are always open for any kind of contribution. (PR's, bug reports, feature requests, ..)  
+If you got any questions feel free to ask at [Gitter](https://gitter.im/Diaspora-for-Android/diaspora-android).  
+Note that the main project members are mostly busy with their job/university/school and may not react or start coding immediately.
+
 ### License
-It's released under GNU GENERAL PUBLIC LICENSE (see LICENCE).
+It's released under GNU GENERAL PUBLIC LICENSE (see [LICENCE](https://github.com/Diaspora-for-Android/diaspora-android/blob/master/LICENSE.md)).
 
 ### Native
 It's "native" because it's developed in Java + the Android SDK (Android Studio). Other Diaspora clients are developed using frameworks like AppCelerator Titanium. A native app will always be more efficient and almost certainly be faster and make better use of the resources of the device.
@@ -25,16 +34,6 @@ The minimum version supported is Ice Cream Sandwitch, Android version 4.0.3 (or 
 
 ### Permissions
 It requires access to the Internet and to external storage to be able to upload photos when creating a new post and for taking screenshots.
-
-- Download [APK](https://github.com/scoute-dich/Diaspora/releases)
-- Watch [Changelog](https://github.com/scoute-dich/Diaspora/blob/master/CHANGELOG.md)
-- See [license](https://github.com/scoute-dich/Diaspora/blob/master/LICENSE.md)
-- See [screenshots](https://github.com/scoute-dich/Diaspora/blob/master/SCREENSHOTS.md)
-
-## Contributions
-We are always open for any kind of contribution. (PR's, bug reports, feature requests, ..)  
-If you got any questions feel free to ask at [Gitter](https://gitter.im/Diaspora-for-Android/diaspora-android).  
-Note that the main project members are mostly busy with their job/university/school and may not react or start coding immediately.
 
 ## Project members:
 
