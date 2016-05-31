@@ -10,7 +10,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
- * Created by de-live-gdev on 24.03.16.  Part of Diaspora WebApp.
+ * Created by gsantner on 24.03.16.  Part of Diaspora WebApp.
  */
 public class WebUserProfile {
     private static final int MINIMUM_WEBUSERPROFILE_LOAD_TIMEDIFF = 5000;

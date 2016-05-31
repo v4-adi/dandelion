@@ -1,7 +1,7 @@
 # v0.1.1
 - Sharing updated (by @scoute-dich)
 - Screenshotting updated
-- Gitter integration (by @de-live-gdev)
+- Gitter integration (by @gsantner)
 - Code refactoring
 - Start working on  #6
 - Waffle.io integration
@@ -13,10 +13,10 @@ First version of the organization *Diaspora for Android*
 Consists mostly of code from:
 - Diaspora-Native-Webapp (by @martinchodev )
 - scoutedich additions (by @scoute-dich)
-- de-live-gdev additions (by @de-live-gdev)
+- gsantner additions (by @gsantner)
 
 ### v1.3 (scoutedich)
-*big thanks to de-live-gdev*
+*big thanks to gsantner*
 - gitignore
 - Link to profile
 - Move menu actions

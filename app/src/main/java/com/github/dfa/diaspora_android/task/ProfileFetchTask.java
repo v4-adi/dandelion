@@ -15,7 +15,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 /**
- * Created by Gregor Santner (de-live-gdev) on 30.03.16.
+ * Created by Gregor Santner (gsantner) on 30.03.16.
  */
 public class ProfileFetchTask extends AsyncTask<Void, Void, Void> {
     // Code for getting the profile async without any UI/WebView

@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 /**
- * Created by de-live-gdev on 20.03.16. Part of Diaspora WebApp.
+ * Created by gsantner on 20.03.16. Part of Diaspora WebApp.
  */
 public class AppSettings {
     private final SharedPreferences pref;

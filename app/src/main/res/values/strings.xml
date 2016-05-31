@@ -142,7 +142,7 @@
         https://github.com/scoute-dich/Diaspora&lt;/i>&lt;br>&lt;br>
 
         &lt;b>v1.3.&lt;/b>&lt;br>
-        &lt;i>big thanks to de-live-gdev&lt;/i>&lt;br>
+        &lt;i>big thanks to gsantner&lt;/i>&lt;br>
 
         &#8226; gitignore&lt;br>
         &#8226; Link to profile&lt;br>
@@ -173,7 +173,7 @@
     <string name="license_title" translatable="false">Copyright © 2016</string>
     <string name="license_text">&lt;b>Contributors:&lt;/b>&lt;br>
 
-        &#8226; de-live-gdev https://de-live-gdev.github.io&lt;br>
+        &#8226; gsantner https://gsantner.github.io&lt;br>
         &#8226; scoute-dich https://github.com/scoute-dich&lt;br> &lt;br>
 
         This program is free software: you can redistribute it and/or modify
