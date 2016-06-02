@@ -5,13 +5,13 @@
     <string name="filter_hint">Pod-Domain eingeben</string>
     <string name="exit_app">App beenden</string>
     <string name="confirm_url">Pod-Adresse bestätigen</string>
-    <string name="podlist_source_note">Anmerkung: Auf dieser Liste finden sich nur Einträge von podupti.me</string>
+    <string name="podlist_source_note">Anmerkung: Die Podliste wird aus den sicheren Pods, die bei  https://podupti.me gelistet sind generiert.</string>
     <string name="valid_pod">Bitte einen gültigen Domain-Namen (URL) eingeben</string>
     <string name="podlist_error">Fehler: Konnte die Podliste nicht abfragen!</string>
     <string name="loading_podlist">Podliste wird geladen…</string>
     <string name="no_internet">Entschuldigung, du musst mit dem Internet verbunden sein um fortzufahren.</string>
     <string name="confirmation">Bestätigung</string>
-    <string name="confirm_pod">Willst du folgenden Pod benutzen: </string>
+    <string name="confirm_pod">Möchtest du wirklich \nhttps://%1$s\nals deinen Diaspora Pod auswählen?</string>
     <string name="confirm_exit">Möchtest du die App verlassen?</string>
     <string name="yes">OK</string>
     <string name="no">NEIN</string>
@@ -78,8 +78,8 @@
     <string name="share_screenshot">Bildschirmfoto teilen</string>
     <string name="take_screenshot">Bildschirmfoto speichern</string>
     <string name="toast_screenshot">Bildschirmfoto wird gespeichert unter:</string>
-    <string name="jb_settings_diaspora">Diaspora Einstellungen</string>
-    <string name="jb_settings_view">Ansichtseinstellungen</string>
+    <string name="jb_settings_diaspora">Pod Einstellungen</string>
+    <string name="jb_settings_view">App Einstellungen</string>
     <string name="help_help">Markdown Formatierung</string>
     <string name="help_license">Lizenz</string>
     <string name="jb_help_license">Über die App | Hilfe</string>

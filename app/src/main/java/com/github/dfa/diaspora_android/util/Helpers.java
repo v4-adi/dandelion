@@ -23,6 +23,7 @@ package com.github.dfa.diaspora_android.util;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.support.v4.content.ContextCompat;
 import android.webkit.WebView;
 
 public class Helpers {

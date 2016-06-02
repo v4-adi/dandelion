@@ -97,15 +97,13 @@ public class GetPodsService extends Service {
                 }
                 //Parse the JSON Data
                 try {
-                    JSONObject j = new JSONObject(builder.toString());
-                    JSONArray jr = j.getJSONArray("pods");
-                    Log.d(TAG, "Number of entries " + jr.length());
+                    JSONObject jsonObjectAll = new JSONObject(builder.toString());
+                    JSONArray jsonArrayAll = jsonObjectAll.getJSONArray("pods");
+                    Log.d(TAG, "Number of entries " + jsonArrayAll.length());
                     list = new ArrayList<>();
-                    for (int i = 0; i < jr.length(); i++) {
-                        JSONObject jo = jr.getJSONObject(i);
-                        Log.d(TAG, jo.getString("domain"));
-                        String secure = jo.getString("secure");
-                        if (secure.equals("true"))
+                    for (int i = 0; i < jsonArrayAll.length(); i++) {
+                        JSONObject jo = jsonArrayAll.getJSONObject(i);
+                        if (jo.getString("secure").equals("true"))
                             list.add(jo.getString("domain"));
                     }
 

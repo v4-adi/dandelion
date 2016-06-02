@@ -24,7 +24,7 @@
     <string name="title_activity_pods">Select Pod</string>
     <string name="filter_hint">Enter pod domain</string>
     <string name="confirm_url">Confirm pod url</string>
-    <string name="podlist_source_note">Note: This list is populated with only the secure pods from podupti.me</string>
+    <string name="podlist_source_note">Note: The podlist is populated by secure pods listed on https://podupti.me. You can enter in the edit field any pod not listed.</string>
     <string name="valid_pod">Please enter a valid domain name</string>
     <string name="podlist_error">Error: Could not retrieve list of pods!</string>
     <string name="loading_podlist">Loading pod list …</string>
@@ -32,7 +32,7 @@
 
     <string name="no_internet">Sorry, you must be connected to the Internet to proceed</string>
     <string name="confirmation">Confirmation</string>
-    <string name="confirm_pod">Do you want to use the pod: </string>
+    <string name="confirm_pod">Do you really want to use\nhttps://%1$s\nas your Diaspora Pod?</string>
     <string name="confirm_exit">Do you want to exit?</string>
     <string name="yes">YES</string>
     <string name="no">NO</string>
@@ -62,8 +62,8 @@
     <string name="jb_aspects">Aspects</string>
     <string name="jb_pod">Change pod</string>
     <string name="jb_public">Public activities</string>
-    <string name="jb_settings_view">View settings</string>
-    <string name="jb_settings_diaspora">Diaspora settings</string>
+    <string name="jb_settings_view">App settings</string>
+    <string name="jb_settings_diaspora">Pod settings</string>
     <string name="jb_share">Share content</string>
 
     <string name="settings_font">Change font size</string>

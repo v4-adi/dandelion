@@ -92,7 +92,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity
@@ -116,19 +116,19 @@ public class MainActivity extends AppCompatActivity
     private WebUserProfile webUserProfile;
     private final Handler uiHandler = new Handler();
 
-    @Bind(R.id.swipe)
+    @BindView(R.id.swipe)
     SwipeRefreshLayout swipeRefreshLayout;
 
-    @Bind(R.id.progressBar)
+    @BindView(R.id.progressBar)
     ProgressBar progressBar;
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
 
-    @Bind(R.id.webView)
+    @BindView(R.id.webView)
     ContextMenuWebView webView;
 
-    @Bind(R.id.fab_menubutton)
+    @BindView(R.id.fab_menubutton)
     FloatingActionsMenu fab;
 
     // NavHeader cannot be bound by Butterknife
@@ -238,7 +238,7 @@ public class MainActivity extends AppCompatActivity
                     cookieManager.setCookie(url, cookies);
                     cookieManager.setCookie("https://" + appSettings.getPodDomain(), cookies);
                     for (String c : cookies.split(";")) {
-                        Log.d(App.TAG, "Cookie: " + c.split("=")[0] + " Value:" + c.split("=")[1]);
+                        //Log.d(App.TAG, "Cookie: " + c.split("=")[0] + " Value:" + c.split("=")[1]);
                     }
                     //new ProfileFetchTask(app).execute();
                 }
@@ -361,7 +361,7 @@ public class MainActivity extends AppCompatActivity
 
         View navHeader = navigationView.getHeaderView(0);
         navheaderTitle = ButterKnife.findById(navHeader, R.id.navheader_title);
-        navheaderDescription = ButterKnife.findById(navHeader, R.id.navheader_description);
+        navheaderDescription = ButterKnife.findById(navHeader, R.id.podselection__podupti_notice);
         navheaderImage = ButterKnife.findById(navHeader, R.id.navheader_user_image);
 
         if (!appSettings.getName().equals("")) {
@@ -1013,9 +1013,9 @@ public class MainActivity extends AppCompatActivity
             }
             break;
 
-            case R.id.nav_settings_view: {
+            case R.id.nav_settings_app: {
                 final CharSequence[] options = {getString(R.string.settings_font), getString(R.string.settings_view), appSettings.isLoadImages() ?
-                        getString(R.string.settings_images_switch_off) : getString(R.string.settings_images_switch_on)};
+                        getString(R.string.settings_images_switch_off) : getString(R.string.settings_images_switch_on), getString(R.string.jb_pod)};
 
                 if (Helpers.isOnline(MainActivity.this)) {
                     new AlertDialog.Builder(MainActivity.this)
@@ -1034,6 +1034,28 @@ public class MainActivity extends AppCompatActivity
                                             appSettings.setLoadImages(!appSettings.isLoadImages());
                                             webView.loadUrl(webView.getUrl());
                                             break;
+                                        case 3:
+                                            new AlertDialog.Builder(MainActivity.this)
+                                                    .setTitle(getString(R.string.confirmation))
+                                                    .setMessage(getString(R.string.change_pod_warning))
+                                                    .setPositiveButton(getString(R.string.yes),
+                                                            new DialogInterface.OnClickListener() {
+                                                                @TargetApi(11)
+                                                                public void onClick(DialogInterface dialog, int id) {
+                                                                    webView.clearCache(true);
+                                                                    dialog.cancel();
+                                                                    Intent i = new Intent(MainActivity.this, PodSelectionActivity.class);
+                                                                    startActivity(i);
+                                                                    finish();
+                                                                }
+                                                            })
+                                                    .setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
+                                                        @TargetApi(11)
+                                                        public void onClick(DialogInterface dialog, int id) {
+                                                            dialog.cancel();
+                                                        }
+                                                    }).show();
+                                            break;
                                     }
                                 }
                             }).show();
@@ -1045,7 +1067,7 @@ public class MainActivity extends AppCompatActivity
 
             case R.id.nav_settings_diaspora: {
                 final CharSequence[] options2 = {getString(R.string.jb_settings), getString(R.string.jb_manage_tags),
-                        getString(R.string.jb_contacts), getString(R.string.jb_pod)};
+                        getString(R.string.jb_contacts)};
                 if (Helpers.isOnline(MainActivity.this)) {
                     new AlertDialog.Builder(MainActivity.this)
                             .setItems(options2, new DialogInterface.OnClickListener() {
@@ -1057,27 +1079,6 @@ public class MainActivity extends AppCompatActivity
                                         webView.loadUrl("https://" + podDomain + "/tag_followings/manage");
                                     if (options2[item].equals(getString(R.string.jb_contacts)))
                                         webView.loadUrl("https://" + podDomain + "/contacts");
-                                    if (options2[item].equals(getString(R.string.jb_pod)))
-                                        new AlertDialog.Builder(MainActivity.this)
-                                                .setTitle(getString(R.string.confirmation))
-                                                .setMessage(getString(R.string.change_pod_warning))
-                                                .setPositiveButton(getString(R.string.yes),
-                                                        new DialogInterface.OnClickListener() {
-                                                            @TargetApi(11)
-                                                            public void onClick(DialogInterface dialog, int id) {
-                                                                webView.clearCache(true);
-                                                                dialog.cancel();
-                                                                Intent i = new Intent(MainActivity.this, PodsActivity.class);
-                                                                startActivity(i);
-                                                                finish();
-                                                            }
-                                                        })
-                                                .setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
-                                                    @TargetApi(11)
-                                                    public void onClick(DialogInterface dialog, int id) {
-                                                        dialog.cancel();
-                                                    }
-                                                }).show();
                                 }
                             }).show();
                 } else {

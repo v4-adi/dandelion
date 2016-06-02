@@ -22,6 +22,7 @@ package com.github.dfa.diaspora_android.activity;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -39,33 +40,34 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_splash);
+        setContentView(R.layout.splash_activity);
         app = (App) getApplication();
 
-        ImageView imgSplash = (ImageView) findViewById(R.id.imgSplash);
+        ImageView imgSplash = (ImageView) findViewById(R.id.splash__splashimage);
 
         TypedArray images = getResources().obtainTypedArray(R.array.splash_images);
         int choice = (int) (Math.random() * images.length());
         imgSplash.setImageResource(images.getResourceId(choice, R.drawable.splashscreen1));
         images.recycle();
 
-
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
+        int delay = getResources().getInteger(R.integer.splash_delay);
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent i;
+
+                Intent intent;
                 if (!app.getSettings().getPodDomain().equals("")) {
-                    i = new Intent(SplashActivity.this, MainActivity.class);
+                    intent = new Intent(SplashActivity.this, MainActivity.class);
                 } else {
-                    i = new Intent(SplashActivity.this, PodsActivity.class);
+                    intent = new Intent(SplashActivity.this, PodSelectionActivity.class);
                 }
-                startActivity(i);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(intent);
+                overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                 finish();
             }
-        }, 2000);
+        }, delay);
 
     }
 
