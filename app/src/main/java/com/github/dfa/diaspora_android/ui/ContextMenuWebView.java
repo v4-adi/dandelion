@@ -27,7 +27,7 @@ import java.io.File;
  * Subclass of WebView which adds a context menu for long clicks on images or links to share, save
  * or open with another browser
  */
-public class ContextMenuWebView extends WebView {
+public class ContextMenuWebView extends NestedWebView {
 
     public static final int ID_SAVE_IMAGE = 10;
     public static final int ID_EXTERNAL_BROWSER = 11;
