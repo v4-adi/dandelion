@@ -20,8 +20,8 @@
 package com.github.dfa.diaspora_android.activity;
 
 import android.Manifest;
+import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
@@ -46,6 +46,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.ActionMenuView;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.text.SpannableString;
@@ -68,12 +69,10 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.github.dfa.diaspora_android.App;
 import com.github.dfa.diaspora_android.R;
 import com.github.dfa.diaspora_android.data.AppSettings;
 import com.github.dfa.diaspora_android.data.PodUserProfile;
-import com.github.dfa.diaspora_android.listener.SoftKeyboardStateWatcher;
 import com.github.dfa.diaspora_android.listener.WebUserProfileChangedListener;
 import com.github.dfa.diaspora_android.ui.ContextMenuWebView;
 import com.github.dfa.diaspora_android.ui.CustomWebViewClient;
@@ -92,6 +91,7 @@ import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, WebUserProfileChangedListener {
@@ -115,6 +115,9 @@ public class MainActivity extends AppCompatActivity
     private final Handler uiHandler = new Handler();
     private CustomWebViewClient webViewClient;
 
+    /**
+     * UI Bindings
+     */
     @BindView(R.id.swipe)
     SwipeRefreshLayout swipeRefreshLayout;
 
@@ -122,19 +125,29 @@ public class MainActivity extends AppCompatActivity
     ProgressBar progressBar;
 
     @BindView(R.id.toolbar)
-    Toolbar toolbar;
+    Toolbar toolbarTop;
+
+    @BindView(R.id.toolbar2)
+    ActionMenuView toolbarBottom;
 
     @BindView(R.id.webView)
     ContextMenuWebView webView;
 
-    @BindView(R.id.fab_menubutton)
-    FloatingActionsMenu fab;
+    @BindView(R.id.main__navigaion_view)
+    NavigationView navigationView;
+
+    @BindView(R.id.drawer_layout)
+    DrawerLayout drawer;
 
     // NavHeader cannot be bound by Butterknife
     private TextView navheaderTitle;
     private TextView navheaderDescription;
     private ImageView navheaderImage;
 
+
+    /**
+     * END  UI Bindings
+     */
 
     @SuppressLint("SetJavaScriptEnabled")
     @Override
@@ -156,33 +169,11 @@ public class MainActivity extends AppCompatActivity
         webView.setParentActivity(this);
 
         // Setup toolbar
-        setSupportActionBar(toolbar);
-        toolbar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (Helpers.isOnline(MainActivity.this)) {
-                    webView.loadUrl("https://" + podDomain + "/stream");
-                    setTitle(R.string.jb_stream);
-                } else {
-                    Snackbar.make(swipeRefreshLayout, R.string.no_internet, Snackbar.LENGTH_LONG).show();
-                }
-            }
-        });
-
-
-        // Keyboard State Watcher
-        final SoftKeyboardStateWatcher softKeyboardStateWatcher
-                = new SoftKeyboardStateWatcher(findViewById(R.id.swipe));
-
-        softKeyboardStateWatcher.addSoftKeyboardStateListener(new SoftKeyboardStateWatcher.SoftKeyboardStateListener() {
-            @Override
-            public void onSoftKeyboardOpened(int keyboardHeightInPx) {
-                fab.setVisibility(View.GONE);
-            }
-
-            @Override
-            public void onSoftKeyboardClosed() {
-                fab.setVisibility(View.VISIBLE);
+        setSupportActionBar(toolbarTop);
+        getMenuInflater().inflate(R.menu.main__menu_bottom, toolbarBottom.getMenu());
+        toolbarBottom.setOnMenuItemClickListener(new ActionMenuView.OnMenuItemClickListener() {
+            public boolean onMenuItemClick(MenuItem item) {
+                return MainActivity.this.onOptionsItemSelected(item);
             }
         });
 
@@ -245,11 +236,9 @@ public class MainActivity extends AppCompatActivity
 
                 if (progress > 60) {
                     Helpers.hideTopBar(wv);
-                    fab.setVisibility(View.VISIBLE);
                 }
 
                 if (progress == 100) {
-                    fab.collapse();
                     progressBar.setVisibility(View.GONE);
                 } else {
                     progressBar.setVisibility(View.VISIBLE);
@@ -316,17 +305,15 @@ public class MainActivity extends AppCompatActivity
                 Snackbar.make(swipeRefreshLayout, R.string.no_internet, Snackbar.LENGTH_LONG).show();
             }
         }
-
     }
 
     private void setupNavigationSlider() {
-        DrawerLayout drawer = ButterKnife.findById(this, R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                this, drawer, toolbarTop, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = ButterKnife.findById(this, R.id.nav_view);
+        //NavigationView navigationView = ButterKnife.findById(this, R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         View navHeader = navigationView.getHeaderView(0);
@@ -349,66 +336,9 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    /*
-     * Fab button events
-     */
-
-    public void fab1_click(View v) {
-        fab.collapse();
-        if (Helpers.isOnline(MainActivity.this)) {
-            webView.loadUrl("https://" + podDomain + "/status_messages/new");
-            setTitle(R.string.fab1_title);
-        } else {
-            Snackbar.make(swipeRefreshLayout, R.string.no_internet, Snackbar.LENGTH_LONG).show();
-        }
-    }
-
-    public void fab2_click(View v) {
-        fab.collapse();
-        if (Helpers.isOnline(MainActivity.this)) {
-            final EditText input = new EditText(this);
-            final AlertDialog.Builder dialog = new AlertDialog.Builder(this)
-                    .setView(input)
-                    .setIcon(R.drawable.ic_launcher)
-                    .setTitle(R.string.search_alert_title)
-                    .setPositiveButton(R.string.search_alert_people, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int whichButton) {
-                            String inputTag = input.getText().toString().trim();
-                            String cleanTag = inputTag.replaceAll("\\*", "");
-                            // this validate the input data for tagfind
-                            if (cleanTag == null || cleanTag.equals("")) {
-                                dialog.cancel(); // if user don�t have added a tag
-                                Snackbar.make(swipeRefreshLayout, R.string.search_alert_bypeople_validate_needsomedata, Snackbar.LENGTH_LONG).show();
-                            } else { // User have added a search tag
-                                webView.loadUrl("https://" + podDomain + "/people.mobile?q=" + cleanTag);
-                                setTitle(R.string.fab2_title_person);
-                            }
-                        }
-                    })
-                    .setNegativeButton(R.string.search_alert_tag,
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int whichButton) {
-                                    String inputTag = input.getText().toString().trim();
-                                    String cleanTag = inputTag.replaceAll("\\#", "");
-                                    // this validate the input data for tagfind
-                                    if (cleanTag == null || cleanTag.equals("")) {
-                                        dialog.cancel(); // if user hasn't added a tag
-                                        Snackbar.make(swipeRefreshLayout, R.string.search_alert_bytags_validate_needsomedata, Snackbar.LENGTH_LONG).show();
-                                    } else { // User have added a search tag
-                                        webView.loadUrl("https://" + podDomain + "/tags/" + cleanTag);
-                                        setTitle(R.string.fab2_title_tag);
-                                    }
-                                }
-                            });
-            dialog.show();
-        } else {
-            Snackbar.make(swipeRefreshLayout, R.string.no_internet, Snackbar.LENGTH_LONG).show();
-        }
-    }
-
-    public void fab3_click(View v) {
-        fab.collapse();
-        webView.scrollTo(0, 0);
+    @OnClick(R.id.toolbar)
+    public void onToolBarClicked(View view) {
+        onNavigationItemSelected(navigationView.getMenu().findItem(R.id.nav_stream));
     }
 
     private File createImageFile() throws IOException {
@@ -469,7 +399,11 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        fab.collapse();
+        if (drawer.isDrawerOpen(navigationView)) {
+            drawer.closeDrawer(navigationView);
+            return;
+        }
+
         if (webView.canGoBack()) {
             webView.goBack();
             setTitle(R.string.app_name);
@@ -504,7 +438,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main__menu, menu);
+        getMenuInflater().inflate(R.menu.main__menu_top, menu);
         return true;
     }
 
@@ -556,8 +490,26 @@ public class MainActivity extends AppCompatActivity
 
             case R.id.action_exit: {
                 moveTaskToBack(true);
+                return true;
             }
-            return true;
+
+            case R.id.action_compose: {
+                if (Helpers.isOnline(MainActivity.this)) {
+                    webView.loadUrl("https://" + podDomain + "/status_messages/new");
+                    setTitle(R.string.compose);
+                } else {
+                    Snackbar.make(swipeRefreshLayout, R.string.no_internet, Snackbar.LENGTH_LONG).show();
+                }
+                return true;
+            }
+
+            case R.id.action_go_to_top: {
+                // Scroll to top (animated)
+                ObjectAnimator anim = ObjectAnimator.ofInt(webView, "scrollY", webView.getScrollY(), 0);
+                anim.setDuration(400);
+                anim.start();
+                return true;
+            }
 
             case R.id.action_share: {
                 final CharSequence[] options = {getString(R.string.share_link), getString(R.string.share_screenshot), getString(R.string.take_screenshot)};
@@ -730,8 +682,51 @@ public class MainActivity extends AppCompatActivity
                                 }
                             }
                         }).show();
+                return true;
             }
-            return true;
+
+            case R.id.action_search: {
+                if (Helpers.isOnline(MainActivity.this)) {
+                    final EditText input = new EditText(this);
+                    final AlertDialog.Builder dialog = new AlertDialog.Builder(this)
+                            .setView(input)
+                            .setIcon(R.drawable.ic_launcher)
+                            .setTitle(R.string.search_alert_title)
+                            .setPositiveButton(R.string.search_alert_people, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int whichButton) {
+                                    String inputTag = input.getText().toString().trim();
+                                    String cleanTag = inputTag.replaceAll("\\*", "");
+                                    // this validate the input data for tagfind
+                                    if (cleanTag == null || cleanTag.equals("")) {
+                                        dialog.cancel(); // if user don�t have added a tag
+                                        Snackbar.make(swipeRefreshLayout, R.string.search_alert_bypeople_validate_needsomedata, Snackbar.LENGTH_LONG).show();
+                                    } else { // User have added a search tag
+                                        webView.loadUrl("https://" + podDomain + "/people.mobile?q=" + cleanTag);
+                                        setTitle(R.string.search_by_person);
+                                    }
+                                }
+                            })
+                            .setNegativeButton(R.string.search_alert_tag,
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int whichButton) {
+                                            String inputTag = input.getText().toString().trim();
+                                            String cleanTag = inputTag.replaceAll("\\#", "");
+                                            // this validate the input data for tagfind
+                                            if (cleanTag == null || cleanTag.equals("")) {
+                                                dialog.cancel(); // if user hasn't added a tag
+                                                Snackbar.make(swipeRefreshLayout, R.string.search_alert_bytags_validate_needsomedata, Snackbar.LENGTH_LONG).show();
+                                            } else { // User have added a search tag
+                                                webView.loadUrl("https://" + podDomain + "/tags/" + cleanTag);
+                                                setTitle(R.string.search_by_tag);
+                                            }
+                                        }
+                                    });
+                    dialog.show();
+                } else {
+                    Snackbar.make(swipeRefreshLayout, R.string.no_internet, Snackbar.LENGTH_LONG).show();
+                }
+                return true;
+            }
         }
         return super.onOptionsItemSelected(item);
     }
@@ -809,7 +804,7 @@ public class MainActivity extends AppCompatActivity
             uiHandler.post(new Runnable() {
                 @Override
                 public void run() {
-                    if(menu == null){
+                    if (menu == null) {
                         return;
                     }
                     notificationCount = Integer.valueOf(webMessage);
@@ -855,7 +850,7 @@ public class MainActivity extends AppCompatActivity
             uiHandler.post(new Runnable() {
                 @Override
                 public void run() {
-                    if(menu == null){
+                    if (menu == null) {
                         return;
                     }
                     conversationCount = Integer.valueOf(webMessage);
@@ -1082,7 +1077,7 @@ public class MainActivity extends AppCompatActivity
                                     new AlertDialog.Builder(MainActivity.this)
                                             .setTitle(R.string.help_help)
                                             .setMessage(Html.fromHtml(getString(R.string.markdown_text)))
-                                            .setPositiveButton(android.R.string.yes,null).show();
+                                            .setPositiveButton(android.R.string.yes, null).show();
                                 }
                             }
                         }).show();

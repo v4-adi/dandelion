@@ -48,9 +48,9 @@
 
     // Floating Action Buttons - Titles
 
-    <string name="fab3_title">Nach oben scrollen</string>
-    <string name="fab2_title">Suche nach Tags oder Personen …</string>
-    <string name="fab1_title">Neuer Beitrag</string>
+    <string name="go_to_top">Nach oben scrollen</string>
+    <string name="search_by_tags_or_persons">Suche nach Tags oder Personen …</string>
+    <string name="compose">Neuer Beitrag</string>
 
     <string name="search_alert_title">Suche</string>
     <string name="search_alert_tag">nach Tags</string>
@@ -147,8 +147,8 @@ along with this program.  If not, see http://www.gnu.org/licenses.&lt;br> &lt;br
         &lt;i>Die Bilder des Startbildschirms können auf Flickr gefunden werden:
         https://www.flickr.com/photos/129581906@N06/sets/72157651933980136/with/16594947123.
         Sie wurden von \"Lydia\" veröffentlicht und stehen unter der cc by-nc-sa Lizenz.&lt;/i></string>
-    <string name="fab2_title_person">Suche nach Personen …</string>
-    <string name="fab2_title_tag">Suche nach Tags …</string>
+    <string name="search_by_person">Suche nach Personen …</string>
+    <string name="search_by_tag">Suche nach Tags …</string>
     <string name="splash_screen_description">Startbildschirm</string>
     <string name="new_conversations">Ungelesene Unterhaltung. Öffnen?</string>
     <string name="new_notifications">Ungelesene Benachrichtigung. Lesen?</string>

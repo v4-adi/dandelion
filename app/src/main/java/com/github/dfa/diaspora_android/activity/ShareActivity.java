@@ -351,7 +351,6 @@ public class ShareActivity extends MainActivity {
 
     @Override
     public void onBackPressed() {
-        fab.collapse();
         if (webView.canGoBack()) {
             webView.goBack();
             setTitle(R.string.app_name);

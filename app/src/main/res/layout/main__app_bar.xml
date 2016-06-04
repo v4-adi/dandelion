@@ -24,56 +24,19 @@
 
     <include layout="@layout/main__content" />
 
-    <com.getbase.floatingactionbutton.FloatingActionsMenu
-        android:id="@+id/fab_menubutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
         android:layout_gravity="bottom|end"
-        android:layout_marginBottom="4dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:visibility="gone"
-        app:layout_behavior=".ui.FloatingActionsMenuBehavior"
-        fab:fab_addButtonColorNormal="@color/fab_big"
-        fab:fab_addButtonColorPressed="@color/fab_big_pressed"
-        fab:fab_addButtonPlusIconColor="@color/white"
-        fab:fab_labelStyle="@style/menu_labels_style">
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
 
-        <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab_top"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="fab3_click"
-            fab:fab_colorNormal="@color/fab_small"
-            fab:fab_colorPressed="@color/fab_small_pressed"
-            fab:fab_icon="@drawable/fab_top"
-            fab:fab_labelStyle="@style/menu_labels_style"
-            fab:fab_size="mini"
-            fab:fab_title="@string/fab3_title" />
+        <android.support.v7.widget.ActionMenuView
+            android:id="@+id/toolbar2"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
 
-        <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab_search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="fab2_click"
-            fab:fab_colorNormal="@color/fab_small"
-            fab:fab_colorPressed="@color/fab_small_pressed"
-            fab:fab_icon="@drawable/fab_search"
-            fab:fab_labelStyle="@style/menu_labels_style"
-            fab:fab_size="mini"
-            fab:fab_title="@string/fab2_title" />
-
-        <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab_compose"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="fab1_click"
-            fab:fab_colorNormal="@color/fab_small"
-            fab:fab_colorPressed="@color/fab_small_pressed"
-            fab:fab_icon="@drawable/fab_compose"
-            fab:fab_size="mini"
-            fab:fab_title="@string/fab1_title" />
-
-    </com.getbase.floatingactionbutton.FloatingActionsMenu>
+    </android.support.design.widget.AppBarLayout>
 
 </android.support.design.widget.CoordinatorLayout>
