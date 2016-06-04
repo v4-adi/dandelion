@@ -51,6 +51,8 @@ public class Helpers {
 
     public static void hideTopBar(final WebView wv) {
         wv.loadUrl("javascript: ( function() {" +
+                "    document.documentElement.style.paddingBottom = '260px';" +
+                "    document.getElementById('main').style.paddingTop = '5px';" +
                 "    if(document.getElementById('main_nav')) {" +
                 "        document.getElementById('main_nav').parentNode.removeChild(" +
                 "        document.getElementById('main_nav'));" +

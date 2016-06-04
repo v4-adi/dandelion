@@ -138,10 +138,11 @@ public class MainActivity extends AppCompatActivity
     ContextMenuWebView webView;
 
     @BindView(R.id.main__navigaion_view)
-    NavigationView navigationView;
+    NavigationView navView;
 
-    @BindView(R.id.drawer_layout)
-    DrawerLayout drawer;
+    @BindView(R.id.main__layout)
+    DrawerLayout navDrawer;
+
 
     // NavHeader cannot be bound by Butterknife
     private TextView navheaderTitle;
@@ -171,6 +172,7 @@ public class MainActivity extends AppCompatActivity
 
         this.registerForContextMenu(webView);
         webView.setParentActivity(this);
+        webView.setOverScrollMode(WebView.OVER_SCROLL_ALWAYS);
 
         // Setup toolbar
         setSupportActionBar(toolbarTop);
@@ -181,7 +183,6 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-
         // Load app settings
         setupNavigationSlider();
 
@@ -191,6 +192,7 @@ public class MainActivity extends AppCompatActivity
         swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary,
                 R.color.fab_big);
 
+        // Setup WebView
         webView.addJavascriptInterface(new JavaScriptInterface(), "AndroidBridge");
         if (savedInstanceState != null) {
             webView.restoreState(savedInstanceState);
@@ -313,14 +315,14 @@ public class MainActivity extends AppCompatActivity
 
     private void setupNavigationSlider() {
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbarTop, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
+                this, navDrawer, toolbarTop, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        navDrawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        //NavigationView navigationView = ButterKnife.findById(this, R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+        //NavigationView navView = ButterKnife.findById(this, R.id.nav_view);
+        navView.setNavigationItemSelectedListener(this);
 
-        View navHeader = navigationView.getHeaderView(0);
+        View navHeader = navView.getHeaderView(0);
         navheaderTitle = ButterKnife.findById(navHeader, R.id.navheader_title);
         navheaderDescription = ButterKnife.findById(navHeader, R.id.podselection__podupti_notice);
         navheaderImage = ButterKnife.findById(navHeader, R.id.navheader_user_image);
@@ -342,7 +344,7 @@ public class MainActivity extends AppCompatActivity
 
     @OnClick(R.id.toolbar)
     public void onToolBarClicked(View view) {
-        onNavigationItemSelected(navigationView.getMenu().findItem(R.id.nav_stream));
+        onNavigationItemSelected(navView.getMenu().findItem(R.id.nav_stream));
     }
 
     private File createImageFile() throws IOException {
@@ -403,8 +405,8 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        if (drawer.isDrawerOpen(navigationView)) {
-            drawer.closeDrawer(navigationView);
+        if (navDrawer.isDrawerOpen(navView)) {
+            navDrawer.closeDrawer(navView);
             return;
         }
 
@@ -1035,7 +1037,7 @@ public class MainActivity extends AppCompatActivity
             break;
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.main__layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

@@ -37,8 +37,7 @@
         <activity
             android:name=".activity.MainActivity"
             android:launchMode="singleInstance"
-            android:windowSoftInputMode="adjustResize"
-            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:windowSoftInputMode="adjustPan"
             android:theme="@style/AppTheme.NoActionBar"
             android:label="@string/diaspora">
         </activity>

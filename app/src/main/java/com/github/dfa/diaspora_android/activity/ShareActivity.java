@@ -20,9 +20,6 @@
 package com.github.dfa.diaspora_android.activity;
 
 import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -33,8 +30,6 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
@@ -50,7 +45,6 @@ import com.github.dfa.diaspora_android.util.Helpers;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 
 public class ShareActivity extends MainActivity {
@@ -163,7 +157,7 @@ public class ShareActivity extends MainActivity {
                         takePictureIntent.putExtra("PhotoPath", mCameraPhotoPath);
                     } catch (IOException ex) {
                         // Error occurred while creating the File
-                        Snackbar.make(getWindow().findViewById(R.id.drawer_layout), "Unable to get image", Snackbar.LENGTH_LONG).show();
+                        Snackbar.make(getWindow().findViewById(R.id.main__layout), "Unable to get image", Snackbar.LENGTH_LONG).show();
                     }
 
                     // Continue only if the File was successfully created
@@ -202,7 +196,7 @@ public class ShareActivity extends MainActivity {
             if (Helpers.isOnline(ShareActivity.this)) {
                 webView.loadUrl("https://" + podDomain + "/status_messages/new");
             } else {
-                Snackbar.make(getWindow().findViewById(R.id.drawer_layout), R.string.no_internet, Snackbar.LENGTH_LONG).show();
+                Snackbar.make(getWindow().findViewById(R.id.main__layout), R.string.no_internet, Snackbar.LENGTH_LONG).show();
             }
         }
 
