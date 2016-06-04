@@ -13,8 +13,6 @@
     <string name="confirmation">Bestätigung</string>
     <string name="confirm_pod">Möchtest du wirklich \nhttps://%1$s\nals deinen Diaspora Pod auswählen?</string>
     <string name="confirm_exit">Möchtest du die App verlassen?</string>
-    <string name="yes">OK</string>
-    <string name="no">NEIN</string>
     <string name="change_pod_warning">Das wird alle Cookies und Session-Daten löschen. Willst du wirklich den Pod wechseln?</string>
 
     <string name="permissions_screenshot">Du musst der App Zugriff auf den Gerätespeicher gewähren, damit das Bildschirmfoto
@@ -130,6 +128,7 @@
     <string name="license_text">&lt;b>Beteiligte:&lt;/b>&lt;br>
 
         &#8226; gsantner https://gsantner.github.io&lt;br>
+        &#8226; martinchodev https://github.com/martinchodev&lt;br>
         &#8226; scoute-dich https://github.com/scoute-dich&lt;br> &lt;br>
 
 This program is free software: you can redistribute it and/or modify
@@ -145,8 +144,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see http://www.gnu.org/licenses.&lt;br> &lt;br>
 
-        &lt;i>Die App ist ein Fork von \"DiasporaNativeWebApp\"
-        von \"martinchodev\". Die Bilder des Startbildschirms können auf Flickr gefunden werden:
+        &lt;i>Die Bilder des Startbildschirms können auf Flickr gefunden werden:
         https://www.flickr.com/photos/129581906@N06/sets/72157651933980136/with/16594947123.
         Sie wurden von \"Lydia\" veröffentlicht und stehen unter der cc by-nc-sa Lizenz.&lt;/i></string>
     <string name="fab2_title_person">Suche nach Personen …</string>

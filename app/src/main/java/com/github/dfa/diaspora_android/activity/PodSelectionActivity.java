@@ -72,7 +72,7 @@ public class PodSelectionActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.podselection_activity);
+        setContentView(R.layout.podselection__activity);
         ButterKnife.bind(this);
         app = (App) getApplication();
         setSupportActionBar(toolbar);
@@ -168,19 +168,13 @@ public class PodSelectionActivity extends AppCompatActivity {
         new AlertDialog.Builder(PodSelectionActivity.this)
                 .setTitle(getString(R.string.confirmation))
                 .setMessage(dialogMessage)
-                .setPositiveButton(R.string.yes,
+                .setPositiveButton(android.R.string.yes,
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-                                dialog.cancel();
                                 onPodSelectionConfirmed(selectedPod);
                             }
                         })
-                .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
-                    @TargetApi(11)
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
-                    }
-                })
+                .setNegativeButton(android.R.string.no, null)
                 .show();
     }
 
@@ -225,7 +219,7 @@ public class PodSelectionActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_pods, menu);
+        getMenuInflater().inflate(R.menu.pods__menu, menu);
         return true;
     }
 

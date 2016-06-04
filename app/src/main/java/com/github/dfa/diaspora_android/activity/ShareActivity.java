@@ -68,7 +68,7 @@ public class ShareActivity extends MainActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.main__activity);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (toolbar != null) {
@@ -349,24 +349,6 @@ public class ShareActivity extends MainActivity {
         );
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_compose, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.action_exit) {
-            finish();
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
     @Override
     public void onBackPressed() {
         fab.collapse();
@@ -375,7 +357,7 @@ public class ShareActivity extends MainActivity {
             setTitle(R.string.app_name);
             Snackbar snackbar = Snackbar
                     .make(swipeView, R.string.confirm_exit, Snackbar.LENGTH_LONG)
-                    .setAction(R.string.yes, new View.OnClickListener() {
+                    .setAction(android.R.string.yes, new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
                             finish();
@@ -385,7 +367,7 @@ public class ShareActivity extends MainActivity {
         } else {
             Snackbar snackbar = Snackbar
                     .make(swipeView, R.string.confirm_exit, Snackbar.LENGTH_LONG)
-                    .setAction(R.string.yes, new View.OnClickListener() {
+                    .setAction(android.R.string.yes, new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
                             finish();

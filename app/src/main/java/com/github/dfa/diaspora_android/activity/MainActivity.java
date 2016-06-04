@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity
             WebView.enableSlowWholeDocumentDraw();
 
         // Bind UI
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.main__activity);
         ButterKnife.bind(this);
 
         app = (App) getApplication();
@@ -476,7 +476,7 @@ public class MainActivity extends AppCompatActivity
         } else {
             Snackbar snackbar = Snackbar
                     .make(swipeRefreshLayout, R.string.confirm_exit, Snackbar.LENGTH_LONG)
-                    .setAction(R.string.yes, new View.OnClickListener() {
+                    .setAction(android.R.string.yes, new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
                             moveTaskToBack(true);
@@ -504,7 +504,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.main__menu, menu);
         return true;
     }
 
@@ -579,7 +579,7 @@ public class MainActivity extends AppCompatActivity
                                             if (!shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
                                                 new AlertDialog.Builder(MainActivity.this)
                                                         .setMessage(R.string.permissions_screenshot)
-                                                        .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
+                                                        .setPositiveButton(getString(android.R.string.yes), new DialogInterface.OnClickListener() {
                                                             @Override
                                                             public void onClick(DialogInterface dialog, int which) {
                                                                 if (android.os.Build.VERSION.SDK_INT >= 23)
@@ -587,7 +587,7 @@ public class MainActivity extends AppCompatActivity
                                                                             REQUEST_CODE_ASK_PERMISSIONS);
                                                             }
                                                         })
-                                                        .setNegativeButton(getString(R.string.no), null)
+                                                        .setNegativeButton(getString(android.R.string.no), null)
                                                         .show();
                                                 return;
                                             }
@@ -661,7 +661,7 @@ public class MainActivity extends AppCompatActivity
                                             if (!shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
                                                 new AlertDialog.Builder(MainActivity.this)
                                                         .setMessage(R.string.permissions_screenshot)
-                                                        .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
+                                                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                                             @Override
                                                             public void onClick(DialogInterface dialog, int which) {
                                                                 if (android.os.Build.VERSION.SDK_INT >= 23)
@@ -669,7 +669,7 @@ public class MainActivity extends AppCompatActivity
                                                                             REQUEST_CODE_ASK_PERMISSIONS);
                                                             }
                                                         })
-                                                        .setNegativeButton(getString(R.string.no), null)
+                                                        .setNegativeButton(android.R.string.no, null)
                                                         .show();
                                                 return;
                                             }
@@ -744,7 +744,7 @@ public class MainActivity extends AppCompatActivity
      * res/layout/form_elements.xml
      */
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        final View formElementsView = inflater.inflate(R.layout.font_size_chooser,
+        final View formElementsView = inflater.inflate(R.layout.ui__font_size_chooser,
                 null, false);
 
         final RadioGroup rgFontSize = (RadioGroup) formElementsView
@@ -754,9 +754,7 @@ public class MainActivity extends AppCompatActivity
         new AlertDialog.Builder(MainActivity.this).setView(formElementsView)
                 .setTitle("Set Font Size")
                 .setNegativeButton("OK", new DialogInterface.OnClickListener() {
-                    @TargetApi(11)
                     public void onClick(DialogInterface dialog, int id) {
-
                         int selectedId = rgFontSize
                                 .getCheckedRadioButtonId();
 
@@ -779,7 +777,6 @@ public class MainActivity extends AppCompatActivity
                         } else {
                             Snackbar.make(swipeRefreshLayout, R.string.no_internet, Snackbar.LENGTH_LONG).show();
                         }
-                        dialog.cancel();
                     }
                 }).show();
     }
@@ -824,7 +821,7 @@ public class MainActivity extends AppCompatActivity
                             item.setIcon(R.drawable.ic_bell_ring_white_24dp);
                             Snackbar snackbar = Snackbar
                                     .make(swipeRefreshLayout, R.string.new_notifications, Snackbar.LENGTH_LONG)
-                                    .setAction(R.string.yes, new View.OnClickListener() {
+                                    .setAction(android.R.string.yes, new View.OnClickListener() {
                                         @Override
                                         public void onClick(View view) {
                                             if (Helpers.isOnline(MainActivity.this)) {
@@ -870,7 +867,7 @@ public class MainActivity extends AppCompatActivity
                             item.setIcon(R.drawable.ic_message_text_white_24dp);
                             Snackbar snackbar = Snackbar
                                     .make(swipeRefreshLayout, R.string.new_conversations, Snackbar.LENGTH_LONG)
-                                    .setAction(R.string.yes, new View.OnClickListener() {
+                                    .setAction(android.R.string.yes, new View.OnClickListener() {
                                         @Override
                                         public void onClick(View view) {
                                             if (Helpers.isOnline(MainActivity.this)) {
@@ -1067,12 +1064,7 @@ public class MainActivity extends AppCompatActivity
                                     final AlertDialog d = new AlertDialog.Builder(MainActivity.this)
                                             .setTitle(R.string.license_title)
                                             .setMessage(s)
-                                            .setPositiveButton(getString(R.string.yes),
-                                                    new DialogInterface.OnClickListener() {
-                                                        public void onClick(DialogInterface dialog, int id) {
-                                                            dialog.cancel();
-                                                        }
-                                                    }).show();
+                                            .setPositiveButton(android.R.string.yes, null).show();
                                     d.show();
                                     ((TextView) d.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
                                 }
@@ -1082,12 +1074,7 @@ public class MainActivity extends AppCompatActivity
                                     final AlertDialog d = new AlertDialog.Builder(MainActivity.this)
                                             .setTitle(R.string.help_about)
                                             .setMessage(s)
-                                            .setPositiveButton(getString(R.string.yes),
-                                                    new DialogInterface.OnClickListener() {
-                                                        public void onClick(DialogInterface dialog, int id) {
-                                                            dialog.cancel();
-                                                        }
-                                                    }).show();
+                                            .setPositiveButton(android.R.string.yes, null).show();
                                     d.show();
                                     ((TextView) d.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
                                 }
@@ -1095,12 +1082,7 @@ public class MainActivity extends AppCompatActivity
                                     new AlertDialog.Builder(MainActivity.this)
                                             .setTitle(R.string.help_help)
                                             .setMessage(Html.fromHtml(getString(R.string.markdown_text)))
-                                            .setPositiveButton(getString(R.string.yes),
-                                                    new DialogInterface.OnClickListener() {
-                                                        public void onClick(DialogInterface dialog, int id) {
-                                                            dialog.cancel();
-                                                        }
-                                                    }).show();
+                                            .setPositiveButton(android.R.string.yes,null).show();
                                 }
                             }
                         }).show();
