@@ -1,18 +1,18 @@
 /*
-    This file is part of the Diaspora Native WebApp.
+    This file is part of the Diaspora for Android.
 
-    Diaspora Native WebApp is free software: you can redistribute it and/or modify
+    Diaspora for Android is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    Diaspora Native WebApp is distributed in the hope that it will be useful,
+    Diaspora for Android is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with the Diaspora Native WebApp.
+    along with the Diaspora for Android.
 
     If not, see <http://www.gnu.org/licenses/>.
  */
@@ -51,18 +51,15 @@ import android.text.Html;
 import android.text.SpannableString;
 import android.text.method.LinkMovementMethod;
 import android.text.util.Linkify;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.webkit.CookieManager;
 import android.webkit.JavascriptInterface;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -75,10 +72,11 @@ import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.github.dfa.diaspora_android.App;
 import com.github.dfa.diaspora_android.R;
 import com.github.dfa.diaspora_android.data.AppSettings;
-import com.github.dfa.diaspora_android.data.WebUserProfile;
+import com.github.dfa.diaspora_android.data.PodUserProfile;
 import com.github.dfa.diaspora_android.listener.SoftKeyboardStateWatcher;
 import com.github.dfa.diaspora_android.listener.WebUserProfileChangedListener;
 import com.github.dfa.diaspora_android.ui.ContextMenuWebView;
+import com.github.dfa.diaspora_android.ui.CustomWebViewClient;
 import com.github.dfa.diaspora_android.util.Helpers;
 
 import org.json.JSONException;
@@ -113,8 +111,9 @@ public class MainActivity extends AppCompatActivity
     private String mCameraPhotoPath;
     private WebSettings webSettings;
     private AppSettings appSettings;
-    private WebUserProfile webUserProfile;
+    private PodUserProfile podUserProfile;
     private final Handler uiHandler = new Handler();
+    private CustomWebViewClient webViewClient;
 
     @BindView(R.id.swipe)
     SwipeRefreshLayout swipeRefreshLayout;
@@ -151,7 +150,7 @@ public class MainActivity extends AppCompatActivity
 
         app = (App) getApplication();
         appSettings = app.getSettings();
-        webUserProfile = new WebUserProfile(app, uiHandler, this);
+        podUserProfile = new PodUserProfile(app, uiHandler, this);
 
         this.registerForContextMenu(webView);
         webView.setParentActivity(this);
@@ -216,37 +215,8 @@ public class MainActivity extends AppCompatActivity
         /*
          * WebViewClient
          */
-        webView.setWebViewClient(new WebViewClient() {
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                if (!url.contains(podDomain)) {
-                    Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                    startActivity(i);
-                    return true;
-                }
-                return false;
-            }
-
-            public void onPageFinished(WebView view, String url) {
-                swipeRefreshLayout.setRefreshing(false);
-
-
-                final CookieManager cookieManager = app.getCookieManager();
-                String cookies = cookieManager.getCookie(url);
-                Log.d(App.TAG, "All the cookies in a string:" + cookies);
-
-                if (cookies != null) {
-                    cookieManager.setCookie(url, cookies);
-                    cookieManager.setCookie("https://" + appSettings.getPodDomain(), cookies);
-                    for (String c : cookies.split(";")) {
-                        //Log.d(App.TAG, "Cookie: " + c.split("=")[0] + " Value:" + c.split("=")[1]);
-                    }
-                    //new ProfileFetchTask(app).execute();
-                }
-
-            }
-
-
-        });
+        webViewClient = new CustomWebViewClient(app, swipeRefreshLayout, webView);
+        webView.setWebViewClient(webViewClient);
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -842,6 +812,9 @@ public class MainActivity extends AppCompatActivity
             uiHandler.post(new Runnable() {
                 @Override
                 public void run() {
+                    if(menu == null){
+                        return;
+                    }
                     notificationCount = Integer.valueOf(webMessage);
 
                     MenuItem item = menu.findItem(R.id.action_notifications);
@@ -875,8 +848,8 @@ public class MainActivity extends AppCompatActivity
 
         @JavascriptInterface
         public void setUserProfile(final String webMessage) throws JSONException {
-            if (webUserProfile.isRefreshNeeded()) {
-                webUserProfile.parseJson(webMessage);
+            if (podUserProfile.isRefreshNeeded()) {
+                podUserProfile.parseJson(webMessage);
             }
         }
 
@@ -885,6 +858,9 @@ public class MainActivity extends AppCompatActivity
             uiHandler.post(new Runnable() {
                 @Override
                 public void run() {
+                    if(menu == null){
+                        return;
+                    }
                     conversationCount = Integer.valueOf(webMessage);
 
                     MenuItem item = menu.findItem(R.id.action_conversations);
@@ -1038,23 +1014,15 @@ public class MainActivity extends AppCompatActivity
                                             new AlertDialog.Builder(MainActivity.this)
                                                     .setTitle(getString(R.string.confirmation))
                                                     .setMessage(getString(R.string.change_pod_warning))
-                                                    .setPositiveButton(getString(R.string.yes),
+                                                    .setNegativeButton(android.R.string.no, null)
+                                                    .setPositiveButton(android.R.string.yes,
                                                             new DialogInterface.OnClickListener() {
-                                                                @TargetApi(11)
                                                                 public void onClick(DialogInterface dialog, int id) {
-                                                                    webView.clearCache(true);
-                                                                    dialog.cancel();
-                                                                    Intent i = new Intent(MainActivity.this, PodSelectionActivity.class);
-                                                                    startActivity(i);
-                                                                    finish();
+                                                                    app.resetPodData(webView);
+                                                                    Helpers.animateToActivity(MainActivity.this, PodSelectionActivity.class, true);
                                                                 }
                                                             })
-                                                    .setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
-                                                        @TargetApi(11)
-                                                        public void onClick(DialogInterface dialog, int id) {
-                                                            dialog.cancel();
-                                                        }
-                                                    }).show();
+                                                    .show();
                                             break;
                                     }
                                 }

@@ -3,10 +3,14 @@ package com.github.dfa.diaspora_android;
 import android.app.Application;
 import android.content.Context;
 import android.os.Build;
+import android.support.annotation.Nullable;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 
 import com.github.dfa.diaspora_android.data.AppSettings;
+import com.github.dfa.diaspora_android.ui.CustomWebViewClient;
 import com.github.dfa.diaspora_android.util.AvatarImageLoader;
 
 /**
@@ -33,6 +37,28 @@ public class App extends Application {
             CookieSyncManager.createInstance(c);
         }
         cookieManager.setAcceptCookie(true);
+    }
+
+    public void resetPodData(@Nullable WebView webView){
+        if(webView != null){
+            webView.stopLoading();
+            webView.loadUrl("about:blank");
+            webView.clearFormData();
+            webView.clearHistory();
+            webView.clearCache(true);
+        }
+
+        // Clear avatar image
+        new AvatarImageLoader(this).clearAvatarImage();
+
+        // Clear preferences
+        appSettings.clearPodSettings();
+
+        // Clear cookies
+        cookieManager.removeAllCookie();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            cookieManager.removeAllCookies(null);
+        }
     }
 
     public AppSettings getSettings() {

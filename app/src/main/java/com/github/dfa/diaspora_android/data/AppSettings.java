@@ -4,92 +4,106 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 /**
- * Created by gsantner on 20.03.16. Part of Diaspora WebApp.
+ * Created by gsantner on 20.03.16. Part of Diaspora for Android.
  */
 public class AppSettings {
-    private final SharedPreferences pref;
+    private final SharedPreferences prefApp;
+    private final SharedPreferences prefPod;
     private final Context context;
 
     public AppSettings(Context context) {
         this.context = context.getApplicationContext();
-        pref = this.context.getSharedPreferences("app", Context.MODE_PRIVATE);
+        prefApp = this.context.getSharedPreferences("app", Context.MODE_PRIVATE);
+        prefPod = this.context.getSharedPreferences("pod0", Context.MODE_PRIVATE);
     }
 
-    private void setString(String key, String value) {
+    public void clearPodSettings() {
+        prefPod.edit().clear().apply();
+    }
+
+    public void clearAppSettings() {
+        prefApp.edit().clear().apply();
+    }
+
+    private void setString(SharedPreferences pref, String key, String value) {
         pref.edit().putString(key, value).apply();
     }
 
-    private void setInt(String key, int value) {
+    private void setInt(SharedPreferences pref, String key, int value) {
         pref.edit().putInt(key, value).apply();
     }
 
-    private void setBool(String key, boolean value) {
+    private void setBool(SharedPreferences pref, String key, boolean value) {
         pref.edit().putBoolean(key, value).apply();
     }
 
     /*
     //   Preferences
      */
-    private static final String PREF_WEBUSERPROFILE_ID = "webUserProfile_guid";
-    private static final String PREF_IS_LOAD_IMAGES = "loadImages";
-    private static final String PREF_MINIMUM_FONT_SIZE = "minimumFontSize";
-    private static final String PREF_AVATAR_URL = "webUserProfile_avatar";
-    private static final String PREF_WEBUSERPROFILE_NAME = "webUserProfile_name";
-    private static final String PREF_PODDOMAIN = "podDomain";
+    public static class PREF {
+        private static final String IS_LOAD_IMAGES = "loadImages";
+        private static final String MINIMUM_FONT_SIZE = "minimumFontSize";
+        private static final String PODUSERPROFILE_AVATAR_URL = "podUserProfile_avatar";
+        private static final String PODUSERPROFILE_NAME = "podUserProfile_name";
+        private static final String PODUSERPROFILE_ID = "podUserProfile_guid";
+        private static final String PODDOMAIN = "podDomain";
+    }
 
 
     /*
     //     Setters & Getters
     */
     public String getProfileId() {
-        return pref.getString(PREF_WEBUSERPROFILE_ID, "");
+        return prefPod.getString(PREF.PODUSERPROFILE_ID, "");
     }
 
     public void setProfileId(String profileId) {
-        setString(PREF_WEBUSERPROFILE_ID, profileId);
+        setString(prefPod, PREF.PODUSERPROFILE_ID,profileId);
     }
 
 
     public boolean isLoadImages() {
-        return pref.getBoolean(PREF_IS_LOAD_IMAGES, true);
+        return prefApp.getBoolean(PREF.IS_LOAD_IMAGES, true);
     }
 
     public void setLoadImages(boolean loadImages) {
-        setBool(PREF_IS_LOAD_IMAGES, loadImages);
+        setBool(prefApp, PREF.IS_LOAD_IMAGES, loadImages);
     }
 
 
     public int getMinimumFontSize() {
-        return pref.getInt(PREF_MINIMUM_FONT_SIZE, 8);
+        return prefApp.getInt(PREF.MINIMUM_FONT_SIZE, 8);
     }
 
     public void setMinimumFontSize(int minimumFontSize) {
-        setInt(PREF_MINIMUM_FONT_SIZE, minimumFontSize);
+        setInt(prefApp, PREF.MINIMUM_FONT_SIZE, minimumFontSize);
     }
 
     public String getAvatarUrl() {
-        return pref.getString(PREF_AVATAR_URL, "");
+        return prefPod.getString(PREF.PODUSERPROFILE_AVATAR_URL, "");
     }
 
     public void setAvatarUrl(String avatarUrl) {
-        setString(PREF_AVATAR_URL, avatarUrl);
+        setString(prefPod, PREF.PODUSERPROFILE_AVATAR_URL, avatarUrl);
     }
 
     public String getName() {
-        return pref.getString(PREF_WEBUSERPROFILE_NAME, "");
+        return prefPod.getString(PREF.PODUSERPROFILE_NAME, "");
     }
 
     public void setName(String name) {
-        setString(PREF_WEBUSERPROFILE_NAME, name);
+        setString(prefPod, PREF.PODUSERPROFILE_NAME, name);
     }
 
     public String getPodDomain() {
-        return pref.getString(PREF_PODDOMAIN, "");
+        return prefPod.getString(PREF.PODDOMAIN, "");
     }
 
     public void setPodDomain(String podDomain) {
-        setString(PREF_PODDOMAIN, podDomain);
+        setString(prefPod, PREF.PODDOMAIN, podDomain);
     }
 
-
+    public boolean hasPodDomain(){
+        return !prefPod.getString(PREF.PODDOMAIN, "").equals("");
+    }
 }

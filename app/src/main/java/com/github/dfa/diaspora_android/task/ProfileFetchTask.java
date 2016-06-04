@@ -6,7 +6,7 @@ import android.util.Log;
 import android.webkit.CookieManager;
 
 import com.github.dfa.diaspora_android.App;
-import com.github.dfa.diaspora_android.data.WebUserProfile;
+import com.github.dfa.diaspora_android.data.PodUserProfile;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -63,7 +63,7 @@ public class ProfileFetchTask extends AsyncTask<Void, Void, Void> {
 
 
         if (extractedProfileData != null) {
-            WebUserProfile profile = new WebUserProfile(app);
+            PodUserProfile profile = new PodUserProfile(app);
             profile.parseJson(extractedProfileData);
             Log.d(App.TAG, "Extracted new_messages (service):" + profile.getUnreadMessagesCount());
         }

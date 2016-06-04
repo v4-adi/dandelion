@@ -10,9 +10,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
- * Created by gsantner on 24.03.16.  Part of Diaspora WebApp.
+ * Created by gsantner on 24.03.16.  Part of Diaspora for Android.
  */
-public class WebUserProfile {
+public class PodUserProfile {
     private static final int MINIMUM_WEBUSERPROFILE_LOAD_TIMEDIFF = 5000;
 
     private Handler callbackHandler;
@@ -30,7 +30,7 @@ public class WebUserProfile {
     private int unreadMessagesCount;
 
 
-    public WebUserProfile(App app) {
+    public PodUserProfile(App app) {
         this.app = app;
         appSettings = app.getSettings();
 
@@ -39,7 +39,7 @@ public class WebUserProfile {
         name = appSettings.getName();
     }
 
-    public WebUserProfile(App app, Handler callbackHandler, WebUserProfileChangedListener listener) {
+    public PodUserProfile(App app, Handler callbackHandler, WebUserProfileChangedListener listener) {
         this(app);
         this.listener = listener;
         this.callbackHandler = callbackHandler;

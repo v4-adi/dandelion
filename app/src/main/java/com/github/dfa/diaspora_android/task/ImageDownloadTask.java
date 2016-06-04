@@ -52,7 +52,7 @@ public class ImageDownloadTask extends AsyncTask<String, Void, Bitmap> {
                 if (out != null) {
                     out.close();
                 }
-            } catch (IOException e) {
+            } catch (IOException ignored) {
             }
         }
         return bitmap;

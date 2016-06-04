@@ -1,7 +1,7 @@
 package com.github.dfa.diaspora_android.listener;
 
 /**
- * Created by juergen on 25.03.16. Part of Diaspora WebApp.
+ * Created by juergen on 25.03.16. Part of Diaspora for Android.
  * solution found on: http://stackoverflow.com/questions/2150078/how-to-check-visibility-of-software-keyboard-in-android
  */
 

@@ -16,13 +16,14 @@ public class AvatarImageLoader {
     private File avatarFile;
 
     public AvatarImageLoader(Context context) {
-        avatarFile = new File(context.getFilesDir(), "avatar.png");
+        avatarFile = new File(context.getFilesDir(), "avatar0.png");
     }
 
-    public void clearAvatarImage() {
+    public boolean clearAvatarImage() {
         if (isAvatarDownloaded()) {
-            avatarFile.delete();
+            return avatarFile.delete();
         }
+        return true;
     }
 
     public boolean loadToImageView(ImageView imageView) {

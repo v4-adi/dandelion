@@ -1,18 +1,18 @@
 /*
-    This file is part of the Diaspora Native WebApp.
+    This file is part of the Diaspora for Android.
 
-    Diaspora Native WebApp is free software: you can redistribute it and/or modify
+    Diaspora for Android is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    Diaspora Native WebApp is distributed in the hope that it will be useful,
+    Diaspora for Android is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with the Diaspora Native WebApp.
+    along with the Diaspora for Android.
 
     If not, see <http://www.gnu.org/licenses/>.
  */
@@ -29,7 +29,9 @@ import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.SpannableString;
 import android.text.TextWatcher;
@@ -38,11 +40,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.CookieManager;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.github.dfa.diaspora_android.App;
 import com.github.dfa.diaspora_android.R;
@@ -50,25 +50,24 @@ import com.github.dfa.diaspora_android.task.GetPodsService;
 import com.github.dfa.diaspora_android.util.Helpers;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.OnItemClick;
 
 
 public class PodSelectionActivity extends AppCompatActivity {
-    private BroadcastReceiver podListReceiver;
     private App app;
 
     @BindView(R.id.podselection__edit_filter)
-    public EditText filter;
+    public EditText editFilter;
 
     @BindView(R.id.podselection__listpods)
-    public ListView lv;
+    public ListView listPods;
 
-    private String podSelected = "";
-
+    @BindView(R.id.toolbar)
+    public Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,37 +75,40 @@ public class PodSelectionActivity extends AppCompatActivity {
         setContentView(R.layout.podselection_activity);
         ButterKnife.bind(this);
         app = (App) getApplication();
-        lv.setTextFilterEnabled(true);
+        setSupportActionBar(toolbar);
 
-        podListReceiver = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                if (intent.hasExtra("pods")) {
-                    Bundle extras = intent.getExtras();
-                    String[] pods = extras.getStringArray("pods");
 
-                    if (pods != null && pods.length > 0)
-                        updateListview(pods);
-                    else {
-                        Snackbar.make(lv, R.string.podlist_error, Snackbar.LENGTH_LONG).show();
-                    }
-                }
-            }
-        };
-
+        listPods.setTextFilterEnabled(true);
         registerReceiver(podListReceiver, new IntentFilter(GetPodsService.MESSAGE));
 
         if (!Helpers.isOnline(PodSelectionActivity.this)) {
-            Snackbar.make(lv, R.string.no_internet, Snackbar.LENGTH_LONG).show();
+            Snackbar.make(listPods, R.string.no_internet, Snackbar.LENGTH_LONG).show();
         }
     }
 
+
+    private final BroadcastReceiver podListReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.hasExtra("pods")) {
+                Bundle extras = intent.getExtras();
+                String[] pods = extras.getStringArray("pods");
+
+                if (pods != null && pods.length > 0)
+                    setListedPods(pods);
+                else {
+                    Snackbar.make(listPods, R.string.podlist_error, Snackbar.LENGTH_LONG).show();
+                }
+            }
+        }
+    };
+
     @OnClick(R.id.podselection__button_select_pod)
     public void onButtonSelectPodClicked(View view) {
-        if (filter.getText().length() > 4 && filter.getText().toString().contains("")) {
-            askConfirmation(filter.getText().toString());
+        if (editFilter.getText().length() > 4 && editFilter.getText().toString().contains("")) {
+            showPodConfirmationDialog(editFilter.getText().toString());
         } else {
-            Snackbar.make(lv, R.string.valid_pod, Snackbar.LENGTH_LONG).show();
+            Snackbar.make(listPods, R.string.valid_pod, Snackbar.LENGTH_LONG).show();
         }
     }
 
@@ -118,72 +120,72 @@ public class PodSelectionActivity extends AppCompatActivity {
     }
 
 
-    private void updateListview(String[] allPods) {
-        final ArrayList<String> podList = new ArrayList<>();
+    private void setListedPods(String[] listedPodsArr) {
+        final ArrayList<String> listedPodsList = new ArrayList<>();
 
-        for (String pod : allPods) {
-            podList.add(pod.toLowerCase());
+        for (String pod : listedPodsArr) {
+            listedPodsList.add(pod.toLowerCase());
         }
-        //Collections.sort(podList);
 
         final ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 PodSelectionActivity.this,
                 android.R.layout.simple_list_item_1,
-                podList);
-        lv.setAdapter(adapter);
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                askConfirmation(((TextView) view).getText().toString());
-            }
-        });
+                listedPodsList);
+        listPods.setAdapter(adapter);
 
-        adapter.getFilter().filter(filter.getText());
-        filter.addTextChangedListener(new TextWatcher() {
+        adapter.getFilter().filter(editFilter.getText());
+        editFilter.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 (adapter).getFilter().filter(s.toString());
             }
+
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
+
             public void afterTextChanged(Editable s) {
             }
         });
     }
 
-    private void askConfirmation(final String podDomain) {
-        podSelected = podDomain;
-
-        // Make link clickable
-        final SpannableString dialogMessage = new SpannableString(getString(R.string.confirm_pod, podDomain));
-        Linkify.addLinks(dialogMessage, Linkify.ALL);
-
-        if (Helpers.isOnline(PodSelectionActivity.this)) {
-            new AlertDialog.Builder(PodSelectionActivity.this)
-                    .setTitle(getString(R.string.confirmation))
-                    .setMessage(dialogMessage)
-                    .setPositiveButton(R.string.yes,
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    dialog.cancel();
-                                    onPodSelectionConfirmed();
-                                }
-                            })
-                    .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
-                        @TargetApi(11)
-                        public void onClick(DialogInterface dialog, int id) {
-                            dialog.cancel();
-                            podSelected = "";
-                        }
-                    }).show();
-
-        } else {
-            Snackbar.make(lv, R.string.no_internet, Snackbar.LENGTH_LONG).show();
-        }
+    @OnItemClick(R.id.podselection__listpods)
+    public void onListPodsItemClicked(int position) {
+        showPodConfirmationDialog((String) listPods.getAdapter().getItem(position));
     }
 
-    public void onPodSelectionConfirmed(){
-        app.getSettings().setPodDomain(podSelected);
+    private void showPodConfirmationDialog(final String selectedPod) {
+        // Make a clickable link
+        final SpannableString dialogMessage = new SpannableString(getString(R.string.confirm_pod, selectedPod));
+        Linkify.addLinks(dialogMessage, Linkify.ALL);
+
+        // Check if online
+        if (!Helpers.isOnline(PodSelectionActivity.this)) {
+            Snackbar.make(listPods, R.string.no_internet, Snackbar.LENGTH_LONG).show();
+            return;
+        }
+
+        // Show dialog
+        new AlertDialog.Builder(PodSelectionActivity.this)
+                .setTitle(getString(R.string.confirmation))
+                .setMessage(dialogMessage)
+                .setPositiveButton(R.string.yes,
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                                onPodSelectionConfirmed(selectedPod);
+                            }
+                        })
+                .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                    @TargetApi(11)
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                })
+                .show();
+    }
+
+    public void onPodSelectionConfirmed(String selectedPod) {
+        app.getSettings().setPodDomain(selectedPod);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             try {
                 CookieManager.getInstance().removeAllCookies(null);
@@ -200,20 +202,16 @@ public class PodSelectionActivity extends AppCompatActivity {
             }
         }
 
-        Intent intent = new Intent(PodSelectionActivity.this, MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        startActivity(intent);
-        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-        finish();
+        Helpers.animateToActivity(this, MainActivity.class, true);
     }
 
 
     @Override
     public void onBackPressed() {
-        Snackbar.make(lv, R.string.confirm_exit, Snackbar.LENGTH_LONG)
-                .setAction(R.string.yes, new View.OnClickListener() {
+        Snackbar.make(listPods, R.string.confirm_exit, Snackbar.LENGTH_LONG)
+                .setAction(android.R.string.yes, new View.OnClickListener() {
                     public void onClick(View view) {
-                        moveTaskToBack(true);
+                        finish();
                     }
                 })
                 .show();
@@ -240,15 +238,13 @@ public class PodSelectionActivity extends AppCompatActivity {
                     startService(i);
                     return true;
                 } else {
-                    Snackbar.make(lv, R.string.no_internet, Snackbar.LENGTH_LONG).show();
+                    Snackbar.make(listPods, R.string.no_internet, Snackbar.LENGTH_LONG).show();
                     return false;
                 }
             }
         }
         return super.onOptionsItemSelected(item);
     }
-
-
 }
 
 

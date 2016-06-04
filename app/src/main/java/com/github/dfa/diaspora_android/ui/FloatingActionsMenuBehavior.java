@@ -1,7 +1,7 @@
 package com.github.dfa.diaspora_android.ui;
 
 /**
- * Created by juergen on 29.02.16. Part of Diaspora WebApp.
+ * Created by juergen on 29.02.16. Part of Diaspora for Android.
  */
 
 import android.content.Context;
