@@ -50,10 +50,15 @@ import android.text.Html;
 import android.text.SpannableString;
 import android.text.method.LinkMovementMethod;
 import android.text.util.Linkify;
+import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.webkit.JavascriptInterface;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
@@ -61,6 +66,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -530,41 +536,65 @@ public class MainActivity extends AppCompatActivity
 
             case R.id.action_search: {
                 if (Helpers.isOnline(MainActivity.this)) {
+                    final InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    LinearLayout layout = new LinearLayout(this);
+                    layout.setOrientation(LinearLayout.VERTICAL);
+                    layout.setGravity(Gravity.CENTER_HORIZONTAL);
                     final EditText input = new EditText(this);
-                    final AlertDialog.Builder dialog = new AlertDialog.Builder(this)
-                            .setView(input)
-                            .setIcon(R.drawable.ic_launcher)
-                            .setTitle(R.string.search_alert_title)
-                            .setPositiveButton(R.string.search_alert_people, new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int whichButton) {
-                                    String inputTag = input.getText().toString().trim();
-                                    String cleanTag = inputTag.replaceAll("\\*", "");
-                                    // this validate the input data for tagfind
-                                    if (cleanTag == null || cleanTag.equals("")) {
-                                        dialog.cancel(); // if user don�t have added a tag
-                                        Snackbar.make(swipeRefreshLayout, R.string.search_alert_bypeople_validate_needsomedata, Snackbar.LENGTH_LONG).show();
-                                    } else { // User have added a search tag
-                                        webView.loadUrl("https://" + podDomain + "/people.mobile?q=" + cleanTag);
-                                        setTitle(R.string.search_by_person);
-                                    }
+                    input.setSingleLine(true);
+                    layout.setPadding(50, 0, 50, 0);
+                    input.setHint(R.string.app_hashtag);
+                    layout.addView(input);
+
+                    final DialogInterface.OnClickListener onSearchAccepted = new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            boolean wasClickedOnSearchForPeople = which == DialogInterface.BUTTON_NEGATIVE;
+
+                            String inputTag = input.getText().toString().trim();
+                            String cleanTag = inputTag.replaceAll(wasClickedOnSearchForPeople ? "\\*" : "\\#", "");
+                            // this validate the input data for tagfind
+                            if (cleanTag == null || cleanTag.equals("")) {
+                                Snackbar.make(swipeRefreshLayout, R.string.search_alert_bypeople_validate_needsomedata, Snackbar.LENGTH_LONG).show();
+                            } else { // User have added a search tag
+                                if (wasClickedOnSearchForPeople) {
+                                    webView.loadUrl("https://" + podDomain + "/people.mobile?q=" + cleanTag);
+                                    setTitle(R.string.search_by_person);
+                                } else {
+                                    webView.loadUrl("https://" + podDomain + "/tags/" + cleanTag);
+                                    setTitle(R.string.search_by_tag);
                                 }
-                            })
-                            .setNegativeButton(R.string.search_alert_tag,
-                                    new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialog, int whichButton) {
-                                            String inputTag = input.getText().toString().trim();
-                                            String cleanTag = inputTag.replaceAll("\\#", "");
-                                            // this validate the input data for tagfind
-                                            if (cleanTag == null || cleanTag.equals("")) {
-                                                dialog.cancel(); // if user hasn't added a tag
-                                                Snackbar.make(swipeRefreshLayout, R.string.search_alert_bytags_validate_needsomedata, Snackbar.LENGTH_LONG).show();
-                                            } else { // User have added a search tag
-                                                webView.loadUrl("https://" + podDomain + "/tags/" + cleanTag);
-                                                setTitle(R.string.search_by_tag);
-                                            }
-                                        }
-                                    });
+                            }
+
+                            getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+                            imm.hideSoftInputFromWindow(input.getWindowToken(), 0);
+                        }
+                    };
+
+                    final AlertDialog dialog = new AlertDialog.Builder(this)
+                            .setView(layout)
+                            .setTitle(R.string.search_alert_title)
+                            .setCancelable(true)
+                            .setPositiveButton(R.string.search_alert_tag, onSearchAccepted)
+                            .setNegativeButton(R.string.search_alert_people, onSearchAccepted)
+                            .create();
+
+                    input.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+                        public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                                dialog.hide();
+                                onSearchAccepted.onClick(null, 0);
+                                return true;
+                            }
+                            return false;
+                        }
+                    });
+
+                    // Popup keyboard
                     dialog.show();
+                    input.requestFocus();
+                    getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+                    imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+
                 } else {
                     Snackbar.make(swipeRefreshLayout, R.string.no_internet, Snackbar.LENGTH_LONG).show();
                 }

@@ -29,14 +29,16 @@ It's "native" because it's developed in Java + the Android SDK (Android Studio).
 It's a WebApp because at this moment Diaspora doesn't have an API that can be used to create a native interface to retrieve the user's data, publications, direct messages and so on, that's why there are only WebApps for Diaspora out there.
 Why a WebApp is better than using the mobile site on a browser? Basically it provides better integration with the system (events coming into and going out of the app), notifications, customized interface and functions and a nice little icon that takes you directly to your favorite social network :)
 
-### System Requirements
+### Device Requirements
 The minimum version supported is Ice Cream Sandwitch, Android version 4.0.3 (or API 15)
 
-### Permissions
+### App Permissions
 It requires access to the Internet and to external storage to be able to upload photos when creating a new post and for taking screenshots.
 
-## Project members:
+## Main contributors
 
-- gsantner (<https://gsantner.github.io>)
+**Project Lead:** gsantner (<https://gsantner.github.io>)  
+
 - martinchodev (<https://github.com/martinchodev>)
 - scoute-dich (<https://github.com/scoute-dich>)
+- vanitasvitae (<https://github.com/vanitasvitae>)
