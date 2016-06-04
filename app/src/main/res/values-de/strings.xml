@@ -165,5 +165,6 @@ along with this program.  If not, see http://www.gnu.org/licenses.&lt;br> &lt;br
     <string name="context_menu_open_external_browser">In externem Browser öffnen…</string>
     <string name="toast_saved_image_to_location">Speichere Bild als</string>
     <string name="toast_link_address_copied">Linkadresse kopiert …</string>
+    <string name="share_dotdodot">Teilen…</string>
 
 </resources>

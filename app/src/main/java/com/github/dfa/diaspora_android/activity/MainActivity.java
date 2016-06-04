@@ -31,8 +31,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -511,177 +509,22 @@ public class MainActivity extends AppCompatActivity
                 return true;
             }
 
-            case R.id.action_share: {
-                final CharSequence[] options = {getString(R.string.share_link), getString(R.string.share_screenshot), getString(R.string.take_screenshot)};
-                new AlertDialog.Builder(MainActivity.this)
-                        .setItems(options, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int item) {
-                                if (options[item].equals(getString(R.string.share_link))) {
-                                    Intent sharingIntent = new Intent(Intent.ACTION_SEND);
-                                    sharingIntent.setType("text/plain");
-                                    sharingIntent.putExtra(Intent.EXTRA_SUBJECT, webView.getTitle());
-                                    sharingIntent.putExtra(Intent.EXTRA_TEXT, webView.getUrl());
-                                    startActivity(Intent.createChooser(sharingIntent, "Share using"));
-                                }
-                                if (options[item].equals(getString(R.string.share_screenshot))) {
-                                    if (android.os.Build.VERSION.SDK_INT >= 23) {
-                                        int hasWRITE_EXTERNAL_STORAGE = checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE);
-                                        if (hasWRITE_EXTERNAL_STORAGE != PackageManager.PERMISSION_GRANTED) {
-                                            if (!shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-                                                new AlertDialog.Builder(MainActivity.this)
-                                                        .setMessage(R.string.permissions_screenshot)
-                                                        .setPositiveButton(getString(android.R.string.yes), new DialogInterface.OnClickListener() {
-                                                            @Override
-                                                            public void onClick(DialogInterface dialog, int which) {
-                                                                if (android.os.Build.VERSION.SDK_INT >= 23)
-                                                                    requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                                                                            REQUEST_CODE_ASK_PERMISSIONS);
-                                                            }
-                                                        })
-                                                        .setNegativeButton(getString(android.R.string.no), null)
-                                                        .show();
-                                                return;
-                                            }
-                                            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                                                    REQUEST_CODE_ASK_PERMISSIONS);
-                                            return;
-                                        }
-                                    }
+            case R.id.action_share_link: {
+                Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+                sharingIntent.setType("text/plain");
+                sharingIntent.putExtra(Intent.EXTRA_SUBJECT, webView.getTitle());
+                sharingIntent.putExtra(Intent.EXTRA_TEXT, webView.getUrl());
+                startActivity(Intent.createChooser(sharingIntent, "Share using"));
+                return true;
+            }
 
-                                    File directory = new File(Environment.getExternalStorageDirectory() + "/Pictures/Diaspora/");
-                                    if (!directory.exists()) {
-                                        directory.mkdirs();
-                                    }
+            case R.id.action_take_screenshot: {
+                makeScreenshotOfWebView(false);
+                return true;
+            }
 
-                                    Date date = new Date();
-                                    DateFormat dateFormat = new SimpleDateFormat("dd-MM-yy_HH-mm", Locale.getDefault());
-
-                                    String filename = getString(R.string.toast_screenshot) + " " + Environment.getExternalStorageDirectory() + "/Pictures/Diaspora/" + dateFormat.format(date) + ".jpg";
-                                    Snackbar.make(swipeRefreshLayout, filename, Snackbar.LENGTH_LONG).show();
-
-                                    webView.measure(View.MeasureSpec.makeMeasureSpec(
-                                            View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED),
-                                            View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
-                                    webView.layout(0, 0, webView.getMeasuredWidth(),
-                                            webView.getMeasuredHeight());
-                                    webView.setDrawingCacheEnabled(true);
-                                    webView.buildDrawingCache();
-                                    Bitmap bm = Bitmap.createBitmap(webView.getMeasuredWidth(),
-                                            webView.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
-
-                                    Canvas bigcanvas = new Canvas(bm);
-                                    Paint paint = new Paint();
-                                    int iHeight = bm.getHeight();
-                                    bigcanvas.drawBitmap(bm, 0, iHeight, paint);
-                                    webView.draw(bigcanvas);
-                                    System.out.println("1111111111111111111111="
-                                            + bigcanvas.getWidth());
-                                    System.out.println("22222222222222222222222="
-                                            + bigcanvas.getHeight());
-
-                                    try {
-                                        OutputStream fOut;
-                                        File file = new File(Environment.getExternalStorageDirectory() + "/Pictures/Diaspora/", dateFormat.format(date) + ".jpg");
-                                        fOut = new FileOutputStream(file);
-
-                                        bm.compress(Bitmap.CompressFormat.PNG, 50, fOut);
-                                        fOut.flush();
-                                        fOut.close();
-                                        bm.recycle();
-                                    } catch (Exception e) {
-                                        e.printStackTrace();
-                                    }
-                                    Intent sharingIntent = new Intent(Intent.ACTION_SEND);
-                                    sharingIntent.setType("image/png");
-                                    sharingIntent.putExtra(Intent.EXTRA_SUBJECT, webView.getTitle());
-                                    sharingIntent.putExtra(Intent.EXTRA_TEXT, webView.getUrl());
-                                    Uri bmpUri = Uri.fromFile(new File(Environment.getExternalStorageDirectory() + "/Pictures/Diaspora/"
-                                            + dateFormat.format(date) + ".jpg"));
-                                    sharingIntent.putExtra(Intent.EXTRA_STREAM, bmpUri);
-                                    startActivity(Intent.createChooser(sharingIntent, "Share using"));
-                                    File file = new File(Environment.getExternalStorageDirectory() + "/Pictures/Diaspora/"
-                                            + dateFormat.format(date) + ".jpg");
-                                    Uri uri = Uri.fromFile(file);
-                                    Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, uri);
-                                    sendBroadcast(intent);
-                                }
-                                if (options[item].equals(getString(R.string.take_screenshot))) {
-                                    if (android.os.Build.VERSION.SDK_INT >= 23) {
-                                        int hasWRITE_EXTERNAL_STORAGE = checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE);
-                                        if (hasWRITE_EXTERNAL_STORAGE != PackageManager.PERMISSION_GRANTED) {
-                                            if (!shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-                                                new AlertDialog.Builder(MainActivity.this)
-                                                        .setMessage(R.string.permissions_screenshot)
-                                                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                                                            @Override
-                                                            public void onClick(DialogInterface dialog, int which) {
-                                                                if (android.os.Build.VERSION.SDK_INT >= 23)
-                                                                    requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                                                                            REQUEST_CODE_ASK_PERMISSIONS);
-                                                            }
-                                                        })
-                                                        .setNegativeButton(android.R.string.no, null)
-                                                        .show();
-                                                return;
-                                            }
-                                            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                                                    REQUEST_CODE_ASK_PERMISSIONS);
-                                            return;
-                                        }
-                                    }
-
-                                    File directory = new File(Environment.getExternalStorageDirectory() + "/Pictures/Diaspora/");
-                                    if (!directory.exists()) {
-                                        directory.mkdirs();
-                                    }
-
-                                    Date date = new Date();
-                                    DateFormat dateFormat = new SimpleDateFormat("dd-MM-yy_HH-mm", Locale.getDefault());
-
-                                    String filename = getString(R.string.toast_screenshot) + " " + Environment.getExternalStorageDirectory() + "/Pictures/Diaspora/" + dateFormat.format(date) + ".jpg";
-                                    Snackbar.make(swipeRefreshLayout, filename, Snackbar.LENGTH_LONG).show();
-
-                                    webView.measure(View.MeasureSpec.makeMeasureSpec(
-                                            View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED),
-                                            View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
-                                    webView.layout(0, 0, webView.getMeasuredWidth(),
-                                            webView.getMeasuredHeight());
-                                    webView.setDrawingCacheEnabled(true);
-                                    webView.buildDrawingCache();
-                                    Bitmap bm = Bitmap.createBitmap(webView.getMeasuredWidth(),
-                                            webView.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
-
-                                    Canvas bigcanvas = new Canvas(bm);
-                                    Paint paint = new Paint();
-                                    int iHeight = bm.getHeight();
-                                    bigcanvas.drawBitmap(bm, 0, iHeight, paint);
-                                    webView.draw(bigcanvas);
-                                    System.out.println("1111111111111111111111="
-                                            + bigcanvas.getWidth());
-                                    System.out.println("22222222222222222222222="
-                                            + bigcanvas.getHeight());
-
-                                    try {
-                                        OutputStream fOut;
-                                        File file = new File(Environment.getExternalStorageDirectory() + "/Pictures/Diaspora/", dateFormat.format(date) + ".jpg");
-                                        fOut = new FileOutputStream(file);
-
-                                        bm.compress(Bitmap.CompressFormat.PNG, 50, fOut);
-                                        fOut.flush();
-                                        fOut.close();
-                                        bm.recycle();
-                                    } catch (Exception e) {
-                                        e.printStackTrace();
-                                    }
-                                    File file = new File(Environment.getExternalStorageDirectory() + "/Pictures/Diaspora/"
-                                            + dateFormat.format(date) + ".jpg");
-                                    Uri uri = Uri.fromFile(file);
-                                    Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, uri);
-                                    sendBroadcast(intent);
-                                }
-                            }
-                        }).show();
+            case R.id.action_share_screenshot: {
+                makeScreenshotOfWebView(true);
                 return true;
             }
 
@@ -728,7 +571,84 @@ public class MainActivity extends AppCompatActivity
                 return true;
             }
         }
+
         return super.onOptionsItemSelected(item);
+    }
+
+    private boolean makeScreenshotOfWebView(boolean hasToShareScreenshot) {
+        if (android.os.Build.VERSION.SDK_INT >= 23) {
+            int hasWRITE_EXTERNAL_STORAGE = checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+            if (hasWRITE_EXTERNAL_STORAGE != PackageManager.PERMISSION_GRANTED) {
+                if (!shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                    new AlertDialog.Builder(MainActivity.this)
+                            .setMessage(R.string.permissions_screenshot)
+                            .setNegativeButton(android.R.string.no, null)
+                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    if (android.os.Build.VERSION.SDK_INT >= 23)
+                                        requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                                                REQUEST_CODE_ASK_PERMISSIONS);
+                                }
+                            })
+                            .show();
+                    return false;
+                }
+                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                        REQUEST_CODE_ASK_PERMISSIONS);
+                return false;
+            }
+        }
+
+        Date dateNow = new Date();
+        DateFormat dateFormat = new SimpleDateFormat("yy_MM_dd--HH_mm_ss", Locale.getDefault());
+        File fileSaveDirectory = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/Diaspora");
+
+        String fileSaveName = String.format("DfA_%s.jpg", dateFormat.format(dateNow));
+        if (!fileSaveDirectory.exists()) {
+            fileSaveDirectory.mkdirs();
+        }
+
+        Snackbar.make(swipeRefreshLayout, getString(R.string.toast_screenshot) + " " + fileSaveName, Snackbar.LENGTH_LONG).show();
+
+        Bitmap bitmap = null;
+        webView.setDrawingCacheEnabled(true);
+        bitmap = Bitmap.createBitmap(webView.getDrawingCache());
+        webView.setDrawingCacheEnabled(false);
+
+        OutputStream bitmapWriter = null;
+        try {
+            bitmapWriter = new FileOutputStream(new File(fileSaveDirectory, fileSaveName));
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 85, bitmapWriter);
+            bitmapWriter.flush();
+            bitmap.recycle();
+        } catch (Exception e) {
+            return false;
+        } finally {
+            if (bitmapWriter != null) {
+                try {
+                    bitmapWriter.close();
+                } catch (IOException _ignored) {
+                }
+            }
+        }
+
+        // Only show share intent when Action Share Screenshot was selected
+        if (hasToShareScreenshot) {
+            Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+            sharingIntent.setType("image/jpeg");
+            sharingIntent.putExtra(Intent.EXTRA_SUBJECT, webView.getTitle());
+            sharingIntent.putExtra(Intent.EXTRA_TEXT, webView.getUrl());
+            Uri bmpUri = Uri.fromFile(new File(fileSaveDirectory, fileSaveName));
+            sharingIntent.putExtra(Intent.EXTRA_STREAM, bmpUri);
+            startActivity(Intent.createChooser(sharingIntent, getString(R.string.share_dotdodot)));
+        }
+
+        File file = new File(fileSaveDirectory, fileSaveName);
+        Uri uri = Uri.fromFile(file);
+        Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, uri);
+        sendBroadcast(intent);
+        return true;
     }
 
 

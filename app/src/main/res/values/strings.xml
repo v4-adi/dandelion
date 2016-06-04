@@ -209,4 +209,5 @@
     <string name="context_menu_copy_link">Copy link address to clipboard</string>
     <string name="toast_saved_image_to_location">Saving image to</string>
     <string name="prefix_https" translatable="false">https://</string>
+    <string name="share_dotdodot">Share…</string>
 </resources>

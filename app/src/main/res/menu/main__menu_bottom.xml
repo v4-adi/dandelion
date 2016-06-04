@@ -18,22 +18,15 @@
         android:title="@string/compose" />
 
     <item
-        android:id="@+id/action_share"
-        android:icon="@drawable/ic_share_white_24dp"
-        android:title="@string/jb_share"
-        app:showAsAction="always" />
-
-    <!--
-    <item
-        android:id="@+id/action_share2"
         android:icon="@drawable/ic_share_white_24dp"
         android:title="@string/jb_share"
         app:showAsAction="always"  >
         <menu>
-            <item android:id="@+id/item1" android:title="@string/search_alert_people"></item>
-            <item android:id="@+id/item2" android:title="@string/search_alert_tag"></item>
+            <item android:id="@+id/action_share_screenshot" android:title="@string/share_screenshot"></item>
+            <item android:id="@+id/action_take_screenshot" android:title="@string/take_screenshot"></item>
+            <item android:id="@+id/action_share_link" android:title="@string/share_link"></item>
         </menu>
-    </item> -->
+    </item>
 
     <!-- Keep right most -->
     <item
