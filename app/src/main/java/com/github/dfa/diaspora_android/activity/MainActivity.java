@@ -631,14 +631,17 @@ public class MainActivity extends AppCompatActivity
 
         Date dateNow = new Date();
         DateFormat dateFormat = new SimpleDateFormat("yy_MM_dd--HH_mm_ss", Locale.getDefault());
-        File fileSaveDirectory = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/Diaspora");
+        File fileSaveDirectory = new File(hasToShareScreenshot ? getCacheDir().getAbsolutePath()
+                : Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/Diaspora");
 
-        String fileSaveName = String.format("DfA_%s.jpg", dateFormat.format(dateNow));
+        String fileSaveName = String.format("DfA_%s.jpg", hasToShareScreenshot ? "share" : dateFormat.format(dateNow));
         if (!fileSaveDirectory.exists()) {
             fileSaveDirectory.mkdirs();
         }
 
-        Snackbar.make(swipeRefreshLayout, getString(R.string.toast_screenshot) + " " + fileSaveName, Snackbar.LENGTH_LONG).show();
+        if (!hasToShareScreenshot) {
+            Snackbar.make(swipeRefreshLayout, getString(R.string.toast_screenshot) + " " + fileSaveName, Snackbar.LENGTH_LONG).show();
+        }
 
         Bitmap bitmap = null;
         webView.setDrawingCacheEnabled(true);
@@ -672,11 +675,13 @@ public class MainActivity extends AppCompatActivity
             sharingIntent.putExtra(Intent.EXTRA_STREAM, bmpUri);
             startActivity(Intent.createChooser(sharingIntent, getString(R.string.share_dotdodot)));
         }
-
-        File file = new File(fileSaveDirectory, fileSaveName);
-        Uri uri = Uri.fromFile(file);
-        Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, uri);
-        sendBroadcast(intent);
+        else {
+            // Broadcast that this file is indexable
+            File file = new File(fileSaveDirectory, fileSaveName);
+            Uri uri = Uri.fromFile(file);
+            Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, uri);
+            sendBroadcast(intent);
+        }
         return true;
     }
 
