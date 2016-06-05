@@ -23,7 +23,10 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.IBinder;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
+
+import com.github.dfa.diaspora_android.App;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -42,9 +45,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GetPodsService extends Service {
-    public static final String MESSAGE = "com.github.dfa.diaspora.podsreceived";
-
-    private static final String TAG = "Diaspora Pod Service";
+    public static final String MESSAGE_PODS_RECEIVED = "com.github.dfa.diaspora.podsreceived";
+    private static final String TAG = App.TAG;
 
     public GetPodsService() {
     }
@@ -62,7 +64,7 @@ public class GetPodsService extends Service {
          * A few modifications and adaptations were made by me.
          * Source:
          * https://github.com/voidcode/Diaspora-Webclient/blob/master/src/com/voidcode/diasporawebclient/getPodlistTask.java
-         * Thanks to Terkel Sørensen
+         * Thanks to Terkel Sørensen ; License : GPLv3
          */
         AsyncTask<Void, Void, String[]> getPodsAsync = new AsyncTask<Void, Void, String[]>() {
             @Override
@@ -118,11 +120,10 @@ public class GetPodsService extends Service {
             }
 
             @Override
-            protected void onPostExecute(String[] strings) {
-                Intent broadcastIntent = new Intent(MESSAGE);
-                if (strings != null)
-                    broadcastIntent.putExtra("pods", strings);
-                sendBroadcast(broadcastIntent);
+            protected void onPostExecute(String[] pods) {
+                Intent broadcastIntent = new Intent(MESSAGE_PODS_RECEIVED);
+                broadcastIntent.putExtra("pods", pods != null ? pods : new String[0]);
+                LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(broadcastIntent);
                 stopSelf();
             }
         };

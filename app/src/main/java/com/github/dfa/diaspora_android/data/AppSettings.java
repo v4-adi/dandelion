@@ -37,10 +37,28 @@ public class AppSettings {
         pref.edit().putBoolean(key, value).apply();
     }
 
+    private void setStringArray(SharedPreferences pref, String key, String[] values){
+        StringBuffer sb = new StringBuffer();
+        for(String value : values){
+            sb.append("%%%");
+            sb.append(value);
+        }
+        setString(pref,key,sb.toString().replaceFirst("%%%",""));
+    }
+
+    private String[] getStringArray(SharedPreferences pref, String key){
+        String value = pref.getString(key,"%%%");
+        if (value.equals("%%%")){
+            return new String[0];
+        }
+        return value.split("%%%");
+    }
+
     /*
     //   Preferences
      */
     public static class PREF {
+        private static final String PREVIOUS_PODLIST = "previousPodlist";
         private static final String IS_LOAD_IMAGES = "loadImages";
         private static final String MINIMUM_FONT_SIZE = "minimumFontSize";
         private static final String PODUSERPROFILE_AVATAR_URL = "podUserProfile_avatar";
@@ -105,5 +123,13 @@ public class AppSettings {
 
     public boolean hasPodDomain(){
         return !prefPod.getString(PREF.PODDOMAIN, "").equals("");
+    }
+
+    public String[] getPreviousPodlist(){
+        return getStringArray(prefApp, PREF.PREVIOUS_PODLIST);
+    }
+
+    public void setPreviousPodlist(String[] pods){
+        setStringArray(prefApp, PREF.PREVIOUS_PODLIST, pods);
     }
 }

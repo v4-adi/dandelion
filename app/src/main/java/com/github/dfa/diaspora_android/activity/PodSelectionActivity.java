@@ -19,7 +19,6 @@
 
 package com.github.dfa.diaspora_android.activity;
 
-import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -29,7 +28,7 @@ import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.ActionBar;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
@@ -79,7 +78,8 @@ public class PodSelectionActivity extends AppCompatActivity {
 
 
         listPods.setTextFilterEnabled(true);
-        registerReceiver(podListReceiver, new IntentFilter(GetPodsService.MESSAGE));
+        setListedPods(app.getSettings().getPreviousPodlist());
+        LocalBroadcastManager.getInstance(this).registerReceiver(podListReceiver, new IntentFilter(GetPodsService.MESSAGE_PODS_RECEIVED));
 
         if (!Helpers.isOnline(PodSelectionActivity.this)) {
             Snackbar.make(listPods, R.string.no_internet, Snackbar.LENGTH_LONG).show();
@@ -93,11 +93,12 @@ public class PodSelectionActivity extends AppCompatActivity {
             if (intent.hasExtra("pods")) {
                 Bundle extras = intent.getExtras();
                 String[] pods = extras.getStringArray("pods");
-
-                if (pods != null && pods.length > 0)
+                if (pods != null && pods.length > 0) {
+                    app.getSettings().setPreviousPodlist(pods);
                     setListedPods(pods);
-                else {
-                    Snackbar.make(listPods, R.string.podlist_error, Snackbar.LENGTH_LONG).show();
+                } else {
+                    setListedPods(app.getSettings().getPreviousPodlist());
+                    Snackbar.make(listPods, R.string.podlist_error, Snackbar.LENGTH_SHORT).show();
                 }
             }
         }
@@ -122,7 +123,6 @@ public class PodSelectionActivity extends AppCompatActivity {
 
     private void setListedPods(String[] listedPodsArr) {
         final ArrayList<String> listedPodsList = new ArrayList<>();
-
         for (String pod : listedPodsArr) {
             listedPodsList.add(pod.toLowerCase());
         }
@@ -131,7 +131,13 @@ public class PodSelectionActivity extends AppCompatActivity {
                 PodSelectionActivity.this,
                 android.R.layout.simple_list_item_1,
                 listedPodsList);
+
+        // save index and top position
+        int index = listPods.getFirstVisiblePosition();
+        View v = listPods.getChildAt(0);
+        int top = (v == null) ? 0 : (v.getTop() - listPods.getPaddingTop());
         listPods.setAdapter(adapter);
+        listPods.setSelectionFromTop(index, top);
 
         adapter.getFilter().filter(editFilter.getText());
         editFilter.addTextChangedListener(new TextWatcher() {
@@ -213,7 +219,7 @@ public class PodSelectionActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        unregisterReceiver(podListReceiver);
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(podListReceiver);
         super.onDestroy();
     }
 
