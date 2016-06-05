@@ -172,7 +172,9 @@ public class MainActivity extends AppCompatActivity
 
         app = (App) getApplication();
         appSettings = app.getSettings();
-        podUserProfile = new PodUserProfile(app, uiHandler, this);
+        podUserProfile = app.getPodUserProfile();
+        podUserProfile.setCallbackHandler(uiHandler);
+        podUserProfile.setListener(this);
 
         this.registerForContextMenu(webView);
         webView.setParentActivity(this);
@@ -245,7 +247,7 @@ public class MainActivity extends AppCompatActivity
                 }
 
                 if (progress > 60) {
-                    Helpers.hideTopBar(wv);
+                    Helpers.applyDiasporaMobileSiteChanges(wv);
                 }
 
                 if (progress == 100) {
@@ -872,7 +874,8 @@ public class MainActivity extends AppCompatActivity
 
             case R.id.nav_aspects: {
                 if (Helpers.isOnline(MainActivity.this)) {
-                    webView.loadUrl("https://" + podDomain + "/aspects");
+                   // webView.loadUrl("https://" + podDomain + "/aspects");
+                    Helpers.showAspectList(webView, app);
                 } else {
                     Snackbar.make(swipeRefreshLayout, R.string.no_internet, Snackbar.LENGTH_LONG).show();
                 }
