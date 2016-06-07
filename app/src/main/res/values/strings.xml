@@ -212,6 +212,7 @@
     <string name="toast_link_address_copied">Link address copied …</string>
     <string name="context_menu_share_link">Share link address</string>
     <string name="context_menu_save_image">Save image</string>
+    <string name="context_menu_share_image">Share image</string>
     <string name="context_menu_open_external_browser">Open in external browser …</string>
     <string name="context_menu_copy_link">Copy link address to clipboard</string>
     <string name="toast_saved_image_to_location">Saving image to</string>

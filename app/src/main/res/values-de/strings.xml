@@ -165,6 +165,7 @@ along with this program.  If not, see http://www.gnu.org/licenses.&lt;br> &lt;br
     <string name="settings_images_switch_off">Bilder nicht laden</string>
     <string name="settings_images_switch_on">Bilder laden</string>
     <string name="context_menu_save_image">Bild speichern</string>
+    <string name="context_menu_share_image">Bild teilen</string>
     <string name="context_menu_copy_link">Linkadresse kopieren</string>
     <string name="context_menu_share_link">Linkadresse teilen</string>
     <string name="context_menu_open_external_browser">In externem Browser öffnen…</string>
