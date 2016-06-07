@@ -1,6 +1,7 @@
 package com.github.dfa.diaspora_android.ui;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
@@ -32,6 +33,15 @@ public class CustomWebViewClient extends WebViewClient {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public void onPageStarted(WebView view, String url, Bitmap favicon) {
+        super.onPageStarted(view, url, favicon);
+        swipeRefreshLayout.setEnabled(true);
+        if(url.endsWith("/conversations/new")){
+            swipeRefreshLayout.setEnabled(false);
+        }
     }
 
     public void onPageFinished(WebView view, String url) {

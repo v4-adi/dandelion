@@ -37,8 +37,7 @@ It requires access to the Internet and to external storage to be able to upload 
 
 ## Main contributors
 
-**Project Lead:** gsantner (<https://gsantner.github.io>)  
-
+- gsantner (<https://gsantner.github.io>)  
 - martinchodev (<https://github.com/martinchodev>)
 - scoute-dich (<https://github.com/scoute-dich>)
 - vanitasvitae (<https://github.com/vanitasvitae>)
