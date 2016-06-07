@@ -1,11 +1,7 @@
 package com.github.dfa.diaspora_android.data;
 
-import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.SharedPreferences;
-
-import org.json.JSONArray;
-import org.json.JSONException;
 
 /**
  * Created by gsantner on 20.03.16. Part of Diaspora for Android.

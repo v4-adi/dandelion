@@ -80,6 +80,7 @@ public class ShareActivity extends MainActivity {
                 }
             });
         }
+        setTitle(R.string.new_post);
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 

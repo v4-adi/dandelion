@@ -8,7 +8,6 @@
     <string name="podlist_source_note">Anmerkung: Die Podliste wird aus den sicheren Pods, die bei  https://podupti.me gelistet sind generiert.</string>
     <string name="valid_pod">Bitte einen gültigen Domain-Namen (URL) eingeben</string>
     <string name="podlist_error">Fehler: Konnte die Podliste nicht abfragen!</string>
-    <string name="loading_podlist">Podliste wird geladen…</string>
     <string name="no_internet">Entschuldigung, du musst mit dem Internet verbunden sein um fortzufahren.</string>
     <string name="confirmation">Bestätigung</string>
     <string name="confirm_pod">Möchtest du wirklich \nhttps://%1$s\nals deinen Diaspora Pod auswählen?</string>
@@ -28,12 +27,23 @@
     <string name="permission_denied">Berechtigung verweigert.</string>
     <string name="permission_granted_try_again">Berechtigung erteilt. Bitte versuche es erneut.</string>
 
+    //Titles
+
+    <string name="title_notifications">D* Benachrichtigungen</string>
+    <string name="title_conversations">D* Unterhaltungen</string>
+    <string name="title_stream">D* Stream</string>
+    <string name="title_profil">D* Profil</string>
+    <string name="title_aspects">D* Aspekte</string>
+    <string name="title_activities">D* Aktivitäten</string>
+    <string name="title_liked">D* Gelikte Beiträge</string>
+    <string name="title_commented">D* Kommentiert</string>
+    <string name="title_mentions">D* Erwähnungen</string>
+    <string name="title_public">D* Öffentliche Aktivitäten</string>
+
     // Drawer and App
 
     <string name="jb_menu_1">Einstellungen</string>
     <string name="jb_stream">Stream</string>
-    <string name="jb_notifications">Benachrichtigungen</string>
-    <string name="jb_conversations">Unterhaltungen</string>
     <string name="jb_liked">Gelikte Beiträge</string>
     <string name="jb_commented">Kommentierte Beiträge</string>
     <string name="jb_contacts">Kontakte</string>
@@ -56,7 +66,6 @@
     <string name="search_alert_tag">nach Tags</string>
     <string name="search_alert_people">nach Personen</string>
     <string name="search_alert_bypeople_validate_needsomedata">Füge einen Namen ein.</string>
-    <string name="search_alert_bytags_validate_needsomedata">Versuche einen Tag wie: #neuhier oder #kunst</string>
 
     //Dialog
 
@@ -147,15 +156,11 @@ along with this program.  If not, see http://www.gnu.org/licenses.&lt;br> &lt;br
         &lt;i>Die Bilder des Startbildschirms können auf Flickr gefunden werden:
         https://www.flickr.com/photos/129581906@N06/sets/72157651933980136/with/16594947123.
         Sie wurden von \"Lydia\" veröffentlicht und stehen unter der cc by-nc-sa Lizenz.&lt;/i></string>
-    <string name="search_by_person">Suche nach Personen …</string>
-    <string name="search_by_tag">Suche nach Tags …</string>
     <string name="splash_screen_description">Startbildschirm</string>
     <string name="new_conversations">Ungelesene Unterhaltung. Öffnen?</string>
     <string name="new_notifications">Ungelesene Benachrichtigung. Lesen?</string>
     <string name="help_about">Changelog</string>
-    <string name="new_post2">D* Titel und Text</string>
     <string name="jb_profile">Profil</string>
-    <string name="new_post1">D* nur Text</string>
     <string name="shared_by_diaspora_android">*[geteilt durch #DiasporaForAndroid]*</string>
     <string name="settings_images_switch_off">Bilder nicht laden</string>
     <string name="settings_images_switch_on">Bilder laden</string>

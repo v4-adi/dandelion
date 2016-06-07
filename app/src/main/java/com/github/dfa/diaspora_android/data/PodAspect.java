@@ -1,11 +1,7 @@
 package com.github.dfa.diaspora_android.data;
 
-import android.support.v4.content.ContextCompat;
-
 import com.github.dfa.diaspora_android.App;
-import com.github.dfa.diaspora_android.R;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 

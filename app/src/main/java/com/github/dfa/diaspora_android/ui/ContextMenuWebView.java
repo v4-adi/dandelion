@@ -15,7 +15,6 @@ import android.os.Environment;
 import android.util.AttributeSet;
 import android.view.ContextMenu;
 import android.view.MenuItem;
-import android.webkit.WebView;
 import android.widget.Toast;
 
 import com.github.dfa.diaspora_android.R;

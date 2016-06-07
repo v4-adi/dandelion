@@ -6,12 +6,10 @@ import android.os.Build;
 import android.support.annotation.Nullable;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
 
 import com.github.dfa.diaspora_android.data.AppSettings;
 import com.github.dfa.diaspora_android.data.PodUserProfile;
-import com.github.dfa.diaspora_android.ui.CustomWebViewClient;
 import com.github.dfa.diaspora_android.util.AvatarImageLoader;
 
 /**

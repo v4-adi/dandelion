@@ -19,6 +19,21 @@
     <string name="permission_denied">Permission denied.</string>
     <string name="permission_granted_try_again">Permission granted. Please try again.</string>
 
+
+    //Titles
+
+    <string name="title_notifications">D* Notifications</string>
+    <string name="title_conversations">D* Conversations</string>
+    <string name="title_stream">D* Stream</string>
+    <string name="title_profil">D* Profil</string>
+    <string name="title_aspects">D* Aspects</string>
+    <string name="title_activities">D* Activities</string>
+    <string name="title_liked">D* Liked</string>
+    <string name="title_commented">D* Commented</string>
+    <string name="title_mentions">D* Mentions</string>
+    <string name="title_public">D* Public</string>
+
+
     //Pod Activity
 
     <string name="title_activity_pods">Select Pod</string>
@@ -27,7 +42,6 @@
     <string name="podlist_source_note">Note: The podlist is populated by secure pods listed on https://podupti.me. You can enter in the edit field any pod not listed.</string>
     <string name="valid_pod">Please enter a valid domain name</string>
     <string name="podlist_error">Error: Could not retrieve list of pods!</string>
-    <string name="loading_podlist">Loading pod list …</string>
 
 
     <string name="no_internet">Sorry, you must be connected to the Internet to proceed</string>
@@ -36,8 +50,6 @@
     <string name="confirm_exit">Do you want to exit?</string>
     <string name="change_pod_warning">This will erase all cookies and session data. Do you really want to change pods?</string>
     <string name="new_post">D* New message</string>
-    <string name="new_post1">D* Text only</string>
-    <string name="new_post2">D* Title and text</string>
     <string name="notifications">Notifications</string>
     <string name="messages">Conversations</string>
 
@@ -47,8 +59,6 @@
     <string name="jb_menu_1">Settings</string>
     <string name="jb_help_license">About the app | Help</string>
     <string name="jb_stream">Stream</string>
-    <string name="jb_notifications">Notifications</string>
-    <string name="jb_conversations">Conversations</string>
     <string name="jb_liked">Liked</string>
     <string name="jb_commented">Commented</string>
     <string name="jb_contacts">Contacts</string>
@@ -83,8 +93,6 @@
 
     <string name="go_to_top">Go to top</string>
     <string name="search_by_tags_or_persons">Search by tags or persons</string>
-    <string name="search_by_tag">Search for tag …</string>
-    <string name="search_by_person">Search for person …</string>
     <string name="compose">New message</string>
 
 
@@ -92,7 +100,6 @@
     <string name="search_alert_tag">by tags</string>
     <string name="search_alert_people">by people</string>
     <string name="search_alert_bypeople_validate_needsomedata">Please add a name</string>
-    <string name="search_alert_bytags_validate_needsomedata">Try to add a tag like: #newhere or #art</string>
 
     //Dialog //License
 
