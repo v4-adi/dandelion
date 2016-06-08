@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Environment;
 import android.util.AttributeSet;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 
 import com.github.dfa.diaspora_android.R;
 import com.github.dfa.diaspora_android.activity.MainActivity;
+import com.github.dfa.diaspora_android.task.ImageDownloadTask;
 
 import java.io.File;
 
@@ -26,12 +28,14 @@ import java.io.File;
  * Subclass of WebView which adds a context menu for long clicks on images or links to share, save
  * or open with another browser
  */
+@SuppressWarnings("deprecation")
 public class ContextMenuWebView extends NestedWebView {
 
     public static final int ID_SAVE_IMAGE = 10;
-    public static final int ID_EXTERNAL_BROWSER = 11;
+    public static final int ID_IMAGE_EXTERNAL_BROWSER = 11;
     public static final int ID_COPY_LINK = 12;
     public static final int ID_SHARE_LINK = 13;
+    public static final int ID_SHARE_IMAGE = 14;
 
     private Context context;
     private Activity parentActivity;
@@ -97,7 +101,27 @@ public class ContextMenuWebView extends NestedWebView {
                     }
                     break;
 
-                    case ID_EXTERNAL_BROWSER:
+                    case ID_SHARE_IMAGE:
+                        if(url != null) {
+                            final Uri source = Uri.parse(url);
+                            final Uri local = Uri.parse(Environment.getExternalStorageDirectory() + "/Pictures/Diaspora/"+source.getLastPathSegment());
+                            new ImageDownloadTask(null, local.getPath()) {
+                                @Override
+                                protected void onPostExecute(Bitmap result) {
+                                    Uri myUri= Uri.fromFile(new File(local.getPath()));
+                                    Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+                                    sharingIntent.setType("image/*");
+                                    sharingIntent.putExtra(Intent.EXTRA_STREAM, myUri);
+                                    sharingIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                                    context.startActivity(Intent.createChooser(sharingIntent, "Share image using"));
+                                }
+                            }.execute(url);
+                        } else {
+                            Toast.makeText(context, "Cannot share image: url is null", Toast.LENGTH_SHORT).show();
+                        }
+                    break;
+
+                    case ID_IMAGE_EXTERNAL_BROWSER:
                         if (url != null) {
                             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                             context.startActivity(intent);
@@ -135,7 +159,8 @@ public class ContextMenuWebView extends NestedWebView {
             // Menu options for an image.
             menu.setHeaderTitle(result.getExtra());
             menu.add(0, ID_SAVE_IMAGE, 0, context.getString(R.string.context_menu_save_image)).setOnMenuItemClickListener(handler);
-            menu.add(0, ID_EXTERNAL_BROWSER, 0, context.getString(R.string.context_menu_open_external_browser)).setOnMenuItemClickListener(handler);
+            menu.add(0, ID_IMAGE_EXTERNAL_BROWSER, 0, context.getString(R.string.context_menu_open_external_browser)).setOnMenuItemClickListener(handler);
+            menu.add(0, ID_SHARE_IMAGE, 0, context.getString(R.string.context_menu_share_image)).setOnMenuItemClickListener(handler);
         } else if (result.getType() == HitTestResult.ANCHOR_TYPE ||
                 result.getType() == HitTestResult.SRC_ANCHOR_TYPE) {
             // Menu options for a hyperlink.
