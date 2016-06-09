@@ -41,6 +41,12 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:label="@string/diaspora">
         </activity>
+        <activity
+            android:name="com.github.dfa.diaspora_android.activity.SettingsActivity"
+            android:launchMode="singleInstance"
+            android:theme="@style/AppTheme"
+            android:label="@string/jb_settings">
+        </activity>
 
         <activity
             android:name="com.github.dfa.diaspora_android.activity.ShareActivity"

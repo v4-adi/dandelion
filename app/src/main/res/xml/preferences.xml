@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:title="@string/pref_category_visuals"
+        android:key="pref_key_category_visuals">
+        <ListPreference
+            android:title="@string/pref_title_font_size"
+            android:key="pref_key_font_size"
+            android:dialogTitle="@string/pref_title_font_size"
+            android:entries="@array/pref_entries_font_size"
+            android:entryValues="@array/pref_entry_values_font_size" />
+        <CheckBoxPreference
+            android:title="@string/pref_title_desktop_view"
+            android:summary="@string/pref_desc_desktop_view"
+            android:key="pref_key_desktop_mode"
+            android:defaultValue="false"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/pref_category_network"
+        android:key="pref_key_category_network">
+        <CheckBoxPreference
+            android:title="@string/pref_title_load_images"
+            android:key="pref_key_load_images"
+            android:summary="@string/pref_desc_load_images"
+            android:defaultValue="true" />
+
+        <CheckBoxPreference
+            android:title="@string/pref_title_proxy_enabled"
+            android:key="pref_key_proxy_enabled"
+            android:defaultValue="false" />
+        <EditTextPreference
+            android:title="@string/pref_title_proxy_host"
+            android:key="pref_key_proxy_host"
+            android:dependency="pref_key_proxy_enabled" />
+        <EditTextPreference
+            android:title="@string/pref_title_proxy_port"
+            android:key="pref_key_proxy_port"
+            android:dependency="pref_key_proxy_enabled"
+            android:inputType="number" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

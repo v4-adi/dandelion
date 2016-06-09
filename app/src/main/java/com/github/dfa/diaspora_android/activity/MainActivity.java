@@ -945,6 +945,7 @@ public class MainActivity extends AppCompatActivity
             break;
 
             case R.id.nav_settings_app: {
+                /*
                 final CharSequence[] options = {getString(R.string.settings_font), getString(R.string.settings_view), appSettings.isLoadImages() ?
                         getString(R.string.settings_images_switch_off) : getString(R.string.settings_images_switch_on), getString(R.string.jb_pod)};
 
@@ -984,7 +985,8 @@ public class MainActivity extends AppCompatActivity
                             }).show();
                 } else {
                     Snackbar.make(swipeRefreshLayout, R.string.no_internet, Snackbar.LENGTH_LONG).show();
-                }
+                } */
+                startActivity(new Intent(this, SettingsActivity.class));
             }
             break;
 
