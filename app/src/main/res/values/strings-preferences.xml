@@ -12,10 +12,11 @@
         <item>Large</item>
         <item>Huge</item>
     </array>
+    <!-- prefix 's' is needed to make this a string array. Otherwise ListPreference would crash -->
     <array name="pref_entry_values_font_size" translatable="false">
-        <item>normal</item>
-        <item>big</item>
-        <item>huge</item>
+        <item>s8</item>
+        <item>s16</item>
+        <item>s20</item>
     </array>
     <!-- Mobile/Desktop view -->
     <string name="pref_title_desktop_view">Desktop mode</string>
@@ -23,10 +24,11 @@
 
     <!-- Load images -->
     <string name="pref_title_load_images">Load images</string>
-    <string name="pref_desc_load_images">You can disable image loading to safe mobile data</string>
+    <string name="pref_desc_load_images">Disable image loading to safe mobile data</string>
 
     <!-- Proxy -->
     <string name="pref_title_proxy_enabled">Enable Proxy</string>
+    <string name="pref_desc_proxy_enabled">Proxy Diaspora\'s traffic to circumvent firewalls.\nMay require restart</string>
     <string name="pref_title_proxy_host">Host</string>
     <string name="pref_title_proxy_port">Port</string>
 

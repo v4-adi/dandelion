@@ -62,14 +62,14 @@ public class AppSettings {
     //   Preferences
      */
     public static class PREF {
-        private static final String PREVIOUS_PODLIST = "previousPodlist";
-        private static final String IS_LOAD_IMAGES = "loadImages";
-        private static final String MINIMUM_FONT_SIZE = "minimumFontSize";
-        private static final String PODUSERPROFILE_AVATAR_URL = "podUserProfile_avatar";
-        private static final String PODUSERPROFILE_NAME = "podUserProfile_name";
-        private static final String PODUSERPROFILE_ID = "podUserProfile_guid";
-        private static final String PODDOMAIN = "podDomain";
-        private static final String PODUSERPROFILE_ASPECTS = "podUserProfile_aspects";
+        public static final String PREVIOUS_PODLIST = "previousPodlist";
+        public static final String IS_LOAD_IMAGES = "pref_key_load_images";
+        public static final String MINIMUM_FONT_SIZE = "pref_key_font_size";
+        public static final String PODUSERPROFILE_AVATAR_URL = "podUserProfile_avatar";
+        public static final String PODUSERPROFILE_NAME = "podUserProfile_name";
+        public static final String PODUSERPROFILE_ID = "podUserProfile_guid";
+        public static final String PODDOMAIN = "podDomain";
+        public static final String PODUSERPROFILE_ASPECTS = "podUserProfile_aspects";
     }
 
 
@@ -88,11 +88,6 @@ public class AppSettings {
     public boolean isLoadImages() {
         return prefApp.getBoolean(PREF.IS_LOAD_IMAGES, true);
     }
-
-    public void setLoadImages(boolean loadImages) {
-        setBool(prefApp, PREF.IS_LOAD_IMAGES, loadImages);
-    }
-
 
     public int getMinimumFontSize() {
         return prefApp.getInt(PREF.MINIMUM_FONT_SIZE, 8);

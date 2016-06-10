@@ -6,6 +6,7 @@
         <ListPreference
             android:title="@string/pref_title_font_size"
             android:key="pref_key_font_size"
+            android:summary="%s"
             android:dialogTitle="@string/pref_title_font_size"
             android:entries="@array/pref_entries_font_size"
             android:entryValues="@array/pref_entry_values_font_size" />
@@ -28,11 +29,13 @@
         <CheckBoxPreference
             android:title="@string/pref_title_proxy_enabled"
             android:key="pref_key_proxy_enabled"
+            android:summary="@string/pref_desc_proxy_enabled"
             android:defaultValue="false" />
         <EditTextPreference
             android:title="@string/pref_title_proxy_host"
             android:key="pref_key_proxy_host"
-            android:dependency="pref_key_proxy_enabled" />
+            android:dependency="pref_key_proxy_enabled"
+            android:inputType="textNoSuggestions"/>
         <EditTextPreference
             android:title="@string/pref_title_proxy_port"
             android:key="pref_key_proxy_port"
