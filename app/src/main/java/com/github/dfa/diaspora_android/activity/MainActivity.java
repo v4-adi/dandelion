@@ -34,7 +34,6 @@ import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -50,12 +49,12 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ActionMenuView;
-import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.text.SpannableString;
 import android.text.method.LinkMovementMethod;
 import android.text.util.Linkify;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -70,7 +69,6 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -183,6 +181,8 @@ public class MainActivity extends AppCompatActivity
             if(!setProxy(appSettings.getProxyHost(), appSettings.getProxyPort())) {
                 Toast.makeText(MainActivity.this, R.string.toast_set_proxy_failed,Toast.LENGTH_SHORT).show();
             }
+        } else if(appSettings.wasProxyEnabled()) {
+            resetProxy();
         }
 
         setupWebView(savedInstanceState);
@@ -1033,8 +1033,7 @@ public class MainActivity extends AppCompatActivity
             } catch (Exception e) { /*Nothing we can do*/ }
 
             appSettings.setProxyEnabled(true);
-            appSettings.setProxyHost(host);
-            appSettings.setProxyPort(port);
+            appSettings.setProxyWasEnabled(true);
 
             StrictMode.setThreadPolicy(old);
             webView.reload();
@@ -1045,11 +1044,14 @@ public class MainActivity extends AppCompatActivity
     }
 
     private boolean setProxy() {
+        Log.d(App.TAG, "Enable Proxy");
         return setProxy(appSettings.getProxyHost(), appSettings.getProxyPort());
     }
 
     private void resetProxy() {
+        Log.d(App.TAG, "Reset Proxy");
         appSettings.setProxyEnabled(false);
+        appSettings.setProxyWasEnabled(false);
 
         //Temporary change thread policy
         StrictMode.ThreadPolicy old = StrictMode.getThreadPolicy();
@@ -1059,9 +1061,7 @@ public class MainActivity extends AppCompatActivity
         NetCipher.clearProxy();
         try{
             WebkitProxy.resetProxy(MainActivity.class.getName(), this);
-        } catch (Exception e) {
-            //Nothing we can do.
-        }
+        } catch (Exception e) {/*Nothing*/}
 
         StrictMode.setThreadPolicy(old);
 

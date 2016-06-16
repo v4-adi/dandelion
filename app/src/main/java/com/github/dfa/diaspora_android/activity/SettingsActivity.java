@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.preference.CheckBoxPreference;
 import android.preference.EditTextPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
@@ -28,10 +29,13 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
         addPreferencesFromResource(R.xml.preferences);
         getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
         setPreferenceSummaries();
+        SharedPreferences preferences = getPreferenceScreen().getSharedPreferences();
+        preferences.edit().putBoolean(AppSettings.PREF.PROXY_WAS_ENABLED,
+                preferences.getBoolean(AppSettings.PREF.PROXY_ENABLED, false)).apply();
     }
 
     private void setPreferenceSummaries() {
-        String[] editTextKeys = new String[]{"pref_key_proxy_host", "pref_key_proxy_port"};
+        String[] editTextKeys = new String[]{AppSettings.PREF.PROXY_HOST, AppSettings.PREF.PROXY_PORT};
         for(String key : editTextKeys) {
             EditTextPreference p = (EditTextPreference) findPreference(key);
             p.setSummary(p.getText());

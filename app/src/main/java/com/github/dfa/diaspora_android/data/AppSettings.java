@@ -74,9 +74,10 @@ public class AppSettings {
         public static final String PODDOMAIN = "podDomain";
         public static final String PODUSERPROFILE_ASPECTS = "podUserProfile_aspects";
         public static final String IS_LOAD_DESKTOP_PAGE = "pref_key_desktop_mode";
-        public static final String PROXY_ENABLED = "isProxyEnabled";
-        public static final String PROXY_HOST = "proxyHost";
-        public static final String PROXY_PORT = "proxyPort";
+        public static final String PROXY_ENABLED = "pref_key_proxy_enabled";
+        public static final String PROXY_WAS_ENABLED = "wasProxyEnabled";
+        public static final String PROXY_HOST = "pref_key_proxy_host";
+        public static final String PROXY_PORT = "pref_key_proxy_port";
     }
 
 
@@ -176,8 +177,12 @@ public class AppSettings {
         return prefApp.getBoolean(PREF.PROXY_ENABLED, false);
     }
 
-    public void setProxyHost(String host) {
-        setString(prefApp, PREF.PROXY_HOST, host);
+    public boolean wasProxyEnabled() {
+        return prefApp.getBoolean(PREF.PROXY_WAS_ENABLED, false);
+    }
+
+    public void setProxyWasEnabled(boolean b) {
+        prefApp.edit().putBoolean(PREF.PROXY_WAS_ENABLED, b).commit();
     }
 
     /**
@@ -188,15 +193,16 @@ public class AppSettings {
         return prefApp.getString(PREF.PROXY_HOST, "");
     }
 
-    public void setProxyPort(int port) {
-        setInt(prefApp, PREF.PROXY_PORT, port);
-    }
-
     /**
      * Default value: 0
      * @return proxy port
      */
     public int getProxyPort() {
-        return prefApp.getInt(PREF.PROXY_PORT, 0);
+        try {
+            return Integer.parseInt(prefApp.getString(PREF.PROXY_PORT, "0"));
+        } catch (Exception e) {
+            prefApp.edit().putString(PREF.PROXY_PORT, "0").apply();
+            return 0;
+        }
     }
 }
