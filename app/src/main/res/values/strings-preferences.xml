@@ -14,9 +14,9 @@
     </array>
     <!-- prefix 's' is needed to make this a string array. Otherwise ListPreference would crash -->
     <array name="pref_entry_values_font_size" translatable="false">
-        <item>s8</item>
-        <item>s16</item>
-        <item>s20</item>
+        <item>normal</item>
+        <item>large</item>
+        <item>huge</item>
     </array>
     <!-- Mobile/Desktop view -->
     <string name="pref_title_desktop_view">Desktop mode</string>

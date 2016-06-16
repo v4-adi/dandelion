@@ -53,7 +53,6 @@ import android.text.method.LinkMovementMethod;
 import android.text.util.Linkify;
 import android.view.Gravity;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -69,8 +68,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -119,6 +116,7 @@ public class MainActivity extends AppCompatActivity
     private PodUserProfile podUserProfile;
     private final Handler uiHandler = new Handler();
     private CustomWebViewClient webViewClient;
+    private Snackbar snackbarExitApp;
 
     /**
      * UI Bindings
@@ -163,9 +161,6 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (android.os.Build.VERSION.SDK_INT >= 21)
-            WebView.enableSlowWholeDocumentDraw();
-
         // Bind UI
         setContentView(R.layout.main__activity);
         ButterKnife.bind(this);
@@ -176,9 +171,7 @@ public class MainActivity extends AppCompatActivity
         podUserProfile.setCallbackHandler(uiHandler);
         podUserProfile.setListener(this);
 
-        this.registerForContextMenu(webView);
-        webView.setParentActivity(this);
-        webView.setOverScrollMode(WebView.OVER_SCROLL_ALWAYS);
+        setupWebView(savedInstanceState);
 
         // Setup toolbar
         setSupportActionBar(toolbarTop);
@@ -190,6 +183,16 @@ public class MainActivity extends AppCompatActivity
         });
         setTitle(R.string.app_name);
 
+        //Setup snackbar
+        snackbarExitApp = Snackbar
+                .make(swipeRefreshLayout, R.string.confirm_exit, Snackbar.LENGTH_LONG)
+                .setAction(android.R.string.yes, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        moveTaskToBack(true);
+                    }
+                });
+
         // Load app settings
         setupNavigationSlider();
 
@@ -199,22 +202,44 @@ public class MainActivity extends AppCompatActivity
         swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary,
                 R.color.fab_big);
 
-        // Setup WebView
-        webView.addJavascriptInterface(new JavaScriptInterface(), "AndroidBridge");
-        if (savedInstanceState != null) {
-            webView.restoreState(savedInstanceState);
+        if (savedInstanceState == null) {
+            if (Helpers.isOnline(MainActivity.this)) {
+                webView.loadData("", "text/html", null);
+                webView.loadUrl("https://" + podDomain);
+            } else {
+                Snackbar.make(swipeRefreshLayout, R.string.no_internet, Snackbar.LENGTH_LONG).show();
+            }
         }
+    }
+
+    private void setupWebView(Bundle savedInstanceState) {
 
         webSettings = webView.getSettings();
+        //TODO: Dangerous on API < 17. Can we do anything about this?
         webSettings.setJavaScriptEnabled(true);
         webSettings.setUseWideViewPort(true);
         webSettings.setLoadWithOverviewMode(true);
         webSettings.setDomStorageEnabled(true);
         webSettings.setMinimumFontSize(appSettings.getMinimumFontSize());
         webSettings.setLoadsImagesAutomatically(appSettings.isLoadImages());
+        webSettings.setAppCacheEnabled(true);
 
-        if (android.os.Build.VERSION.SDK_INT >= 21)
+        if (savedInstanceState != null) {
+            webView.restoreState(savedInstanceState);
+        }
+
+        if (android.os.Build.VERSION.SDK_INT >= 21) {
+            WebView.enableSlowWholeDocumentDraw();
             webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
+        }
+
+        this.registerForContextMenu(webView);
+        webView.setParentActivity(this);
+        webView.setOverScrollMode(WebView.OVER_SCROLL_ALWAYS);
+
+        // Setup WebView
+        //TODO: Dangerous on API < 17. Can we do anything about this?
+        webView.addJavascriptInterface(new JavaScriptInterface(), "AndroidBridge");
 
         /*
          * WebViewClient
@@ -308,16 +333,6 @@ public class MainActivity extends AppCompatActivity
                 return true;
             }
         });
-
-
-        if (savedInstanceState == null) {
-            if (Helpers.isOnline(MainActivity.this)) {
-                webView.loadData("", "text/html", null);
-                webView.loadUrl("https://" + podDomain);
-            } else {
-                Snackbar.make(swipeRefreshLayout, R.string.no_internet, Snackbar.LENGTH_LONG).show();
-            }
-        }
     }
 
     private void setupNavigationSlider() {
@@ -420,15 +435,8 @@ public class MainActivity extends AppCompatActivity
         if (webView.canGoBack()) {
             webView.goBack();
         } else {
-            Snackbar snackbar = Snackbar
-                    .make(swipeRefreshLayout, R.string.confirm_exit, Snackbar.LENGTH_LONG)
-                    .setAction(android.R.string.yes, new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            moveTaskToBack(true);
-                        }
-                    });
-            snackbar.show();
+            if(!snackbarExitApp.isShown())
+                snackbarExitApp.show();
         }
     }
 
@@ -691,53 +699,6 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-
-    private void alertFormElements() {
-
-    /*
-     * Inflate the XML view. activity_main is in
-     * res/layout/form_elements.xml
-     */
-        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        final View formElementsView = inflater.inflate(R.layout.ui__font_size_chooser,
-                null, false);
-
-        final RadioGroup rgFontSize = (RadioGroup) formElementsView
-                .findViewById(R.id.genderRadioGroup);
-
-        // the alert dialog
-        new AlertDialog.Builder(MainActivity.this).setView(formElementsView)
-                .setTitle("Set Font Size")
-                .setNegativeButton("OK", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        int selectedId = rgFontSize
-                                .getCheckedRadioButtonId();
-
-                        // find the radiobutton by returned id
-                        RadioButton selectedRadioButton = (RadioButton) formElementsView
-                                .findViewById(selectedId);
-
-                        if (selectedRadioButton.getId() == R.id.radNormal) {
-                            appSettings.setMinimumFontSize(8);
-                        } else if (selectedRadioButton.getId() == R.id.radLarge) {
-                            appSettings.setMinimumFontSize(16);
-                        } else if (selectedRadioButton.getId() == R.id.radLarger) {
-                            appSettings.setMinimumFontSize(20);
-                        }
-
-                        webSettings.setMinimumFontSize(appSettings.getMinimumFontSize());
-
-                        if (Helpers.isOnline(MainActivity.this)) {
-                            webView.loadUrl(webView.getUrl());
-                            setTitle(R.string.app_name);
-                        } else {
-                            Snackbar.make(swipeRefreshLayout, R.string.no_internet, Snackbar.LENGTH_LONG).show();
-                        }
-
-                    }
-                }).show();
-    }
-
     @Override
     public void onUserProfileNameChanged(String name) {
         navheaderTitle.setText(name);
@@ -945,47 +906,6 @@ public class MainActivity extends AppCompatActivity
             break;
 
             case R.id.nav_settings_app: {
-                /*
-                final CharSequence[] options = {getString(R.string.settings_font), getString(R.string.settings_view), appSettings.isLoadImages() ?
-                        getString(R.string.settings_images_switch_off) : getString(R.string.settings_images_switch_on), getString(R.string.jb_pod)};
-
-                if (Helpers.isOnline(MainActivity.this)) {
-                    new AlertDialog.Builder(MainActivity.this)
-                            .setItems(options, new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int item) {
-                                    switch (item) {
-                                        case 0:
-                                            alertFormElements();
-                                            break;
-                                        case 1:
-                                            webView.loadUrl("https://" + podDomain + "/mobile/toggle");
-                                            break;
-                                        case 2:
-                                            webSettings.setLoadsImagesAutomatically(!appSettings.isLoadImages());
-                                            appSettings.setLoadImages(!appSettings.isLoadImages());
-                                            webView.loadUrl(webView.getUrl());
-                                            break;
-                                        case 3:
-                                            new AlertDialog.Builder(MainActivity.this)
-                                                    .setTitle(getString(R.string.confirmation))
-                                                    .setMessage(getString(R.string.change_pod_warning))
-                                                    .setNegativeButton(android.R.string.no, null)
-                                                    .setPositiveButton(android.R.string.yes,
-                                                            new DialogInterface.OnClickListener() {
-                                                                public void onClick(DialogInterface dialog, int id) {
-                                                                    app.resetPodData(webView);
-                                                                    Helpers.animateToActivity(MainActivity.this, PodSelectionActivity.class, true);
-                                                                }
-                                                            })
-                                                    .show();
-                                            break;
-                                    }
-                                }
-                            }).show();
-                } else {
-                    Snackbar.make(swipeRefreshLayout, R.string.no_internet, Snackbar.LENGTH_LONG).show();
-                } */
                 startActivity(new Intent(this, SettingsActivity.class));
             }
             break;
@@ -1051,7 +971,7 @@ public class MainActivity extends AppCompatActivity
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.main__layout);
-        drawer.closeDrawer(GravityCompat.START);
+        if(drawer != null) drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 

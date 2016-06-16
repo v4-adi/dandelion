@@ -2,6 +2,9 @@ package com.github.dfa.diaspora_android.data;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
+
+import com.github.dfa.diaspora_android.App;
 
 /**
  * Created by gsantner on 20.03.16. Part of Diaspora for Android.
@@ -95,11 +98,17 @@ public class AppSettings {
     }
 
     public int getMinimumFontSize() {
-        return prefApp.getInt(PREF.MINIMUM_FONT_SIZE, 8);
-    }
-
-    public void setMinimumFontSize(int minimumFontSize) {
-        setInt(prefApp, PREF.MINIMUM_FONT_SIZE, minimumFontSize);
+        switch (prefApp.getString(PREF.MINIMUM_FONT_SIZE, "")) {
+            case "huge":
+                return 20;
+            case "large":
+                return 16;
+            case "normal":
+                return 8;
+            default:
+                prefApp.edit().putString(PREF.MINIMUM_FONT_SIZE, "normal").apply();
+                return 8;
+        }
     }
 
     public String getAvatarUrl() {

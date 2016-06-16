@@ -6,8 +6,8 @@
         <ListPreference
             android:title="@string/pref_title_font_size"
             android:key="pref_key_font_size"
-            android:summary="%s"
             android:dialogTitle="@string/pref_title_font_size"
+            android:summary="%s"
             android:entries="@array/pref_entries_font_size"
             android:entryValues="@array/pref_entry_values_font_size" />
         <CheckBoxPreference
