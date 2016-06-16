@@ -70,6 +70,7 @@ public class AppSettings {
         public static final String PODUSERPROFILE_ID = "podUserProfile_guid";
         public static final String PODDOMAIN = "podDomain";
         public static final String PODUSERPROFILE_ASPECTS = "podUserProfile_aspects";
+        public static final String IS_LOAD_DESKTOP_PAGE = "pref_key_desktop_mode";
     }
 
 
@@ -87,6 +88,10 @@ public class AppSettings {
 
     public boolean isLoadImages() {
         return prefApp.getBoolean(PREF.IS_LOAD_IMAGES, true);
+    }
+
+    public boolean isLoadDesktopPage() {
+        return prefApp.getBoolean(PREF.IS_LOAD_DESKTOP_PAGE, false);
     }
 
     public int getMinimumFontSize() {
