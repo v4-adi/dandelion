@@ -78,6 +78,10 @@
     <string name="settings_images_switch_on">Do load images</string>
     <string name="settings_images_switch_off">Do not load images</string>
     <string name="settings_view">Change view</string>
+    <string name="settings_proxy">Proxy</string>
+    <string name="proxy_enabled">Enabled</string>
+    <string name="proxy_host">Host</string>
+    <string name="proxy_port">Port</string>
     <string name="share_link">Share link as text</string>
     <string name="share_screenshot">Share screenshot of webpage</string>
     <string name="take_screenshot">Take screenshot of webpage</string>
@@ -219,4 +223,6 @@
     <string name="prefix_https" translatable="false">https://</string>
     <string name="share_dotdodot">Share…</string>
     <string name="app_hashtag" translatable="false">#DiasporaForAndroid</string>
+
+    <string name="toast_set_proxy_failed">Warning: Could not set network proxy…</string>
 </resources>
