@@ -172,5 +172,10 @@ along with this program.  If not, see http://www.gnu.org/licenses.&lt;br> &lt;br
     <string name="toast_saved_image_to_location">Speichere Bild als</string>
     <string name="toast_link_address_copied">Linkadresse kopiert …</string>
     <string name="share_dotdodot">Teilen…</string>
+    <string name="proxy_enabled">Aktiviert</string>
+    <string name="proxy_host">Host</string>
+    <string name="settings_proxy">Proxy</string>
+    <string name="proxy_port">Port</string>
+    <string name="toast_set_proxy_failed">Warnung: Proxy konnte nicht aktiviert werden…</string>
 
 </resources>

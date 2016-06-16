@@ -74,6 +74,9 @@ public class AppSettings {
         public static final String PODDOMAIN = "podDomain";
         public static final String PODUSERPROFILE_ASPECTS = "podUserProfile_aspects";
         public static final String IS_LOAD_DESKTOP_PAGE = "pref_key_desktop_mode";
+        public static final String PROXY_ENABLED = "isProxyEnabled";
+        public static final String PROXY_HOST = "proxyHost";
+        public static final String PROXY_PORT = "proxyPort";
     }
 
 
@@ -158,5 +161,42 @@ public class AppSettings {
             aspects[i] = new PodAspect(s[i]);
         }
         return aspects;
+    }
+
+    public void setProxyEnabled(boolean enabled) {
+        //commit instead of apply because the app is likely to be killed before apply is called.
+        prefApp.edit().putBoolean(PREF.PROXY_ENABLED, enabled).commit();
+    }
+
+    /**
+     * Default return value: false
+     * @return whether proxy is enabled or not
+     */
+    public boolean isProxyEnabled() {
+        return prefApp.getBoolean(PREF.PROXY_ENABLED, false);
+    }
+
+    public void setProxyHost(String host) {
+        setString(prefApp, PREF.PROXY_HOST, host);
+    }
+
+    /**
+     * Default value: ""
+     * @return proxy host
+     */
+    public String getProxyHost() {
+        return prefApp.getString(PREF.PROXY_HOST, "");
+    }
+
+    public void setProxyPort(int port) {
+        setInt(prefApp, PREF.PROXY_PORT, port);
+    }
+
+    /**
+     * Default value: 0
+     * @return proxy port
+     */
+    public int getProxyPort() {
+        return prefApp.getInt(PREF.PROXY_PORT, 0);
     }
 }

@@ -23,7 +23,9 @@ import android.Manifest;
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlarmManager;
 import android.app.AlertDialog;
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -32,9 +34,11 @@ import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -46,6 +50,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ActionMenuView;
+import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.text.SpannableString;
@@ -65,6 +70,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -94,6 +100,8 @@ import java.util.Locale;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import info.guardianproject.netcipher.NetCipher;
+import info.guardianproject.netcipher.web.WebkitProxy;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, WebUserProfileChangedListener {
@@ -171,6 +179,12 @@ public class MainActivity extends AppCompatActivity
         podUserProfile.setCallbackHandler(uiHandler);
         podUserProfile.setListener(this);
 
+        if(appSettings.isProxyEnabled()) {
+            if(!setProxy(appSettings.getProxyHost(), appSettings.getProxyPort())) {
+                Toast.makeText(MainActivity.this, R.string.toast_set_proxy_failed,Toast.LENGTH_SHORT).show();
+            }
+        }
+
         setupWebView(savedInstanceState);
 
         // Setup toolbar
@@ -240,6 +254,11 @@ public class MainActivity extends AppCompatActivity
         // Setup WebView
         //TODO: Dangerous on API < 17. Can we do anything about this?
         webView.addJavascriptInterface(new JavaScriptInterface(), "AndroidBridge");
+
+        //Set proxy
+        if(appSettings.isProxyEnabled()) {
+            if(!setProxy()) Toast.makeText(this, R.string.toast_set_proxy_failed, Toast.LENGTH_LONG).show();
+        }
 
         /*
          * WebViewClient
@@ -846,7 +865,7 @@ public class MainActivity extends AppCompatActivity
 
             case R.id.nav_aspects: {
                 if (Helpers.isOnline(MainActivity.this)) {
-                   // webView.loadUrl("https://" + podDomain + "/aspects");
+                    // webView.loadUrl("https://" + podDomain + "/aspects");
                     Helpers.showAspectList(webView, app);
                     setTitle(R.string.title_aspects);
                 } else {
@@ -990,5 +1009,67 @@ public class MainActivity extends AppCompatActivity
                 super.onRequestPermissionsResult(requestCode, permissions,
                         grantResults);
         }
+    }
+
+    /**
+     * Set proxy according to arguments. host must not be "" or null, port must be positive.
+     * Return true on success and update appSettings' proxy related values.
+     * @param host proxy host (eg. localhost or 127.0.0.1)
+     * @param port proxy port (eg. 8118)
+     * @return success
+     * @throws IllegalArgumentException if arguments do not fit specifications above
+     */
+    private boolean setProxy(final String host, final int port) {
+        if(host != null && !host.equals("") && port >=0) {
+            //Temporary change thread policy
+            StrictMode.ThreadPolicy old = StrictMode.getThreadPolicy();
+            StrictMode.ThreadPolicy tmp = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(tmp);
+
+            NetCipher.setProxy(host, port); //Proxy for HttpsUrlConnections
+            try {
+                //Proxy for the webview
+                WebkitProxy.setProxy(MainActivity.class.getName(), getApplicationContext(), null, host, port);
+            } catch (Exception e) { /*Nothing we can do*/ }
+
+            appSettings.setProxyEnabled(true);
+            appSettings.setProxyHost(host);
+            appSettings.setProxyPort(port);
+
+            StrictMode.setThreadPolicy(old);
+            webView.reload();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean setProxy() {
+        return setProxy(appSettings.getProxyHost(), appSettings.getProxyPort());
+    }
+
+    private void resetProxy() {
+        appSettings.setProxyEnabled(false);
+
+        //Temporary change thread policy
+        StrictMode.ThreadPolicy old = StrictMode.getThreadPolicy();
+        StrictMode.ThreadPolicy tmp = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(tmp);
+
+        NetCipher.clearProxy();
+        try{
+            WebkitProxy.resetProxy(MainActivity.class.getName(), this);
+        } catch (Exception e) {
+            //Nothing we can do.
+        }
+
+        StrictMode.setThreadPolicy(old);
+
+        //Restart app
+        Intent restartActivity = new Intent(this, MainActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 12374, restartActivity, PendingIntent.FLAG_CANCEL_CURRENT);
+        AlarmManager mgr = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, pendingIntent);
+        System.exit(0);
     }
 }
