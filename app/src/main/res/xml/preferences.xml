@@ -10,11 +10,6 @@
             android:summary="%s"
             android:entries="@array/pref_entries_font_size"
             android:entryValues="@array/pref_entry_values_font_size" />
-        <CheckBoxPreference
-            android:title="@string/pref_title_desktop_view"
-            android:summary="@string/pref_desc_desktop_view"
-            android:key="pref_key_desktop_mode"
-            android:defaultValue="false"/>
     </PreferenceCategory>
 
     <PreferenceCategory

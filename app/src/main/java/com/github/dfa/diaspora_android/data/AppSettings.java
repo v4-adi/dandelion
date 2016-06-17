@@ -1,5 +1,6 @@
 package com.github.dfa.diaspora_android.data;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
@@ -73,7 +74,6 @@ public class AppSettings {
         public static final String PODUSERPROFILE_ID = "podUserProfile_guid";
         public static final String PODDOMAIN = "podDomain";
         public static final String PODUSERPROFILE_ASPECTS = "podUserProfile_aspects";
-        public static final String IS_LOAD_DESKTOP_PAGE = "pref_key_desktop_mode";
         public static final String PROXY_ENABLED = "pref_key_proxy_enabled";
         public static final String PROXY_WAS_ENABLED = "wasProxyEnabled";
         public static final String PROXY_HOST = "pref_key_proxy_host";
@@ -92,13 +92,8 @@ public class AppSettings {
         setString(prefPod, PREF.PODUSERPROFILE_ID, profileId);
     }
 
-
     public boolean isLoadImages() {
         return prefApp.getBoolean(PREF.IS_LOAD_IMAGES, true);
-    }
-
-    public boolean isLoadDesktopPage() {
-        return prefApp.getBoolean(PREF.IS_LOAD_DESKTOP_PAGE, false);
     }
 
     public int getMinimumFontSize() {
@@ -164,6 +159,7 @@ public class AppSettings {
         return aspects;
     }
 
+    @SuppressLint("CommitPrefEdits")
     public void setProxyEnabled(boolean enabled) {
         //commit instead of apply because the app is likely to be killed before apply is called.
         prefApp.edit().putBoolean(PREF.PROXY_ENABLED, enabled).commit();
@@ -181,6 +177,12 @@ public class AppSettings {
         return prefApp.getBoolean(PREF.PROXY_WAS_ENABLED, false);
     }
 
+    /**
+     * Needed in order to determine, whether the proxy has just been disabled (trigger app restart)
+     * or if proxy was disabled before (do not restart app)
+     * @param b new value
+     */
+    @SuppressLint("CommitPrefEdits")
     public void setProxyWasEnabled(boolean b) {
         prefApp.edit().putBoolean(PREF.PROXY_WAS_ENABLED, b).commit();
     }

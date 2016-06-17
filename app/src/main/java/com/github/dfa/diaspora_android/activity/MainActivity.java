@@ -531,6 +531,11 @@ public class MainActivity extends AppCompatActivity
                 return true;
             }
 
+            case R.id.action_toggle_desktop_page: {
+                webView.loadUrl("https://" + podDomain + "/mobile/toggle");
+                return true;
+            }
+
             case R.id.action_compose: {
                 if (Helpers.isOnline(MainActivity.this)) {
                     webView.loadUrl("https://" + podDomain + "/status_messages/new");
@@ -706,7 +711,7 @@ public class MainActivity extends AppCompatActivity
             sharingIntent.putExtra(Intent.EXTRA_TEXT, webView.getUrl());
             Uri bmpUri = Uri.fromFile(new File(fileSaveDirectory, fileSaveName));
             sharingIntent.putExtra(Intent.EXTRA_STREAM, bmpUri);
-            startActivity(Intent.createChooser(sharingIntent, getString(R.string.share_dotdodot)));
+            startActivity(Intent.createChooser(sharingIntent, getString(R.string.share_dotdotdot)));
         }
         else {
             // Broadcast that this file is indexable

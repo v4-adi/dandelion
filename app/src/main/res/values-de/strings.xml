@@ -171,11 +171,19 @@ along with this program.  If not, see http://www.gnu.org/licenses.&lt;br> &lt;br
     <string name="context_menu_open_external_browser">In externem Browser öffnen…</string>
     <string name="toast_saved_image_to_location">Speichere Bild als</string>
     <string name="toast_link_address_copied">Linkadresse kopiert …</string>
-    <string name="share_dotdodot">Teilen…</string>
+    <string name="share_dotdotdot">Teilen…</string>
     <string name="proxy_enabled">Aktiviert</string>
     <string name="proxy_host">Host</string>
     <string name="settings_proxy">Proxy</string>
     <string name="proxy_port">Port</string>
     <string name="toast_set_proxy_failed">Warnung: Proxy konnte nicht aktiviert werden…</string>
+    <string name="pref_category_network">Netzwerk</string>
+    <string name="pref_category_visuals">Erscheinungsbild</string>
+    <string name="pref_desc_load_images">Deaktiviere das Laden von Bildern, um den Datenverbrauch zu verringern</string>
+    <string name="pref_desc_proxy_enabled">Nutze einen Proxyserver um Firewalls zu umgehen</string>
+    <string name="pref_title_font_size">Schriftgröße</string>
+    <string name="pref_title_load_images">Lade Bilder</string>
+    <string name="pref_title_proxy_enabled">Aktiviere Proxy</string>
+    <string name="toggle_desktop_page">Mobil-/Desktopansicht umschalten</string>
 
 </resources>

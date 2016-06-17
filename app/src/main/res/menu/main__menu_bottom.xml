@@ -38,6 +38,11 @@
 
     <!-- overflow menu -->
     <item
+        android:id="@+id/action_toggle_desktop_page"
+        android:icon="@drawable/ic_sync_white_24dp"
+        android:title="@string/toggle_desktop_page"
+        />
+    <item
         android:id="@+id/action_exit"
         android:icon="@drawable/ic_sync_white_24dp"
         android:title="@string/exit_app"

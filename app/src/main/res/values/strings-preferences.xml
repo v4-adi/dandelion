@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Categories -->
-    <string name="pref_category_visuals">Look and Feel</string>
+    <string name="pref_category_visuals">Appearance</string>
     <string name="pref_category_network">Network</string>
 
     <!-- Visuals -->
@@ -18,9 +18,6 @@
         <item>large</item>
         <item>huge</item>
     </array>
-    <!-- Mobile/Desktop view -->
-    <string name="pref_title_desktop_view">Desktop mode</string>
-    <string name="pref_desc_desktop_view">Load full desktop site instead of mobile view</string>
 
     <!-- Load images -->
     <string name="pref_title_load_images">Load images</string>
@@ -29,7 +26,7 @@
     <!-- Proxy -->
     <string name="pref_title_proxy_enabled">Enable Proxy</string>
     <string name="pref_desc_proxy_enabled">Proxy Diaspora\'s traffic to circumvent firewalls.\nMay require restart</string>
-    <string name="pref_title_proxy_host">Host</string>
-    <string name="pref_title_proxy_port">Port</string>
+    <string name="pref_title_proxy_host" translatable="false">Host</string>
+    <string name="pref_title_proxy_port" translatable="false">Port</string>
 
 </resources>

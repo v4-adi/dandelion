@@ -211,6 +211,7 @@
     <string name="jb_profile">Profile</string>
 
     <string name="exit_app">Exit app</string>
+    <string name="toggle_desktop_page">Toggle mobile/desktop view</string>
     <string name="diaspora" translatable="false">Diaspora</string>
     <string name="shared_by_diaspora_android">*[shared by #DiasporaForAndroid]*</string>
     <string name="toast_link_address_copied">Link address copied …</string>
@@ -221,7 +222,7 @@
     <string name="context_menu_copy_link">Copy link address to clipboard</string>
     <string name="toast_saved_image_to_location">Saving image to</string>
     <string name="prefix_https" translatable="false">https://</string>
-    <string name="share_dotdodot">Share…</string>
+    <string name="share_dotdotdot">Share…</string>
     <string name="app_hashtag" translatable="false">#DiasporaForAndroid</string>
 
     <string name="toast_set_proxy_failed">Warning: Could not set network proxy…</string>
