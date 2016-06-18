@@ -1,6 +1,8 @@
 package com.github.dfa.diaspora_android.activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
@@ -17,6 +19,7 @@ import android.util.Log;
 import com.github.dfa.diaspora_android.App;
 import com.github.dfa.diaspora_android.R;
 import com.github.dfa.diaspora_android.data.AppSettings;
+import com.github.dfa.diaspora_android.util.Helpers;
 
 /**
  * @author vanitas
@@ -82,6 +85,19 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
                 results.putExtra(MainActivity.URL_MESSAGE, "https://" + podDomain + "/contacts");
                 setResult(Activity.RESULT_OK, results);
                 finish();
+            case "pref_key_change_pod":
+                new AlertDialog.Builder(SettingsActivity.this)
+                        .setTitle(getString(R.string.confirmation))
+                        .setMessage(getString(R.string.change_pod_warning))
+                        .setNegativeButton(android.R.string.no, null)
+                        .setPositiveButton(android.R.string.yes,
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        setResult(MainActivity.RESULT_CODE_CHANGE_POD);
+                                        finish();
+                                    }
+                                })
+                        .show();
         }
         return super.onPreferenceTreeClick(screen, preference);
     }
