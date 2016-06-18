@@ -58,11 +58,6 @@
                 android:title="@string/jb_settings_view" />
 
             <item
-                android:id="@+id/nav_settings_diaspora"
-                android:icon="@drawable/jb_stream"
-                android:title="@string/jb_settings_diaspora" />
-
-            <item
                 android:id="@+id/nav_license_help"
                 android:icon="@drawable/jb_license"
                 android:title="@string/jb_help_license" />

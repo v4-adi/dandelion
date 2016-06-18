@@ -1,5 +1,6 @@
 package com.github.dfa.diaspora_android.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
@@ -9,6 +10,7 @@ import android.preference.EditTextPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
+import android.preference.PreferenceScreen;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
@@ -21,17 +23,19 @@ import com.github.dfa.diaspora_android.data.AppSettings;
  */
 public class SettingsActivity extends PreferenceActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
 
+    private SharedPreferences sharedPreferences;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getPreferenceManager().setSharedPreferencesName("app");
         addPreferencesFromResource(R.xml.preferences);
-        getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
+        sharedPreferences = getPreferenceScreen().getSharedPreferences();
+        sharedPreferences.registerOnSharedPreferenceChangeListener(this);
         setPreferenceSummaries();
-        SharedPreferences preferences = getPreferenceScreen().getSharedPreferences();
-        preferences.edit().putBoolean(AppSettings.PREF.PROXY_WAS_ENABLED,
-                preferences.getBoolean(AppSettings.PREF.PROXY_ENABLED, false)).apply();
+        setResult(Activity.RESULT_CANCELED);
+        sharedPreferences.edit().putBoolean(AppSettings.PREF.PROXY_WAS_ENABLED,
+                sharedPreferences.getBoolean(AppSettings.PREF.PROXY_ENABLED, false)).apply();
     }
 
     private void setPreferenceSummaries() {
@@ -59,5 +63,26 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
             listPref.setSummary(listPref.getEntry());
             return;
         }
+    }
+
+    @Override
+    public boolean onPreferenceTreeClick(PreferenceScreen screen, Preference preference) {
+        Intent results = new Intent();
+        String podDomain = ((App)getApplication()).getSettings().getPodDomain();
+        switch(preference.getKey()) {
+            case "pref_key_personal_settings":
+                results.putExtra(MainActivity.URL_MESSAGE, "https://" + podDomain + "/user/edit");
+                setResult(Activity.RESULT_OK, results);
+                finish();
+            case "pref_key_manage_tags":
+                results.putExtra(MainActivity.URL_MESSAGE, "https://" + podDomain + "/tag_followings/manage");
+                setResult(Activity.RESULT_OK, results);
+                finish();
+            case "pref_key_manage_contacts":
+                results.putExtra(MainActivity.URL_MESSAGE, "https://" + podDomain + "/contacts");
+                setResult(Activity.RESULT_OK, results);
+                finish();
+        }
+        return super.onPreferenceTreeClick(screen, preference);
     }
 }

@@ -108,7 +108,8 @@ public class MainActivity extends AppCompatActivity
     static final int INPUT_FILE_REQUEST_CODE = 1;
     private static final int REQUEST_CODE_ASK_PERMISSIONS = 123;
     public static final int REQUEST_CODE_ASK_PERMISSIONS_SAVE_IMAGE = 124;
-    private static final String URL_MESSAGE = "URL_MESSAGE";
+    public static final int REQUEST_CODE_SETTINGS = 125;
+    public static final String URL_MESSAGE = "URL_MESSAGE";
 
     private App app;
     private String podDomain;
@@ -167,6 +168,7 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Intent startIntent = getIntent();
         // Bind UI
         setContentView(R.layout.main__activity);
         ButterKnife.bind(this);
@@ -216,10 +218,11 @@ public class MainActivity extends AppCompatActivity
         swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary,
                 R.color.fab_big);
 
+        String url = "https://" + podDomain;
         if (savedInstanceState == null) {
             if (Helpers.isOnline(MainActivity.this)) {
                 webView.loadData("", "text/html", null);
-                webView.loadUrl("https://" + podDomain);
+                webView.loadUrl(url);
             } else {
                 Snackbar.make(swipeRefreshLayout, R.string.no_internet, Snackbar.LENGTH_LONG).show();
             }
@@ -404,6 +407,12 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == REQUEST_CODE_SETTINGS) {
+            if(resultCode == Activity.RESULT_OK) {
+                String url = data.getStringExtra(URL_MESSAGE);
+                webView.loadUrl(url);
+            }
+        }
         if (requestCode != INPUT_FILE_REQUEST_CODE || mFilePathCallback == null) {
             super.onActivityResult(requestCode, resultCode, data);
             return;
@@ -930,29 +939,7 @@ public class MainActivity extends AppCompatActivity
             break;
 
             case R.id.nav_settings_app: {
-                startActivity(new Intent(this, SettingsActivity.class));
-            }
-            break;
-
-            case R.id.nav_settings_diaspora: {
-                final CharSequence[] options2 = {getString(R.string.jb_settings), getString(R.string.jb_manage_tags),
-                        getString(R.string.jb_contacts)};
-                if (Helpers.isOnline(MainActivity.this)) {
-                    new AlertDialog.Builder(MainActivity.this)
-                            .setItems(options2, new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int item) {
-                                    if (options2[item].equals(getString(R.string.jb_settings)))
-                                        webView.loadUrl("https://" + podDomain + "/user/edit");
-                                    if (options2[item].equals(getString(R.string.jb_manage_tags)))
-                                        webView.loadUrl("https://" + podDomain + "/tag_followings/manage");
-                                    if (options2[item].equals(getString(R.string.jb_contacts)))
-                                        webView.loadUrl("https://" + podDomain + "/contacts");
-                                }
-                            }).show();
-                } else {
-                    Snackbar.make(swipeRefreshLayout, R.string.no_internet, Snackbar.LENGTH_LONG).show();
-                }
+                startActivityForResult(new Intent(this, SettingsActivity.class), REQUEST_CODE_SETTINGS);
             }
             break;
 

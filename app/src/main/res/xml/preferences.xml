@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Appearance -->
     <PreferenceCategory
         android:title="@string/pref_category_visuals"
         android:key="pref_key_category_visuals">
@@ -12,6 +13,27 @@
             android:entryValues="@array/pref_entry_values_font_size" />
     </PreferenceCategory>
 
+    <!-- Diaspora Pod Settings -->
+    <PreferenceCategory
+        android:title="@string/pref_category_pod_settings"
+        android:key="pref_key_category_pod_settings">
+        <Preference
+            android:title="@string/pref_title_personal_settings"
+            android:key="pref_key_personal_settings">
+        </Preference>
+
+        <Preference
+            android:title="@string/pref_title_manage_tags"
+            android:key="pref_key_manage_tags">
+        </Preference>
+
+        <Preference
+            android:title="@string/pref_title_manage_contacts"
+            android:key="pref_key_manage_contacts">
+        </Preference>
+    </PreferenceCategory>
+
+    <!-- Networking -->
     <PreferenceCategory
         android:title="@string/pref_category_network"
         android:key="pref_key_category_network">
@@ -37,5 +59,4 @@
             android:dependency="pref_key_proxy_enabled"
             android:inputType="number" />
     </PreferenceCategory>
-
 </PreferenceScreen>

@@ -3,6 +3,7 @@
     <!-- Categories -->
     <string name="pref_category_visuals">Appearance</string>
     <string name="pref_category_network">Network</string>
+    <string name="pref_category_pod_settings">Pod settings</string>
 
     <!-- Visuals -->
     <!-- Font size -->
@@ -28,5 +29,11 @@
     <string name="pref_desc_proxy_enabled">Proxy Diaspora\'s traffic to circumvent firewalls.\nMay require restart</string>
     <string name="pref_title_proxy_host" translatable="false">Host</string>
     <string name="pref_title_proxy_port" translatable="false">Port</string>
+
+    <!-- Diaspora Settings -->
+    <string name="pref_title_personal_settings">Personal settings</string>
+    <string name="pref_title_manage_contacts">Contacts</string>
+    <string name="pref_title_manage_tags">Manage Hashtags</string>
+    <string name="pref_title_change_pod">Change pod</string>
 
 </resources>

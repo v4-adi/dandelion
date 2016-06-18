@@ -46,14 +46,10 @@
     <string name="jb_stream">Stream</string>
     <string name="jb_liked">Gelikte Beiträge</string>
     <string name="jb_commented">Kommentierte Beiträge</string>
-    <string name="jb_contacts">Kontakte</string>
     <string name="jb_mentions">Erwähnungen</string>
     <string name="jb_activities">Aktivitäten</string>
     <string name="jb_followed_tags">Verfolgte Tags</string>
-    <string name="jb_manage_tags">Tags verwalten</string>
-    <string name="jb_settings">Persönliche Einstellungen</string>
     <string name="jb_aspects">Aspekte</string>
-    <string name="jb_pod">Pod wechseln</string>
     <string name="jb_public">Öffentliche Aktivitäten</string>
 
     // Floating Action Buttons - Titles
@@ -85,7 +81,6 @@
     <string name="share_screenshot">Bildschirmfoto teilen</string>
     <string name="take_screenshot">Bildschirmfoto speichern</string>
     <string name="toast_screenshot">Bildschirmfoto wird gespeichert unter:</string>
-    <string name="jb_settings_diaspora">Pod Einstellungen</string>
     <string name="jb_settings_view">App Einstellungen</string>
     <string name="help_help">Markdown Formatierung</string>
     <string name="help_license">Lizenz</string>
