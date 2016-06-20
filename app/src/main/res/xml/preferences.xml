@@ -19,22 +19,26 @@
         android:key="pref_key_category_pod_settings">
         <Preference
             android:title="@string/pref_title_personal_settings"
-            android:key="pref_key_personal_settings">
+            android:key="pref_key_personal_settings"
+            android:summary="@string/pref_desc_personal_settings">
         </Preference>
 
         <Preference
             android:title="@string/pref_title_manage_tags"
-            android:key="pref_key_manage_tags">
+            android:key="pref_key_manage_tags"
+            android:summary="@string/pref_desc_manage_tags">
         </Preference>
 
         <Preference
             android:title="@string/pref_title_manage_contacts"
-            android:key="pref_key_manage_contacts">
+            android:key="pref_key_manage_contacts"
+            android:summary="@string/pref_desc_manage_contacts">
         </Preference>
 
         <Preference
-            android:title="@string/pref_title_change_pod"
-            android:key="pref_key_change_pod">
+            android:title="@string/pref_title_change_account"
+            android:key="pref_key_change_account"
+            android:summary="@string/pref_desc_change_account">
         </Preference>
     </PreferenceCategory>
 

@@ -48,7 +48,6 @@
     <string name="confirmation">Confirmation</string>
     <string name="confirm_pod">Do you really want to use\nhttps://%1$s\nas your Diaspora Pod?</string>
     <string name="confirm_exit">Do you want to exit?</string>
-    <string name="change_pod_warning">This will erase all cookies and session data. Do you really want to change pods?</string>
     <string name="new_post">D* New message</string>
     <string name="notifications">Notifications</string>
     <string name="messages">Conversations</string>

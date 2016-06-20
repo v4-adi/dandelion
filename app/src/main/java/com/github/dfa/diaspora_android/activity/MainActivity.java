@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity
     private static final int REQUEST_CODE_ASK_PERMISSIONS = 123;
     public static final int REQUEST_CODE_ASK_PERMISSIONS_SAVE_IMAGE = 124;
     public static final int REQUEST_CODE_SETTINGS = 125;
-    public static final int RESULT_CODE_CHANGE_POD = 130;
+    public static final int RESULT_CODE_CHANGE_ACCOUNT = 130;
     public static final String URL_MESSAGE = "URL_MESSAGE";
 
     private App app;
@@ -412,7 +412,7 @@ public class MainActivity extends AppCompatActivity
             if(resultCode == Activity.RESULT_OK) {
                 String url = data.getStringExtra(URL_MESSAGE);
                 webView.loadUrl(url);
-            } else if(resultCode == RESULT_CODE_CHANGE_POD) {
+            } else if(resultCode == RESULT_CODE_CHANGE_ACCOUNT) {
                 app.resetPodData(webView);
                 Helpers.animateToActivity(MainActivity.this, PodSelectionActivity.class, true);
             }
