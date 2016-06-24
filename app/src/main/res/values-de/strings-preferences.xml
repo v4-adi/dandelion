@@ -21,6 +21,8 @@
     <!-- Proxy -->
     <string name="pref_title_proxy_enabled">Aktiviere Proxy</string>
     <string name="pref_desc_proxy_enabled">Nutze einen Proxyserver um Firewalls zu umgehen</string>
+    <string name="pref_title_proxy_host">Host</string>
+    <string name="pref_title_proxy_port">Port</string>
 
     <!-- Diaspora Settings -->
     <string name="pref_title_personal_settings">Persönliche Einstellungen</string>

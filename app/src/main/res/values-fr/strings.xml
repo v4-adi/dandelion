@@ -40,7 +40,6 @@
     <string name="confirmation">Confirmation</string>
     <string name="confirm_pod">Voulez-vous vraiment utiliser\nhttps://%1$s\ncomme pod Diaspora ?</string>
     <string name="confirm_exit">Souhaitez-vous quitter ?</string>
-    <string name="change_pod_warning">Cette opération va effacer les cookies et données de session. Voulez-vous vraiment changer de pod ?</string>
     <string name="new_post">D* Nouveau message</string>
     <string name="notifications">Notifications</string>
     <string name="messages">Discussions</string>
@@ -52,27 +51,16 @@
     <string name="jb_stream">Flux</string>
     <string name="jb_liked">Aimés</string>
     <string name="jb_commented">Commentés</string>
-    <string name="jb_contacts">Contacts</string>
     <string name="jb_mentions">Mentions</string>
     <string name="jb_activities">Activités</string>
     <string name="jb_followed_tags">Hashtags suivis</string>
-    <string name="jb_manage_tags">Gérer les Hashtags</string>
-    <string name="jb_settings">Paramètres personnels</string>
     <string name="jb_aspects">Aspects</string>
-    <string name="jb_pod">Changer de pod</string>
     <string name="jb_public">Activités publiques</string>
     <string name="jb_settings_view">Paramètres de l\'application</string>
-    <string name="jb_settings_diaspora">Paramètres du pod</string>
     <string name="jb_share">Partager du contenu</string>
 
     <string name="settings_font">Changer la taille de la police</string>
-    <string name="settings_images_switch_on">Charger les images</string>
-    <string name="settings_images_switch_off">Ne pas charger les images</string>
     <string name="settings_view">Changer de vue</string>
-    <string name="settings_proxy">Proxy</string>
-    <string name="proxy_enabled">Activé</string>
-    <string name="proxy_host">Hôte</string>
-    <string name="proxy_port">Port</string>
     <string name="share_link">Partager le lien comme texte</string>
     <string name="share_screenshot">Partager la capture d\'écran d\'un site web</string>
     <string name="take_screenshot">Prendre une capture d\'écran d\'un site web</string>
@@ -171,7 +159,7 @@
     <string name="context_menu_open_external_browser">Ouvrir dans un navigateur externe...</string>
     <string name="context_menu_copy_link">Copier le lien dans le presse-papier</string>
     <string name="toast_saved_image_to_location">Enregistrer l\'image sous</string>
-    <string name="share_dotdodot">Partager...</string>
 
     <string name="toast_set_proxy_failed">Attention : connexion au proxy impossible...</string>
+    <string name="share_dotdotdot">Partager...</string>
 </resources>
