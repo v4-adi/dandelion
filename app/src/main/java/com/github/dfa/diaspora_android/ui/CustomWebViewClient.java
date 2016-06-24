@@ -38,7 +38,7 @@ public class CustomWebViewClient extends WebViewClient {
     public void onPageStarted(WebView view, String url, Bitmap favicon) {
         super.onPageStarted(view, url, favicon);
         swipeRefreshLayout.setEnabled(true);
-        if(url.endsWith("/conversations/new")){
+        if(url.contains(app.getSettings().getPodDomain()+"/conversations/") || url.endsWith("status_messages/new")){
             swipeRefreshLayout.setEnabled(false);
         }
     }
