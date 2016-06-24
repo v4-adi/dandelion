@@ -790,7 +790,7 @@ public class MainActivity extends AppCompatActivity
                     if (item != null) {
                         if (notificationCount > 0) {
                             item.setIcon(R.drawable.ic_bell_ring_white_24dp);
-                            if(!snackbarNewNotification.isShown())
+                            if(!snackbarNewNotification.isShown() && !webView.getUrl().equals("https://" + podDomain + "/notifications"))
                                 snackbarNewNotification.show();
                         } else {
                             item.setIcon(R.drawable.ic_bell_outline_white_24dp);
@@ -824,7 +824,7 @@ public class MainActivity extends AppCompatActivity
                     if (item != null) {
                         if (conversationCount > 0) {
                             item.setIcon(R.drawable.ic_message_text_white_24dp);
-                            if(!snackbarNewNotification.isShown())
+                            if(!snackbarNewNotification.isShown() && !webView.getUrl().equals("https://" + podDomain + "/notifications"))
                                 snackbarNewNotification.show();
                         } else {
                             item.setIcon(R.drawable.ic_message_text_outline_white_24dp);
