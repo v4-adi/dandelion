@@ -126,6 +126,7 @@
         &#8226; gsantner https://gsantner.github.io&lt;br>
         &#8226; martinchodev https://github.com/martinchodev&lt;br>
         &#8226; scoute-dich https://github.com/scoute-dich&lt;br> &lt;br>
+        &#8226; vanitasvitae https://github.com/vanitasvitae&lt;br> &lt;br>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -145,7 +146,6 @@ along with this program.  If not, see http://www.gnu.org/licenses.&lt;br> &lt;br
         Sie wurden von \"Lydia\" veröffentlicht und stehen unter der cc by-nc-sa Lizenz.&lt;/i></string>
     <string name="splash_screen_description">Startbildschirm</string>
     <string name="new_notifications">Ungelesene Benachrichtigung. Lesen?</string>
-    <string name="help_about">Changelog</string>
     <string name="jb_profile">Profil</string>
     <string name="shared_by_diaspora_android">*[geteilt durch #DiasporaForAndroid]*</string>
     <string name="context_menu_save_image">Bild speichern</string>

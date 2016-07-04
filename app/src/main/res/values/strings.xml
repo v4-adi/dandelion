@@ -73,7 +73,6 @@
 
     <string name="help_license">License</string>
     <string name="help_help">Markdown formating</string>
-    <string name="help_about">Changelog</string>
 
     <string name="toast_screenshot">Saving screenshot as:</string>
 
@@ -131,45 +130,13 @@
         You can create the following symbols and other special characters using a combination of characters:&lt;br>
         (c) = © ; (r) = ® ; x^2 = x²"</string>
 
-    <string name="about_text" translatable="false">
-        &lt;i>For more informations visit the Projectsite on github:&lt;br>
-        https://github.com/scoute-dich/Diaspora&lt;/i>&lt;br>&lt;br>
-
-        &lt;b>v1.3.&lt;/b>&lt;br>
-        &lt;i>big thanks to gsantner&lt;/i>&lt;br>
-
-        &#8226; gitignore&lt;br>
-        &#8226; Link to profile&lt;br>
-        &#8226; Move menu actions&lt;br>
-        &#8226; Refactoring part1&lt;br>
-        &#8226; bump libs&lt;br>&lt;br>
-
-        &lt;b>v1.2.&lt;/b>&lt;br>
-        &#8226; using strings in podactivity&lt;br>
-        &#8226; improved share activity&lt;br>&lt;br>
-
-        &lt;b>v1.1.&lt;/b>&lt;br>
-        &#8226; new about app and help dialogs&lt;br>
-        &#8226; better snackbar integration&lt;br>&lt;br>
-
-        &lt;b>v1.0.1.&lt;/b>&lt;br>
-        &#8226; click on titelbar to load stream&lt;br>&lt;br>
-
-        &lt;b>v1.0.&lt;/b>&lt;br>
-        &#8226; all features of original Diaspora-Native-Webapp&lt;br>
-        &#8226; popup menus (view settings, diaspora settings, share function)&lt;br>
-        &#8226; share function (link, screenshot)&lt;br>
-        &#8226; design improvements&lt;br>
-        &#8226; implemented android marshmallow perimssion model&lt;br>
-        &#8226; implemented swipe to refresh
-    </string>
-
     <string name="license_title" translatable="false">Copyright © 2015–2016</string>
     <string name="license_text">&lt;b>Main Contributors:&lt;/b>&lt;br>
 
         &#8226; gsantner https://gsantner.github.io&lt;br>
         &#8226; martinchodev https://github.com/martinchodev&lt;br>
         &#8226; scoute-dich https://github.com/scoute-dich&lt;br> &lt;br>
+        &#8226; vanitasvitae https://github.com/vanitasvitae&lt;br> &lt;br>
 
         This program is free software: you can redistribute it and/or modify
         it under the terms of the GNU General Public License as published by

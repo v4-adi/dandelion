@@ -938,7 +938,7 @@ public class MainActivity extends AppCompatActivity
             break;
 
             case R.id.nav_license_help: {
-                final CharSequence[] options = {getString(R.string.help_license), getString(R.string.help_about), getString(R.string.help_help)};
+                final CharSequence[] options = {getString(R.string.help_license), getString(R.string.help_help)};
                 new AlertDialog.Builder(MainActivity.this)
                         .setItems(options, new DialogInterface.OnClickListener() {
                             @Override
@@ -948,16 +948,6 @@ public class MainActivity extends AppCompatActivity
                                     Linkify.addLinks(s, Linkify.WEB_URLS);
                                     final AlertDialog d = new AlertDialog.Builder(MainActivity.this)
                                             .setTitle(R.string.license_title)
-                                            .setMessage(s)
-                                            .setPositiveButton(android.R.string.yes, null).show();
-                                    d.show();
-                                    ((TextView) d.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
-                                }
-                                if (options[item].equals(getString(R.string.help_about))) {
-                                    final SpannableString s = new SpannableString(Html.fromHtml(getString(R.string.about_text)));
-                                    Linkify.addLinks(s, Linkify.WEB_URLS);
-                                    final AlertDialog d = new AlertDialog.Builder(MainActivity.this)
-                                            .setTitle(R.string.help_about)
                                             .setMessage(s)
                                             .setPositiveButton(android.R.string.yes, null).show();
                                     d.show();
