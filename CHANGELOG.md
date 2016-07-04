@@ -1,3 +1,14 @@
+# v0.1.3 (2016-07-04)
+- Added titles on top toolbar (by @scoute-dich)
+- Made bottom toolbar automatically disappear
+- Added option to share images to external app
+- Added option to enable proxy (by @vanitasvitae)
+- Added french translation (thanks to SansPseudoFix)
+- Added new settings section (by @vanitasvitae)
+- Fixed buggy snackbars
+- Removed swipe-to-refresh functionality in some places
+- Big thanks and good luck to @scoute-dich and @martinchodev for accompanying this project :)
+
 # v0.1.2 (2016-06-05)
 - Extract and show aspects (by @gsantner)
 - Cache last podlist

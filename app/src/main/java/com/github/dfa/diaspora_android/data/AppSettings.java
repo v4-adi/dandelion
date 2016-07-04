@@ -3,9 +3,6 @@ package com.github.dfa.diaspora_android.data;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
-
-import com.github.dfa.diaspora_android.App;
 
 /**
  * Created by gsantner on 20.03.16. Part of Diaspora for Android.

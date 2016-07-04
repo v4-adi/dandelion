@@ -171,7 +171,6 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Intent startIntent = getIntent();
         // Bind UI
         setContentView(R.layout.main__activity);
         ButterKnife.bind(this);
@@ -710,7 +709,7 @@ public class MainActivity extends AppCompatActivity
             Snackbar.make(swipeRefreshLayout, getString(R.string.toast_screenshot) + " " + fileSaveName, Snackbar.LENGTH_LONG).show();
         }
 
-        Bitmap bitmap = null;
+        Bitmap bitmap;
         webView.setDrawingCacheEnabled(true);
         bitmap = Bitmap.createBitmap(webView.getDrawingCache());
         webView.setDrawingCacheEnabled(false);
@@ -727,8 +726,7 @@ public class MainActivity extends AppCompatActivity
             if (bitmapWriter != null) {
                 try {
                     bitmapWriter.close();
-                } catch (IOException _ignored) {
-                }
+                } catch (IOException _ignored) {/* Nothing */}
             }
         }
 

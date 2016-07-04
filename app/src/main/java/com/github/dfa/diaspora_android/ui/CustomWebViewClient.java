@@ -54,9 +54,9 @@ public class CustomWebViewClient extends WebViewClient {
         if (cookies != null) {
             cookieManager.setCookie(url, cookies);
             cookieManager.setCookie("https://" + app.getSettings().getPodDomain(), cookies);
-            for (String c : cookies.split(";")) {
-                //Log.d(App.TAG, "Cookie: " + c.split("=")[0] + " Value:" + c.split("=")[1]);
-            }
+            //for (String c : cookies.split(";")) {
+            // Log.d(App.TAG, "Cookie: " + c.split("=")[0] + " Value:" + c.split("=")[1]);
+            //}
             //new ProfileFetchTask(app).execute();
         }
     }

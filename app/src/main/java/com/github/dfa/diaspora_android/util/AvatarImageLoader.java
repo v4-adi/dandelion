@@ -20,10 +20,7 @@ public class AvatarImageLoader {
     }
 
     public boolean clearAvatarImage() {
-        if (isAvatarDownloaded()) {
-            return avatarFile.delete();
-        }
-        return true;
+        return (!isAvatarDownloaded() || avatarFile.delete());
     }
 
     public boolean loadToImageView(ImageView imageView) {

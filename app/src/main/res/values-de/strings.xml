@@ -67,11 +67,6 @@
     <string name="messages">Unterhaltungen</string>
     <string name="new_post">D* Neuer Beitrag</string>
     <string name="notifications">Benachrichtigungen</string>
-    <string name="settings_font">Schriftgröße ändern</string>
-    <string name="settings_view">Ansicht wechseln</string>
-    <string name="normal">normal</string>
-    <string name="large">groß</string>
-    <string name="huge">riesig</string>
     <string name="image">Konnte Bild nicht laden …</string>
     <string name="jb_share">Inhalt Teilen</string>
     <string name="share_link">Link als Text teilen</string>
@@ -149,7 +144,6 @@ along with this program.  If not, see http://www.gnu.org/licenses.&lt;br> &lt;br
         https://www.flickr.com/photos/129581906@N06/sets/72157651933980136/with/16594947123.
         Sie wurden von \"Lydia\" veröffentlicht und stehen unter der cc by-nc-sa Lizenz.&lt;/i></string>
     <string name="splash_screen_description">Startbildschirm</string>
-    <string name="new_conversations">Ungelesene Unterhaltung. Öffnen?</string>
     <string name="new_notifications">Ungelesene Benachrichtigung. Lesen?</string>
     <string name="help_about">Changelog</string>
     <string name="jb_profile">Profil</string>

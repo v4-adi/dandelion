@@ -48,8 +48,7 @@ public class PodAspect {
             j.put("id", id);
             j.put("name", name);
             j.put("selected", selected);
-        } catch (JSONException e) {
-        }
+        } catch (JSONException e) {/*Nothing*/}
         return j.toString();
     }
 
@@ -67,10 +66,7 @@ public class PodAspect {
 
     @Override
     public boolean equals(Object o) {
-        if (o instanceof PodAspect) {
-            return ((PodAspect) o).id == id;
-        }
-        return false;
+        return o instanceof PodAspect && ((PodAspect) o).id == id;
     }
 
     public String toShareAbleText() {

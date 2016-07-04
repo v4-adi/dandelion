@@ -5,7 +5,6 @@
 
     <string name="reload">Rafraîchir</string>
     <string name="new_notifications">Notifications non lues. Lire ?</string>
-    <string name="new_conversations">Conversations non lues. Lire ?</string>
     <string name="permissions_screenshot">Vous devez autoriser \"Modifier ou supprimer le contenu de la carte SD \" pour sauvegarder les captures d\'écrans. Ensuite, vous devriez fermer l\'application ou redémarrer votre téléphone. Si vous n\'avez pas autorisé l\'accès à l\'espace de stockage mais que vous souhaitez utiliser la fonctionnalité de prise de capture d\'écran plus tard, vous pouvez donner la permission plus tard. Veuillez ouvrir : Paramètres - applications - Diaspora. Dans la section Autorisations, vous pouvez autoriser \"Modifier ou supprimer le contenu de la carte SD \".</string>
     <string name="permissions_image">Vous devez autoriser \"Modifier ou supprimer le contenu de la carte SD \" pour sauvegarder les images. Ensuite, vous devriez fermer l\'application ou redémarrer votre téléphone. Si vous n\'avez pas autorisé l\'accès à l\'espace de stockage mais que vous souhaitez sauvegarder des images ultérieurement, vous pouvez donner la permission plus tard. Veuillez ouvrir : Paramètres - applications - Diaspora. Dans la section Autorisations, vous pouvez autoriser \"Modifier ou supprimer le contenu de la carte SD \".</string>
     <string name="permission_denied">Permission refusée.</string>
@@ -59,8 +58,6 @@
     <string name="jb_settings_view">Paramètres de l\'application</string>
     <string name="jb_share">Partager du contenu</string>
 
-    <string name="settings_font">Changer la taille de la police</string>
-    <string name="settings_view">Changer de vue</string>
     <string name="share_link">Partager le lien comme texte</string>
     <string name="share_screenshot">Partager la capture d\'écran d\'un site web</string>
     <string name="take_screenshot">Prendre une capture d\'écran d\'un site web</string>
@@ -144,22 +141,20 @@
         They were published by \"Lydia\" and are licensed under cc by-nc-sa.&lt;/i></string>
 
     <string name="splash_screen_description">Splash screen</string>
-    <string name="normal">Normal</string>
-    <string name="large">Large</string>
-    <string name="huge">Énorme</string>
     <string name="image">Impossible de récupérer l\'image</string>
     <string name="jb_profile">Profile</string>
 
     <string name="exit_app">Quitter l\'application</string>
+    <string name="toggle_desktop_page">Toggle mobile/desktop view</string>
     <string name="shared_by_diaspora_android">*[partagé via #DiasporaForAndroid]*</string>
-    <string name="toast_link_address_copied">Lien copié...</string>
+    <string name="toast_link_address_copied">Lien copié…</string>
     <string name="context_menu_share_link">Partager un lien</string>
     <string name="context_menu_save_image">Enregistrer l\'image</string>
     <string name="context_menu_share_image">Partager l\'image</string>
-    <string name="context_menu_open_external_browser">Ouvrir dans un navigateur externe...</string>
+    <string name="context_menu_open_external_browser">Ouvrir dans un navigateur externe…</string>
     <string name="context_menu_copy_link">Copier le lien dans le presse-papier</string>
     <string name="toast_saved_image_to_location">Enregistrer l\'image sous</string>
 
-    <string name="toast_set_proxy_failed">Attention : connexion au proxy impossible...</string>
-    <string name="share_dotdotdot">Partager...</string>
+    <string name="toast_set_proxy_failed">Attention: connexion au proxy impossible…</string>
+    <string name="share_dotdotdot">Partager…</string>
 </resources>

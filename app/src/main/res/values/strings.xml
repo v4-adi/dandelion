@@ -7,7 +7,6 @@
     <string name="app_name" translatable="false">Diaspora</string>
     <string name="reload">Reload</string>
     <string name="new_notifications">Unread notification. Want to read it?</string>
-    <string name="new_conversations">Unread conversation. Open it?</string>
     <string name="permissions_screenshot">You must grant \"Access Storage Permission\" to save screenshots. After that you should
         completely close the app or restart the phone. If you don\'t permit the storage access but want to use the
         screenshot function at a later time, you can grant the permission later. Please open then: systemsettings - apps -
@@ -68,8 +67,6 @@
     <string name="jb_settings_view">App settings</string>
     <string name="jb_share">Share content</string>
 
-    <string name="settings_font">Change font size</string>
-    <string name="settings_view">Change view</string>
     <string name="share_link">Share link as text</string>
     <string name="share_screenshot">Share screenshot of webpage</string>
     <string name="take_screenshot">Take screenshot of webpage</string>
@@ -192,9 +189,6 @@
         They were published by \"Lydia\" and are licensed under cc by-nc-sa.&lt;/i></string>
 
     <string name="splash_screen_description">Splash screen</string>
-    <string name="normal">Normal</string>
-    <string name="large">Large</string>
-    <string name="huge">Huge</string>
     <string name="image">Unable to get image</string>
     <string name="jb_profile">Profile</string>
 
