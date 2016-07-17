@@ -91,12 +91,14 @@ public class Helpers {
                 "    if (typeof gon !== 'undefined' && typeof gon.user !== 'undefined') {" +
                 "        var followed_tags = document.getElementById(\"followed_tags\");" +
                 "        if(followed_tags != null) {" +
-                "            var links = followed_tags.nextElementSibling.children[0].children;" +
-                "            var tags = [];" +
-                "            for(var i = 0; i < links.length - 1; i++) {" + // the last element is "Manage followed tags" link
-                "                tags.push(links[i].innerText.substring(1));" +
-                "            }" +
-                "            gon.user[\"android_app.followed_tags\"] = tags;" +
+                "            try {" +
+                "                var links = followed_tags.nextElementSibling.children[0].children;" +
+                "                var tags = [];" +
+                "                for(var i = 0; i < links.length - 1; i++) {" + // the last element is "Manage followed tags" link
+                "                    tags.push(links[i].innerText.substring(1));" +
+                "                }" +
+                "                gon.user[\"android_app.followed_tags\"] = tags;" +
+                "            } catch(e) {}" +
                 "        }" +
                 "       var userProfile = JSON.stringify(gon.user);" +
                 "       AndroidBridge.setUserProfile(userProfile.toString());" +
