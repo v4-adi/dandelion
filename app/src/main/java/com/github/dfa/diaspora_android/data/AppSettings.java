@@ -71,6 +71,7 @@ public class AppSettings {
         public static final String PODUSERPROFILE_ID = "podUserProfile_guid";
         public static final String PODDOMAIN = "podDomain";
         public static final String PODUSERPROFILE_ASPECTS = "podUserProfile_aspects";
+        public static final String PODUSERPROFILE_FOLLOWED_TAGS = "podUserProfile_followedTags";
         public static final String PROXY_ENABLED = "pref_key_proxy_enabled";
         public static final String PROXY_WAS_ENABLED = "wasProxyEnabled";
         public static final String PROXY_HOST = "pref_key_proxy_host";
@@ -154,6 +155,14 @@ public class AppSettings {
             aspects[i] = new PodAspect(s[i]);
         }
         return aspects;
+    }
+
+    public String[] getFollowedTags() {
+        return getStringArray(prefPod, PREF.PODUSERPROFILE_FOLLOWED_TAGS);
+    }
+
+    public void setFollowedTags(String[] tags) {
+        setStringArray(prefPod, PREF.PODUSERPROFILE_FOLLOWED_TAGS, tags);
     }
 
     @SuppressLint("CommitPrefEdits")

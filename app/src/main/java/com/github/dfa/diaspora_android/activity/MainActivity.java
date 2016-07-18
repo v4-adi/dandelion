@@ -858,10 +858,10 @@ public class MainActivity extends AppCompatActivity
             }
             break;
 
-            // TODO followed_tags currently not implemented as single viewable page (0.5.7.1-paf04894e, 2016 March 20)
             case R.id.nav_followed_tags: {
                 if (Helpers.isOnline(MainActivity.this)) {
-                    webView.loadUrl("https://" + podDomain + "/followed_tags");
+//                    webView.loadUrl("https://" + podDomain + "/followed_tags");
+                    Helpers.showFollowedTagsList(webView, app);
                     setTitle(R.string.jb_followed_tags);
                 } else {
                     snackbarNoInternet.show();
