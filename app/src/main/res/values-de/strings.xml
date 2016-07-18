@@ -121,11 +121,9 @@
         &lt;b>Sonderzeichen&lt;/b>&lt;br>
         Du kannst Symbole und Sonderzeichen nutzen, indem du bestimmte Zeichenfolgen verwendest. Z.B.:&lt;br>
         (c) = © ; (r) = ® ; x^2 = x²"</string>
-    <string name="license_text">&lt;b>Beteiligte:&lt;/b>&lt;br>
+    <string name="license_text">&lt;b>Maintainer:&lt;/b>&lt;br>
 
-        &#8226; gsantner https://gsantner.github.io&lt;br>
-        &#8226; martinchodev https://github.com/martinchodev&lt;br>
-        &#8226; scoute-dich https://github.com/scoute-dich&lt;br> &lt;br>
+        &#8226; sangre https://sangre.gitlab.io&lt;br>
         &#8226; vanitasvitae https://github.com/vanitasvitae&lt;br> &lt;br>
 
 This program is free software: you can redistribute it and/or modify
@@ -157,7 +155,7 @@ along with this program.  If not, see http://www.gnu.org/licenses.&lt;br> &lt;br
     <string name="toast_link_address_copied">Linkadresse kopiert …</string>
     <string name="share_dotdotdot">Teilen…</string>
     <string name="toast_set_proxy_failed">Warnung: Proxy konnte nicht aktiviert werden…</string>
-    
+
     <string name="toggle_desktop_page">Mobil-/Desktopansicht umschalten</string>
 
 </resources>

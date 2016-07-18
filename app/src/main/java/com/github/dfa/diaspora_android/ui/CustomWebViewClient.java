@@ -11,7 +11,7 @@ import android.webkit.WebViewClient;
 import com.github.dfa.diaspora_android.App;
 
 /**
- * Created by Gregor Santner (gsantner) on 04.06.16.
+ * Created by Gregor Santner (sangre) on 04.06.16.
  */
 public class CustomWebViewClient extends WebViewClient {
     private App app;

@@ -131,11 +131,9 @@
         (c) = © ; (r) = ® ; x^2 = x²"</string>
 
     <string name="license_title" translatable="false">Copyright © 2015–2016</string>
-    <string name="license_text">&lt;b>Main Contributors:&lt;/b>&lt;br>
+    <string name="license_text">&lt;b>Maintainers:&lt;/b>&lt;br>
 
-        &#8226; gsantner https://gsantner.github.io&lt;br>
-        &#8226; martinchodev https://github.com/martinchodev&lt;br>
-        &#8226; scoute-dich https://github.com/scoute-dich&lt;br> &lt;br>
+        &#8226; sangre https://sangre.gitlab.io&lt;br>
         &#8226; vanitasvitae https://github.com/vanitasvitae&lt;br> &lt;br>
 
         This program is free software: you can redistribute it and/or modify

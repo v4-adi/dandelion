@@ -10,7 +10,7 @@
 - Big thanks and good luck to @scoute-dich and @martinchodev for accompanying this project :)
 
 # v0.1.2 (2016-06-05)
-- Extract and show aspects (by @gsantner)
+- Extract and show aspects (by @sangre)
 - Cache last podlist
 - Better sharing from app
 - Collapsing top menu
@@ -25,7 +25,7 @@
 # v0.1.1
 - Sharing updated (by @scoute-dich)
 - Screenshotting updated
-- Gitter integration (by @gsantner)
+- Gitter integration (by @sangre)
 - Code refactoring
 - Start working on  #6
 - Waffle.io integration
@@ -37,10 +37,10 @@ First version of the organization *Diaspora for Android*
 Consists mostly of code from:
 - Diaspora-Native-Webapp (by @martinchodev )
 - scoutedich additions (by @scoute-dich)
-- gsantner additions (by @gsantner)
+- sangre additions (by @sangre)
 
 ### v1.3 (scoutedich)
-*big thanks to gsantner*
+*big thanks to sangre*
 - gitignore
 - Link to profile
 - Move menu actions

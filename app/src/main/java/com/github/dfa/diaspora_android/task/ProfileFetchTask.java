@@ -20,7 +20,7 @@ import info.guardianproject.netcipher.NetCipher;
 
 /**
  * AsyncTask to fetch a users profile
- * Created by Gregor Santner (gsantner) on 30.03.16.
+ * Created by Gregor Santner (sangre) on 30.03.16.
  */
 public class ProfileFetchTask extends AsyncTask<Void, Void, Void> {
     // Code for getting the profile async without any UI/WebView

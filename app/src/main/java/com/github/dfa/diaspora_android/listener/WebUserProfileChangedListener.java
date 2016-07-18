@@ -1,7 +1,7 @@
 package com.github.dfa.diaspora_android.listener;
 
 /**
- * Created by Gregor Santner (gsantner) on 26.03.16.
+ * Created by Gregor Santner (sangre) on 26.03.16.
  */
 public interface WebUserProfileChangedListener {
     void onUserProfileNameChanged(String name);

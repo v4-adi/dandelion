@@ -35,9 +35,7 @@ The minimum version supported is Ice Cream Sandwitch, Android version 4.0.3 (or 
 ### App Permissions
 It requires access to the Internet and to external storage to be able to upload photos when creating a new post and for taking screenshots.
 
-## Main contributors
+## Maintainers
 
-- gsantner (<https://gsantner.github.io>)  
-- martinchodev (<https://github.com/martinchodev>)
-- scoute-dich (<https://github.com/scoute-dich>)
+- sangre (<https://sangre.gitlab.io>)  
 - vanitasvitae (<https://github.com/vanitasvitae>)

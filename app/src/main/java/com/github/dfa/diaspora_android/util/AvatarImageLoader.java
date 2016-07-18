@@ -10,7 +10,7 @@ import com.github.dfa.diaspora_android.task.ImageDownloadTask;
 import java.io.File;
 
 /**
- * Created by Gregor Santner (gsantner) on 24.03.16.
+ * Created by Gregor Santner (sangre) on 24.03.16.
  */
 public class AvatarImageLoader {
     private File avatarFile;

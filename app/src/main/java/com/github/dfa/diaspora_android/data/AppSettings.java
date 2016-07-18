@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 /**
- * Created by gsantner on 20.03.16. Part of Diaspora for Android.
+ * Created by sangre on 20.03.16. Part of Diaspora for Android.
  */
 public class AppSettings {
     private final SharedPreferences prefApp;

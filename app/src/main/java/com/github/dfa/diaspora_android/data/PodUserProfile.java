@@ -11,7 +11,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
- * Created by gsantner on 24.03.16.  Part of Diaspora for Android.
+ * Created by sangre on 24.03.16.  Part of Diaspora for Android.
  */
 public class PodUserProfile {
     private static final int MINIMUM_WEBUSERPROFILE_LOAD_TIMEDIFF = 5000;
