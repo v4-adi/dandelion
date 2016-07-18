@@ -95,19 +95,17 @@ public class Helpers {
     public static void showAspectList(final WebView wv, final App app) {
         wv.stopLoading();
         PodUserProfile profile = app.getPodUserProfile();
-        StringBuffer sb = new StringBuffer();
-        int intColor = ContextCompat.getColor(app, R.color.colorAccent);
-        String strColor = String.format("#%06X", (0xFFFFFF & intColor));
+        StringBuilder sb = new StringBuilder();
 
-        sb.append("<html><body style='width:80%; margin-left:auto;margin-right:auto; font-size: 400%;'><center><b>");
-        sb.append(String.format("<h1 style='color: %s; text-shadow: 4px 4px 12px #000000;'>%s</h1>", strColor, app.getString(R.string.jb_aspects)));
-        sb.append("</b></center>");
+        sb.append("<html><body style='margin-top: 25px; margin-left:auto;margin-right:auto; font-size: 400%;'>");
+        
         // Content
         for (PodAspect aspect : profile.getAspects()) {
-            sb.append("&raquo; &nbsp;");
+            sb.append("<span style='margin-left: 30px; '></span>&raquo; &nbsp;");
             sb.append(aspect.toHtmlLink(app));
-            sb.append("</br></br>");
+            sb.append("<hr style='height:5px;' />");
         }
+
         // End
         sb.append("</body></html>");
         wv.loadData(sb.toString(), "text/html", "UTF-16");

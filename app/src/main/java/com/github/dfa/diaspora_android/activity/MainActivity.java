@@ -697,10 +697,9 @@ public class MainActivity extends AppCompatActivity
 
         Date dateNow = new Date();
         DateFormat dateFormat = new SimpleDateFormat("yy_MM_dd--HH_mm_ss", Locale.getDefault());
-        File fileSaveDirectory = new File(hasToShareScreenshot ? getCacheDir().getAbsolutePath()
-                : Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/Diaspora");
+        File fileSaveDirectory = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/Diaspora");
 
-        String fileSaveName = String.format("DfA_%s.jpg", hasToShareScreenshot ? "share" : dateFormat.format(dateNow));
+        String fileSaveName = hasToShareScreenshot ? ".DfA_share.jpg" : String.format("DfA_%s.jpg", dateFormat.format(dateNow));
         if (!fileSaveDirectory.exists()) {
             fileSaveDirectory.mkdirs();
         }
@@ -739,8 +738,7 @@ public class MainActivity extends AppCompatActivity
             Uri bmpUri = Uri.fromFile(new File(fileSaveDirectory, fileSaveName));
             sharingIntent.putExtra(Intent.EXTRA_STREAM, bmpUri);
             startActivity(Intent.createChooser(sharingIntent, getString(R.string.share_dotdotdot)));
-        }
-        else {
+        } else {
             // Broadcast that this file is indexable
             File file = new File(fileSaveDirectory, fileSaveName);
             Uri uri = Uri.fromFile(file);
