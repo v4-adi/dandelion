@@ -10,19 +10,21 @@
 
 I have:
 - [ ] searched open and closed issues for duplicates
-- [ ] Diaspora for Android installed with an version >= 0.1.1
 - [ ] read <https://github.com/Diaspora-for-Android/diaspora-android/blob/master/CONTRIBUTING.md>
 
 #### Steps to reproduce
 
-1. …
-2. …
-3. …
+1. â€¦
+2. â€¦
+3. â€¦
 
 
 #### Expected result
 
 What is the expected output? What do you see instead?
+
+Upload screenshots via drag&drop if needed and apply resizing:
+`<img width="30%" height="30%" src="https://cloud.githubusercontent.com/assets/67..b55.jpg">`
 
 
 #### Debug output
