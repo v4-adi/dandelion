@@ -173,4 +173,6 @@
     <string name="app_hashtag" translatable="false">#DiasporaForAndroid</string>
 
     <string name="toast_set_proxy_failed">Warning: Could not set network proxy…</string>
+
+    <string name="all_tags">All tags</string>
 </resources>

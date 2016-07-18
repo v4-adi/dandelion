@@ -28,6 +28,7 @@ public class PodUserProfile {
     private String guid;
     private String name;
     private PodAspect[] podAspects;
+    private String[] followedTags;
     private int notificationCount;
     private int unreadMessagesCount;
 
@@ -40,6 +41,7 @@ public class PodUserProfile {
         guid = appSettings.getProfileId();
         name = appSettings.getName();
         podAspects = appSettings.getPodAspects();
+        followedTags = appSettings.getFollowedTags();
     }
 
     public PodUserProfile(App app, Handler callbackHandler, WebUserProfileChangedListener listener) {
@@ -94,6 +96,12 @@ public class PodUserProfile {
                 appSettings.setPodAspects(podAspects);
             }
 
+            // Followed tags
+            if (json.has("android_app.followed_tags")
+                    && loadFollowedTags(json.getJSONArray("android_app.followed_tags"))) {
+                appSettings.setFollowedTags(followedTags);
+            }
+
             isWebUserProfileLoaded = true;
         } catch (JSONException e) {
             Log.d(App.TAG, e.getMessage());
@@ -129,6 +137,10 @@ public class PodUserProfile {
 
     public PodAspect[] getAspects() {
         return podAspects;
+    }
+
+    public String[] getFollowedTags() {
+        return followedTags;
     }
 
     /*
@@ -191,6 +203,14 @@ public class PodUserProfile {
         podAspects = new PodAspect[jsonAspects.length()];
         for (int i = 0; i < jsonAspects.length(); i++) {
             podAspects[i] = new PodAspect(jsonAspects.getJSONObject(i));
+        }
+        return true;
+    }
+
+    private boolean loadFollowedTags(final JSONArray jsonTags) throws JSONException {
+        followedTags = new String[jsonTags.length()];
+        for (int i = 0; i < jsonTags.length(); i++) {
+            followedTags[i] = jsonTags.getString(i);
         }
         return true;
     }
