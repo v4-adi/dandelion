@@ -28,16 +28,16 @@
 
     <!-- Titles -->
 
-    <string name="title_notifications">D* Benachrichtigungen</string>
-    <string name="title_conversations">D* Unterhaltungen</string>
-    <string name="title_stream">D* Stream</string>
-    <string name="title_profil">D* Profil</string>
-    <string name="title_aspects">D* Aspekte</string>
-    <string name="title_activities">D* Aktivitäten</string>
-    <string name="title_liked">D* Gelikte Beiträge</string>
-    <string name="title_commented">D* Kommentiert</string>
-    <string name="title_mentions">D* Erwähnungen</string>
-    <string name="title_public">D* Öffentliche Aktivitäten</string>
+    <string name="title_notifications">Benachrichtigungen</string>
+    <string name="title_conversations">Unterhaltungen</string>
+    <string name="title_stream">Stream</string>
+    <string name="title_profil">Profil</string>
+    <string name="title_aspects">Aspekte</string>
+    <string name="title_activities">Aktivitäten</string>
+    <string name="title_liked">Gelikte Beiträge</string>
+    <string name="title_commented">Kommentiert</string>
+    <string name="title_mentions">Erwähnungen</string>
+    <string name="title_public">Öffentliche Aktivitäten</string>
 
     <!-- Drawer and App -->
 
@@ -65,7 +65,7 @@
     <!-- Dialog -->
 
     <string name="messages">Unterhaltungen</string>
-    <string name="new_post">D* Neuer Beitrag</string>
+    <string name="new_post">Neuer Beitrag</string>
     <string name="notifications">Benachrichtigungen</string>
     <string name="image">Konnte Bild nicht laden …</string>
     <string name="jb_share">Inhalt Teilen</string>
@@ -157,5 +157,6 @@ along with this program.  If not, see http://www.gnu.org/licenses.&lt;br> &lt;br
     <string name="toast_set_proxy_failed">Warnung: Proxy konnte nicht aktiviert werden…</string>
 
     <string name="toggle_desktop_page">Mobil-/Desktopansicht umschalten</string>
+    <string name="all_tags">Alle Tags</string>
 
 </resources>

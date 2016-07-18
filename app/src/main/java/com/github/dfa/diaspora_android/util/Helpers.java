@@ -136,7 +136,7 @@ public class Helpers {
         AppSettings appSettings = app.getSettings();
         sb.append("<span style='margin-left: 30px; '></span>&raquo; &nbsp;");
         sb.append(String.format(Locale.getDefault(),
-                "<a href='https://%s/followed_tags' style='color: #000000; text-decoration: none;'>%s</a>",
+                "<a href='https://%s/followed_tags' style='color: #000000; text-decoration: none;'><b>%s</b></a>",
                 appSettings.getPodDomain(), app.getString(R.string.all_tags)));
         sb.append("<hr style='height:5px;' />");
         for (String tag: profile.getFollowedTags()) {

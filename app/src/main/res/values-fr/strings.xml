@@ -13,16 +13,16 @@
 
     <!-- Titles -->
 
-    <string name="title_notifications">D* Notifications</string>
-    <string name="title_conversations">D* Discussions</string>
-    <string name="title_stream">D* Flux</string>
-    <string name="title_profil">D* Profil</string>
-    <string name="title_aspects">D* Aspects</string>
-    <string name="title_activities">D* Activités</string>
-    <string name="title_liked">D* Aimés</string>
-    <string name="title_commented">D* Commentés</string>
-    <string name="title_mentions">D* Mentions</string>
-    <string name="title_public">D* Public</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_conversations">Discussions</string>
+    <string name="title_stream">Flux</string>
+    <string name="title_profil">Profil</string>
+    <string name="title_aspects">Aspects</string>
+    <string name="title_activities">Activités</string>
+    <string name="title_liked">Aimés</string>
+    <string name="title_commented">Commentés</string>
+    <string name="title_mentions">Mentions</string>
+    <string name="title_public">Public</string>
 
 
     <!-- Pod Activity -->
@@ -39,7 +39,7 @@
     <string name="confirmation">Confirmation</string>
     <string name="confirm_pod">Voulez-vous vraiment utiliser\nhttps://%1$s\ncomme pod Diaspora ?</string>
     <string name="confirm_exit">Souhaitez-vous quitter ?</string>
-    <string name="new_post">D* Nouveau message</string>
+    <string name="new_post">Nouveau message</string>
     <string name="notifications">Notifications</string>
     <string name="messages">Discussions</string>
 
@@ -155,4 +155,5 @@
 
     <string name="toast_set_proxy_failed">Attention: connexion au proxy impossible…</string>
     <string name="share_dotdotdot">Partager…</string>
+    <string name="all_tags">Tout Tags</string>
 </resources>
