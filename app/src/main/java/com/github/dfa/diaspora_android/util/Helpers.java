@@ -122,7 +122,7 @@ public class Helpers {
 
         // End
         sb.append("</body></html>");
-        wv.loadData(sb.toString(), "text/html", "UTF-16");
+        wv.loadDataWithBaseURL(null, sb.toString(), "text/html", "UTF-16", null);
     }
 
     public static void showFollowedTagsList(final WebView wv, final App app) {
@@ -149,7 +149,7 @@ public class Helpers {
 
         // End
         sb.append("</body></html>");
-        wv.loadData(sb.toString(), "text/html", "UTF-16");
+        wv.loadDataWithBaseURL(null, sb.toString(), "text/html", "UTF-16", null);
     }
 
 }
