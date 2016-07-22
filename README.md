@@ -16,7 +16,7 @@ This is an unofficial webview based client for the community-run, distributed so
 
 ## Contributions
 We are always open for any kind of contribution. (PR's, bug reports, feature requests, ..)  
-If you got any questions feel free to ask at [Gitter](https://gitter.im/Diaspora-for-Android/diaspora-android).  
+If you got any questions feel free to ask at [Gitter](https://gitter.im/Diaspora-for-Android/diaspora-android) or join our XMPP/Jabber conference at diaspora-android@conference.jabberhead.tk.  
 Note that the main project members are mostly busy with their job/university/school and may not react or start coding immediately.
 
 ### License
