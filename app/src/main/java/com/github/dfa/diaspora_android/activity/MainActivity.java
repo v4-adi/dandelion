@@ -111,6 +111,7 @@ public class MainActivity extends AppCompatActivity
 
     public static final String ACTION_OPEN_URL = "com.github.dfa.diaspora_android.MainActivity.open_url";
     public static final String ACTION_CHANGE_ACCOUNT = "com.github.dfa.diaspora_android.MainActivity.change_account";
+    public static final String ACTION_CLEAR_CACHE = "com.github.dfa.diaspora_android.MainActivity.clear_cache";
     public static final String URL_MESSAGE = "URL_MESSAGE";
 
     private App app;
@@ -438,6 +439,8 @@ public class MainActivity extends AppCompatActivity
         } else if(ACTION_CHANGE_ACCOUNT.equals(action)) {
             app.resetPodData(webView);
             Helpers.animateToActivity(MainActivity.this, PodSelectionActivity.class, true);
+        } else if(ACTION_CLEAR_CACHE.equals(action)) {
+            webView.clearCache(true);
         }
     }
 

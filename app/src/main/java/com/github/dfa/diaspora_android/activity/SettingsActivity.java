@@ -94,6 +94,9 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
                                 })
                         .show();
                 return true;
+            case "pref_key_clear_cache":
+                intent.setAction(MainActivity.ACTION_CLEAR_CACHE);
+                break;
             default:
                 intent = null;
                 break;
