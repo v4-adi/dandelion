@@ -46,4 +46,7 @@
     <string name="pref_desc_change_account">Erase local session data and switch to another Diaspora pod/account</string>
     <string name="pref_warning_change_account">This will erase all cookies and session data. Do you really want to change your account?</string>
 
+    <string name="pref_title_clear_cache">Clear cache</string>
+    <string name="pref_desc_clear_cache">Clear WebView cache</string>
+
 </resources>

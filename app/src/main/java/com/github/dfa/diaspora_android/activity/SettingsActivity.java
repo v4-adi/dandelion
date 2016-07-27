@@ -1,6 +1,5 @@
 package com.github.dfa.diaspora_android.activity;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -31,7 +30,6 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
         sharedPreferences = getPreferenceScreen().getSharedPreferences();
         sharedPreferences.registerOnSharedPreferenceChangeListener(this);
         setPreferenceSummaries();
-        setResult(Activity.RESULT_CANCELED);
         sharedPreferences.edit().putBoolean(AppSettings.PREF.PROXY_WAS_ENABLED,
                 sharedPreferences.getBoolean(AppSettings.PREF.PROXY_ENABLED, false)).apply();
     }
@@ -65,21 +63,21 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
 
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen screen, Preference preference) {
-        Intent results = new Intent();
+        Intent intent = new Intent(this, MainActivity.class);
         String podDomain = ((App)getApplication()).getSettings().getPodDomain();
         switch(preference.getKey()) {
             case "pref_key_personal_settings":
-                results.putExtra(MainActivity.URL_MESSAGE, "https://" + podDomain + "/user/edit");
-                setResult(Activity.RESULT_OK, results);
-                finish();
+                intent.setAction(MainActivity.ACTION_OPEN_URL);
+                intent.putExtra(MainActivity.URL_MESSAGE, "https://" + podDomain + "/user/edit");
+                break;
             case "pref_key_manage_tags":
-                results.putExtra(MainActivity.URL_MESSAGE, "https://" + podDomain + "/tag_followings/manage");
-                setResult(Activity.RESULT_OK, results);
-                finish();
+                intent.setAction(MainActivity.ACTION_OPEN_URL);
+                intent.putExtra(MainActivity.URL_MESSAGE, "https://" + podDomain + "/tag_followings/manage");
+                break;
             case "pref_key_manage_contacts":
-                results.putExtra(MainActivity.URL_MESSAGE, "https://" + podDomain + "/contacts");
-                setResult(Activity.RESULT_OK, results);
-                finish();
+                intent.setAction(MainActivity.ACTION_OPEN_URL);
+                intent.putExtra(MainActivity.URL_MESSAGE, "https://" + podDomain + "/contacts");
+                break;
             case "pref_key_change_account":
                 new AlertDialog.Builder(SettingsActivity.this)
                         .setTitle(getString(R.string.confirmation))
@@ -88,11 +86,25 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
                         .setPositiveButton(android.R.string.yes,
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
-                                        setResult(MainActivity.RESULT_CODE_CHANGE_ACCOUNT);
+                                        Intent intent = new Intent(SettingsActivity.this, MainActivity.class);
+                                        intent.setAction(MainActivity.ACTION_CHANGE_ACCOUNT);
+                                        startActivity(intent);
                                         finish();
                                     }
                                 })
                         .show();
+                return true;
+            case "pref_key_clear_cache":
+                intent.setAction(MainActivity.ACTION_CLEAR_CACHE);
+                break;
+            default:
+                intent = null;
+                break;
+        }
+        if(intent != null) {
+            startActivity(intent);
+            finish();
+            return true;
         }
         return super.onPreferenceTreeClick(screen, preference);
     }

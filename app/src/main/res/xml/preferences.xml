@@ -52,6 +52,12 @@
             android:summary="@string/pref_desc_load_images"
             android:defaultValue="true" />
 
+        <Preference
+            android:title="@string/pref_title_clear_cache"
+            android:key="pref_key_clear_cache"
+            android:summary="@string/pref_desc_clear_cache">
+        </Preference>
+
         <CheckBoxPreference
             android:title="@string/pref_title_proxy_enabled"
             android:key="pref_key_proxy_enabled"

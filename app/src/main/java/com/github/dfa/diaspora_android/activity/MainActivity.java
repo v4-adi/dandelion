@@ -108,8 +108,10 @@ public class MainActivity extends AppCompatActivity
     static final int INPUT_FILE_REQUEST_CODE = 1;
     private static final int REQUEST_CODE_ASK_PERMISSIONS = 123;
     public static final int REQUEST_CODE_ASK_PERMISSIONS_SAVE_IMAGE = 124;
-    public static final int REQUEST_CODE_SETTINGS = 125;
-    public static final int RESULT_CODE_CHANGE_ACCOUNT = 130;
+
+    public static final String ACTION_OPEN_URL = "com.github.dfa.diaspora_android.MainActivity.open_url";
+    public static final String ACTION_CHANGE_ACCOUNT = "com.github.dfa.diaspora_android.MainActivity.change_account";
+    public static final String ACTION_CLEAR_CACHE = "com.github.dfa.diaspora_android.MainActivity.clear_cache";
     public static final String URL_MESSAGE = "URL_MESSAGE";
 
     private App app;
@@ -243,6 +245,8 @@ public class MainActivity extends AppCompatActivity
                 snackbarNoInternet.show();
             }
         }
+
+        handleIntent(getIntent());
     }
 
     private void setupWebView(Bundle savedInstanceState) {
@@ -420,18 +424,28 @@ public class MainActivity extends AppCompatActivity
         );
     }
 
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+
+        handleIntent(intent);
+    }
+
+    private void handleIntent(Intent intent) {
+        String action = intent.getAction();
+        if(ACTION_OPEN_URL.equals(action)) {
+            String url = intent.getStringExtra(URL_MESSAGE);
+            webView.loadUrl(url);
+        } else if(ACTION_CHANGE_ACCOUNT.equals(action)) {
+            app.resetPodData(webView);
+            Helpers.animateToActivity(MainActivity.this, PodSelectionActivity.class, true);
+        } else if(ACTION_CLEAR_CACHE.equals(action)) {
+            webView.clearCache(true);
+        }
+    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode == REQUEST_CODE_SETTINGS) {
-            if(resultCode == Activity.RESULT_OK) {
-                String url = data.getStringExtra(URL_MESSAGE);
-                webView.loadUrl(url);
-            } else if(resultCode == RESULT_CODE_CHANGE_ACCOUNT) {
-                app.resetPodData(webView);
-                Helpers.animateToActivity(MainActivity.this, PodSelectionActivity.class, true);
-            }
-        }
         if (requestCode != INPUT_FILE_REQUEST_CODE || mFilePathCallback == null) {
             super.onActivityResult(requestCode, resultCode, data);
             return;
@@ -931,7 +945,7 @@ public class MainActivity extends AppCompatActivity
             break;
 
             case R.id.nav_settings_app: {
-                startActivityForResult(new Intent(this, SettingsActivity.class), REQUEST_CODE_SETTINGS);
+                startActivity(new Intent(this, SettingsActivity.class));
             }
             break;
 
