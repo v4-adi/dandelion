@@ -158,5 +158,7 @@ along with this program.  If not, see http://www.gnu.org/licenses.&lt;br> &lt;br
 
     <string name="toggle_desktop_page">Mobil-/Desktopansicht umschalten</string>
     <string name="all_tags">Alle Tags</string>
+    <string name="pref_desc_clear_cache">WebView Cache leeren</string>
+    <string name="pref_title_clear_cache">Cache leeren</string>
 
 </resources>

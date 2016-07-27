@@ -10,13 +10,13 @@
 - Big thanks and good luck to @scoute-dich and @martinchodev for accompanying this project :)
 
 # v0.1.2 (2016-06-05)
-- Extract and show aspects (by @sangre)
+- Extract and show aspects (by @gsantner)
 - Cache last podlist
 - Better sharing from app
 - Collapsing top menu
 - ProgressBar material, Improve search dialog
-- fix keyboard. #4 
-- Reworked sharing from activity #12 
+- fix keyboard. #4
+- Reworked sharing from activity #12
 - toolbar/actions/menu changes, replaced fab
 - Refactor layout & menu files, dialogs
 - Lots of refactoring; Reworked Splash,PodSelectionActivity; Switch Pod; Clear settings;
@@ -25,7 +25,7 @@
 # v0.1.1
 - Sharing updated (by @scoute-dich)
 - Screenshotting updated
-- Gitter integration (by @sangre)
+- Gitter integration (by @gsantner)
 - Code refactoring
 - Start working on  #6
 - Waffle.io integration
@@ -37,7 +37,7 @@ First version of the organization *Diaspora for Android*
 Consists mostly of code from:
 - Diaspora-Native-Webapp (by @martinchodev )
 - scoutedich additions (by @scoute-dich)
-- sangre additions (by @sangre)
+- sangre additions (by @gsantner)
 
 ### v1.3 (scoutedich)
 *big thanks to sangre*
@@ -45,7 +45,7 @@ Consists mostly of code from:
 - Link to profile
 - Move menu actions
 - Refactoring part1
-- bump libs 
+- bump libs
 
 ### v1.2 (scoutedich)
 - using strings in podactivity

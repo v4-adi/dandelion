@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/Diaspora-for-Android/diaspora-android.svg?branch=master)](https://travis-ci.org/Diaspora-for-Android/diaspora-android)
 [![Join the chat at https://gitter.im/Diaspora-for-Android/diaspora-android](https://badges.gitter.im/Diaspora-for-Android/diaspora-android.svg)](https://gitter.im/Diaspora-for-Android/diaspora-android?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Stories in Start](https://badge.waffle.io/Diaspora-for-Android/diaspora-android.svg?label=help%20wanted&title=waffle.io)](http://waffle.io/Diaspora-for-Android/diaspora-android)
+[![Join the chat (XMPP) at diaspora-android@conference.jabberhead.tk](https://img.shields.io/badge/xmpp-join-blue.svg)](xmpp:diaspora-android@conference.jabberhead.tk)
 
 
 # Diaspora for Android
@@ -15,27 +15,26 @@ This is an unofficial webview based client for the community-run, distributed so
 - See [Screenshots](https://github.com/Diaspora-for-Android/diaspora-android/blob/master/SCREENSHOTS.md)
 
 ## Contributions
-We are always open for any kind of contribution. (PR's, bug reports, feature requests, ..)  
-If you got any questions feel free to ask at [Gitter](https://gitter.im/Diaspora-for-Android/diaspora-android) or join our XMPP/Jabber conference at diaspora-android@conference.jabberhead.tk.  
+We are always open for any kind of contribution. (PR's, bug reports, feature requests, translations, ..)  
+If you got any questions feel free to join our XMPP/Jabber conference at <a href="xmpp:diaspora-android@conference.jabberhead.tk"> diaspora-android@conference.jabberhead.tk</a> or [Gitter](https://gitter.im/Diaspora-for-Android/diaspora-android).  
 Note that the main project members are mostly busy with their job/university/school and may not react or start coding immediately.
 
 ### License
 It's released under GNU GENERAL PUBLIC LICENSE (see [LICENCE](https://github.com/Diaspora-for-Android/diaspora-android/blob/master/LICENSE.md)).
 
-### Native
-It's "native" because it's developed in Java + the Android SDK (Android Studio). Other Diaspora clients are developed using frameworks like AppCelerator Titanium. A native app will always be more efficient and almost certainly be faster and make better use of the resources of the device.
+### WebApp
+The app is developed as an WebApp because currently Diaspora doesn't have an API that can be used to create a native interface to retrieve the user's data, publications, direct messages and so on, that's why there are only WebApps for Diaspora out there.  
+API is discussed frequently on Diaspora, but the main developers seem to not give the API and mobile view the attention it needs. [Stay tuned on Diaspora* Issues](https://github.com/diaspora/diaspora/labels/api).
 
-### "WebApp"
-It's a WebApp because at this moment Diaspora doesn't have an API that can be used to create a native interface to retrieve the user's data, publications, direct messages and so on, that's why there are only WebApps for Diaspora out there.
-Why a WebApp is better than using the mobile site on a browser? Basically it provides better integration with the system (events coming into and going out of the app), notifications, customized interface and functions and a nice little icon that takes you directly to your favorite social network :)
+Why a WebApp is better than using the mobile site on a browser?  
+Basically it provides better integration with the system (events coming into and going out of the app), notifications, customized interface and functions and a nice little icon that takes you directly to your favorite social network :)
 
 ### Device Requirements
-The minimum version supported is Ice Cream Sandwitch, Android version 4.0.3 (or API 15)
+The minimum version supported is Ice Cream Sandwich, Android v4.0.3 / API 15
 
 ### App Permissions
 It requires access to the Internet and to external storage to be able to upload photos when creating a new post and for taking screenshots.
 
 ## Maintainers
-
-- sangre (<https://sangre.gitlab.io>)  
+- sangre (@gsantner) (<https://sangre.gitlab.io>)  
 - vanitasvitae (<https://github.com/vanitasvitae>)
