@@ -1,9 +1,20 @@
+# v0.1.4 (in progress)
+- by @vanitasvitae, @gsantner, @di72nn
+- Update license infos of source files
+- Localization lint; Translation; Readme
+- Add an option to clear WebView cache
+- Don't use startActivityForResult on SettingsActivity
+- Disable swipe refresh in some parts of the app
+- Add "Followed tags" listing
+- Share screenshot fix; Minor Aspects rework
+- Update to SDK 24 (Android N)
+
 # v0.1.3 (2016-07-04)
 - Added titles on top toolbar (by @scoute-dich)
 - Made bottom toolbar automatically disappear
 - Added option to share images to external app
 - Added option to enable proxy (by @vanitasvitae)
-- Added french translation (thanks to SansPseudoFix)
+- Added french translation (thanks to @SansPseudoFix)
 - Added new settings section (by @vanitasvitae)
 - Fixed buggy snackbars
 - Removed swipe-to-refresh functionality in some places
@@ -37,10 +48,10 @@ First version of the organization *Diaspora for Android*
 Consists mostly of code from:
 - Diaspora-Native-Webapp (by @martinchodev )
 - scoutedich additions (by @scoute-dich)
-- sangre additions (by @gsantner)
+- gsantner additions (by @gsantner)
 
 ### v1.3 (scoutedich)
-*big thanks to sangre*
+*big thanks to gsantner*
 - gitignore
 - Link to profile
 - Move menu actions

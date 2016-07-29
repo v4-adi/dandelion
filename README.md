@@ -10,13 +10,13 @@
 This is an unofficial webview based client for the community-run, distributed social network **[Diaspora](https://joindiaspora.com/)**. It's currently under development and should be used with that in mind. Please submit any bugs you might find.  
 **Notice:** This is the repo of the latest version of the unoffical Diaspora Android App.
 
-- [Download App](https://github.com/Diaspora-for-Android/diaspora-android/releases)
+- Download ([F-Droid](https://f-droid.org/repository/browse/?fdid=com.github.dfa.diaspora_android), [Release Archive](https://github.com/Diaspora-for-Android/diaspora-android/releases))
 - Watch [Changelog](https://github.com/Diaspora-for-Android/diaspora-android/blob/master/CHANGELOG.md)
 - See [Screenshots](https://github.com/Diaspora-for-Android/diaspora-android/blob/master/SCREENSHOTS.md)
 
 ## Contributions
 We are always open for any kind of contribution. (PR's, bug reports, feature requests, translations, ..)  
-If you got any questions feel free to join our XMPP/Jabber conference at <a href="xmpp:diaspora-android@conference.jabberhead.tk"> diaspora-android@conference.jabberhead.tk</a> or [Gitter](https://gitter.im/Diaspora-for-Android/diaspora-android).  
+If you got any questions feel free to join our XMPP/Jabber conference at **diaspora-android@conference.jabberhead.tk** or [Gitter](https://gitter.im/Diaspora-for-Android/diaspora-android).  
 Note that the main project members are mostly busy with their job/university/school and may not react or start coding immediately.
 
 ### License
@@ -36,5 +36,5 @@ The minimum version supported is Ice Cream Sandwich, Android v4.0.3 / API 15
 It requires access to the Internet and to external storage to be able to upload photos when creating a new post and for taking screenshots.
 
 ## Maintainers
-- sangre (@gsantner) (<https://sangre.gitlab.io>)  
-- vanitasvitae (<https://github.com/vanitasvitae>)
+- gsantner ([GitHub](https://github.com/gsantner), [Web](https://gsantner.github.io))  
+- vanitasvitae ([GitHub](https://github.com/vanitasvitae))

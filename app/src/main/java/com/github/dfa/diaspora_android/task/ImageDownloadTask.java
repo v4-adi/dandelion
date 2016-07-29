@@ -1,3 +1,21 @@
+/*
+    This file is part of the Diaspora for Android.
+
+    Diaspora for Android is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Diaspora for Android is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with the Diaspora for Android.
+
+    If not, see <http://www.gnu.org/licenses/>.
+ */
 package com.github.dfa.diaspora_android.task;
 
 import android.graphics.Bitmap;
@@ -19,7 +37,7 @@ import info.guardianproject.netcipher.NetCipher;
 
 /**
  * Task that can be used to download images from URLs and store them in storage
- * Created by Gregor Santner (sangre) on 24.03.16.
+ * Created by gsantner (https://gsantner.github.io/) on 24.03.16.
  */
 public class ImageDownloadTask extends AsyncTask<String, Void, Bitmap> {
     ImageView imageView;

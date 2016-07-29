@@ -16,7 +16,6 @@
 
     If not, see <http://www.gnu.org/licenses/>.
  */
-
 package com.github.dfa.diaspora_android.activity;
 
 import android.Manifest;

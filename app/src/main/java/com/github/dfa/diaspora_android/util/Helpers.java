@@ -16,9 +16,8 @@
 
     If not, see <http://www.gnu.org/licenses/>.
  */
-
+ 
 package com.github.dfa.diaspora_android.util;
-
 
 import android.app.Activity;
 import android.content.Context;
@@ -112,7 +111,7 @@ public class Helpers {
         StringBuilder sb = new StringBuilder();
 
         sb.append("<html><body style='margin-top: 25px; margin-left:auto;margin-right:auto; font-size: 400%;'>");
-        
+
         // Content
         for (PodAspect aspect : profile.getAspects()) {
             sb.append("<span style='margin-left: 30px; '></span>&raquo; &nbsp;");

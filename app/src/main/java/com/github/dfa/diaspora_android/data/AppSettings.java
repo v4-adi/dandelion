@@ -1,3 +1,21 @@
+/*
+    This file is part of the Diaspora for Android.
+
+    Diaspora for Android is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Diaspora for Android is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with the Diaspora for Android.
+
+    If not, see <http://www.gnu.org/licenses/>.
+ */
 package com.github.dfa.diaspora_android.data;
 
 import android.annotation.SuppressLint;
@@ -5,7 +23,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 /**
- * Created by sangre on 20.03.16. Part of Diaspora for Android.
+ * Created by gsantner (https://gsantner.github.io/) on 20.03.16. Part of Diaspora for Android.
  */
 public class AppSettings {
     private final SharedPreferences prefApp;
