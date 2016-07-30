@@ -182,11 +182,11 @@ public class MainActivity extends AppCompatActivity
         podUserProfile.setCallbackHandler(uiHandler);
         podUserProfile.setListener(this);
 
-        if(appSettings.isProxyEnabled()) {
-            if(!setProxy(appSettings.getProxyHost(), appSettings.getProxyPort())) {
-                Toast.makeText(MainActivity.this, R.string.toast_set_proxy_failed,Toast.LENGTH_SHORT).show();
+        if (appSettings.isProxyEnabled()) {
+            if (!setProxy(appSettings.getProxyHost(), appSettings.getProxyPort())) {
+                Toast.makeText(MainActivity.this, R.string.toast_set_proxy_failed, Toast.LENGTH_SHORT).show();
             }
-        } else if(appSettings.wasProxyEnabled()) {
+        } else if (appSettings.wasProxyEnabled()) {
             resetProxy();
         }
 
@@ -278,8 +278,9 @@ public class MainActivity extends AppCompatActivity
         webView.addJavascriptInterface(new JavaScriptInterface(), "AndroidBridge");
 
         //Set proxy
-        if(appSettings.isProxyEnabled()) {
-            if(!setProxy()) Toast.makeText(this, R.string.toast_set_proxy_failed, Toast.LENGTH_LONG).show();
+        if (appSettings.isProxyEnabled()) {
+            if (!setProxy())
+                Toast.makeText(this, R.string.toast_set_proxy_failed, Toast.LENGTH_LONG).show();
         }
 
         /*
@@ -431,15 +432,29 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void handleIntent(Intent intent) {
+        if (intent == null) {
+            return;
+        }
+
         String action = intent.getAction();
-        if(ACTION_OPEN_URL.equals(action)) {
-            String url = intent.getStringExtra(URL_MESSAGE);
-            webView.loadUrl(url);
-        } else if(ACTION_CHANGE_ACCOUNT.equals(action)) {
+        String loadUrl = null;
+
+
+        if (ACTION_OPEN_URL.equals(action)) {
+            loadUrl = intent.getStringExtra(URL_MESSAGE);
+        } else if (Intent.ACTION_VIEW.equals(action) && intent.getDataString() != null) {
+            loadUrl = intent.getDataString();
+        } else if (ACTION_CHANGE_ACCOUNT.equals(action)) {
             app.resetPodData(webView);
             Helpers.animateToActivity(MainActivity.this, PodSelectionActivity.class, true);
-        } else if(ACTION_CLEAR_CACHE.equals(action)) {
+        } else if (ACTION_CLEAR_CACHE.equals(action)) {
             webView.clearCache(true);
+        }
+
+        if (loadUrl != null) {
+            webView.stopLoading();
+            navDrawer.closeDrawers();
+            webView.loadUrl(loadUrl);
         }
     }
 
@@ -495,7 +510,7 @@ public class MainActivity extends AppCompatActivity
         if (webView.canGoBack()) {
             webView.goBack();
         } else {
-            if(!snackbarExitApp.isShown())
+            if (!snackbarExitApp.isShown())
                 snackbarExitApp.show();
         }
     }
@@ -799,7 +814,7 @@ public class MainActivity extends AppCompatActivity
                     if (item != null) {
                         if (notificationCount > 0) {
                             item.setIcon(R.drawable.ic_bell_ring_white_24dp);
-                            if(!snackbarNewNotification.isShown() && !webView.getUrl().equals("https://" + podDomain + "/notifications"))
+                            if (!snackbarNewNotification.isShown() && !webView.getUrl().equals("https://" + podDomain + "/notifications"))
                                 snackbarNewNotification.show();
                         } else {
                             item.setIcon(R.drawable.ic_bell_outline_white_24dp);
@@ -833,7 +848,7 @@ public class MainActivity extends AppCompatActivity
                     if (item != null) {
                         if (conversationCount > 0) {
                             item.setIcon(R.drawable.ic_message_text_white_24dp);
-                            if(!snackbarNewNotification.isShown() && !webView.getUrl().equals("https://" + podDomain + "/notifications"))
+                            if (!snackbarNewNotification.isShown() && !webView.getUrl().equals("https://" + podDomain + "/notifications"))
                                 snackbarNewNotification.show();
                         } else {
                             item.setIcon(R.drawable.ic_message_text_outline_white_24dp);
@@ -977,7 +992,7 @@ public class MainActivity extends AppCompatActivity
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.main__layout);
-        if(drawer != null) drawer.closeDrawer(GravityCompat.START);
+        if (drawer != null) drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
@@ -1001,13 +1016,14 @@ public class MainActivity extends AppCompatActivity
     /**
      * Set proxy according to arguments. host must not be "" or null, port must be positive.
      * Return true on success and update appSettings' proxy related values.
+     *
      * @param host proxy host (eg. localhost or 127.0.0.1)
      * @param port proxy port (eg. 8118)
      * @return success
      * @throws IllegalArgumentException if arguments do not fit specifications above
      */
     private boolean setProxy(final String host, final int port) {
-        if(host != null && !host.equals("") && port >=0) {
+        if (host != null && !host.equals("") && port >= 0) {
             //Temporary change thread policy
             StrictMode.ThreadPolicy old = StrictMode.getThreadPolicy();
             StrictMode.ThreadPolicy tmp = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -1046,7 +1062,7 @@ public class MainActivity extends AppCompatActivity
         StrictMode.setThreadPolicy(tmp);
 
         NetCipher.clearProxy();
-        try{
+        try {
             WebkitProxy.resetProxy(MainActivity.class.getName(), this);
         } catch (Exception e) {/*Nothing*/}
 
