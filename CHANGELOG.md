@@ -1,3 +1,5 @@
+# v0.1.5 (WIP)
+
 # v0.1.4 (2016-07-31)
 - by @vanitasvitae, @gsantner, @di72nn
 - Allow turning off toolbar intellihide
