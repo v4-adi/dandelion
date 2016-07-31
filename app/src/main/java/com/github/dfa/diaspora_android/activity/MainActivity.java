@@ -538,11 +538,14 @@ public class MainActivity extends AppCompatActivity
         @Override
         public void onReceive(Context context, Intent intent) {
             String url = intent.getStringExtra(EXTRA_URL);
+            Log.d(App.TAG, "BroadcastReceiver: Received setTitleIntent: "+url);
             if (url != null && url.startsWith("https://"+podDomain)) {
                 String subUrl = url.substring(("https://"+podDomain).length());
                 Log.d(App.TAG, "LocalBroadcastReceiver: SubUrl: "+subUrl);
                 if (subUrl.startsWith("/stream")) {
                     setTitle(R.string.title_stream);
+                } else if (subUrl.startsWith("/posts/")) {
+                    setTitle(R.string.diaspora); //TODO: Extract posts title somehow?
                 } else if(subUrl.startsWith("/notifications")) {
                     setTitle(R.string.title_notifications);
                 } else if (subUrl.startsWith("/conversations")) {
