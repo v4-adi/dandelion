@@ -43,6 +43,7 @@ import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -112,7 +113,9 @@ public class MainActivity extends AppCompatActivity
     public static final String ACTION_OPEN_URL = "com.github.dfa.diaspora_android.MainActivity.open_url";
     public static final String ACTION_CHANGE_ACCOUNT = "com.github.dfa.diaspora_android.MainActivity.change_account";
     public static final String ACTION_CLEAR_CACHE = "com.github.dfa.diaspora_android.MainActivity.clear_cache";
+    public static final String ACTION_UPDATE_TITLE_FROM_URL = "com.github.dfa.diaspora_android.MainActivity.set_title";
     public static final String URL_MESSAGE = "URL_MESSAGE";
+    public static final String EXTRA_URL = "com.github.dfa.diaspora_android.extra_url";
 
     private App app;
     private String podDomain;
@@ -220,7 +223,6 @@ public class MainActivity extends AppCompatActivity
                     public void onClick(View view) {
                         if (Helpers.isOnline(MainActivity.this)) {
                             webView.loadUrl("https://" + podDomain + "/notifications");
-                            setTitle(R.string.title_notifications);
                         } else {
                             Snackbar.make(swipeRefreshLayout, R.string.no_internet, Snackbar.LENGTH_LONG).show();
                         }
@@ -505,6 +507,7 @@ public class MainActivity extends AppCompatActivity
     protected void onResume() {
         super.onResume();
         registerReceiver(brLoadUrl, new IntentFilter(URL_MESSAGE));
+        LocalBroadcastManager.getInstance(this).registerReceiver(brSetTitle, new IntentFilter(ACTION_UPDATE_TITLE_FROM_URL));
     }
 
     @Override
@@ -531,9 +534,42 @@ public class MainActivity extends AppCompatActivity
         }
     };
 
+    private final BroadcastReceiver brSetTitle = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String url = intent.getStringExtra(EXTRA_URL);
+            if (url != null && url.startsWith("https://"+podDomain)) {
+                String subUrl = url.substring(("https://"+podDomain).length());
+                Log.d(App.TAG, "LocalBroadcastReceiver: SubUrl: "+subUrl);
+                if (subUrl.startsWith("/stream")) {
+                    setTitle(R.string.title_stream);
+                } else if(subUrl.startsWith("/notifications")) {
+                    setTitle(R.string.title_notifications);
+                } else if (subUrl.startsWith("/conversations")) {
+                    setTitle(R.string.title_conversations);
+                } else if (subUrl.startsWith("/status_messages/new")) {
+                    setTitle(R.string.new_post);
+                } else if (subUrl.startsWith("/people/" + appSettings.getProfileId())) {
+                    setTitle(R.string.title_profil);
+                } else if (subUrl.startsWith("/activity")) {
+                    setTitle(R.string.title_activities);
+                } else if (subUrl.startsWith("/liked")) {
+                    setTitle(R.string.title_liked);
+                } else if (subUrl.startsWith("/commented")) {
+                    setTitle(R.string.title_commented);
+                } else if (subUrl.startsWith("/mentions")) {
+                    setTitle(R.string.title_mentions);
+                } else if (subUrl.startsWith("/public")) {
+                    setTitle(R.string.title_public);
+                }
+            }
+        }
+    };
+
     @Override
     protected void onPause() {
         unregisterReceiver(brLoadUrl);
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(brSetTitle);
         super.onPause();
     }
 
@@ -570,7 +606,6 @@ public class MainActivity extends AppCompatActivity
             case R.id.action_notifications: {
                 if (Helpers.isOnline(MainActivity.this)) {
                     webView.loadUrl("https://" + podDomain + "/notifications");
-                    setTitle(R.string.title_notifications);
                     return true;
                 } else {
                     snackbarNoInternet.show();
@@ -581,7 +616,6 @@ public class MainActivity extends AppCompatActivity
             case R.id.action_conversations: {
                 if (Helpers.isOnline(MainActivity.this)) {
                     webView.loadUrl("https://" + podDomain + "/conversations");
-                    setTitle(R.string.title_conversations);
                     return true;
                 } else {
                     snackbarNoInternet.show();
@@ -603,7 +637,6 @@ public class MainActivity extends AppCompatActivity
             case R.id.action_compose: {
                 if (Helpers.isOnline(MainActivity.this)) {
                     webView.loadUrl("https://" + podDomain + "/status_messages/new");
-                    setTitle(R.string.new_post);
                 } else {
                     snackbarNoInternet.show();
                 }
@@ -877,7 +910,6 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_stream: {
                 if (Helpers.isOnline(MainActivity.this)) {
                     webView.loadUrl("https://" + podDomain + "/stream");
-                    setTitle(R.string.title_stream);
                 } else {
                     snackbarNoInternet.show();
                 }
@@ -887,7 +919,6 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_profile: {
                 if (Helpers.isOnline(MainActivity.this)) {
                     webView.loadUrl("https://" + podDomain + "/people/" + appSettings.getProfileId());
-                    setTitle(R.string.title_profil);
                 } else {
                     snackbarNoInternet.show();
                 }
@@ -919,7 +950,6 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_activities: {
                 if (Helpers.isOnline(MainActivity.this)) {
                     webView.loadUrl("https://" + podDomain + "/activity");
-                    setTitle(R.string.title_activities);
                 } else {
                     snackbarNoInternet.show();
                 }
@@ -929,7 +959,6 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_liked: {
                 if (Helpers.isOnline(MainActivity.this)) {
                     webView.loadUrl("https://" + podDomain + "/liked");
-                    setTitle(R.string.title_liked);
                 } else {
                     snackbarNoInternet.show();
                 }
@@ -939,7 +968,6 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_commented: {
                 if (Helpers.isOnline(MainActivity.this)) {
                     webView.loadUrl("https://" + podDomain + "/commented");
-                    setTitle(R.string.title_commented);
                 } else {
                     snackbarNoInternet.show();
                 }
@@ -949,7 +977,6 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_mentions: {
                 if (Helpers.isOnline(MainActivity.this)) {
                     webView.loadUrl("https://" + podDomain + "/mentions");
-                    setTitle(R.string.title_mentions);
                 } else {
                     snackbarNoInternet.show();
                 }
@@ -959,7 +986,6 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_public: {
                 if (Helpers.isOnline(MainActivity.this)) {
                     webView.loadUrl("https://" + podDomain + "/public");
-                    setTitle(R.string.title_public);
                 } else {
                     snackbarNoInternet.show();
                 }

@@ -31,11 +31,14 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Environment;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.github.dfa.diaspora_android.App;
 import com.github.dfa.diaspora_android.R;
 import com.github.dfa.diaspora_android.activity.MainActivity;
 import com.github.dfa.diaspora_android.task.ImageDownloadTask;
@@ -137,7 +140,7 @@ public class ContextMenuWebView extends NestedWebView {
                         } else {
                             Toast.makeText(context, "Cannot share image: url is null", Toast.LENGTH_SHORT).show();
                         }
-                    break;
+                        break;
 
                     case ID_IMAGE_EXTERNAL_BROWSER:
                         if (url != null) {
@@ -186,6 +189,14 @@ public class ContextMenuWebView extends NestedWebView {
             menu.add(0, ID_COPY_LINK, 0, context.getString(R.string.context_menu_copy_link)).setOnMenuItemClickListener(handler);
             menu.add(0, ID_SHARE_LINK, 0, context.getString(R.string.context_menu_share_link)).setOnMenuItemClickListener(handler);
         }
+    }
+
+    @Override
+    public void loadUrl(String url) {
+        super.loadUrl(url);
+        Intent updateActivityTitleIntent = new Intent(MainActivity.ACTION_UPDATE_TITLE_FROM_URL);
+        updateActivityTitleIntent.putExtra(MainActivity.EXTRA_URL, getUrl());
+        LocalBroadcastManager.getInstance(context).sendBroadcast(updateActivityTitleIntent);
     }
 
     public void setParentActivity(Activity activity) {
