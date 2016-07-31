@@ -160,5 +160,7 @@ along with this program.  If not, see http://www.gnu.org/licenses.&lt;br> &lt;br
     <string name="all_tags">Alle Tags</string>
     <string name="pref_desc_clear_cache">WebView Cache leeren</string>
     <string name="pref_title_clear_cache">Cache leeren</string>
+    <string name="pref_title_intellihide_toolbars">Toolbars intelligent verstecken</string>
+    <string name="pref_desc_intellihide_toolbars">Obere und untere Toolbar verstecken während des Scrollens von Inhalt</string>
 
 </resources>

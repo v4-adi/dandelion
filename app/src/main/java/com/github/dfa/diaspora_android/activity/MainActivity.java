@@ -39,6 +39,7 @@ import android.os.Handler;
 import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -208,6 +209,7 @@ public class MainActivity extends AppCompatActivity
                 .setAction(android.R.string.yes, new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        finish();
                         moveTaskToBack(true);
                     }
                 });
@@ -243,6 +245,11 @@ public class MainActivity extends AppCompatActivity
             } else {
                 snackbarNoInternet.show();
             }
+        }
+
+        if (!appSettings.isIntellihideToolbars()) {
+            AppBarLayout.LayoutParams params = (AppBarLayout.LayoutParams) toolbarTopCollapsing.getLayoutParams();
+            params.setScrollFlags(0);  // clear all scroll flags
         }
 
         handleIntent(getIntent());
@@ -584,6 +591,7 @@ public class MainActivity extends AppCompatActivity
 
             case R.id.action_exit: {
                 moveTaskToBack(true);
+                finish();
                 return true;
             }
 
@@ -991,8 +999,7 @@ public class MainActivity extends AppCompatActivity
             break;
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.main__layout);
-        if (drawer != null) drawer.closeDrawer(GravityCompat.START);
+        navDrawer.closeDrawer(GravityCompat.START);
         return true;
     }
 

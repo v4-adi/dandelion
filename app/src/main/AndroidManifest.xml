@@ -137,6 +137,7 @@
                 <data android:host="diaspora.subsignal.org" android:scheme="https" />
                 <data android:host="diaspora.trash-talk.de" android:scheme="https" />
                 <data android:host="diaspora.undernet.uy" android:scheme="https" />
+                <data android:host="diaspora.unixcorn.org" android:scheme="https" />
                 <data android:host="diasporausa.com" android:scheme="https" />
                 <data android:host="diasp.org" android:scheme="https" />
                 <data android:host="espora.social" android:scheme="https" />
@@ -144,6 +145,7 @@
                 <data android:host="flokk.no" android:scheme="https" />
                 <data android:host="framasphere.org" android:scheme="https" />
                 <data android:host="freehuman.fr" android:scheme="https" />
+                <data android:host="home.enslaver.net" android:scheme="https" />
                 <data android:host="idoru.pl" android:scheme="https" />
                 <data android:host="iliketoast.net" android:scheme="https" />
                 <data android:host="joindiaspora.com" android:scheme="https" />
@@ -196,6 +198,7 @@
                 <data android:host="pod.ros-it.ch" android:scheme="https" />
                 <data android:host="pod.sccn.club" android:scheme="https" />
                 <data android:host="pod.sertelon.fr" android:scheme="https" />
+                <data android:host="pod.skisso.com" android:scheme="https" />
                 <data android:host="pod.storel.li" android:scheme="https" />
                 <data android:host="pod.tchncs.de" android:scheme="https" />
                 <data android:host="pod.thomasdalichow.de" android:scheme="https" />

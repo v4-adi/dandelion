@@ -1,5 +1,9 @@
-# v0.1.4 (in progress)
+# v0.1.4 (2016-07-31)
 - by @vanitasvitae, @gsantner, @di72nn
+- Allow turning off toolbar intellihide
+- Handle links from browseable intent filter #38
+- Intent filter for pods
+- Update license infos of source files
 - Update license infos of source files
 - Localization lint; Translation; Readme
 - Add an option to clear WebView cache

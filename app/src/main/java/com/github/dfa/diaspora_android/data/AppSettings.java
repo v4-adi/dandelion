@@ -94,6 +94,7 @@ public class AppSettings {
         public static final String PROXY_WAS_ENABLED = "wasProxyEnabled";
         public static final String PROXY_HOST = "pref_key_proxy_host";
         public static final String PROXY_PORT = "pref_key_proxy_port";
+        public static final String UI_INTELLIHIDE_TOOLBARS ="pref_key_intellihide_toolbars";
     }
 
 
@@ -230,5 +231,9 @@ public class AppSettings {
             prefApp.edit().putString(PREF.PROXY_PORT, "0").apply();
             return 0;
         }
+    }
+
+    public boolean isIntellihideToolbars(){
+        return prefApp.getBoolean(PREF.UI_INTELLIHIDE_TOOLBARS, true);
     }
 }
