@@ -2,83 +2,83 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- Appearance -->
     <PreferenceCategory
-        android:key="pref_key_category_visuals"
-        android:title="@string/pref_category_visuals">
+        android:key="@string/pref_catkey__category_visuals"
+        android:title="@string/pref_cat__visuals">
         <ListPreference
-            android:dialogTitle="@string/pref_title_font_size"
-            android:entries="@array/pref_entries_font_size"
-            android:entryValues="@array/pref_entry_values_font_size"
-            android:key="pref_key_font_size"
+            android:dialogTitle="@string/pref_title__font_size"
+            android:entries="@array/pref_entries__font_size"
+            android:entryValues="@array/pref_entries_values__font_size"
+            android:key="@string/pref_key__font_size"
             android:summary="%s"
-            android:title="@string/pref_title_font_size"/>
+            android:title="@string/pref_title__font_size"/>
 
         <CheckBoxPreference
             android:defaultValue="true"
-            android:key="pref_key_intellihide_toolbars"
-            android:summary="@string/pref_desc_intellihide_toolbars"
-            android:title="@string/pref_title_intellihide_toolbars"/>
+            android:key="@string/pref_key__intellihide_toolbars"
+            android:summary="@string/pref_desc__intellihide_toolbars"
+            android:title="@string/pref_title__intellihide_toolbars"/>
 
     </PreferenceCategory>
 
     <!-- Diaspora Pod Settings -->
     <PreferenceCategory
-        android:key="pref_key_category_pod_settings"
-        android:title="@string/pref_category_pod_settings">
+        android:key="@string/pref_catkey__pod_settings"
+        android:title="@string/pref_cat__pod_settings">
         <Preference
-            android:key="pref_key_personal_settings"
-            android:summary="@string/pref_desc_personal_settings"
-            android:title="@string/pref_title_personal_settings">
+            android:key="@string/pref_key__personal_settings"
+            android:summary="@string/pref_desc__personal_settings"
+            android:title="@string/pref_title__personal_settings">
         </Preference>
 
         <Preference
-            android:key="pref_key_manage_tags"
-            android:summary="@string/pref_desc_manage_tags"
-            android:title="@string/pref_title_manage_tags">
+            android:key="@string/pref_key__manage_tags"
+            android:summary="@string/pref_desc__manage_tags"
+            android:title="@string/pref_title__manage_tags">
         </Preference>
 
         <Preference
-            android:key="pref_key_manage_contacts"
-            android:summary="@string/pref_desc_manage_contacts"
-            android:title="@string/pref_title_manage_contacts">
+            android:key="@string/pref_key__manage_contacts"
+            android:summary="@string/pref_desc__manage_contacts"
+            android:title="@string/pref_title__manage_contacts">
         </Preference>
 
         <Preference
-            android:key="pref_key_change_account"
-            android:summary="@string/pref_desc_change_account"
-            android:title="@string/pref_title_change_account">
+            android:key="@string/pref_key__change_account"
+            android:summary="@string/pref_desc__change_account"
+            android:title="@string/pref_title__change_account">
         </Preference>
     </PreferenceCategory>
 
     <!-- Networking -->
     <PreferenceCategory
-        android:key="pref_key_category_network"
-        android:title="@string/pref_category_network">
+        android:key="@string/pref_catkey__network"
+        android:title="@string/pref_cat__network">
         <CheckBoxPreference
             android:defaultValue="true"
-            android:key="pref_key_load_images"
-            android:summary="@string/pref_desc_load_images"
-            android:title="@string/pref_title_load_images"/>
+            android:key="@string/pref_key__load_images"
+            android:summary="@string/pref_desc__load_images"
+            android:title="@string/pref_title__load_images"/>
 
         <Preference
-            android:key="pref_key_clear_cache"
-            android:summary="@string/pref_desc_clear_cache"
-            android:title="@string/pref_title_clear_cache">
+            android:key="@string/pref_key__clear_cache"
+            android:summary="@string/pref_desc__clear_cache"
+            android:title="@string/pref_title__clear_cache">
         </Preference>
 
         <CheckBoxPreference
             android:defaultValue="false"
-            android:key="pref_key_proxy_enabled"
-            android:summary="@string/pref_desc_proxy_enabled"
-            android:title="@string/pref_title_proxy_enabled"/>
+            android:key="@string/pref_key__proxy_enabled"
+            android:summary="@string/pref_desc__proxy_enabled"
+            android:title="@string/pref_title__proxy_enabled"/>
         <EditTextPreference
-            android:dependency="pref_key_proxy_enabled"
+            android:dependency="@string/pref_key__proxy_enabled"
             android:inputType="textNoSuggestions"
-            android:key="pref_key_proxy_host"
-            android:title="@string/pref_title_proxy_host"/>
+            android:key="@string/pref_key__proxy_host"
+            android:title="@string/pref_title__proxy_host"/>
         <EditTextPreference
-            android:dependency="pref_key_proxy_enabled"
+            android:dependency="@string/pref_key__proxy_enabled"
             android:inputType="number"
-            android:key="pref_key_proxy_port"
-            android:title="@string/pref_title_proxy_port"/>
+            android:key="@string/pref_key__proxy_port"
+            android:title="@string/pref_title__proxy_port"/>
     </PreferenceCategory>
 </PreferenceScreen>

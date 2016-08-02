@@ -1,52 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Categories -->
-    <string name="pref_category_visuals">Appearance</string>
-    <string name="pref_category_network">Network</string>
-    <string name="pref_category_pod_settings">Pod settings</string>
+    <!-- Key Names (Untranslateable) -->
+    <string name="pref_key__poddomain" translatable="false">podDomain</string>
+    <string name="pref_key__previous_podlist" translatable="false">previousPodlist</string>
+    <string name="pref_key__font_size" translatable="false">pref_key_font_size</string>
+    <string name="pref_key__intellihide_toolbars" translatable="false">pref_key_intellihide_toolbars</string>
+    <string name="pref_catkey__pod_settings" translatable="false">pref_key_category_pod_settings</string>
+    <string name="pref_catkey__category_visuals" translatable="false">pref_key_category_visuals</string>
+    <string name="pref_key__personal_settings" translatable="false">pref_key_personal_settings</string>
+    <string name="pref_key__manage_tags" translatable="false">pref_key_manage_tags</string>
+    <string name="pref_key__manage_contacts" translatable="false">pref_key_manage_contacts</string>
+    <string name="pref_key__change_account" translatable="false">pref_key_change_account</string>
+    <string name="pref_catkey__network" translatable="false">pref_key_category_network</string>
+    <string name="pref_key__load_images" translatable="false">pref_key_load_images</string>
+    <string name="pref_key__clear_cache" translatable="false">pref_key_clear_cache</string>
+
+    <string name="pref_key__proxy_enabled" translatable="false">pref_key_proxy_enabled</string>
+    <string name="pref_key__proxy_host" translatable="false">pref_key_proxy_host</string>
+    <string name="pref_key__proxy_port" translatable="false">pref_key_proxy_port</string>
+    <string name="pref_key__proxy_was_enabled" translatable="false">wasProxyEnabled</string>
+
+
+    <string name="pref_key__podprofile_avatar_url" translatable="false">podUserProfile_avatar</string>
+    <string name="pref_key__podprofile_name" translatable="false">podUserProfile_name</string>
+    <string name="pref_key__podprofile_id" translatable="false">podUserProfile_guid</string>
+    <string name="pref_key__podprofile_aspects" translatable="false">podUserProfile_aspects</string>
+    <string name="pref_key__podprofile_followed_tags" translatable="false">podUserProfile_followedTags</string>
+
+
+    <!-- Category Titles -->
+    <string name="pref_cat__visuals">Appearance</string>
+    <string name="pref_cat__network">Network</string>
+    <string name="pref_cat__pod_settings">Pod settings</string>
 
     <!-- Visuals -->
     <!-- Font size -->
-    <string name="pref_title_font_size">Font size</string>
-    <array name="pref_entries_font_size">
+    <string name="pref_title__font_size">Font size</string>
+    <array name="pref_entries__font_size">
         <item>Normal</item>
         <item>Large</item>
         <item>Huge</item>
     </array>
     <!-- prefix 's' is needed to make this a string array. Otherwise ListPreference would crash -->
-    <array name="pref_entry_values_font_size" translatable="false">
+    <array name="pref_entries_values__font_size" translatable="false">
         <item>normal</item>
         <item>large</item>
         <item>huge</item>
     </array>
 
     <!-- Load images -->
-    <string name="pref_title_load_images">Load images</string>
-    <string name="pref_desc_load_images">Disable image loading to safe mobile data</string>
+    <string name="pref_title__load_images">Load images</string>
+    <string name="pref_desc__load_images">Disable image loading to safe mobile data</string>
 
     <!-- Proxy -->
-    <string name="pref_title_proxy_enabled">Enable Proxy</string>
-    <string name="pref_desc_proxy_enabled">Proxy Diaspora\'s traffic to circumvent firewalls.\nMay require restart</string>
+    <string name="pref_title__proxy_enabled">Enable Proxy</string>
+    <string name="pref_desc__proxy_enabled">Proxy Diaspora\'s traffic to circumvent firewalls.\nMay require restart</string>
 
-    <string name="pref_title_proxy_host">Host</string>
+    <string name="pref_title__proxy_host">Host</string>
 
-    <string name="pref_title_proxy_port">Port</string>
+    <string name="pref_title__proxy_port">Port</string>
 
     <!-- Diaspora Settings -->
-    <string name="pref_title_personal_settings">Personal settings</string>
-    <string name="pref_desc_personal_settings">Open your diaspora account settings</string>
+    <string name="pref_title__personal_settings">Personal settings</string>
+    <string name="pref_desc__personal_settings">Open your diaspora account settings</string>
 
-    <string name="pref_title_manage_contacts">Contacts</string>
-    <string name="pref_desc_manage_contacts">Manage your contact list</string>
+    <string name="pref_title__manage_contacts">Contacts</string>
+    <string name="pref_desc__manage_contacts">Manage your contact list</string>
 
-    <string name="pref_title_manage_tags">Manage Hashtags</string>
-    <string name="pref_desc_manage_tags">Add and delete the hashtags you are following</string>
+    <string name="pref_title__manage_tags">Manage Hashtags</string>
+    <string name="pref_desc__manage_tags">Add and delete the hashtags you are following</string>
 
-    <string name="pref_title_change_account">Change Account</string>
-    <string name="pref_desc_change_account">Erase local session data and switch to another Diaspora pod/account</string>
-    <string name="pref_warning_change_account">This will erase all cookies and session data. Do you really want to change your account?</string>
+    <string name="pref_title__change_account">Change Account</string>
+    <string name="pref_desc__change_account">Erase local session data and switch to another Diaspora pod/account</string>
+    <string name="pref_warning__change_account">This will erase all cookies and session data. Do you really want to change your account?</string>
 
-    <string name="pref_title_clear_cache">Clear cache</string>
-    <string name="pref_desc_clear_cache">Clear WebView cache</string>
+    <string name="pref_title__clear_cache">Clear cache</string>
+    <string name="pref_desc__clear_cache">Clear WebView cache</string>
+
+
+    <string name="pref_desc__intellihide_toolbars" translatable="false">Hide top and bottom toolbars automatically while scrolling</string>
+    <string name="pref_title__intellihide_toolbars">Intellihide Toolbars</string>
 
 </resources>

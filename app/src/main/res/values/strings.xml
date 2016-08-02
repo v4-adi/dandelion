@@ -175,6 +175,4 @@
     <string name="toast_set_proxy_failed">Warning: Could not set network proxy…</string>
 
     <string name="all_tags">All tags</string>
-    <string name="pref_desc_intellihide_toolbars">Hide top and bottom toolbars automatically while scrolling</string>
-    <string name="pref_title_intellihide_toolbars">Intellihide Toolbars</string>
 </resources>
