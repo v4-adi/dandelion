@@ -506,7 +506,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onResume() {
         super.onResume();
-        registerReceiver(brLoadUrl, new IntentFilter(URL_MESSAGE));
+        //registerReceiver(brLoadUrl, new IntentFilter(URL_MESSAGE));
         LocalBroadcastManager.getInstance(this).registerReceiver(brSetTitle, new IntentFilter(ACTION_UPDATE_TITLE_FROM_URL));
     }
 
@@ -571,7 +571,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onPause() {
-        unregisterReceiver(brLoadUrl);
+        //unregisterReceiver(brLoadUrl);
         LocalBroadcastManager.getInstance(this).unregisterReceiver(brSetTitle);
         super.onPause();
     }

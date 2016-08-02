@@ -44,6 +44,7 @@ import com.github.dfa.diaspora_android.activity.MainActivity;
 import com.github.dfa.diaspora_android.task.ImageDownloadTask;
 
 import java.io.File;
+import java.sql.Time;
 
 /**
  * Subclass of WebView which adds a context menu for long clicks on images or links to share, save
@@ -112,7 +113,7 @@ public class ContextMenuWebView extends NestedWebView {
                                 Uri source = Uri.parse(url);
                                 DownloadManager.Request request = new DownloadManager.Request(source);
                                 File destinationFile = new File(Environment.getExternalStorageDirectory() + "/Pictures/Diaspora/"
-                                        + source.getLastPathSegment());
+                                        + System.currentTimeMillis()+".png");
                                 request.setDestinationUri(Uri.fromFile(destinationFile));
                                 ((DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE)).enqueue(request);
                                 Toast.makeText(context, context.getText(R.string.toast_saved_image_to_location) + " " +
@@ -124,15 +125,15 @@ public class ContextMenuWebView extends NestedWebView {
 
                     case ID_SHARE_IMAGE:
                         if(url != null) {
-                            final Uri source = Uri.parse(url);
-                            final Uri local = Uri.parse(Environment.getExternalStorageDirectory() + "/Pictures/Diaspora/"+source.getLastPathSegment());
+                            final Uri local = Uri.parse(Environment.getExternalStorageDirectory() + "/Pictures/Diaspora/"+System.currentTimeMillis()+".png");
                             new ImageDownloadTask(null, local.getPath()) {
                                 @Override
                                 protected void onPostExecute(Bitmap result) {
                                     Uri myUri= Uri.fromFile(new File(local.getPath()));
-                                    Intent sharingIntent = new Intent(Intent.ACTION_SEND);
-                                    sharingIntent.setType("image/*");
+                                    Intent sharingIntent = new Intent();
+                                    sharingIntent.setAction(Intent.ACTION_SEND);
                                     sharingIntent.putExtra(Intent.EXTRA_STREAM, myUri);
+                                    sharingIntent.setType("image/png");
                                     sharingIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                                     context.startActivity(Intent.createChooser(sharingIntent, "Share image using"));
                                 }
