@@ -42,27 +42,6 @@
             android:label="@string/pref_title__personal_settings">
         </activity>
 
-        <activity
-            android:name="com.github.dfa.diaspora_android.activity.ShareActivity"
-            android:launchMode="singleInstance"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:label="@string/new_post"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait" >
-            <intent-filter>
-                <action android:name="android.intent.action.SEND" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="text/plain" />
-            </intent-filter>
-
-            <!-- //TODO Handle single image being sent
-                    <intent-filter>
-                           <action android:name="android.intent.action.SEND_MULTIPLE" />
-                           <category android:name="android.intent.category.DEFAULT" />
-                           <data android:mimeType="image/*" />
-                       </intent-filter>-->
-        </activity>
-
         <service
             android:name="com.github.dfa.diaspora_android.task.GetPodsService"
             android:enabled="true"
@@ -75,6 +54,12 @@
             android:windowSoftInputMode="adjustPan"
             android:theme="@style/AppTheme.NoActionBar"
             android:label="@string/diaspora">
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="text/plain" />
+            </intent-filter>
 
             <!-- Intent from Web Browser / Mail / IM / Clickable Link -->
             <intent-filter>

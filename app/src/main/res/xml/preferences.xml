@@ -18,6 +18,12 @@
             android:summary="@string/pref_desc__intellihide_toolbars"
             android:title="@string/pref_title__intellihide_toolbars"/>
 
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="@string/pref_key__append_shared_via_app"
+            android:summary="@string/pref_desc__append_shared_via_app"
+            android:title="@string/pref_title__append_shared_via_app"/>
+
     </PreferenceCategory>
 
     <!-- Diaspora Pod Settings -->

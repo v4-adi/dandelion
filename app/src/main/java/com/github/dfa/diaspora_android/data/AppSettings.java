@@ -174,6 +174,10 @@ public class AppSettings {
         setStringArray(prefPod, R.string.pref_key__podprofile_followed_tags, tags);
     }
 
+    public boolean isAppendSharedViaApp() {
+        return getBoolean(prefApp, R.string.pref_key__append_shared_via_app, true);
+    }
+
     @SuppressLint("CommitPrefEdits")
     public void setProxyEnabled(boolean enabled) {
         //commit instead of apply because the app is likely to be killed before apply is called.

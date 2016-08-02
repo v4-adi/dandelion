@@ -14,7 +14,7 @@
     <string name="pref_catkey__network" translatable="false">pref_key_category_network</string>
     <string name="pref_key__load_images" translatable="false">pref_key_load_images</string>
     <string name="pref_key__clear_cache" translatable="false">pref_key_clear_cache</string>
-
+    <string name="pref_key__append_shared_via_app" translatable="false">pref_key_append_shared_via_app</string>
     <string name="pref_key__proxy_enabled" translatable="false">pref_key_proxy_enabled</string>
     <string name="pref_key__proxy_host" translatable="false">pref_key_proxy_host</string>
     <string name="pref_key__proxy_port" translatable="false">pref_key_proxy_port</string>
@@ -81,4 +81,6 @@
     <string name="pref_desc__intellihide_toolbars" translatable="false">Hide top and bottom toolbars automatically while scrolling</string>
     <string name="pref_title__intellihide_toolbars">Intellihide Toolbars</string>
 
+    <string name="pref_title__append_shared_via_app">Append shared-by-notice</string>
+    <string name="pref_desc__append_shared_via_app">Append a reference to this app ("shared by…") to shared texts</string>
 </resources>

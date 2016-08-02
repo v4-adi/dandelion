@@ -44,4 +44,6 @@
     <string name="pref_title__intellihide_toolbars">Toolbars intelligent verstecken</string>
     <string name="pref_desc__intellihide_toolbars">Obere und untere Toolbar verstecken während des Scrollens von Inhalt</string>
 
+    <string name="pref_title__append_shared_via_app">Verweise auf App</string>
+    <string name="pref_desc__append_shared_via_app">Füge beim Teilen von Texten Verweis auf diese App an ("geteilt durch…")</string>
 </resources>

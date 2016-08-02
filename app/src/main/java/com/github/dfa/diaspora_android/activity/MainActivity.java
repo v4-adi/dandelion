@@ -69,6 +69,7 @@ import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -381,7 +382,6 @@ public class MainActivity extends AppCompatActivity
                 chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, intentArray);
 
                 startActivityForResult(chooserIntent, INPUT_FILE_REQUEST_CODE);
-
                 return true;
             }
         });
@@ -447,6 +447,7 @@ public class MainActivity extends AppCompatActivity
         }
 
         String action = intent.getAction();
+        String type = intent.getType();
         String loadUrl = null;
 
 
@@ -459,6 +460,20 @@ public class MainActivity extends AppCompatActivity
             Helpers.animateToActivity(MainActivity.this, PodSelectionActivity.class, true);
         } else if (ACTION_CLEAR_CACHE.equals(action)) {
             webView.clearCache(true);
+        } else if (Intent.ACTION_SEND.equals(action) && type != null) {
+            switch (type) {
+                case "text/plain":
+                    if (intent.hasExtra(Intent.EXTRA_SUBJECT)) {
+                        handleSendSubject(intent);
+                    } else {
+                        handleSendText(intent);}
+                    break;
+                case "image/*":
+                    handleSendImage(intent); //TODO: Add intent filter to Manifest and implement method
+                    break;
+            }
+        } else if (Intent.ACTION_SEND_MULTIPLE.equals(action) && type != null) {
+            //TODO: Implement and add filter to manifest
         }
 
         if (loadUrl != null) {
@@ -539,10 +554,8 @@ public class MainActivity extends AppCompatActivity
         @Override
         public void onReceive(Context context, Intent intent) {
             String url = intent.getStringExtra(EXTRA_URL);
-            // Log.d(App.TAG, "BroadcastReceiver: Received setTitleIntent: "+url);
             if (url != null && url.startsWith("https://" + podDomain)) {
                 String subUrl = url.substring(("https://" + podDomain).length());
-                //Log.d(App.TAG, "LocalBroadcastReceiver: SubUrl: "+subUrl); // Spams!
                 if (subUrl.startsWith("/stream")) {
                     setTitle(R.string.title_stream);
                 } else if (subUrl.startsWith("/posts/")) {
@@ -829,6 +842,77 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onUserProfileAvatarChanged(String avatarUrl) {
         app.getAvatarImageLoader().startImageDownload(navheaderImage, avatarUrl);
+    }
+
+    void handleSendText(Intent intent) {
+        webView.loadUrl("https://"+podDomain+"/status_messages/new");
+        String content = intent.getStringExtra(Intent.EXTRA_TEXT);
+        if(appSettings.isAppendSharedViaApp()) {
+            //TODO: Make \n work
+            content = content + " \n" +getString(R.string.shared_by_diaspora_android);
+        }
+        final String sharedText = content;
+        if (sharedText != null) {
+            webView.setWebViewClient(new WebViewClient() {
+                public void onPageFinished(WebView view, String url) {
+                    webView.loadUrl("javascript:(function() { " +
+                            "document.getElementsByTagName('textarea')[0].style.height='110px'; " +
+                            "document.getElementsByTagName('textarea')[0].innerHTML = '" + sharedText + "'; " +
+                            "    if(document.getElementById(\"main_nav\")) {" +
+                            "        document.getElementById(\"main_nav\").parentNode.removeChild(" +
+                            "        document.getElementById(\"main_nav\"));" +
+                            "    } else if (document.getElementById(\"main-nav\")) {" +
+                            "        document.getElementById(\"main-nav\").parentNode.removeChild(" +
+                            "        document.getElementById(\"main-nav\"));" +
+                            "    }" +
+                            "})();");
+                    webView.setWebViewClient(webViewClient);
+                }
+            });
+        }
+    }
+
+    /**
+     * Handle sent text + subject
+     * @param intent
+     */
+    void handleSendSubject(Intent intent) {
+        webView.loadUrl("https://"+podDomain+"/status_messages/new");
+        String content = intent.getStringExtra(Intent.EXTRA_TEXT);
+        final String sharedSubject = intent.getStringExtra(Intent.EXTRA_SUBJECT);
+        if (appSettings.isAppendSharedViaApp()) {
+            //TODO: Make \n work
+            content = content + " \n" + getString(R.string.shared_by_diaspora_android);
+        }
+        final String sharedText = content;
+        if (sharedSubject != null) {
+            webView.setWebViewClient(new WebViewClient() {
+
+                public void onPageFinished(WebView view, String url) {
+                    webView.loadUrl("javascript:(function() { " +
+                            "document.getElementsByTagName('textarea')[0].style.height='110px'; " +
+                            "document.getElementsByTagName('textarea')[0].innerHTML = '**" + sharedSubject + "** " + sharedText + "'; " +
+                            "    if(document.getElementById(\"main_nav\")) {" +
+                            "        document.getElementById(\"main_nav\").parentNode.removeChild(" +
+                            "        document.getElementById(\"main_nav\"));" +
+                            "    } else if (document.getElementById(\"main-nav\")) {" +
+                            "        document.getElementById(\"main-nav\").parentNode.removeChild(" +
+                            "        document.getElementById(\"main-nav\"));" +
+                            "    }" +
+                            "})();");
+                    webView.setWebViewClient(webViewClient);
+                }
+            });
+        }
+    }
+
+    //TODO: Implement?
+    private void handleSendImage(Intent intent) {
+        final Uri imageUri = (Uri) intent.getParcelableExtra(Intent.EXTRA_STREAM);
+        if (imageUri != null) {
+            // Update UI to reflect text being shared
+        }
+        Toast.makeText(this, "Not yet implemented.", Toast.LENGTH_SHORT).show();
     }
 
     // TODO: Move from Javascript interface
