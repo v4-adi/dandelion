@@ -22,6 +22,8 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.github.dfa.diaspora_android.R;
+
 /**
  * Created by gsantner (https://gsantner.github.io/) on 20.03.16. Part of Diaspora for Android.
  */
@@ -48,53 +50,41 @@ public class AppSettings {
         prefApp.edit().clear().apply();
     }
 
-    private void setString(SharedPreferences pref, String key, String value) {
-        pref.edit().putString(key, value).apply();
+    private void setString(SharedPreferences pref, int keyRessourceId, String value) {
+        pref.edit().putString(context.getString(keyRessourceId), value).apply();
     }
 
-    private void setInt(SharedPreferences pref, String key, int value) {
-        pref.edit().putInt(key, value).apply();
+    private void setInt(SharedPreferences pref, int keyRessourceId, int value) {
+        pref.edit().putInt(context.getString(keyRessourceId), value).apply();
     }
 
-    private void setBool(SharedPreferences pref, String key, boolean value) {
-        pref.edit().putBoolean(key, value).apply();
+    private void setBool(SharedPreferences pref, int keyRessourceId, boolean value) {
+        pref.edit().putBoolean(context.getString(keyRessourceId), value).apply();
     }
 
-    private void setStringArray(SharedPreferences pref, String key, Object[] values) {
+    private void setStringArray(SharedPreferences pref, int keyRessourceId, Object[] values) {
         StringBuffer sb = new StringBuffer();
         for (Object value : values) {
             sb.append("%%%");
             sb.append(value.toString());
         }
-        setString(pref, key, sb.toString().replaceFirst("%%%", ""));
+        setString(pref, keyRessourceId, sb.toString().replaceFirst("%%%", ""));
     }
 
-    private String[] getStringArray(SharedPreferences pref, String key) {
-        String value = pref.getString(key, "%%%");
+    private String[] getStringArray(SharedPreferences pref, int keyRessourceId) {
+        String value = pref.getString(context.getString(keyRessourceId), "%%%");
         if (value.equals("%%%")) {
             return new String[0];
         }
         return value.split("%%%");
     }
 
-    /*
-    //   Preferences
-     */
-    public static class PREF {
-        public static final String PREVIOUS_PODLIST = "previousPodlist";
-        public static final String IS_LOAD_IMAGES = "pref_key_load_images";
-        public static final String MINIMUM_FONT_SIZE = "pref_key_font_size";
-        public static final String PODUSERPROFILE_AVATAR_URL = "podUserProfile_avatar";
-        public static final String PODUSERPROFILE_NAME = "podUserProfile_name";
-        public static final String PODUSERPROFILE_ID = "podUserProfile_guid";
-        public static final String PODDOMAIN = "podDomain";
-        public static final String PODUSERPROFILE_ASPECTS = "podUserProfile_aspects";
-        public static final String PODUSERPROFILE_FOLLOWED_TAGS = "podUserProfile_followedTags";
-        public static final String PROXY_ENABLED = "pref_key_proxy_enabled";
-        public static final String PROXY_WAS_ENABLED = "wasProxyEnabled";
-        public static final String PROXY_HOST = "pref_key_proxy_host";
-        public static final String PROXY_PORT = "pref_key_proxy_port";
-        public static final String UI_INTELLIHIDE_TOOLBARS ="pref_key_intellihide_toolbars";
+    private String getString(SharedPreferences pref, int ressourceId, String defaultValue) {
+        return pref.getString(context.getString(ressourceId), defaultValue);
+    }
+
+    private boolean getBoolean(SharedPreferences pref, int ressourceId, boolean defaultValue) {
+        return pref.getBoolean(context.getString(ressourceId), defaultValue);
     }
 
 
@@ -102,19 +92,19 @@ public class AppSettings {
     //     Setters & Getters
     */
     public String getProfileId() {
-        return prefPod.getString(PREF.PODUSERPROFILE_ID, "");
+        return getString(prefPod, R.string.pref_key__podprofile_id, "");
     }
 
     public void setProfileId(String profileId) {
-        setString(prefPod, PREF.PODUSERPROFILE_ID, profileId);
+        setString(prefPod, R.string.pref_key__podprofile_id, profileId);
     }
 
     public boolean isLoadImages() {
-        return prefApp.getBoolean(PREF.IS_LOAD_IMAGES, true);
+        return getBoolean(prefApp, R.string.pref_key__load_images, true);
     }
 
     public int getMinimumFontSize() {
-        switch (prefApp.getString(PREF.MINIMUM_FONT_SIZE, "")) {
+        switch (getString(prefApp, R.string.pref_key__font_size, "")) {
             case "huge":
                 return 20;
             case "large":
@@ -122,118 +112,122 @@ public class AppSettings {
             case "normal":
                 return 8;
             default:
-                prefApp.edit().putString(PREF.MINIMUM_FONT_SIZE, "normal").apply();
+                setString(prefApp, R.string.pref_key__font_size, "normal");
                 return 8;
         }
     }
 
     public String getAvatarUrl() {
-        return prefPod.getString(PREF.PODUSERPROFILE_AVATAR_URL, "");
+        return getString(prefPod, R.string.pref_key__podprofile_avatar_url, "");
     }
 
     public void setAvatarUrl(String avatarUrl) {
-        setString(prefPod, PREF.PODUSERPROFILE_AVATAR_URL, avatarUrl);
+        setString(prefPod, R.string.pref_key__podprofile_avatar_url, avatarUrl);
     }
 
     public String getName() {
-        return prefPod.getString(PREF.PODUSERPROFILE_NAME, "");
+        return getString(prefPod, R.string.pref_key__podprofile_name, "");
     }
 
     public void setName(String name) {
-        setString(prefPod, PREF.PODUSERPROFILE_NAME, name);
+        setString(prefPod, R.string.pref_key__podprofile_name, name);
     }
 
     public String getPodDomain() {
-        return prefPod.getString(PREF.PODDOMAIN, "");
+        return getString(prefPod, R.string.pref_key__poddomain, "");
     }
 
     public void setPodDomain(String podDomain) {
-        setString(prefPod, PREF.PODDOMAIN, podDomain);
+        setString(prefPod, R.string.pref_key__poddomain, podDomain);
     }
 
     public boolean hasPodDomain() {
-        return !prefPod.getString(PREF.PODDOMAIN, "").equals("");
+        return !getString(prefPod, R.string.pref_key__poddomain, "").equals("");
     }
 
     public String[] getPreviousPodlist() {
-        return getStringArray(prefApp, PREF.PREVIOUS_PODLIST);
+        return getStringArray(prefApp, R.string.pref_key__previous_podlist);
     }
 
     public void setPreviousPodlist(String[] pods) {
-        setStringArray(prefApp, PREF.PREVIOUS_PODLIST, pods);
+        setStringArray(prefApp, R.string.pref_key__previous_podlist, pods);
     }
 
     public void setPodAspects(PodAspect[] aspects) {
-        setStringArray(prefPod, PREF.PODUSERPROFILE_ASPECTS, aspects);
+        setStringArray(prefPod, R.string.pref_key__podprofile_aspects, aspects);
     }
 
     public PodAspect[] getPodAspects() {
-        String[] s= getStringArray(prefPod, PREF.PODUSERPROFILE_ASPECTS);
+        String[] s = getStringArray(prefPod, R.string.pref_key__podprofile_aspects);
         PodAspect[] aspects = new PodAspect[s.length];
-        for(int i=0; i < aspects.length; i++){
+        for (int i = 0; i < aspects.length; i++) {
             aspects[i] = new PodAspect(s[i]);
         }
         return aspects;
     }
 
     public String[] getFollowedTags() {
-        return getStringArray(prefPod, PREF.PODUSERPROFILE_FOLLOWED_TAGS);
+        return getStringArray(prefPod, R.string.pref_key__podprofile_followed_tags);
     }
 
     public void setFollowedTags(String[] tags) {
-        setStringArray(prefPod, PREF.PODUSERPROFILE_FOLLOWED_TAGS, tags);
+        setStringArray(prefPod, R.string.pref_key__podprofile_followed_tags, tags);
     }
 
     @SuppressLint("CommitPrefEdits")
     public void setProxyEnabled(boolean enabled) {
         //commit instead of apply because the app is likely to be killed before apply is called.
-        prefApp.edit().putBoolean(PREF.PROXY_ENABLED, enabled).commit();
+        prefApp.edit().putBoolean(context.getString(R.string.pref_key__proxy_enabled), enabled).commit();
     }
 
     /**
      * Default return value: false
+     *
      * @return whether proxy is enabled or not
      */
     public boolean isProxyEnabled() {
-        return prefApp.getBoolean(PREF.PROXY_ENABLED, false);
+        return getBoolean(prefApp, R.string.pref_key__proxy_enabled, false);
     }
 
     public boolean wasProxyEnabled() {
-        return prefApp.getBoolean(PREF.PROXY_WAS_ENABLED, false);
+        return getBoolean(prefApp, R.string.pref_key__proxy_was_enabled, false);
     }
 
     /**
      * Needed in order to determine, whether the proxy has just been disabled (trigger app restart)
      * or if proxy was disabled before (do not restart app)
+     *
      * @param b new value
      */
     @SuppressLint("CommitPrefEdits")
     public void setProxyWasEnabled(boolean b) {
-        prefApp.edit().putBoolean(PREF.PROXY_WAS_ENABLED, b).commit();
+        prefApp.edit().putBoolean(context.getString(R.string.pref_key__proxy_was_enabled), b).commit();
     }
 
     /**
      * Default value: ""
+     *
      * @return proxy host
      */
     public String getProxyHost() {
-        return prefApp.getString(PREF.PROXY_HOST, "");
+        return getString(prefApp, R.string.pref_key__proxy_host, "");
     }
 
     /**
      * Default value: 0
+     *
      * @return proxy port
      */
     public int getProxyPort() {
         try {
-            return Integer.parseInt(prefApp.getString(PREF.PROXY_PORT, "0"));
+            return Integer.parseInt(getString(prefApp, R.string.pref_key__proxy_port, "0"));
         } catch (Exception e) {
-            prefApp.edit().putString(PREF.PROXY_PORT, "0").apply();
+            setString(prefApp, R.string.pref_key__proxy_port, "0");
             return 0;
         }
     }
 
-    public boolean isIntellihideToolbars(){
-        return prefApp.getBoolean(PREF.UI_INTELLIHIDE_TOOLBARS, true);
+    public boolean isIntellihideToolbars() {
+        return getBoolean(prefApp, R.string.pref_key__intellihide_toolbars, true);
     }
 }

@@ -31,7 +31,6 @@ import android.preference.PreferenceScreen;
 
 import com.github.dfa.diaspora_android.App;
 import com.github.dfa.diaspora_android.R;
-import com.github.dfa.diaspora_android.data.AppSettings;
 
 /**
  * @author vanitas
@@ -48,13 +47,15 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
         sharedPreferences = getPreferenceScreen().getSharedPreferences();
         sharedPreferences.registerOnSharedPreferenceChangeListener(this);
         setPreferenceSummaries();
-        sharedPreferences.edit().putBoolean(AppSettings.PREF.PROXY_WAS_ENABLED,
-                sharedPreferences.getBoolean(AppSettings.PREF.PROXY_ENABLED, false)).apply();
+        sharedPreferences.edit().putBoolean(getString(R.string.pref_key__proxy_was_enabled),
+                sharedPreferences.getBoolean(getString(R.string.pref_key__proxy_enabled), false)).apply();
     }
 
     private void setPreferenceSummaries() {
-        String[] editTextKeys = new String[]{AppSettings.PREF.PROXY_HOST, AppSettings.PREF.PROXY_PORT};
-        for(String key : editTextKeys) {
+        String[] editTextKeys = new String[]{
+                getString(R.string.pref_key__proxy_host), getString(R.string.pref_key__proxy_port)
+        };
+        for (String key : editTextKeys) {
             EditTextPreference p = (EditTextPreference) findPreference(key);
             p.setSummary(p.getText());
         }
@@ -66,13 +67,15 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
     }
 
     private void updatePreference(Preference preference, String key) {
-        if (preference == null) return;
+        if (preference == null) {
+            return;
+        }
         if (preference instanceof EditTextPreference) {
             EditTextPreference textPref = (EditTextPreference) preference;
             textPref.setSummary(textPref.getText());
             return;
         }
-        if(preference instanceof ListPreference) {
+        if (preference instanceof ListPreference) {
             ListPreference listPref = (ListPreference) preference;
             listPref.setSummary(listPref.getEntry());
             return;
@@ -82,24 +85,28 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen screen, Preference preference) {
         Intent intent = new Intent(this, MainActivity.class);
-        String podDomain = ((App)getApplication()).getSettings().getPodDomain();
-        switch(preference.getKey()) {
-            case "pref_key_personal_settings":
+        String podDomain = ((App) getApplication()).getSettings().getPodDomain();
+
+        switch (preference.getTitleRes()) {
+            case R.string.pref_title__personal_settings: {
                 intent.setAction(MainActivity.ACTION_OPEN_URL);
                 intent.putExtra(MainActivity.URL_MESSAGE, "https://" + podDomain + "/user/edit");
                 break;
-            case "pref_key_manage_tags":
+            }
+            case R.string.pref_title__manage_tags: {
                 intent.setAction(MainActivity.ACTION_OPEN_URL);
                 intent.putExtra(MainActivity.URL_MESSAGE, "https://" + podDomain + "/tag_followings/manage");
                 break;
-            case "pref_key_manage_contacts":
+            }
+            case R.string.pref_title__manage_contacts: {
                 intent.setAction(MainActivity.ACTION_OPEN_URL);
                 intent.putExtra(MainActivity.URL_MESSAGE, "https://" + podDomain + "/contacts");
                 break;
-            case "pref_key_change_account":
+            }
+            case R.string.pref_title__change_account: {
                 new AlertDialog.Builder(SettingsActivity.this)
                         .setTitle(getString(R.string.confirmation))
-                        .setMessage(getString(R.string.pref_warning_change_account))
+                        .setMessage(getString(R.string.pref_warning__change_account))
                         .setNegativeButton(android.R.string.no, null)
                         .setPositiveButton(android.R.string.yes,
                                 new DialogInterface.OnClickListener() {
@@ -112,14 +119,17 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
                                 })
                         .show();
                 return true;
-            case "pref_key_clear_cache":
+            }
+            case R.string.pref_title__clear_cache: {
                 intent.setAction(MainActivity.ACTION_CLEAR_CACHE);
                 break;
-            default:
+            }
+            default: {
                 intent = null;
                 break;
+            }
         }
-        if(intent != null) {
+        if (intent != null) {
             startActivity(intent);
             finish();
             return true;

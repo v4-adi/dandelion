@@ -39,7 +39,7 @@
             android:name=".activity.SettingsActivity"
             android:launchMode="singleInstance"
             android:theme="@style/AppTheme"
-            android:label="@string/pref_title_personal_settings">
+            android:label="@string/pref_title__personal_settings">
         </activity>
 
         <activity
