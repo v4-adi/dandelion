@@ -78,7 +78,7 @@
     <string name="pref_desc__clear_cache">Clear WebView cache</string>
 
 
-    <string name="pref_desc__intellihide_toolbars" translatable="false">Hide top and bottom toolbars automatically while scrolling</string>
+    <string name="pref_desc__intellihide_toolbars">Hide top and bottom toolbars automatically while scrolling</string>
     <string name="pref_title__intellihide_toolbars">Intellihide Toolbars</string>
 
     <string name="pref_title__append_shared_via_app">Append shared-by-notice</string>
