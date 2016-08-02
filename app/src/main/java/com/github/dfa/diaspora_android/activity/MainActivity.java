@@ -281,6 +281,7 @@ public class MainActivity extends AppCompatActivity
         this.registerForContextMenu(webView);
         webView.setParentActivity(this);
         webView.setOverScrollMode(WebView.OVER_SCROLL_ALWAYS);
+        webView.setNestedScrollingEnabled(false);
 
         // Setup WebView
         //TODO: Dangerous on API < 17. Can we do anything about this?

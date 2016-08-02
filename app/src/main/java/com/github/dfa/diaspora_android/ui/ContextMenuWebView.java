@@ -44,7 +44,6 @@ import com.github.dfa.diaspora_android.activity.MainActivity;
 import com.github.dfa.diaspora_android.task.ImageDownloadTask;
 
 import java.io.File;
-import java.sql.Time;
 
 /**
  * Subclass of WebView which adds a context menu for long clicks on images or links to share, save
