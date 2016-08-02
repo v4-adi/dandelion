@@ -5,9 +5,9 @@
     <color name="colorAccent">@color/accent</color>
 
     <!-- Colors from Palette -->
-    <color name="primary">#607d8b</color>
+    <color name="primary">#608b6f</color>
     <color name="primary_dark">#607d8b</color>
-    <color name="accent">#4CAF50</color>
+    <color name="accent">#B89D92</color>
     <!-- End colors from Palette -->
 
     <color name="fab_big">@color/accent</color>
