@@ -113,7 +113,7 @@ public class ContextMenuWebView extends NestedWebView {
                                         + System.currentTimeMillis()+".png");
                                 request.setDestinationUri(Uri.fromFile(destinationFile));
                                 ((DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE)).enqueue(request);
-                                Toast.makeText(context, context.getText(R.string.toast_saved_image_to_location) + " " +
+                                Toast.makeText(context, context.getText(R.string.share__toast_saved_image_to_location) + " " +
                                         destinationFile.getAbsolutePath(), Toast.LENGTH_LONG).show();
                             }
                         }
@@ -152,7 +152,7 @@ public class ContextMenuWebView extends NestedWebView {
                         if (url != null) {
                             ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
                             clipboard.setPrimaryClip(ClipData.newPlainText("text", url));
-                            Toast.makeText(context, R.string.toast_link_address_copied, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, R.string.share__toast_link_address_copied, Toast.LENGTH_SHORT).show();
                         }
                         break;
 

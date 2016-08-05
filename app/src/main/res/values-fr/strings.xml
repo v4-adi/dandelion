@@ -12,17 +12,15 @@
 
 
     <!-- Titles -->
-
-    <string name="title_notifications">Notifications</string>
-    <string name="title_conversations">Discussions</string>
-    <string name="title_stream">Flux</string>
-    <string name="title_profil">Profil</string>
-    <string name="title_aspects">Aspects</string>
-    <string name="title_activities">Activités</string>
-    <string name="title_liked">Aimés</string>
-    <string name="title_commented">Commentés</string>
-    <string name="title_mentions">Mentions</string>
-    <string name="title_public">Public</string>
+    <string name="conversations">Discussions</string>
+    <string name="stream">Flux</string>
+    <string name="profile">Profil</string>
+    <string name="aspects">Aspects</string>
+    <string name="activities">Activités</string>
+    <string name="liked">Aimés</string>
+    <string name="commented">Commentés</string>
+    <string name="mentions">Mentions</string>
+    <string name="public_">Public</string>
 
 
     <!-- Pod Activity -->
@@ -45,34 +43,33 @@
 
     <!-- Drawer and App -->
 
-    <string name="jb_menu_1">Paramètres</string>
-    <string name="jb_help_license">A propos de l\'application | Aide</string>
-    <string name="jb_stream">Flux</string>
-    <string name="jb_liked">Aimés</string>
-    <string name="jb_commented">Commentés</string>
-    <string name="jb_mentions">Mentions</string>
-    <string name="jb_activities">Activités</string>
-    <string name="jb_followed_tags">Hashtags suivis</string>
-    <string name="jb_aspects">Aspects</string>
-    <string name="jb_public">Activités publiques</string>
-    <string name="jb_settings_view">Paramètres de l\'application</string>
-    <string name="jb_share">Partager du contenu</string>
+    <string name="nav_menu_settings">Paramètres</string>
+    <string name="nav_help_license">A propos de l\'application | Aide</string>
+    <string name="nav_stream">Flux</string>
+    <string name="nav_liked">Aimés</string>
+    <string name="nav_commented">Commentés</string>
+    <string name="nav_mentions">Mentions</string>
+    <string name="nav_activities">Activités</string>
+    <string name="nav_followed_tags">Hashtags suivis</string>
+    <string name="nav_aspects">Aspects</string>
+    <string name="nav_public_activities">Activités publiques</string>
+    <string name="nav_settings_view">Paramètres de l\'application</string>
 
-    <string name="share_link">Partager le lien comme texte</string>
-    <string name="share_screenshot">Partager la capture d\'écran d\'un site web</string>
-    <string name="take_screenshot">Prendre une capture d\'écran d\'un site web</string>
+    <string name="share__share_link_as_text">Partager le lien comme texte</string>
+    <string name="share__share_screenshot">Partager la capture d\'écran d\'un site web</string>
+    <string name="share__take_screenshot">Prendre une capture d\'écran d\'un site web</string>
 
     <string name="help_license">Licence</string>
     <string name="help_help">Mise en page Markdown</string>
 
-    <string name="toast_screenshot">Enregistrer la capture d\'écran sous :</string>
+    <string name="share__toast_screenshot">Enregistrer la capture d\'écran sous :</string>
 
 
     <!-- Floating Action Buttons - Titles -->
 
-    <string name="go_to_top">Retour en haut</string>
-    <string name="search_by_tags_or_persons">Recherche par tags ou par personnes</string>
-    <string name="compose">Nouveau message</string>
+    <string name="action_go_to_top">Retour en haut</string>
+    <string name="action_search_by_tags_or_persons">Recherche par tags ou par personnes</string>
+    <string name="action_compose">Nouveau message</string>
 
 
     <string name="search_alert_title">Recherche</string>
@@ -138,22 +135,20 @@
         https://www.flickr.com/photos/129581906@N06/sets/72157651933980136/with/16594947123.
         They were published by \"Lydia\" and are licensed under cc by-nc-sa.&lt;/i></string>
 
-    <string name="splash_screen_description">Splash screen</string>
-    <string name="image">Impossible de récupérer l\'image</string>
-    <string name="jb_profile">Profile</string>
+    <string name="unable_to_load_image">Impossible de récupérer l\'image</string>
 
-    <string name="exit_app">Quitter l\'application</string>
-    <string name="toggle_desktop_page">Toggle mobile/desktop view</string>
+    <string name="action_exit_app">Quitter l\'application</string>
+    <string name="action_toggle_desktop_page">Toggle mobile/desktop view</string>
     <string name="shared_by_diaspora_android">*[partagé via #DiasporaForAndroid]*</string>
-    <string name="toast_link_address_copied">Lien copié…</string>
+    <string name="share__toast_link_address_copied">Lien copié…</string>
     <string name="context_menu_share_link">Partager un lien</string>
     <string name="context_menu_save_image">Enregistrer l\'image</string>
     <string name="context_menu_share_image">Partager l\'image</string>
     <string name="context_menu_open_external_browser">Ouvrir dans un navigateur externe…</string>
     <string name="context_menu_copy_link">Copier le lien dans le presse-papier</string>
-    <string name="toast_saved_image_to_location">Enregistrer l\'image sous</string>
+    <string name="share__toast_saved_image_to_location">Enregistrer l\'image sous</string>
 
     <string name="toast_set_proxy_failed">Attention: connexion au proxy impossible…</string>
-    <string name="share_dotdotdot">Partager…</string>
+    <string name="action_share_dotdotdot">Partager…</string>
     <string name="all_tags">Tout Tags</string>
 </resources>

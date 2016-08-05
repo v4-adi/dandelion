@@ -10,7 +10,6 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:contentDescription="@string/splash_screen_description"
         android:scaleType="centerCrop"
         android:src="@drawable/splashscreen1" />
 </RelativeLayout>

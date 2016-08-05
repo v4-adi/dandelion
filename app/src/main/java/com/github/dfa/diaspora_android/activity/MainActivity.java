@@ -350,7 +350,7 @@ public class MainActivity extends AppCompatActivity
                         takePictureIntent.putExtra("PhotoPath", mCameraPhotoPath);
                     } catch (IOException ex) {
                         // Error occurred while creating the File
-                        Snackbar.make(swipeRefreshLayout, R.string.image, Snackbar.LENGTH_LONG).show();
+                        Snackbar.make(swipeRefreshLayout, R.string.unable_to_load_image, Snackbar.LENGTH_LONG).show();
                         return false;
                     }
 
@@ -556,27 +556,27 @@ public class MainActivity extends AppCompatActivity
             if (url != null && url.startsWith("https://" + podDomain)) {
                 String subUrl = url.substring(("https://" + podDomain).length());
                 if (subUrl.startsWith("/stream")) {
-                    setTitle(R.string.title_stream);
+                    setTitle(R.string.nav_stream);
                 } else if (subUrl.startsWith("/posts/")) {
                     setTitle(R.string.diaspora); //TODO: Extract posts title somehow?
                 } else if (subUrl.startsWith("/notifications")) {
-                    setTitle(R.string.title_notifications);
+                    setTitle(R.string.notifications);
                 } else if (subUrl.startsWith("/conversations")) {
-                    setTitle(R.string.title_conversations);
+                    setTitle(R.string.conversations);
                 } else if (subUrl.startsWith("/status_messages/new")) {
                     setTitle(R.string.new_post);
                 } else if (subUrl.startsWith("/people/" + appSettings.getProfileId())) {
-                    setTitle(R.string.title_profil);
+                    setTitle(R.string.nav_profile);
                 } else if (subUrl.startsWith("/activity")) {
-                    setTitle(R.string.title_activities);
+                    setTitle(R.string.nav_activities);
                 } else if (subUrl.startsWith("/liked")) {
-                    setTitle(R.string.title_liked);
+                    setTitle(R.string.nav_liked);
                 } else if (subUrl.startsWith("/commented")) {
-                    setTitle(R.string.title_commented);
+                    setTitle(R.string.nav_commented);
                 } else if (subUrl.startsWith("/mentions")) {
-                    setTitle(R.string.title_mentions);
+                    setTitle(R.string.nav_mentions);
                 } else if (subUrl.startsWith("/public")) {
-                    setTitle(R.string.title_public);
+                    setTitle(R.string.public_);
                 }
             }
         }
@@ -790,7 +790,7 @@ public class MainActivity extends AppCompatActivity
         }
 
         if (!hasToShareScreenshot) {
-            Snackbar.make(swipeRefreshLayout, getString(R.string.toast_screenshot) + " " + fileSaveName, Snackbar.LENGTH_LONG).show();
+            Snackbar.make(swipeRefreshLayout, getString(R.string.share__toast_screenshot) + " " + fileSaveName, Snackbar.LENGTH_LONG).show();
         }
 
         Bitmap bitmap;
@@ -822,7 +822,7 @@ public class MainActivity extends AppCompatActivity
             sharingIntent.putExtra(Intent.EXTRA_TEXT, webView.getUrl());
             Uri bmpUri = Uri.fromFile(new File(fileSaveDirectory, fileSaveName));
             sharingIntent.putExtra(Intent.EXTRA_STREAM, bmpUri);
-            startActivity(Intent.createChooser(sharingIntent, getString(R.string.share_dotdotdot)));
+            startActivity(Intent.createChooser(sharingIntent, getString(R.string.action_share_dotdotdot)));
         } else {
             // Broadcast that this file is indexable
             File file = new File(fileSaveDirectory, fileSaveName);
@@ -1016,7 +1016,7 @@ public class MainActivity extends AppCompatActivity
                 if (Helpers.isOnline(MainActivity.this)) {
 //                    webView.loadUrl("https://" + podDomain + "/followed_tags");
                     Helpers.showFollowedTagsList(webView, app);
-                    setTitle(R.string.jb_followed_tags);
+                    setTitle(R.string.nav_followed_tags);
                 } else {
                     snackbarNoInternet.show();
                 }
@@ -1027,7 +1027,7 @@ public class MainActivity extends AppCompatActivity
                 if (Helpers.isOnline(MainActivity.this)) {
                     // webView.loadUrl("https://" + podDomain + "/aspects");
                     Helpers.showAspectList(webView, app);
-                    setTitle(R.string.title_aspects);
+                    setTitle(R.string.aspects);
                 } else {
                     snackbarNoInternet.show();
                 }
