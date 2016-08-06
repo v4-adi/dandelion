@@ -261,7 +261,6 @@ public class MainActivity extends AppCompatActivity
     private void setupWebView(Bundle savedInstanceState) {
 
         webSettings = webView.getSettings();
-        //TODO: Dangerous on API < 17. Can we do anything about this?
         webSettings.setJavaScriptEnabled(true);
         webSettings.setUseWideViewPort(true);
         webSettings.setLoadWithOverviewMode(true);
@@ -284,7 +283,6 @@ public class MainActivity extends AppCompatActivity
         webView.setOverScrollMode(WebView.OVER_SCROLL_ALWAYS);
 
         // Setup WebView
-        //TODO: Dangerous on API < 17. Can we do anything about this?
         webView.addJavascriptInterface(new JavaScriptInterface(), "AndroidBridge");
 
         //Set proxy
