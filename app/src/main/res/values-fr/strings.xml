@@ -40,7 +40,6 @@
   <string name="action_exit_app">Quitter l\'application</string>
   <string name="action_share_dotdotdot">Partager&#8230;</string>
   <string name="new_post">Nouveau message</string>
-  <string name="messages">Discussions</string>
   <string name="search_alert_tag">par tags</string>
   <string name="search_alert_people">par personne</string>
   <string name="search_alert_bypeople_validate_needsomedata">Veuillez ajouter un nom</string>

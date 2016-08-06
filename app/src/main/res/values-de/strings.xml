@@ -45,7 +45,6 @@
   <string name="action_toggle_desktop_page">Mobil-/Desktopansicht umschalten</string>
   <string name="action_share_dotdotdot">Teilen&#8230;</string>
   <string name="new_post">Neuer Beitrag</string>
-  <string name="messages">Unterhaltungen</string>
   <string name="search_alert_tag">nach Tags</string>
   <string name="search_alert_people">nach Personen</string>
   <string name="search_alert_bypeople_validate_needsomedata">Füge einen Namen ein.</string>

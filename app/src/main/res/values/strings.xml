@@ -68,7 +68,7 @@
     <string name="new_post">New post</string>
     <string name="action_go_to_top">Go to top</string>
     <string name="action_search_by_tags_or_persons">Search by tags or persons</string>
-    <string name="action_compose_new_post">@string/new_post</string>
+    <string name="action_compose_new_post" translatable="false">@string/new_post</string>
     <string name="action_exit_app">Exit app</string>
     <string name="action_toggle_desktop_page">Toggle mobile/desktop view</string>
     <string name="action_share_dotdotdot">Share…</string>
