@@ -105,6 +105,7 @@
                 <data android:host="diaspora.mazi.tk" android:scheme="https" />
                 <data android:host="diaspora.moosje.nl" android:scheme="https" />
                 <data android:host="diaspora.net.gr" android:scheme="https" />
+                <data android:host="diasporanet.tk" android:scheme="https" />
                 <data android:host="diaspora.permutationsofchaos.com" android:scheme="https" />
                 <data android:host="diaspora.pimpmypony.eu" android:scheme="https" />
                 <data android:host="diaspora.pingupod.de" android:scheme="https" />
@@ -125,11 +126,14 @@
                 <data android:host="diaspora.unixcorn.org" android:scheme="https" />
                 <data android:host="diasporausa.com" android:scheme="https" />
                 <data android:host="diasp.org" android:scheme="https" />
+                <data android:host="distributed.chat" android:scheme="https" />
+                <data android:host="espora.com.es" android:scheme="https" />
                 <data android:host="espora.social" android:scheme="https" />
                 <data android:host="failure.net" android:scheme="https" />
                 <data android:host="flokk.no" android:scheme="https" />
                 <data android:host="framasphere.org" android:scheme="https" />
                 <data android:host="freehuman.fr" android:scheme="https" />
+                <data android:host="friendica.tk" android:scheme="https" />
                 <data android:host="home.enslaver.net" android:scheme="https" />
                 <data android:host="idoru.pl" android:scheme="https" />
                 <data android:host="iliketoast.net" android:scheme="https" />
@@ -145,6 +149,7 @@
                 <data android:host="LibertyPod.org" android:scheme="https" />
                 <data android:host="librenet.co.za" android:scheme="https" />
                 <data android:host="librenet.gr" android:scheme="https" />
+                <data android:host="londor.be" android:scheme="https" />
                 <data android:host="misamigos.online" android:scheme="https" />
                 <data android:host="mondiaspora.net" android:scheme="https" />
                 <data android:host="nerdpol.ch" android:scheme="https" />
@@ -190,6 +195,7 @@
                 <data android:host="pod.undreaming.org" android:scheme="https" />
                 <data android:host="pubpod.alqualonde.org" android:scheme="https" />
                 <data android:host="realms.the-wizard.co.za" android:scheme="https" />
+                <data android:host="revreso.de" android:scheme="https" />
                 <data android:host="ruhrspora.de" android:scheme="https" />
                 <data android:host="russiandiaspora.org" android:scheme="https" />
                 <data android:host="sechat.org" android:scheme="https" />
@@ -200,6 +206,7 @@
                 <data android:host="social.elaon.de" android:scheme="https" />
                 <data android:host="socializer.cc" android:scheme="https" />
                 <data android:host="social.mbuto.me" android:scheme="https" />
+                <data android:host="social.sum7.de" android:scheme="https" />
                 <data android:host="spora.zone" android:scheme="https" />
                 <data android:host="subvillage.de" android:scheme="https" />
                 <data android:host="sysad.org" android:scheme="https" />

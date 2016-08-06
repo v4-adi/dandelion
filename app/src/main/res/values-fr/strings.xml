@@ -36,7 +36,7 @@
   <string name="share__toast_link_address_copied">Lien copié&#8230;</string>
   <string name="action_go_to_top">Retour en haut</string>
   <string name="action_search_by_tags_or_persons">Recherche par tags ou par personnes</string>
-  <string name="action_compose">Nouveau message</string>
+  <string name="action_compose_new_post">Nouveau message</string>
   <string name="action_exit_app">Quitter l\'application</string>
   <string name="action_share_dotdotdot">Partager&#8230;</string>
   <string name="new_post">Nouveau message</string>

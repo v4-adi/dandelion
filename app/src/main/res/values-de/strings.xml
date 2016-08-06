@@ -40,7 +40,7 @@
   <string name="share__toast_link_address_copied">Linkadresse kopiert &#8230;</string>
   <string name="action_go_to_top">Nach oben scrollen</string>
   <string name="action_search_by_tags_or_persons">Suche nach Tags oder Personen …</string>
-  <string name="action_compose">Neuer Beitrag</string>
+  <string name="action_compose_new_post">Neuer Beitrag</string>
   <string name="action_exit_app">App beenden</string>
   <string name="action_toggle_desktop_page">Mobil-/Desktopansicht umschalten</string>
   <string name="action_share_dotdotdot">Teilen&#8230;</string>
