@@ -33,7 +33,7 @@ Why a WebApp is better than using the mobile site on a browser?
 Basically it provides better integration with the system (events coming into and going out of the app), notifications, customized interface and functions and a nice little icon that takes you directly to your favorite social network :)
 
 ### Device Requirements
-The minimum version supported is Ice Cream Sandwich, Android v4.0.3 / API 15
+The minimum version supported is Ice Cream Sandwich, Android v4.2.0 / API 17
 
 ### App Permissions
 It requires access to the Internet and to external storage to be able to upload photos when creating a new post and for taking screenshots.
