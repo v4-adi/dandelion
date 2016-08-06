@@ -11,11 +11,11 @@
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipe"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <com.github.dfa.diaspora_android.ui.ContextMenuWebView
             android:id="@+id/webView"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_alignParentEnd="true"
