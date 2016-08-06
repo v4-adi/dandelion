@@ -65,14 +65,13 @@
     <string name="share__toast_link_address_copied">Link address copied …</string>
 
 
+    <string name="new_post">New post</string>
     <string name="action_go_to_top">Go to top</string>
     <string name="action_search_by_tags_or_persons">Search by tags or persons</string>
-    <string name="action_compose">New message</string>
+    <string name="action_compose_new_post" translatable="false">@string/new_post</string>
     <string name="action_exit_app">Exit app</string>
     <string name="action_toggle_desktop_page">Toggle mobile/desktop view</string>
     <string name="action_share_dotdotdot">Share…</string>
-    <string name="new_post">New message</string>
-    <string name="messages">Conversations</string>
 
 
     <string name="search_alert_title" translatable="false">@string/search</string>
@@ -83,7 +82,7 @@
     <string name="context_menu_share_link">Share link address</string>
     <string name="context_menu_save_image">Save image</string>
     <string name="context_menu_share_image">Share image</string>
-    <string name="context_menu_open_external_browser">Open in external browser …</string>
+    <string name="context_menu_open_external_browser">Open in external browser…</string>
     <string name="context_menu_copy_link">Copy link address to clipboard</string>
 
 
