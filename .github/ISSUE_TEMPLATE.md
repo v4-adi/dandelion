@@ -2,15 +2,19 @@
 
 * **Device:** eg Nexus 5, Samsung Galaxy S6
 * **Android Version:** eg Android 6.0.1 Stock or Android 4.2 CM
-* **Pod:** eg pod.geraspora.de, self hosted, or doesn't matter
-* **Diaspora pod version:** eg. 0.5.99.0-p9bd2337c  (can be found on the bottom)
-* **App source:** eg F-Droid, PlayStore, self build (latest HEAD)
+* **Pod:** eg pod.geraspora.de, self hosted
+* **Diaspora pod version:** eg 0.5.99.0-p9bd2337c  (can be found on the bottom)
+* **App source:** eg HEAD, F-Droid, PlayStore, self build (latest HEAD)
 * **App version:** eg 0.1.1, or commit
 
 
+<!--
 I have:
-- [ ] searched open and closed issues for duplicates
-- [ ] read <https://github.com/Diaspora-for-Android/diaspora-android/blob/master/CONTRIBUTING.md>
+
+- searched open and closed issues for duplicates
+- read <https://github.com/Diaspora-for-Android/diaspora-android/blob/master/CONTRIBUTING.md>
+- not submitted translations - see [Crowdin](https://crowdin.com/project/diaspora-for-android/invite)  
+-->
 
 #### Steps to reproduce
 
