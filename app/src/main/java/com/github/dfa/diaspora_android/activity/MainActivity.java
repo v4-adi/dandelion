@@ -40,7 +40,6 @@ import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.LocalBroadcastManager;
@@ -158,8 +157,6 @@ public class MainActivity extends AppCompatActivity
     @BindView(R.id.main__layout)
     DrawerLayout navDrawer;
 
-    @BindView(R.id.collapsing_toolbar)
-    CollapsingToolbarLayout toolbarTopCollapsing;
 
 
     // NavHeader cannot be bound by Butterknife
@@ -251,7 +248,7 @@ public class MainActivity extends AppCompatActivity
         }
 
         if (!appSettings.isIntellihideToolbars()) {
-            AppBarLayout.LayoutParams params = (AppBarLayout.LayoutParams) toolbarTopCollapsing.getLayoutParams();
+            AppBarLayout.LayoutParams params = (AppBarLayout.LayoutParams) toolbarTop.getLayoutParams();
             params.setScrollFlags(0);  // clear all scroll flags
         }
 

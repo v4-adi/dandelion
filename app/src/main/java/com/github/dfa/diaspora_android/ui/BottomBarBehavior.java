@@ -44,12 +44,10 @@ public class BottomBarBehavior extends CoordinatorLayout.Behavior<LinearLayout> 
         if (defaultDependencyTop == -1) {
             defaultDependencyTop = dependency.getTop();
         }
-        Log.d("BOTTOMBAR", "c.h"+child.getHeight()+" c.top"+child.getTop()
-                +" c.tran_y"+child.getTranslationY()
-                +" d.h"+dependency.getHeight()+" d.top"+dependency.getTop()
-                +"d.tran_y"+dependency.getTranslationY());
         if(dependency.getTop()<0)
             child.setTranslationY(-dependency.getTop() + defaultDependencyTop);
+        else
+            child.setTranslationY(defaultDependencyTop);
         return true;
     }
 
