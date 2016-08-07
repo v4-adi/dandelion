@@ -8,6 +8,7 @@ build/
 
 # User-specific configurations
 local.properties
+crowdin.yaml
 
 .idea
 .idea/libraries/

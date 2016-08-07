@@ -1,4 +1,34 @@
+project_identifier: diaspora-for-android
+#api_key: APIKEY_DONT_PUSH
+#base_path: /home/gregor/diaspora-android
+
 files:
   - 
     source: '/app/src/main/res/values/strings*.xml'
-    translation: '/app/src/main/res/values-%two_letters_code%/%original_file_name%'
+    translation: '/app/src/main/res/values-%android_code%/%original_file_name%'
+    languages_mapping:
+      android_code:
+# Add all non locality languages here
+# (e.g. enUS, enUK, deCH, deAT will automatically go into the right folder)
+# Otherwise e.g.  en would get added into the folder enEN (which is wrong).
+# https://crowdin.com/page/api/language-codes contains supported language codes
+# The first listed ones here are diffently managed by crowdin than on android
+        sv-SE: sv
+        es-ES: es
+        ml-IN: ml
+        pt-PT: pt
+        'no': 'no'
+        de: de
+        tr: tr
+        ca: ca
+        ru: ru
+        pl: pl
+        nl: nl
+        ja: ja
+        it: it
+        hu: hu
+        hi: hi
+        fr: fr
+        el: el
+        de: de
+        cs: cs

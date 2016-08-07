@@ -1,0 +1,8 @@
+build
+crowdin.yaml
+diaspora-android.iml
+gradle
+gradle.properties
+gradlew
+gradlew.bat
+local.properties

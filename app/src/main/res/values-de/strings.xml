@@ -7,8 +7,10 @@
   <string name="reload">Neu laden</string>
   <string name="new_notifications">Ungelesene Benachrichtigung. Lesen?</string>
   <!-- Common Words -->
+  <string name="settings">Einstellungen</string>
   <string name="notifications">Benachrichtigungen</string>
   <string name="conversations">Unterhaltungen</string>
+  <string name="stream">Stream</string>
   <string name="profile">Profil</string>
   <string name="aspects">Aspekte</string>
   <string name="activities">Aktivitäten</string>
@@ -16,6 +18,7 @@
   <string name="commented">Kommentiert</string>
   <string name="mentions">Erwähnungen</string>
   <string name="public_">Öffentliche Aktivitäten</string>
+  <string name="search">Suche</string>
   <!-- Pod Activity -->
   <string name="title_activity_pods">Pod auswählen</string>
   <string name="filter_hint">Pod-Domain eingeben</string>
@@ -38,12 +41,12 @@
   <string name="share__toast_saved_image_to_location">Speichere Bild als</string>
   <string name="share__toast_screenshot">Bildschirmfoto wird gespeichert unter:</string>
   <string name="share__toast_link_address_copied">Linkadresse kopiert &#8230;</string>
+  <string name="new_post">Neuer Beitrag</string>
   <string name="action_go_to_top">Nach oben scrollen</string>
   <string name="action_search_by_tags_or_persons">Suche nach Tags oder Personen …</string>
   <string name="action_exit_app">App beenden</string>
   <string name="action_toggle_desktop_page">Mobil-/Desktopansicht umschalten</string>
   <string name="action_share_dotdotdot">Teilen&#8230;</string>
-  <string name="new_post">Neuer Beitrag</string>
   <string name="search_alert_tag">nach Tags</string>
   <string name="search_alert_people">nach Personen</string>
   <string name="search_alert_bypeople_validate_needsomedata">Füge einen Namen ein.</string>

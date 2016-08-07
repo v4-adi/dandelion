@@ -3,7 +3,7 @@
 <resources>
   <!-- Key Names (Untranslatable) -->
   <!-- Category Titles -->
-  <string name="pref_cat__visuals">Apparance</string>
+  <string name="pref_cat__visuals">Apparence</string>
   <string name="pref_cat__network">Paramètres du réseau</string>
   <string name="pref_cat__pod_settings">Paramètres du pod</string>
   <!-- Visuals -->
@@ -12,14 +12,29 @@
   <!-- prefix 's' is needed to make this a string array. Otherwise ListPreference would crash -->
   <!-- Load images -->
   <string name="pref_title__load_images">Charger les images</string>
+  <string name="pref_desc__load_images">Désactiver le chargements des images pour préserver la data mobile</string>
   <!-- Proxy -->
   <string name="pref_title__proxy_enabled">Activer Proxy</string>
+  <string name="pref_desc__proxy_enabled">Serveur Proxy.\n(Nécessite un redémarrage)</string>
   <string name="pref_title__proxy_host">Hôte</string>
+  <string name="pref_title__proxy_port">Port</string>
+  <string name="pref_title__show_exit_button_in_nav_also">Bouton \"Quitter\" dans la barre de navigation</string>
+  <string name="pref_desc__show_exit_button_in_nav_also">Ajouter le bouton »Quitter l\'application« dans la barre de navigation</string>
   <!-- Diaspora Settings -->
   <string name="pref_title__personal_settings">Paramètres personnels</string>
-  <string name="pref_desc__manage_contacts">Gérer votre liste des contacts</string>
+  <string name="pref_desc__personal_settings">Ouvrir vos paramètres de compte Diaspora</string>
+  <string name="pref_title__manage_contacts">Contacts</string>
+  <string name="pref_desc__manage_contacts">Gérer votre liste de contacts</string>
   <string name="pref_title__manage_tags">Gérer les Hashtags</string>
+  <string name="pref_desc__manage_tags">Ajouter et supprimer les hashtags que vous suivez</string>
   <string name="pref_title__change_account">Changer de compte</string>
+  <string name="pref_desc__change_account">Effacer les données de session locale et passer à un autre pod/compte Diaspora</string>
   <string name="pref_warning__change_account">Cette opération va effacer les cookies et données de session. Voulez-vous vraiment changer de compte/pod?</string>
   <string name="pref_title__clear_cache">Vider le cache</string>
+  <string name="pref_desc__clear_cache">Vider le cache</string>
+  <string name="pref_desc__intellihide_toolbars">Masquer les barres d’outils en haut et en bas automatiquement lors du défilement</string>
+  <string name="pref_title__intellihide_toolbars">Masquage intelligent des barres d\'outils</string>
+  <string name="pref_title__append_shared_via_app">Ajoutez \"partagé via …\" aux partages</string>
+  <string name="pref_desc__append_shared_via_app">Ajoutez une référence à l\'application (« partagée via &#8230;\") aux textes partagés</string>
+  <!-- Recently added - Please move to right section-->
 </resources>
