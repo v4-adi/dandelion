@@ -234,4 +234,8 @@ public class AppSettings {
     public boolean isIntellihideToolbars() {
         return getBoolean(prefApp, R.string.pref_key__intellihide_toolbars, true);
     }
+
+    public boolean isShowExitButtonInNavAlso(){
+        return getBoolean(prefApp, R.string.pref_key__show_exit_button_in_nav_also, false);
+    }
 }

@@ -45,6 +45,12 @@
             android:id="@+id/nav_public"
             android:icon="@drawable/jb_aspects"
             android:title="@string/nav_public_activities" />
+
+        <item
+            android:id="@+id/nav_exit"
+            android:icon="@drawable/ic_cancel_black_48px"
+            android:title="@string/action_exit_app"
+            android:visible="false"/>
     </group>
 
     <item android:title="@string/nav_menu_settings">

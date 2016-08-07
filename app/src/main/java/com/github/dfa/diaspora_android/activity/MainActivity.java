@@ -114,6 +114,7 @@ public class MainActivity extends AppCompatActivity
     public static final String ACTION_CHANGE_ACCOUNT = "com.github.dfa.diaspora_android.MainActivity.change_account";
     public static final String ACTION_CLEAR_CACHE = "com.github.dfa.diaspora_android.MainActivity.clear_cache";
     public static final String ACTION_UPDATE_TITLE_FROM_URL = "com.github.dfa.diaspora_android.MainActivity.set_title";
+    public static final String ACTION_RELOAD_ACTIVITY = "com.github.dfa.diaspora_android.MainActivity.reload_activity";
     public static final String URL_MESSAGE = "URL_MESSAGE";
     public static final String EXTRA_URL = "com.github.dfa.diaspora_android.extra_url";
 
@@ -408,6 +409,10 @@ public class MainActivity extends AppCompatActivity
                 app.getAvatarImageLoader().startImageDownload(navheaderImage, appSettings.getAvatarUrl());
             }
         }
+
+        Menu navMenu = navView.getMenu();
+        navMenu.findItem(R.id.nav_exit).setVisible(appSettings.isShowExitButtonInNavAlso());
+
     }
 
     @OnClick(R.id.toolbar)
@@ -454,6 +459,9 @@ public class MainActivity extends AppCompatActivity
             Helpers.animateToActivity(MainActivity.this, PodSelectionActivity.class, true);
         } else if (ACTION_CLEAR_CACHE.equals(action)) {
             webView.clearCache(true);
+        } else if (ACTION_RELOAD_ACTIVITY.equals(action)) {
+            recreate();
+            return;
         } else if (Intent.ACTION_SEND.equals(action) && type != null) {
             switch (type) {
                 case "text/plain":
@@ -1062,8 +1070,8 @@ public class MainActivity extends AppCompatActivity
                 } else {
                     snackbarNoInternet.show();
                 }
+                break;
             }
-            break;
 
             case R.id.nav_public: {
                 if (Helpers.isOnline(MainActivity.this)) {
@@ -1071,8 +1079,15 @@ public class MainActivity extends AppCompatActivity
                 } else {
                     snackbarNoInternet.show();
                 }
+                break;
             }
-            break;
+
+
+            case R.id.nav_exit: {
+                moveTaskToBack(true);
+                finish();
+                break;
+            }
 
             case R.id.nav_settings_app: {
                 startActivity(new Intent(this, SettingsActivity.class));

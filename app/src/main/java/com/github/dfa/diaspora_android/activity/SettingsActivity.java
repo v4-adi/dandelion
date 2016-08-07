@@ -38,6 +38,7 @@ import com.github.dfa.diaspora_android.R;
 public class SettingsActivity extends PreferenceActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
 
     private SharedPreferences sharedPreferences;
+    private boolean activityRestartRequired = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -124,6 +125,12 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
                 intent.setAction(MainActivity.ACTION_CLEAR_CACHE);
                 break;
             }
+            case R.string.pref_title__show_exit_button_in_nav_also:
+            case R.string.pref_title__intellihide_toolbars: {
+                activityRestartRequired = true;
+                return true;
+            }
+
             default: {
                 intent = null;
                 break;
@@ -135,5 +142,15 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
             return true;
         }
         return super.onPreferenceTreeClick(screen, preference);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (activityRestartRequired){
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.setAction(MainActivity.ACTION_RELOAD_ACTIVITY);
+            startActivity(intent);
+        }
     }
 }
