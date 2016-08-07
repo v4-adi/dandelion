@@ -17,7 +17,7 @@
 
     <item
         android:id="@+id/action_reload"
-        android:icon="@drawable/ic_refresh_white_24dp"
+        android:icon="@drawable/ic_refresh_white_48px"
         android:title="@string/reload"
         app:showAsAction="always"/>
 

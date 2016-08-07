@@ -62,7 +62,7 @@
             android:contentDescription="@string/confirm_url"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
-            android:src="@mipmap/ic_arrow_right_grey600_24dp" />
+            android:src="@drawable/ic_arrow_forward_black_48px" />
 
         <TextView
             android:id="@+id/podselection__podupti_notice"
