@@ -73,72 +73,7 @@
   <string name="permission_denied">Berechtigung verweigert.</string>
   <string name="permission_granted_try_again">Berechtigung erteilt. Bitte versuche es erneut.</string>
   <!-- License & help (large amount of text) -->
-  <string name="help_license">Lizenz</string>
-  <string name="help_help">Markdown Formatierung</string>
-  <string name="markdown_text">&lt;i&gt;\"Auf Diaspora* ist es möglich, dass du deinen Text in Nachrichten, Kommentaren und
-        Unterhaltungen formatierst, indem du ein vereinfachtes Mark-Up-System namens Markdown verwendest. Diese Seite stellt
-        eine kurze Einleitung dar, um grundlegende Formatierungen anwenden zu können.&lt;/i&gt;&lt;br&gt; &lt;br&gt;
-
-        &lt;b&gt;Überschriften&lt;/b&gt;&lt;br&gt;
-        # das ist eine sehr große Überschrift&lt;br&gt;
-        ## halb so groß wie die oben drüber&lt;br&gt;
-        ### doppelt so groß wie normaler Text&lt;br&gt; &lt;br&gt;
-
-        &lt;b&gt;Kursiv und fett&lt;/b&gt;&lt;br&gt;
-        Kursiv: *Wort* oder _Wort_&lt;br&gt;
-        Fett: **Wort** oder __Wort__&lt;br&gt;
-        Fett kursiv: ***Wort*** oder ___Wort___&lt;br&gt; &lt;br&gt;
-
-        &lt;b&gt;Aufzählung&lt;/b&gt;&lt;br&gt;
-        *, + oder - vor jeder Linie die du als Teil der Aufzählung haben willst oder 1., 2., usw. vor jedem
-        Aufzählungspunkt.&lt;br&gt; &lt;br&gt;
-
-        &lt;b&gt;Zitat&lt;/b&gt;&lt;br&gt;
-        Wenn du einen Teil eines Artikels oder eines anderen Kommentares zitieren willst, kannst du deinen Text bequem formatieren,
-        indem du die Zeile oder den Abschnitt mit einem &gt; Zeichen beginnst.&lt;br&gt; &lt;br&gt;
-
-        &lt;b&gt;Horizontale Linie&lt;/b&gt;&lt;br&gt;
-        Um eine horizontale Linie zu erstellen benutzt du mindestens drei - - -, _ _ _ oder * * * in einer separaten Linie.
-        Jede größere Anzahl bewirkt dasselbe und Leerzeichen zwischen den Zeichen stören nicht.&lt;br&gt; &lt;br&gt;
-
-        &lt;b&gt;Inline Link&lt;/b&gt;&lt;br&gt;
-        [angezeigter Text hier](http://link.addresse.hier \"alt text\") Der \'alt text\' ist optional, und zeigt einen Tool-Tip,
-        wenn der Curser sich über den Link bewegt.&lt;br&gt; &lt;br&gt;
-
-        &lt;b&gt;Externe Bilder&lt;/b&gt;&lt;br&gt;
-        ![Alt text](http://website.com/image.jpg \"optionaler Titel\") Der \'alt text\' in der eckigen Klammer wird angezeigt,
-        wenn das Bild nicht geladen werden kann. Der optionale Titel zeigt einen Tool-Tip, wenn der Curser sich über den Link bewegt.
-        Beides ist nützlich aber nicht nötig.&lt;br&gt; &lt;br&gt;
-
-        &lt;b&gt;Escape&lt;/b&gt;&lt;br&gt;
-        Wenn du in deiner Nachricht ein Zeichen benutzen willst, das ebenfalls zur Markdownformatierung verwendet wird, kannst du
-        verhindern, dass es von Markdown als Formatcode gelesen wird, indem du es \'escapest\'. Um dies zu tun, musst du einen
-        Backslash vor das Zeichen setzen. Du kannst trotzdem \'diaspora*\' oder \'D*\' schreiben, ohne dass das Sternchen als
-        formatierender Code gelesen wird!&lt;br&gt; &lt;br&gt;
-
-        &lt;b&gt;Sonderzeichen&lt;/b&gt;&lt;br&gt;
-        Du kannst Symbole und Sonderzeichen nutzen, indem du bestimmte Zeichenfolgen verwendest. Z.B.:&lt;br&gt;
-        (c) = © ; (r) = ® ; x^2 = x²\"</string>
-  <string name="license_text">&lt;b&gt;Maintainer:&lt;/b&gt;&lt;br&gt;
-
-        • gsantner https://gsantner.github.io&lt;br&gt;
-        • vanitasvitae https://github.com/vanitasvitae&lt;br&gt; &lt;br&gt;
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see http://www.gnu.org/licenses.&lt;br&gt; &lt;br&gt;
-
-        &lt;i&gt;Die Bilder des Startbildschirms können auf Flickr gefunden werden:
-        https://www.flickr.com/photos/129581906@N06/sets/72157651933980136/with/16594947123.
-        Sie wurden von \"Lydia\" veröffentlicht und stehen unter der cc by-nc-sa Lizenz.&lt;/i&gt;</string>
+  <string name="help_license__name">Lizenz</string>
+  <string name="help_markdown__name">Markdown Formatierung</string>
   <!-- Recently added - Please move to right section-->
 </resources>

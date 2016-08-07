@@ -105,50 +105,11 @@
 
 
     <!-- License & help (large amount of text) -->
-    <string name="help_license">License</string>
-    <string name="help_help">Markdown formating</string>
-    <string name="license_title" translatable="false">Copyright © 2015–2016</string>
-
-    <string name="markdown_text">&lt;i>"On diaspora* it's possible to format your text in status messages, comments
-        and conversations using a simplified mark-up system called Markdown. This page gives an introduction to the
-        codes used to create this formatting.&lt;/i>&lt;br> &lt;br>
-
-        &lt;b>Heading&lt;/b>&lt;br>
-        # This is an extremely large header&lt;br>
-        ## Half as big as the one above&lt;br>
-        ### Twice the size of normal text&lt;br> &lt;br>
-
-        &lt;b>Italics and bold&lt;/b>&lt;br>
-        Italics: *word* or _word_&lt;br>
-        Bold: **word** or __word__&lt;br>
-        Bold italics: ***word*** or ___word___&lt;br> &lt;br>
-
-        &lt;b>Bulleted list&lt;/b>&lt;br>
-        *, + or - in front of each line you want as part of the list or 1., 2., etc. in front of the list items&lt;br> &lt;br>
-
-        &lt;b>Quotation&lt;/b>&lt;br>
-        When you want to quote an extract of an article or another comment, you can conveniently format your text by starting the
-        line or the paragraph by the > character&lt;br> &lt;br>
-
-        &lt;b>Horizontal line&lt;/b>&lt;br>
-        To create a horizontal line, use at least three - - -, _ _ _ or * * * on a separate line. Any number above three will do
-        the same thing and spaces between the characters do not matter.&lt;br> &lt;br>
-
-        &lt;b>Inline link&lt;/b>&lt;br>
-        [displayed text here](http://link.address.here \"alt text\") The 'alt text' is optional, and is displayed as a tool-tip
-        when the cursor is moved over the link.&lt;br> &lt;br>
-
-        &lt;b>External images&lt;/b>&lt;br>
-        ![Alt text](http://website.com/image.jpg \"optional title\") The alternative text in the square brackets is displayed if the image cannot be loaded, and the optional title is displayed as a tool-tip when the cursor is moved over the image; both are useful but not essential.&lt;br> &lt;br>
-
-        &lt;b>Escape&lt;/b>&lt;br>
-        If you want your message to include a character which is also used in Markdown coding, you can prevent it from being read by Markdown as a formatting code by 'escaping' it. To do this, place a backslash in front of the character. You can, however, type 'diaspora*' or 'D*' without the asterisk becoming a formatting code!&lt;br> &lt;br>
-
-        &lt;b>Special characters&lt;/b>&lt;br>
-        You can create the following symbols and other special characters using a combination of characters:&lt;br>
-        (c) = © ; (r) = ® ; x^2 = x²"</string>
-
-    <string name="license_text">&lt;b>Maintainers:&lt;/b>&lt;br>
+    <string name="help_markdown__name">Markdown formating</string>
+    <string name="help_markdown__weblink" translatable="false">https://wiki.diasporafoundation.org/Markdown_reference_guide</string>
+    <string name="help_license__name">License</string>
+    <string name="help_license__years" translatable="false">Copyright © 2015–2016</string>
+    <string name="help_license__content" translatable="false">&lt;b>Maintainers:&lt;/b>&lt;br>
 
         &#8226; gsantner https://gsantner.github.io&lt;br>
         &#8226; vanitasvitae https://github.com/vanitasvitae&lt;br> &lt;br>

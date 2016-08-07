@@ -1049,26 +1049,23 @@ public class MainActivity extends AppCompatActivity
             break;
 
             case R.id.nav_license_help: {
-                final CharSequence[] options = {getString(R.string.help_license), getString(R.string.help_help)};
+                final CharSequence[] options = {getString(R.string.help_license__name), getString(R.string.help_markdown__name)};
                 new AlertDialog.Builder(MainActivity.this)
                         .setItems(options, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int item) {
-                                if (options[item].equals(getString(R.string.help_license))) {
-                                    final SpannableString s = new SpannableString(Html.fromHtml(getString(R.string.license_text)));
+                                if (options[item].equals(getString(R.string.help_license__name))) {
+                                    final SpannableString s = new SpannableString(Html.fromHtml(getString(R.string.help_license__content)));
                                     Linkify.addLinks(s, Linkify.WEB_URLS);
                                     final AlertDialog d = new AlertDialog.Builder(MainActivity.this)
-                                            .setTitle(R.string.license_title)
+                                            .setTitle(R.string.help_license__years)
                                             .setMessage(s)
                                             .setPositiveButton(android.R.string.yes, null).show();
                                     d.show();
                                     ((TextView) d.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
                                 }
-                                if (options[item].equals(getString(R.string.help_help))) {
-                                    new AlertDialog.Builder(MainActivity.this)
-                                            .setTitle(R.string.help_help)
-                                            .setMessage(Html.fromHtml(getString(R.string.markdown_text)))
-                                            .setPositiveButton(android.R.string.yes, null).show();
+                                if (options[item].equals(getString(R.string.help_markdown__name))) {
+                                    Helpers.loadUrlInExternalBrowser(MainActivity.this, getString(R.string.help_markdown__weblink));
                                 }
                             }
                         }).show();

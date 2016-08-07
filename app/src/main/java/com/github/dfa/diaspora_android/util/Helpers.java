@@ -19,7 +19,9 @@
 package com.github.dfa.diaspora_android.util;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 
 import com.github.dfa.diaspora_android.R;
 
@@ -32,6 +34,14 @@ public class Helpers {
         from.overridePendingTransition(R.anim.fadein, R.anim.fadeout);
         if (finishFromActivity) {
             from.finish();
+        }
+    }
+
+    public static void loadUrlInExternalBrowser(Context context, String url) {
+        try {
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            context.startActivity(browserIntent);
+        } catch (Exception ignored) {
         }
     }
 }

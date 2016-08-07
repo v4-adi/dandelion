@@ -63,7 +63,7 @@
   <string name="permission_denied">Permissão negada.</string>
   <string name="permission_granted_try_again">Permissão concedida. Por favor, tente novamente.</string>
   <!-- License & help (large amount of text) -->
-  <string name="help_license">Licença</string>
-  <string name="help_help">Formatação de markdown</string>
+  <string name="help_license__name">Licença</string>
+  <string name="help_markdown__name">Formatação de markdown</string>
   <!-- Recently added - Please move to right section-->
 </resources>

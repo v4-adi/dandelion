@@ -65,61 +65,8 @@
   <string name="permission_denied">Permission refusée.</string>
   <string name="permission_granted_try_again">Permission accordée. Veuillez réessayer.</string>
   <!-- License & help (large amount of text) -->
-  <string name="help_license">Licence</string>
-  <string name="help_help">Mise en page Markdown</string>
-  <string name="markdown_text">&lt;i&gt;\"Sur diaspora* il est possible de mettre en forme votre texte des messages de statut, des commentaires et des conversations en utilisant un système de balises simple nommé Markdown. Cette page est une introduction aux codes utilisés pour créer ce formatage..&lt;/i&gt;&lt;br&gt; &lt;br&gt;
+  <string name="help_license__name">Licence</string>
+  <string name="help_markdown__name">Mise en page Markdown</string>
 
-        &lt;b&gt;En-têtes&lt;/b&gt;&lt;br&gt;
-        # Ceci est un très grand titre&lt;br&gt;
-        ## Moitié moins grand que le précédent&lt;br&gt;
-        ### Deux fois la taille d\'un texte normal&lt;br&gt; &lt;br&gt;
-
-        &lt;b&gt;Italique et gras&lt;/b&gt;&lt;br&gt;
-        Italiques : *mot* ou _mot_&lt;br&gt;
-        Gras : **mot** ou __mot__&lt;br&gt;
-        Gras italique : ***mot*** ou ___mot___&lt;br&gt; &lt;br&gt;
-
-        &lt;b&gt;Listes&lt;/b&gt;&lt;br&gt;
-        *, + ou - au début chaque ligne que vous souhaitez lister ou 1., 2., etc. au début de chaque ligne de la liste&lt;br&gt; &lt;br&gt;
-
-        &lt;b&gt;Citation&lt;/b&gt;&lt;br&gt;
-        Lorsque vous souhaitez citer un extrait d\'un article ou d\'un autre commentaire, vous pouvez formater facilement votre texte en commençant la ligne ou le paragraphe avec le caractère &gt;&lt;br&gt; &lt;br&gt;
-
-        &lt;b&gt;Ligne horizontale&lt;/b&gt;&lt;br&gt;
-        Pour créer une ligne horizontale, utilisez au moins trois ---, ___ ou *** sur une ligne à part. N\'importe quel nombre au-delà de trois aura le même résultat et les espaces entre les caractères n\'ont pas d\'importance.&lt;br&gt; &lt;br&gt;
-
-        &lt;b&gt;Liens intégrés&lt;/b&gt;&lt;br&gt;
-        [texte qui apparaîtra ici](http://lien.adresse.ici \"texte alternatif\") Le \"texte alternatif\" est facultatif et affiché lorsque la souris survole le lien.&lt;br&gt; &lt;br&gt;
-
-        &lt;b&gt;Images&lt;/b&gt;&lt;br&gt;
-        ![Texte alternatif](http://siteweb.com/image.jpg \"titre facultatif\") Le texte alternatif entre crochets est affiché si l\'image ne peut pas être chargée et le titre optionnel est affiché lorsque la souris survole l\'image ; les deux sont utiles mais pas essentiels.&lt;br&gt; &lt;br&gt;
-
-        &lt;b&gt;Escape&lt;/b&gt;&lt;br&gt;
-        Si vous voulez inclure dans votre message un caractère aussi utilisé dans le codage Markdown, vous pouvez empêcher qu\'il soit interprété en l\'\"échappant\". Pour cela, placez un backslash (\) devant le caractère. Vous pouvez toutefois écrire \"diaspora*\" ou \"D*\" sans que l\'astérisque devienne un code de formatage !&lt;br&gt; &lt;br&gt;
-
-        &lt;b&gt;Caractères spéciaux&lt;/b&gt;&lt;br&gt;
-        Vous pouvez créez les symboles et autres caractères spéciaux suivants en utilisant une combinaison de caractères :&lt;br&gt;
-        (c) = © ; (r) = ® ; x^2 = x²\"</string>
-  <string name="license_text">&lt;b&gt;Mainteneur :&lt;/b&gt;&lt;br&gt;
-
-        • gsantner https://gsantner.github.io&lt;br&gt;
-        • vanitasvitae https://github.com/vanitasvitae&lt;br&gt; &lt;br&gt;
-
-        This program is free software: you can redistribute it and/or modify
-        it under the terms of the GNU General Public License as published by
-        the Free Software Foundation, either version 3 of the License, or
-        (at your option) any later version.
-
-        This program is distributed in the hope that it will be useful,
-        but WITHOUT ANY WARRANTY; without even the implied warranty of
-        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-        GNU General Public License for more details.
-
-        You should have received a copy of the GNU General Public License
-        along with this program.  If not, see http://www.gnu.org/licenses.&lt;br&gt; &lt;br&gt;
-
-        &lt;i&gt;The splashscreen images can be found on flickr:
-        https://www.flickr.com/photos/129581906@N06/sets/72157651933980136/with/16594947123.
-        They were published by \"Lydia\" and are licensed under cc by-nc-sa.&lt;/i&gt;</string>
   <!-- Recently added - Please move to right section-->
 </resources>

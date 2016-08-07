@@ -13,7 +13,7 @@
             android:title="@string/pref_title__font_size"/>
 
         <CheckBoxPreference
-            android:defaultValue="true"
+            android:defaultValue="false"
             android:key="@string/pref_key__intellihide_toolbars"
             android:summary="@string/pref_desc__intellihide_toolbars"
             android:title="@string/pref_title__intellihide_toolbars"/>

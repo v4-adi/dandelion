@@ -64,7 +64,7 @@
   <string name="permission_denied">В разрешении отказано.</string>
   <string name="permission_granted_try_again">Разрешение получено. Пожалуйста, попробуйте еще раз.</string>
   <!-- License & help (large amount of text) -->
-  <string name="help_license">Лицензия</string>
-  <string name="help_help">Форматирование Markdown</string>
+  <string name="help_license__name">Лицензия</string>
+  <string name="help_markdown__name">Форматирование Markdown</string>
   <!-- Recently added - Please move to right section-->
 </resources>
