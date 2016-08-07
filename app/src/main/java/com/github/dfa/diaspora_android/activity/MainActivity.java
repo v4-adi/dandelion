@@ -604,16 +604,16 @@ public class MainActivity extends AppCompatActivity
         MenuItem itemNotification = menu.findItem(R.id.action_notifications);
         if (itemNotification != null) {
             if (notificationCount > 0) {
-                itemNotification.setIcon(R.drawable.ic_bell_ring_white_24dp);
+                itemNotification.setIcon(R.drawable.ic_notifications_colored_48px);
             } else {
-                itemNotification.setIcon(R.drawable.ic_bell_outline_white_24dp);
+                itemNotification.setIcon(R.drawable.ic_notifications_white_48px);
             }
 
             MenuItem itemConversation = menu.findItem(R.id.action_conversations);
             if (conversationCount > 0) {
-                itemConversation.setIcon(R.drawable.ic_message_text_white_24dp);
+                itemConversation.setIcon(R.drawable.ic_email_colored_48px);
             } else {
-                itemConversation.setIcon(R.drawable.ic_message_text_outline_white_24dp);
+                itemConversation.setIcon(R.drawable.ic_mail_white_48px);
             }
         }
         return super.onPrepareOptionsMenu(menu);
@@ -944,11 +944,11 @@ public class MainActivity extends AppCompatActivity
 
                     if (item != null) {
                         if (notificationCount > 0) {
-                            item.setIcon(R.drawable.ic_bell_ring_white_24dp);
+                            item.setIcon(R.drawable.ic_notifications_colored_48px);
                             if (!snackbarNewNotification.isShown() && !webView.getUrl().equals("https://" + podDomain + "/notifications"))
                                 snackbarNewNotification.show();
                         } else {
-                            item.setIcon(R.drawable.ic_bell_outline_white_24dp);
+                            item.setIcon(R.drawable.ic_notifications_white_48px);
                         }
                     }
 
@@ -978,11 +978,11 @@ public class MainActivity extends AppCompatActivity
 
                     if (item != null) {
                         if (conversationCount > 0) {
-                            item.setIcon(R.drawable.ic_message_text_white_24dp);
+                            item.setIcon(R.drawable.ic_email_colored_48px);
                             if (!snackbarNewNotification.isShown() && !webView.getUrl().equals("https://" + podDomain + "/notifications"))
                                 snackbarNewNotification.show();
                         } else {
-                            item.setIcon(R.drawable.ic_message_text_outline_white_24dp);
+                            item.setIcon(R.drawable.ic_mail_white_48px);
                         }
                     }
 
