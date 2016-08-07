@@ -15,4 +15,10 @@
         android:title="@string/conversations"
         app:showAsAction="always" />
 
+    <item
+        android:id="@+id/action_reload"
+        android:icon="@drawable/ic_refresh_white_24dp"
+        android:title="@string/reload"
+        app:showAsAction="always"/>
+
 </menu>

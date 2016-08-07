@@ -21,7 +21,6 @@ package com.github.dfa.diaspora_android.ui;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.webkit.CookieManager;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -30,12 +29,10 @@ import com.github.dfa.diaspora_android.App;
 
 public class CustomWebViewClient extends WebViewClient {
     private App app;
-    private SwipeRefreshLayout swipeRefreshLayout;
     private WebView webView;
 
-    public CustomWebViewClient(App app, SwipeRefreshLayout swipeRefreshLayout, WebView webView) {
+    public CustomWebViewClient(App app, WebView webView) {
         this.app = app;
-        this.swipeRefreshLayout = swipeRefreshLayout;
         this.webView = webView;
     }
 
@@ -49,18 +46,8 @@ public class CustomWebViewClient extends WebViewClient {
         return false;
     }
 
-    @Override
-    public void onPageStarted(WebView view, String url, Bitmap favicon) {
-        super.onPageStarted(view, url, favicon);
-        swipeRefreshLayout.setEnabled(true);
-        if(url.contains(app.getSettings().getPodDomain()+"/conversations/") || url.endsWith("status_messages/new") || url.equals("about:blank")){
-            swipeRefreshLayout.setEnabled(false);
-        }
-    }
-
     public void onPageFinished(WebView view, String url) {
         super.onPageFinished(view, url);
-        swipeRefreshLayout.setRefreshing(false);
 
         final CookieManager cookieManager = app.getCookieManager();
         String cookies = cookieManager.getCookie(url);

@@ -45,7 +45,6 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ActionMenuView;
@@ -73,6 +72,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -136,8 +136,8 @@ public class MainActivity extends AppCompatActivity
     /**
      * UI Bindings
      */
-    @BindView(R.id.swipe)
-    SwipeRefreshLayout swipeRefreshLayout;
+    @BindView(R.id.content_layout)
+    RelativeLayout contentLayout;
 
     @BindView(R.id.progressBar)
     ProgressBar progressBar;
@@ -206,7 +206,7 @@ public class MainActivity extends AppCompatActivity
 
         //Setup snackbar
         snackbarExitApp = Snackbar
-                .make(swipeRefreshLayout, R.string.confirm_exit, Snackbar.LENGTH_LONG)
+                .make(contentLayout, R.string.confirm_exit, Snackbar.LENGTH_LONG)
                 .setAction(android.R.string.yes, new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -215,27 +215,24 @@ public class MainActivity extends AppCompatActivity
                     }
                 });
         snackbarNewNotification = Snackbar
-                .make(swipeRefreshLayout, R.string.new_notifications, Snackbar.LENGTH_LONG)
+                .make(contentLayout, R.string.new_notifications, Snackbar.LENGTH_LONG)
                 .setAction(android.R.string.yes, new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         if (Helpers.isOnline(MainActivity.this)) {
                             webView.loadUrl("https://" + podDomain + "/notifications");
                         } else {
-                            Snackbar.make(swipeRefreshLayout, R.string.no_internet, Snackbar.LENGTH_LONG).show();
+                            Snackbar.make(contentLayout, R.string.no_internet, Snackbar.LENGTH_LONG).show();
                         }
                     }
                 });
-        snackbarNoInternet = Snackbar.make(swipeRefreshLayout, R.string.no_internet, Snackbar.LENGTH_LONG);
+        snackbarNoInternet = Snackbar.make(contentLayout, R.string.no_internet, Snackbar.LENGTH_LONG);
 
         // Load app settings
         setupNavigationSlider();
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         podDomain = appSettings.getPodDomain();
-
-        swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary,
-                R.color.fab_big);
 
         String url = "https://" + podDomain;
         if (savedInstanceState == null) {
@@ -291,20 +288,9 @@ public class MainActivity extends AppCompatActivity
         /*
          * WebViewClient
          */
-        webViewClient = new CustomWebViewClient(app, swipeRefreshLayout, webView);
+        webViewClient = new CustomWebViewClient(app, webView);
         webView.setWebViewClient(webViewClient);
 
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                if (Helpers.isOnline(MainActivity.this)) {
-                    webView.reload();
-                } else {
-                    snackbarNoInternet.show();
-                    swipeRefreshLayout.setRefreshing(false);
-                }
-            }
-        });
 
         /*
          * WebChromeClient
@@ -345,7 +331,7 @@ public class MainActivity extends AppCompatActivity
                         takePictureIntent.putExtra("PhotoPath", mCameraPhotoPath);
                     } catch (IOException ex) {
                         // Error occurred while creating the File
-                        Snackbar.make(swipeRefreshLayout, R.string.unable_to_load_image, Snackbar.LENGTH_LONG).show();
+                        Snackbar.make(contentLayout, R.string.unable_to_load_image, Snackbar.LENGTH_LONG).show();
                         return false;
                     }
 
@@ -634,6 +620,16 @@ public class MainActivity extends AppCompatActivity
                 }
             }
 
+            case R.id.action_reload: {
+                if(Helpers.isOnline(MainActivity.this)) {
+                    webView.reload();
+                    return true;
+                } else {
+                    snackbarNoInternet.show();
+                    return false;
+                }
+            }
+
             case R.id.action_exit: {
                 moveTaskToBack(true);
                 finish();
@@ -701,7 +697,7 @@ public class MainActivity extends AppCompatActivity
                             String cleanTag = inputTag.replaceAll(wasClickedOnSearchForPeople ? "\\*" : "\\#", "");
                             // this validate the input data for tagfind
                             if (cleanTag == null || cleanTag.equals("")) {
-                                Snackbar.make(swipeRefreshLayout, R.string.search_alert_bypeople_validate_needsomedata, Snackbar.LENGTH_LONG).show();
+                                Snackbar.make(contentLayout, R.string.search_alert_bypeople_validate_needsomedata, Snackbar.LENGTH_LONG).show();
                             } else { // User have added a search tag
                                 if (wasClickedOnSearchForPeople) {
                                     webView.loadUrl("https://" + podDomain + "/people.mobile?q=" + cleanTag);
@@ -785,7 +781,7 @@ public class MainActivity extends AppCompatActivity
         }
 
         if (!hasToShareScreenshot) {
-            Snackbar.make(swipeRefreshLayout, getString(R.string.share__toast_screenshot) + " " + fileSaveName, Snackbar.LENGTH_LONG).show();
+            Snackbar.make(contentLayout, getString(R.string.share__toast_screenshot) + " " + fileSaveName, Snackbar.LENGTH_LONG).show();
         }
 
         Bitmap bitmap;
