@@ -87,6 +87,10 @@ public class AppSettings {
         return pref.getBoolean(context.getString(ressourceId), defaultValue);
     }
 
+    private int getInt(SharedPreferences pref, int ressourceId, int defaultValue) {
+        return pref.getInt(context.getString(ressourceId), defaultValue);
+    }
+
 
     /*
     //     Setters & Getters
@@ -172,6 +176,22 @@ public class AppSettings {
 
     public void setFollowedTags(String[] tags) {
         setStringArray(prefPod, R.string.pref_key__podprofile_followed_tags, tags);
+    }
+
+    public int getUnreadMessageCount(){
+        return getInt(prefPod, R.string.pref_key__podprofile_unread_message_count, 0);
+    }
+
+    public void setUnreadMessageCount(int unreadMessageCount) {
+        setInt(prefPod, R.string.pref_key__podprofile_unread_message_count, unreadMessageCount);
+    }
+
+    public int getNotificationCount(){
+        return getInt(prefPod, R.string.pref_key__podprofile_notification_count, 0);
+    }
+
+    public void setNotificationCount(int notificationCount) {
+        setInt(prefPod, R.string.pref_key__podprofile_notification_count, notificationCount);
     }
 
     public boolean isAppendSharedViaApp() {

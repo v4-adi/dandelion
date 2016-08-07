@@ -53,8 +53,9 @@ public class Helpers {
         }
     }
 
-    public static void applyDiasporaMobileSiteChanges(final WebView wv) {
+    public static void optimizeMobileSiteLayout(final WebView wv) {
         wv.loadUrl("javascript: ( function() {" +
+                "    if (document.documentElement == null || document.documentElement.style == null) { return; }" +
                 "    document.documentElement.style.paddingBottom = '260px';" +
                 "    document.getElementById('main').style.paddingTop = '5px';" +
                 "    if(document.getElementById('main_nav')) {" +

@@ -48,6 +48,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.NotificationCompat;
 import android.support.v7.widget.ActionMenuView;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
@@ -120,7 +121,6 @@ public class MainActivity extends AppCompatActivity
 
     private App app;
     private String podDomain;
-    private Menu menu;
     private ValueCallback<Uri[]> mFilePathCallback;
     private String mCameraPhotoPath;
     private WebSettings webSettings;
@@ -314,19 +314,15 @@ public class MainActivity extends AppCompatActivity
                 progressBar.setProgress(progress);
 
                 if (progress > 0 && progress <= 60) {
-                    Helpers.getNotificationCount(wv);
                     Helpers.getUserProfile(wv);
+                    Helpers.optimizeMobileSiteLayout(wv);
                 }
 
                 if (progress > 60) {
-                    Helpers.applyDiasporaMobileSiteChanges(wv);
+                    Helpers.optimizeMobileSiteLayout(wv);
                 }
 
-                if (progress == 100) {
-                    progressBar.setVisibility(View.GONE);
-                } else {
-                    progressBar.setVisibility(View.VISIBLE);
-                }
+                progressBar.setVisibility(progress == 100 ? View.GONE : View.VISIBLE);
             }
 
             @Override
@@ -535,9 +531,11 @@ public class MainActivity extends AppCompatActivity
 
         if (webView.canGoBack()) {
             webView.goBack();
-        } else {
-            if (!snackbarExitApp.isShown())
-                snackbarExitApp.show();
+            return;
+        }
+
+        if (!snackbarExitApp.isShown()) {
+            snackbarExitApp.show();
         }
     }
 
@@ -598,7 +596,6 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        this.menu = menu;
         MenuItem itemNotification = menu.findItem(R.id.action_notifications);
         if (itemNotification != null) {
             if (podUserProfile.getNotificationCount() > 0) {
@@ -756,6 +753,7 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+    @SuppressWarnings("ResultOfMethodCallIgnored")
     private boolean makeScreenshotOfWebView(boolean hasToShareScreenshot) {
         if (android.os.Build.VERSION.SDK_INT >= 23) {
             int hasWRITE_EXTERNAL_STORAGE = checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE);
@@ -811,7 +809,7 @@ public class MainActivity extends AppCompatActivity
             if (bitmapWriter != null) {
                 try {
                     bitmapWriter.close();
-                } catch (IOException _ignored) {/* Nothing */}
+                } catch (IOException _ignSaveored) {/* Nothing */}
             }
         }
 
@@ -918,32 +916,24 @@ public class MainActivity extends AppCompatActivity
     // TODO: Move from Javascript interface
     @Override
     public void onNotificationCountChanged(int notificationCount) {
-        MenuItem item = menu.findItem(R.id.action_notifications);
+        // Count saved in PodUserProfile
+        invalidateOptionsMenu();
 
-        if (item != null) {
-            if (notificationCount > 0) {
-                item.setIcon(R.drawable.ic_notifications_colored_48px);
-                if (!snackbarNewNotification.isShown() && !webView.getUrl().equals("https://" + podDomain + "/notifications"))
-                    snackbarNewNotification.show();
-            } else {
-                item.setIcon(R.drawable.ic_notifications_white_48px);
-            }
+        if (notificationCount > 0 && !snackbarNewNotification.isShown()
+                && !webView.getUrl().equals("https://" + podDomain + "/notifications")) {
+            snackbarNewNotification.show();
         }
     }
 
     // TODO: Move from Javascript interface
     @Override
     public void onUnreadMessageCountChanged(int unreadMessageCount) {
-        MenuItem item = menu.findItem(R.id.action_conversations);
+        // Count saved in PodUserProfile
+        invalidateOptionsMenu();
 
-        if (item != null) {
-            if (unreadMessageCount > 0) {
-                item.setIcon(R.drawable.ic_email_colored_48px);
-                if (!snackbarNewNotification.isShown() && !webView.getUrl().equals("https://" + podDomain + "/conversations"))
-                    snackbarNewNotification.show();
-            } else {
-                item.setIcon(R.drawable.ic_mail_white_48px);
-            }
+        if (unreadMessageCount > 0 && !snackbarNewNotification.isShown()
+                && !webView.getUrl().equals("https://" + podDomain + "/notifications")) {
+            snackbarNewNotification.show();
         }
     }
 
