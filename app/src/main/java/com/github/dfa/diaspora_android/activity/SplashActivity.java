@@ -28,6 +28,7 @@ import android.widget.ImageView;
 import com.github.dfa.diaspora_android.App;
 import com.github.dfa.diaspora_android.R;
 import com.github.dfa.diaspora_android.util.Helpers;
+import com.github.dfa.diaspora_android.util.WebHelper;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

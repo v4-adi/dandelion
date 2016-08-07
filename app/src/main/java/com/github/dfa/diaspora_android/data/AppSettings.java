@@ -87,6 +87,10 @@ public class AppSettings {
         return pref.getBoolean(context.getString(ressourceId), defaultValue);
     }
 
+    private int getInt(SharedPreferences pref, int ressourceId, int defaultValue) {
+        return pref.getInt(context.getString(ressourceId), defaultValue);
+    }
+
 
     /*
     //     Setters & Getters
@@ -174,6 +178,22 @@ public class AppSettings {
         setStringArray(prefPod, R.string.pref_key__podprofile_followed_tags, tags);
     }
 
+    public int getUnreadMessageCount(){
+        return getInt(prefPod, R.string.pref_key__podprofile_unread_message_count, 0);
+    }
+
+    public void setUnreadMessageCount(int unreadMessageCount) {
+        setInt(prefPod, R.string.pref_key__podprofile_unread_message_count, unreadMessageCount);
+    }
+
+    public int getNotificationCount(){
+        return getInt(prefPod, R.string.pref_key__podprofile_notification_count, 0);
+    }
+
+    public void setNotificationCount(int notificationCount) {
+        setInt(prefPod, R.string.pref_key__podprofile_notification_count, notificationCount);
+    }
+
     public boolean isAppendSharedViaApp() {
         return getBoolean(prefApp, R.string.pref_key__append_shared_via_app, true);
     }
@@ -233,5 +253,9 @@ public class AppSettings {
 
     public boolean isIntellihideToolbars() {
         return getBoolean(prefApp, R.string.pref_key__intellihide_toolbars, true);
+    }
+
+    public boolean isShowExitButtonInNavAlso(){
+        return getBoolean(prefApp, R.string.pref_key__show_exit_button_in_nav_also, false);
     }
 }

@@ -14,26 +14,26 @@
 
         <item
             android:id="@+id/nav_followed_tags"
-            android:icon="@drawable/jb_tag2"
+            android:icon="@drawable/ic_local_offer_black_48px"
             android:title="@string/nav_followed_tags" />
         <item
             android:id="@+id/nav_aspects"
-            android:icon="@drawable/jb_aspects"
+            android:icon="@drawable/ic_group_black_48px"
             android:title="@string/nav_aspects" />
 
         <item
             android:id="@+id/nav_activities"
-            android:icon="@drawable/jb_activities"
+            android:icon="@drawable/ic_history_black_48px"
             android:title="@string/nav_activities" />
 
         <item
             android:id="@+id/nav_liked"
-            android:icon="@drawable/jb_heart"
+            android:icon="@drawable/ic_favorite_black_48px"
             android:title="@string/nav_liked" />
 
         <item
             android:id="@+id/nav_commented"
-            android:icon="@drawable/jb_commented"
+            android:icon="@drawable/ic_format_align_left_black_48px"
             android:title="@string/nav_commented" />
 
         <item
@@ -43,20 +43,26 @@
 
         <item
             android:id="@+id/nav_public"
-            android:icon="@drawable/jb_aspects"
+            android:icon="@drawable/ic_public_black_48px"
             android:title="@string/nav_public_activities" />
+
+        <item
+            android:id="@+id/nav_exit"
+            android:icon="@drawable/ic_cancel_black_48px"
+            android:title="@string/action_exit_app"
+            android:visible="false"/>
     </group>
 
     <item android:title="@string/nav_menu_settings">
         <menu>
             <item
                 android:id="@+id/nav_settings_app"
-                android:icon="@drawable/jb_settings"
+                android:icon="@drawable/ic_settings_black_48px"
                 android:title="@string/nav_settings_view" />
 
             <item
                 android:id="@+id/nav_license_help"
-                android:icon="@drawable/jb_license"
+                android:icon="@drawable/ic_info_black_48px"
                 android:title="@string/nav_help_license" />
         </menu>
     </item>

@@ -60,6 +60,8 @@ public class PodUserProfile {
         name = appSettings.getName();
         podAspects = appSettings.getPodAspects();
         followedTags = appSettings.getFollowedTags();
+        notificationCount = appSettings.getNotificationCount();
+        unreadMessagesCount = appSettings.getUnreadMessageCount();
     }
 
     public PodUserProfile(App app, Handler callbackHandler, WebUserProfileChangedListener listener) {
@@ -102,11 +104,12 @@ public class PodUserProfile {
 
             // Unread message count
             if (json.has("notifications_count") && loadNotificationCount(json.getInt("notifications_count"))) {
+                appSettings.setNotificationCount(notificationCount);
             }
 
             // Unread message count
             if (json.has("unread_messages_count") && loadUnreadMessagesCount(json.getInt("unread_messages_count"))) {
-                appSettings.setPodAspects(podAspects);
+                appSettings.setUnreadMessageCount(unreadMessagesCount);
             }
 
             // Aspect

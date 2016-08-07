@@ -14,6 +14,8 @@
     <string name="pref_catkey__network" translatable="false">pref_key_category_network</string>
     <string name="pref_key__load_images" translatable="false">pref_key_load_images</string>
     <string name="pref_key__clear_cache" translatable="false">pref_key_clear_cache</string>
+    <string name="pref_key__show_exit_button_in_nav_also" translatable="false">pref_key__show_exit_button_in_nav_also</string>
+
     <string name="pref_key__append_shared_via_app" translatable="false">pref_key_append_shared_via_app</string>
     <string name="pref_key__proxy_enabled" translatable="false">pref_key_proxy_enabled</string>
     <string name="pref_key__proxy_host" translatable="false">pref_key_proxy_host</string>
@@ -21,11 +23,15 @@
     <string name="pref_key__proxy_was_enabled" translatable="false">wasProxyEnabled</string>
 
 
+
+
     <string name="pref_key__podprofile_avatar_url" translatable="false">podUserProfile_avatar</string>
     <string name="pref_key__podprofile_name" translatable="false">podUserProfile_name</string>
     <string name="pref_key__podprofile_id" translatable="false">podUserProfile_guid</string>
     <string name="pref_key__podprofile_aspects" translatable="false">podUserProfile_aspects</string>
     <string name="pref_key__podprofile_followed_tags" translatable="false">podUserProfile_followedTags</string>
+    <string name="pref_key__podprofile_unread_message_count" translatable="false">podUserProfile_unreadMessageCount</string>
+    <string name="pref_key__podprofile_notification_count" translatable="false">podUserProfile_NotificationCount</string>
 
 
     <!-- Category Titles -->
@@ -55,10 +61,12 @@
     <!-- Proxy -->
     <string name="pref_title__proxy_enabled">Enable Proxy</string>
     <string name="pref_desc__proxy_enabled">Proxy Diaspora\'s traffic to circumvent firewalls.\nMay require restart</string>
-
     <string name="pref_title__proxy_host">Host</string>
-
     <string name="pref_title__proxy_port">Port</string>
+
+    <string name="pref_title__show_exit_button_in_nav_also">Exit button in navigation slider</string>
+    <string name="pref_desc__show_exit_button_in_nav_also">Adds an additional »Exit App« button to the navigation slider</string>
+
 
     <!-- Diaspora Settings -->
     <string name="pref_title__personal_settings">Personal settings</string>
@@ -83,4 +91,5 @@
 
     <string name="pref_title__append_shared_via_app">Append shared-by-notice</string>
     <string name="pref_desc__append_shared_via_app">Append a reference to this app ("shared by…") to shared texts</string>
+    <!-- Recently added - Please move to right section-->
 </resources>

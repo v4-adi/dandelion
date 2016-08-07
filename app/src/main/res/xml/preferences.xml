@@ -24,6 +24,12 @@
             android:summary="@string/pref_desc__append_shared_via_app"
             android:title="@string/pref_title__append_shared_via_app"/>
 
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="@string/pref_key__show_exit_button_in_nav_also"
+            android:summary="@string/pref_desc__show_exit_button_in_nav_also"
+            android:title="@string/pref_title__show_exit_button_in_nav_also"/>
+
     </PreferenceCategory>
 
     <!-- Diaspora Pod Settings -->

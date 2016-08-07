@@ -46,6 +46,7 @@ import com.github.dfa.diaspora_android.App;
 import com.github.dfa.diaspora_android.R;
 import com.github.dfa.diaspora_android.task.GetPodsService;
 import com.github.dfa.diaspora_android.util.Helpers;
+import com.github.dfa.diaspora_android.util.WebHelper;
 
 import java.util.ArrayList;
 
@@ -80,7 +81,7 @@ public class PodSelectionActivity extends AppCompatActivity {
         setListedPods(app.getSettings().getPreviousPodlist());
         LocalBroadcastManager.getInstance(this).registerReceiver(podListReceiver, new IntentFilter(GetPodsService.MESSAGE_PODS_RECEIVED));
 
-        if (!Helpers.isOnline(PodSelectionActivity.this)) {
+        if (!WebHelper.isOnline(PodSelectionActivity.this)) {
             Snackbar.make(listPods, R.string.no_internet, Snackbar.LENGTH_LONG).show();
         }
     }
@@ -164,7 +165,7 @@ public class PodSelectionActivity extends AppCompatActivity {
         Linkify.addLinks(dialogMessage, Linkify.ALL);
 
         // Check if online
-        if (!Helpers.isOnline(PodSelectionActivity.this)) {
+        if (!WebHelper.isOnline(PodSelectionActivity.this)) {
             Snackbar.make(listPods, R.string.no_internet, Snackbar.LENGTH_LONG).show();
             return;
         }
@@ -232,7 +233,7 @@ public class PodSelectionActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_reload: {
-                if (Helpers.isOnline(PodSelectionActivity.this)) {
+                if (WebHelper.isOnline(PodSelectionActivity.this)) {
                     Intent i = new Intent(PodSelectionActivity.this, GetPodsService.class);
                     startService(i);
                     return true;
