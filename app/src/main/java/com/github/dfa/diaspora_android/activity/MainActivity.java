@@ -121,8 +121,6 @@ public class MainActivity extends AppCompatActivity
     private App app;
     private String podDomain;
     private Menu menu;
-    private int notificationCount = 0;
-    private int conversationCount = 0;
     private ValueCallback<Uri[]> mFilePathCallback;
     private String mCameraPhotoPath;
     private WebSettings webSettings;
@@ -603,14 +601,14 @@ public class MainActivity extends AppCompatActivity
         this.menu = menu;
         MenuItem itemNotification = menu.findItem(R.id.action_notifications);
         if (itemNotification != null) {
-            if (notificationCount > 0) {
+            if (podUserProfile.getNotificationCount() > 0) {
                 itemNotification.setIcon(R.drawable.ic_notifications_colored_48px);
             } else {
                 itemNotification.setIcon(R.drawable.ic_notifications_white_48px);
             }
 
             MenuItem itemConversation = menu.findItem(R.id.action_conversations);
-            if (conversationCount > 0) {
+            if (podUserProfile.getUnreadMessagesCount() > 0) {
                 itemConversation.setIcon(R.drawable.ic_email_colored_48px);
             } else {
                 itemConversation.setIcon(R.drawable.ic_mail_white_48px);
@@ -920,76 +918,42 @@ public class MainActivity extends AppCompatActivity
     // TODO: Move from Javascript interface
     @Override
     public void onNotificationCountChanged(int notificationCount) {
+        MenuItem item = menu.findItem(R.id.action_notifications);
 
+        if (item != null) {
+            if (notificationCount > 0) {
+                item.setIcon(R.drawable.ic_notifications_colored_48px);
+                if (!snackbarNewNotification.isShown() && !webView.getUrl().equals("https://" + podDomain + "/notifications"))
+                    snackbarNewNotification.show();
+            } else {
+                item.setIcon(R.drawable.ic_notifications_white_48px);
+            }
+        }
     }
 
     // TODO: Move from Javascript interface
     @Override
     public void onUnreadMessageCountChanged(int unreadMessageCount) {
+        MenuItem item = menu.findItem(R.id.action_conversations);
 
+        if (item != null) {
+            if (unreadMessageCount > 0) {
+                item.setIcon(R.drawable.ic_email_colored_48px);
+                if (!snackbarNewNotification.isShown() && !webView.getUrl().equals("https://" + podDomain + "/conversations"))
+                    snackbarNewNotification.show();
+            } else {
+                item.setIcon(R.drawable.ic_mail_white_48px);
+            }
+        }
     }
 
     private class JavaScriptInterface {
-        @JavascriptInterface
-        public void setNotificationCount(final String webMessage) {
-            uiHandler.post(new Runnable() {
-                @Override
-                public void run() {
-                    if (menu == null) {
-                        return;
-                    }
-                    notificationCount = Integer.valueOf(webMessage);
-
-                    MenuItem item = menu.findItem(R.id.action_notifications);
-
-                    if (item != null) {
-                        if (notificationCount > 0) {
-                            item.setIcon(R.drawable.ic_notifications_colored_48px);
-                            if (!snackbarNewNotification.isShown() && !webView.getUrl().equals("https://" + podDomain + "/notifications"))
-                                snackbarNewNotification.show();
-                        } else {
-                            item.setIcon(R.drawable.ic_notifications_white_48px);
-                        }
-                    }
-
-
-                }
-            });
-        }
-
         @JavascriptInterface
         public void setUserProfile(final String webMessage) throws JSONException {
             if (podUserProfile.isRefreshNeeded()) {
                 podUserProfile.parseJson(webMessage);
             }
         }
-
-        @JavascriptInterface
-        public void setConversationCount(final String webMessage) {
-            uiHandler.post(new Runnable() {
-                @Override
-                public void run() {
-                    if (menu == null) {
-                        return;
-                    }
-                    conversationCount = Integer.valueOf(webMessage);
-
-                    MenuItem item = menu.findItem(R.id.action_conversations);
-
-                    if (item != null) {
-                        if (conversationCount > 0) {
-                            item.setIcon(R.drawable.ic_email_colored_48px);
-                            if (!snackbarNewNotification.isShown() && !webView.getUrl().equals("https://" + podDomain + "/notifications"))
-                                snackbarNewNotification.show();
-                        } else {
-                            item.setIcon(R.drawable.ic_mail_white_48px);
-                        }
-                    }
-
-                }
-            });
-        }
-
     }
 
     @SuppressWarnings("StatementWithEmptyBody")

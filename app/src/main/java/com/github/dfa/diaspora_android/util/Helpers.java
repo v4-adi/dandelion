@@ -67,23 +67,6 @@ public class Helpers {
                 "})();");
     }
 
-    public static void getNotificationCount(final WebView wv) {
-        wv.loadUrl("javascript: ( function() {" +
-                "if (document.getElementById('notification')) {" +
-                "       var count = document.getElementById('notification').innerHTML;" +
-                "       AndroidBridge.setNotificationCount(count.replace(/(\\r\\n|\\n|\\r)/gm, \"\"));" +
-                "    } else {" +
-                "       AndroidBridge.setNotificationCount('0');" +
-                "    }" +
-                "    if (document.getElementById('conversation')) {" +
-                "       var count = document.getElementById('conversation').innerHTML;" +
-                "       AndroidBridge.setConversationCount(count.replace(/(\\r\\n|\\n|\\r)/gm, \"\"));" +
-                "    } else {" +
-                "       AndroidBridge.setConversationCount('0');" +
-                "    }" +
-                "})();");
-    }
-
     public static void getUserProfile(final WebView wv) {
         // aspects":[{"id":124934,"name":"Friends","selected":true},{"id":124937,"name":"Liked me","selected":false},{"id":124938,"name":"Follow","selected":false},{"id":128327,"name":"Nur ich","selected":false}]
         wv.loadUrl("javascript: ( function() {" +
