@@ -853,7 +853,9 @@ public class MainActivity extends AppCompatActivity
         if (sharedText != null) {
             textToBeShared = sharedText;
         }
+
         webView.stopLoading();
+        webView.loadUrl("about:blank");
         webView.loadUrl("https://"+podDomain+"/status_messages/new");
     }
 
@@ -873,34 +875,11 @@ public class MainActivity extends AppCompatActivity
 
         final String sharedSubject = WebHelper.escapeHtmlText(subject);
         final String sharedContent = WebHelper.escapeHtmlText(content);
-        final String sharedText = "**" + sharedSubject + "** " + sharedContent;
+        textToBeShared = "**" + sharedSubject + "** " + sharedContent;
 
-        if (sharedText != null) {
-            textToBeShared = sharedText;
-        }
         webView.stopLoading();
+        webView.loadUrl("about:blank");
         webView.loadUrl("https://"+podDomain+"/status_messages/new");
-
-/*
-        if (subject != null) {
-            webView.setWebViewClient(new WebViewClient() {
-
-                public void onPageFinished(WebView view, String url) {
-                    webView.loadUrl("javascript:(function() { " +
-                            "document.getElementsByTagName('textarea')[0].style.height='110px'; " +
-                            "document.getElementsByTagName('textarea')[0].innerHTML = '**" + sharedSubject + "** " + sharedContent + "'; " +
-                            "    if(document.getElementById(\"main_nav\")) {" +
-                            "        document.getElementById(\"main_nav\").parentNode.removeChild(" +
-                            "        document.getElementById(\"main_nav\"));" +
-                            "    } else if (document.getElementById(\"main-nav\")) {" +
-                            "        document.getElementById(\"main-nav\").parentNode.removeChild(" +
-                            "        document.getElementById(\"main-nav\"));" +
-                            "    }" +
-                            "})();");
-                    webView.setWebViewClient(webViewClient);
-                }
-            });
-        }*/
     }
 
     //TODO: Implement?
@@ -947,6 +926,11 @@ public class MainActivity extends AppCompatActivity
         @JavascriptInterface
         public void contentHasBeenShared(){
             textToBeShared = null;
+        }
+
+        @JavascriptInterface
+        public void log(final String log){
+            //Log.d(App.TAG, "[wv] " + log);
         }
     }
 

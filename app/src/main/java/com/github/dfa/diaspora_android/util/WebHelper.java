@@ -103,19 +103,15 @@ public class WebHelper {
     public static void shareTextIntoWebView(final WebView webView, String sharedText){
         sharedText = sharedText.replace("'", "&apos;").replace("\"", "&quot;");
         webView.loadUrl("javascript:(function() { " +
-                "if (typeof window.hasBeenSharedTo !== 'undefined') { AndroidBridge.contentHasBeenShared(); return; }" +
-                "var textbox = document.getElementsByTagName('textarea')[0];" +
-                "if (textbox) { " +
-                "document.getElementsByTagName('textarea')[0].style.height='110px'; " +
-                "document.getElementsByTagName('textarea')[0].innerHTML = '" + sharedText + "'; " +
-                "window.hasBeenSharedTo = true;" +
-                "}" +
-                "    if(document.getElementById(\"main_nav\")) {" +
-                "        document.getElementById(\"main_nav\").parentNode.removeChild(" +
-                "        document.getElementById(\"main_nav\"));" +
-                "    } else if (document.getElementById(\"main-nav\")) {" +
-                "        document.getElementById(\"main-nav\").parentNode.removeChild(" +
-                "        document.getElementById(\"main-nav\"));" +
+                "        document.documentElement.style.paddingBottom = '500px';" +
+                "    if (typeof window.hasBeenSharedTo !== 'undefined') { AndroidBridge.contentHasBeenShared(); return; }" +
+                "    var textbox = document.getElementsByTagName('textarea')[0];" +
+                "    var textToBeShared = '" + sharedText + "';" +
+                "    if (textbox) { " +
+                "        textbox.style.height='210px'; " +
+                "        textbox.innerHTML = textToBeShared; " +
+                "        window.hasBeenSharedTo = true;" +
+                "        window.lastShared = textToBeShared;" +
                 "    }" +
                 "})();");
     }
