@@ -25,6 +25,7 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.text.TextUtilsCompat;
 import android.text.Html;
 import android.webkit.URLUtil;
 import android.webkit.WebView;
@@ -96,6 +97,26 @@ public class WebHelper {
                 "       var userProfile = JSON.stringify(gon.user);" +
                 "       AndroidBridge.setUserProfile(userProfile.toString());" +
                 "    } " +
+                "})();");
+    }
+
+    public static void shareTextIntoWebView(final WebView webView, String sharedText){
+        sharedText = sharedText.replace("'", "&apos;").replace("\"", "&quot;");
+        webView.loadUrl("javascript:(function() { " +
+                "if (typeof window.hasBeenSharedTo !== 'undefined') { AndroidBridge.contentHasBeenShared(); return; }" +
+                "var textbox = document.getElementsByTagName('textarea')[0];" +
+                "if (textbox) { " +
+                "document.getElementsByTagName('textarea')[0].style.height='110px'; " +
+                "document.getElementsByTagName('textarea')[0].innerHTML = '" + sharedText + "'; " +
+                "window.hasBeenSharedTo = true;" +
+                "}" +
+                "    if(document.getElementById(\"main_nav\")) {" +
+                "        document.getElementById(\"main_nav\").parentNode.removeChild(" +
+                "        document.getElementById(\"main_nav\"));" +
+                "    } else if (document.getElementById(\"main-nav\")) {" +
+                "        document.getElementById(\"main-nav\").parentNode.removeChild(" +
+                "        document.getElementById(\"main-nav\"));" +
+                "    }" +
                 "})();");
     }
 

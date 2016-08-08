@@ -131,6 +131,7 @@ public class MainActivity extends AppCompatActivity
     private Snackbar snackbarExitApp;
     private Snackbar snackbarNewNotification;
     private Snackbar snackbarNoInternet;
+    public String textToBeShared = null;
 
     /**
      * UI Bindings
@@ -305,6 +306,10 @@ public class MainActivity extends AppCompatActivity
 
                 if (progress > 60) {
                     WebHelper.optimizeMobileSiteLayout(wv);
+
+                    if(textToBeShared != null){
+                        WebHelper.shareTextIntoWebView(wv, textToBeShared);
+                    }
                 }
 
                 progressBar.setVisibility(progress == 100 ? View.GONE : View.VISIBLE);
@@ -838,7 +843,6 @@ public class MainActivity extends AppCompatActivity
     }
 
     void handleSendText(Intent intent) {
-        webView.loadUrl("https://"+podDomain+"/status_messages/new");
         String content = WebHelper.replaceUrlWithMarkdown(intent.getStringExtra(Intent.EXTRA_TEXT));
         if(appSettings.isAppendSharedViaApp()) {
             // &#10; = \n
@@ -847,23 +851,10 @@ public class MainActivity extends AppCompatActivity
 
         final String sharedText = WebHelper.escapeHtmlText(content);
         if (sharedText != null) {
-            webView.setWebViewClient(new WebViewClient() {
-                public void onPageFinished(WebView view, String url) {
-                    webView.loadUrl("javascript:(function() { " +
-                            "document.getElementsByTagName('textarea')[0].style.height='110px'; " +
-                            "document.getElementsByTagName('textarea')[0].innerHTML = '" + sharedText + "'; " +
-                            "    if(document.getElementById(\"main_nav\")) {" +
-                            "        document.getElementById(\"main_nav\").parentNode.removeChild(" +
-                            "        document.getElementById(\"main_nav\"));" +
-                            "    } else if (document.getElementById(\"main-nav\")) {" +
-                            "        document.getElementById(\"main-nav\").parentNode.removeChild(" +
-                            "        document.getElementById(\"main-nav\"));" +
-                            "    }" +
-                            "})();");
-                    webView.setWebViewClient(webViewClient);
-                }
-            });
+            textToBeShared = sharedText;
         }
+        webView.stopLoading();
+        webView.loadUrl("https://"+podDomain+"/status_messages/new");
     }
 
     /**
@@ -882,7 +873,15 @@ public class MainActivity extends AppCompatActivity
 
         final String sharedSubject = WebHelper.escapeHtmlText(subject);
         final String sharedContent = WebHelper.escapeHtmlText(content);
+        final String sharedText = "**" + sharedSubject + "** " + sharedContent;
 
+        if (sharedText != null) {
+            textToBeShared = sharedText;
+        }
+        webView.stopLoading();
+        webView.loadUrl("https://"+podDomain+"/status_messages/new");
+
+/*
         if (subject != null) {
             webView.setWebViewClient(new WebViewClient() {
 
@@ -901,7 +900,7 @@ public class MainActivity extends AppCompatActivity
                     webView.setWebViewClient(webViewClient);
                 }
             });
-        }
+        }*/
     }
 
     //TODO: Implement?
@@ -943,6 +942,11 @@ public class MainActivity extends AppCompatActivity
             if (podUserProfile.isRefreshNeeded()) {
                 podUserProfile.parseJson(webMessage);
             }
+        }
+
+        @JavascriptInterface
+        public void contentHasBeenShared(){
+            textToBeShared = null;
         }
     }
 
