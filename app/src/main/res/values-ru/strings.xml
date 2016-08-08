@@ -41,6 +41,7 @@
   <string name="share__toast_saved_image_to_location">Сохранение изображения в</string>
   <string name="share__toast_screenshot">Сохранение экранного снимка как:</string>
   <string name="share__toast_link_address_copied">Адрес ссылки скопирован&#8230;</string>
+  <string name="new_post">Новая запись</string>
   <string name="action_go_to_top">Наверх</string>
   <string name="action_search_by_tags_or_persons">Поиск по тегам или людям</string>
   <string name="action_exit_app">Выйти из приложения</string>
@@ -64,7 +65,7 @@
   <string name="permission_denied">В разрешении отказано.</string>
   <string name="permission_granted_try_again">Разрешение получено. Пожалуйста, попробуйте еще раз.</string>
   <!-- License & help (large amount of text) -->
-  <string name="help_license__name">Лицензия</string>
   <string name="help_markdown__name">Форматирование Markdown</string>
+  <string name="help_license__name">Лицензия</string>
   <!-- Recently added - Please move to right section-->
 </resources>

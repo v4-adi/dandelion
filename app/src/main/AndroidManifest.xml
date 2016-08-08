@@ -168,6 +168,7 @@
                 <data android:host="pod.diaspora.software" android:scheme="https" />
                 <data android:host="pod.dirkomatik.de" android:scheme="https" />
                 <data android:host="pod.disroot.org" android:scheme="https" />
+                <data android:host="pod.dragondreaming.de" android:scheme="https" />
                 <data android:host="pod.gedankenausbruch.com" android:scheme="https" />
                 <data android:host="pod.geraspora.de" android:scheme="https" />
                 <data android:host="pod.gleisnetze.de" android:scheme="https" />

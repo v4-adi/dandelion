@@ -60,6 +60,11 @@
   <string name="all_tags">Alle tags</string>
   <!-- Permissions -->
   <string name="permissions_screenshot">U moet machtegingen aan \"Access Storage Permission\" geven om screenshots op te slaan. Daarna moet u de app volledig afsluiten of de telefoon opnieuw opstarten. Als u geen toestemming aan opslag wil geven maar screenshot functie later wil gebruiken, kunt u de toestemming later geven. Open dan: systemsettings - apps - Diaspora. In de machtegings sectie kunt u machtegingen geven aan \"write storage permission\".</string>
+  <string name="permissions_image">U moet machtegingen aan \"Access Storage Permission\" geven om screenshots op te slaan. Daarna moet u de app volledig afsluiten of de telefoon opnieuw opstarten. Als u geen toestemming aan opslag wil geven maar screenshot functie later wil gebruiken, kunt u de toestemming later geven. Open dan: systemsettings - apps - Diaspora. In de machtegings sectie kunt u machtegingen geven aan \"write storage permission\".</string>
+  <string name="permission_denied">Toestemming geweigerd.</string>
+  <string name="permission_granted_try_again">Toestemming verleend. Probeer het opnieuw.</string>
   <!-- License & help (large amount of text) -->
+  <string name="help_markdown__name">Markdown opmaak</string>
+  <string name="help_license__name">Licentie</string>
   <!-- Recently added - Please move to right section-->
 </resources>

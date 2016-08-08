@@ -18,6 +18,8 @@
   <string name="pref_desc__proxy_enabled">Перенаправить трафик Диаспоры в обход брандмауэров.\nМожет потребовать перезапуска</string>
   <string name="pref_title__proxy_host">Хост</string>
   <string name="pref_title__proxy_port">Порт</string>
+  <string name="pref_title__show_exit_button_in_nav_also">Кнопка выхода на навигационном слайдере</string>
+  <string name="pref_desc__show_exit_button_in_nav_also">Добавляет дополнительную кнопку »Выйти« на навигационный слайдер</string>
   <!-- Diaspora Settings -->
   <string name="pref_title__personal_settings">Личные настройки</string>
   <string name="pref_desc__personal_settings">Открыть настройки аккаунта диаспоры</string>

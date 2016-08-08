@@ -65,8 +65,7 @@
   <string name="permission_denied">Permission refusée.</string>
   <string name="permission_granted_try_again">Permission accordée. Veuillez réessayer.</string>
   <!-- License & help (large amount of text) -->
-  <string name="help_license__name">Licence</string>
   <string name="help_markdown__name">Mise en page Markdown</string>
-
+  <string name="help_license__name">Licence</string>
   <!-- Recently added - Please move to right section-->
 </resources>
