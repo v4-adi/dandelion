@@ -8,11 +8,6 @@
             android:title="@string/nav_stream" />
 
         <item
-            android:id="@+id/nav_profile"
-            android:icon="@drawable/ic_person_black_48px"
-            android:title="@string/nav_profile" />
-
-        <item
             android:id="@+id/nav_followed_tags"
             android:icon="@drawable/ic_local_offer_black_48px"
             android:title="@string/nav_followed_tags" />

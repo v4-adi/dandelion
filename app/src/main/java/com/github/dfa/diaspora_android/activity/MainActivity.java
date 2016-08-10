@@ -378,6 +378,18 @@ public class MainActivity extends AppCompatActivity
         navView.setNavigationItemSelectedListener(this);
 
         View navHeader = navView.getHeaderView(0);
+        LinearLayout navheaderProfileSection = ButterKnife.findById(navHeader, R.id.nav_profile_picture);
+        navheaderProfileSection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                navDrawer.closeDrawer(GravityCompat.START);
+                if (WebHelper.isOnline(MainActivity.this)) {
+                    webView.loadUrl(urls.getProfileUrl());
+                } else {
+                    snackbarNoInternet.show();
+                }
+            }
+        });
         navheaderTitle = ButterKnife.findById(navHeader, R.id.navheader_title);
         navheaderDescription = ButterKnife.findById(navHeader, R.id.podselection__podupti_notice);
         navheaderImage = ButterKnife.findById(navHeader, R.id.navheader_user_image);
@@ -933,15 +945,6 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_stream: {
                 if (WebHelper.isOnline(MainActivity.this)) {
                     webView.loadUrl(urls.getStreamUrl());
-                } else {
-                    snackbarNoInternet.show();
-                }
-            }
-            break;
-
-            case R.id.nav_profile: {
-                if (WebHelper.isOnline(MainActivity.this)) {
-                    webView.loadUrl(urls.getProfileUrl());
                 } else {
                     snackbarNoInternet.show();
                 }
