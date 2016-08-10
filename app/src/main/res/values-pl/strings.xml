@@ -16,6 +16,8 @@
   <string name="activities">Aktywności</string>
   <string name="liked">Polubione</string>
   <string name="commented">Skomentowane</string>
+  <string name="mentions">Wzmianki</string>
+  <string name="public_">Publiczna</string>
   <string name="search">Szukaj</string>
   <!-- Pod Activity -->
   <string name="title_activity_pods">Wybierz Pod</string>
@@ -26,7 +28,18 @@
   <string name="no_internet">Przepraszam, musisz być podłączony do Internetu, aby kontynuować</string>
   <string name="confirmation">Potwierdzenie</string>
   <string name="confirm_pod">Czy naprawdę chcesz używać\nhttps://%1$s \njako Twój Pod Diaspory?</string>
+  <string name="confirm_exit">Czy chcesz zakończyć?</string>
   <!-- Drawer, Menu, Toolbar, ContextMenu -->
+  <string name="nav_help_license">O aplikacji | Pomoc</string>
+  <string name="nav_followed_tags">Obserwowane znaczniki</string>
+  <string name="nav_public_activities">Publiczna aktywność</string>
+  <string name="nav_settings_view">Ustawienia aplikacji</string>
+  <string name="share__share_link_as_text">Udostępnij odnośnik jako tekst</string>
+  <string name="share__share_screenshot">Podziel zrzut ekranu strony internetowej</string>
+  <string name="share__toast_saved_image_to_location">Zapisywanie obrazu do</string>
+  <string name="share__toast_screenshot">Zapisywanie zrzutu ekranu jako:</string>
+  <string name="share__toast_link_address_copied">Adres odnośnika skopiowany &#8230;</string>
+  <string name="new_post">Nowy post</string>
   <!-- More from MainActivity -->
   <!-- Permissions -->
   <!-- License & help (large amount of text) -->

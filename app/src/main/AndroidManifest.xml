@@ -90,6 +90,7 @@
                 <data android:host="diaspod.de" android:scheme="https" />
                 <data android:host="diaspora.alfter.us" android:scheme="https" />
                 <data android:host="diaspora.bohramt.de" android:scheme="https" />
+                <data android:host="diasporabrazil.org" android:scheme="https" />
                 <data android:host="diasporabr.com.br" android:scheme="https" />
                 <data android:host="diaspora.com.ar" android:scheme="https" />
                 <data android:host="diaspora.deadhexagon.com" android:scheme="https" />
@@ -186,6 +187,7 @@
                 <data android:host="pod.ponk.pink" android:scheme="https" />
                 <data android:host="pod.promedol.com" android:scheme="https" />
                 <data android:host="pod.psynet.su" android:scheme="https" />
+                <data android:host="pod.readme.is" android:scheme="https" />
                 <data android:host="pod.ros-it.ch" android:scheme="https" />
                 <data android:host="pod.sccn.club" android:scheme="https" />
                 <data android:host="pod.sertelon.fr" android:scheme="https" />

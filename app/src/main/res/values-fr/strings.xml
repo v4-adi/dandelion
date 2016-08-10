@@ -14,8 +14,8 @@
   <string name="profile">Profil</string>
   <string name="aspects">Aspects</string>
   <string name="activities">Activités</string>
-  <string name="liked">Aimés</string>
-  <string name="commented">Commentés</string>
+  <string name="liked">Aimer</string>
+  <string name="commented">Commenter</string>
   <string name="mentions">Mentions</string>
   <string name="public_">Publique</string>
   <string name="search">Rechercher</string>
@@ -31,7 +31,7 @@
   <string name="confirm_pod">Voulez-vous vraiment utiliser\nhttps://%1$s\ncomme pod Diaspora ?</string>
   <string name="confirm_exit">Souhaitez-vous quitter ?</string>
   <!-- Drawer, Menu, Toolbar, ContextMenu -->
-  <string name="nav_help_license">A propos de l\'application | Aide</string>
+  <string name="nav_help_license">À propos de l\'application | Aide</string>
   <string name="nav_followed_tags">Hashtags suivis</string>
   <string name="nav_public_activities">Activités publiques</string>
   <string name="nav_settings_view">Paramètres de l\'application</string>

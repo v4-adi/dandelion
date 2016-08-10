@@ -1,8 +1,8 @@
 [![F-Droid](https://f-droid.org/wiki/images/0/06/F-Droid-button_get-it-on.png)](https://f-droid.org/repository/browse/?fdid=com.github.dfa.diaspora_android)
 
 [![Build Status](https://travis-ci.org/Diaspora-for-Android/diaspora-android.svg?branch=master)](https://travis-ci.org/Diaspora-for-Android/diaspora-android)
+[![Crowdin](https://d322cqt584bo4o.cloudfront.net/diaspora-for-android/localized.svg)](https://crowdin.com/project/diaspora-for-android)
 [![Join the chat at https://gitter.im/Diaspora-for-Android/diaspora-android](https://badges.gitter.im/Diaspora-for-Android/diaspora-android.svg)](https://gitter.im/Diaspora-for-Android/diaspora-android?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Join the chat (XMPP) at diaspora-android@conference.jabberhead.tk](https://img.shields.io/badge/xmpp-join-blue.svg)](xmpp:diaspora-android@conference.jabberhead.tk)
 
 
 # Diaspora for Android

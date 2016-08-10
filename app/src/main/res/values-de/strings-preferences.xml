@@ -14,8 +14,8 @@
   <string name="pref_title__load_images">Lade Bilder</string>
   <string name="pref_desc__load_images">Deaktiviere das Laden von Bildern, um den Datenverbrauch zu verringern</string>
   <!-- Proxy -->
-  <string name="pref_title__proxy_enabled">Aktiviere Proxy</string>
-  <string name="pref_desc__proxy_enabled">Nutze einen Proxyserver um Firewalls zu umgehen</string>
+  <string name="pref_title__proxy_enabled">Aktiviere Netzwerkproxy</string>
+  <string name="pref_desc__proxy_enabled">Nutze einen Proxyserver, um Firewalls zu umgehen</string>
   <string name="pref_title__proxy_host">Host</string>
   <string name="pref_title__proxy_port">Port</string>
   <string name="pref_title__show_exit_button_in_nav_also">Beenden Button im Slider</string>
@@ -27,14 +27,14 @@
   <string name="pref_desc__manage_contacts">Bearbeite deine Kontaktliste</string>
   <string name="pref_title__manage_tags">Tags verwalten</string>
   <string name="pref_desc__manage_tags">Verwalte die Liste der Hashtags, denen du folgst</string>
-  <string name="pref_title__change_account">Account wechseln</string>
-  <string name="pref_desc__change_account">Lösche lokale Sitzungsdaten und wechsle zu einem anderen Pod/Account</string>
-  <string name="pref_warning__change_account">Das wird alle Cookies und Session-Daten löschen. Willst du wirklich den Account wechseln?</string>
-  <string name="pref_title__clear_cache">Cache leeren</string>
-  <string name="pref_desc__clear_cache">WebView Cache leeren</string>
-  <string name="pref_desc__intellihide_toolbars">Obere und untere Toolbar verstecken während des Scrollens von Inhalt</string>
-  <string name="pref_title__intellihide_toolbars">Toolbars intelligent verstecken</string>
+  <string name="pref_title__change_account">Konto wechseln</string>
+  <string name="pref_desc__change_account">Lösche lokale Sitzungsdaten und wechsle zu einem anderen Pod/Benutzerkonto</string>
+  <string name="pref_warning__change_account">Das wird alle Cookies und Sitzungsdaten löschen. Willst du wirklich dein Konto wechseln?</string>
+  <string name="pref_title__clear_cache">Zwischenspeicher leeren</string>
+  <string name="pref_desc__clear_cache">Leert den Zwischenspeicher des WebViews</string>
+  <string name="pref_desc__intellihide_toolbars">Verstecke die obere und untere Werkzeugleiste automatisch, während gescrollt wird</string>
+  <string name="pref_title__intellihide_toolbars">Werkzeugleisten intelligent verstecken</string>
   <string name="pref_title__append_shared_via_app">Verweise auf App</string>
-  <string name="pref_desc__append_shared_via_app">Füge beim Teilen von Texten Verweis auf diese App an (\"geteilt durch&#8230;\")</string>
+  <string name="pref_desc__append_shared_via_app">Füge beim Teilen von Texten einen Verweis auf diese App an (\"geteilt durch&#8230;\")</string>
   <!-- Recently added - Please move to right section-->
 </resources>

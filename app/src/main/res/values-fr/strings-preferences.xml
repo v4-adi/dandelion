@@ -31,7 +31,7 @@
   <string name="pref_desc__change_account">Effacer les données de session locale et passer à un autre pod/compte Diaspora</string>
   <string name="pref_warning__change_account">Cette opération va effacer les cookies et données de session. Voulez-vous vraiment changer de compte/pod?</string>
   <string name="pref_title__clear_cache">Vider le cache</string>
-  <string name="pref_desc__clear_cache">Vider le cache</string>
+  <string name="pref_desc__clear_cache">Vide le cache de navigation</string>
   <string name="pref_desc__intellihide_toolbars">Masquer les barres d’outils en haut et en bas automatiquement lors du défilement</string>
   <string name="pref_title__intellihide_toolbars">Masquage intelligent des barres d\'outils</string>
   <string name="pref_title__append_shared_via_app">Ajoutez \"partagé via …\" aux partages</string>
