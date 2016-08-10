@@ -20,6 +20,7 @@ package com.github.dfa.diaspora_android.listener;
 
 /**
  * Created by gsantner (https://gsantner.github.io/) on 26.03.16.
+ * Interface that needs to be implemented by classes that listen for Profile related changes
  */
 public interface WebUserProfileChangedListener {
     void onUserProfileNameChanged(String name);

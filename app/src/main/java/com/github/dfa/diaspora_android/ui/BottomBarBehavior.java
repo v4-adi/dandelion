@@ -19,12 +19,15 @@ package com.github.dfa.diaspora_android.ui;
 import android.content.Context;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 
+/**
+ * Behaviour of the bottom Toolbar
+ * WARNING: This class is NOT UNUSED
+ */
+@SuppressWarnings("unused")
 public class BottomBarBehavior extends CoordinatorLayout.Behavior<LinearLayout> {
 
     private int defaultDependencyTop = -1;

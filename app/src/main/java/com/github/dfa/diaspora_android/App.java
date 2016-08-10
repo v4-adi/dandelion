@@ -30,6 +30,7 @@ import android.webkit.WebView;
 import com.github.dfa.diaspora_android.data.AppSettings;
 import com.github.dfa.diaspora_android.data.PodUserProfile;
 import com.github.dfa.diaspora_android.util.AvatarImageLoader;
+import com.github.dfa.diaspora_android.util.DiasporaUrlHelper;
 
 public class App extends Application {
     public static final String TAG = "DIASPORA_";
@@ -51,6 +52,7 @@ public class App extends Application {
         // Get cookie manager
         cookieManager = CookieManager.getInstance();
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            //noinspection deprecation
             CookieSyncManager.createInstance(c);
         }
         cookieManager.setAcceptCookie(true);
@@ -59,7 +61,7 @@ public class App extends Application {
     public void resetPodData(@Nullable WebView webView){
         if(webView != null){
             webView.stopLoading();
-            webView.loadUrl("about:blank");
+            webView.loadUrl(DiasporaUrlHelper.URL_BLANK);
             webView.clearFormData();
             webView.clearHistory();
             webView.clearCache(true);
@@ -72,6 +74,7 @@ public class App extends Application {
         appSettings.clearPodSettings();
 
         // Clear cookies
+        //noinspection deprecation
         cookieManager.removeAllCookie();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             cookieManager.removeAllCookies(null);

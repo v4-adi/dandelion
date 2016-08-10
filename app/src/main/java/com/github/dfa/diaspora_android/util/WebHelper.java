@@ -19,13 +19,9 @@
  
 package com.github.dfa.diaspora_android.util;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.text.TextUtilsCompat;
 import android.text.Html;
 import android.webkit.URLUtil;
 import android.webkit.WebView;
@@ -36,7 +32,6 @@ import com.github.dfa.diaspora_android.data.AppSettings;
 import com.github.dfa.diaspora_android.data.PodAspect;
 import com.github.dfa.diaspora_android.data.PodUserProfile;
 
-import java.net.URL;
 import java.util.Locale;
 
 /**
@@ -59,7 +54,7 @@ public class WebHelper {
     }
 
     public static String escapeHtmlText(String text){
-        text = Html.escapeHtml(text);;
+        text = Html.escapeHtml(text);
         text = text.replace("\n", "&#10;");
         return text;
     }
