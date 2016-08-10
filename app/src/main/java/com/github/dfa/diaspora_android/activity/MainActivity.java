@@ -951,6 +951,15 @@ public class MainActivity extends AppCompatActivity
             }
             break;
 
+            case R.id.nav_profile: {
+                if (WebHelper.isOnline(MainActivity.this)) {
+                    webView.loadUrl(urls.getProfileUrl());
+                } else {
+                    snackbarNoInternet.show();
+                }
+            }
+            break;
+
             case R.id.nav_followed_tags: {
                 if (WebHelper.isOnline(MainActivity.this)) {
                     WebHelper.showFollowedTagsList(webView, app);
