@@ -125,7 +125,15 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
                 intent.setAction(MainActivity.ACTION_CLEAR_CACHE);
                 break;
             }
-            case R.string.pref_title__show_exit_button_in_nav_also:
+            case R.string.nav_activities:
+            case R.string.nav_aspects:
+            case R.string.nav_commented:
+            case R.string.nav_followed_tags:
+            case R.string.nav_help_license:
+            case R.string.nav_liked:
+            case R.string.nav_mentions:
+            case R.string.nav_profile:
+            case R.string.nav_public_activities:
             case R.string.pref_title__intellihide_toolbars: {
                 activityRestartRequired = true;
                 return true;

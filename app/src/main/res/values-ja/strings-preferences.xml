@@ -18,8 +18,6 @@
   <string name="pref_desc__proxy_enabled">Diaspora の通信をプロキシして、ファイアウォールに回避します。\n再起動が必要になることがあります</string>
   <string name="pref_title__proxy_host">ホスト</string>
   <string name="pref_title__proxy_port">ポート</string>
-  <string name="pref_title__show_exit_button_in_nav_also">ナビゲーション スライダーに終了ボタン</string>
-  <string name="pref_desc__show_exit_button_in_nav_also">ナビゲーション スライダーに »アプリを終了« ボタンを追加します</string>
   <!-- Diaspora Settings -->
   <string name="pref_title__personal_settings">個人用設定</string>
   <string name="pref_desc__personal_settings">Diaspora アカウント設定を開きます</string>

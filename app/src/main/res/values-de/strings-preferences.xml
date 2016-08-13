@@ -18,8 +18,6 @@
   <string name="pref_desc__proxy_enabled">Nutze einen Proxyserver, um Firewalls zu umgehen</string>
   <string name="pref_title__proxy_host">Host</string>
   <string name="pref_title__proxy_port">Port</string>
-  <string name="pref_title__show_exit_button_in_nav_also">Beenden Button im Slider</string>
-  <string name="pref_desc__show_exit_button_in_nav_also">Fügt einen zusätzlichen »App beenden« Button zum Navigations-Slider hinzu</string>
   <!-- Diaspora Settings -->
   <string name="pref_title__personal_settings">Persönliche Einstellungen</string>
   <string name="pref_desc__personal_settings">Öffne die Einstellungen deines Diaspora Accounts</string>

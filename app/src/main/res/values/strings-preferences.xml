@@ -14,7 +14,6 @@
     <string name="pref_catkey__network" translatable="false">pref_key_category_network</string>
     <string name="pref_key__load_images" translatable="false">pref_key_load_images</string>
     <string name="pref_key__clear_cache" translatable="false">pref_key_clear_cache</string>
-    <string name="pref_key__show_exit_button_in_nav_also" translatable="false">pref_key__show_exit_button_in_nav_also</string>
 
     <string name="pref_key__append_shared_via_app" translatable="false">pref_key_append_shared_via_app</string>
     <string name="pref_key__proxy_enabled" translatable="false">pref_key_proxy_enabled</string>
@@ -22,9 +21,24 @@
     <string name="pref_key__proxy_port" translatable="false">pref_key_proxy_port</string>
     <string name="pref_key__proxy_was_enabled" translatable="false">wasProxyEnabled</string>
 
+    <!-- Navigiation Slider -->
+    <string name="pref_title__submenu_nav_slider" translatable="false">Navigation Slider</string>
+    <string name="pref_desc__submenu_nav_slider" translatable="false">Multiple settings for the navigation drawer</string>
+    <string name="pref_catkey__visibility_nav" translatable="false">pref_catkey__visibility_navslider</string>
+    <string name="pref_cat__visibility_nav" translatable="false">Item visibility</string>
+    <string name="pref_key__visibility_nav__exit" translatable="false">pref_key__visibility_navslider__exit</string>
+    <string name="pref_key__visibility_nav__help_license" translatable="false">pref_key__visibility_nav__help_license</string>
+    <string name="pref_key__visibility_nav__public_activities" translatable="false">pref_key__visibility_nav__public_activities</string>
+    <string name="pref_key__visibility_nav__mentions" translatable="false">pref_key__visibility_nav__mentions</string>
+    <string name="pref_key__visibility_nav__commented" translatable="false">pref_key__visibility_nav__commented</string>
+    <string name="pref_key__visibility_nav__liked" translatable="false">pref_key__visibility_nav__liked</string>
+    <string name="pref_key__visibility_nav__activities" translatable="false">pref_key__visibility_nav__activities</string>
+    <string name="pref_key__visibility_nav__aspects" translatable="false">pref_key__visibility_nav__aspects</string>
+    <string name="pref_key__visibility_nav__followed_tags" translatable="false">pref_key__visibility_nav__followed_tags</string>
+    <string name="pref_key__visibility_nav__profile" translatable="false">pref_key__visibility_nav__profile</string>
 
 
-
+    <!-- PodProfile -->
     <string name="pref_key__podprofile_avatar_url" translatable="false">podUserProfile_avatar</string>
     <string name="pref_key__podprofile_name" translatable="false">podUserProfile_name</string>
     <string name="pref_key__podprofile_id" translatable="false">podUserProfile_guid</string>
@@ -40,6 +54,8 @@
     <string name="pref_cat__pod_settings">Pod settings</string>
 
     <!-- Visuals -->
+
+
     <!-- Font size -->
     <string name="pref_title__font_size">Font size</string>
     <array name="pref_entries__font_size">
@@ -63,9 +79,6 @@
     <string name="pref_desc__proxy_enabled">Proxy Diaspora\'s traffic to circumvent firewalls.\nMay require restart</string>
     <string name="pref_title__proxy_host">Host</string>
     <string name="pref_title__proxy_port">Port</string>
-
-    <string name="pref_title__show_exit_button_in_nav_also">Exit button in navigation slider</string>
-    <string name="pref_desc__show_exit_button_in_nav_also">Adds an additional »Exit App« button to the navigation slider</string>
 
 
     <!-- Diaspora Settings -->

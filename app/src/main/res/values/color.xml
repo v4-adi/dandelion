@@ -10,7 +10,5 @@
     <color name="accent">#8b685b</color>			<!-- #4CAF50 -->
     <!-- End colors from Palette -->
 
-    <color name="fab_big">@color/accent</color>
-
     <color name="white">#ffffff</color>
 </resources>

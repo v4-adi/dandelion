@@ -53,7 +53,6 @@ import android.text.Html;
 import android.text.SpannableString;
 import android.text.method.LinkMovementMethod;
 import android.text.util.Linkify;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -157,7 +156,6 @@ public class MainActivity extends AppCompatActivity
 
     @BindView(R.id.main__layout)
     DrawerLayout navDrawer;
-
 
 
     // NavHeader cannot be bound by Butterknife
@@ -310,7 +308,7 @@ public class MainActivity extends AppCompatActivity
                 if (progress > 60) {
                     WebHelper.optimizeMobileSiteLayout(wv);
 
-                    if(textToBeShared != null){
+                    if (textToBeShared != null) {
                         WebHelper.shareTextIntoWebView(wv, textToBeShared);
                     }
                 }
@@ -409,9 +407,18 @@ public class MainActivity extends AppCompatActivity
             }
         }
 
+        // Set visibility
         Menu navMenu = navView.getMenu();
-        navMenu.findItem(R.id.nav_exit).setVisible(appSettings.isShowExitButtonInNavAlso());
-
+        navMenu.findItem(R.id.nav_exit).setVisible(appSettings.isVisibleInNavExit());
+        navMenu.findItem(R.id.nav_activities).setVisible(appSettings.isVisibleInNavActivities());
+        navMenu.findItem(R.id.nav_aspects).setVisible(appSettings.isVisibleInNavAspects());
+        navMenu.findItem(R.id.nav_commented).setVisible(appSettings.isVisibleInNavCommented());
+        navMenu.findItem(R.id.nav_followed_tags).setVisible(appSettings.isVisibleInNavFollowed_tags());
+        navMenu.findItem(R.id.nav_help_license).setVisible(appSettings.isVisibleInNavHelp_license());
+        navMenu.findItem(R.id.nav_liked).setVisible(appSettings.isVisibleInNavLiked());
+        navMenu.findItem(R.id.nav_mentions).setVisible(appSettings.isVisibleInNavMentions());
+        navMenu.findItem(R.id.nav_profile).setVisible(appSettings.isVisibleInNavProfile());
+        navMenu.findItem(R.id.nav_public).setVisible(appSettings.isVisibleInNavPublic_activities());
     }
 
     @OnClick(R.id.toolbar)
@@ -467,7 +474,8 @@ public class MainActivity extends AppCompatActivity
                     if (intent.hasExtra(Intent.EXTRA_SUBJECT)) {
                         handleSendSubject(intent);
                     } else {
-                        handleSendText(intent);}
+                        handleSendText(intent);
+                    }
                     break;
                 case "image/*":
                     handleSendImage(intent); //TODO: Add intent filter to Manifest and implement method
@@ -632,7 +640,7 @@ public class MainActivity extends AppCompatActivity
             }
 
             case R.id.action_reload: {
-                if(WebHelper.isOnline(MainActivity.this)) {
+                if (WebHelper.isOnline(MainActivity.this)) {
                     webView.reload();
                     return true;
                 } else {
@@ -848,7 +856,7 @@ public class MainActivity extends AppCompatActivity
 
     void handleSendText(Intent intent) {
         String content = WebHelper.replaceUrlWithMarkdown(intent.getStringExtra(Intent.EXTRA_TEXT));
-        if(appSettings.isAppendSharedViaApp()) {
+        if (appSettings.isAppendSharedViaApp()) {
             // &#10; = \n
             content = content + "\n\n" + getString(R.string.shared_by_diaspora_android);
         }
@@ -865,6 +873,7 @@ public class MainActivity extends AppCompatActivity
 
     /**
      * Handle sent text + subject
+     *
      * @param intent
      */
     void handleSendSubject(Intent intent) {
@@ -928,12 +937,12 @@ public class MainActivity extends AppCompatActivity
         }
 
         @JavascriptInterface
-        public void contentHasBeenShared(){
+        public void contentHasBeenShared() {
             textToBeShared = null;
         }
 
         @JavascriptInterface
-        public void log(final String log){
+        public void log(final String log) {
             //Log.d(App.TAG, "[wv] " + log);
         }
     }
@@ -1037,7 +1046,7 @@ public class MainActivity extends AppCompatActivity
             }
             break;
 
-            case R.id.nav_license_help: {
+            case R.id.nav_help_license: {
                 final CharSequence[] options = {getString(R.string.help_license__name), getString(R.string.help_markdown__name)};
                 new AlertDialog.Builder(MainActivity.this)
                         .setItems(options, new DialogInterface.OnClickListener() {

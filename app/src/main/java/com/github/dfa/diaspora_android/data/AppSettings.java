@@ -178,7 +178,7 @@ public class AppSettings {
         setStringArray(prefPod, R.string.pref_key__podprofile_followed_tags, tags);
     }
 
-    public int getUnreadMessageCount(){
+    public int getUnreadMessageCount() {
         return getInt(prefPod, R.string.pref_key__podprofile_unread_message_count, 0);
     }
 
@@ -186,7 +186,7 @@ public class AppSettings {
         setInt(prefPod, R.string.pref_key__podprofile_unread_message_count, unreadMessageCount);
     }
 
-    public int getNotificationCount(){
+    public int getNotificationCount() {
         return getInt(prefPod, R.string.pref_key__podprofile_notification_count, 0);
     }
 
@@ -255,7 +255,43 @@ public class AppSettings {
         return getBoolean(prefApp, R.string.pref_key__intellihide_toolbars, true);
     }
 
-    public boolean isShowExitButtonInNavAlso(){
-        return getBoolean(prefApp, R.string.pref_key__show_exit_button_in_nav_also, false);
+    public boolean isVisibleInNavExit() {
+        return getBoolean(prefApp, R.string.pref_key__visibility_nav__exit, false);
+    }
+
+    public boolean isVisibleInNavHelp_license() {
+        return getBoolean(prefApp, R.string.pref_key__visibility_nav__help_license, false);
+    }
+
+    public boolean isVisibleInNavPublic_activities() {
+        return getBoolean(prefApp, R.string.pref_key__visibility_nav__public_activities, false);
+    }
+
+    public boolean isVisibleInNavMentions() {
+        return getBoolean(prefApp, R.string.pref_key__visibility_nav__mentions, false);
+    }
+
+    public boolean isVisibleInNavCommented() {
+        return getBoolean(prefApp, R.string.pref_key__visibility_nav__commented, false);
+    }
+
+    public boolean isVisibleInNavLiked() {
+        return getBoolean(prefApp, R.string.pref_key__visibility_nav__liked, false);
+    }
+
+    public boolean isVisibleInNavActivities() {
+        return getBoolean(prefApp, R.string.pref_key__visibility_nav__activities, false);
+    }
+
+    public boolean isVisibleInNavAspects() {
+        return getBoolean(prefApp, R.string.pref_key__visibility_nav__aspects, false);
+    }
+
+    public boolean isVisibleInNavFollowed_tags() {
+        return getBoolean(prefApp, R.string.pref_key__visibility_nav__followed_tags, false);
+    }
+
+    public boolean isVisibleInNavProfile() {
+        return getBoolean(prefApp, R.string.pref_key__visibility_nav__profile, false);
     }
 }

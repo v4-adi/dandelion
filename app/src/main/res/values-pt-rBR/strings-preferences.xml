@@ -18,8 +18,6 @@
   <string name="pref_desc__proxy_enabled">Usar proxy para o tráfego da diáspora para contornar firewalls.\nPode requerer reinicialização</string>
   <string name="pref_title__proxy_host">Servidor</string>
   <string name="pref_title__proxy_port">Porta</string>
-  <string name="pref_title__show_exit_button_in_nav_also">Botão de sair na barra de navegação</string>
-  <string name="pref_desc__show_exit_button_in_nav_also">Adiciona um botão extra » Sair App «na barra de navegação</string>
   <!-- Diaspora Settings -->
   <string name="pref_title__personal_settings">Configurações pessoais</string>
   <string name="pref_desc__personal_settings">Abra suas configurações de usuário diáspora</string>
