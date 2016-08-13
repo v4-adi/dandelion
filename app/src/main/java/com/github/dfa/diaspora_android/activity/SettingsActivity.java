@@ -27,8 +27,8 @@ import android.preference.EditTextPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
+import android.preference.PreferenceFragment;
 import android.preference.PreferenceScreen;
-import android.util.Log;
 
 import com.github.dfa.diaspora_android.App;
 import com.github.dfa.diaspora_android.R;
@@ -36,122 +36,131 @@ import com.github.dfa.diaspora_android.R;
 /**
  * @author vanitas
  */
-public class SettingsActivity extends PreferenceActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
-
-    private SharedPreferences sharedPreferences;
-    private boolean activityRestartRequired = false;
+public class SettingsActivity extends PreferenceActivity {
+    private boolean activityRestartRequired;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getPreferenceManager().setSharedPreferencesName("app");
-        addPreferencesFromResource(R.xml.preferences);
-        sharedPreferences = getPreferenceScreen().getSharedPreferences();
-        sharedPreferences.registerOnSharedPreferenceChangeListener(this);
-        setPreferenceSummaries();
-        sharedPreferences.edit().putBoolean(getString(R.string.pref_key__proxy_was_enabled),
-                sharedPreferences.getBoolean(getString(R.string.pref_key__proxy_enabled), false)).apply();
+        getFragmentManager().beginTransaction().replace(android.R.id.content, new SettingsFragment()).commit();
     }
 
-    private void setPreferenceSummaries() {
-        String[] editTextKeys = new String[]{
-                getString(R.string.pref_key__proxy_host), getString(R.string.pref_key__proxy_port)
-        };
-        for (String key : editTextKeys) {
-            EditTextPreference p = (EditTextPreference) findPreference(key);
-            p.setSummary(p.getText());
-        }
+    public void setActivityRestartRequired(boolean b) {
+        this.activityRestartRequired = b;
     }
 
-    @Override
-    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        updatePreference(findPreference(key), key);
-    }
+    public static class SettingsFragment extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
+        private SharedPreferences sharedPreferences;
 
-    private void updatePreference(Preference preference, String key) {
-        if (preference == null) {
-            return;
+        public void onCreate(Bundle savedInstances) {
+            super.onCreate(savedInstances);
+            getPreferenceManager().setSharedPreferencesName("app");
+            addPreferencesFromResource(R.xml.preferences);
+            sharedPreferences = getPreferenceScreen().getSharedPreferences();
+            sharedPreferences.registerOnSharedPreferenceChangeListener(this);
+            setPreferenceSummaries();
+            sharedPreferences.edit().putBoolean(getString(R.string.pref_key__proxy_was_enabled),
+                    sharedPreferences.getBoolean(getString(R.string.pref_key__proxy_enabled), false)).apply();
         }
-        if (preference instanceof EditTextPreference) {
-            EditTextPreference textPref = (EditTextPreference) preference;
-            textPref.setSummary(textPref.getText());
-            return;
-        }
-        if (preference instanceof ListPreference) {
-            ListPreference listPref = (ListPreference) preference;
-            listPref.setSummary(listPref.getEntry());
-            return;
-        }
-    }
 
-    @Override
-    public boolean onPreferenceTreeClick(PreferenceScreen screen, Preference preference) {
-        Intent intent = new Intent(this, MainActivity.class);
-        String podDomain = ((App) getApplication()).getSettings().getPodDomain();
-        switch (preference.getTitleRes()) {
-            case R.string.pref_title__personal_settings: {
-                intent.setAction(MainActivity.ACTION_OPEN_URL);
-                intent.putExtra(MainActivity.URL_MESSAGE, "https://" + podDomain + "/user/edit");
-                break;
+        private void setPreferenceSummaries() {
+            String[] editTextKeys = new String[]{
+                    getString(R.string.pref_key__proxy_host), getString(R.string.pref_key__proxy_port)
+            };
+            for (String key : editTextKeys) {
+                EditTextPreference p = (EditTextPreference) findPreference(key);
+                p.setSummary(p.getText());
             }
-            case R.string.pref_title__manage_tags: {
-                intent.setAction(MainActivity.ACTION_OPEN_URL);
-                intent.putExtra(MainActivity.URL_MESSAGE, "https://" + podDomain + "/tag_followings/manage");
-                break;
+        }
+
+        @Override
+        public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+            updatePreference(findPreference(key));
+        }
+
+        private void updatePreference(Preference preference) {
+            if (preference == null) {
+                return;
             }
-            case R.string.pref_title__manage_contacts: {
-                intent.setAction(MainActivity.ACTION_OPEN_URL);
-                intent.putExtra(MainActivity.URL_MESSAGE, "https://" + podDomain + "/contacts");
-                break;
+            if (preference instanceof EditTextPreference) {
+                EditTextPreference textPref = (EditTextPreference) preference;
+                textPref.setSummary(textPref.getText());
+                return;
             }
-            case R.string.pref_title__change_account: {
-                new AlertDialog.Builder(SettingsActivity.this)
-                        .setTitle(getString(R.string.confirmation))
-                        .setMessage(getString(R.string.pref_warning__change_account))
-                        .setNegativeButton(android.R.string.no, null)
-                        .setPositiveButton(android.R.string.yes,
-                                new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int id) {
-                                        Intent intent = new Intent(SettingsActivity.this, MainActivity.class);
-                                        intent.setAction(MainActivity.ACTION_CHANGE_ACCOUNT);
-                                        startActivity(intent);
-                                        finish();
-                                    }
-                                })
-                        .show();
+            if (preference instanceof ListPreference) {
+                ListPreference listPref = (ListPreference) preference;
+                listPref.setSummary(listPref.getEntry());
+            }
+        }
+
+        @Override
+        public boolean onPreferenceTreeClick(PreferenceScreen screen, Preference preference) {
+            Intent intent = new Intent(getActivity(), MainActivity.class);
+            String podDomain = ((App) getActivity().getApplication()).getSettings().getPodDomain();
+            switch (preference.getTitleRes()) {
+                case R.string.pref_title__personal_settings: {
+                    intent.setAction(MainActivity.ACTION_OPEN_URL);
+                    intent.putExtra(MainActivity.URL_MESSAGE, "https://" + podDomain + "/user/edit");
+                    break;
+                }
+                case R.string.pref_title__manage_tags: {
+                    intent.setAction(MainActivity.ACTION_OPEN_URL);
+                    intent.putExtra(MainActivity.URL_MESSAGE, "https://" + podDomain + "/tag_followings/manage");
+                    break;
+                }
+                case R.string.pref_title__manage_contacts: {
+                    intent.setAction(MainActivity.ACTION_OPEN_URL);
+                    intent.putExtra(MainActivity.URL_MESSAGE, "https://" + podDomain + "/contacts");
+                    break;
+                }
+                case R.string.pref_title__change_account: {
+                    new AlertDialog.Builder(getActivity())
+                            .setTitle(getString(R.string.confirmation))
+                            .setMessage(getString(R.string.pref_warning__change_account))
+                            .setNegativeButton(android.R.string.no, null)
+                            .setPositiveButton(android.R.string.yes,
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            Intent intent = new Intent(getActivity(), MainActivity.class);
+                                            intent.setAction(MainActivity.ACTION_CHANGE_ACCOUNT);
+                                            startActivity(intent);
+                                            getActivity().finish();
+                                        }
+                                    })
+                            .show();
+                    return true;
+                }
+                case R.string.pref_title__clear_cache: {
+                    intent.setAction(MainActivity.ACTION_CLEAR_CACHE);
+                    break;
+                }
+                case R.string.pref_title__intellihide_toolbars: {
+                    ((SettingsActivity) getActivity()).setActivityRestartRequired(true);
+                    return true;
+                }
+
+                default: {
+                    intent = null;
+                    break;
+                }
+            }
+            if (preference.getKey() != null && preference.getKey().startsWith("pref_key__visibility_nav__")) {
+                ((SettingsActivity) getActivity()).setActivityRestartRequired(true);
                 return true;
             }
-            case R.string.pref_title__clear_cache: {
-                intent.setAction(MainActivity.ACTION_CLEAR_CACHE);
-                break;
-            }
-            case R.string.pref_title__intellihide_toolbars: {
-                activityRestartRequired = true;
+            if (intent != null) {
+                startActivity(intent);
+                getActivity().finish();
                 return true;
             }
-
-            default: {
-                intent = null;
-                break;
-            }
+            return super.onPreferenceTreeClick(screen, preference);
         }
-        if(preference.getKey() != null && preference.getKey().startsWith("pref_key__visibility_nav__")) {
-            activityRestartRequired = true;
-            return true;
-        }
-        if (intent != null) {
-            startActivity(intent);
-            finish();
-            return true;
-        }
-        return super.onPreferenceTreeClick(screen, preference);
     }
 
     @Override
     protected void onStop() {
-        Log.d(App.TAG, "Settings onStop" + activityRestartRequired);
         super.onStop();
-        if (activityRestartRequired){
+        if (activityRestartRequired) {
             Intent intent = new Intent(this, MainActivity.class);
             intent.setAction(MainActivity.ACTION_RELOAD_ACTIVITY);
             startActivity(intent);
