@@ -58,6 +58,7 @@ public class ContextMenuWebView extends NestedWebView {
 
     private Context context;
     private Activity parentActivity;
+    private String lasLoadUrl = "";
 
     public ContextMenuWebView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
@@ -110,7 +111,7 @@ public class ContextMenuWebView extends NestedWebView {
                                 Uri source = Uri.parse(url);
                                 DownloadManager.Request request = new DownloadManager.Request(source);
                                 File destinationFile = new File(Environment.getExternalStorageDirectory() + "/Pictures/Diaspora/"
-                                        + System.currentTimeMillis()+".png");
+                                        + System.currentTimeMillis() + ".png");
                                 request.setDestinationUri(Uri.fromFile(destinationFile));
                                 ((DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE)).enqueue(request);
                                 Toast.makeText(context, context.getText(R.string.share__toast_saved_image_to_location) + " " +
@@ -121,12 +122,12 @@ public class ContextMenuWebView extends NestedWebView {
                     break;
 
                     case ID_SHARE_IMAGE:
-                        if(url != null) {
-                            final Uri local = Uri.parse(Environment.getExternalStorageDirectory() + "/Pictures/Diaspora/"+System.currentTimeMillis()+".png");
+                        if (url != null) {
+                            final Uri local = Uri.parse(Environment.getExternalStorageDirectory() + "/Pictures/Diaspora/" + System.currentTimeMillis() + ".png");
                             new ImageDownloadTask(null, local.getPath()) {
                                 @Override
                                 protected void onPostExecute(Bitmap result) {
-                                    Uri myUri= Uri.fromFile(new File(local.getPath()));
+                                    Uri myUri = Uri.fromFile(new File(local.getPath()));
                                     Intent sharingIntent = new Intent();
                                     sharingIntent.setAction(Intent.ACTION_SEND);
                                     sharingIntent.putExtra(Intent.EXTRA_STREAM, myUri);
@@ -189,12 +190,22 @@ public class ContextMenuWebView extends NestedWebView {
         }
     }
 
+    public void loadUrlNew(String url){
+        stopLoading();
+        loadUrl(url);
+    }
+
     @Override
     public void loadUrl(String url) {
         super.loadUrl(url);
-        Intent updateActivityTitleIntent = new Intent(MainActivity.ACTION_UPDATE_TITLE_FROM_URL);
-        updateActivityTitleIntent.putExtra(MainActivity.EXTRA_URL, getUrl());
-        LocalBroadcastManager.getInstance(context).sendBroadcast(updateActivityTitleIntent);
+
+        // Don't spam intents ;)
+        if (!lasLoadUrl.equals(url)) {
+            Intent updateActivityTitleIntent = new Intent(MainActivity.ACTION_UPDATE_TITLE_FROM_URL);
+            updateActivityTitleIntent.putExtra(MainActivity.EXTRA_URL, getUrl());
+            LocalBroadcastManager.getInstance(context).sendBroadcast(updateActivityTitleIntent);
+        }
+        lasLoadUrl = url;
     }
 
     public void setParentActivity(Activity activity) {

@@ -260,7 +260,7 @@ public class AppSettings {
     }
 
     public boolean isVisibleInNavHelp_license() {
-        return getBoolean(prefApp, R.string.pref_key__visibility_nav__help_license, false);
+        return getBoolean(prefApp, R.string.pref_key__visibility_nav__help_license, true);
     }
 
     public boolean isVisibleInNavPublic_activities() {
@@ -268,27 +268,27 @@ public class AppSettings {
     }
 
     public boolean isVisibleInNavMentions() {
-        return getBoolean(prefApp, R.string.pref_key__visibility_nav__mentions, false);
+        return getBoolean(prefApp, R.string.pref_key__visibility_nav__mentions, true);
     }
 
     public boolean isVisibleInNavCommented() {
-        return getBoolean(prefApp, R.string.pref_key__visibility_nav__commented, false);
+        return getBoolean(prefApp, R.string.pref_key__visibility_nav__commented, true);
     }
 
     public boolean isVisibleInNavLiked() {
-        return getBoolean(prefApp, R.string.pref_key__visibility_nav__liked, false);
+        return getBoolean(prefApp, R.string.pref_key__visibility_nav__liked, true);
     }
 
     public boolean isVisibleInNavActivities() {
-        return getBoolean(prefApp, R.string.pref_key__visibility_nav__activities, false);
+        return getBoolean(prefApp, R.string.pref_key__visibility_nav__activities, true);
     }
 
     public boolean isVisibleInNavAspects() {
-        return getBoolean(prefApp, R.string.pref_key__visibility_nav__aspects, false);
+        return getBoolean(prefApp, R.string.pref_key__visibility_nav__aspects, true);
     }
 
     public boolean isVisibleInNavFollowed_tags() {
-        return getBoolean(prefApp, R.string.pref_key__visibility_nav__followed_tags, false);
+        return getBoolean(prefApp, R.string.pref_key__visibility_nav__followed_tags, true);
     }
 
     public boolean isVisibleInNavProfile() {

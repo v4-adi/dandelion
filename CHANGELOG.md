@@ -11,6 +11,7 @@
 - Click on profile picture now opens users profile
 - Disabled backup functionality to prevent attackers to steal login cookies
 - Allow slider customization
+- Show aspect name after selection
 
 # v0.1.4 (2016-07-31)
 - by @vanitasvitae, @gsantner, @di72nn

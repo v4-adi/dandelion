@@ -220,7 +220,7 @@ public class MainActivity extends AppCompatActivity
                     @Override
                     public void onClick(View view) {
                         if (WebHelper.isOnline(MainActivity.this)) {
-                            webView.loadUrl(urls.getNotificationsUrl());
+                            webView.loadUrlNew(urls.getNotificationsUrl());
                         } else {
                             Snackbar.make(contentLayout, R.string.no_internet, Snackbar.LENGTH_LONG).show();
                         }
@@ -238,7 +238,7 @@ public class MainActivity extends AppCompatActivity
         if (savedInstanceState == null) {
             if (WebHelper.isOnline(MainActivity.this)) {
                 webView.loadData("", "text/html", null);
-                webView.loadUrl(url);
+                webView.loadUrlNew(url);
             } else {
                 snackbarNoInternet.show();
             }
@@ -383,7 +383,7 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View view) {
                 navDrawer.closeDrawer(GravityCompat.START);
                 if (WebHelper.isOnline(MainActivity.this)) {
-                    webView.loadUrl(urls.getProfileUrl());
+                    webView.loadUrlNew(urls.getProfileUrl());
                 } else {
                     snackbarNoInternet.show();
                 }
@@ -488,7 +488,7 @@ public class MainActivity extends AppCompatActivity
         if (loadUrl != null) {
             webView.stopLoading();
             navDrawer.closeDrawers();
-            webView.loadUrl(loadUrl);
+            webView.loadUrlNew(loadUrl);
         }
     }
 
@@ -579,6 +579,8 @@ public class MainActivity extends AppCompatActivity
                     setTitle(R.string.nav_mentions);
                 } else if (subUrl.startsWith(DiasporaUrlHelper.SUBURL_PUBLIC)) {
                     setTitle(R.string.public_);
+                } else if (urls.isAspectUrl(url)){
+                    setTitle(urls.getAspectNameFromUrl(url, app));
                 }
             }
         }
@@ -621,7 +623,7 @@ public class MainActivity extends AppCompatActivity
         switch (item.getItemId()) {
             case R.id.action_notifications: {
                 if (WebHelper.isOnline(MainActivity.this)) {
-                    webView.loadUrl(urls.getNotificationsUrl());
+                    webView.loadUrlNew(urls.getNotificationsUrl());
                     return true;
                 } else {
                     snackbarNoInternet.show();
@@ -631,7 +633,7 @@ public class MainActivity extends AppCompatActivity
 
             case R.id.action_conversations: {
                 if (WebHelper.isOnline(MainActivity.this)) {
-                    webView.loadUrl(urls.getConversationsUrl());
+                    webView.loadUrlNew(urls.getConversationsUrl());
                     return true;
                 } else {
                     snackbarNoInternet.show();
@@ -656,13 +658,13 @@ public class MainActivity extends AppCompatActivity
             }
 
             case R.id.action_toggle_desktop_page: {
-                webView.loadUrl(urls.getToggleMobileUrl());
+                webView.loadUrlNew(urls.getToggleMobileUrl());
                 return true;
             }
 
             case R.id.action_compose: {
                 if (WebHelper.isOnline(MainActivity.this)) {
-                    webView.loadUrl(urls.getNewPostUrl());
+                    webView.loadUrlNew(urls.getNewPostUrl());
                 } else {
                     snackbarNoInternet.show();
                 }
@@ -719,9 +721,9 @@ public class MainActivity extends AppCompatActivity
                                 Snackbar.make(contentLayout, R.string.search_alert_bypeople_validate_needsomedata, Snackbar.LENGTH_LONG).show();
                             } else { // User have added a search tag
                                 if (wasClickedOnSearchForPeople) {
-                                    webView.loadUrl(urls.getSearchPeopleUrl(cleanTag));
+                                    webView.loadUrlNew(urls.getSearchPeopleUrl(cleanTag));
                                 } else {
-                                    webView.loadUrl(urls.getSearchTagsUrl(cleanTag));
+                                    webView.loadUrlNew(urls.getSearchTagsUrl(cleanTag));
                                 }
                             }
 
@@ -866,9 +868,8 @@ public class MainActivity extends AppCompatActivity
             textToBeShared = sharedText;
         }
 
-        webView.stopLoading();
-        webView.loadUrl(urls.getBlankUrl());
-        webView.loadUrl(urls.getNewPostUrl());
+        webView.loadUrlNew(urls.getBlankUrl());
+        webView.loadUrlNew(urls.getNewPostUrl());
     }
 
     /**
@@ -877,7 +878,7 @@ public class MainActivity extends AppCompatActivity
      * @param intent
      */
     void handleSendSubject(Intent intent) {
-        webView.loadUrl(urls.getNewPostUrl());
+        webView.loadUrlNew(urls.getNewPostUrl());
         String content = WebHelper.replaceUrlWithMarkdown(intent.getStringExtra(Intent.EXTRA_TEXT));
         String subject = WebHelper.replaceUrlWithMarkdown(intent.getStringExtra(Intent.EXTRA_SUBJECT));
 
@@ -890,9 +891,8 @@ public class MainActivity extends AppCompatActivity
         final String sharedContent = WebHelper.escapeHtmlText(content);
         textToBeShared = "**" + sharedSubject + "** " + sharedContent;
 
-        webView.stopLoading();
-        webView.loadUrl(urls.getBlankUrl());
-        webView.loadUrl(urls.getNewPostUrl());
+        webView.loadUrlNew(urls.getBlankUrl());
+        webView.loadUrlNew(urls.getNewPostUrl());
     }
 
     //TODO: Implement?
@@ -954,7 +954,7 @@ public class MainActivity extends AppCompatActivity
         switch (item.getItemId()) {
             case R.id.nav_stream: {
                 if (WebHelper.isOnline(MainActivity.this)) {
-                    webView.loadUrl(urls.getStreamUrl());
+                    webView.loadUrlNew(urls.getStreamUrl());
                 } else {
                     snackbarNoInternet.show();
                 }
@@ -963,7 +963,7 @@ public class MainActivity extends AppCompatActivity
 
             case R.id.nav_profile: {
                 if (WebHelper.isOnline(MainActivity.this)) {
-                    webView.loadUrl(urls.getProfileUrl());
+                    webView.loadUrlNew(urls.getProfileUrl());
                 } else {
                     snackbarNoInternet.show();
                 }
@@ -982,6 +982,7 @@ public class MainActivity extends AppCompatActivity
 
             case R.id.nav_aspects: {
                 if (WebHelper.isOnline(MainActivity.this)) {
+                    webView.loadUrlNew(DiasporaUrlHelper.URL_BLANK);
                     WebHelper.showAspectList(webView, app);
                     setTitle(R.string.aspects);
                 } else {
@@ -992,7 +993,7 @@ public class MainActivity extends AppCompatActivity
 
             case R.id.nav_activities: {
                 if (WebHelper.isOnline(MainActivity.this)) {
-                    webView.loadUrl(urls.getActivityUrl());
+                    webView.loadUrlNew(urls.getActivityUrl());
                 } else {
                     snackbarNoInternet.show();
                 }
@@ -1001,7 +1002,7 @@ public class MainActivity extends AppCompatActivity
 
             case R.id.nav_liked: {
                 if (WebHelper.isOnline(MainActivity.this)) {
-                    webView.loadUrl(urls.getLikedPostsUrl());
+                    webView.loadUrlNew(urls.getLikedPostsUrl());
                 } else {
                     snackbarNoInternet.show();
                 }
@@ -1010,7 +1011,7 @@ public class MainActivity extends AppCompatActivity
 
             case R.id.nav_commented: {
                 if (WebHelper.isOnline(MainActivity.this)) {
-                    webView.loadUrl(urls.getCommentedUrl());
+                    webView.loadUrlNew(urls.getCommentedUrl());
                 } else {
                     snackbarNoInternet.show();
                 }
@@ -1019,7 +1020,7 @@ public class MainActivity extends AppCompatActivity
 
             case R.id.nav_mentions: {
                 if (WebHelper.isOnline(MainActivity.this)) {
-                    webView.loadUrl(urls.getMentionsUrl());
+                    webView.loadUrlNew(urls.getMentionsUrl());
                 } else {
                     snackbarNoInternet.show();
                 }
@@ -1028,7 +1029,7 @@ public class MainActivity extends AppCompatActivity
 
             case R.id.nav_public: {
                 if (WebHelper.isOnline(MainActivity.this)) {
-                    webView.loadUrl(urls.getPublicUrl());
+                    webView.loadUrlNew(urls.getPublicUrl());
                 } else {
                     snackbarNoInternet.show();
                 }
