@@ -1,4 +1,16 @@
 # v0.1.5 (WIP)
+- Update title depending on what the user is doing
+- New greenish color scheme
+- Replaced SwipeToRefresh functionality with refresh button
+- Fixed some layout bugs (toolbars)
+- New translations! (
+- Increased Min-API to 17 (Jelly Bean) to mitigate CVE-2012-6636
+- App now offers to open many diaspora pod links from within other apps
+- Updated icons to vector graphics
+- Improvements to new-message/new-notification counters
+- Click on profile picture now opens users profile
+- Disabled backup functionality to prevent attackers to steal login cookies
+- Allow slider customization
 
 # v0.1.4 (2016-07-31)
 - by @vanitasvitae, @gsantner, @di72nn
