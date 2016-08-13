@@ -28,6 +28,7 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceScreen;
+import android.util.Log;
 
 import com.github.dfa.diaspora_android.App;
 import com.github.dfa.diaspora_android.R;
@@ -87,7 +88,6 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
     public boolean onPreferenceTreeClick(PreferenceScreen screen, Preference preference) {
         Intent intent = new Intent(this, MainActivity.class);
         String podDomain = ((App) getApplication()).getSettings().getPodDomain();
-
         switch (preference.getTitleRes()) {
             case R.string.pref_title__personal_settings: {
                 intent.setAction(MainActivity.ACTION_OPEN_URL);
@@ -125,15 +125,6 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
                 intent.setAction(MainActivity.ACTION_CLEAR_CACHE);
                 break;
             }
-            case R.string.nav_activities:
-            case R.string.nav_aspects:
-            case R.string.nav_commented:
-            case R.string.nav_followed_tags:
-            case R.string.nav_help_license:
-            case R.string.nav_liked:
-            case R.string.nav_mentions:
-            case R.string.nav_profile:
-            case R.string.nav_public_activities:
             case R.string.pref_title__intellihide_toolbars: {
                 activityRestartRequired = true;
                 return true;
@@ -143,6 +134,10 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
                 intent = null;
                 break;
             }
+        }
+        if(preference.getKey() != null && preference.getKey().startsWith("pref_key__visibility_nav__")) {
+            activityRestartRequired = true;
+            return true;
         }
         if (intent != null) {
             startActivity(intent);
@@ -154,6 +149,7 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
 
     @Override
     protected void onStop() {
+        Log.d(App.TAG, "Settings onStop" + activityRestartRequired);
         super.onStop();
         if (activityRestartRequired){
             Intent intent = new Intent(this, MainActivity.class);
