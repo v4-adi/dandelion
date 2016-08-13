@@ -6,12 +6,12 @@
         android:title="@string/pref_cat__visuals">
 
         <PreferenceScreen
-            android:summary="@string/pref_desc__submenu_nav_slider"
-            android:title="@string/pref_title__submenu_nav_slider">
+            android:summary="@string/pref_desc__sub_nav_slider"
+            android:title="@string/pref_title__sub_nav_slider">
 
             <PreferenceCategory
                 android:key="@string/pref_catkey__visibility_nav"
-                android:title="@string/pref_cat__visibility_nav">
+                android:title="@string/pref_cat__visibility_nav_items">
 
                 <CheckBoxPreference
                     android:defaultValue="true"

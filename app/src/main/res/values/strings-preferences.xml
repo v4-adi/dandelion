@@ -22,10 +22,7 @@
     <string name="pref_key__proxy_was_enabled" translatable="false">wasProxyEnabled</string>
 
     <!-- Navigiation Slider -->
-    <string name="pref_title__submenu_nav_slider" translatable="false">Navigation Slider</string>
-    <string name="pref_desc__submenu_nav_slider" translatable="false">Multiple settings for the navigation drawer</string>
     <string name="pref_catkey__visibility_nav" translatable="false">pref_catkey__visibility_navslider</string>
-    <string name="pref_cat__visibility_nav" translatable="false">Item visibility</string>
     <string name="pref_key__visibility_nav__exit" translatable="false">pref_key__visibility_navslider__exit</string>
     <string name="pref_key__visibility_nav__help_license" translatable="false">pref_key__visibility_nav__help_license</string>
     <string name="pref_key__visibility_nav__public_activities" translatable="false">pref_key__visibility_nav__public_activities</string>
@@ -54,6 +51,10 @@
     <string name="pref_cat__pod_settings">Pod settings</string>
 
     <!-- Visuals -->
+    <!-- Navigiation Slider -->
+    <string name="pref_title__sub_nav_slider">Navigation Slider</string>
+    <string name="pref_desc__sub_nav_slider">Multiple settings for the navigation drawer</string>
+    <string name="pref_cat__visibility_nav_items">Item visibility</string>
 
 
     <!-- Font size -->
