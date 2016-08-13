@@ -3,7 +3,7 @@
 - New greenish color scheme
 - Replaced SwipeToRefresh functionality with refresh button
 - Fixed some layout bugs (toolbars)
-- New translations! (
+- New translations! (Japanese, Portuguese-Brazilian, Russian)
 - Increased Min-API to 17 (Jelly Bean) to mitigate CVE-2012-6636
 - App now offers to open many diaspora pod links from within other apps
 - Updated icons to vector graphics
