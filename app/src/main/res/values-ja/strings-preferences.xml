@@ -3,11 +3,38 @@
 <resources>
   <!-- Key Names (Untranslatable) -->
   <!-- Category Titles -->
+  <string name="pref_cat__visuals">外観</string>
+  <string name="pref_cat__network">ネットワーク</string>
+  <string name="pref_cat__pod_settings">ポッドの設定</string>
   <!-- Visuals -->
   <!-- Font size -->
+  <string name="pref_title__font_size">フォントサイズ</string>
   <!-- prefix 's' is needed to make this a string array. Otherwise ListPreference would crash -->
   <!-- Load images -->
+  <string name="pref_title__load_images">画像の読み込み</string>
+  <string name="pref_desc__load_images">安全なモバイルデータのため、画像の読み込みを無効にします</string>
   <!-- Proxy -->
+  <string name="pref_title__proxy_enabled">プロキシを有効にする</string>
+  <string name="pref_desc__proxy_enabled">Diaspora の通信をプロキシして、ファイアウォールに回避します。\n再起動が必要になることがあります</string>
+  <string name="pref_title__proxy_host">ホスト</string>
+  <string name="pref_title__proxy_port">ポート</string>
+  <string name="pref_title__show_exit_button_in_nav_also">ナビゲーション スライダーに終了ボタン</string>
+  <string name="pref_desc__show_exit_button_in_nav_also">ナビゲーション スライダーに »アプリを終了« ボタンを追加します</string>
   <!-- Diaspora Settings -->
+  <string name="pref_title__personal_settings">個人用設定</string>
+  <string name="pref_desc__personal_settings">Diaspora アカウント設定を開きます</string>
+  <string name="pref_title__manage_contacts">連絡先</string>
+  <string name="pref_desc__manage_contacts">連絡先リストを管理します</string>
+  <string name="pref_title__manage_tags">ハッシュタグを管理</string>
+  <string name="pref_desc__manage_tags">フォローしているハッシュタグを追加および削除します</string>
+  <string name="pref_title__change_account">アカウントを変更</string>
+  <string name="pref_desc__change_account">ローカルのセッション データを消去し、別の Diaspora ポッド/アカウントに切り替えます</string>
+  <string name="pref_warning__change_account">すべてのクッキーとセッション データが消去されます。アカウントを変更してもよろしいですか?</string>
+  <string name="pref_title__clear_cache">キャッシュをクリア</string>
+  <string name="pref_desc__clear_cache">WebView のキャッシュをクリアします</string>
+  <string name="pref_desc__intellihide_toolbars">スクロールの間、自動的に上部と下部のツールバーを非表示にします</string>
+  <string name="pref_title__intellihide_toolbars">Intellihide ツールバー</string>
+  <string name="pref_title__append_shared_via_app">共有方法の通知を追加</string>
+  <string name="pref_desc__append_shared_via_app">共有テキストに、このアプリへの参照 (\"&#8230;で共有\") を追加します</string>
   <!-- Recently added - Please move to right section-->
 </resources>
