@@ -5,7 +5,6 @@
 - Fixed some layout bugs (toolbars)
 - New translations! (Japanese, Portuguese-Brazilian, Russian)
 - Increased Min-API to 17 (Jelly Bean) to mitigate CVE-2012-6636
-- App now offers to open many diaspora pod links from within other apps
 - Updated icons to vector graphics
 - Improvements to new-message/new-notification counters
 - Click on profile picture now opens users profile
