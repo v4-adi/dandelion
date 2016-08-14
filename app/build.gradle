@@ -23,6 +23,13 @@ android {
     lintOptions {
         disable 'MissingTranslation'
     }
+
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            output.outputFile = new File(
+                    output.outputFile.parent, "diasporaAndroid__${variant.versionName}__.apk")
+        }
+    }
 }
 
 dependencies {
