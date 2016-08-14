@@ -5,12 +5,40 @@
   <!-- Navigiation Slider -->
   <!-- PodProfile -->
   <!-- Category Titles -->
+  <string name="pref_cat__visuals">Aspecto</string>
+  <string name="pref_cat__network">Red</string>
+  <string name="pref_cat__pod_settings">Ajustes del Pod</string>
   <!-- Visuals -->
   <!-- Navigiation Slider -->
+  <string name="pref_title__sub_nav_slider">Control deslizante de navegación</string>
+  <string name="pref_desc__sub_nav_slider">Múltiples opciones para el cajón de navegación</string>
+  <string name="pref_cat__visibility_nav_items">Elemento visibilidad</string>
   <!-- Font size -->
+  <string name="pref_title__font_size">Tamaño de letra</string>
   <!-- prefix 's' is needed to make this a string array. Otherwise ListPreference would crash -->
   <!-- Load images -->
+  <string name="pref_title__load_images">Cargar imágenes</string>
+  <string name="pref_desc__load_images">Desactivar la carga de de imágenes a datos móviles seguros</string>
   <!-- Proxy -->
+  <string name="pref_title__proxy_enabled">Activar Proxy</string>
+  <string name="pref_desc__proxy_enabled">El tráfico proxificado de Diaspora para evitar firewalls.\nPuede necesitar reiniciarse</string>
+  <string name="pref_title__proxy_host">Anfitrión</string>
+  <string name="pref_title__proxy_port">Puerto</string>
   <!-- Diaspora Settings -->
+  <string name="pref_title__personal_settings">Configuración personal</string>
+  <string name="pref_desc__personal_settings">Abre la configuración de tu cuenta de diaspora</string>
+  <string name="pref_title__manage_contacts">Contactos</string>
+  <string name="pref_desc__manage_contacts">Administrar tu lista de contactos</string>
+  <string name="pref_title__manage_tags">Administrar Etiquetas</string>
+  <string name="pref_desc__manage_tags">Agregar y eliminar la etiqueta que estas siguendo</string>
+  <string name="pref_title__change_account">Cambiar cuenta</string>
+  <string name="pref_desc__change_account">Borrar datos de la sesión local y cambiar a otro pod/cuenta de Diaspora</string>
+  <string name="pref_warning__change_account">Esto borrará todas las cookies y datos de la sesión. ¡Realmente deseas cambiar tu cuenta?</string>
+  <string name="pref_title__clear_cache">Limpiar caché</string>
+  <string name="pref_desc__clear_cache">Limpiar cache de WebView</string>
+  <string name="pref_desc__intellihide_toolbars">Ocultar barras de herramientas superior e inferior automáticamente mientras se desplaza</string>
+  <string name="pref_title__intellihide_toolbars">Barras de herramientas Intellihide</string>
+  <string name="pref_title__append_shared_via_app">Añadir compartido por aviso</string>
+  <string name="pref_desc__append_shared_via_app">Agregar una referencia a esta aplicación (\"compartida por&#8230;\") a los textos compartidos</string>
   <!-- Recently added - Please move to right section-->
 </resources>

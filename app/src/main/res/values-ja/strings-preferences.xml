@@ -10,6 +10,9 @@
   <string name="pref_cat__pod_settings">ポッドの設定</string>
   <!-- Visuals -->
   <!-- Navigiation Slider -->
+  <string name="pref_title__sub_nav_slider">ナビゲーション スライダー</string>
+  <string name="pref_desc__sub_nav_slider">ナビゲーション引き出しの複数設定</string>
+  <string name="pref_cat__visibility_nav_items">アイテムの表示</string>
   <!-- Font size -->
   <string name="pref_title__font_size">フォントサイズ</string>
   <!-- prefix 's' is needed to make this a string array. Otherwise ListPreference would crash -->

@@ -20,6 +20,9 @@ env:
     - TASK="lintDebug"
     - TASK="build check --stacktrace"
 
+branches:
+  except:
+  - l10n_master
 notifications:
   webhooks:
     urls:

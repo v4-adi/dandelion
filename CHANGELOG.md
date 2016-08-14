@@ -1,14 +1,17 @@
-# v0.1.5 (WIP)
+# v0.2.0 (WIP)
+
+# v0.1.5
 - Update title depending on what the user is doing
 - New greenish color scheme
 - Replaced SwipeToRefresh functionality with refresh button
 - Fixed some layout bugs (toolbars)
-- New translations! (Japanese, Portuguese-Brazilian, Russian)
+- New translations! (Japanese, Portuguese-Brazilian, Russian, Espanol) Thanks translators!
 - Increased Min-API to 17 (Jelly Bean) to mitigate CVE-2012-6636
 - Updated icons to vector graphics
 - Improvements to new-message/new-notification counters
 - Click on profile picture now opens users profile
 - Disabled backup functionality to prevent attackers to steal login cookies
+- Rework settings
 - Allow slider customization
 - Show aspect name after selection
 
