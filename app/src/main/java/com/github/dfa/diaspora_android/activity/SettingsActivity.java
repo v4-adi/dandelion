@@ -76,6 +76,13 @@ public class SettingsActivity extends PreferenceActivity {
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
             updatePreference(findPreference(key));
+            if(key != null && isAdded() && (key.equals(getString(R.string.pref_key__clear_cache)) ||
+                    key.equals(getString(R.string.pref_key__font_size)) ||
+                    key.equals(getString(R.string.pref_key__load_images)) ||
+                    key.equals(getString(R.string.pref_key__intellihide_toolbars)) ||
+                    key.startsWith("pref_key__visibility_nav__"))) {
+                ((SettingsActivity) getActivity()).setActivityRestartRequired(true);
+            }
         }
 
         private void updatePreference(Preference preference) {
@@ -130,23 +137,10 @@ public class SettingsActivity extends PreferenceActivity {
                             .show();
                     return true;
                 }
-                case R.string.pref_title__clear_cache: {
-                    intent.setAction(MainActivity.ACTION_CLEAR_CACHE);
-                    break;
-                }
-                case R.string.pref_title__intellihide_toolbars: {
-                    ((SettingsActivity) getActivity()).setActivityRestartRequired(true);
-                    return true;
-                }
-
                 default: {
                     intent = null;
                     break;
                 }
-            }
-            if (preference.getKey() != null && preference.getKey().startsWith("pref_key__visibility_nav__")) {
-                ((SettingsActivity) getActivity()).setActivityRestartRequired(true);
-                return true;
             }
             if (intent != null) {
                 startActivity(intent);
