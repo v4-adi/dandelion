@@ -45,7 +45,7 @@
   <string name="action_go_to_top">Terug naar boven</string>
   <string name="action_search_by_tags_or_persons">Zoeken op tags of personen</string>
   <string name="action_exit_app">App afsluiten</string>
-  <string name="action_toggle_desktop_page">Mobiele/desktop weergave in-/ uitschakelen</string>
+  <string name="action_toggle_desktop_page">Desktop weergave in-/uitschakelen</string>
   <string name="action_share_dotdotdot">Delen&#8230;</string>
   <string name="search_alert_tag">viaTags</string>
   <string name="search_alert_people">via mensen</string>
