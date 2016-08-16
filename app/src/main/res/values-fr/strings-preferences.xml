@@ -10,7 +10,7 @@
   <string name="pref_cat__pod_settings">Paramètres du pod</string>
   <!-- Visuals -->
   <!-- Navigiation Slider -->
-  <string name="pref_title__sub_nav_slider">Barre de navigation</string>
+  <string name="pref_title__sub_nav_slider">Barre de défilement</string>
   <string name="pref_desc__sub_nav_slider">Paramètres multiples pour le panneau de navigation</string>
   <string name="pref_cat__visibility_nav_items">Visibilité de l’élément</string>
   <!-- Font size -->
