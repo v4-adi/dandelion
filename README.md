@@ -7,8 +7,7 @@
 
 # Diaspora for Android
 
-This is an unofficial webview based client for the community-run, distributed social network **[Diaspora](https://joindiaspora.com/)**. It's currently under development and should be used with that in mind. Please submit any bugs you might find.  
-**Notice:** This is the repo of the latest version of the unoffical Diaspora Android App.
+This is an unofficial webview based client for the community-run, distributed social network **[Diaspora*](https://diasporafoundation.org/)**. It's currently under development and should be used with that in mind. Please submit any bugs you might find.  
 
 - Download ([F-Droid](https://f-droid.org/repository/browse/?fdid=com.github.dfa.diaspora_android), [Release Archive](https://github.com/Diaspora-for-Android/diaspora-android/releases))
 - Watch [Changelog](https://github.com/Diaspora-for-Android/diaspora-android/blob/master/CHANGELOG.md)
@@ -27,7 +26,7 @@ It's released under GNU GENERAL PUBLIC LICENSE (see [LICENCE](https://github.com
 
 ### WebApp
 The app is developed as an WebApp because currently Diaspora doesn't have an API that can be used to create a native interface to retrieve the user's data, publications, direct messages and so on, that's why there are only WebApps for Diaspora out there.  
-API is discussed frequently on Diaspora, but the main developers seem to not give the API and mobile view the attention it needs. [Stay tuned on Diaspora* Issues](https://github.com/diaspora/diaspora/labels/api).
+[Stay tuned on Diaspora* Issues](https://github.com/diaspora/diaspora/labels/api) about API.
 
 Why a WebApp is better than using the mobile site on a browser?  
 Basically it provides better integration with the system (events coming into and going out of the app), notifications, customized interface and functions and a nice little icon that takes you directly to your favorite social network :)
