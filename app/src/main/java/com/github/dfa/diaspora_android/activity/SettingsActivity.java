@@ -80,6 +80,9 @@ public class SettingsActivity extends PreferenceActivity {
                     key.equals(getString(R.string.pref_key__font_size)) ||
                     key.equals(getString(R.string.pref_key__load_images)) ||
                     key.equals(getString(R.string.pref_key__intellihide_toolbars)) ||
+                    key.equals(getString(R.string.pref_key__proxy_enabled)) ||
+                    key.equals(getString(R.string.pref_key__proxy_host)) ||
+                    key.equals(getString(R.string.pref_key__proxy_port)) ||
                     key.startsWith("pref_key__visibility_nav__"))) {
                 ((SettingsActivity) getActivity()).setActivityRestartRequired(true);
             }
