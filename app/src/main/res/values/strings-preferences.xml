@@ -53,7 +53,7 @@
     <!-- Visuals -->
     <!-- Navigiation Slider -->
     <string name="pref_title__sub_nav_slider">Navigation Slider</string>
-    <string name="pref_desc__sub_nav_slider">Multiple settings for the navigation drawer</string>
+    <string name="pref_desc__sub_nav_slider">Control visibility of entries in the navigation drawer</string>
     <string name="pref_cat__visibility_nav_items">Item visibility</string>
 
 
