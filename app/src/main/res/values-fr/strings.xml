@@ -14,8 +14,8 @@
   <string name="profile">Profil</string>
   <string name="aspects">Aspects</string>
   <string name="activities">Activités</string>
-  <string name="liked">Aimer</string>
-  <string name="commented">Commenter</string>
+  <string name="liked">Aimés</string>
+  <string name="commented">Commentés</string>
   <string name="mentions">Mentions</string>
   <string name="public_">Publique</string>
   <string name="search">Rechercher</string>

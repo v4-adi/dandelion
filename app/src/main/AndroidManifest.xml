@@ -128,6 +128,7 @@
                 <data android:host="diasporausa.com" android:scheme="https" />
                 <data android:host="diasp.org" android:scheme="https" />
                 <data android:host="distributed.chat" android:scheme="https" />
+                <data android:host="eat.egregious.ly" android:scheme="https" />
                 <data android:host="espora.com.es" android:scheme="https" />
                 <data android:host="espora.social" android:scheme="https" />
                 <data android:host="failure.net" android:scheme="https" />
