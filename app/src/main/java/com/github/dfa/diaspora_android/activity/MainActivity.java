@@ -53,6 +53,7 @@ import android.text.Html;
 import android.text.SpannableString;
 import android.text.method.LinkMovementMethod;
 import android.text.util.Linkify;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -400,10 +401,17 @@ public class MainActivity extends AppCompatActivity
             navheaderDescription.setText(appSettings.getPodDomain());
         }
         if (!appSettings.getAvatarUrl().equals("")) {
-            // Try to load image
-            if (!app.getAvatarImageLoader().loadToImageView(navheaderImage)) {
-                // If not yet loaded, start download
-                app.getAvatarImageLoader().startImageDownload(navheaderImage, appSettings.getAvatarUrl());
+            Log.d(App.TAG, "AVATAR URL != \"\": "+appSettings.getAvatarUrl());
+            //Display app launcher icon instead of default avatar asset
+            //(Which would by the way not load because of missing pod domain prefix in the url)
+            if(appSettings.getAvatarUrl().startsWith("/assets/user/default")) {
+                navheaderImage.setImageResource(R.drawable.ic_launcher);
+            } else {
+                // Try to load image
+                if (!app.getAvatarImageLoader().loadToImageView(navheaderImage)) {
+                    // If not yet loaded, start download
+                    app.getAvatarImageLoader().startImageDownload(navheaderImage, appSettings.getAvatarUrl());
+                }
             }
         }
 
