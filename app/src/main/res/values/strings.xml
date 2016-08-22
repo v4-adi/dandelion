@@ -93,11 +93,11 @@
 
     <!-- Permissions -->
     <string name="permissions_screenshot">You must grant \"Access Storage Permission\" to save screenshots. After that you should
-        completely close the app or restart the phone. If you don\'t permit the storage access but want to use the
+        completely close the app or restart the device. If you don\'t permit the storage access but want to use the
         screenshot function at a later time, you can grant the permission later. Please open then: systemsettings - apps -
         Diaspora. In the permissions section you can grant the \"write storage permission\".</string>
     <string name="permissions_image">You must grant \"Access Storage Permission\" to save images. After that you should
-        completely close the app or restart the phone. If you don\'t permit the storage access but want to save images
+        completely close the app or restart the device. If you don\'t permit the storage access but want to save images
         at a later time, you can grant the permission later. Please open then: systemsettings - apps -
         Diaspora. In the permissions section you can grant the \"write storage permission\".</string>
     <string name="permission_denied">Permission denied.</string>
@@ -105,7 +105,7 @@
 
 
     <!-- License & help (large amount of text) -->
-    <string name="help_markdown__name">Markdown formating</string>
+    <string name="help_markdown__name">Markdown formatting</string>
     <string name="help_markdown__weblink" translatable="false">https://wiki.diasporafoundation.org/Markdown_reference_guide</string>
     <string name="help_license__name">License</string>
     <string name="help_license__years" translatable="false">Copyright © 2015–2016</string>
