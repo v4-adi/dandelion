@@ -19,7 +19,6 @@
 package com.github.dfa.diaspora_android.ui;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.webkit.CookieManager;
 import android.webkit.WebView;
@@ -28,7 +27,7 @@ import android.webkit.WebViewClient;
 import com.github.dfa.diaspora_android.App;
 
 public class CustomWebViewClient extends WebViewClient {
-    private App app;
+    private final App app;
     private WebView webView;
 
     public CustomWebViewClient(App app, WebView webView) {

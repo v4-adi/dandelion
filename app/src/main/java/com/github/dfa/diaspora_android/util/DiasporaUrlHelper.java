@@ -29,7 +29,7 @@ import com.github.dfa.diaspora_android.data.PodAspect;
  */
 @SuppressWarnings("unused")
 public class DiasporaUrlHelper {
-    private AppSettings settings;
+    private final AppSettings settings;
 
     public static final String HTTPS = "https://";
     public static final String SUBURL_NOTIFICATIONS = "/notifications";

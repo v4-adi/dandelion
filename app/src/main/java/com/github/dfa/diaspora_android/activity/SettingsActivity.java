@@ -45,8 +45,8 @@ public class SettingsActivity extends PreferenceActivity {
         getFragmentManager().beginTransaction().replace(android.R.id.content, new SettingsFragment()).commit();
     }
 
-    public void setActivityRestartRequired(boolean b) {
-        this.activityRestartRequired = b;
+    private void setActivityRestartRequired() {
+        this.activityRestartRequired = true;
     }
 
     public static class SettingsFragment extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
@@ -84,7 +84,7 @@ public class SettingsActivity extends PreferenceActivity {
                     key.equals(getString(R.string.pref_key__proxy_host)) ||
                     key.equals(getString(R.string.pref_key__proxy_port)) ||
                     key.startsWith("pref_key__visibility_nav__"))) {
-                ((SettingsActivity) getActivity()).setActivityRestartRequired(true);
+                ((SettingsActivity) getActivity()).setActivityRestartRequired();
             }
         }
 

@@ -56,7 +56,7 @@ public class ContextMenuWebView extends NestedWebView {
     public static final int ID_SHARE_LINK = 13;
     public static final int ID_SHARE_IMAGE = 14;
 
-    private Context context;
+    private final Context context;
     private Activity parentActivity;
     private String lasLoadUrl = "";
 

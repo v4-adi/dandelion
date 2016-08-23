@@ -28,7 +28,6 @@ import android.widget.ImageView;
 import com.github.dfa.diaspora_android.App;
 import com.github.dfa.diaspora_android.R;
 import com.github.dfa.diaspora_android.util.Helpers;
-import com.github.dfa.diaspora_android.util.WebHelper;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -38,7 +37,7 @@ public class SplashActivity extends AppCompatActivity {
     private App app;
 
     @BindView(R.id.splash__splashimage)
-    public ImageView imgSplash;
+    ImageView imgSplash;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +55,7 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(startActivityRunnable, delay);
     }
 
-    final Runnable startActivityRunnable = new Runnable() {
+    private final Runnable startActivityRunnable = new Runnable() {
         public void run() {
             boolean hasPodDomain = app.getSettings().hasPodDomain();
             Helpers.animateToActivity(SplashActivity.this,

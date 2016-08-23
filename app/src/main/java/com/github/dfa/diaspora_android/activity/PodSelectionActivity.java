@@ -60,13 +60,13 @@ public class PodSelectionActivity extends AppCompatActivity {
     private App app;
 
     @BindView(R.id.podselection__edit_filter)
-    public EditText editFilter;
+    EditText editFilter;
 
     @BindView(R.id.podselection__listpods)
-    public ListView listPods;
+    ListView listPods;
 
     @BindView(R.id.toolbar)
-    public Toolbar toolbar;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -184,22 +184,21 @@ public class PodSelectionActivity extends AppCompatActivity {
                 .show();
     }
 
-    public void onPodSelectionConfirmed(String selectedPod) {
+    private void onPodSelectionConfirmed(String selectedPod) {
         app.getSettings().setPodDomain(selectedPod);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            try {
+
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 CookieManager.getInstance().removeAllCookies(null);
                 CookieManager.getInstance().removeSessionCookies(null);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } else {
-            try {
+            } else {
+                //noinspection deprecation
                 CookieManager.getInstance().removeAllCookie();
+                //noinspection deprecation
                 CookieManager.getInstance().removeSessionCookie();
-            } catch (Exception e) {
-                e.printStackTrace();
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         Helpers.animateToActivity(this, MainActivity.class, true);

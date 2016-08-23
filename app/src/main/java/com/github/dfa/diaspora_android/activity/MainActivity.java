@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, WebUserProfileChangedListener {
 
 
-    static final int INPUT_FILE_REQUEST_CODE = 1;
+    private static final int INPUT_FILE_REQUEST_CODE = 1;
     private static final int REQUEST_CODE_ASK_PERMISSIONS = 123;
     public static final int REQUEST_CODE_ASK_PERMISSIONS_SAVE_IMAGE = 124;
 
@@ -120,7 +120,6 @@ public class MainActivity extends AppCompatActivity
     public static final String EXTRA_URL = "com.github.dfa.diaspora_android.extra_url";
 
     private App app;
-    private String podDomain;
     private ValueCallback<Uri[]> mFilePathCallback;
     private String mCameraPhotoPath;
     private WebSettings webSettings;
@@ -132,7 +131,7 @@ public class MainActivity extends AppCompatActivity
     private Snackbar snackbarExitApp;
     private Snackbar snackbarNewNotification;
     private Snackbar snackbarNoInternet;
-    public String textToBeShared = null;
+    private String textToBeShared = null;
 
     /**
      * UI Bindings
@@ -233,7 +232,6 @@ public class MainActivity extends AppCompatActivity
         setupNavigationSlider();
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
-        podDomain = appSettings.getPodDomain();
 
         String url = urls.getPodUrl();
         if (savedInstanceState == null) {
@@ -864,7 +862,7 @@ public class MainActivity extends AppCompatActivity
         app.getAvatarImageLoader().startImageDownload(navheaderImage, avatarUrl);
     }
 
-    void handleSendText(Intent intent) {
+    private void handleSendText(Intent intent) {
         String content = WebHelper.replaceUrlWithMarkdown(intent.getStringExtra(Intent.EXTRA_TEXT));
         if (appSettings.isAppendSharedViaApp()) {
             // &#10; = \n
@@ -883,9 +881,9 @@ public class MainActivity extends AppCompatActivity
     /**
      * Handle sent text + subject
      *
-     * @param intent
+     * @param intent intent
      */
-    void handleSendSubject(Intent intent) {
+    private void handleSendSubject(Intent intent) {
         webView.loadUrlNew(urls.getNewPostUrl());
         String content = WebHelper.replaceUrlWithMarkdown(intent.getStringExtra(Intent.EXTRA_TEXT));
         String subject = WebHelper.replaceUrlWithMarkdown(intent.getStringExtra(Intent.EXTRA_SUBJECT));
@@ -905,9 +903,9 @@ public class MainActivity extends AppCompatActivity
 
     //TODO: Implement?
     private void handleSendImage(Intent intent) {
-        final Uri imageUri = (Uri) intent.getParcelableExtra(Intent.EXTRA_STREAM);
+        final Uri imageUri = intent.getParcelableExtra(Intent.EXTRA_STREAM);
         if (imageUri != null) {
-            // Update UI to reflect text being shared
+            // TODO: Update UI to reflect text being shared
         }
         Toast.makeText(this, "Not yet implemented.", Toast.LENGTH_SHORT).show();
     }
@@ -947,11 +945,6 @@ public class MainActivity extends AppCompatActivity
         @JavascriptInterface
         public void contentHasBeenShared() {
             textToBeShared = null;
-        }
-
-        @JavascriptInterface
-        public void log(final String log) {
-            //Log.d(App.TAG, "[wv] " + log);
         }
     }
 
@@ -1062,6 +1055,7 @@ public class MainActivity extends AppCompatActivity
                             @Override
                             public void onClick(DialogInterface dialog, int item) {
                                 if (options[item].equals(getString(R.string.help_license__name))) {
+
                                     final SpannableString s = new SpannableString(Html.fromHtml(getString(R.string.help_license__content)));
                                     Linkify.addLinks(s, Linkify.WEB_URLS);
                                     final AlertDialog d = new AlertDialog.Builder(MainActivity.this)

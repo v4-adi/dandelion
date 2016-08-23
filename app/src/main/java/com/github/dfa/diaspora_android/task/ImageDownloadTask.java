@@ -40,8 +40,8 @@ import info.guardianproject.netcipher.NetCipher;
  * Created by gsantner (https://gsantner.github.io/) on 24.03.16.
  */
 public class ImageDownloadTask extends AsyncTask<String, Void, Bitmap> {
-    ImageView imageView;
-    String savePath;
+    private final ImageView imageView;
+    private String savePath;
 
     /**
      * Download image from URL

@@ -44,9 +44,9 @@ public class ProfileFetchTask extends AsyncTask<Void, Void, Void> {
     // Code for getting the profile async without any UI/WebView
     // TODO: This is an early version,needs to be converted to Service
 
-    final App app;
-    final Context context;
-    final DiasporaUrlHelper urls;
+    private final App app;
+    private final Context context;
+    private final DiasporaUrlHelper urls;
 
     public ProfileFetchTask(final App app) {
         this.context = app.getApplicationContext();

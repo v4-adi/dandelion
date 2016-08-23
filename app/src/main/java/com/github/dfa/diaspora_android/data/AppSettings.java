@@ -25,6 +25,7 @@ import android.content.SharedPreferences;
 import com.github.dfa.diaspora_android.R;
 
 /**
+ * Settings
  * Created by gsantner (https://gsantner.github.io/) on 20.03.16. Part of Diaspora for Android.
  */
 public class AppSettings {
@@ -63,7 +64,7 @@ public class AppSettings {
     }
 
     private void setStringArray(SharedPreferences pref, int keyRessourceId, Object[] values) {
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         for (Object value : values) {
             sb.append("%%%");
             sb.append(value.toString());

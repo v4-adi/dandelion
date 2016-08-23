@@ -24,7 +24,6 @@ import android.util.Log;
 import android.webkit.CookieManager;
 
 import com.github.dfa.diaspora_android.App;
-import com.github.dfa.diaspora_android.data.PodUserProfile;
 import com.github.dfa.diaspora_android.util.DiasporaUrlHelper;
 
 import java.io.BufferedReader;
@@ -44,9 +43,9 @@ public class StatisticsFetchTask extends AsyncTask<Void, Void, Void> {
     // Code for getting the profile async without any UI/WebView
     // TODO: This is an early version,needs to be converted to Service
 
-    final App app;
-    final Context context;
-    final DiasporaUrlHelper urls;
+    private final App app;
+    private final Context context;
+    private final DiasporaUrlHelper urls;
 
     public StatisticsFetchTask(final App app) {
         this.context = app.getApplicationContext();

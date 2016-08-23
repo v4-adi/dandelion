@@ -29,6 +29,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
+ * User profile
  * Created by gsantner (https://gsantner.github.io/) on 24.03.16.  Part of Diaspora for Android.
  */
 public class PodUserProfile {
@@ -36,8 +37,8 @@ public class PodUserProfile {
 
     private Handler callbackHandler;
     private WebUserProfileChangedListener listener;
-    private App app;
-    private AppSettings appSettings;
+    private final App app;
+    private final AppSettings appSettings;
     private JSONObject json;
     private long lastLoaded;
     private boolean isWebUserProfileLoaded;
