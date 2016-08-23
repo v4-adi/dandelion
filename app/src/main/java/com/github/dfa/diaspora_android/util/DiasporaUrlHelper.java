@@ -48,6 +48,7 @@ public class DiasporaUrlHelper {
     public static final String SUBURL_SEARCH_PEOPLE = "/people.mobile?q=";
     public static final String SUBURL_FOLOWED_TAGS = "/followed_tags";
     public static final String SUBURL_ASPECTS = "/aspects";
+    public static final String SUBURL_STATISTICS = "/statistics";
     public static final String URL_BLANK = "about:blank";
 
     public DiasporaUrlHelper(AppSettings settings) {
@@ -200,6 +201,14 @@ public class DiasporaUrlHelper {
      */
     public String getSearchPeopleUrl(String query) {
         return getPodUrl() + SUBURL_SEARCH_PEOPLE + query;
+    }
+
+    /**
+     * Return a https url that points to the statistics page of the pod.
+     * @return https://(pod-domain.tld)/statistics
+     */
+    public String getStatisticsUrl() {
+        return getPodUrl() + SUBURL_STATISTICS;
     }
 
     /**

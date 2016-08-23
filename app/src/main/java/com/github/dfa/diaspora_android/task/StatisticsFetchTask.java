@@ -40,7 +40,7 @@ import info.guardianproject.netcipher.NetCipher;
 /**
  * AsyncTask to fetch a users profile
  */
-public class ProfileFetchTask extends AsyncTask<Void, Void, Void> {
+public class StatisticsFetchTask extends AsyncTask<Void, Void, Void> {
     // Code for getting the profile async without any UI/WebView
     // TODO: This is an early version,needs to be converted to Service
 
@@ -48,7 +48,7 @@ public class ProfileFetchTask extends AsyncTask<Void, Void, Void> {
     final Context context;
     final DiasporaUrlHelper urls;
 
-    public ProfileFetchTask(final App app) {
+    public StatisticsFetchTask(final App app) {
         this.context = app.getApplicationContext();
         this.app = app;
         this.urls = new DiasporaUrlHelper(app.getSettings());
@@ -60,12 +60,11 @@ public class ProfileFetchTask extends AsyncTask<Void, Void, Void> {
         String extractedProfileData = null;
         final CookieManager cookieManager = app.getCookieManager();
         String cookies = cookieManager.getCookie(urls.getPodUrl());
-        Log.d(App.TAG, cookies);
 
         HttpsURLConnection connection;
         InputStream inStream;
         try {
-            URL url = new URL(urls.getStreamUrl());
+            URL url = new URL(urls.getStatisticsUrl());
             connection = NetCipher.getHttpsURLConnection(url);
             connection.setReadTimeout(10000);
             connection.setConnectTimeout(15000);
@@ -78,12 +77,8 @@ public class ProfileFetchTask extends AsyncTask<Void, Void, Void> {
             inStream = connection.getInputStream();
             BufferedReader br = new BufferedReader(new InputStreamReader(inStream));
             String line;
-            final String TARGET_TAG = "window.gon={};gon.user=";
-            while ((line = br.readLine()) != null && !line.startsWith("<body")) {
-                if (line.startsWith(TARGET_TAG)) {
-                    extractedProfileData = line.substring(TARGET_TAG.length());
-                    break;
-                }
+            while ((line = br.readLine()) != null) {
+                Log.d(App.TAG, "STATS: "+line);
             }
 
             try{
@@ -96,14 +91,6 @@ public class ProfileFetchTask extends AsyncTask<Void, Void, Void> {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
-        if (extractedProfileData != null) {
-            PodUserProfile profile = new PodUserProfile(app);
-            profile.parseJson(extractedProfileData);
-            Log.d(App.TAG, "Extracted new_messages (service):" + profile.getUnreadMessagesCount());
-        }
-
         return null;
     }
 }
