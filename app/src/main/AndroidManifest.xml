@@ -127,6 +127,7 @@
                 <data android:host="diaspora.unixcorn.org" android:scheme="https" />
                 <data android:host="diasporausa.com" android:scheme="https" />
                 <data android:host="diasp.org" android:scheme="https" />
+                <data android:host="dissociateduse.rs" android:scheme="https" />
                 <data android:host="distributed.chat" android:scheme="https" />
                 <data android:host="eat.egregious.ly" android:scheme="https" />
                 <data android:host="espora.com.es" android:scheme="https" />

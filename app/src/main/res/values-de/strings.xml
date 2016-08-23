@@ -61,12 +61,12 @@
   <string name="all_tags">Alle Tags</string>
   <!-- Permissions -->
   <string name="permissions_screenshot">Du musst der App Zugriff auf den Gerätespeicher gewähren, damit das Bildschirmfoto
-        gespeichert werden kann. Danach solltest du die Anwendung komplett schließen oder das Telefon neu starten.
+        gespeichert werden kann. Danach solltest du die Anwendung komplett schließen oder das Gerät neu starten.
         Wenn du den Zugriff verweigerst und die Funktion später doch nutzen willst, kannst du die Berechtigung
         nachträglich erteilen. Öffne dafür: Systemeinstellungen - Apps - Diaspora. Im Bereich Berechtigungen kannst
         dann die entsprechende Einstellung vornehmen.</string>
   <string name="permissions_image">Du musst der App Zugriff auf den Gerätespeicher gewähren, damit das Bild
-        gespeichert werden kann. Danach solltest du die Anwendung komplett schließen oder das Telefon neu starten.
+        gespeichert werden kann. Danach solltest du die Anwendung komplett schließen oder das Gerät neu starten.
         Wenn du den Zugriff verweigerst und die Funktion später doch nutzen willst, kannst du die Berechtigung
         nachträglich erteilen. Öffne dafür: Systemeinstellungen - Apps - Diaspora. Im Bereich Berechtigungen kannst
         dann die entsprechende Einstellung vornehmen.</string>

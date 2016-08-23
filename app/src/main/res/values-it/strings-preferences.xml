@@ -5,12 +5,40 @@
   <!-- Navigiation Slider -->
   <!-- PodProfile -->
   <!-- Category Titles -->
+  <string name="pref_cat__visuals">Aspetto</string>
+  <string name="pref_cat__network">Rete</string>
+  <string name="pref_cat__pod_settings">Impostazioni pod</string>
   <!-- Visuals -->
   <!-- Navigiation Slider -->
+  <string name="pref_title__sub_nav_slider">Menù di navigazione</string>
+  <string name="pref_desc__sub_nav_slider">Controlla la visibilità degli elementi nel menù di navigazione</string>
+  <string name="pref_cat__visibility_nav_items">Visibilità degli elementi</string>
   <!-- Font size -->
+  <string name="pref_title__font_size">Dimensione font</string>
   <!-- prefix 's' is needed to make this a string array. Otherwise ListPreference would crash -->
   <!-- Load images -->
+  <string name="pref_title__load_images">Carica immagini</string>
+  <string name="pref_desc__load_images">Disabilita il caricamento delle immagini per risparmiare la rete dati</string>
   <!-- Proxy -->
+  <string name="pref_title__proxy_enabled">Attiva proxy</string>
+  <string name="pref_desc__proxy_enabled">Traffico del proxy di Diaspora per bypassare i firewall.\nPuò essere necessario il riavvio dell\'app</string>
+  <string name="pref_title__proxy_host">Host</string>
+  <string name="pref_title__proxy_port">Porta</string>
   <!-- Diaspora Settings -->
+  <string name="pref_title__personal_settings">Impostazioni personali</string>
+  <string name="pref_desc__personal_settings">Apri le impostazioni del tuo account Diaspora</string>
+  <string name="pref_title__manage_contacts">Contatti</string>
+  <string name="pref_desc__manage_contacts">Gestisci il tuo elenco di contatti</string>
+  <string name="pref_title__manage_tags">Gestisci hashtag</string>
+  <string name="pref_desc__manage_tags">Aggiungi ed elimina gli hashtag che stai seguendo</string>
+  <string name="pref_title__change_account">Cambia account</string>
+  <string name="pref_desc__change_account">Elimina dati della sessione locale e passa ad un altro pod/account Diaspora</string>
+  <string name="pref_warning__change_account">Questo eliminerà tutti i cookie e i dati della sessione. Vuoi veramente cambiare il tuo account?</string>
+  <string name="pref_title__clear_cache">Pulisci cache</string>
+  <string name="pref_desc__clear_cache">Pulisci cache di WebView</string>
+  <string name="pref_desc__intellihide_toolbars">Nascondi barre superiori e inferiori automaticamente quando scrolli</string>
+  <string name="pref_title__intellihide_toolbars">Barre che si nascondono intelligentemente</string>
+  <string name="pref_title__append_shared_via_app">Aggiungi avviso dell\'app</string>
+  <string name="pref_desc__append_shared_via_app">Aggiunge un riferimento a quest\'app (\"Condiviso da&#8230;\") nei testi condivisi</string>
   <!-- Recently added - Please move to right section-->
 </resources>
