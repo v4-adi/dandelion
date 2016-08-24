@@ -230,5 +230,9 @@
             </intent-filter>
 
         </activity>
+        <activity
+            android:name=".activity.AboutActivity"
+            android:label="@string/about_activity__title_about_app"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 </manifest>
