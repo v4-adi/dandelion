@@ -768,6 +768,9 @@ public class MainActivity extends AppCompatActivity
                 }
                 return true;
             }
+            case R.id.debug: {
+                startActivity(new Intent(this, AboutActivity.class));
+            }
         }
 
         return super.onOptionsItemSelected(item);
@@ -1049,14 +1052,14 @@ public class MainActivity extends AppCompatActivity
             break;
 
             case R.id.nav_help_license: {
-                final CharSequence[] options = {getString(R.string.help_license__name), getString(R.string.help_markdown__name)};
+                final CharSequence[] options = {getString(R.string.about_activity__title_about_license), getString(R.string.help_markdown__name)};
                 new AlertDialog.Builder(MainActivity.this)
                         .setItems(options, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int item) {
-                                if (options[item].equals(getString(R.string.help_license__name))) {
+                                if (options[item].equals(getString(R.string.about_activity__title_about_license))) {
 
-                                    final SpannableString s = new SpannableString(Html.fromHtml(getString(R.string.help_license__content)));
+                                    final SpannableString s = new SpannableString(Html.fromHtml(getString(R.string.fragment_license__license_content)));
                                     Linkify.addLinks(s, Linkify.WEB_URLS);
                                     final AlertDialog d = new AlertDialog.Builder(MainActivity.this)
                                             .setTitle(R.string.help_license__years)

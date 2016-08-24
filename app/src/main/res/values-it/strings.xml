@@ -71,5 +71,5 @@
   <string name="permission_granted_try_again">Permesso garantito. Si prega di riprovare.</string>
   <!-- License & help (large amount of text) -->
   <string name="help_markdown__name">Formattazione Markdown</string>
-  <string name="help_license__name">Licenza</string>
+  <string name="about_activity__title_about_license">Licenza</string>
 </resources>

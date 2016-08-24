@@ -74,5 +74,5 @@
   <string name="permission_granted_try_again">Berechtigung erteilt. Bitte versuche es erneut.</string>
   <!-- License & help (large amount of text) -->
   <string name="help_markdown__name">Markdown Formatierung</string>
-  <string name="help_license__name">Lizenz</string>
+  <string name="about_activity__title_about_license">Lizenz</string>
 </resources>

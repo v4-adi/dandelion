@@ -23,5 +23,5 @@
   <string name="all_tags">ಎಲ್ಲಾ ಟ್ಯಾಗ್‌ಗಳು</string>
   <!-- Permissions -->
   <!-- License & help (large amount of text) -->
-  <string name="help_license__name">ಪರವಾನಿಗೆ</string>
+  <string name="about_activity__title_about_license">ಪರವಾನಿಗೆ</string>
 </resources>

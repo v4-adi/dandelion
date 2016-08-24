@@ -1,6 +1,7 @@
 <resources>
     <!-- App - AppName specific -->
     <string name="diaspora" translatable="false">Diaspora</string>
+    <string name="diaspora_for_android" translatable="false">Diaspora for Android</string>
     <string name="app_name" translatable="false">@string/diaspora</string>
     <string name="app_hashtag" translatable="false">#DiasporaForAndroid</string>
     <string name="app_copyright" translatable="false">The community-run distributed social network</string>
@@ -107,9 +108,8 @@
     <!-- License & help (large amount of text) -->
     <string name="help_markdown__name">Markdown formatting</string>
     <string name="help_markdown__weblink" translatable="false">https://wiki.diasporafoundation.org/Markdown_reference_guide</string>
-    <string name="help_license__name">License</string>
     <string name="help_license__years" translatable="false">Copyright © 2015–2016</string>
-    <string name="help_license__content" translatable="false">&lt;b>Maintainers:&lt;/b>&lt;br>
+    <string name="fragment_license__license_content" translatable="false">&lt;b>Maintainers:&lt;/b>&lt;br>
 
         &#8226; gsantner https://gsantner.github.io&lt;br>
         &#8226; vanitasvitae https://github.com/vanitasvitae&lt;br> &lt;br>
@@ -130,5 +130,11 @@
         &lt;i>The splashscreen images can be found on flickr:
         https://www.flickr.com/photos/129581906@N06/sets/72157651933980136/with/16594947123.
         They were published by \"Lydia\" and are licensed under cc by-nc-sa.&lt;/i></string>
+    <string name="about_activity__title_about_app">About</string>
+    <string name="about_activity__title_about_license">License</string>
+    <string name="about_activity__title_debug_info">Debugging</string>
+    <string name="fragment_about__app_version">App Version: %1$s</string>
+    <string name="fragment_about__package_name">Package Name: %1$s</string>
+
 
 </resources>

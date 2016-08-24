@@ -47,5 +47,9 @@
         android:icon="@drawable/ic_sync_white_48px"
         android:title="@string/action_exit_app"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/debug"
+        android:title="DEBUG"
+        app:showAsAction="never" />
 
 </menu>

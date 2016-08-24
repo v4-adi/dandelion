@@ -64,5 +64,5 @@
   <string name="permission_granted_try_again">Toestemming verleend. Probeer het opnieuw.</string>
   <!-- License & help (large amount of text) -->
   <string name="help_markdown__name">Markdown opmaak</string>
-  <string name="help_license__name">Licentie</string>
+  <string name="about_activity__title_about_license">Licentie</string>
 </resources>
