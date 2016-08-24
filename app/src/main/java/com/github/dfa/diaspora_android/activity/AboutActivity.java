@@ -10,40 +10,34 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.Html;
-import android.text.SpannableString;
-import android.text.util.Linkify;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.github.dfa.diaspora_android.App;
 import com.github.dfa.diaspora_android.R;
+import com.github.dfa.diaspora_android.data.AppSettings;
 
 public class AboutActivity extends AppCompatActivity {
 
-    /**
-     * The {@link android.support.v4.view.PagerAdapter} that will provide
-     * fragments for each of the sections. We use a
-     * {@link FragmentPagerAdapter} derivative, which will keep every
-     * loaded fragment in memory. If this becomes too memory intensive, it
-     * may be best to switch to a
-     * {@link android.support.v4.app.FragmentStatePagerAdapter}.
-     */
     private SectionsPagerAdapter mSectionsPagerAdapter;
-
-    /**
-     * The {@link ViewPager} that will host the section contents.
-     */
     private ViewPager mViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_arrow_back_white_24px));
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AboutActivity.this.onBackPressed();
+            }
+        });
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
@@ -75,9 +69,8 @@ public class AboutActivity extends AppCompatActivity {
             if(isAdded()) {
                 try {
                     PackageInfo pInfo = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0);
-
                     packageName.setText(pInfo.packageName);
-                    appVersion.setText(getString(R.string.fragment_about__app_version, pInfo.versionName+ " ("+pInfo.versionCode+")"));
+                    appVersion.setText(getString(R.string.fragment_debug__app_version, pInfo.versionName+ " ("+pInfo.versionCode+")"));
 
                 } catch (PackageManager.NameNotFoundException e) {
                     e.printStackTrace();
@@ -114,8 +107,25 @@ public class AboutActivity extends AppCompatActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_about, container, false);
-            ((TextView) rootView.findViewById(R.id.debug_text)).setText("Debug");
+            View rootView = inflater.inflate(R.layout.fragment_debug, container, false);
+            TextView packageName = (TextView) rootView.findViewById(R.id.fragment_debug__package_name);
+            TextView appVersion = (TextView) rootView.findViewById(R.id.fragment_debug__app_version);
+            TextView podDomain = (TextView) rootView.findViewById(R.id.fragment_debug__pod_domain);
+
+            if(isAdded()) {
+                try {
+                    PackageInfo pInfo = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0);
+                    AppSettings settings = ((App) getActivity().getApplication()).getSettings();
+
+                    packageName.setText(pInfo.packageName);
+                    appVersion.setText(getString(R.string.fragment_debug__app_version, pInfo.versionName+ " ("+pInfo.versionCode+")"));
+                    podDomain.setText(getString(R.string.fragment_debug__pod_domain, settings.getPodDomain()));
+
+                } catch (PackageManager.NameNotFoundException e) {
+                    e.printStackTrace();
+                }
+
+            }
             return rootView;
         }
     }
