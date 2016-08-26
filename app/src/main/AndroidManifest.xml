@@ -153,6 +153,7 @@
                 <data android:host="librenet.co.za" android:scheme="https" />
                 <data android:host="librenet.gr" android:scheme="https" />
                 <data android:host="londor.be" android:scheme="https" />
+                <data android:host="lubiora.de" android:scheme="https" />
                 <data android:host="misamigos.online" android:scheme="https" />
                 <data android:host="mondiaspora.net" android:scheme="https" />
                 <data android:host="nerdpol.ch" android:scheme="https" />
@@ -160,6 +161,7 @@
                 <data android:host="nx-pod.de" android:scheme="https" />
                 <data android:host="parteidervernunft.com" android:scheme="https" />
                 <data android:host="pod.4ray.co" android:scheme="https" />
+                <data android:host="pod.8n1.org" android:scheme="https" />
                 <data android:host="pod.alterworld.info" android:scheme="https" />
                 <data android:host="pod.asap-soft.com" android:scheme="https" />
                 <data android:host="podbay.net" android:scheme="https" />
@@ -179,6 +181,7 @@
                 <data android:host="pod.hashtagueule.fr" android:scheme="https" />
                 <data android:host="pod.hfrc.de" android:scheme="https" />
                 <data android:host="pod.hoizi.net" android:scheme="https" />
+                <data android:host="pod.infoduv.fr" android:scheme="https" />
                 <data android:host="pod.itabs.nl" android:scheme="https" />
                 <data android:host="pod.jpope.org" android:scheme="https" />
                 <data android:host="pod.kepow.org" android:scheme="https" />
@@ -190,6 +193,7 @@
                 <data android:host="pod.promedol.com" android:scheme="https" />
                 <data android:host="pod.psynet.su" android:scheme="https" />
                 <data android:host="pod.readme.is" android:scheme="https" />
+                <data android:host="podricing.pw" android:scheme="https" />
                 <data android:host="pod.ros-it.ch" android:scheme="https" />
                 <data android:host="pod.sccn.club" android:scheme="https" />
                 <data android:host="pod.sertelon.fr" android:scheme="https" />
