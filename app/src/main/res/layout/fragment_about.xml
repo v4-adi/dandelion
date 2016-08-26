@@ -39,7 +39,6 @@
             android:layout_height="wrap_content"
             android:text="@string/fragment_about__about_content"
             style="@android:style/TextAppearance.DeviceDefault.Small"
-            android:linksClickable="true"
-            android:autoLink="web"/>
+            android:linksClickable="true" />
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>

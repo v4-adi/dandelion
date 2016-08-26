@@ -114,6 +114,7 @@ public class MainActivity extends AppCompatActivity
     public static final String ACTION_RELOAD_ACTIVITY = "com.github.dfa.diaspora_android.MainActivity.reload_activity";
     public static final String URL_MESSAGE = "URL_MESSAGE";
     public static final String EXTRA_URL = "com.github.dfa.diaspora_android.extra_url";
+    public static final String CONTENT_HASHTAG = "content://com.github.dfa.diaspora_android.mainactivity/";
 
     private App app;
     private ValueCallback<Uri[]> mFilePathCallback;
@@ -457,11 +458,16 @@ public class MainActivity extends AppCompatActivity
         String type = intent.getType();
         String loadUrl = null;
 
-
         if (ACTION_OPEN_URL.equals(action)) {
             loadUrl = intent.getStringExtra(URL_MESSAGE);
         } else if (Intent.ACTION_VIEW.equals(action) && intent.getDataString() != null) {
-            loadUrl = intent.getDataString();
+            Uri data = intent.getData();
+            if(data != null && data.toString().startsWith(CONTENT_HASHTAG)) {
+                handleHashtag(intent);
+                return;
+            } else {
+                loadUrl = intent.getDataString();
+            }
         } else if (ACTION_CHANGE_ACCOUNT.equals(action)) {
             app.resetPodData(webView);
             Helpers.animateToActivity(MainActivity.this, PodSelectionActivity.class, true);
@@ -858,18 +864,13 @@ public class MainActivity extends AppCompatActivity
         app.getAvatarImageLoader().startImageDownload(navheaderImage, avatarUrl);
     }
 
+    private void handleHashtag(Intent intent) {
+        setSharedTexts(null, intent.getData().toString().split("/")[3]);
+        webView.loadUrlNew(urls.getNewPostUrl());
+    }
+
     private void handleSendText(Intent intent) {
-        String content = WebHelper.replaceUrlWithMarkdown(intent.getStringExtra(Intent.EXTRA_TEXT));
-        if (appSettings.isAppendSharedViaApp()) {
-            // &#10; = \n
-            content = content + "\n\n" + getString(R.string.shared_by_diaspora_android);
-        }
-
-        final String sharedText = WebHelper.escapeHtmlText(content);
-        if (sharedText != null) {
-            textToBeShared = sharedText;
-        }
-
+        setSharedTexts(null, intent.getStringExtra(Intent.EXTRA_TEXT));
         webView.loadUrlNew(urls.getBlankUrl());
         webView.loadUrlNew(urls.getNewPostUrl());
     }
@@ -880,21 +881,33 @@ public class MainActivity extends AppCompatActivity
      * @param intent intent
      */
     private void handleSendSubject(Intent intent) {
-        webView.loadUrlNew(urls.getNewPostUrl());
-        String content = WebHelper.replaceUrlWithMarkdown(intent.getStringExtra(Intent.EXTRA_TEXT));
-        String subject = WebHelper.replaceUrlWithMarkdown(intent.getStringExtra(Intent.EXTRA_SUBJECT));
-
-        if (appSettings.isAppendSharedViaApp()) {
-            // &#10; = \n
-            content = content + "\n\n" + getString(R.string.shared_by_diaspora_android);
-        }
-
-        final String sharedSubject = WebHelper.escapeHtmlText(subject);
-        final String sharedContent = WebHelper.escapeHtmlText(content);
-        textToBeShared = "**" + sharedSubject + "** " + sharedContent;
-
+        setSharedTexts(intent.getStringExtra(Intent.EXTRA_SUBJECT), intent.getStringExtra(Intent.EXTRA_TEXT));
         webView.loadUrlNew(urls.getBlankUrl());
         webView.loadUrlNew(urls.getNewPostUrl());
+    }
+
+    /**
+     * Set sharedText variable to escaped and formatted subject + body.
+     * If subject is null, only the body will be set. Else the subject will be set as header.
+     * Depending on whether the user has the setting isAppendSharedViaApp set, a reference to
+     * the app will be added at the bottom
+     * @param sharedSubject post subject or null
+     * @param sharedBody post text
+     */
+    private void setSharedTexts(String sharedSubject, String sharedBody) {
+        String body = WebHelper.replaceUrlWithMarkdown(sharedBody);
+        if (appSettings.isAppendSharedViaApp()) {
+            body = body + "\n\n" + getString(R.string.shared_by_diaspora_android);
+        }
+        final String escapedBody = WebHelper.escapeHtmlText(body);
+        if(sharedSubject != null) {
+            String escapedSubject = WebHelper.escapeHtmlText(WebHelper.replaceUrlWithMarkdown(sharedSubject));
+            textToBeShared = "**" + escapedSubject + "** " + escapedBody;
+        } else {
+            textToBeShared = escapedBody;
+        }
+
+
     }
 
     //TODO: Implement?

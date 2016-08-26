@@ -26,9 +26,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/fragment_license__license_content"
-            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
-            android:linksClickable="true"
-            android:autoLink="web"/>
+            style="@android:style/TextAppearance.DeviceDefault.Small"
+            android:linksClickable="true" />
 
         <TextView
             android:layout_width="match_parent"
@@ -41,8 +40,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/fragment_license__3rd_party_libs_content"
-            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
-            android:linksClickable="true"
-            android:autoLink="web"/>
+            style="@android:style/TextAppearance.DeviceDefault.Small"
+            android:linksClickable="true" />
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>

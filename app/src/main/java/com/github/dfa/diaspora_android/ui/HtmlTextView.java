@@ -6,9 +6,13 @@ import android.text.Html;
 import android.text.SpannableString;
 import android.text.util.Linkify;
 import android.util.AttributeSet;
+import android.util.Patterns;
 import android.widget.TextView;
 
-import com.github.dfa.diaspora_android.R;
+import com.github.dfa.diaspora_android.activity.MainActivity;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class HtmlTextView extends TextView {
 
@@ -34,8 +38,19 @@ public class HtmlTextView extends TextView {
     }
 
     private void init(){
-        final SpannableString content = new SpannableString(Html.fromHtml(getText().toString()));
-        Linkify.addLinks(content, Linkify.WEB_URLS);
-        setText(content);
+        setText(new SpannableString(Html.fromHtml(getText().toString())));
+        Linkify.TransformFilter filter = new Linkify.TransformFilter() {
+            public final String transformUrl(final Matcher match, String url) {
+                return match.group();
+            }
+        };
+
+        Pattern hashtagPattern = Pattern.compile("[#]+[A-Za-z0-9-_]+\\b");
+        String hashtagScheme = MainActivity.CONTENT_HASHTAG;
+        Linkify.addLinks(this, hashtagPattern, hashtagScheme, null, filter);
+
+        Pattern urlPattern = Patterns.WEB_URL;
+        Linkify.addLinks(this, urlPattern, null, null, filter);
+
     }
 }

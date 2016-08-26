@@ -12,6 +12,9 @@
         android:name="com.github.dfa.diaspora_android.App"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+        <provider
+            android:name="com.github.dfa.diaspora_android.data.HashtagProvider"
+            android:authorities="com.github.dfa.diaspora_android.mainactivity" />
         <activity
             android:name="com.github.dfa.diaspora_android.activity.SplashActivity"
             android:launchMode="singleInstance"
@@ -58,6 +61,13 @@
                 <action android:name="android.intent.action.SEND" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <data android:mimeType="text/plain" />
+            </intent-filter>
+
+            <!-- Hashtag click intent from HtmlTextViews -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="vnd.android.cursor.item/vnd.cc.tag" />
             </intent-filter>
 
             <!-- Intent from Web Browser / Mail / IM / Clickable Link -->
