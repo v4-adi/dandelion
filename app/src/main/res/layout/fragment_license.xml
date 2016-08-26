@@ -16,12 +16,32 @@
         <android.support.v4.widget.Space
             android:layout_width="match_parent"
             android:layout_height="@dimen/activity_vertical_margin" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/fragment_license__copyright_years"
+            style="@android:style/TextAppearance.DeviceDefault.Large"/>
 
         <com.github.dfa.diaspora_android.ui.HtmlTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/fragment_license__license_content"
-            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+            android:linksClickable="true"
+            android:autoLink="web"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/fragment_license__3rd_party_libs_title"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            style="@android:style/TextAppearance.DeviceDefault.Large"/>
+
+        <com.github.dfa.diaspora_android.ui.HtmlTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/fragment_license__3rd_party_libs_content"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
             android:linksClickable="true"
             android:autoLink="web"/>
     </LinearLayout>

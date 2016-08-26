@@ -35,21 +35,15 @@
         android:title="@string/action_go_to_top"
         app:showAsAction="always"/>
 
-
     <!-- overflow menu -->
     <item
         android:id="@+id/action_toggle_desktop_page"
         android:icon="@drawable/ic_sync_white_48px"
-        android:title="@string/action_toggle_desktop_page"
-        />
+        android:title="@string/action_toggle_desktop_page" />
+
     <item
         android:id="@+id/action_exit"
-        android:icon="@drawable/ic_sync_white_48px"
         android:title="@string/action_exit_app"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/debug"
-        android:title="DEBUG"
         app:showAsAction="never" />
 
 </menu>

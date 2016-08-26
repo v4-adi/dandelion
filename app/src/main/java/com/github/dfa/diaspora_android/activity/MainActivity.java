@@ -49,10 +49,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ActionMenuView;
 import android.support.v7.widget.Toolbar;
-import android.text.Html;
-import android.text.SpannableString;
-import android.text.method.LinkMovementMethod;
-import android.text.util.Linkify;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -768,9 +764,6 @@ public class MainActivity extends AppCompatActivity
                 }
                 return true;
             }
-            case R.id.debug: {
-                startActivity(new Intent(this, AboutActivity.class));
-            }
         }
 
         return super.onOptionsItemSelected(item);
@@ -1052,27 +1045,7 @@ public class MainActivity extends AppCompatActivity
             break;
 
             case R.id.nav_help_license: {
-                final CharSequence[] options = {getString(R.string.about_activity__title_about_license), getString(R.string.help_markdown__name)};
-                new AlertDialog.Builder(MainActivity.this)
-                        .setItems(options, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int item) {
-                                if (options[item].equals(getString(R.string.about_activity__title_about_license))) {
-
-                                    final SpannableString s = new SpannableString(Html.fromHtml(getString(R.string.fragment_license__license_content)));
-                                    Linkify.addLinks(s, Linkify.WEB_URLS);
-                                    final AlertDialog d = new AlertDialog.Builder(MainActivity.this)
-                                            .setTitle(R.string.help_license__years)
-                                            .setMessage(s)
-                                            .setPositiveButton(android.R.string.yes, null).show();
-                                    d.show();
-                                    ((TextView) d.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
-                                }
-                                if (options[item].equals(getString(R.string.help_markdown__name))) {
-                                    Helpers.loadUrlInExternalBrowser(MainActivity.this, getString(R.string.help_markdown__weblink));
-                                }
-                            }
-                        }).show();
+                startActivity(new Intent(MainActivity.this, AboutActivity.class));
             }
             break;
         }

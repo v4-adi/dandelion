@@ -63,13 +63,11 @@ public class AboutActivity extends AppCompatActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_about, container, false);
-            TextView packageName = (TextView) rootView.findViewById(R.id.fragment_about__package_name);
             TextView appVersion = (TextView) rootView.findViewById(R.id.fragment_about__app_version);
 
             if(isAdded()) {
                 try {
                     PackageInfo pInfo = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0);
-                    packageName.setText(pInfo.packageName);
                     appVersion.setText(getString(R.string.fragment_debug__app_version, pInfo.versionName+ " ("+pInfo.versionCode+")"));
 
                 } catch (PackageManager.NameNotFoundException e) {
