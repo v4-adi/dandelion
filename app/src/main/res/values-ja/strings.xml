@@ -65,6 +65,4 @@
   <string name="permission_denied">アクセスが拒否されました。</string>
   <string name="permission_granted_try_again">アクセスを許可しました。もう一度やり直してください。</string>
   <!-- License & help (large amount of text) -->
-  <string name="help_markdown__name">マークダウン書式</string>
-  <string name="about_activity__title_about_license">ライセンス</string>
 </resources>
