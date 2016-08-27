@@ -1,5 +1,13 @@
 *~
 
+# Project specific
+app/src/main/res/raw/changelog.md
+app/src/main/res/raw/contributors.md
+app/src/main/res/raw/license.md
+app/src/main/res/raw/readme.md
+
+
+
 # Gradle
 .gradle/
 .gradle

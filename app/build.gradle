@@ -49,5 +49,18 @@ dependencies {
     compile 'info.guardianproject.netcipher:netcipher:2.0.0-alpha1'
     compile 'info.guardianproject.netcipher:netcipher-webkit:2.0.0-alpha1'
     apt 'com.jakewharton:butterknife-compiler:8.0.1'
-
 }
+
+
+task copyRepoFiles(type: Copy) {
+    String[] copyFiles = ["README.md", "CONTRIBUTORS.md", "LICENSE.md", "CHANGELOG.md"]
+    from rootProject.files(copyFiles)
+    into 'src/main/res/raw'
+    rename { String fileName ->
+        fileName.replace(fileName, fileName.toLowerCase())
+    }
+    filter { line -> (line.toString().matches("..l>>.*") || line.toString().startsWith("## 99l CONTRIBUTORS")) \
+                ? null : line.toString().trim()
+    }
+}
+tasks.copyRepoFiles.execute()
