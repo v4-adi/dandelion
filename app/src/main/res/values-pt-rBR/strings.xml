@@ -64,5 +64,4 @@
   <string name="permissions_image">Você deve conceder \"Permissão de armazenamento\" para salvar imagens. Depois disso você deve fechar o app completamente ou reiniciar o telefone. Se você não permitir o acesso de armazenamento, mas deseja salvar imagens em um momento posterior, você pode conceder a permissão mais tarde. Por favor, abra: configurações - aplicativos - Diaspora. Na seção permissões, você pode conceder a permissão de armazenamento \"gravar\".</string>
   <string name="permission_denied">Permissão negada.</string>
   <string name="permission_granted_try_again">Permissão concedida. Por favor, tente novamente.</string>
-  <!-- License & help (large amount of text) -->
 </resources>

@@ -72,14 +72,4 @@
         dann die entsprechende Einstellung vornehmen.</string>
   <string name="permission_denied">Berechtigung verweigert.</string>
   <string name="permission_granted_try_again">Berechtigung erteilt. Bitte versuche es erneut.</string>
-  <!-- License & help (large amount of text) -->
-  <string name="about_activity__title_about_app">Über</string>
-  <string name="about_activity__title_about_license">Lizenz</string>
-  <string name="about_activity__title_debug_info">Debugging</string>
-  <string name="fragment_debug__section_app">Anwendung</string>
-  <string name="fragment_debug__section_pod">Diaspora Pod</string>
-  <string name="fragment_debug__app_version">App Version: %1$s</string>
-  <string name="fragment_debug__package_name">Paketname: %1$s</string>
-  <string name="fragment_debug__pod_domain">Pod-Adresse: %1$s</string>
-  <string name="fragment_license__3rd_party_libs_title">Verwendete Drittanbieter Bibliotheken</string>
 </resources>

@@ -69,5 +69,4 @@
         Diaspora. Nella sezione dei permessi puoi garantire il permesso per la scrittura sul dispositivo.</string>
   <string name="permission_denied">Permesso negato.</string>
   <string name="permission_granted_try_again">Permesso garantito. Si prega di riprovare.</string>
-  <!-- License & help (large amount of text) -->
 </resources>
