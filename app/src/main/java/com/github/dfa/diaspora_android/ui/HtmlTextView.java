@@ -1,3 +1,21 @@
+/*
+    This file is part of the Diaspora for Android.
+
+    Diaspora for Android is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Diaspora for Android is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with the Diaspora for Android.
+
+    If not, see <http://www.gnu.org/licenses/>.
+ */
 package com.github.dfa.diaspora_android.ui;
 
 import android.annotation.TargetApi;
@@ -14,6 +32,12 @@ import com.github.dfa.diaspora_android.activity.MainActivity;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * TextView, that renders HTML with highlited and clickable links and hashtags.
+ * Links are opened in a webbrowser.
+ * Hashtags open the MainActivity, load the new-post site of the selected pod and insert the
+ * hashtag into the post editor. See data/HashtagProvider.
+ */
 public class HtmlTextView extends TextView {
 
     public HtmlTextView(Context context) {
@@ -37,6 +61,9 @@ public class HtmlTextView extends TextView {
         init();
     }
 
+    /**
+     * Linkify, format markdown and escape the displayed text.
+     */
     private void init(){
         setText(new SpannableString(Html.fromHtml(getText().toString())));
         Linkify.TransformFilter filter = new Linkify.TransformFilter() {
@@ -51,6 +78,5 @@ public class HtmlTextView extends TextView {
 
         Pattern urlPattern = Patterns.WEB_URL;
         Linkify.addLinks(this, urlPattern, null, null, filter);
-
     }
 }

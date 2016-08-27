@@ -1,3 +1,21 @@
+/*
+    This file is part of the Diaspora for Android.
+
+    Diaspora for Android is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Diaspora for Android is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with the Diaspora for Android.
+
+    If not, see <http://www.gnu.org/licenses/>.
+ */
 package com.github.dfa.diaspora_android.activity;
 
 import android.content.BroadcastReceiver;
@@ -24,6 +42,9 @@ import com.github.dfa.diaspora_android.App;
 import com.github.dfa.diaspora_android.R;
 import com.github.dfa.diaspora_android.data.AppSettings;
 
+/**
+ * Activity that holds some fragments that show information about the app in a tab layout
+ */
 public class AboutActivity extends AppCompatActivity {
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
@@ -62,7 +83,7 @@ public class AboutActivity extends AppCompatActivity {
     }
 
     /**
-     * Fragment that shows information about the app
+     * Fragment that shows general information about the app
      */
     public static class AboutFragment extends Fragment {
 
@@ -89,7 +110,7 @@ public class AboutActivity extends AppCompatActivity {
     }
 
     /**
-     * Fragment that shows information about the app
+     * Fragment that shows information about the license of the app and used 3rd party libraries
      */
     public static class LicenseFragment extends Fragment {
 
@@ -105,7 +126,7 @@ public class AboutActivity extends AppCompatActivity {
     }
 
     /**
-     * Fragment that shows information about the app
+     * Fragment that shows debug information like app version, pod version...
      */
     public static class DebugFragment extends Fragment {
 
