@@ -107,30 +107,11 @@
 
     <!-- License & help (large amount of text) -->
     <string name="fragment_license__copyright_years" translatable="false">Copyright © 2015–2016</string>
-    <string name="fragment_license__license_content" translatable="false">&lt;b>Maintainers:&lt;/b>&lt;br>
-
-        &#8226; gsantner&lt;br>
-        https://gsantner.github.io&lt;br>
-        &#8226; Paul Schaub (vanitasvitae)&lt;br>
-        https://github.com/vanitasvitae&lt;br> &lt;br>
-
-        This program is free software: you can redistribute it and/or modify
-        it under the terms of the GNU General Public License as published by
-        the Free Software Foundation, either version 3 of the License, or
-        (at your option) any later version.
-
-        This program is distributed in the hope that it will be useful,
-        but WITHOUT ANY WARRANTY; without even the implied warranty of
-        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-        GNU General Public License for more details.
-
-        You should have received a copy of the GNU General Public License
-        along with this program.  If not, see&lt;br>
-        http://www.gnu.org/licenses.&lt;br> &lt;br>
-
-        &lt;i>The splashscreen images can be found on flickr: &lt;br>
-        https://www.flickr.com/photos/129581906@N06/sets/72157651933980136/with/16594947123 &lt;br>
-        They were published by \"Lydia\" and are licensed under cc by-nc-sa.&lt;/i></string>
+    <string name="fragment_license__license_content" translatable="false">
+        &lt;h2>Maintainers:&lt;/h2> %1$s
+        &lt;h2>Contributors:&lt;/h2> %2$s
+        &lt;h2>License:&lt;/h2> %3$s
+    </string>
     <string name="about_activity__title_about_app">About</string>
     <string name="about_activity__title_about_license">License</string>
     <string name="about_activity__title_debug_info">Debugging</string>
@@ -157,15 +138,5 @@
         Also feel free to tell your friends about #DiasporaForAndroid!</string>
     <string name="lorem_ipsum" translatable="false">Auch gibt es niemanden, der den Schmerz an sich liebt, sucht oder wünscht, nur, weil er Schmerz ist, es sei denn, es kommt zu zufälligen Umständen, in denen Mühen und Schmerz ihm große Freude bereiten können. Um ein triviales Beispiel zu nehmen, wer von uns unterzieht sich je anstrengender körperlicher Betätigung, außer um Vorteile daraus zu ziehen? Aber wer hat irgend ein Recht, einen Menschen zu tadeln, der die Entscheidung trifft, eine Freude zu genießen, die keine unangenehmen Folgen hat, oder einen, der Schmerz vermeidet, welcher keine daraus resultierende Freude nach sich zieht? Auch gibt es niemanden, der den Schmerz an sich liebt, sucht oder wünscht, nur, weil er Schmerz ist, es sei denn, es kommt zu zufälligen Umständen, in denen Mühen und Schmerz ihm große Freude bereiten können. Um ein triviales Beispiel zu nehmen, wer von uns unterzieht sich je anstrengender körperlicher Betätigung, außer um Vorteile daraus zu ziehen? Aber wer hat irgend ein Recht, einen Menschen zu tadeln, der die Entscheidung trifft, eine Freude zu genießen, die keine unangenehmen Folgen hat, oder einen, der Schmerz vermeidet, welcher keine daraus resultierende Freude nach sich zieht?</string>
     <string name="fragment_license__3rd_party_libs_title">Used 3rd Party Libraries</string>
-    <string name="fragment_license__3rd_party_libs_content" translatable="false">
-        &#8226;Android Support Library:&lt;br>
-        https://developer.android.com/topic/libraries/support-library/index.html &lt;br>
-        &#8226;Anndroid Design Library:&lt;br>
-        https://android-developers.blogspot.de/2015/05/android-design-support-library.html &lt;br>
-        &#8226;NetCipher:&lt;br>
-        https://github.com/guardianproject/NetCipher &lt;br>
-        &#8226;ButterKnife:&lt;br>
-        https://jakewharton.github.io/butterknife/ &lt;br>
-    </string>
 
 </resources>

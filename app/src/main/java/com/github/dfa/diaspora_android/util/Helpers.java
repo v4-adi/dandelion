@@ -26,8 +26,10 @@ import android.os.Environment;
 
 import com.github.dfa.diaspora_android.R;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -63,5 +65,36 @@ public class Helpers {
                 ".jpg",         /* suffix */
                 storageDir      /* directory */
         );
+    }
+
+    public static String readTextfileFromRawRessource(Context context, int rawRessourceId, String linePrefix, String linePostfix) {
+        StringBuilder sb = new StringBuilder();
+        String line = "";
+        BufferedReader br = null;
+        linePrefix = linePrefix == null ? "" : linePrefix;
+        linePostfix = linePostfix == null ? "" : linePostfix;
+
+        try {
+            br = new BufferedReader(new InputStreamReader(context.getResources().openRawResource(rawRessourceId)));
+            while ((line = br.readLine()) != null) {
+                sb.append(linePrefix);
+                sb.append(line);
+                sb.append(linePostfix);
+                sb.append("\n");
+            }
+        } catch (Exception ignored) {
+        } finally {
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (IOException ignored) {
+                }
+            }
+        }
+        return sb.toString();
+    }
+
+    public static String hexColorFromRessourceColor(Context context, int idColor){
+        return "#" + Integer.toHexString(context.getResources().getColor(idColor) & 0x00ffffff);
     }
 }

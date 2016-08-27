@@ -65,6 +65,15 @@ public class HtmlTextView extends TextView {
      * Linkify, format markdown and escape the displayed text.
      */
     private void init(){
+        formatHtmlAndCustomTags();
+    }
+
+    public void setTextFormatted(String text){
+        setText(text);
+        formatHtmlAndCustomTags();
+    }
+
+    private void formatHtmlAndCustomTags(){
         setText(new SpannableString(Html.fromHtml(getText().toString())));
         Linkify.TransformFilter filter = new Linkify.TransformFilter() {
             public final String transformUrl(final Matcher match, String url) {

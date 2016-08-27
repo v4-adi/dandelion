@@ -15,4 +15,5 @@ along with this program.  If not, see http://www.gnu.org/licenses/.
 
 
 # Splashscreen-Images
+
 The splashscreen images can be found on [flickr](https://www.flickr.com/photos/129581906@N06/sets/72157651933980136/with/16594947123/).

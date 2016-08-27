@@ -53,14 +53,25 @@ dependencies {
 
 
 task copyRepoFiles(type: Copy) {
-    String[] copyFiles = ["README.md", "CONTRIBUTORS.md", "LICENSE.md", "CHANGELOG.md"]
+    String[] copyFiles = ["README.md", "LICENSE.md", "CHANGELOG.md"]
     from rootProject.files(copyFiles)
     into 'src/main/res/raw'
     rename { String fileName ->
         fileName.replace(fileName, fileName.toLowerCase())
     }
-    filter { line -> (line.toString().matches("..l>>.*") || line.toString().startsWith("## 99l CONTRIBUTORS")) \
-                ? null : line.toString().trim()
+
+    // Filter Contributors file
+    from(rootProject.file("CONTRIBUTORS.md")) {
+        into '.'    // Target already changed to 'src/main/res/raw'
+        rename { String fileName ->
+            fileName.replace(fileName, fileName.toLowerCase())
+        }
+        filter { line ->
+            (line.toString().matches("..l>>.*") || line.toString().startsWith("## 99l CONTRIBUTORS")) ? null : line.toString().trim().replaceAll(" \\(.*\\)", "")
+        }
     }
+
 }
-tasks.copyRepoFiles.execute()
+tasks
+        .
+        copyRepoFiles.execute()

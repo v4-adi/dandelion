@@ -25,6 +25,7 @@
         <com.github.dfa.diaspora_android.ui.HtmlTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/fragment_license__licensetext"
             android:text="@string/fragment_license__license_content"
             style="@android:style/TextAppearance.DeviceDefault.Small"
             android:linksClickable="true" />
@@ -39,7 +40,7 @@
         <com.github.dfa.diaspora_android.ui.HtmlTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/fragment_license__3rd_party_libs_content"
+            android:id="@+id/fragment_license__3rdparty"
             style="@android:style/TextAppearance.DeviceDefault.Small"
             android:linksClickable="true" />
     </LinearLayout>

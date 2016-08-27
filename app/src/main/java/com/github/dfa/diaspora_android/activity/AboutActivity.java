@@ -41,6 +41,11 @@ import android.widget.TextView;
 import com.github.dfa.diaspora_android.App;
 import com.github.dfa.diaspora_android.R;
 import com.github.dfa.diaspora_android.data.AppSettings;
+import com.github.dfa.diaspora_android.ui.HtmlTextView;
+import com.github.dfa.diaspora_android.util.Helpers;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Activity that holds some fragments that show information about the app in a tab layout
@@ -79,7 +84,6 @@ public class AboutActivity extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
-
     }
 
     /**
@@ -96,10 +100,10 @@ public class AboutActivity extends AppCompatActivity {
             View rootView = inflater.inflate(R.layout.fragment_about, container, false);
             TextView appVersion = (TextView) rootView.findViewById(R.id.fragment_about__app_version);
 
-            if(isAdded()) {
+            if (isAdded()) {
                 try {
                     PackageInfo pInfo = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0);
-                    appVersion.setText(getString(R.string.fragment_debug__app_version, pInfo.versionName+ " ("+pInfo.versionCode+")"));
+                    appVersion.setText(getString(R.string.fragment_debug__app_version, pInfo.versionName + " (" + pInfo.versionCode + ")"));
 
                 } catch (PackageManager.NameNotFoundException e) {
                     e.printStackTrace();
@@ -113,15 +117,61 @@ public class AboutActivity extends AppCompatActivity {
      * Fragment that shows information about the license of the app and used 3rd party libraries
      */
     public static class LicenseFragment extends Fragment {
+        @BindView(R.id.fragment_license__licensetext)
+        HtmlTextView textLicenseBox;
+
+        @BindView(R.id.fragment_license__3rdparty)
+        HtmlTextView textLicense3partyBox;
+
 
         public LicenseFragment() {
         }
 
         @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_license, container, false);
+            ButterKnife.bind(this, rootView);
+            final Context context = rootView.getContext();
+            accentColor = Helpers.hexColorFromRessourceColor(context, R.color.colorAccent);
+
+            textLicenseBox.setTextFormatted(getString(R.string.fragment_license__license_content,
+                    getMaintainersHtml(context),
+                    getContributorsHtml(context),
+                    getLicenseHtml(context)
+            ));
+
+            textLicense3partyBox.setTextFormatted(
+                    getLicense3dPartyHtml(context)
+            );
             return rootView;
+        }
+
+        private String accentColor;
+
+        public String getContributorsHtml(Context context) {
+            String text = Helpers.readTextfileFromRawRessource(context, R.raw.contributors,
+                    "<font color='" + accentColor + "'><b>*</b></font> ", "<br>");
+            return text;
+        }
+
+        public String getMaintainersHtml(Context context) {
+            String text = Helpers.readTextfileFromRawRessource(context, R.raw.maintainers, "", "<br>");
+            text = text
+                    .replace("NEWENTRY", "<font color='" + accentColor + "'><b>*</b></font> ")
+                    .replace("SUBTABBY", "&nbsp;&nbsp;");
+            return text;
+        }
+
+        public String getLicenseHtml(Context context) {
+            String text = Helpers.readTextfileFromRawRessource(context, R.raw.license,
+                    "", "").replace("\n\n", "<br><br>");
+            return text;
+        }
+
+        public String getLicense3dPartyHtml(Context context) {
+            String text = Helpers.readTextfileFromRawRessource(context, R.raw.license_third_party, "", "<br>");
+            text = text.replace("NEWENTRY", "<font color='" + accentColor + "'><b>*</b></font> ");
+            return text;
         }
     }
 
@@ -141,13 +191,13 @@ public class AboutActivity extends AppCompatActivity {
             TextView appVersion = (TextView) rootView.findViewById(R.id.fragment_debug__app_version);
             TextView podDomain = (TextView) rootView.findViewById(R.id.fragment_debug__pod_domain);
 
-            if(isAdded()) {
+            if (isAdded()) {
                 try {
                     PackageInfo pInfo = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0);
                     AppSettings settings = ((App) getActivity().getApplication()).getSettings();
 
                     packageName.setText(pInfo.packageName);
-                    appVersion.setText(getString(R.string.fragment_debug__app_version, pInfo.versionName+ " ("+pInfo.versionCode+")"));
+                    appVersion.setText(getString(R.string.fragment_debug__app_version, pInfo.versionName + " (" + pInfo.versionCode + ")"));
                     podDomain.setText(getString(R.string.fragment_debug__pod_domain, settings.getPodDomain()));
 
                 } catch (PackageManager.NameNotFoundException e) {

@@ -3,9 +3,9 @@
 02l>> If you helped by translating the app, please send a message on crowdin  
 03l>>  
 04l>> Schemes:  
-05l>>   Firstname Lastname (Link)  
-06l>>   Firstname Lastname (E-Mail)  
-07l>>   Username (Link)  
-08l>>   Username (E-Mail)  
+05l>>   Firstname Lastname (Link): Text  
+06l>>   Firstname Lastname (E-Mail): Text  
+07l>>   Username (Link): Text  
+08l>>   Username (E-Mail): Text  
 ## 99l CONTRIBUTORS  
 Abhijith Balan (abhijithb21@openmailbox.org): Malayalam translation
