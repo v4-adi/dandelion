@@ -323,7 +323,7 @@ public class MainActivity extends AppCompatActivity
                     // Create the File where the photo should go
                     File photoFile;
                     try {
-                        photoFile = createImageFile();
+                        photoFile = Helpers.createImageFile();
                         takePictureIntent.putExtra("PhotoPath", mCameraPhotoPath);
                     } catch (IOException ex) {
                         // Error occurred while creating the File
@@ -427,19 +427,6 @@ public class MainActivity extends AppCompatActivity
     @OnClick(R.id.toolbar)
     public void onToolBarClicked(View view) {
         onNavigationItemSelected(navView.getMenu().findItem(R.id.nav_stream));
-    }
-
-    private File createImageFile() throws IOException {
-        // Create an image file name
-        String timeStamp = new SimpleDateFormat("dd-MM-yy_HH-mm", Locale.getDefault()).format(new Date());
-        String imageFileName = "JPEG_" + timeStamp + "_";
-        File storageDir = Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_PICTURES);
-        return File.createTempFile(
-                imageFileName,  /* prefix */
-                ".jpg",         /* suffix */
-                storageDir      /* directory */
-        );
     }
 
     @Override
@@ -568,7 +555,7 @@ public class MainActivity extends AppCompatActivity
                 if (subUrl.startsWith(DiasporaUrlHelper.SUBURL_STREAM)) {
                     setTitle(R.string.nav_stream);
                 } else if (subUrl.startsWith(DiasporaUrlHelper.SUBURL_POSTS)) {
-                    setTitle(R.string.diaspora); //TODO: Extract posts title somehow?
+                    setTitle(R.string.diaspora);
                 } else if (subUrl.startsWith(DiasporaUrlHelper.SUBURL_NOTIFICATIONS)) {
                     setTitle(R.string.notifications);
                 } else if (subUrl.startsWith(DiasporaUrlHelper.SUBURL_CONVERSATIONS)) {
@@ -709,50 +696,35 @@ public class MainActivity extends AppCompatActivity
             case R.id.action_search: {
                 if (WebHelper.isOnline(MainActivity.this)) {
                     final InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                    LinearLayout layout = new LinearLayout(this);
-                    layout.setOrientation(LinearLayout.VERTICAL);
-                    layout.setGravity(Gravity.CENTER_HORIZONTAL);
-                    final EditText input = new EditText(this);
-                    input.setSingleLine(true);
-                    layout.setPadding(50, 0, 50, 0);
-                    input.setHint(R.string.app_hashtag);
-                    layout.addView(input);
 
-                    final DialogInterface.OnClickListener onSearchAccepted = new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            boolean wasClickedOnSearchForPeople = which == DialogInterface.BUTTON_NEGATIVE;
-
-                            String inputTag = input.getText().toString().trim();
-                            String cleanTag = inputTag.replaceAll(wasClickedOnSearchForPeople ? "\\*" : "\\#", "");
-                            // this validate the input data for tagfind
-                            if (cleanTag == null || cleanTag.equals("")) {
+                    View layout = getLayoutInflater().inflate(R.layout.dialog_search__people_tags, null);
+                    final EditText input = (EditText) layout.findViewById(R.id.dialog_search__input);
+                    final DialogInterface.OnClickListener clickListener = new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int which) {
+                            String query = input.getText().toString().trim().replaceAll((which == DialogInterface.BUTTON_NEGATIVE ? "\\*" : "\\#"), "");
+                            if(query.equals("")) {
                                 Snackbar.make(contentLayout, R.string.search_alert_bypeople_validate_needsomedata, Snackbar.LENGTH_LONG).show();
-                            } else { // User have added a search tag
-                                if (wasClickedOnSearchForPeople) {
-                                    webView.loadUrlNew(urls.getSearchPeopleUrl(cleanTag));
-                                } else {
-                                    webView.loadUrlNew(urls.getSearchTagsUrl(cleanTag));
-                                }
+                            } else {
+                                webView.loadUrl(which == DialogInterface.BUTTON_NEGATIVE ? urls.getSearchPeopleUrl(query) : urls.getSearchTagsUrl(query));
                             }
-
                             getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
                             imm.hideSoftInputFromWindow(input.getWindowToken(), 0);
                         }
                     };
 
-                    final AlertDialog dialog = new AlertDialog.Builder(this)
-                            .setView(layout)
-                            .setTitle(R.string.search_alert_title)
+                    final android.support.v7.app.AlertDialog dialog = new android.support.v7.app.AlertDialog.Builder(this)
+                            .setView(layout).setTitle(R.string.search_alert_title)
                             .setCancelable(true)
-                            .setPositiveButton(R.string.search_alert_tag, onSearchAccepted)
-                            .setNegativeButton(R.string.search_alert_people, onSearchAccepted)
+                            .setPositiveButton(R.string.search_alert_tag, clickListener)
+                            .setNegativeButton(R.string.search_alert_people, clickListener)
                             .create();
 
                     input.setOnEditorActionListener(new TextView.OnEditorActionListener() {
                         public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                             if (actionId == EditorInfo.IME_ACTION_DONE) {
                                 dialog.hide();
-                                onSearchAccepted.onClick(null, 0);
+                                clickListener.onClick(null, 0);
                                 return true;
                             }
                             return false;
