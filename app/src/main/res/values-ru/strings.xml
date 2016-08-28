@@ -31,10 +31,8 @@
   <string name="confirm_pod">Вы действительно хотите использовать\nhttps://%1$s\nв качестве вашего пода в Диаспоре?</string>
   <string name="confirm_exit">Вы действительно хотите выйти?</string>
   <!-- Drawer, Menu, Toolbar, ContextMenu -->
-  <string name="nav_help_license">О приложении | Справка</string>
   <string name="nav_followed_tags">Отслеживаемые хэштеги</string>
   <string name="nav_public_activities">Публичная активность</string>
-  <string name="nav_settings_view">Настройки приложения</string>
   <string name="share__share_link_as_text">Разместить ссылку как текст</string>
   <string name="share__share_screenshot">Разместить экранный снимок страницы</string>
   <string name="share__take_screenshot">Сделать экранный снимок страницы</string>

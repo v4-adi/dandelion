@@ -52,11 +52,11 @@
     <string name="nav_activities" translatable="false">@string/activities</string>
     <string name="nav_aspects" translatable="false">@string/aspects</string>
     <string name="nav_profile" translatable="false">@string/profile</string>
-    <string name="nav_menu_settings" translatable="false">@string/settings</string>
-    <string name="nav_help_license">About the app | Help</string>
+    <string name="nav_settings" translatable="false">@string/settings</string>
+    <string name="nav_menu_more">More</string>
+    <string name="nav_help_license">About | Help</string>
     <string name="nav_followed_tags">Followed Tags</string>
     <string name="nav_public_activities">Public activities</string>
-    <string name="nav_settings_view">App settings</string>
 
     <string name="share__share_link_as_text">Share link as text</string>
     <string name="share__share_screenshot">Share screenshot of webpage</string>

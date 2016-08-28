@@ -31,10 +31,10 @@
   <string name="confirm_pod">Möchtest du wirklich \nhttps://%1$s\nals deinen Diaspora Pod auswählen?</string>
   <string name="confirm_exit">Möchtest du die App verlassen?</string>
   <!-- Drawer, Menu, Toolbar, ContextMenu -->
-  <string name="nav_help_license">Über die App | Hilfe</string>
+  <string name="nav_menu_more">Mehr</string>
+  <string name="nav_help_license">Über | Hilfe</string>
   <string name="nav_followed_tags">Verfolgte Tags</string>
   <string name="nav_public_activities">Öffentliche Aktivitäten</string>
-  <string name="nav_settings_view">App Einstellungen</string>
   <string name="share__share_link_as_text">Link als Text teilen</string>
   <string name="share__share_screenshot">Bildschirmfoto teilen</string>
   <string name="share__take_screenshot">Bildschirmfoto speichern</string>

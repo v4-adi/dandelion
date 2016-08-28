@@ -31,10 +31,8 @@
   <string name="confirm_pod">Você realmente quer usar\nhttps://%1$s\no seu Pod diáspora?</string>
   <string name="confirm_exit">Deseja sair?</string>
   <!-- Drawer, Menu, Toolbar, ContextMenu -->
-  <string name="nav_help_license">Sobre o app | Ajuda</string>
   <string name="nav_followed_tags">Tags selecionadas</string>
   <string name="nav_public_activities">Atividades públicas</string>
-  <string name="nav_settings_view">Configurações do App</string>
   <string name="share__share_link_as_text">Compartilhar link como texto</string>
   <string name="share__share_screenshot">Compartilhar o screenshot da página Web</string>
   <string name="share__take_screenshot">Tirar screenshot da página Web</string>

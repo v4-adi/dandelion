@@ -1024,7 +1024,7 @@ public class MainActivity extends AppCompatActivity
                 break;
             }
 
-            case R.id.nav_settings_app: {
+            case R.id.nav_settings: {
                 startActivity(new Intent(this, SettingsActivity.class));
             }
             break;

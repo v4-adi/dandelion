@@ -26,7 +26,7 @@
                     android:key="@string/pref_key__visibility_nav__aspects"
                     android:title="@string/nav_aspects" />
                 <CheckBoxPreference
-                    android:defaultValue="true"
+                    android:defaultValue="false"
                     android:key="@string/pref_key__visibility_nav__activities"
                     android:title="@string/nav_activities" />
                 <CheckBoxPreference
@@ -38,11 +38,11 @@
                     android:key="@string/pref_key__visibility_nav__commented"
                     android:title="@string/nav_commented" />
                 <CheckBoxPreference
-                    android:defaultValue="true"
+                    android:defaultValue="false"
                     android:key="@string/pref_key__visibility_nav__mentions"
                     android:title="@string/nav_mentions" />
                 <CheckBoxPreference
-                    android:defaultValue="true"
+                    android:defaultValue="false"
                     android:key="@string/pref_key__visibility_nav__public_activities"
                     android:title="@string/nav_public_activities" />
                 <CheckBoxPreference

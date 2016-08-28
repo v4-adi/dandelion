@@ -30,10 +30,8 @@
   <string name="confirm_pod">Czy naprawdę chcesz używać\nhttps://%1$s \njako Twój Pod Diaspory?</string>
   <string name="confirm_exit">Czy chcesz zakończyć?</string>
   <!-- Drawer, Menu, Toolbar, ContextMenu -->
-  <string name="nav_help_license">O aplikacji | Pomoc</string>
   <string name="nav_followed_tags">Obserwowane znaczniki</string>
   <string name="nav_public_activities">Publiczna aktywność</string>
-  <string name="nav_settings_view">Ustawienia aplikacji</string>
   <string name="share__share_link_as_text">Udostępnij odnośnik jako tekst</string>
   <string name="share__share_screenshot">Podziel zrzut ekranu strony internetowej</string>
   <string name="share__toast_saved_image_to_location">Zapisywanie obrazu do</string>

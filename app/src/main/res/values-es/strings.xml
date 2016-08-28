@@ -31,10 +31,8 @@
   <string name="confirm_pod">¿Realmente desea usar\nhttps://%1$s\ncomo su Pod de Diaspora?</string>
   <string name="confirm_exit">¿Desea salir?</string>
   <!-- Drawer, Menu, Toolbar, ContextMenu -->
-  <string name="nav_help_license">Acerca de la aplicación | Ayuda</string>
   <string name="nav_followed_tags">Etiquetas seguidas</string>
   <string name="nav_public_activities">Actividad pública</string>
-  <string name="nav_settings_view">Ajustes de la aplicación</string>
   <string name="share__share_link_as_text">Compartir link como texto</string>
   <string name="share__share_screenshot">Compartir captura de pantalla de la página web</string>
   <string name="share__take_screenshot">Tomar captura de pantalla de la página web</string>

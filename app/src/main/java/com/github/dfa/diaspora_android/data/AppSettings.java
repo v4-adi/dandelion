@@ -269,7 +269,7 @@ public class AppSettings {
     }
 
     public boolean isVisibleInNavMentions() {
-        return getBoolean(prefApp, R.string.pref_key__visibility_nav__mentions, true);
+        return getBoolean(prefApp, R.string.pref_key__visibility_nav__mentions, false);
     }
 
     public boolean isVisibleInNavCommented() {

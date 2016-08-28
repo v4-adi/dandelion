@@ -87,7 +87,7 @@ public class PodUserProfile {
             // Avatar
             if (json.has("avatar")) {
                 JSONObject avatarJson = json.getJSONObject("avatar");
-                if (avatarJson.has("medium") && setAvatarUrl(avatarJson.getString("medium"))) {
+                if (avatarJson.has("large") && setAvatarUrl(avatarJson.getString("large"))) {
                     app.getAvatarImageLoader().clearAvatarImage();
                     appSettings.setAvatarUrl(avatarUrl);
                 }
@@ -167,6 +167,12 @@ public class PodUserProfile {
 
     /*
      * Private property setters
+     */
+
+    /**
+     * Sets the avatar, returns true if this was a new one, false if already the old one
+     * @param avatarUrl url
+     * @return true if new avatar url
      */
     private boolean setAvatarUrl(final String avatarUrl) {
         if (!this.avatarUrl.equals(avatarUrl)) {

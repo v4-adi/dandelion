@@ -31,10 +31,8 @@
   <string name="confirm_pod">\nhttps://%1$s\nനിങ്ങളുടെ ഡയാസ്പൊറ പോഡായി ഉപയോഗിക്കണമെന്ന് ഉറപ്പാണോ?</string>
   <string name="confirm_exit">പുറത്തേക്കു പോകണമോ?</string>
   <!-- Drawer, Menu, Toolbar, ContextMenu -->
-  <string name="nav_help_license">പ്രയോഗത്തെ കുറിച്ച് | സഹായം</string>
   <string name="nav_followed_tags">പിന്തുടരുന്ന ടാഗുകൾ</string>
   <string name="nav_public_activities">പൊതു പ്രവൃത്തികൾ</string>
-  <string name="nav_settings_view">പ്രയോഗത്തിന്റെ സജ്ജീകരണങ്ങൾ</string>
   <string name="share__share_link_as_text">ലിങ്ക് വാചകമായി പങ്കുവയ്ക്കൂ</string>
   <string name="share__share_screenshot">വെബ്‌പേജിന്റെ ചിത്രം പങ്കുവയ്ക്കൂ</string>
   <string name="share__take_screenshot">വെബ്‌പേജിന്റെ ചിത്രം എടുക്കുക</string>

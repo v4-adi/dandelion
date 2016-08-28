@@ -31,10 +31,8 @@
   <string name="confirm_pod">Diaspora のポッドとして\nhttps://%1$s\nを使用してもよろしいですか?</string>
   <string name="confirm_exit">終了しますか?</string>
   <!-- Drawer, Menu, Toolbar, ContextMenu -->
-  <string name="nav_help_license">アプリについて | ヘルプ</string>
   <string name="nav_followed_tags">フォロー済タグ</string>
   <string name="nav_public_activities">公開アクティビティ</string>
-  <string name="nav_settings_view">アプリの設定</string>
   <string name="share__share_link_as_text">テキストとしてリンクを共有</string>
   <string name="share__share_screenshot">Web ページのスクリーン ショットを共有</string>
   <string name="share__take_screenshot">Web ページのスクリーン ショットを撮る</string>

@@ -20,7 +20,7 @@
 
     <!-- About (large amount of text) -->
     <string name="fragment_about__about_content">
-        DiasporaForAndroid is your companion app for browsing the Diaspora social network. It adds additional features like useful toolbars and support for proxy servers like the Tor Network to your social experience. &lt;br>&lt;br>
+        DiasporaForAndroid is your companion app for browsing the Diaspora social network. It adds features like useful toolbars and support for proxy servers like the Tor Network to your social experience. &lt;br>&lt;br>
 
         Diaspora uses Markdown to format posts. You can find more information at&lt;br>
         https://wiki.diasporafoundation.org/Markdown_reference_guide &lt;br> &lt;br>

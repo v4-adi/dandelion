@@ -31,10 +31,8 @@
   <string name="confirm_pod">Wilt u echt \nhttps://%1$s\n als uw Diaspora pod gebruiken?</string>
   <string name="confirm_exit">Wilt u afsluiten?</string>
   <!-- Drawer, Menu, Toolbar, ContextMenu -->
-  <string name="nav_help_license">Over de app | Help</string>
   <string name="nav_followed_tags">Gevolgde Tags</string>
   <string name="nav_public_activities">Publieke activiteiten</string>
-  <string name="nav_settings_view">App-instellingen</string>
   <string name="share__share_link_as_text">Link delen als tekst</string>
   <string name="share__share_screenshot">Screenshot van de webpagina delen</string>
   <string name="share__take_screenshot">Neem screenshot van de webpagina</string>
