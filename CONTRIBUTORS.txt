@@ -8,4 +8,5 @@
 07l>>   Username (Link): Text  
 08l>>   Username (E-Mail): Text  
 ## 99l CONTRIBUTORS  
-Abhijith Balan (abhijithb21@openmailbox.org): Malayalam translation
+Abhijith Balan (abhijithb21 AT openmailbox DOT org): Malayalam translation
+Airon90 (https://diasp.eu/u/airon90): Italian translation

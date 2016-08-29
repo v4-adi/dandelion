@@ -61,7 +61,7 @@ task copyRepoFiles(type: Copy) {
     }
 
     // Filter Contributors file
-    from(rootProject.file("CONTRIBUTORS.md")) {
+    from(rootProject.file("CONTRIBUTORS.txt")) {
         into '.'    // Target already changed to 'src/main/res/raw'
         rename { String fileName ->
             fileName.replace(fileName, fileName.toLowerCase())
@@ -72,6 +72,4 @@ task copyRepoFiles(type: Copy) {
     }
 
 }
-tasks
-        .
-        copyRepoFiles.execute()
+tasks.copyRepoFiles.execute()
