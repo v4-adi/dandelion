@@ -17,7 +17,7 @@
   <string name="liked">ഇഷ്ടപെട്ടവ</string>
   <string name="commented">കമന്റ് ചെയ്തവ </string>
   <string name="mentions">പരാമർശങ്ങൾ</string>
-  <string name="public_">പരസ്യം</string>
+  <string name="public_">പരസ്യമായ</string>
   <string name="search">തിരയുക</string>
   <!-- Pod Activity -->
   <string name="title_activity_pods">പോഡ് തിരഞ്ഞെടുക്കുക</string>
@@ -31,6 +31,8 @@
   <string name="confirm_pod">\nhttps://%1$s\nനിങ്ങളുടെ ഡയാസ്പൊറ പോഡായി ഉപയോഗിക്കണമെന്ന് ഉറപ്പാണോ?</string>
   <string name="confirm_exit">പുറത്തേക്കു പോകണമോ?</string>
   <!-- Drawer, Menu, Toolbar, ContextMenu -->
+  <string name="nav_menu_more">കൂടുതൽ</string>
+  <string name="nav_help_license">കുറിച്ച് | സഹായം</string>
   <string name="nav_followed_tags">പിന്തുടരുന്ന ടാഗുകൾ</string>
   <string name="nav_public_activities">പൊതു പ്രവൃത്തികൾ</string>
   <string name="share__share_link_as_text">ലിങ്ക് വാചകമായി പങ്കുവയ്ക്കൂ</string>
@@ -38,12 +40,12 @@
   <string name="share__take_screenshot">വെബ്‌പേജിന്റെ ചിത്രം എടുക്കുക</string>
   <string name="share__toast_saved_image_to_location">ചിത്രം സൂക്ഷിക്കേണ്ട ഇടം</string>
   <string name="share__toast_screenshot">സ്‌ക്രീനിന്റെ ചിത്രം സൂക്ഷിക്കേണ്ട പേര്:</string>
-  <string name="share__toast_link_address_copied">ലിങ്ക് അഡ്രസ് കോപ്പി ചെയ്തിട്ടുണ്ട് &#8230;</string>
+  <string name="share__toast_link_address_copied">കണ്ണിയുടെ വിലാസം കോപ്പി ചെയ്തിട്ടുണ്ട് &#8230;</string>
   <string name="new_post">പുതിയ പോസ്റ്റ്</string>
   <string name="action_go_to_top">മുകളിലെയ്ക്ക് പോകൂ</string>
   <string name="action_search_by_tags_or_persons">ടാഗ് പ്രകാരമോ വ്യക്തികൾ പ്രകാരമോ തിരയൂ</string>
   <string name="action_exit_app">പുറത്തേയ്ക്കു കടക്കൂ</string>
-  <string name="action_toggle_desktop_page">മൊബൈൽ/ഡെസ്ക്ടോപ്പ് വ്യൂയിലോട്ടു മാറുക</string>
+  <string name="action_toggle_desktop_page">മൊബൈൽ/ഡെസ്ക്ടോപ്പ് രീതിയാക്കുക</string>
   <string name="action_share_dotdotdot">പങ്കുവയ്ക്കൂ&#8230;</string>
   <string name="search_alert_tag">ടാഗ് പ്രകാരം</string>
   <string name="search_alert_people">വ്യക്തികൾ പ്രകാരം</string>

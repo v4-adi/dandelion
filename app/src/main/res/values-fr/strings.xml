@@ -31,6 +31,8 @@
   <string name="confirm_pod">Voulez-vous vraiment utiliser\nhttps://%1$s\ncomme pod Diaspora ?</string>
   <string name="confirm_exit">Souhaitez-vous quitter ?</string>
   <!-- Drawer, Menu, Toolbar, ContextMenu -->
+  <string name="nav_menu_more">Plus</string>
+  <string name="nav_help_license">A propos | Aide</string>
   <string name="nav_followed_tags">Hashtags suivis</string>
   <string name="nav_public_activities">Activités publiques</string>
   <string name="share__share_link_as_text">Partager le lien comme texte</string>

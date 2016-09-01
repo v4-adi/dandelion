@@ -1,4 +1,5 @@
-# v0.2.0 (WIP)
+# v0.1.6 (WIP)
+- New languages
 
 # v0.1.5
 - Update title depending on what the user is doing
