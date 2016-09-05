@@ -1,5 +1,9 @@
 # v0.1.6 (WIP)
 - New languages
+- Fixed: Immediately apply preference changes
+- Changed: Redesigned Navigation Drawer
+- Added: About screen that shows useful information
+- Changed: Updated NetCipher library to 2.0.0-alpha1
 
 # v0.1.5
 - Update title depending on what the user is doing
