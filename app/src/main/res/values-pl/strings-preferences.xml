@@ -19,7 +19,6 @@
   <string name="pref_title__proxy_enabled">Włącz serwer Proxy</string>
   <!-- Diaspora Settings -->
   <string name="pref_title__personal_settings">Ustawienia osobiste</string>
-  <string name="pref_desc__personal_settings">Otwórz ustawienia konta diaspory</string>
   <string name="pref_title__manage_contacts">Kontakty</string>
   <string name="pref_desc__manage_contacts">Zarządzanie listą kontaktów</string>
   <string name="pref_title__manage_tags">Zarządzanie znacznikami</string>
