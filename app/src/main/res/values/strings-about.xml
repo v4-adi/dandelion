@@ -11,9 +11,12 @@
     <string name="about_activity__title_about_license">License</string>
     <string name="about_activity__title_debug_info">Debugging</string>
     <string name="fragment_debug__section_app">Application</string>
+    <string name="fragment_debug__section_device">Device</string>
     <string name="fragment_debug__section_pod">Diaspora Pod</string>
     <string name="fragment_debug__app_version">App Version: %1$s</string>
     <string name="fragment_debug__package_name">Package Name: %1$s</string>
+    <string name="fragment_debug__android_version">Android Version: %1$s</string>
+    <string name="fragment_debug__device_name">Device Name: %1$s</string>
     <string name="fragment_debug__pod_domain">Pod Domain: %1$s</string>
     <string name="fragment_license__3rd_party_libs_title">Used 3rd Party Libraries</string>
 

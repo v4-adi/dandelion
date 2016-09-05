@@ -21,6 +21,7 @@ package com.github.dfa.diaspora_android.activity;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
@@ -194,6 +195,8 @@ public class AboutActivity extends AppCompatActivity {
             View rootView = inflater.inflate(R.layout.fragment_debug, container, false);
             TextView packageName = (TextView) rootView.findViewById(R.id.fragment_debug__package_name);
             TextView appVersion = (TextView) rootView.findViewById(R.id.fragment_debug__app_version);
+            TextView osVersion = (TextView) rootView.findViewById(R.id.fragment_debug__android_version);
+            TextView deviceName = (TextView) rootView.findViewById(R.id.fragment_debug__device_name);
             TextView podDomain = (TextView) rootView.findViewById(R.id.fragment_debug__pod_domain);
 
             if (isAdded()) {
@@ -203,6 +206,9 @@ public class AboutActivity extends AppCompatActivity {
 
                     packageName.setText(pInfo.packageName);
                     appVersion.setText(getString(R.string.fragment_debug__app_version, pInfo.versionName + " (" + pInfo.versionCode + ")"));
+
+                    osVersion.setText(getString(R.string.fragment_debug__android_version, Build.VERSION.RELEASE));
+                    deviceName.setText(getString(R.string.fragment_debug__device_name, Build.MANUFACTURER+" "+Build.MODEL));
                     podDomain.setText(getString(R.string.fragment_debug__pod_domain, settings.getPodDomain()));
 
                 } catch (PackageManager.NameNotFoundException e) {

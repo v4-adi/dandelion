@@ -34,6 +34,23 @@
             android:layout_height="wrap_content"
             android:id="@+id/fragment_debug__app_version"/>
 
+        <TextView
+            android:id="@+id/fragment_debug__section_device"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/fragment_debug__section_device"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            style="@android:style/TextAppearance.DeviceDefault.Large"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/fragment_debug__android_version"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/fragment_debug__device_name"/>
 
         <TextView
             android:id="@+id/fragment_debug__section_pod"
