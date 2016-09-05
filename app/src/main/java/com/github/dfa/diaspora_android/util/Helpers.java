@@ -22,7 +22,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 
 import com.github.dfa.diaspora_android.R;
 
@@ -31,8 +33,10 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Objects;
 
 public class Helpers {
 
@@ -96,5 +100,23 @@ public class Helpers {
 
     public static String hexColorFromRessourceColor(Context context, int idColor){
         return "#" + Integer.toHexString(context.getResources().getColor(idColor) & 0x00ffffff);
+    }
+
+    public static void printBundle(Bundle savedInstanceState, String k) {
+        if(savedInstanceState != null) {
+            for (String key : savedInstanceState.keySet()) {
+                Log.d("SAVED", key + " is a key in the bundle "+k);
+                Object bun = savedInstanceState.get(key);
+                if(bun != null) {
+                    if (bun instanceof Bundle) {
+                        printBundle((Bundle) bun, k + "." + key);
+                    } else if (bun instanceof byte[]) {
+                        Log.d("SAVED", "Key: "+k + "." + key+": "+ Arrays.toString((byte[])bun));
+                    } else {
+                        Log.d("SAVED", "Key: "+k + "." + key+": "+ bun.toString());
+                    }
+                }
+            }
+        }
     }
 }

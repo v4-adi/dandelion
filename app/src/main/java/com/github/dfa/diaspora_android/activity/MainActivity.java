@@ -31,6 +31,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -52,6 +53,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -64,6 +66,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -145,7 +148,9 @@ public class MainActivity extends AppCompatActivity
     @BindView(R.id.toolbar2)
     ActionMenuView toolbarBottom;
 
-    @BindView(R.id.webView)
+    @BindView(R.id.placeholder_webview)
+    FrameLayout webviewPlaceholder;
+
     ContextMenuWebView webView;
 
     @BindView(R.id.main__navigaion_view)
@@ -169,10 +174,10 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(App.TAG, "onCreate");
 
         // Bind UI
         setContentView(R.layout.main__activity);
-        ButterKnife.bind(this);
 
         app = (App) getApplication();
         appSettings = app.getSettings();
@@ -189,8 +194,23 @@ public class MainActivity extends AppCompatActivity
             resetProxy();
         }
 
-        setupWebView(savedInstanceState);
+        setupUI(savedInstanceState);
+    }
 
+    private void setupUI(Bundle savedInstanceState) {
+        boolean newWebView = (webView == null);
+        if(newWebView) {
+            Log.d(App.TAG, "Webview was null. Create new one.");
+            View webviewHolder = getLayoutInflater().inflate(R.layout.webview, null);
+            webView = (ContextMenuWebView) webviewHolder.findViewById(R.id.webView);
+            ((LinearLayout)webView.getParent()).removeView(webView);
+            setupWebView(savedInstanceState);
+        }
+        ButterKnife.bind(this);
+        if (webviewPlaceholder.getChildCount() != 0) {
+            webviewPlaceholder.removeAllViews();
+        }
+        webviewPlaceholder.addView(webView);
         // Setup toolbar
         setSupportActionBar(toolbarTop);
         getMenuInflater().inflate(R.menu.main__menu_bottom, toolbarBottom.getMenu());
@@ -231,8 +251,9 @@ public class MainActivity extends AppCompatActivity
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
         String url = urls.getPodUrl();
-        if (savedInstanceState == null) {
+        if (newWebView) {
             if (WebHelper.isOnline(MainActivity.this)) {
+                Log.d(App.TAG, "setupUI: reload url");
                 webView.loadData("", "text/html", null);
                 webView.loadUrlNew(url);
             } else {
@@ -246,6 +267,24 @@ public class MainActivity extends AppCompatActivity
         }
 
         handleIntent(getIntent());
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig)
+    {
+        if (webView != null)
+        {
+            // Remove the WebView from the old placeholder
+            webviewPlaceholder.removeView(webView);
+        }
+
+        super.onConfigurationChanged(newConfig);
+
+        // Load the layout resource for the new configuration
+        setContentView(R.layout.main__activity);
+
+        // Reinitialize the UI
+        setupUI(null);
     }
 
     private void setupWebView(Bundle savedInstanceState) {
@@ -519,6 +558,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        Helpers.printBundle(savedInstanceState,"");
         super.onRestoreInstanceState(savedInstanceState);
         webView.restoreState(savedInstanceState);
     }

@@ -54,6 +54,7 @@
             android:name=".activity.MainActivity"
             android:launchMode="singleInstance"
             android:windowSoftInputMode="adjustPan"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@style/AppTheme.NoActionBar"
             android:label="@string/diaspora">
 
