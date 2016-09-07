@@ -34,6 +34,7 @@ import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -351,10 +352,59 @@ public class MainActivity extends AppCompatActivity
                 progressBar.setVisibility(progress == 100 ? View.GONE : View.VISIBLE);
             }
 
+            //For Android 4.1/4.2 only. DONT REMOVE
+            protected void openFileChooser(ValueCallback<Uri[]> uploadMsg, String acceptType, String capture)
+            {
+                Log.d(App.TAG, "openFileChooser(ValCallback<Uri[]>, String, String");
+                mFilePathCallback = uploadMsg;
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                intent.putExtra("return-data", true);
+                startActivityForResult(Intent.createChooser(intent, "Select Picture"),INPUT_FILE_REQUEST_CODE);
+            }
+            //For Android 4.1/4.2 only. DONT REMOVE
+            protected void openFileChooser(ValueCallback<Uri[]> uploadMsg)
+            {
+                Log.d(App.TAG, "openFileChooser(ValCallback<Uri[]>");
+                onShowFileChooser(webView, uploadMsg, null);
+                /*
+                mUploadMessage = uploadMsg;
+                Intent i = new Intent(Intent.ACTION_GET_CONTENT);
+                i.addCategory(Intent.CATEGORY_OPENABLE);
+                i.setType("image/*");
+                startActivityForResult(Intent.createChooser(i, "File Chooser"), FILECHOOSER_RESULTCODE);
+                */
+            }
+
             @Override
             public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> filePathCallback, FileChooserParams fileChooserParams) {
-                if (mFilePathCallback != null) mFilePathCallback.onReceiveValue(null);
+                if(Build.VERSION.SDK_INT >= 23) {
+                    int hasWRITE_EXTERNAL_STORAGE = checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+                    if (hasWRITE_EXTERNAL_STORAGE != PackageManager.PERMISSION_GRANTED) {
+                        if (!shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                            new AlertDialog.Builder(MainActivity.this)
+                                    .setMessage(R.string.permissions_image)
+                                    .setNegativeButton(android.R.string.no, null)
+                                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            if (android.os.Build.VERSION.SDK_INT >= 23)
+                                                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                                                        REQUEST_CODE_ASK_PERMISSIONS);
+                                        }
+                                    })
+                                    .show();
+                            return false;
+                        }
+                        requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                                REQUEST_CODE_ASK_PERMISSIONS);
+                        return false;
+                    }
+                }
 
+                Log.d(App.TAG, "onOpenFileChooser");
+                if (mFilePathCallback != null) mFilePathCallback.onReceiveValue(null);
                 mFilePathCallback = filePathCallback;
 
                 Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -365,6 +415,7 @@ public class MainActivity extends AppCompatActivity
                         photoFile = Helpers.createImageFile();
                         takePictureIntent.putExtra("PhotoPath", mCameraPhotoPath);
                     } catch (IOException ex) {
+                        Log.e(App.TAG, "ERROR creating temp file: "+ ex.toString());
                         // Error occurred while creating the File
                         Snackbar.make(contentLayout, R.string.unable_to_load_image, Snackbar.LENGTH_LONG).show();
                         return false;
@@ -396,6 +447,7 @@ public class MainActivity extends AppCompatActivity
                 chooserIntent.putExtra(Intent.EXTRA_TITLE, "Image Chooser");
                 chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, intentArray);
 
+                Log.d(App.TAG,"startActivityForResult");
                 startActivityForResult(chooserIntent, INPUT_FILE_REQUEST_CODE);
                 return true;
             }
@@ -528,26 +580,32 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.d(App.TAG,"onActivityResult:");
         if (requestCode != INPUT_FILE_REQUEST_CODE || mFilePathCallback == null) {
+            Log.d(App.TAG,"reqCode != INPUT_FILE_REQUEST_CODE or mFilePathCallback == null");
             super.onActivityResult(requestCode, resultCode, data);
             return;
         }
         Uri[] results = null;
         if (resultCode == Activity.RESULT_OK) {
+            Log.d(App.TAG, "Activity.RESULT_OK");
             if (data == null) {
+                Log.d(App.TAG, "data == null");
                 if (mCameraPhotoPath != null) {
+                    Log.d(App.TAG, "mCameraPhotoPath != null");
                     results = new Uri[]{Uri.parse(mCameraPhotoPath)};
                 }
             } else {
+                Log.d(App.TAG, "data != null");
                 String dataString = data.getDataString();
                 if (dataString != null) {
+                    Log.d(App.TAG, "dataString != null");
                     results = new Uri[]{Uri.parse(dataString)};
                 }
             }
+            mFilePathCallback.onReceiveValue(results);
+            mFilePathCallback = null;
         }
-
-        mFilePathCallback.onReceiveValue(results);
-        mFilePathCallback = null;
     }
 
     @Override

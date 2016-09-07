@@ -26,6 +26,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 
+import com.github.dfa.diaspora_android.App;
 import com.github.dfa.diaspora_android.R;
 
 import java.io.BufferedReader;
@@ -62,12 +63,13 @@ public class Helpers {
         // Create an image file name
         String timeStamp = new SimpleDateFormat("dd-MM-yy_HH-mm", Locale.getDefault()).format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
+        Log.d(App.TAG, Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath());
         File storageDir = Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_PICTURES);
-        return File.createTempFile(
-                imageFileName,  /* prefix */
+        return new File (
+                imageFileName +  /* prefix */
                 ".jpg",         /* suffix */
-                storageDir      /* directory */
+                storageDir.getAbsolutePath()      /* directory */
         );
     }
 
