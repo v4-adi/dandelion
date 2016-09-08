@@ -31,8 +31,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -50,7 +52,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ActionMenuView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -64,6 +65,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -103,7 +105,8 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, WebUserProfileChangedListener {
 
 
-    private static final int INPUT_FILE_REQUEST_CODE = 1;
+    private static final int INPUT_FILE_REQUEST_CODE_NEW = 1;
+    private static final int INPUT_FILE_REQUEST_CODE_OLD = 2;
     private static final int REQUEST_CODE_ASK_PERMISSIONS = 123;
     public static final int REQUEST_CODE_ASK_PERMISSIONS_SAVE_IMAGE = 124;
 
@@ -117,7 +120,8 @@ public class MainActivity extends AppCompatActivity
     public static final String CONTENT_HASHTAG = "content://com.github.dfa.diaspora_android.mainactivity/";
 
     private App app;
-    private ValueCallback<Uri[]> mFilePathCallback;
+    private ValueCallback<Uri[]> imageUploadFilePathCallbackNew;
+    private ValueCallback<Uri> imageUploadFilePathCallbackOld;
     private String mCameraPhotoPath;
     private WebSettings webSettings;
     private AppSettings appSettings;
@@ -145,7 +149,9 @@ public class MainActivity extends AppCompatActivity
     @BindView(R.id.toolbar2)
     ActionMenuView toolbarBottom;
 
-    @BindView(R.id.webView)
+    @BindView(R.id.placeholder_webview)
+    FrameLayout webviewPlaceholder;
+
     ContextMenuWebView webView;
 
     @BindView(R.id.main__navigaion_view)
@@ -169,10 +175,10 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(App.TAG, "onCreate");
 
         // Bind UI
         setContentView(R.layout.main__activity);
-        ButterKnife.bind(this);
 
         app = (App) getApplication();
         appSettings = app.getSettings();
@@ -189,8 +195,23 @@ public class MainActivity extends AppCompatActivity
             resetProxy();
         }
 
-        setupWebView(savedInstanceState);
+        setupUI(savedInstanceState);
+    }
 
+    private void setupUI(Bundle savedInstanceState) {
+        boolean newWebView = (webView == null);
+        if(newWebView) {
+            Log.d(App.TAG, "Webview was null. Create new one.");
+            View webviewHolder = getLayoutInflater().inflate(R.layout.webview, null);
+            webView = (ContextMenuWebView) webviewHolder.findViewById(R.id.webView);
+            ((LinearLayout)webView.getParent()).removeView(webView);
+            setupWebView(savedInstanceState);
+        }
+        ButterKnife.bind(this);
+        if (webviewPlaceholder.getChildCount() != 0) {
+            webviewPlaceholder.removeAllViews();
+        }
+        webviewPlaceholder.addView(webView);
         // Setup toolbar
         setSupportActionBar(toolbarTop);
         getMenuInflater().inflate(R.menu.main__menu_bottom, toolbarBottom.getMenu());
@@ -231,8 +252,9 @@ public class MainActivity extends AppCompatActivity
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
         String url = urls.getPodUrl();
-        if (savedInstanceState == null) {
+        if (newWebView) {
             if (WebHelper.isOnline(MainActivity.this)) {
+                Log.d(App.TAG, "setupUI: reload url");
                 webView.loadData("", "text/html", null);
                 webView.loadUrlNew(url);
             } else {
@@ -246,6 +268,24 @@ public class MainActivity extends AppCompatActivity
         }
 
         handleIntent(getIntent());
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig)
+    {
+        if (webView != null)
+        {
+            // Remove the WebView from the old placeholder
+            webviewPlaceholder.removeView(webView);
+        }
+
+        super.onConfigurationChanged(newConfig);
+
+        // Load the layout resource for the new configuration
+        setContentView(R.layout.main__activity);
+
+        // Reinitialize the UI
+        setupUI(null);
     }
 
     private void setupWebView(Bundle savedInstanceState) {
@@ -312,11 +352,48 @@ public class MainActivity extends AppCompatActivity
                 progressBar.setVisibility(progress == 100 ? View.GONE : View.VISIBLE);
             }
 
+            //For Android 4.1/4.2 only. DONT REMOVE
+            protected void openFileChooser(ValueCallback<Uri> uploadMsg, String acceptType, String capture)
+            {
+                Log.d(App.TAG, "openFileChooser(ValCallback<Uri>, String, String");
+                imageUploadFilePathCallbackOld = uploadMsg;
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                intent.putExtra("return-data", true);
+                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivityForResult(Intent.createChooser(intent, "Select Picture"), INPUT_FILE_REQUEST_CODE_OLD);
+            }
+
             @Override
             public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> filePathCallback, FileChooserParams fileChooserParams) {
-                if (mFilePathCallback != null) mFilePathCallback.onReceiveValue(null);
+                if(Build.VERSION.SDK_INT >= 23) {
+                    int hasWRITE_EXTERNAL_STORAGE = checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+                    if (hasWRITE_EXTERNAL_STORAGE != PackageManager.PERMISSION_GRANTED) {
+                        if (!shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                            new AlertDialog.Builder(MainActivity.this)
+                                    .setMessage(R.string.permissions_image)
+                                    .setNegativeButton(android.R.string.no, null)
+                                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            if (android.os.Build.VERSION.SDK_INT >= 23)
+                                                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                                                        REQUEST_CODE_ASK_PERMISSIONS);
+                                        }
+                                    })
+                                    .show();
+                            return false;
+                        }
+                        requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                                REQUEST_CODE_ASK_PERMISSIONS);
+                        return false;
+                    }
+                }
 
-                mFilePathCallback = filePathCallback;
+                Log.d(App.TAG, "onOpenFileChooser");
+                if (imageUploadFilePathCallbackNew != null) imageUploadFilePathCallbackNew.onReceiveValue(null);
+                imageUploadFilePathCallbackNew = filePathCallback;
 
                 Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
@@ -326,6 +403,7 @@ public class MainActivity extends AppCompatActivity
                         photoFile = Helpers.createImageFile();
                         takePictureIntent.putExtra("PhotoPath", mCameraPhotoPath);
                     } catch (IOException ex) {
+                        Log.e(App.TAG, "ERROR creating temp file: "+ ex.toString());
                         // Error occurred while creating the File
                         Snackbar.make(contentLayout, R.string.unable_to_load_image, Snackbar.LENGTH_LONG).show();
                         return false;
@@ -357,7 +435,8 @@ public class MainActivity extends AppCompatActivity
                 chooserIntent.putExtra(Intent.EXTRA_TITLE, "Image Chooser");
                 chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, intentArray);
 
-                startActivityForResult(chooserIntent, INPUT_FILE_REQUEST_CODE);
+                Log.d(App.TAG,"startActivityForResult");
+                startActivityForResult(chooserIntent, INPUT_FILE_REQUEST_CODE_NEW);
                 return true;
             }
         });
@@ -489,26 +568,54 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode != INPUT_FILE_REQUEST_CODE || mFilePathCallback == null) {
-            super.onActivityResult(requestCode, resultCode, data);
-            return;
-        }
-        Uri[] results = null;
-        if (resultCode == Activity.RESULT_OK) {
-            if (data == null) {
-                if (mCameraPhotoPath != null) {
-                    results = new Uri[]{Uri.parse(mCameraPhotoPath)};
+        Log.d(App.TAG,"onActivityResult:");
+        switch (requestCode) {
+            case INPUT_FILE_REQUEST_CODE_NEW: {
+                Log.d(App.TAG,"INPUT_FILE_REQUEST_CODE_NEW:");
+                if (imageUploadFilePathCallbackNew == null || resultCode != Activity.RESULT_OK) {
+                    Log.e(App.TAG, "Callback is null: " + (imageUploadFilePathCallbackNew == null)
+                            + " resultCode: " + resultCode);
+                    return;
                 }
-            } else {
-                String dataString = data.getDataString();
-                if (dataString != null) {
-                    results = new Uri[]{Uri.parse(dataString)};
+                Uri[] results = null;
+                if (data == null) {
+                    if (mCameraPhotoPath != null) {
+                        results = new Uri[]{Uri.parse(mCameraPhotoPath)};
+                    }
+                } else {
+                    String dataString = data.getDataString();
+                    if (dataString != null) {
+                        results = new Uri[]{Uri.parse(dataString)};
+                    }
                 }
+                imageUploadFilePathCallbackNew.onReceiveValue(results);
+                imageUploadFilePathCallbackNew = null;
+                return;
+            }
+            case INPUT_FILE_REQUEST_CODE_OLD: {
+                Log.d(App.TAG,"INPUT_FILE_REQUEST_CODE_OLD:");
+                if (imageUploadFilePathCallbackOld == null || resultCode != Activity.RESULT_OK) {
+                    Log.e(App.TAG, "Callback is null: " + (imageUploadFilePathCallbackOld == null)
+                            + " resultCode: " + resultCode);
+                    return;
+                }
+                Uri results = null;
+                if (data == null) {
+                    if (mCameraPhotoPath != null) {
+                        results = Uri.parse(mCameraPhotoPath);
+                    }
+                } else {
+                    String dataString = data.getDataString();
+                    if (dataString != null) {
+                        results = Uri.parse(dataString);
+                    }
+                }
+                imageUploadFilePathCallbackOld.onReceiveValue(results);
+                imageUploadFilePathCallbackOld = null;
+                return;
             }
         }
-
-        mFilePathCallback.onReceiveValue(results);
-        mFilePathCallback = null;
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
@@ -519,6 +626,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        Helpers.printBundle(savedInstanceState,"");
         super.onRestoreInstanceState(savedInstanceState);
         webView.restoreState(savedInstanceState);
     }

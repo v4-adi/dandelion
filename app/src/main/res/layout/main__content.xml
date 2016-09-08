@@ -9,13 +9,13 @@
     tools:context=".activity.MainActivity"
     tools:showIn="@layout/main__app_bar">
 
-    <com.github.dfa.diaspora_android.ui.ContextMenuWebView
-        android:id="@+id/webView"
+    <FrameLayout
+        android:id="@+id/placeholder_webview"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_alignParentEnd="true"
         android:layout_alignParentStart="true"
-        android:layout_centerVertical="true" />
+        android:layout_centerVertical="true"/>
 
     <ProgressBar
         android:id="@+id/progressBar"
