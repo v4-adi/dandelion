@@ -76,8 +76,16 @@ public class Log extends Observable{
         l.notifyLogBufferChanged();
     }
 
-    public static ArrayList<String> getLogBuffer() {
+    public static ArrayList<String> getLogBufferArray() {
         return getInstance().logBuffer;
+    }
+
+    public static String getLogBuffer() {
+        String out = "";
+        for(String s : getInstance().logBuffer) {
+            out = out + s + "\n";
+        }
+        return out;
     }
 
     private void notifyLogBufferChanged() {

@@ -18,6 +18,8 @@
  */
 package com.github.dfa.diaspora_android.activity;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -36,6 +38,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.dfa.diaspora_android.App;
 import com.github.dfa.diaspora_android.R;
@@ -204,7 +207,20 @@ public class AboutActivity extends AppCompatActivity {
             TextView deviceName = (TextView) rootView.findViewById(R.id.fragment_debug__device_name);
             TextView podDomain = (TextView) rootView.findViewById(R.id.fragment_debug__pod_domain);
             logBox = (TextView) rootView.findViewById(R.id.fragment_debug__log_box);
-
+            logBox.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    Log.d(App.TAG, "Long click registered");
+                    if(isAdded()) {
+                        ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(CLIPBOARD_SERVICE);
+                        ClipData clip = ClipData.newPlainText("DEBUG_LOG", Log.getLogBuffer());
+                        clipboard.setPrimaryClip(clip);
+                        Toast.makeText(DebugFragment.this.getActivity(), R.string.fragment_debug__toast_log_copied, Toast.LENGTH_SHORT).show();
+                    }
+                    else Log.d(App.TAG, "Not Added!");
+                    return true;
+                }
+            });
             Log.addLogObserver(this);
             update(Log.getInstance(), null);
 
@@ -237,12 +253,7 @@ public class AboutActivity extends AppCompatActivity {
         @Override
         public void update(Observable observable, Object o) {
             if(logBox != null) {
-                ArrayList<String> logs = Log.getLogBuffer();
-                String log = "";
-                for(String s : logs) {
-                    log = log + s+"\n";
-                }
-                logBox.setText(log);
+                logBox.setText(Log.getLogBuffer());
             }
         }
     }

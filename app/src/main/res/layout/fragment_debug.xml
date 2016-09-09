@@ -85,6 +85,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:longClickable="true"
                     android:id="@+id/fragment_debug__log_box" />
             </HorizontalScrollView>
         </ScrollView>
