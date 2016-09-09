@@ -51,7 +51,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ActionMenuView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -82,6 +81,7 @@ import com.github.dfa.diaspora_android.ui.ContextMenuWebView;
 import com.github.dfa.diaspora_android.ui.CustomWebViewClient;
 import com.github.dfa.diaspora_android.util.DiasporaUrlHelper;
 import com.github.dfa.diaspora_android.util.Helpers;
+import com.github.dfa.diaspora_android.util.Log;
 import com.github.dfa.diaspora_android.util.WebHelper;
 
 import org.json.JSONException;
@@ -202,7 +202,7 @@ public class MainActivity extends AppCompatActivity
         boolean newWebView = (webView == null);
         if(newWebView) {
             Log.d(App.TAG, "Webview was null. Create new one.");
-            View webviewHolder = getLayoutInflater().inflate(R.layout.webview, null);
+            View webviewHolder = getLayoutInflater().inflate(R.layout.webview, this.contentLayout);
             webView = (ContextMenuWebView) webviewHolder.findViewById(R.id.webView);
             ((LinearLayout)webView.getParent()).removeView(webView);
             setupWebView(savedInstanceState);
@@ -353,6 +353,7 @@ public class MainActivity extends AppCompatActivity
             }
 
             //For Android 4.1/4.2 only. DONT REMOVE
+            @SuppressWarnings("unused")
             protected void openFileChooser(ValueCallback<Uri> uploadMsg, String acceptType, String capture)
             {
                 Log.d(App.TAG, "openFileChooser(ValCallback<Uri>, String, String");
@@ -805,7 +806,7 @@ public class MainActivity extends AppCompatActivity
                 if (WebHelper.isOnline(MainActivity.this)) {
                     final InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 
-                    View layout = getLayoutInflater().inflate(R.layout.dialog_search__people_tags, null);
+                    View layout = getLayoutInflater().inflate(R.layout.dialog_search__people_tags, contentLayout);
                     final EditText input = (EditText) layout.findViewById(R.id.dialog_search__input);
                     final DialogInterface.OnClickListener clickListener = new DialogInterface.OnClickListener() {
                         @Override

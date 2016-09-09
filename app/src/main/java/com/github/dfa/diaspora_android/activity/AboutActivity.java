@@ -42,6 +42,11 @@ import com.github.dfa.diaspora_android.R;
 import com.github.dfa.diaspora_android.data.AppSettings;
 import com.github.dfa.diaspora_android.ui.HtmlTextView;
 import com.github.dfa.diaspora_android.util.Helpers;
+import com.github.dfa.diaspora_android.util.Log;
+
+import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -184,8 +189,8 @@ public class AboutActivity extends AppCompatActivity {
     /**
      * Fragment that shows debug information like app version, pod version...
      */
-    public static class DebugFragment extends Fragment {
-
+    public static class DebugFragment extends Fragment implements Observer {
+        private TextView logBox;
         public DebugFragment() {
         }
 
@@ -198,6 +203,10 @@ public class AboutActivity extends AppCompatActivity {
             TextView osVersion = (TextView) rootView.findViewById(R.id.fragment_debug__android_version);
             TextView deviceName = (TextView) rootView.findViewById(R.id.fragment_debug__device_name);
             TextView podDomain = (TextView) rootView.findViewById(R.id.fragment_debug__pod_domain);
+            logBox = (TextView) rootView.findViewById(R.id.fragment_debug__log_box);
+
+            Log.addLogObserver(this);
+            update(Log.getInstance(), null);
 
             if (isAdded()) {
                 try {
@@ -217,6 +226,24 @@ public class AboutActivity extends AppCompatActivity {
 
             }
             return rootView;
+        }
+
+        @Override
+        public void onDestroyView() {
+            Log.removeLogObserver(this);
+            super.onDestroyView();
+        }
+
+        @Override
+        public void update(Observable observable, Object o) {
+            if(logBox != null) {
+                ArrayList<String> logs = Log.getLogBuffer();
+                String log = "";
+                for(String s : logs) {
+                    log = log + s+"\n";
+                }
+                logBox.setText(log);
+            }
         }
     }
 

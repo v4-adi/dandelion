@@ -20,7 +20,7 @@ package com.github.dfa.diaspora_android.task;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
+import com.github.dfa.diaspora_android.util.Log;
 import android.webkit.CookieManager;
 
 import com.github.dfa.diaspora_android.App;

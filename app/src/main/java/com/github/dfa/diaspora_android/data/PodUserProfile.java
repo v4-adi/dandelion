@@ -19,7 +19,7 @@
 package com.github.dfa.diaspora_android.data;
 
 import android.os.Handler;
-import android.util.Log;
+import com.github.dfa.diaspora_android.util.Log;
 
 import com.github.dfa.diaspora_android.App;
 import com.github.dfa.diaspora_android.listener.WebUserProfileChangedListener;

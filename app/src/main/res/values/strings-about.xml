@@ -13,6 +13,7 @@
     <string name="fragment_debug__section_app">Application</string>
     <string name="fragment_debug__section_device">Device</string>
     <string name="fragment_debug__section_pod">Diaspora Pod</string>
+    <string name="fragment_debug__section_log">Debug Log</string>
     <string name="fragment_debug__app_version">App Version: %1$s</string>
     <string name="fragment_debug__package_name">Package Name: %1$s</string>
     <string name="fragment_debug__android_version">Android Version: %1$s</string>

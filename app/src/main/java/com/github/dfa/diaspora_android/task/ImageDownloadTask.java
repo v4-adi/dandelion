@@ -22,7 +22,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.support.annotation.Nullable;
-import android.util.Log;
+import com.github.dfa.diaspora_android.util.Log;
 import android.widget.ImageView;
 
 import com.github.dfa.diaspora_android.App;
