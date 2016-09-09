@@ -4,6 +4,8 @@
 - Changed: Redesigned Navigation Drawer
 - Added: About screen that shows useful information
 - Changed: Updated NetCipher library to 2.0.0-alpha1
+- Fixed: Do not reload stream on orientation changes
+- Fixed: Image upload was broken on some devices
 
 # v0.1.5
 - Update title depending on what the user is doing
