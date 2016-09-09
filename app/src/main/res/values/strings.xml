@@ -1,6 +1,6 @@
 <resources>
     <!-- App - AppName specific -->
-    <string name="diaspora" translatable="false">Diaspora</string>
+    <string name="diaspora" translatable="false">diaspora*</string>
     <string name="diaspora_for_android" translatable="false">Diaspora for Android</string>
     <string name="app_name" translatable="false">@string/diaspora</string>
     <string name="app_hashtag" translatable="false">#DiasporaForAndroid</string>

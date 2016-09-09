@@ -202,7 +202,7 @@ public class MainActivity extends AppCompatActivity
         boolean newWebView = (webView == null);
         if(newWebView) {
             Log.d(App.TAG, "Webview was null. Create new one.");
-            View webviewHolder = getLayoutInflater().inflate(R.layout.webview, this.contentLayout);
+            View webviewHolder = getLayoutInflater().inflate(R.layout.webview, this.contentLayout, false);
             webView = (ContextMenuWebView) webviewHolder.findViewById(R.id.webView);
             ((LinearLayout)webView.getParent()).removeView(webView);
             setupWebView(savedInstanceState);
@@ -806,7 +806,7 @@ public class MainActivity extends AppCompatActivity
                 if (WebHelper.isOnline(MainActivity.this)) {
                     final InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 
-                    View layout = getLayoutInflater().inflate(R.layout.dialog_search__people_tags, contentLayout);
+                    View layout = getLayoutInflater().inflate(R.layout.dialog_search__people_tags, contentLayout, false);
                     final EditText input = (EditText) layout.findViewById(R.id.dialog_search__input);
                     final DialogInterface.OnClickListener clickListener = new DialogInterface.OnClickListener() {
                         @Override

@@ -36,20 +36,12 @@ import butterknife.ButterKnife;
 public class SplashActivity extends AppCompatActivity {
     private App app;
 
-    @BindView(R.id.splash__splashimage)
-    ImageView imgSplash;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash__activity);
         ButterKnife.bind(this);
         app = (App) getApplication();
-
-        TypedArray images = getResources().obtainTypedArray(R.array.splash_images);
-        int choice = (int) (Math.random() * images.length());
-        imgSplash.setImageResource(images.getResourceId(choice, R.drawable.splashscreen1));
-        images.recycle();
 
         int delay = getResources().getInteger(R.integer.splash_delay);
         new Handler().postDelayed(startActivityRunnable, delay);
