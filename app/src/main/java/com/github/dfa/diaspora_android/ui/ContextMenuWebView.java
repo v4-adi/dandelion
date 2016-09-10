@@ -96,14 +96,14 @@ public class ContextMenuWebView extends NestedWebView {
                                                 public void onClick(DialogInterface dialog, int which) {
                                                     if (android.os.Build.VERSION.SDK_INT >= 23)
                                                         parentActivity.requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                                                                MainActivity.REQUEST_CODE_ASK_PERMISSIONS_SAVE_IMAGE);
+                                                                MainActivity.REQUEST_CODE__ACCESS_EXTERNAL_STORAGE);
                                                 }
                                             })
                                             .setNegativeButton(context.getText(android.R.string.no), null)
                                             .show();
                                 }
                                 parentActivity.requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                                        MainActivity.REQUEST_CODE_ASK_PERMISSIONS_SAVE_IMAGE);
+                                        MainActivity.REQUEST_CODE__ACCESS_EXTERNAL_STORAGE);
                             }
                         }
                         if (writeToStoragePermitted) {
