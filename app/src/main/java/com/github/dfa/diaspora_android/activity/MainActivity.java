@@ -806,7 +806,7 @@ public class MainActivity extends AppCompatActivity
                 if (WebHelper.isOnline(MainActivity.this)) {
                     final InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 
-                    View layout = getLayoutInflater().inflate(R.layout.dialog_search__people_tags, contentLayout, false);
+                    View layout = getLayoutInflater().inflate(R.layout.dialog_search__people_tags, null, false);
                     final EditText input = (EditText) layout.findViewById(R.id.dialog_search__input);
                     final DialogInterface.OnClickListener clickListener = new DialogInterface.OnClickListener() {
                         @Override
