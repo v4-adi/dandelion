@@ -33,6 +33,7 @@ import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
+import android.graphics.drawable.LayerDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -46,6 +47,7 @@ import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -77,6 +79,7 @@ import com.github.dfa.diaspora_android.R;
 import com.github.dfa.diaspora_android.data.AppSettings;
 import com.github.dfa.diaspora_android.data.PodUserProfile;
 import com.github.dfa.diaspora_android.listener.WebUserProfileChangedListener;
+import com.github.dfa.diaspora_android.ui.BadgeDrawable;
 import com.github.dfa.diaspora_android.ui.ContextMenuWebView;
 import com.github.dfa.diaspora_android.ui.CustomWebViewClient;
 import com.github.dfa.diaspora_android.util.DiasporaUrlHelper;
@@ -699,25 +702,21 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main__menu_top, menu);
-        return true;
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        MenuItem itemNotification = menu.findItem(R.id.action_notifications);
-        if (itemNotification != null) {
-            if (podUserProfile.getNotificationCount() > 0) {
-                itemNotification.setIcon(R.drawable.ic_notifications_colored_48px);
-            } else {
-                itemNotification.setIcon(R.drawable.ic_notifications_white_48px);
-            }
+        MenuItem item;
 
-            MenuItem itemConversation = menu.findItem(R.id.action_conversations);
-            if (podUserProfile.getUnreadMessagesCount() > 0) {
-                itemConversation.setIcon(R.drawable.ic_email_colored_48px);
-            } else {
-                itemConversation.setIcon(R.drawable.ic_mail_white_48px);
-            }
+        if ((item = menu.findItem(R.id.action_notifications)) != null) {
+            LayerDrawable icon = (LayerDrawable) item.getIcon();
+            BadgeDrawable.setBadgeCount(this, icon, podUserProfile.getNotificationCount());
+        }
+
+        if ((item = menu.findItem(R.id.action_conversations)) != null) {
+            LayerDrawable icon = (LayerDrawable) item.getIcon();
+            BadgeDrawable.setBadgeCount(this, icon, podUserProfile.getUnreadMessagesCount());
         }
         return super.onPrepareOptionsMenu(menu);
     }
