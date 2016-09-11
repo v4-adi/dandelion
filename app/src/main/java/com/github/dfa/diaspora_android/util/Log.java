@@ -1,6 +1,6 @@
 package com.github.dfa.diaspora_android.util;
 
-import com.github.dfa.diaspora_android.App;
+import com.github.dfa.diaspora_android.data.AppSettings;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -13,20 +13,36 @@ import java.util.Observer;
  * TODO: Differentiate log types (error/debug/info...)
  * Created by vanitas on 09.09.16.
  */
-public class Log extends Observable{
+public class Log extends Observable {
+    public static final int MAX_BUFFER_SIZE = 100;
+
     public static Log instance;
+    private AppSettings appSettings;
     private SimpleDateFormat dateFormat;
     private ArrayList<String> logBuffer;
     private ArrayList<Observer> observers;
 
     private Log() {
-        logBuffer = new ArrayList<>();
+        this(null);
+    }
+    private Log(AppSettings appSettings) {
+        if(appSettings != null) {
+            //TODO: Store/Restore logBuffer between app starts
+            logBuffer = new ArrayList<>();
+        } else {
+            logBuffer = new ArrayList<>();
+        }
         dateFormat = new SimpleDateFormat("HH:mm:ss");
         observers = new ArrayList<>();
     }
 
     public static Log getInstance() {
         if(instance == null) instance = new Log();
+        return instance;
+    }
+
+    public static Log getInstance(AppSettings appSettings) {
+        if(instance == null) instance = new Log(appSettings);
         return instance;
     }
 
@@ -37,50 +53,50 @@ public class Log extends Observable{
     public static void d(String tag, String msg) {
         Log l = getInstance();
         android.util.Log.d(tag, msg);
-        l.logBuffer.add(time()+msg);
+        l.addLogEntry(msg);
         l.notifyLogBufferChanged();
     }
 
     public static void e(String tag, String msg) {
         Log l = getInstance();
         android.util.Log.e(tag, msg);
-        l.logBuffer.add(time()+msg);
+        l.addLogEntry(msg);
         l.notifyLogBufferChanged();
     }
 
     public static void i(String tag, String msg) {
         Log l = getInstance();
         android.util.Log.i(tag, msg);
-        l.logBuffer.add(time()+msg);
+        l.addLogEntry(msg);
         l.notifyLogBufferChanged();
     }
 
     public static void v(String tag, String msg) {
         Log l = getInstance();
         android.util.Log.v(tag, msg);
-        l.logBuffer.add(time()+msg);
+        l.addLogEntry(msg);
         l.notifyLogBufferChanged();
     }
 
     public static void w(String tag, String msg) {
         Log l = getInstance();
         android.util.Log.w(tag, msg);
-        l.logBuffer.add(time()+msg);
+        l.addLogEntry(msg);
         l.notifyLogBufferChanged();
     }
 
     public static void wtf(String tag, String msg) {
         Log l = getInstance();
         android.util.Log.wtf(tag, msg);
-        l.logBuffer.add(time()+msg);
+        l.addLogEntry(msg);
         l.notifyLogBufferChanged();
     }
 
-    public static ArrayList<String> getLogBufferArray() {
+    public synchronized static ArrayList<String> getLogBufferArray() {
         return getInstance().logBuffer;
     }
 
-    public static String getLogBuffer() {
+    public synchronized static String getLogBuffer() {
         String out = "";
         for(String s : getInstance().logBuffer) {
             out = out + s + "\n";
@@ -94,6 +110,13 @@ public class Log extends Observable{
             if(o != null) {
                 o.update(this, null);
             }
+        }
+    }
+
+    private synchronized void addLogEntry(String msg) {
+        logBuffer.add(time()+msg);
+        while (logBuffer.size() > MAX_BUFFER_SIZE) {
+            logBuffer.remove(0);
         }
     }
 

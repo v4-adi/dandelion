@@ -19,17 +19,14 @@
 
 package com.github.dfa.diaspora_android.activity;
 
-import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.ImageView;
 
 import com.github.dfa.diaspora_android.App;
 import com.github.dfa.diaspora_android.R;
 import com.github.dfa.diaspora_android.util.Helpers;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
