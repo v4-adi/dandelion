@@ -20,11 +20,13 @@ package com.github.dfa.diaspora_android.ui;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.support.v4.content.LocalBroadcastManager;
 import android.webkit.CookieManager;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.github.dfa.diaspora_android.App;
+import com.github.dfa.diaspora_android.activity.MainActivity;
 
 public class CustomWebViewClient extends WebViewClient {
     private final App app;
@@ -37,9 +39,9 @@ public class CustomWebViewClient extends WebViewClient {
 
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
         if (!url.contains(app.getSettings().getPodDomain())) {
-            Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            app.getApplicationContext().startActivity(i);
+            Intent i = new Intent(MainActivity.ACTION_OPEN_EXTERNAL_URL);
+            i.putExtra(MainActivity.EXTRA_URL, url);
+            LocalBroadcastManager.getInstance(app.getApplicationContext()).sendBroadcast(i);
             return true;
         }
         return false;
