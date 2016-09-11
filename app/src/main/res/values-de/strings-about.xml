@@ -16,7 +16,7 @@
   <string name="fragment_license__3rd_party_libs_title">Verwendete Drittanbieter-Bibliotheken</string>
   <!-- About (large amount of text) -->
   <string name="fragment_about__about_content">
-        DiasporaForAndroid ist dein Begleiter auf deinen Streifzügen durch das soziale Netzwerk Diaspora. Es bietet dir zusätzliche Features wie nützliche Toolbars und Unterstützung für Proxyserver wie etwa das Tornetzwerk. &lt;br>&lt;br>
+        DiasporaForAndroid ist dein Begleiter auf deinen Streifzügen durch das soziale Netzwerk Diaspora. Er bietet dir zusätzliche Features wie nützliche Toolbars und Unterstützung für Proxyserver wie etwa das Tornetzwerk. &lt;br>&lt;br>
 
         Diaspora benutzt Markdown-Formatierung für deine Beiträge. Weitere Informationen dazu findest du auf&lt;br>
         https://wiki.diasporafoundation.org/Markdown_reference_guide &lt;br> &lt;br>

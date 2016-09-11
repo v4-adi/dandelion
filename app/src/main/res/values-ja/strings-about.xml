@@ -6,10 +6,15 @@
   <string name="about_activity__title_about_license">ライセンス</string>
   <string name="about_activity__title_debug_info">デバッグ</string>
   <string name="fragment_debug__section_app">アプリケーション</string>
+  <string name="fragment_debug__section_device">デバイス</string>
   <string name="fragment_debug__section_pod">ダイアスポラ ポッド</string>
+  <string name="fragment_debug__section_log">デバッグログ</string>
   <string name="fragment_debug__app_version">アプリバージョン: %1$s</string>
   <string name="fragment_debug__package_name">パッケージ名: %1$s</string>
+  <string name="fragment_debug__android_version">Android バージョン: %1$s</string>
+  <string name="fragment_debug__device_name">デバイス名: %1$s</string>
   <string name="fragment_debug__pod_domain">ポッドドメイン: %1$s</string>
+  <string name="fragment_debug__toast_log_copied">デバッグログをクリップボードにコピーしました</string>
   <string name="fragment_license__3rd_party_libs_title">使用したサードパーティ ライブラリー</string>
   <!-- About (large amount of text) -->
   <string name="fragment_about__about_content">
