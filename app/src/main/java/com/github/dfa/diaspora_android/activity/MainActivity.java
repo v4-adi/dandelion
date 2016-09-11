@@ -79,6 +79,7 @@ import com.github.dfa.diaspora_android.R;
 import com.github.dfa.diaspora_android.data.AppSettings;
 import com.github.dfa.diaspora_android.data.PodUserProfile;
 import com.github.dfa.diaspora_android.listener.WebUserProfileChangedListener;
+import com.github.dfa.diaspora_android.receivers.OpenExternalLinkReceiver;
 import com.github.dfa.diaspora_android.ui.ContextMenuWebView;
 import com.github.dfa.diaspora_android.ui.CustomWebViewClient;
 import com.github.dfa.diaspora_android.util.CustomTabHelpers.BrowserFallback;
@@ -135,6 +136,7 @@ public class MainActivity extends AppCompatActivity
     private PodUserProfile podUserProfile;
     private final Handler uiHandler = new Handler();
     private CustomWebViewClient webViewClient;
+    private OpenExternalLinkReceiver brOpenExternalLink;
     private Snackbar snackbarExitApp;
     private Snackbar snackbarNewNotification;
     private Snackbar snackbarNoInternet;
@@ -204,10 +206,19 @@ public class MainActivity extends AppCompatActivity
         } else if (appSettings.wasProxyEnabled()) {
             resetProxy();
         }
+
+        brOpenExternalLink = new OpenExternalLinkReceiver(this);
     }
 
     private void setupUI(Bundle savedInstanceState) {
         Log.i(App.TAG, "MainActivity.setupUI()");
+        ButterKnife.bind(this);
+        if (webviewPlaceholder.getChildCount() != 0) {
+            Log.v(App.TAG, "remove child views from webViewPlaceholder");
+            webviewPlaceholder.removeAllViews();
+        } else {
+            Log.v(App.TAG, "webViewPlaceholder had no child views");
+        }
         boolean newWebView = (webView == null);
         if(newWebView) {
             Log.v(App.TAG, "WebView was null. Create new one.");
@@ -218,10 +229,7 @@ public class MainActivity extends AppCompatActivity
         } else {
             Log.v(App.TAG, "Reuse old WebView to avoid reloading page");
         }
-        ButterKnife.bind(this);
-        if (webviewPlaceholder.getChildCount() != 0) {
-            webviewPlaceholder.removeAllViews();
-        }
+
         Log.v(App.TAG, "Add WebView to placeholder");
         webviewPlaceholder.addView(webView);
         // Setup toolbar
@@ -730,27 +738,6 @@ public class MainActivity extends AppCompatActivity
                 }
             } else {
                 Log.w(App.TAG, "MainActivity.brSetTitle.onReceive(): Invalid url: "+url);
-            }
-        }
-    };
-
-    private final BroadcastReceiver brOpenExternalLink = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String url = intent.getStringExtra(EXTRA_URL);
-            if(url != null) {
-                CustomTabsIntent.Builder intentBuilder = new CustomTabsIntent.Builder();
-                if(Build.VERSION.SDK_INT >= 23) {
-                    intentBuilder.setToolbarColor(getResources().getColor(R.color.colorPrimary, getTheme()));
-                } else {
-                    intentBuilder.setToolbarColor(getResources().getColor(R.color.colorPrimary));
-                }
-                intentBuilder.setStartAnimations(MainActivity.this, android.R.anim.slide_in_left, android.R.anim.fade_out);
-                intentBuilder.setExitAnimations(MainActivity.this, android.R.anim.fade_in, android.R.anim.slide_out_right);
-                Bitmap backButtonIcon = BitmapFactory.decodeResource(getResources(),
-                        R.drawable.ic_arrow_back_white_24px);
-                intentBuilder.setCloseButtonIcon(backButtonIcon);
-                CustomTabActivityHelper.openCustomTab(MainActivity.this, intentBuilder.build(), Uri.parse(url), new BrowserFallback());
             }
         }
     };
