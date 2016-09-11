@@ -33,6 +33,7 @@ import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -193,6 +194,8 @@ public class MainActivity extends AppCompatActivity
         urls = new DiasporaUrlHelper(appSettings);
         customTabActivityHelper = new CustomTabActivityHelper();
 
+        setupUI(savedInstanceState);
+
         if (appSettings.isProxyEnabled()) {
             if (!setProxy(appSettings.getProxyHost(), appSettings.getProxyPort())) {
                 Log.d(App.TAG, "Could not enable Proxy");
@@ -201,8 +204,6 @@ public class MainActivity extends AppCompatActivity
         } else if (appSettings.wasProxyEnabled()) {
             resetProxy();
         }
-
-        setupUI(savedInstanceState);
     }
 
     private void setupUI(Bundle savedInstanceState) {
@@ -211,7 +212,7 @@ public class MainActivity extends AppCompatActivity
         if(newWebView) {
             Log.v(App.TAG, "WebView was null. Create new one.");
             View webviewHolder = getLayoutInflater().inflate(R.layout.webview, this.contentLayout, false);
-            webView = (ContextMenuWebView) webviewHolder.findViewById(R.id.webView);
+            this.webView = (ContextMenuWebView) webviewHolder.findViewById(R.id.webView);
             ((LinearLayout)webView.getParent()).removeView(webView);
             setupWebView(savedInstanceState);
         } else {
@@ -744,6 +745,11 @@ public class MainActivity extends AppCompatActivity
                 } else {
                     intentBuilder.setToolbarColor(getResources().getColor(R.color.colorPrimary));
                 }
+                intentBuilder.setStartAnimations(MainActivity.this, android.R.anim.slide_in_left, android.R.anim.fade_out);
+                intentBuilder.setExitAnimations(MainActivity.this, android.R.anim.fade_in, android.R.anim.slide_out_right);
+                Bitmap backButtonIcon = BitmapFactory.decodeResource(getResources(),
+                        R.drawable.ic_arrow_back_white_24px);
+                intentBuilder.setCloseButtonIcon(backButtonIcon);
                 CustomTabActivityHelper.openCustomTab(MainActivity.this, intentBuilder.build(), Uri.parse(url), new BrowserFallback());
             }
         }
