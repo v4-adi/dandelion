@@ -80,6 +80,7 @@ import com.github.dfa.diaspora_android.data.AppSettings;
 import com.github.dfa.diaspora_android.data.PodUserProfile;
 import com.github.dfa.diaspora_android.listener.WebUserProfileChangedListener;
 import com.github.dfa.diaspora_android.receivers.OpenExternalLinkReceiver;
+import com.github.dfa.diaspora_android.receivers.UpdateTitleReceiver;
 import com.github.dfa.diaspora_android.ui.ContextMenuWebView;
 import com.github.dfa.diaspora_android.ui.CustomWebViewClient;
 import com.github.dfa.diaspora_android.util.CustomTabHelpers.BrowserFallback;
@@ -137,6 +138,7 @@ public class MainActivity extends AppCompatActivity
     private final Handler uiHandler = new Handler();
     private CustomWebViewClient webViewClient;
     private OpenExternalLinkReceiver brOpenExternalLink;
+    private BroadcastReceiver brSetTitle;
     private Snackbar snackbarExitApp;
     private Snackbar snackbarNewNotification;
     private Snackbar snackbarNoInternet;
@@ -208,6 +210,17 @@ public class MainActivity extends AppCompatActivity
         }
 
         brOpenExternalLink = new OpenExternalLinkReceiver(this);
+        brSetTitle = new UpdateTitleReceiver(app, urls, new UpdateTitleReceiver.TitleCallback() {
+            @Override
+            public void setTitle(int rId) {
+                MainActivity.this.setTitle(rId);
+            }
+
+            @Override
+            public void setTitle(String title) {
+                MainActivity.this.setTitle(title);
+            }
+        });
     }
 
     private void setupUI(Bundle savedInstanceState) {
@@ -219,6 +232,7 @@ public class MainActivity extends AppCompatActivity
         } else {
             Log.v(App.TAG, "webViewPlaceholder had no child views");
         }
+
         boolean newWebView = (webView == null);
         if(newWebView) {
             Log.v(App.TAG, "WebView was null. Create new one.");
@@ -700,47 +714,6 @@ public class MainActivity extends AppCompatActivity
             snackbarExitApp.show();
         }
     }
-
-    /**
-     * BroadcastReceiver that updates the title of the activity based on which url is currently loaded
-     */
-    private final BroadcastReceiver brSetTitle = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String url = intent.getStringExtra(EXTRA_URL);
-            if (url != null && url.startsWith(urls.getPodUrl())) {
-                String subUrl = url.substring((urls.getPodUrl()).length());
-                Log.v(App.TAG, "MainActivity.brSetTitle.onReceive(): Set title for subUrl "+subUrl);
-                if (subUrl.startsWith(DiasporaUrlHelper.SUBURL_STREAM)) {
-                    setTitle(R.string.nav_stream);
-                } else if (subUrl.startsWith(DiasporaUrlHelper.SUBURL_POSTS)) {
-                    setTitle(R.string.diaspora);
-                } else if (subUrl.startsWith(DiasporaUrlHelper.SUBURL_NOTIFICATIONS)) {
-                    setTitle(R.string.notifications);
-                } else if (subUrl.startsWith(DiasporaUrlHelper.SUBURL_CONVERSATIONS)) {
-                    setTitle(R.string.conversations);
-                } else if (subUrl.startsWith(DiasporaUrlHelper.SUBURL_NEW_POST)) {
-                    setTitle(R.string.new_post);
-                } else if (subUrl.startsWith(DiasporaUrlHelper.SUBURL_PEOPLE + appSettings.getProfileId())) {
-                    setTitle(R.string.nav_profile);
-                } else if (subUrl.startsWith(DiasporaUrlHelper.SUBURL_ACTIVITY)) {
-                    setTitle(R.string.nav_activities);
-                } else if (subUrl.startsWith(DiasporaUrlHelper.SUBURL_LIKED)) {
-                    setTitle(R.string.nav_liked);
-                } else if (subUrl.startsWith(DiasporaUrlHelper.SUBURL_COMMENTED)) {
-                    setTitle(R.string.nav_commented);
-                } else if (subUrl.startsWith(DiasporaUrlHelper.SUBURL_MENTIONS)) {
-                    setTitle(R.string.nav_mentions);
-                } else if (subUrl.startsWith(DiasporaUrlHelper.SUBURL_PUBLIC)) {
-                    setTitle(R.string.public_);
-                } else if (urls.isAspectUrl(url)){
-                    setTitle(urls.getAspectNameFromUrl(url, app));
-                }
-            } else {
-                Log.w(App.TAG, "MainActivity.brSetTitle.onReceive(): Invalid url: "+url);
-            }
-        }
-    };
 
     @Override
     protected void onStart() {
