@@ -187,6 +187,8 @@ public class MainActivity extends AppCompatActivity
         podUserProfile.setListener(this);
         urls = new DiasporaUrlHelper(appSettings);
 
+        setupUI(savedInstanceState);
+
         if (appSettings.isProxyEnabled()) {
             if (!setProxy(appSettings.getProxyHost(), appSettings.getProxyPort())) {
                 Log.d(App.TAG, "Could not enable Proxy");
@@ -195,8 +197,6 @@ public class MainActivity extends AppCompatActivity
         } else if (appSettings.wasProxyEnabled()) {
             resetProxy();
         }
-
-        setupUI(savedInstanceState);
     }
 
     private void setupUI(Bundle savedInstanceState) {
