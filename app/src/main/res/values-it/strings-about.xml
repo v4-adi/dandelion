@@ -8,11 +8,13 @@
   <string name="fragment_debug__section_app">Applicazione</string>
   <string name="fragment_debug__section_device">Dispositivo</string>
   <string name="fragment_debug__section_pod">Pod Diaspora</string>
+  <string name="fragment_debug__section_log">Log di debug</string>
   <string name="fragment_debug__app_version">Versione app: %1$s</string>
   <string name="fragment_debug__package_name">Nome pacchetto: %1$s</string>
   <string name="fragment_debug__android_version">Versione Android: %1$s</string>
   <string name="fragment_debug__device_name">Nome dispositivo: %1$s</string>
   <string name="fragment_debug__pod_domain">Dominio pod: %1$s</string>
+  <string name="fragment_debug__toast_log_copied">Log di debug copiato negli appunti</string>
   <string name="fragment_license__3rd_party_libs_title">Librerie di terze parti usate</string>
   <!-- About (large amount of text) -->
   <string name="fragment_about__about_content">
