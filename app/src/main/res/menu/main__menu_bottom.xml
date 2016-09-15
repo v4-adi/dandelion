@@ -6,14 +6,14 @@
 
     <item
         android:id="@+id/action_search"
-        android:icon="@drawable/fab_search"
+        android:icon="@drawable/ic_search_white_48px"
         app:showAsAction="always"
         android:title="@string/action_search_by_tags_or_persons" />
 
 
     <item
         android:id="@+id/action_compose"
-        android:icon="@drawable/fab_compose"
+        android:icon="@drawable/ic_mode_edit_white_48px"
         app:showAsAction="always"
         android:title="@string/action_compose_new_post" />
 
@@ -31,7 +31,7 @@
     <!-- Keep right most -->
     <item
         android:id="@+id/action_go_to_top"
-        android:icon="@drawable/fab_top"
+        android:icon="@drawable/ic_arrow_upward_white_48px"
         android:title="@string/action_go_to_top"
         app:showAsAction="always"/>
 
