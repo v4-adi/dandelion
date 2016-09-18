@@ -8,15 +8,17 @@
   <string name="fragment_debug__section_app">Anwendung</string>
   <string name="fragment_debug__section_device">Gerät</string>
   <string name="fragment_debug__section_pod">Diaspora Pod</string>
+  <string name="fragment_debug__section_log">Debug-Protokoll</string>
   <string name="fragment_debug__app_version">App Version: %1$s</string>
   <string name="fragment_debug__package_name">Paketname: %1$s</string>
   <string name="fragment_debug__android_version">Android Version: %1$s</string>
   <string name="fragment_debug__device_name">Gerätename: %1$s</string>
   <string name="fragment_debug__pod_domain">Pod-Adresse: %1$s</string>
+  <string name="fragment_debug__toast_log_copied">Debug-Protokoll in Zwischenablage kopiert</string>
   <string name="fragment_license__3rd_party_libs_title">Verwendete Drittanbieter-Bibliotheken</string>
   <!-- About (large amount of text) -->
   <string name="fragment_about__about_content">
-        DiasporaForAndroid ist dein Begleiter auf deinen Streifzügen durch das soziale Netzwerk Diaspora. Es bietet dir zusätzliche Features wie nützliche Toolbars und Unterstützung für Proxyserver wie etwa das Tornetzwerk. &lt;br>&lt;br>
+        DiasporaForAndroid ist dein Begleiter auf deinen Streifzügen durch das soziale Netzwerk Diaspora. Er bietet dir zusätzliche Features wie nützliche Toolbars und Unterstützung für Proxyserver wie etwa das Tornetzwerk. &lt;br>&lt;br>
 
         Diaspora benutzt Markdown-Formatierung für deine Beiträge. Weitere Informationen dazu findest du auf&lt;br>
         https://wiki.diasporafoundation.org/Markdown_reference_guide &lt;br> &lt;br>

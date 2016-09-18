@@ -64,8 +64,9 @@
         chiudere completamente l\'app o riavviare il dispositivo. Se non permetti l\'accesso alla memoria ma vuoi usare la 
         funzione degli screenshot più avanti, puoi garantire il permesso successivamente. Vai su: Impostazioni - App -
         Diaspora. Nella sezione dei permessi puoi garantire il permesso per la scrittura sul dispositivo.</string>
-  <string name="permissions_image">Devi garantire il permesso di accesso alla memoria per poter salvare le immagini. Dopodiché devi
-        chiudere completamente l\'app o riavviare il dispositivo. Se non permetti l\'accesso alla memoria ma vuoi salvare le immagini più avanti, puoi garantire il permesso successivamente. Vai su: Impostazioni - App -
+  <string name="permissions_image">Devi garantire il permesso di accesso alla memoria per poter salvare e caricare le immagini. Dopodiché devi
+        chiudere completamente l\'app o riavviare il dispositivo. Se non permetti l\'accesso alla memoria ma vuoi 
+        salvare le immagini più avanti, puoi garantire il permesso successivamente. Vai su: Impostazioni - App -
         Diaspora. Nella sezione dei permessi puoi garantire il permesso per la scrittura sul dispositivo.</string>
   <string name="permission_denied">Permesso negato.</string>
   <string name="permission_granted_try_again">Permesso garantito. Si prega di riprovare.</string>

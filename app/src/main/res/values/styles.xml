@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="actionMenuTextColor">@color/colorAccent</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -16,5 +17,14 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="BottomToolbarMenuOverflowStyle" parent="Theme.AppCompat.NoActionBar">
+        <!-- Text in overflow  -->
+        <item name="android:textColorPrimary">@color/primary_text</item>
+        <!-- overflow icon (three vertical dots) -->
+        <item name="android:textColorSecondary">@color/white</item>
+        <!-- popup background color -->
+         <item name="android:background">@color/white</item>
+    </style>
 
 </resources>

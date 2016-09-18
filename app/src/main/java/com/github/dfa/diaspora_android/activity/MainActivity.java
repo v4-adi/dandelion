@@ -26,6 +26,8 @@ import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
+import android.graphics.drawable.LayerDrawable;
+import android.support.v4.view.MenuItemCompat;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -81,6 +83,7 @@ import com.github.dfa.diaspora_android.data.PodUserProfile;
 import com.github.dfa.diaspora_android.listener.WebUserProfileChangedListener;
 import com.github.dfa.diaspora_android.receivers.OpenExternalLinkReceiver;
 import com.github.dfa.diaspora_android.receivers.UpdateTitleReceiver;
+import com.github.dfa.diaspora_android.ui.BadgeDrawable;
 import com.github.dfa.diaspora_android.ui.ContextMenuWebView;
 import com.github.dfa.diaspora_android.ui.CustomWebViewClient;
 import com.github.dfa.diaspora_android.util.CustomTabHelpers.BrowserFallback;
@@ -754,21 +757,16 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        Log.i(App.TAG, "MainActivity.onPrepareOptionsMenu()");
-        MenuItem itemNotification = menu.findItem(R.id.action_notifications);
-        if (itemNotification != null) {
-            if (podUserProfile.getNotificationCount() > 0) {
-                itemNotification.setIcon(R.drawable.ic_notifications_colored_48px);
-            } else {
-                itemNotification.setIcon(R.drawable.ic_notifications_white_48px);
-            }
+        MenuItem item;
 
-            MenuItem itemConversation = menu.findItem(R.id.action_conversations);
-            if (podUserProfile.getUnreadMessagesCount() > 0) {
-                itemConversation.setIcon(R.drawable.ic_email_colored_48px);
-            } else {
-                itemConversation.setIcon(R.drawable.ic_mail_white_48px);
-            }
+        if ((item = menu.findItem(R.id.action_notifications)) != null) {
+            LayerDrawable icon = (LayerDrawable) item.getIcon();
+            BadgeDrawable.setBadgeCount(this, icon, podUserProfile.getNotificationCount());
+        }
+
+        if ((item = menu.findItem(R.id.action_conversations)) != null) {
+            LayerDrawable icon = (LayerDrawable) item.getIcon();
+            BadgeDrawable.setBadgeCount(this, icon, podUserProfile.getUnreadMessagesCount());
         }
         return super.onPrepareOptionsMenu(menu);
     }

@@ -4,7 +4,7 @@
     <group android:checkableBehavior="none">
         <item
             android:id="@+id/nav_stream"
-            android:icon="@drawable/jb_stream"
+            android:icon="@drawable/ic_stream"
             android:title="@string/nav_stream" />
 
         <item
@@ -38,7 +38,7 @@
 
         <item
             android:id="@+id/nav_mentions"
-            android:icon="@drawable/jb_mentions"
+            android:icon="@drawable/ic_atsign"
             android:title="@string/nav_mentions" />
 
         <item

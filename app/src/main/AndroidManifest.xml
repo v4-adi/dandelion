@@ -135,6 +135,7 @@
                 <data android:host="diaspora.soh.re" android:scheme="https" />
                 <data android:host="diaspora.subsignal.org" android:scheme="https" />
                 <data android:host="diaspora.trash-talk.de" android:scheme="https" />
+                <data android:host="diaspora.u4u.org" android:scheme="https" />
                 <data android:host="diaspora.undernet.uy" android:scheme="https" />
                 <data android:host="diaspora.unixcorn.org" android:scheme="https" />
                 <data android:host="diasporausa.com" android:scheme="https" />
@@ -143,6 +144,7 @@
                 <data android:host="dissociateduse.rs" android:scheme="https" />
                 <data android:host="distributed.chat" android:scheme="https" />
                 <data android:host="eat.egregious.ly" android:scheme="https" />
+                <data android:host="ege.land" android:scheme="https" />
                 <data android:host="espora.com.es" android:scheme="https" />
                 <data android:host="espora.social" android:scheme="https" />
                 <data android:host="failure.net" android:scheme="https" />
@@ -186,6 +188,7 @@
                 <data android:host="pod.diaspora.software" android:scheme="https" />
                 <data android:host="pod.dirkomatik.de" android:scheme="https" />
                 <data android:host="pod.disroot.org" android:scheme="https" />
+                <data android:host="pod.dobs.at" android:scheme="https" />
                 <data android:host="pod.dragondreaming.de" android:scheme="https" />
                 <data android:host="pod.gedankenausbruch.com" android:scheme="https" />
                 <data android:host="pod.geraspora.de" android:scheme="https" />
@@ -206,6 +209,7 @@
                 <data android:host="pod.promedol.com" android:scheme="https" />
                 <data android:host="pod.psynet.su" android:scheme="https" />
                 <data android:host="pod.readme.is" android:scheme="https" />
+                <data android:host="pod.richtig.koeln" android:scheme="https" />
                 <data android:host="podricing.pw" android:scheme="https" />
                 <data android:host="pod.ros-it.ch" android:scheme="https" />
                 <data android:host="pod.sccn.club" android:scheme="https" />
@@ -230,6 +234,7 @@
                 <data android:host="socializer.cc" android:scheme="https" />
                 <data android:host="social.mbuto.me" android:scheme="https" />
                 <data android:host="social.sum7.de" android:scheme="https" />
+                <data android:host="spora.com.ua" android:scheme="https" />
                 <data android:host="spora.zone" android:scheme="https" />
                 <data android:host="subvillage.de" android:scheme="https" />
                 <data android:host="sysad.org" android:scheme="https" />
