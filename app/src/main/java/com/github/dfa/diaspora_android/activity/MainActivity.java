@@ -26,6 +26,8 @@ import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
+import android.graphics.drawable.LayerDrawable;
+import android.support.v4.view.MenuItemCompat;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -33,7 +35,7 @@ import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
-import android.graphics.drawable.LayerDrawable;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -42,12 +44,12 @@ import android.os.Handler;
 import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.customtabs.CustomTabsIntent;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.GravityCompat;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -79,9 +81,13 @@ import com.github.dfa.diaspora_android.R;
 import com.github.dfa.diaspora_android.data.AppSettings;
 import com.github.dfa.diaspora_android.data.PodUserProfile;
 import com.github.dfa.diaspora_android.listener.WebUserProfileChangedListener;
+import com.github.dfa.diaspora_android.receivers.OpenExternalLinkReceiver;
+import com.github.dfa.diaspora_android.receivers.UpdateTitleReceiver;
 import com.github.dfa.diaspora_android.ui.BadgeDrawable;
 import com.github.dfa.diaspora_android.ui.ContextMenuWebView;
 import com.github.dfa.diaspora_android.ui.CustomWebViewClient;
+import com.github.dfa.diaspora_android.util.CustomTabHelpers.BrowserFallback;
+import com.github.dfa.diaspora_android.util.CustomTabHelpers.CustomTabActivityHelper;
 import com.github.dfa.diaspora_android.util.DiasporaUrlHelper;
 import com.github.dfa.diaspora_android.util.Helpers;
 import com.github.dfa.diaspora_android.util.Log;
@@ -114,6 +120,7 @@ public class MainActivity extends AppCompatActivity
     public static final int REQUEST_CODE__ACCESS_EXTERNAL_STORAGE = 124;
 
     public static final String ACTION_OPEN_URL = "com.github.dfa.diaspora_android.MainActivity.open_url";
+    public static final String ACTION_OPEN_EXTERNAL_URL = "com.github.dfa.diaspora_android.MainActivity.open_external_url";
     public static final String ACTION_CHANGE_ACCOUNT = "com.github.dfa.diaspora_android.MainActivity.change_account";
     public static final String ACTION_CLEAR_CACHE = "com.github.dfa.diaspora_android.MainActivity.clear_cache";
     public static final String ACTION_UPDATE_TITLE_FROM_URL = "com.github.dfa.diaspora_android.MainActivity.set_title";
@@ -126,12 +133,15 @@ public class MainActivity extends AppCompatActivity
     private ValueCallback<Uri[]> imageUploadFilePathCallbackNew;
     private ValueCallback<Uri> imageUploadFilePathCallbackOld;
     private String mCameraPhotoPath;
+    private CustomTabActivityHelper customTabActivityHelper;
     private WebSettings webSettings;
     private AppSettings appSettings;
     private DiasporaUrlHelper urls;
     private PodUserProfile podUserProfile;
     private final Handler uiHandler = new Handler();
     private CustomWebViewClient webViewClient;
+    private OpenExternalLinkReceiver brOpenExternalLink;
+    private BroadcastReceiver brSetTitle;
     private Snackbar snackbarExitApp;
     private Snackbar snackbarNewNotification;
     private Snackbar snackbarNoInternet;
@@ -189,6 +199,7 @@ public class MainActivity extends AppCompatActivity
         podUserProfile.setCallbackHandler(uiHandler);
         podUserProfile.setListener(this);
         urls = new DiasporaUrlHelper(appSettings);
+        customTabActivityHelper = new CustomTabActivityHelper();
 
         setupUI(savedInstanceState);
 
@@ -200,24 +211,42 @@ public class MainActivity extends AppCompatActivity
         } else if (appSettings.wasProxyEnabled()) {
             resetProxy();
         }
+
+        brOpenExternalLink = new OpenExternalLinkReceiver(this);
+        brSetTitle = new UpdateTitleReceiver(app, urls, new UpdateTitleReceiver.TitleCallback() {
+            @Override
+            public void setTitle(int rId) {
+                MainActivity.this.setTitle(rId);
+            }
+
+            @Override
+            public void setTitle(String title) {
+                MainActivity.this.setTitle(title);
+            }
+        });
     }
 
     private void setupUI(Bundle savedInstanceState) {
         Log.i(App.TAG, "MainActivity.setupUI()");
+        ButterKnife.bind(this);
+        if (webviewPlaceholder.getChildCount() != 0) {
+            Log.v(App.TAG, "remove child views from webViewPlaceholder");
+            webviewPlaceholder.removeAllViews();
+        } else {
+            Log.v(App.TAG, "webViewPlaceholder had no child views");
+        }
+
         boolean newWebView = (webView == null);
         if(newWebView) {
-            Log.v(App.TAG, "Webview was null. Create new one.");
+            Log.v(App.TAG, "WebView was null. Create new one.");
             View webviewHolder = getLayoutInflater().inflate(R.layout.webview, this.contentLayout, false);
-            webView = (ContextMenuWebView) webviewHolder.findViewById(R.id.webView);
+            this.webView = (ContextMenuWebView) webviewHolder.findViewById(R.id.webView);
             ((LinearLayout)webView.getParent()).removeView(webView);
             setupWebView(savedInstanceState);
         } else {
             Log.v(App.TAG, "Reuse old WebView to avoid reloading page");
         }
-        ButterKnife.bind(this);
-        if (webviewPlaceholder.getChildCount() != 0) {
-            webviewPlaceholder.removeAllViews();
-        }
+
         Log.v(App.TAG, "Add WebView to placeholder");
         webviewPlaceholder.addView(webView);
         // Setup toolbar
@@ -689,52 +718,24 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    /**
-     * BroadcastReceiver that updates the title of the activity based on which url is currently loaded
-     */
-    private final BroadcastReceiver brSetTitle = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String url = intent.getStringExtra(EXTRA_URL);
-            if (url != null && url.startsWith(urls.getPodUrl())) {
-                String subUrl = url.substring((urls.getPodUrl()).length());
-                Log.v(App.TAG, "MainActivity.brSetTitle.onReceive(): Set title for subUrl "+subUrl);
-                if (subUrl.startsWith(DiasporaUrlHelper.SUBURL_STREAM)) {
-                    setTitle(R.string.nav_stream);
-                } else if (subUrl.startsWith(DiasporaUrlHelper.SUBURL_POSTS)) {
-                    setTitle(R.string.diaspora);
-                } else if (subUrl.startsWith(DiasporaUrlHelper.SUBURL_NOTIFICATIONS)) {
-                    setTitle(R.string.notifications);
-                } else if (subUrl.startsWith(DiasporaUrlHelper.SUBURL_CONVERSATIONS)) {
-                    setTitle(R.string.conversations);
-                } else if (subUrl.startsWith(DiasporaUrlHelper.SUBURL_NEW_POST)) {
-                    setTitle(R.string.new_post);
-                } else if (subUrl.startsWith(DiasporaUrlHelper.SUBURL_PEOPLE + appSettings.getProfileId())) {
-                    setTitle(R.string.nav_profile);
-                } else if (subUrl.startsWith(DiasporaUrlHelper.SUBURL_ACTIVITY)) {
-                    setTitle(R.string.nav_activities);
-                } else if (subUrl.startsWith(DiasporaUrlHelper.SUBURL_LIKED)) {
-                    setTitle(R.string.nav_liked);
-                } else if (subUrl.startsWith(DiasporaUrlHelper.SUBURL_COMMENTED)) {
-                    setTitle(R.string.nav_commented);
-                } else if (subUrl.startsWith(DiasporaUrlHelper.SUBURL_MENTIONS)) {
-                    setTitle(R.string.nav_mentions);
-                } else if (subUrl.startsWith(DiasporaUrlHelper.SUBURL_PUBLIC)) {
-                    setTitle(R.string.public_);
-                } else if (urls.isAspectUrl(url)){
-                    setTitle(urls.getAspectNameFromUrl(url, app));
-                }
-            } else {
-                Log.w(App.TAG, "MainActivity.brSetTitle.onReceive(): Invalid url: "+url);
-            }
-        }
-    };
+    @Override
+    protected void onStart() {
+        super.onStart();
+        customTabActivityHelper.bindCustomTabsService(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        customTabActivityHelper.unbindCustomTabsService(this);
+    }
 
     @Override
     protected void onPause() {
         Log.v(App.TAG, "MainActivity.onPause()");
         Log.v(App.TAG, "Unregister BroadcastReceivers");
         LocalBroadcastManager.getInstance(this).unregisterReceiver(brSetTitle);
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(brOpenExternalLink);
         super.onPause();
     }
 
@@ -744,19 +745,20 @@ public class MainActivity extends AppCompatActivity
         super.onResume();
         Log.v(App.TAG, "Register BroadcastReceivers");
         LocalBroadcastManager.getInstance(this).registerReceiver(brSetTitle, new IntentFilter(ACTION_UPDATE_TITLE_FROM_URL));
+        LocalBroadcastManager.getInstance(this).registerReceiver(brOpenExternalLink, new IntentFilter(ACTION_OPEN_EXTERNAL_URL));
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         Log.v(App.TAG, "MainActivity.onCreateOptionsMenu()");
         getMenuInflater().inflate(R.menu.main__menu_top, menu);
-        return super.onCreateOptionsMenu(menu);
+        return true;
     }
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        Log.i(App.TAG, "MainActivity.onPrepareOptionsMenu()");
         MenuItem item;
+
         if ((item = menu.findItem(R.id.action_notifications)) != null) {
             LayerDrawable icon = (LayerDrawable) item.getIcon();
             BadgeDrawable.setBadgeCount(this, icon, podUserProfile.getNotificationCount());
