@@ -103,5 +103,4 @@
         Diaspora. In the permissions section you can grant the \"write storage permission\".</string>
     <string name="permission_denied">Permission denied.</string>
     <string name="permission_granted_try_again">Permission granted. Please try again.</string>
-
 </resources>

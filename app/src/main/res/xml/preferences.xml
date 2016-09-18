@@ -16,43 +16,43 @@
                 <CheckBoxPreference
                     android:defaultValue="true"
                     android:key="@string/pref_key__visibility_nav__profile"
-                    android:title="@string/nav_profile" />
+                    android:title="@string/nav_profile"/>
                 <CheckBoxPreference
                     android:defaultValue="true"
                     android:key="@string/pref_key__visibility_nav__followed_tags"
-                    android:title="@string/nav_followed_tags" />
+                    android:title="@string/nav_followed_tags"/>
                 <CheckBoxPreference
                     android:defaultValue="true"
                     android:key="@string/pref_key__visibility_nav__aspects"
-                    android:title="@string/nav_aspects" />
+                    android:title="@string/nav_aspects"/>
                 <CheckBoxPreference
                     android:defaultValue="false"
                     android:key="@string/pref_key__visibility_nav__activities"
-                    android:title="@string/nav_activities" />
+                    android:title="@string/nav_activities"/>
                 <CheckBoxPreference
                     android:defaultValue="true"
                     android:key="@string/pref_key__visibility_nav__liked"
-                    android:title="@string/nav_liked" />
+                    android:title="@string/nav_liked"/>
                 <CheckBoxPreference
                     android:defaultValue="true"
                     android:key="@string/pref_key__visibility_nav__commented"
-                    android:title="@string/nav_commented" />
+                    android:title="@string/nav_commented"/>
                 <CheckBoxPreference
                     android:defaultValue="false"
                     android:key="@string/pref_key__visibility_nav__mentions"
-                    android:title="@string/nav_mentions" />
+                    android:title="@string/nav_mentions"/>
                 <CheckBoxPreference
                     android:defaultValue="false"
                     android:key="@string/pref_key__visibility_nav__public_activities"
-                    android:title="@string/nav_public_activities" />
+                    android:title="@string/nav_public_activities"/>
                 <CheckBoxPreference
                     android:defaultValue="false"
                     android:key="@string/pref_key__visibility_nav__exit"
-                    android:title="@string/action_exit_app" />
+                    android:title="@string/action_exit_app"/>
                 <CheckBoxPreference
                     android:defaultValue="true"
                     android:key="@string/pref_key__visibility_nav__help_license"
-                    android:title="@string/nav_help_license" />
+                    android:title="@string/nav_help_license"/>
 
             </PreferenceCategory>
         </PreferenceScreen>
@@ -63,19 +63,25 @@
             android:entryValues="@array/pref_entries_values__font_size"
             android:key="@string/pref_key__font_size"
             android:summary="%s"
-            android:title="@string/pref_title__font_size" />
+            android:title="@string/pref_title__font_size"/>
 
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="@string/pref_key__intellihide_toolbars"
             android:summary="@string/pref_desc__intellihide_toolbars"
-            android:title="@string/pref_title__intellihide_toolbars" />
+            android:title="@string/pref_title__intellihide_toolbars"/>
 
         <CheckBoxPreference
             android:defaultValue="true"
             android:key="@string/pref_key__append_shared_via_app"
             android:summary="@string/pref_desc__append_shared_via_app"
-            android:title="@string/pref_title__append_shared_via_app" />
+            android:title="@string/pref_title__append_shared_via_app"/>
+
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="@string/pref_key__chrome_custom_tabs_enabled"
+            android:summary="@string/pref_desc__chrome_custom_tabs_enabled"
+            android:title="@string/pref_title__chrome_custom_tabs_enabled"/>
 
     </PreferenceCategory>
 
@@ -86,22 +92,22 @@
         <Preference
             android:key="@string/pref_key__personal_settings"
             android:summary="@string/pref_desc__personal_settings"
-            android:title="@string/pref_title__personal_settings" />
+            android:title="@string/pref_title__personal_settings"/>
 
         <Preference
             android:key="@string/pref_key__manage_tags"
             android:summary="@string/pref_desc__manage_tags"
-            android:title="@string/pref_title__manage_tags" />
+            android:title="@string/pref_title__manage_tags"/>
 
         <Preference
             android:key="@string/pref_key__manage_contacts"
             android:summary="@string/pref_desc__manage_contacts"
-            android:title="@string/pref_title__manage_contacts" />
+            android:title="@string/pref_title__manage_contacts"/>
 
         <Preference
             android:key="@string/pref_key__change_account"
             android:summary="@string/pref_desc__change_account"
-            android:title="@string/pref_title__change_account" />
+            android:title="@string/pref_title__change_account"/>
     </PreferenceCategory>
 
     <!-- Networking -->
@@ -112,27 +118,27 @@
             android:defaultValue="true"
             android:key="@string/pref_key__load_images"
             android:summary="@string/pref_desc__load_images"
-            android:title="@string/pref_title__load_images" />
+            android:title="@string/pref_title__load_images"/>
 
         <Preference
             android:key="@string/pref_key__clear_cache"
             android:summary="@string/pref_desc__clear_cache"
-            android:title="@string/pref_title__clear_cache" />
+            android:title="@string/pref_title__clear_cache"/>
 
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="@string/pref_key__proxy_enabled"
             android:summary="@string/pref_desc__proxy_enabled"
-            android:title="@string/pref_title__proxy_enabled" />
+            android:title="@string/pref_title__proxy_enabled"/>
         <EditTextPreference
             android:dependency="@string/pref_key__proxy_enabled"
             android:inputType="textNoSuggestions"
             android:key="@string/pref_key__proxy_host"
-            android:title="@string/pref_title__proxy_host" />
+            android:title="@string/pref_title__proxy_host"/>
         <EditTextPreference
             android:dependency="@string/pref_key__proxy_enabled"
             android:inputType="number"
             android:key="@string/pref_key__proxy_port"
-            android:title="@string/pref_title__proxy_port" />
+            android:title="@string/pref_title__proxy_port"/>
     </PreferenceCategory>
 </PreferenceScreen>

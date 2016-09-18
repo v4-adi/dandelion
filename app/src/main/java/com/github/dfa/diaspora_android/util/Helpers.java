@@ -21,10 +21,11 @@ package com.github.dfa.diaspora_android.util;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import com.github.dfa.diaspora_android.util.Log;
 
 import com.github.dfa.diaspora_android.App;
 import com.github.dfa.diaspora_android.R;
@@ -37,7 +38,6 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Locale;
-import java.util.Objects;
 
 public class Helpers {
 
@@ -48,6 +48,15 @@ public class Helpers {
         from.overridePendingTransition(R.anim.fadein, R.anim.fadeout);
         if (finishFromActivity) {
             from.finish();
+        }
+    }
+
+    public static int getColorFromRessource(Context context, int ressourceId) {
+        Resources res = context.getResources();
+        if (Build.VERSION.SDK_INT >= 23) {
+            return res.getColor(ressourceId, context.getTheme());
+        } else {
+            return res.getColor(ressourceId);
         }
     }
 
@@ -66,9 +75,9 @@ public class Helpers {
         Log.d(App.TAG, Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath());
         File storageDir = Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_PICTURES);
-        return new File (
+        return new File(
                 imageFileName +  /* prefix */
-                ".jpg",         /* suffix */
+                        ".jpg",         /* suffix */
                 storageDir.getAbsolutePath()      /* directory */
         );
     }
@@ -100,22 +109,22 @@ public class Helpers {
         return sb.toString();
     }
 
-    public static String hexColorFromRessourceColor(Context context, int idColor){
+    public static String hexColorFromRessourceColor(Context context, int idColor) {
         return "#" + Integer.toHexString(context.getResources().getColor(idColor) & 0x00ffffff);
     }
 
     public static void printBundle(Bundle savedInstanceState, String k) {
-        if(savedInstanceState != null) {
+        if (savedInstanceState != null) {
             for (String key : savedInstanceState.keySet()) {
-                Log.d("SAVED", key + " is a key in the bundle "+k);
+                Log.d("SAVED", key + " is a key in the bundle " + k);
                 Object bun = savedInstanceState.get(key);
-                if(bun != null) {
+                if (bun != null) {
                     if (bun instanceof Bundle) {
                         printBundle((Bundle) bun, k + "." + key);
                     } else if (bun instanceof byte[]) {
-                        Log.d("SAVED", "Key: "+k + "." + key+": "+ Arrays.toString((byte[])bun));
+                        Log.d("SAVED", "Key: " + k + "." + key + ": " + Arrays.toString((byte[]) bun));
                     } else {
-                        Log.d("SAVED", "Key: "+k + "." + key+": "+ bun.toString());
+                        Log.d("SAVED", "Key: " + k + "." + key + ": " + bun.toString());
                     }
                 }
             }
