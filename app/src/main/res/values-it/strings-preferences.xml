@@ -4,6 +4,7 @@
   <!-- Key Names (Untranslatable) -->
   <!-- Navigiation Slider -->
   <!-- PodProfile -->
+  <!-- More -->
   <!-- Category Titles -->
   <string name="pref_cat__visuals">Aspetto</string>
   <string name="pref_cat__network">Rete</string>
@@ -24,6 +25,7 @@
   <string name="pref_desc__proxy_enabled">Traffico del proxy di Diaspora per bypassare i firewall.\nPuò essere necessario il riavvio dell\'app</string>
   <string name="pref_title__proxy_host">Host</string>
   <string name="pref_title__proxy_port">Porta</string>
+  <!-- Chrome custom tabs -->
   <!-- Diaspora Settings -->
   <string name="pref_title__personal_settings">Impostazioni personali</string>
   <string name="pref_desc__personal_settings">Apri le impostazioni del tuo account Diaspora</string>
@@ -40,5 +42,6 @@
   <string name="pref_title__intellihide_toolbars">Barre che si nascondono intelligentemente</string>
   <string name="pref_title__append_shared_via_app">Aggiungi avviso dell\'app</string>
   <string name="pref_desc__append_shared_via_app">Aggiunge un riferimento a quest\'app (\"Condiviso da&#8230;\") nei testi condivisi</string>
+  <!-- More -->
   <!-- Recently added - Please move to right section-->
 </resources>

@@ -4,6 +4,7 @@
   <!-- Key Names (Untranslatable) -->
   <!-- Navigiation Slider -->
   <!-- PodProfile -->
+  <!-- More -->
   <!-- Category Titles -->
   <string name="pref_cat__visuals">Aspecto</string>
   <string name="pref_cat__network">Red</string>
@@ -24,6 +25,7 @@
   <string name="pref_desc__proxy_enabled">El tráfico proxificado de Diaspora para evitar firewalls.\nPuede necesitar reiniciarse</string>
   <string name="pref_title__proxy_host">Anfitrión</string>
   <string name="pref_title__proxy_port">Puerto</string>
+  <!-- Chrome custom tabs -->
   <!-- Diaspora Settings -->
   <string name="pref_title__personal_settings">Configuración personal</string>
   <string name="pref_title__manage_contacts">Contactos</string>
@@ -39,5 +41,6 @@
   <string name="pref_title__intellihide_toolbars">Barras de herramientas Intellihide</string>
   <string name="pref_title__append_shared_via_app">Añadir compartido por aviso</string>
   <string name="pref_desc__append_shared_via_app">Agregar una referencia a esta aplicación (\"compartida por&#8230;\") a los textos compartidos</string>
+  <!-- More -->
   <!-- Recently added - Please move to right section-->
 </resources>

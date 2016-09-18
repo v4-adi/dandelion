@@ -10,6 +10,8 @@ import android.support.customtabs.CustomTabsService;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.github.dfa.diaspora_android.util.AppLog;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -107,7 +109,7 @@ public class CustomTabsHelper {
                 return true;
             }
         } catch (RuntimeException e) {
-            Log.e(TAG, "Runtime exception while getting specialized handlers");
+           AppLog.e(TAG, "Runtime exception while getting specialized handlers");
         }
         return false;
     }

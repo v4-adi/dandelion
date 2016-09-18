@@ -4,6 +4,7 @@
   <!-- Key Names (Untranslatable) -->
   <!-- Navigiation Slider -->
   <!-- PodProfile -->
+  <!-- More -->
   <!-- Category Titles -->
   <string name="pref_cat__visuals">Apparence</string>
   <string name="pref_cat__network">Paramètres du réseau</string>
@@ -24,6 +25,7 @@
   <string name="pref_desc__proxy_enabled">Serveur Proxy.\n(Nécessite un redémarrage)</string>
   <string name="pref_title__proxy_host">Hôte</string>
   <string name="pref_title__proxy_port">Port</string>
+  <!-- Chrome custom tabs -->
   <!-- Diaspora Settings -->
   <string name="pref_title__personal_settings">Paramètres personnels</string>
   <string name="pref_desc__personal_settings">Ouvrir vos paramètres de compte diaspora</string>
@@ -40,5 +42,6 @@
   <string name="pref_title__intellihide_toolbars">Masquage intelligent des barres d\'outils</string>
   <string name="pref_title__append_shared_via_app">Ajoutez \"partagé via …\" aux partages</string>
   <string name="pref_desc__append_shared_via_app">Ajoutez une référence à l\'application (« partagée via &#8230;\") aux textes partagés</string>
+  <!-- More -->
   <!-- Recently added - Please move to right section-->
 </resources>

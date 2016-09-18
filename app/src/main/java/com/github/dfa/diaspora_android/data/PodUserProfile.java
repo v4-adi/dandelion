@@ -19,6 +19,8 @@
 package com.github.dfa.diaspora_android.data;
 
 import android.os.Handler;
+
+import com.github.dfa.diaspora_android.util.AppLog;
 import com.github.dfa.diaspora_android.util.Log;
 
 import com.github.dfa.diaspora_android.App;
@@ -126,7 +128,7 @@ public class PodUserProfile {
 
             isWebUserProfileLoaded = true;
         } catch (JSONException e) {
-            Log.d(App.TAG, e.getMessage());
+           AppLog.d(this, e.getMessage());
             isWebUserProfileLoaded = false;
         }
         lastLoaded = System.currentTimeMillis();

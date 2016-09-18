@@ -9,6 +9,7 @@
   <string name="fragment_debug__section_device">Gerät</string>
   <string name="fragment_debug__section_pod">Diaspora Pod</string>
   <string name="fragment_debug__section_log">Debug-Protokoll</string>
+  <string name="fragment_debug__section_log_spam">Debug-Protokoll (Verbose)</string>
   <string name="fragment_debug__app_version">App Version: %1$s</string>
   <string name="fragment_debug__package_name">Paketname: %1$s</string>
   <string name="fragment_debug__android_version">Android Version: %1$s</string>

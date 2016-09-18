@@ -13,6 +13,7 @@ import com.github.dfa.diaspora_android.App;
 import com.github.dfa.diaspora_android.R;
 import com.github.dfa.diaspora_android.activity.MainActivity;
 import com.github.dfa.diaspora_android.data.AppSettings;
+import com.github.dfa.diaspora_android.util.AppLog;
 import com.github.dfa.diaspora_android.util.CustomTabHelpers.BrowserFallback;
 import com.github.dfa.diaspora_android.util.CustomTabHelpers.CustomTabActivityHelper;
 import com.github.dfa.diaspora_android.util.Helpers;
@@ -33,14 +34,14 @@ public class OpenExternalLinkReceiver extends BroadcastReceiver {
     public void onReceive(Context c, Intent receiveIntent) {
         AppSettings settings = new AppSettings(c);
 
-        Log.v(App.TAG, "OpenExternalLinkReceiver.onReceive(): url");
+       AppLog.v(this, "OpenExternalLinkReceiver.onReceive(): url");
 
         Uri url = null;
         try {
             String sUrl = receiveIntent.getStringExtra(MainActivity.EXTRA_URL);
             url = Uri.parse(sUrl);
         } catch (Exception _ignored) {
-            Log.v(App.TAG, "Could not open Chrome Custom Tab (bad URL)");
+           AppLog.v(this, "Could not open Chrome Custom Tab (bad URL)");
             return;
         }
 

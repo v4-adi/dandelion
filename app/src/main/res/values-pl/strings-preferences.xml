@@ -4,6 +4,7 @@
   <!-- Key Names (Untranslatable) -->
   <!-- Navigiation Slider -->
   <!-- PodProfile -->
+  <!-- More -->
   <!-- Category Titles -->
   <string name="pref_cat__visuals">Wygląd</string>
   <string name="pref_cat__network">Sieć</string>
@@ -17,6 +18,7 @@
   <string name="pref_title__load_images">Załaduj obrazy</string>
   <!-- Proxy -->
   <string name="pref_title__proxy_enabled">Włącz serwer Proxy</string>
+  <!-- Chrome custom tabs -->
   <!-- Diaspora Settings -->
   <string name="pref_title__personal_settings">Ustawienia osobiste</string>
   <string name="pref_title__manage_contacts">Kontakty</string>
@@ -27,5 +29,6 @@
   <string name="pref_title__clear_cache">Wyczyść pamięć podręczną</string>
   <string name="pref_desc__clear_cache">Wyczyść pamięć podręczną WebView</string>
   <string name="pref_desc__intellihide_toolbars">Automatycznie ukryj paski narzędzi na górze i na dole podczas przewijania</string>
+  <!-- More -->
   <!-- Recently added - Please move to right section-->
 </resources>

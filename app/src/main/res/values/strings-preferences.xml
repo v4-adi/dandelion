@@ -14,7 +14,7 @@
     <string name="pref_catkey__network" translatable="false">pref_key_category_network</string>
     <string name="pref_key__load_images" translatable="false">pref_key_load_images</string>
     <string name="pref_key__clear_cache" translatable="false">pref_key_clear_cache</string>
-    <string name="pref_key__chrome_custom_tabs_enabled">pref_key__chrome_custom_tabs_enabled</string>
+    <string name="pref_key__chrome_custom_tabs_enabled" translatable="false">pref_key__chrome_custom_tabs_enabled</string>
 
     <string name="pref_key__append_shared_via_app" translatable="false">pref_key_append_shared_via_app</string>
     <string name="pref_key__proxy_enabled" translatable="false">pref_key_proxy_enabled</string>
@@ -35,7 +35,6 @@
     <string name="pref_key__visibility_nav__followed_tags" translatable="false">pref_key__visibility_nav__followed_tags</string>
     <string name="pref_key__visibility_nav__profile" translatable="false">pref_key__visibility_nav__profile</string>
 
-
     <!-- PodProfile -->
     <string name="pref_key__podprofile_avatar_url" translatable="false">podUserProfile_avatar</string>
     <string name="pref_key__podprofile_name" translatable="false">podUserProfile_name</string>
@@ -45,11 +44,16 @@
     <string name="pref_key__podprofile_unread_message_count" translatable="false">podUserProfile_unreadMessageCount</string>
     <string name="pref_key__podprofile_notification_count" translatable="false">podUserProfile_NotificationCount</string>
 
+    <!-- More -->
+    <string name="pref_catkey__category_more" translatable="false">pref_catkey__category_more</string>
+    <string name="pref_key__logging_spam_enabled" translatable="false">pref_key__logging_spam_enabled</string>
+    <string name="pref_key__logging_enabled" translatable="false">pref_key__logging_enabled</string>
 
     <!-- Category Titles -->
     <string name="pref_cat__visuals">Appearance</string>
     <string name="pref_cat__network">Network</string>
     <string name="pref_cat__pod_settings">Pod settings</string>
+    <string name="pref_cat__more" translatable="false">@string/nav_menu_more</string>
 
     <!-- Visuals -->
     <!-- Navigiation Slider -->
@@ -110,5 +114,14 @@
 
     <string name="pref_title__append_shared_via_app">Append shared-by-notice</string>
     <string name="pref_desc__append_shared_via_app">Append a reference to this app ("shared by…") to shared texts</string>
+
+    <!-- More -->
+    <string name="pref_title__sub_logging" translatable="false">@string/about_activity__title_debug_info</string>
+    <string name="pref_desc__sub_logging" translatable="false">@string/fragment_debug__section_log</string>
+
+    <string name="pref_title__logging_enabled" translatable="false">@string/fragment_debug__section_log</string>
+    <string name="pref_title__logging_spam_enabled" translatable="false">@string/fragment_debug__section_log_spam</string>
+
+
     <!-- Recently added - Please move to right section-->
 </resources>

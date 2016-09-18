@@ -4,6 +4,7 @@
   <!-- Key Names (Untranslatable) -->
   <!-- Navigiation Slider -->
   <!-- PodProfile -->
+  <!-- More -->
   <!-- Category Titles -->
   <!-- Visuals -->
   <!-- Navigiation Slider -->
@@ -11,6 +12,8 @@
   <!-- prefix 's' is needed to make this a string array. Otherwise ListPreference would crash -->
   <!-- Load images -->
   <!-- Proxy -->
+  <!-- Chrome custom tabs -->
   <!-- Diaspora Settings -->
+  <!-- More -->
   <!-- Recently added - Please move to right section-->
 </resources>

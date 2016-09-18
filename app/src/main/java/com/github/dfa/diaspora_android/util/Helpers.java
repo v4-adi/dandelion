@@ -72,7 +72,7 @@ public class Helpers {
         // Create an image file name
         String timeStamp = new SimpleDateFormat("dd-MM-yy_HH-mm", Locale.getDefault()).format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
-        Log.d(App.TAG, Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath());
+       AppLog.d(Helpers.class, Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath());
         File storageDir = Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_PICTURES);
         return new File(
@@ -116,15 +116,15 @@ public class Helpers {
     public static void printBundle(Bundle savedInstanceState, String k) {
         if (savedInstanceState != null) {
             for (String key : savedInstanceState.keySet()) {
-                Log.d("SAVED", key + " is a key in the bundle " + k);
+               AppLog.d("SAVED", key + " is a key in the bundle " + k);
                 Object bun = savedInstanceState.get(key);
                 if (bun != null) {
                     if (bun instanceof Bundle) {
                         printBundle((Bundle) bun, k + "." + key);
                     } else if (bun instanceof byte[]) {
-                        Log.d("SAVED", "Key: " + k + "." + key + ": " + Arrays.toString((byte[]) bun));
+                       AppLog.d("SAVED", "Key: " + k + "." + key + ": " + Arrays.toString((byte[]) bun));
                     } else {
-                        Log.d("SAVED", "Key: " + k + "." + key + ": " + bun.toString());
+                       AppLog.d("SAVED", "Key: " + k + "." + key + ": " + bun.toString());
                     }
                 }
             }

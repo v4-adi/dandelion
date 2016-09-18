@@ -260,6 +260,14 @@ public class AppSettings {
         return getBoolean(prefApp, R.string.pref_key__chrome_custom_tabs_enabled, true);
     }
 
+    public boolean isLoggingEnabled() {
+        return getBoolean(prefApp, R.string.pref_key__logging_enabled, true);
+    }
+
+    public boolean isLoggingSpamEnabled() {
+        return getBoolean(prefApp, R.string.pref_key__logging_spam_enabled, false);
+    }
+
     public boolean isVisibleInNavExit() {
         return getBoolean(prefApp, R.string.pref_key__visibility_nav__exit, false);
     }

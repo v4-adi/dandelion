@@ -23,9 +23,8 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.IBinder;
 import android.support.v4.content.LocalBroadcastManager;
-import com.github.dfa.diaspora_android.util.Log;
 
-import com.github.dfa.diaspora_android.App;
+import com.github.dfa.diaspora_android.util.AppLog;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -43,7 +42,6 @@ import info.guardianproject.netcipher.NetCipher;
 
 public class GetPodsService extends Service {
     public static final String MESSAGE_PODS_RECEIVED = "com.github.dfa.diaspora.podsreceived";
-    private static final String TAG = App.TAG;
 
     public GetPodsService() {
     }
@@ -92,7 +90,7 @@ public class GetPodsService extends Service {
 
                         connection.disconnect();
                     } else {
-                        Log.e(TAG, "Failed to download list of pods");
+                        AppLog.e(this, "Failed to download list of pods");
                     }
                 } catch (IOException e) {
                     //TODO handle json buggy feed
@@ -102,7 +100,7 @@ public class GetPodsService extends Service {
                 try {
                     JSONObject jsonObjectAll = new JSONObject(builder.toString());
                     JSONArray jsonArrayAll = jsonObjectAll.getJSONArray("pods");
-                    Log.d(TAG, "Number of entries " + jsonArrayAll.length());
+                    AppLog.d(this, "Number of entries " + jsonArrayAll.length());
                     list = new ArrayList<>();
                     for (int i = 0; i < jsonArrayAll.length(); i++) {
                         JSONObject jo = jsonArrayAll.getJSONObject(i);

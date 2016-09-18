@@ -52,13 +52,13 @@ public class CustomWebViewClient extends WebViewClient {
 
         final CookieManager cookieManager = app.getCookieManager();
         String cookies = cookieManager.getCookie(url);
-        //Log.d(App.TAG, "All the cookies in a string:" + cookies);
+        //Log.d(this, "All the cookies in a string:" + cookies);
 
         if (cookies != null) {
             cookieManager.setCookie(url, cookies);
             cookieManager.setCookie("https://" + app.getSettings().getPodDomain(), cookies);
             //for (String c : cookies.split(";")) {
-            // Log.d(App.TAG, "Cookie: " + c.split("=")[0] + " Value:" + c.split("=")[1]);
+            //AppLog.d(this, "Cookie: " + c.split("=")[0] + " Value:" + c.split("=")[1]);
             //}
             //new ProfileFetchTask(app).execute();
         }

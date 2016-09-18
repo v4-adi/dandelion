@@ -4,6 +4,7 @@
   <!-- Key Names (Untranslatable) -->
   <!-- Navigiation Slider -->
   <!-- PodProfile -->
+  <!-- More -->
   <!-- Category Titles -->
   <string name="pref_cat__visuals">Erscheinungsbild</string>
   <string name="pref_cat__network">Netzwerk</string>
@@ -24,6 +25,9 @@
   <string name="pref_desc__proxy_enabled">Nutze einen Proxyserver, um Firewalls zu umgehen</string>
   <string name="pref_title__proxy_host">Host</string>
   <string name="pref_title__proxy_port">Port</string>
+  <!-- Chrome custom tabs -->
+  <string name="pref_title__chrome_custom_tabs_enabled">Chrome Custom Tabs</string>
+  <string name="pref_desc__chrome_custom_tabs_enabled">Externe Links mit Chrome Custom Tabs öffnen. Für dieses Feature muss Chromium oder Google Chrome installiert sein</string>
   <!-- Diaspora Settings -->
   <string name="pref_title__personal_settings">Persönliche Einstellungen</string>
   <string name="pref_desc__personal_settings">Öffne die Einstellungen deines Diaspora Accounts</string>
@@ -40,5 +44,6 @@
   <string name="pref_title__intellihide_toolbars">Werkzeugleisten intelligent verstecken</string>
   <string name="pref_title__append_shared_via_app">Verweise auf App</string>
   <string name="pref_desc__append_shared_via_app">Füge beim Teilen von Texten einen Verweis auf diese App an (\"geteilt durch&#8230;\")</string>
+  <!-- More -->
   <!-- Recently added - Please move to right section-->
 </resources>

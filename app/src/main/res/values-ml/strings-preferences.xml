@@ -4,6 +4,7 @@
   <!-- Key Names (Untranslatable) -->
   <!-- Navigiation Slider -->
   <!-- PodProfile -->
+  <!-- More -->
   <!-- Category Titles -->
   <string name="pref_cat__visuals">കാഴ്ച്ച</string>
   <string name="pref_cat__network">ശൃങ്കല</string>
@@ -24,6 +25,7 @@
   <string name="pref_desc__proxy_enabled">ഫയർവാളുകളെ മറികടക്കാൻ ഡയസ്പോറ ട്രാഫിക് പ്രോക്സി ചെയ്യൂ.\nപുനരാരംഭിക്കേണ്ടി വന്നേക്കാം</string>
   <string name="pref_title__proxy_host">ആഥിതേയൻ</string>
   <string name="pref_title__proxy_port">പോർട്ട്</string>
+  <!-- Chrome custom tabs -->
   <!-- Diaspora Settings -->
   <string name="pref_title__personal_settings">സ്വകാര്യ സജ്ജീകരണങ്ങൾ</string>
   <string name="pref_title__manage_contacts">ബന്ധങ്ങൾ</string>
@@ -39,5 +41,6 @@
   <string name="pref_title__intellihide_toolbars">ടൂൾബാറുകൾ ഇന്റലിഹൈഡ് ചെയ്യുക</string>
   <string name="pref_title__append_shared_via_app">അറിയിപ്പാൽ പങ്കുവച്ചത് എന്ന് കൂട്ടിച്ചേർക്കുക</string>
   <string name="pref_desc__append_shared_via_app">പങ്കുവയ്ക്കുന്ന വാചകങ്ങളിൽ ഈ പ്രയോഗത്തിന്റെ അവലംബം(\"&#8230;പങ്കുവച്ചത്\") എന്ന് കൂട്ടിച്ചേർക്കുക</string>
+  <!-- More -->
   <!-- Recently added - Please move to right section-->
 </resources>

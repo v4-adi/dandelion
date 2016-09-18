@@ -4,6 +4,7 @@
   <!-- Key Names (Untranslatable) -->
   <!-- Navigiation Slider -->
   <!-- PodProfile -->
+  <!-- More -->
   <!-- Category Titles -->
   <string name="pref_cat__visuals">外観</string>
   <string name="pref_cat__network">ネットワーク</string>
@@ -24,6 +25,7 @@
   <string name="pref_desc__proxy_enabled">Diaspora の通信をプロキシして、ファイアウォールに回避します。\n再起動が必要になることがあります</string>
   <string name="pref_title__proxy_host">ホスト</string>
   <string name="pref_title__proxy_port">ポート</string>
+  <!-- Chrome custom tabs -->
   <!-- Diaspora Settings -->
   <string name="pref_title__personal_settings">個人用設定</string>
   <string name="pref_desc__personal_settings">Diaspora アカウント設定を開きます</string>
@@ -40,5 +42,6 @@
   <string name="pref_title__intellihide_toolbars">Intellihide ツールバー</string>
   <string name="pref_title__append_shared_via_app">共有方法の通知を追加</string>
   <string name="pref_desc__append_shared_via_app">共有テキストに、このアプリへの参照 (\"&#8230;で共有\") を追加します</string>
+  <!-- More -->
   <!-- Recently added - Please move to right section-->
 </resources>

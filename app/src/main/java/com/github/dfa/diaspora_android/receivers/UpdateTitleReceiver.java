@@ -8,8 +8,8 @@ import com.github.dfa.diaspora_android.App;
 import com.github.dfa.diaspora_android.R;
 import com.github.dfa.diaspora_android.activity.MainActivity;
 import com.github.dfa.diaspora_android.data.AppSettings;
+import com.github.dfa.diaspora_android.util.AppLog;
 import com.github.dfa.diaspora_android.util.DiasporaUrlHelper;
-import com.github.dfa.diaspora_android.util.Log;
 
 /**
  * BroadcastReceiver used to update the title of the MainActivity depending on the url of the webview
@@ -17,7 +17,7 @@ import com.github.dfa.diaspora_android.util.Log;
  */
 public class UpdateTitleReceiver extends BroadcastReceiver {
     private DiasporaUrlHelper urls;
-    private  AppSettings appSettings;
+    private AppSettings appSettings;
     private App app;
     private TitleCallback callback;
 
@@ -33,7 +33,7 @@ public class UpdateTitleReceiver extends BroadcastReceiver {
         String url = intent.getStringExtra(MainActivity.EXTRA_URL);
         if (url != null && url.startsWith(urls.getPodUrl())) {
             String subUrl = url.substring((urls.getPodUrl()).length());
-            Log.v(App.TAG, "UpdateTitleReceiver.onReceive(): Set title for subUrl "+subUrl);
+            AppLog.spam(this, "onReceive()- Set title for subUrl " + subUrl);
             if (subUrl.startsWith(DiasporaUrlHelper.SUBURL_STREAM)) {
                 setTitle(R.string.nav_stream);
             } else if (subUrl.startsWith(DiasporaUrlHelper.SUBURL_POSTS)) {
@@ -56,11 +56,11 @@ public class UpdateTitleReceiver extends BroadcastReceiver {
                 setTitle(R.string.nav_mentions);
             } else if (subUrl.startsWith(DiasporaUrlHelper.SUBURL_PUBLIC)) {
                 setTitle(R.string.public_);
-            } else if (urls.isAspectUrl(url)){
+            } else if (urls.isAspectUrl(url)) {
                 setTitle(urls.getAspectNameFromUrl(url, app));
             }
         } else {
-            Log.w(App.TAG, "UpdateTitleReceiver.onReceive(): Invalid url: "+url);
+            AppLog.spam(this, "onReceive()- Invalid url: " + url);
         }
     }
 
@@ -74,6 +74,7 @@ public class UpdateTitleReceiver extends BroadcastReceiver {
 
     public interface TitleCallback {
         void setTitle(int Rid);
+
         void setTitle(String title);
     }
 }

@@ -34,6 +34,8 @@ import android.view.MenuItem;
 
 import com.github.dfa.diaspora_android.App;
 import com.github.dfa.diaspora_android.R;
+import com.github.dfa.diaspora_android.data.AppSettings;
+import com.github.dfa.diaspora_android.util.AppLog;
 
 /**
  * @author vanitas
@@ -45,14 +47,13 @@ public class SettingsActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActionBar toolbar = getSupportActionBar();
-        if(toolbar != null)
+        if (toolbar != null)
             toolbar.setDisplayHomeAsUpEnabled(true);
         getFragmentManager().beginTransaction().replace(android.R.id.content, new SettingsFragment()).commit();
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem menuItem)
-    {
+    public boolean onOptionsItemSelected(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case android.R.id.home:
                 onBackPressed();
@@ -93,7 +94,7 @@ public class SettingsActivity extends AppCompatActivity {
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
             updatePreference(findPreference(key));
-            if(key != null && isAdded() && (key.equals(getString(R.string.pref_key__clear_cache)) ||
+            if (key != null && isAdded() && (key.equals(getString(R.string.pref_key__clear_cache)) ||
                     key.equals(getString(R.string.pref_key__font_size)) ||
                     key.equals(getString(R.string.pref_key__load_images)) ||
                     key.equals(getString(R.string.pref_key__intellihide_toolbars)) ||
@@ -157,6 +158,7 @@ public class SettingsActivity extends AppCompatActivity {
                             .show();
                     return true;
                 }
+
                 default: {
                     intent = null;
                     break;
@@ -169,6 +171,16 @@ public class SettingsActivity extends AppCompatActivity {
             }
             return super.onPreferenceTreeClick(screen, preference);
         }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        // Reset logging
+        AppSettings settings = new AppSettings(getApplicationContext());
+        AppLog.setLoggingEnabled(settings.isLoggingEnabled());
+        AppLog.setLoggingSpamEnabled(settings.isLoggingSpamEnabled());
     }
 
     @Override

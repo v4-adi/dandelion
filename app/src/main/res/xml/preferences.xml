@@ -141,4 +141,27 @@
             android:key="@string/pref_key__proxy_port"
             android:title="@string/pref_title__proxy_port"/>
     </PreferenceCategory>
+
+    <!-- More -->
+    <PreferenceCategory
+        android:key="@string/pref_catkey__category_more"
+        android:title="@string/pref_cat__more">
+
+        <PreferenceScreen
+            android:summary="@string/pref_desc__sub_logging"
+            android:title="@string/pref_title__sub_logging">
+
+            <CheckBoxPreference
+                android:defaultValue="true"
+                android:key="@string/pref_key__logging_enabled"
+                android:title="@string/pref_title__logging_enabled"/>
+            <CheckBoxPreference
+                android:defaultValue="true"
+                android:key="@string/pref_key__logging_spam_enabled"
+                android:title="@string/pref_title__logging_spam_enabled"/>
+
+
+        </PreferenceScreen>
+
+    </PreferenceCategory>
 </PreferenceScreen>

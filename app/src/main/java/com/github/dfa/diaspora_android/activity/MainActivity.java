@@ -26,8 +26,6 @@ import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
-import android.graphics.drawable.LayerDrawable;
-import android.support.v4.view.MenuItemCompat;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -35,7 +33,7 @@ import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.graphics.drawable.LayerDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -44,7 +42,6 @@ import android.os.Handler;
 import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
-import android.support.customtabs.CustomTabsIntent;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -86,11 +83,10 @@ import com.github.dfa.diaspora_android.receivers.UpdateTitleReceiver;
 import com.github.dfa.diaspora_android.ui.BadgeDrawable;
 import com.github.dfa.diaspora_android.ui.ContextMenuWebView;
 import com.github.dfa.diaspora_android.ui.CustomWebViewClient;
-import com.github.dfa.diaspora_android.util.CustomTabHelpers.BrowserFallback;
+import com.github.dfa.diaspora_android.util.AppLog;
 import com.github.dfa.diaspora_android.util.CustomTabHelpers.CustomTabActivityHelper;
 import com.github.dfa.diaspora_android.util.DiasporaUrlHelper;
 import com.github.dfa.diaspora_android.util.Helpers;
-import com.github.dfa.diaspora_android.util.Log;
 import com.github.dfa.diaspora_android.util.WebHelper;
 
 import org.json.JSONException;
@@ -188,14 +184,15 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d(App.TAG, "onCreate()");
+        AppLog.v(this, "onCreate()");
 
         // Bind UI
         setContentView(R.layout.main__activity);
 
-        if ((app = (App) getApplication()) == null) Log.e(App.TAG, "App is null!");
-        if ((appSettings = app.getSettings()) == null) Log.e(App.TAG, "AppSettings is null!");
-        if ((podUserProfile = app.getPodUserProfile()) == null) Log.e(App.TAG, "PodUserProfile is null!");
+        if ((app = (App) getApplication()) == null) AppLog.e(this, "App is null!");
+        if ((appSettings = app.getSettings()) == null) AppLog.e(this, "AppSettings is null!");
+        if ((podUserProfile = app.getPodUserProfile()) == null)
+            AppLog.e(this, "PodUserProfile is null!");
         podUserProfile.setCallbackHandler(uiHandler);
         podUserProfile.setListener(this);
         urls = new DiasporaUrlHelper(appSettings);
@@ -205,7 +202,7 @@ public class MainActivity extends AppCompatActivity
 
         if (appSettings.isProxyEnabled()) {
             if (!setProxy(appSettings.getProxyHost(), appSettings.getProxyPort())) {
-                Log.d(App.TAG, "Could not enable Proxy");
+                AppLog.e(this, "Could not enable Proxy");
                 Toast.makeText(MainActivity.this, R.string.toast_set_proxy_failed, Toast.LENGTH_SHORT).show();
             }
         } else if (appSettings.wasProxyEnabled()) {
@@ -227,27 +224,27 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void setupUI(Bundle savedInstanceState) {
-        Log.i(App.TAG, "MainActivity.setupUI()");
+        AppLog.i(this, "setupUI()");
         ButterKnife.bind(this);
         if (webviewPlaceholder.getChildCount() != 0) {
-            Log.v(App.TAG, "remove child views from webViewPlaceholder");
+            AppLog.v(this, "remove child views from webViewPlaceholder");
             webviewPlaceholder.removeAllViews();
         } else {
-            Log.v(App.TAG, "webViewPlaceholder had no child views");
+            AppLog.v(this, "webViewPlaceholder had no child views");
         }
 
         boolean newWebView = (webView == null);
-        if(newWebView) {
-            Log.v(App.TAG, "WebView was null. Create new one.");
+        if (newWebView) {
+            AppLog.v(this, "WebView was null. Create new one.");
             View webviewHolder = getLayoutInflater().inflate(R.layout.webview, this.contentLayout, false);
             this.webView = (ContextMenuWebView) webviewHolder.findViewById(R.id.webView);
-            ((LinearLayout)webView.getParent()).removeView(webView);
+            ((LinearLayout) webView.getParent()).removeView(webView);
             setupWebView(savedInstanceState);
         } else {
-            Log.v(App.TAG, "Reuse old WebView to avoid reloading page");
+            AppLog.v(this, "Reuse old WebView to avoid reloading page");
         }
 
-        Log.v(App.TAG, "Add WebView to placeholder");
+        AppLog.v(this, "Add WebView to placeholder");
         webviewPlaceholder.addView(webView);
         // Setup toolbar
         setSupportActionBar(toolbarTop);
@@ -291,7 +288,7 @@ public class MainActivity extends AppCompatActivity
         String url = urls.getPodUrl();
         if (newWebView) {
             if (WebHelper.isOnline(MainActivity.this)) {
-                Log.d(App.TAG, "setupUI: reload url");
+                AppLog.v(this, "setupUI: reload url");
                 webView.loadData("", "text/html", null);
                 webView.loadUrlNew(url);
             } else {
@@ -300,23 +297,21 @@ public class MainActivity extends AppCompatActivity
         }
 
         if (!appSettings.isIntellihideToolbars()) {
-            Log.v(App.TAG, "Disable intelligent hiding of toolbars");
+            AppLog.v(this, "Disable intelligent hiding of toolbars");
             AppBarLayout.LayoutParams params = (AppBarLayout.LayoutParams) toolbarTop.getLayoutParams();
             params.setScrollFlags(0);  // clear all scroll flags
         }
 
-        Log.v(App.TAG, "UI successfully set up");
+        AppLog.v(this, "UI successfully set up");
         handleIntent(getIntent());
     }
 
     @Override
-    public void onConfigurationChanged(Configuration newConfig)
-    {
-        Log.i(App.TAG, "onConfigurationChanged()");
-        if (webView != null)
-        {
+    public void onConfigurationChanged(Configuration newConfig) {
+        AppLog.i(this, "onConfigurationChanged()");
+        if (webView != null) {
             // Remove the WebView from the old placeholder
-            Log.v(App.TAG, "removeView from placeholder in order to prevent recreation");
+            AppLog.v(this, "removeView from placeholder in order to prevent recreation");
             webviewPlaceholder.removeView(webView);
         }
 
@@ -326,7 +321,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.main__activity);
 
         // Reinitialize the UI
-        Log.v(App.TAG, "Rebuild the UI");
+        AppLog.v(this, "Rebuild the UI");
         setupUI(null);
     }
 
@@ -343,7 +338,7 @@ public class MainActivity extends AppCompatActivity
         webSettings.setAppCacheEnabled(true);
 
         if (savedInstanceState != null) {
-            Log.v(App.TAG, "restore WebView state");
+            AppLog.v(this, "restore WebView state");
             webView.restoreState(savedInstanceState);
         }
 
@@ -397,22 +392,21 @@ public class MainActivity extends AppCompatActivity
 
             //For Android 4.1/4.2 only. DO NOT REMOVE!
             @SuppressWarnings("unused")
-            protected void openFileChooser(ValueCallback<Uri> uploadMsg, String acceptType, String capture)
-            {
-                Log.v(App.TAG, "openFileChooser(ValCallback<Uri>, String, String");
+            protected void openFileChooser(ValueCallback<Uri> uploadMsg, String acceptType, String capture) {
+                AppLog.v(this, "openFileChooser(ValCallback<Uri>, String, String");
                 imageUploadFilePathCallbackOld = uploadMsg;
                 Intent intent = new Intent();
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
                 intent.putExtra("return-data", true);
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                Log.v(App.TAG, "startActivityForResult");
+                AppLog.v(this, "startActivityForResult");
                 startActivityForResult(Intent.createChooser(intent, "Select Picture"), INPUT_FILE_REQUEST_CODE_OLD);
             }
 
             @Override
             public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> filePathCallback, FileChooserParams fileChooserParams) {
-                if(Build.VERSION.SDK_INT >= 23) {
+                if (Build.VERSION.SDK_INT >= 23) {
                     int hasWRITE_EXTERNAL_STORAGE = checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE);
                     if (hasWRITE_EXTERNAL_STORAGE != PackageManager.PERMISSION_GRANTED) {
                         if (!shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
@@ -436,8 +430,9 @@ public class MainActivity extends AppCompatActivity
                     }
                 }
 
-                Log.d(App.TAG, "onOpenFileChooser");
-                if (imageUploadFilePathCallbackNew != null) imageUploadFilePathCallbackNew.onReceiveValue(null);
+                AppLog.v(this, "onOpenFileChooser");
+                if (imageUploadFilePathCallbackNew != null)
+                    imageUploadFilePathCallbackNew.onReceiveValue(null);
                 imageUploadFilePathCallbackNew = filePathCallback;
 
                 Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -448,7 +443,7 @@ public class MainActivity extends AppCompatActivity
                         photoFile = Helpers.createImageFile();
                         takePictureIntent.putExtra("PhotoPath", mCameraPhotoPath);
                     } catch (IOException ex) {
-                        Log.e(App.TAG, "ERROR creating temp file: "+ ex.toString());
+                        AppLog.e(this, "ERROR creating temp file: " + ex.toString());
                         // Error occurred while creating the File
                         Snackbar.make(contentLayout, R.string.unable_to_load_image, Snackbar.LENGTH_LONG).show();
                         return false;
@@ -480,7 +475,7 @@ public class MainActivity extends AppCompatActivity
                 chooserIntent.putExtra(Intent.EXTRA_TITLE, "Image Chooser");
                 chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, intentArray);
 
-                Log.d(App.TAG,"startActivityForResult");
+                AppLog.v(this, "startActivityForResult");
                 startActivityForResult(chooserIntent, INPUT_FILE_REQUEST_CODE_NEW);
                 return true;
             }
@@ -523,14 +518,14 @@ public class MainActivity extends AppCompatActivity
         if (!avatarUrl.equals("")) {
             //Display app launcher icon instead of default avatar asset
             //(Which would by the way not load because of missing pod domain prefix in the url)
-            if(avatarUrl.startsWith("/assets/user/default")) {
-                Log.v(App.TAG, "Avatar appears to be an asset. Display launcher icon instead (avatarUrl="+avatarUrl+")");
+            if (avatarUrl.startsWith("/assets/user/default")) {
+                AppLog.v(this, "Avatar appears to be an asset. Display launcher icon instead (avatarUrl=" + avatarUrl + ")");
                 navheaderImage.setImageResource(R.drawable.ic_launcher);
             } else {
                 // Try to load image
                 if (!app.getAvatarImageLoader().loadToImageView(navheaderImage)) {
                     // If not yet loaded, start download
-                    Log.v(App.TAG, "Avatar not cached. Start download: "+avatarUrl);
+                    AppLog.v(this, "Avatar not cached. Start download: " + avatarUrl);
                     app.getAvatarImageLoader().startImageDownload(navheaderImage, avatarUrl);
                 }
             }
@@ -552,7 +547,7 @@ public class MainActivity extends AppCompatActivity
 
     @OnClick(R.id.toolbar)
     public void onToolBarClicked(View view) {
-        Log.i(App.TAG, "MainActivity.onToolBarClicked()");
+        AppLog.i(this, "onToolBarClicked()");
         onNavigationItemSelected(navView.getMenu().findItem(R.id.nav_stream));
     }
 
@@ -564,35 +559,35 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void handleIntent(Intent intent) {
-        Log.i(App.TAG, "MainActivity.handleIntent()");
+        AppLog.i(this, "handleIntent()");
         if (intent == null) {
-            Log.v(App.TAG, "Intent was null");
+            AppLog.v(this, "Intent was null");
             return;
         }
 
         String action = intent.getAction();
         String type = intent.getType();
         String loadUrl = null;
-        Log.v(App.TAG, "Action: "+action+" Type: "+type);
+        AppLog.v(this, "Action: " + action + " Type: " + type);
         if (ACTION_OPEN_URL.equals(action)) {
             loadUrl = intent.getStringExtra(URL_MESSAGE);
         } else if (Intent.ACTION_VIEW.equals(action) && intent.getDataString() != null) {
             Uri data = intent.getData();
-            if(data != null && data.toString().startsWith(CONTENT_HASHTAG)) {
+            if (data != null && data.toString().startsWith(CONTENT_HASHTAG)) {
                 handleHashtag(intent);
                 return;
             } else {
                 loadUrl = intent.getDataString();
             }
         } else if (ACTION_CHANGE_ACCOUNT.equals(action)) {
-            Log.v(App.TAG, "Reset pod data and animate to PodSelectionActivity");
+            AppLog.v(this, "Reset pod data and animate to PodSelectionActivity");
             app.resetPodData(webView);
             Helpers.animateToActivity(MainActivity.this, PodSelectionActivity.class, true);
         } else if (ACTION_CLEAR_CACHE.equals(action)) {
-            Log.v(App.TAG, "Clear WebView cache");
+            AppLog.v(this, "Clear WebView cache");
             webView.clearCache(true);
         } else if (ACTION_RELOAD_ACTIVITY.equals(action)) {
-            Log.v(App.TAG, "Recreate activity");
+            AppLog.v(this, "Recreate activity");
             recreate();
             return;
         } else if (Intent.ACTION_SEND.equals(action) && type != null) {
@@ -621,61 +616,61 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.d(App.TAG,"MainActivity.onActivityResult()");
+        AppLog.v(this, "onActivityResult()");
         switch (requestCode) {
             case INPUT_FILE_REQUEST_CODE_NEW: {
-                Log.v(App.TAG,"Upload image using recent method (Lollipop+)");
+                AppLog.v(this, "Upload image using recent method (Lollipop+)");
                 if (imageUploadFilePathCallbackNew == null || resultCode != Activity.RESULT_OK) {
-                    Log.e(App.TAG, "Callback is null: " + (imageUploadFilePathCallbackNew == null)
+                    AppLog.e(this, "Callback is null: " + (imageUploadFilePathCallbackNew == null)
                             + " resultCode: " + resultCode);
                     return;
                 }
                 Uri[] results = null;
                 if (data == null) {
                     if (mCameraPhotoPath != null) {
-                        Log.v(App.TAG, "Intent data is null. Try to parse cameraPhotoPath");
+                        AppLog.v(this, "Intent data is null. Try to parse cameraPhotoPath");
                         results = new Uri[]{Uri.parse(mCameraPhotoPath)};
                     } else {
-                        Log.w(App.TAG, "Intent data is null and cameraPhotoPath is null");
+                        AppLog.w(this, "Intent data is null and cameraPhotoPath is null");
                     }
                 } else {
                     String dataString = data.getDataString();
                     if (dataString != null) {
-                        Log.v(App.TAG, "Intent has data. Try to parse dataString");
+                        AppLog.v(this, "Intent has data. Try to parse dataString");
                         results = new Uri[]{Uri.parse(dataString)};
                     }
-                    Log.w(App.TAG, "dataString is null");
+                    AppLog.w(this, "dataString is null");
                 }
-                Log.v(App.TAG, "handle received result over to callback");
+                AppLog.v(this, "handle received result over to callback");
                 imageUploadFilePathCallbackNew.onReceiveValue(results);
                 imageUploadFilePathCallbackNew = null;
                 return;
             }
             case INPUT_FILE_REQUEST_CODE_OLD: {
-                Log.v(App.TAG, "Upload image using legacy method (Jelly Bean, Kitkat)");
+                AppLog.v(this, "Upload image using legacy method (Jelly Bean, Kitkat)");
                 if (imageUploadFilePathCallbackOld == null || resultCode != Activity.RESULT_OK) {
-                    Log.e(App.TAG, "Callback is null: " + (imageUploadFilePathCallbackOld == null)
+                    AppLog.e(this, "Callback is null: " + (imageUploadFilePathCallbackOld == null)
                             + " resultCode: " + resultCode);
                     return;
                 }
                 Uri results = null;
                 if (data == null) {
                     if (mCameraPhotoPath != null) {
-                        Log.v(App.TAG, "Intent has no data. Try to parse cameraPhotoPath");
+                        AppLog.v(this, "Intent has no data. Try to parse cameraPhotoPath");
                         results = Uri.parse(mCameraPhotoPath);
                     } else {
-                        Log.w(App.TAG, "Intent has no data and cameraPhotoPath is null");
+                        AppLog.w(this, "Intent has no data and cameraPhotoPath is null");
                     }
                 } else {
                     String dataString = data.getDataString();
                     if (dataString != null) {
-                        Log.v(App.TAG, "Intent has data. Try to parse dataString");
+                        AppLog.v(this, "Intent has data. Try to parse dataString");
                         results = Uri.parse(dataString);
                     } else {
-                        Log.w(App.TAG, "dataString is null");
+                        AppLog.w(this, "dataString is null");
                     }
                 }
-                Log.v(App.TAG, "handle received result over to callback");
+                AppLog.v(this, "handle received result over to callback");
                 imageUploadFilePathCallbackOld.onReceiveValue(results);
                 imageUploadFilePathCallbackOld = null;
                 return;
@@ -686,23 +681,23 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        Log.v(App.TAG, "MainActivity.onSaveInstanceState()");
+        AppLog.v(this, "onSaveInstanceState()");
         super.onSaveInstanceState(outState);
-        Log.v(App.TAG, "Save WebView state");
+        AppLog.v(this, "Save WebView state");
         webView.saveState(outState);
     }
 
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
-        Log.v(App.TAG, "MainActivity.onRestoreInstanceState()");
+        AppLog.v(this, "onRestoreInstanceState()");
         super.onRestoreInstanceState(savedInstanceState);
-        Log.v(App.TAG, "Restore state of WebView");
+        AppLog.v(this, "Restore state of WebView");
         webView.restoreState(savedInstanceState);
     }
 
     @Override
     public void onBackPressed() {
-        Log.v(App.TAG, "MainActivity.onBackPressed()");
+        AppLog.v(this, "onBackPressed()");
         if (navDrawer.isDrawerOpen(navView)) {
             navDrawer.closeDrawer(navView);
             return;
@@ -732,8 +727,8 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onPause() {
-        Log.v(App.TAG, "MainActivity.onPause()");
-        Log.v(App.TAG, "Unregister BroadcastReceivers");
+        AppLog.v(this, "onPause()");
+        AppLog.v(this, "Unregister BroadcastReceivers");
         LocalBroadcastManager.getInstance(this).unregisterReceiver(brSetTitle);
         LocalBroadcastManager.getInstance(this).unregisterReceiver(brOpenExternalLink);
         super.onPause();
@@ -741,16 +736,16 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onResume() {
-        Log.v(App.TAG, "MainActivity.onResume()");
+        AppLog.v(this, "onResume()");
         super.onResume();
-        Log.v(App.TAG, "Register BroadcastReceivers");
+        AppLog.v(this, "Register BroadcastReceivers");
         LocalBroadcastManager.getInstance(this).registerReceiver(brSetTitle, new IntentFilter(ACTION_UPDATE_TITLE_FROM_URL));
         LocalBroadcastManager.getInstance(this).registerReceiver(brOpenExternalLink, new IntentFilter(ACTION_OPEN_EXTERNAL_URL));
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        Log.v(App.TAG, "MainActivity.onCreateOptionsMenu()");
+        AppLog.v(this, "onCreateOptionsMenu()");
         getMenuInflater().inflate(R.menu.main__menu_top, menu);
         return true;
     }
@@ -773,7 +768,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Log.i(App.TAG, "MainActivity.onOptionsItemSelected()");
+        AppLog.i(this, "onOptionsItemSelected()");
         switch (item.getItemId()) {
             case R.id.action_notifications: {
                 if (WebHelper.isOnline(MainActivity.this)) {
@@ -862,7 +857,7 @@ public class MainActivity extends AppCompatActivity
                         @Override
                         public void onClick(DialogInterface dialogInterface, int which) {
                             String query = input.getText().toString().trim().replaceAll((which == DialogInterface.BUTTON_NEGATIVE ? "\\*" : "\\#"), "");
-                            if(query.equals("")) {
+                            if (query.equals("")) {
                                 Snackbar.make(contentLayout, R.string.search_alert_bypeople_validate_needsomedata, Snackbar.LENGTH_LONG).show();
                             } else {
                                 webView.loadUrl(which == DialogInterface.BUTTON_NEGATIVE ? urls.getSearchPeopleUrl(query) : urls.getSearchTagsUrl(query));
@@ -908,7 +903,7 @@ public class MainActivity extends AppCompatActivity
 
     @SuppressWarnings("ResultOfMethodCallIgnored")
     private boolean makeScreenshotOfWebView(boolean hasToShareScreenshot) {
-        Log.i(App.TAG, "MainActivity.makeScreenshotOfWebView()");
+        AppLog.i(this, "makeScreenshotOfWebView()");
         if (android.os.Build.VERSION.SDK_INT >= 23) {
             int hasWRITE_EXTERNAL_STORAGE = checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE);
             if (hasWRITE_EXTERNAL_STORAGE != PackageManager.PERMISSION_GRANTED) {
@@ -939,8 +934,8 @@ public class MainActivity extends AppCompatActivity
 
         String fileSaveName = hasToShareScreenshot ? ".DfA_share.jpg" : String.format("DfA_%s.jpg", dateFormat.format(dateNow));
         if (!fileSaveDirectory.exists()) {
-            if(!fileSaveDirectory.mkdirs()) {
-                Log.w(App.TAG, "Could not mkdir "+fileSaveDirectory.getAbsolutePath());
+            if (!fileSaveDirectory.mkdirs()) {
+                AppLog.w(this, "Could not mkdir " + fileSaveDirectory.getAbsolutePath());
             }
         }
 
@@ -990,32 +985,32 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onUserProfileNameChanged(String name) {
-        Log.i(App.TAG, "MainActivity.onUserProfileNameChanged()");
+        AppLog.i(this, "onUserProfileNameChanged()");
         navheaderTitle.setText(name);
     }
 
     @Override
     public void onUserProfileAvatarChanged(String avatarUrl) {
-        Log.i(App.TAG, "MainActivity.onUserProfileAvatarChanged()");
+        AppLog.i(this, "onUserProfileAvatarChanged()");
         app.getAvatarImageLoader().startImageDownload(navheaderImage, avatarUrl);
     }
 
     private void handleHashtag(Intent intent) {
-        Log.v(App.TAG, "handleHashtag()");
+        AppLog.v(this, "handleHashtag()");
         try {
             setSharedTexts(null, intent.getData().toString().split("/")[3]);
         } catch (Exception e) {
-            Log.e(App.TAG, e.toString());
+            AppLog.e(this, e.toString());
         }
         webView.loadUrlNew(urls.getNewPostUrl());
     }
 
     private void handleSendText(Intent intent) {
-        Log.v(App.TAG, "handleSendText()");
+        AppLog.v(this, "handleSendText()");
         try {
             setSharedTexts(null, intent.getStringExtra(Intent.EXTRA_TEXT));
         } catch (Exception e) {
-            Log.e(App.TAG, e.toString());
+            AppLog.e(this, e.toString());
         }
         webView.loadUrlNew(urls.getBlankUrl());
         webView.loadUrlNew(urls.getNewPostUrl());
@@ -1027,11 +1022,11 @@ public class MainActivity extends AppCompatActivity
      * @param intent intent
      */
     private void handleSendSubject(Intent intent) {
-        Log.v(App.TAG, "handleSendSubject()");
+        AppLog.v(this, "handleSendSubject()");
         try {
             setSharedTexts(intent.getStringExtra(Intent.EXTRA_SUBJECT), intent.getStringExtra(Intent.EXTRA_TEXT));
         } catch (Exception e) {
-            Log.e(App.TAG, e.toString());
+            AppLog.e(this, e.toString());
         }
         webView.loadUrlNew(urls.getBlankUrl()); //TODO: Necessary?
         webView.loadUrlNew(urls.getNewPostUrl());
@@ -1042,23 +1037,24 @@ public class MainActivity extends AppCompatActivity
      * If subject is null, only the body will be set. Else the subject will be set as header.
      * Depending on whether the user has the setting isAppendSharedViaApp set, a reference to
      * the app will be added at the bottom
+     *
      * @param sharedSubject post subject or null
-     * @param sharedBody post text
+     * @param sharedBody    post text
      */
     private void setSharedTexts(String sharedSubject, String sharedBody) {
-        Log.i(App.TAG, "MainActivity.setSharedTexts()");
+        AppLog.i(this, "setSharedTexts()");
         String body = WebHelper.replaceUrlWithMarkdown(sharedBody);
         if (appSettings.isAppendSharedViaApp()) {
-            Log.v(App.TAG, "Append app reference to shared text");
+            AppLog.v(this, "Append app reference to shared text");
             body = body + "\n\n" + getString(R.string.shared_by_diaspora_android);
         }
         final String escapedBody = WebHelper.escapeHtmlText(body);
-        if(sharedSubject != null) {
-            Log.v(App.TAG, "Append subject to shared text");
+        if (sharedSubject != null) {
+            AppLog.v(this, "Append subject to shared text");
             String escapedSubject = WebHelper.escapeHtmlText(WebHelper.replaceUrlWithMarkdown(sharedSubject));
             textToBeShared = "**" + escapedSubject + "** " + escapedBody;
         } else {
-            Log.v(App.TAG, "Set shared text; Subject: \""+sharedSubject+"\" Body: \""+sharedBody+"\"");
+            AppLog.v(this, "Set shared text; Subject: \"" + sharedSubject + "\" Body: \"" + sharedBody + "\"");
             textToBeShared = escapedBody;
         }
 
@@ -1067,13 +1063,13 @@ public class MainActivity extends AppCompatActivity
 
     //TODO: Implement?
     private void handleSendImage(Intent intent) {
-        Log.i(App.TAG, "MainActivity.handleSendImage()");
+        AppLog.i(this, "handleSendImage()");
         final Uri imageUri = intent.getParcelableExtra(Intent.EXTRA_STREAM);
         if (imageUri != null) {
-            Log.v(App.TAG, "imageUri is not null. Handle shared image");
+            AppLog.v(this, "imageUri is not null. Handle shared image");
             // TODO: Update UI to reflect text being shared
         } else {
-            Log.w(App.TAG, "imageUri is null. Cannot precede.");
+            AppLog.w(this, "imageUri is null. Cannot precede.");
         }
         Toast.makeText(this, "Not yet implemented.", Toast.LENGTH_SHORT).show();
     }
@@ -1081,7 +1077,7 @@ public class MainActivity extends AppCompatActivity
     // TODO: Move from Javascript interface
     @Override
     public void onNotificationCountChanged(int notificationCount) {
-        Log.i(App.TAG, "MainActivity.onNotificationCountChanged()");
+        AppLog.i(this, "onNotificationCountChanged()");
         // Count saved in PodUserProfile
         invalidateOptionsMenu();
 
@@ -1094,7 +1090,7 @@ public class MainActivity extends AppCompatActivity
     // TODO: Move from Javascript interface
     @Override
     public void onUnreadMessageCountChanged(int unreadMessageCount) {
-        Log.i(App.TAG, "MainActivity.onUnreadMessageCountChanged()");
+        AppLog.i(this, "onUnreadMessageCountChanged()");
         // Count saved in PodUserProfile
         invalidateOptionsMenu();
         if (unreadMessageCount > 0 && !snackbarNewNotification.isShown()
@@ -1106,12 +1102,12 @@ public class MainActivity extends AppCompatActivity
     private class JavaScriptInterface {
         @JavascriptInterface
         public void setUserProfile(final String webMessage) throws JSONException {
-            Log.i(App.TAG, "MainActivity.JavaScriptInterface.setUserProfile()");
+            AppLog.spam(this, "JavaScriptInterface.setUserProfile()");
             if (podUserProfile.isRefreshNeeded()) {
-                Log.v(App.TAG, "PodUserProfile needs refresh; Try to parse JSON");
+                AppLog.spam(this, "PodUserProfile needs refresh; Try to parse JSON");
                 podUserProfile.parseJson(webMessage);
             } else {
-                Log.v(App.TAG, "No PodUserProfile refresh needed");
+                AppLog.spam(this, "No PodUserProfile refresh needed");
             }
         }
 
@@ -1124,7 +1120,7 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        Log.i(App.TAG, "MainActivity.onNavigationItemsSelected()");
+        AppLog.v(this, "onNavigationItemsSelected()");
         // Handle navigation view item clicks here.
         switch (item.getItemId()) {
             case R.id.nav_stream: {
@@ -1237,10 +1233,10 @@ public class MainActivity extends AppCompatActivity
         switch (requestCode) {
             case REQUEST_CODE__ACCESS_EXTERNAL_STORAGE:
                 if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    Log.i(App.TAG, "MainActivity.onRequestPermissionsResult: Permission to access external storage granted");
+                    AppLog.i(this, "onRequestPermissionsResult: Permission to access external storage granted");
                     Toast.makeText(this, R.string.permission_granted_try_again, Toast.LENGTH_SHORT).show();
                 } else {
-                    Log.w(App.TAG, "MainActivity.onRequestPermissionsResult: Permission to access external storage denied");
+                    AppLog.w(this, "onRequestPermissionsResult: Permission to access external storage denied");
                     Toast.makeText(this, R.string.permission_denied, Toast.LENGTH_SHORT).show();
                 }
                 return;
@@ -1261,35 +1257,35 @@ public class MainActivity extends AppCompatActivity
      * @throws IllegalArgumentException if arguments do not fit specifications above
      */
     private boolean setProxy(final String host, final int port) {
-        Log.i(App.TAG, "MainActivity.setProxy()");
+        AppLog.v(this, "setProxy()");
         if (host != null && !host.equals("") && port >= 0) {
-            Log.i(App.TAG, "Set proxy to "+host+":"+port);
+            AppLog.v(this, "Set proxy to " + host + ":" + port);
             //Temporary change thread policy
-            Log.v(App.TAG, "Set temporary ThreadPolicy");
+            AppLog.v(this, "Set temporary ThreadPolicy");
             StrictMode.ThreadPolicy old = StrictMode.getThreadPolicy();
             StrictMode.ThreadPolicy tmp = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(tmp);
 
-            Log.v(App.TAG, "Apply NetCipher proxy settings");
+            AppLog.v(this, "Apply NetCipher proxy settings");
             NetCipher.setProxy(host, port); //Proxy for HttpsUrlConnections
             try {
                 //Proxy for the webview
-                Log.v(App.TAG, "Apply Webkit proxy settings");
+                AppLog.v(this, "Apply Webkit proxy settings");
                 WebkitProxy.setProxy(MainActivity.class.getName(), getApplicationContext(), null, host, port);
             } catch (Exception e) {
-                Log.e(App.TAG, "Could not apply WebKit proxy settings:\n"+e.toString());
+                AppLog.e(this, "Could not apply WebKit proxy settings:\n" + e.toString());
             }
-            Log.v(App.TAG, "Save changes in appSettings");
+            AppLog.v(this, "Save changes in appSettings");
             appSettings.setProxyEnabled(true);
             appSettings.setProxyWasEnabled(true);
 
-            Log.v(App.TAG, "Reset old ThreadPolicy");
+            AppLog.v(this, "Reset old ThreadPolicy");
             StrictMode.setThreadPolicy(old);
-            Log.i(App.TAG, "Success! Reload WebView");
+            AppLog.v(this, "Success! Reload WebView");
             webView.reload();
             return true;
         } else {
-            Log.w(App.TAG, "Invalid proxy configuration. Host: "+host+" Port: "+port+"\nRefuse to set proxy");
+            AppLog.w(this, "Invalid proxy configuration. Host: " + host + " Port: " + port + "\nRefuse to set proxy");
             return false;
         }
     }
@@ -1299,30 +1295,30 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void resetProxy() {
-        Log.i(App.TAG, "MainActivity.resetProxy()");
-        Log.v(App.TAG, "write changes to appSettings");
+        AppLog.i(this, "resetProxy()");
+        AppLog.v(this, "write changes to appSettings");
         appSettings.setProxyEnabled(false);
         appSettings.setProxyWasEnabled(false);
 
         //Temporary change thread policy
-        Log.v(App.TAG, "Set temporary ThreadPolicy");
+        AppLog.v(this, "Set temporary ThreadPolicy");
         StrictMode.ThreadPolicy old = StrictMode.getThreadPolicy();
         StrictMode.ThreadPolicy tmp = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(tmp);
 
-        Log.v(App.TAG, "clear NetCipher proxy");
+        AppLog.v(this, "clear NetCipher proxy");
         NetCipher.clearProxy();
         try {
-            Log.v(App.TAG, "clear WebKit proxy");
+            AppLog.v(this, "clear WebKit proxy");
             WebkitProxy.resetProxy(MainActivity.class.getName(), this);
         } catch (Exception e) {
-            Log.e(App.TAG, "Could not clear WebKit proxy:\n"+e.toString());
+            AppLog.e(this, "Could not clear WebKit proxy:\n" + e.toString());
         }
-        Log.v(App.TAG, "Reset old ThreadPolicy");
+        AppLog.v(this, "Reset old ThreadPolicy");
         StrictMode.setThreadPolicy(old);
 
         //Restart app
-        Log.i(App.TAG, "Success! Restart app due to proxy reset");
+        AppLog.i(this, "Success! Restart app due to proxy reset");
         Intent restartActivity = new Intent(this, MainActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 12374, restartActivity, PendingIntent.FLAG_CANCEL_CURRENT);
         AlarmManager mgr = (AlarmManager) getSystemService(Context.ALARM_SERVICE);

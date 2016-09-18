@@ -44,10 +44,10 @@ import com.github.dfa.diaspora_android.App;
 import com.github.dfa.diaspora_android.R;
 import com.github.dfa.diaspora_android.data.AppSettings;
 import com.github.dfa.diaspora_android.ui.HtmlTextView;
+import com.github.dfa.diaspora_android.util.AppLog;
 import com.github.dfa.diaspora_android.util.Helpers;
 import com.github.dfa.diaspora_android.util.Log;
 
-import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -94,7 +94,7 @@ public class AboutActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(mViewPager);
 
         //Apply intellihide
-        if(!((App)getApplication()).getSettings().isIntellihideToolbars()) {
+        if (!((App) getApplication()).getSettings().isIntellihideToolbars()) {
             AppBarLayout.LayoutParams params = (AppBarLayout.LayoutParams) linearLayout.getLayoutParams();
             params.setScrollFlags(0);
         }
@@ -194,6 +194,7 @@ public class AboutActivity extends AppCompatActivity {
      */
     public static class DebugFragment extends Fragment implements Observer {
         private TextView logBox;
+
         public DebugFragment() {
         }
 
@@ -210,14 +211,15 @@ public class AboutActivity extends AppCompatActivity {
             logBox.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View view) {
-                    Log.d(App.TAG, "Long click registered");
-                    if(isAdded()) {
+                    AppLog.d(this, "Long click registered");
+                    if (isAdded()) {
                         ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(CLIPBOARD_SERVICE);
                         ClipData clip = ClipData.newPlainText("DEBUG_LOG", Log.getLogBuffer());
                         clipboard.setPrimaryClip(clip);
                         Toast.makeText(DebugFragment.this.getActivity(), R.string.fragment_debug__toast_log_copied, Toast.LENGTH_SHORT).show();
+                    } else {
+                        AppLog.d(this, "Not Added!");
                     }
-                    else Log.d(App.TAG, "Not Added!");
                     return true;
                 }
             });
@@ -233,7 +235,7 @@ public class AboutActivity extends AppCompatActivity {
                     appVersion.setText(getString(R.string.fragment_debug__app_version, pInfo.versionName + " (" + pInfo.versionCode + ")"));
 
                     osVersion.setText(getString(R.string.fragment_debug__android_version, Build.VERSION.RELEASE));
-                    deviceName.setText(getString(R.string.fragment_debug__device_name, Build.MANUFACTURER+" "+Build.MODEL));
+                    deviceName.setText(getString(R.string.fragment_debug__device_name, Build.MANUFACTURER + " " + Build.MODEL));
                     podDomain.setText(getString(R.string.fragment_debug__pod_domain, settings.getPodDomain()));
 
                 } catch (PackageManager.NameNotFoundException e) {
@@ -252,7 +254,7 @@ public class AboutActivity extends AppCompatActivity {
 
         @Override
         public void update(Observable observable, Object o) {
-            if(logBox != null) {
+            if (logBox != null) {
                 logBox.setText(Log.getLogBuffer());
             }
         }

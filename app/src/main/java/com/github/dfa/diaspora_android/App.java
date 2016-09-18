@@ -16,7 +16,7 @@
 
     If not, see <http://www.gnu.org/licenses/>.
  */
- 
+
 package com.github.dfa.diaspora_android;
 
 import android.app.Application;
@@ -29,11 +29,11 @@ import android.webkit.WebView;
 
 import com.github.dfa.diaspora_android.data.AppSettings;
 import com.github.dfa.diaspora_android.data.PodUserProfile;
+import com.github.dfa.diaspora_android.util.AppLog;
 import com.github.dfa.diaspora_android.util.AvatarImageLoader;
 import com.github.dfa.diaspora_android.util.DiasporaUrlHelper;
 
 public class App extends Application {
-    public static final String TAG = "DIASPORA_";
 
     private AppSettings appSettings;
     private AvatarImageLoader avatarImageLoader;
@@ -45,6 +45,12 @@ public class App extends Application {
         super.onCreate();
         final Context c = getApplicationContext();
         appSettings = new AppSettings(c);
+
+        // Init app log
+        AppLog.setLoggingEnabled(appSettings.isLoggingEnabled());
+        AppLog.setLoggingSpamEnabled(appSettings.isLoggingSpamEnabled());
+
+        // Init pod profile
         avatarImageLoader = new AvatarImageLoader(c);
         podUserProfile = new PodUserProfile(this);
 
@@ -58,8 +64,8 @@ public class App extends Application {
         cookieManager.setAcceptCookie(true);
     }
 
-    public void resetPodData(@Nullable WebView webView){
-        if(webView != null){
+    public void resetPodData(@Nullable WebView webView) {
+        if (webView != null) {
             webView.stopLoading();
             webView.loadUrl(DiasporaUrlHelper.URL_BLANK);
             webView.clearFormData();
@@ -81,7 +87,7 @@ public class App extends Application {
         }
     }
 
-    public PodUserProfile getPodUserProfile(){
+    public PodUserProfile getPodUserProfile() {
         return podUserProfile;
     }
 
