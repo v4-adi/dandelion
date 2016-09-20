@@ -1,11 +1,14 @@
-# v0.1.6 (WIP)
-- New languages
-- Fixed: Immediately apply preference changes
+# v0.1.6
+- Added: New languages
+- Changed: New delicious visual style + launcher icon
+- Changed: Notifications-/Messages-indicator does now display number of events!
 - Changed: Redesigned Navigation Drawer
+- Fixed: Immediately apply preference changes
 - Added: About screen that shows useful information
 - Changed: Updated NetCipher library to 2.0.0-alpha1
 - Fixed: Do not reload stream on orientation changes
-- Fixed: Image upload was broken on some devices
+- Fixed: Image upload for older devices
+- Added: Option to open external links in Chrome CustomTab
 
 # v0.1.5
 - Update title depending on what the user is doing
