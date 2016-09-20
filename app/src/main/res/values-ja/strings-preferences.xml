@@ -26,6 +26,8 @@
   <string name="pref_title__proxy_host">ホスト</string>
   <string name="pref_title__proxy_port">ポート</string>
   <!-- Chrome custom tabs -->
+  <string name="pref_title__chrome_custom_tabs_enabled">Chrome カスタムタブ</string>
+  <string name="pref_desc__chrome_custom_tabs_enabled">Chrome カスタム タブで外部リンクを開きます。この機能は Chromium または Google Chrome をインストールする必要があります</string>
   <!-- Diaspora Settings -->
   <string name="pref_title__personal_settings">個人用設定</string>
   <string name="pref_desc__personal_settings">Diaspora アカウント設定を開きます</string>

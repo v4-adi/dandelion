@@ -9,6 +9,7 @@
   <string name="fragment_debug__section_device">デバイス</string>
   <string name="fragment_debug__section_pod">ダイアスポラ ポッド</string>
   <string name="fragment_debug__section_log">デバッグログ</string>
+  <string name="fragment_debug__section_log_spam">デバッグ ログ (詳細)</string>
   <string name="fragment_debug__app_version">アプリバージョン: %1$s</string>
   <string name="fragment_debug__package_name">パッケージ名: %1$s</string>
   <string name="fragment_debug__android_version">Android バージョン: %1$s</string>

@@ -9,6 +9,7 @@
   <string name="fragment_debug__section_device">Appareil</string>
   <string name="fragment_debug__section_pod">Pod diaspora</string>
   <string name="fragment_debug__section_log">Journal de débogage</string>
+  <string name="fragment_debug__section_log_spam">Log de débogage (Verbeux)</string>
   <string name="fragment_debug__app_version">Version app : %1$s</string>
   <string name="fragment_debug__package_name">Nom du paquet : %1$s</string>
   <string name="fragment_debug__android_version">Version Android : %1$s</string>

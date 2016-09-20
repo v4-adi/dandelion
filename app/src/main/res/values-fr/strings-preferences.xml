@@ -26,6 +26,8 @@
   <string name="pref_title__proxy_host">Hôte</string>
   <string name="pref_title__proxy_port">Port</string>
   <!-- Chrome custom tabs -->
+  <string name="pref_title__chrome_custom_tabs_enabled">Onglets personnalisés de Chrome</string>
+  <string name="pref_desc__chrome_custom_tabs_enabled">Ouvrir les liens externes avec les onglets personnalisés. Chromium ou Google Chrome doit être installé pour cette fonctionnalité</string>
   <!-- Diaspora Settings -->
   <string name="pref_title__personal_settings">Paramètres personnels</string>
   <string name="pref_desc__personal_settings">Ouvrir vos paramètres de compte diaspora</string>

@@ -139,6 +139,7 @@
                 <data android:host="diaspora.undernet.uy" android:scheme="https" />
                 <data android:host="diaspora.unixcorn.org" android:scheme="https" />
                 <data android:host="diasporausa.com" android:scheme="https" />
+                <data android:host="diaspora.weenmebrown.com" android:scheme="https" />
                 <data android:host="diaspora.xcelor8.com" android:scheme="https" />
                 <data android:host="diasp.org" android:scheme="https" />
                 <data android:host="dissociateduse.rs" android:scheme="https" />
@@ -181,6 +182,7 @@
                 <data android:host="pod.asap-soft.com" android:scheme="https" />
                 <data android:host="podbay.net" android:scheme="https" />
                 <data android:host="pod.cannyfoxx.me" android:scheme="https" />
+                <data android:host="pod.comin.dk" android:scheme="https" />
                 <data android:host="pod.cyberdungeon.de" android:scheme="https" />
                 <data android:host="pod.dapor.net" android:scheme="https" />
                 <data android:host="pod.datenknoten.me" android:scheme="https" />
@@ -232,6 +234,7 @@
                 <data android:host="social.daxbau.net" android:scheme="https" />
                 <data android:host="social.elaon.de" android:scheme="https" />
                 <data android:host="socializer.cc" android:scheme="https" />
+                <data android:host="social.lanham.id.au" android:scheme="https" />
                 <data android:host="social.mbuto.me" android:scheme="https" />
                 <data android:host="social.sum7.de" android:scheme="https" />
                 <data android:host="spora.com.ua" android:scheme="https" />
