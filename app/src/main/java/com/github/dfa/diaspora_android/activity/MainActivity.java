@@ -430,9 +430,7 @@ public class MainActivity extends AppCompatActivity
                     }
                 }
 
-                AppLog.v(this, "onOpenFileChooser");
-                if (imageUploadFilePathCallbackNew != null)
-                    imageUploadFilePathCallbackNew.onReceiveValue(null);
+                AppLog.v(MainActivity.this, "onOpenFileChooser");
                 imageUploadFilePathCallbackNew = filePathCallback;
 
                 Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -623,6 +621,8 @@ public class MainActivity extends AppCompatActivity
                 if (imageUploadFilePathCallbackNew == null || resultCode != Activity.RESULT_OK) {
                     AppLog.e(this, "Callback is null: " + (imageUploadFilePathCallbackNew == null)
                             + " resultCode: " + resultCode);
+                    if(imageUploadFilePathCallbackNew != null)
+                        imageUploadFilePathCallbackNew.onReceiveValue(new Uri[]{});
                     return;
                 }
                 Uri[] results = null;
@@ -651,6 +651,8 @@ public class MainActivity extends AppCompatActivity
                 if (imageUploadFilePathCallbackOld == null || resultCode != Activity.RESULT_OK) {
                     AppLog.e(this, "Callback is null: " + (imageUploadFilePathCallbackOld == null)
                             + " resultCode: " + resultCode);
+                    if(imageUploadFilePathCallbackOld != null)
+                        imageUploadFilePathCallbackOld.onReceiveValue(null);
                     return;
                 }
                 Uri results = null;
