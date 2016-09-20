@@ -9,8 +9,8 @@ android {
         applicationId "com.github.dfa.diaspora_android"
         minSdkVersion 17
         targetSdkVersion 24
-        versionCode 7
-        versionName "0.1.6-dev"
+        versionCode 8
+        versionName "0.1.6"
     }
     buildTypes {
         release {
