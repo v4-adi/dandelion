@@ -139,7 +139,6 @@ public class MainActivity extends AppCompatActivity
     private OpenExternalLinkReceiver brOpenExternalLink;
     private BroadcastReceiver brSetTitle;
     private Snackbar snackbarExitApp;
-    private Snackbar snackbarNewNotification;
     private Snackbar snackbarNoInternet;
     private String textToBeShared = null;
 
@@ -264,18 +263,6 @@ public class MainActivity extends AppCompatActivity
                     public void onClick(View view) {
                         finish();
                         moveTaskToBack(true);
-                    }
-                });
-        snackbarNewNotification = Snackbar
-                .make(contentLayout, R.string.new_notifications, Snackbar.LENGTH_LONG)
-                .setAction(android.R.string.yes, new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        if (WebHelper.isOnline(MainActivity.this)) {
-                            webView.loadUrlNew(urls.getNotificationsUrl());
-                        } else {
-                            Snackbar.make(contentLayout, R.string.no_internet, Snackbar.LENGTH_LONG).show();
-                        }
                     }
                 });
         snackbarNoInternet = Snackbar.make(contentLayout, R.string.no_internet, Snackbar.LENGTH_LONG);
@@ -1082,11 +1069,6 @@ public class MainActivity extends AppCompatActivity
         AppLog.i(this, "onNotificationCountChanged()");
         // Count saved in PodUserProfile
         invalidateOptionsMenu();
-
-        if (notificationCount > 0 && !snackbarNewNotification.isShown()
-                && !webView.getUrl().equals(urls.getNotificationsUrl())) {
-            snackbarNewNotification.show();
-        }
     }
 
     // TODO: Move from Javascript interface
@@ -1095,10 +1077,6 @@ public class MainActivity extends AppCompatActivity
         AppLog.i(this, "onUnreadMessageCountChanged()");
         // Count saved in PodUserProfile
         invalidateOptionsMenu();
-        if (unreadMessageCount > 0 && !snackbarNewNotification.isShown()
-                && !webView.getUrl().equals(urls.getNotificationsUrl())) {
-            snackbarNewNotification.show();
-        }
     }
 
     private class JavaScriptInterface {
