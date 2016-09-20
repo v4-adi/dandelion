@@ -49,8 +49,6 @@ public class OpenExternalLinkReceiver extends BroadcastReceiver {
             // Setup Chrome Custom Tab
             CustomTabsIntent.Builder customTab = new CustomTabsIntent.Builder();
             customTab.setToolbarColor(Helpers.getColorFromRessource(c, R.color.colorPrimary));
-            customTab.setStartAnimations(c, android.R.anim.slide_in_left, android.R.anim.fade_out);
-            customTab.setExitAnimations(c, android.R.anim.fade_in, android.R.anim.slide_out_right);
             customTab.addDefaultShareMenuItem();
 
             Bitmap backButtonIcon = BitmapFactory.decodeResource(c.getResources(), R.drawable.chrome_custom_tab__back);
