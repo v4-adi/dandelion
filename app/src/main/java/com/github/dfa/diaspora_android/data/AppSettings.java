@@ -202,7 +202,7 @@ public class AppSettings {
     @SuppressLint("CommitPrefEdits")
     public void setProxyEnabled(boolean enabled) {
         //commit instead of apply because the app is likely to be killed before apply is called.
-        prefApp.edit().putBoolean(context.getString(R.string.pref_key__proxy_enabled), enabled).commit();
+        prefApp.edit().putBoolean(context.getString(R.string.pref_key__http_proxy_enabled), enabled).commit();
     }
 
     /**
@@ -211,7 +211,7 @@ public class AppSettings {
      * @return whether proxy is enabled or not
      */
     public boolean isProxyEnabled() {
-        return getBoolean(prefApp, R.string.pref_key__proxy_enabled, false);
+        return getBoolean(prefApp, R.string.pref_key__http_proxy_enabled, false);
     }
 
     public boolean wasProxyEnabled() {
@@ -235,9 +235,12 @@ public class AppSettings {
      * @return proxy host
      */
     public String getProxyHost() {
-        return getString(prefApp, R.string.pref_key__proxy_host, "");
+        return getString(prefApp, R.string.pref_key__http_proxy_host, "");
     }
 
+    public void setProxyHttpHost(String value) {
+        setString(prefApp, R.string.pref_key__http_proxy_host, value);
+    }
     /**
      * Default value: 0
      *
@@ -245,11 +248,15 @@ public class AppSettings {
      */
     public int getProxyPort() {
         try {
-            return Integer.parseInt(getString(prefApp, R.string.pref_key__proxy_port, "0"));
+            return Integer.parseInt(getString(prefApp, R.string.pref_key__http_proxy_port, "0"));
         } catch (Exception e) {
-            setString(prefApp, R.string.pref_key__proxy_port, "0");
+            setString(prefApp, R.string.pref_key__http_proxy_port, "0");
             return 0;
         }
+    }
+
+    public void setProxyHttpPort(int value) {
+        setInt(prefApp, R.string.pref_key__http_proxy_port, value);
     }
 
     public boolean isIntellihideToolbars() {

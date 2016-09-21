@@ -22,9 +22,9 @@
   <string name="pref_desc__load_images">Desabilitar o carregamento de imagens para economizar seus créditos</string>
   <!-- Proxy -->
   <string name="pref_title__proxy_enabled">Habilitar o Proxy</string>
-  <string name="pref_desc__proxy_enabled">Usar proxy para o tráfego da diáspora para contornar firewalls.\nPode requerer reinicialização</string>
-  <string name="pref_title__proxy_host">Servidor</string>
-  <string name="pref_title__proxy_port">Porta</string>
+  <string name="pref_desc__http_proxy_enabled">Usar proxy para o tráfego da diáspora para contornar firewalls.\nPode requerer reinicialização</string>
+  <string name="pref_title__http_proxy_host">Servidor</string>
+  <string name="pref_title__http_proxy_port">Porta</string>
   <!-- Chrome custom tabs -->
   <!-- Diaspora Settings -->
   <string name="pref_title__personal_settings">Configurações pessoais</string>

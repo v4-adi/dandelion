@@ -22,9 +22,9 @@
   <string name="pref_desc__load_images">മൊബൈൽ ഡാറ്റ ഉപഭോഗം കുറയ്ക്കാനായി ചിത്രങ്ങൾ ലോഡ് ചെയ്യാതിരിക്കുക</string>
   <!-- Proxy -->
   <string name="pref_title__proxy_enabled">പ്രോക്സി അനുവദിക്കൂ</string>
-  <string name="pref_desc__proxy_enabled">ഫയർവാളുകളെ മറികടക്കാൻ ഡയസ്പോറ ട്രാഫിക് പ്രോക്സി ചെയ്യൂ.\nപുനരാരംഭിക്കേണ്ടി വന്നേക്കാം</string>
-  <string name="pref_title__proxy_host">ആഥിതേയൻ</string>
-  <string name="pref_title__proxy_port">പോർട്ട്</string>
+  <string name="pref_desc__http_proxy_enabled">ഫയർവാളുകളെ മറികടക്കാൻ ഡയസ്പോറ ട്രാഫിക് പ്രോക്സി ചെയ്യൂ.\nപുനരാരംഭിക്കേണ്ടി വന്നേക്കാം</string>
+  <string name="pref_title__http_proxy_host">ആഥിതേയൻ</string>
+  <string name="pref_title__http_proxy_port">പോർട്ട്</string>
   <!-- Chrome custom tabs -->
   <!-- Diaspora Settings -->
   <string name="pref_title__personal_settings">സ്വകാര്യ സജ്ജീകരണങ്ങൾ</string>

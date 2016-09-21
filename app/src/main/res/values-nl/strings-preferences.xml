@@ -21,9 +21,9 @@
   <string name="pref_desc__load_images">Afbeelding laden uitschakelen om mobiele data te besparen</string>
   <!-- Proxy -->
   <string name="pref_title__proxy_enabled">Proxy inschakelen</string>
-  <string name="pref_desc__proxy_enabled">Gebruik een Proxy voor Diaspora om de firewalls te omzeilen.\nRestart nodig</string>
-  <string name="pref_title__proxy_host">Host</string>
-  <string name="pref_title__proxy_port">Poort</string>
+  <string name="pref_desc__http_proxy_enabled">Gebruik een Proxy voor Diaspora om de firewalls te omzeilen.\nRestart nodig</string>
+  <string name="pref_title__http_proxy_host">Host</string>
+  <string name="pref_title__http_proxy_port">Poort</string>
   <!-- Chrome custom tabs -->
   <!-- Diaspora Settings -->
   <string name="pref_title__personal_settings">Persoonlijke instellingen</string>

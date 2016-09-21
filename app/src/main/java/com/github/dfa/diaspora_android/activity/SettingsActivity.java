@@ -78,12 +78,12 @@ public class SettingsActivity extends AppCompatActivity {
             sharedPreferences.registerOnSharedPreferenceChangeListener(this);
             setPreferenceSummaries();
             sharedPreferences.edit().putBoolean(getString(R.string.pref_key__proxy_was_enabled),
-                    sharedPreferences.getBoolean(getString(R.string.pref_key__proxy_enabled), false)).apply();
+                    sharedPreferences.getBoolean(getString(R.string.pref_key__http_proxy_enabled), false)).apply();
         }
 
         private void setPreferenceSummaries() {
             String[] editTextKeys = new String[]{
-                    getString(R.string.pref_key__proxy_host), getString(R.string.pref_key__proxy_port)
+                    getString(R.string.pref_key__http_proxy_host), getString(R.string.pref_key__http_proxy_port)
             };
             for (String key : editTextKeys) {
                 EditTextPreference p = (EditTextPreference) findPreference(key);
@@ -98,9 +98,9 @@ public class SettingsActivity extends AppCompatActivity {
                     key.equals(getString(R.string.pref_key__font_size)) ||
                     key.equals(getString(R.string.pref_key__load_images)) ||
                     key.equals(getString(R.string.pref_key__intellihide_toolbars)) ||
-                    key.equals(getString(R.string.pref_key__proxy_enabled)) ||
-                    key.equals(getString(R.string.pref_key__proxy_host)) ||
-                    key.equals(getString(R.string.pref_key__proxy_port)) ||
+                    key.equals(getString(R.string.pref_key__http_proxy_enabled)) ||
+                    key.equals(getString(R.string.pref_key__http_proxy_host)) ||
+                    key.equals(getString(R.string.pref_key__http_proxy_port)) ||
                     key.startsWith("pref_key__visibility_nav__"))) {
                 ((SettingsActivity) getActivity()).setActivityRestartRequired();
             }
@@ -123,8 +123,11 @@ public class SettingsActivity extends AppCompatActivity {
 
         @Override
         public boolean onPreferenceTreeClick(PreferenceScreen screen, Preference preference) {
+            App app = ((App) getActivity().getApplication());
+            AppSettings appSettings = app.getSettings();
             Intent intent = new Intent(getActivity(), MainActivity.class);
-            String podDomain = ((App) getActivity().getApplication()).getSettings().getPodDomain();
+            String podDomain = appSettings.getPodDomain();
+
             switch (preference.getTitleRes()) {
                 case R.string.pref_title__personal_settings: {
                     intent.setAction(MainActivity.ACTION_OPEN_URL);
@@ -156,6 +159,11 @@ public class SettingsActivity extends AppCompatActivity {
                                         }
                                     })
                             .show();
+                    return true;
+                }
+                case R.string.pref_title__http_proxy_load_tor_preset: {
+                    ((EditTextPreference)findPreference(getString(R.string.pref_key__http_proxy_host))).setText("127.0.0.1");
+                    ((EditTextPreference)findPreference(getString(R.string.pref_key__http_proxy_port))).setText("8118");
                     return true;
                 }
 
