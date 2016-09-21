@@ -1,5 +1,6 @@
 package com.github.dfa.diaspora_android.fragment;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -10,6 +11,17 @@ import android.view.MenuInflater;
  */
 
 public abstract class CustomFragment extends Fragment {
+
+    /**
+     * We have an optionsMenu
+     * @param savedInstanceState state
+     */
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
     /**
      * Return the tag used to identify the Fragment.
      * @return tag

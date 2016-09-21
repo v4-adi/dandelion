@@ -188,7 +188,8 @@ public class MainActivity extends AppCompatActivity
         getMenuInflater().inflate(R.menu.main__menu_bottom, toolbarBottom.getMenu());
         toolbarBottom.setOnMenuItemClickListener(new ActionMenuView.OnMenuItemClickListener() {
             public boolean onMenuItemClick(MenuItem item) {
-                return MainActivity.this.onOptionsItemSelected(item);
+                CustomFragment topFrag = (CustomFragment) getTopFragment();
+                return MainActivity.this.onOptionsItemSelected(item) || (topFrag != null && topFrag.onOptionsItemSelected(item));
             }
         });
         setTitle(R.string.app_name);
