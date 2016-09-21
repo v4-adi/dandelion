@@ -48,7 +48,6 @@ public class StreamFragment extends WebViewFragment {
     public static final String TAG = "com.github.dfa.diaspora_android.StreamFragment";
 
     private DiasporaUrlHelper urls;
-    private Bundle webViewState;
 
     private ValueCallback<Uri[]> imageUploadFilePathCallbackNew;
     private ValueCallback<Uri> imageUploadFilePathCallbackOld;
@@ -266,21 +265,6 @@ public class StreamFragment extends WebViewFragment {
             }
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        webViewState = new Bundle();
-        webView.saveState(webViewState);
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        if(webViewState != null) {
-            webView.restoreState(webViewState);
-        }
     }
 
     @Override
