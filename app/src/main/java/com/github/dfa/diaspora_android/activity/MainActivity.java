@@ -183,13 +183,6 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.main__activity);
         ButterKnife.bind(this);
 
-        fm = getSupportFragmentManager();
-        if(fm.findFragmentByTag(StreamFragment.TAG) == null) {
-            fm.beginTransaction().replace(R.id.fragment_container, new StreamFragment()).commit();
-        } else {
-            fm.beginTransaction().replace(R.id.fragment_container, fm.findFragmentByTag(StreamFragment.TAG)).commit();
-        }
-
         if ((app = (App) getApplication()) == null) AppLog.e(this, "App is null!");
         if ((appSettings = app.getSettings()) == null) AppLog.e(this, "AppSettings is null!");
         if ((podUserProfile = app.getPodUserProfile()) == null)
@@ -198,6 +191,11 @@ public class MainActivity extends AppCompatActivity
         podUserProfile.setListener(this);
         urls = new DiasporaUrlHelper(appSettings);
         customTabActivityHelper = new CustomTabActivityHelper();
+
+        fm = getSupportFragmentManager();
+        StreamFragment sf = getStreamFragment();
+        fm.beginTransaction().replace(R.id.fragment_container, sf, StreamFragment.TAG).commit();
+        sf.onCreateBottomOptionsMenu(toolbarBottom.getMenu(), getMenuInflater());
 
         setupUI(savedInstanceState);
 
@@ -256,6 +254,7 @@ public class MainActivity extends AppCompatActivity
     public void openDiasporaUrl(String url) {
         StreamFragment streamFragment = getStreamFragment();
         if(!streamFragment.isVisible()) {
+            AppLog.d(this, "StreamFragment not visible");
             fm.beginTransaction().replace(R.id.fragment_container, streamFragment, StreamFragment.TAG).commit();
             streamFragment.onCreateBottomOptionsMenu(toolbarBottom.getMenu(), getMenuInflater());
         }
@@ -265,6 +264,7 @@ public class MainActivity extends AppCompatActivity
     public StreamFragment getStreamFragment() {
         StreamFragment streamFragment = (StreamFragment) fm.findFragmentByTag(StreamFragment.TAG);
         if(streamFragment == null) {
+            AppLog.d(this, "StreamFragment was null");
             streamFragment = new StreamFragment();
         }
         return streamFragment;
@@ -275,13 +275,6 @@ public class MainActivity extends AppCompatActivity
         AppLog.i(this, "onConfigurationChanged()");
 
         super.onConfigurationChanged(newConfig);
-
-        // Load the layout resource for the new configuration
-        setContentView(R.layout.main__activity);
-
-        // Reinitialize the UI
-        AppLog.v(this, "Rebuild the UI");
-        setupUI(null);
     }
 
     private void setupNavigationSlider() {

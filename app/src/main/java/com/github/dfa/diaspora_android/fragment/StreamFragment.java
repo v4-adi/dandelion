@@ -138,4 +138,10 @@ public class StreamFragment extends WebViewFragment {
         }
         return false;
     }
+
+    @Override
+    public ContextMenuWebView getWebView() {
+        AppLog.d(this, "getWebView: "+(this.webView != null));
+        return this.webView;
+    }
 }
