@@ -42,6 +42,8 @@ import android.os.Handler;
 import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.customtabs.CustomTabsClient;
+import android.support.customtabs.CustomTabsSession;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -107,7 +109,7 @@ import info.guardianproject.netcipher.NetCipher;
 import info.guardianproject.netcipher.webkit.WebkitProxy;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, WebUserProfileChangedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, WebUserProfileChangedListener, CustomTabActivityHelper.ConnectionCallback {
 
 
     private static final int INPUT_FILE_REQUEST_CODE_NEW = 1;
@@ -141,6 +143,7 @@ public class MainActivity extends AppCompatActivity
     private Snackbar snackbarExitApp;
     private Snackbar snackbarNoInternet;
     private String textToBeShared = null;
+    private CustomTabsSession customTabsSession;
 
     /**
      * UI Bindings
@@ -196,6 +199,7 @@ public class MainActivity extends AppCompatActivity
         podUserProfile.setListener(this);
         urls = new DiasporaUrlHelper(appSettings);
         customTabActivityHelper = new CustomTabActivityHelper();
+        customTabActivityHelper.setConnectionCallback(this);
 
         setupUI(savedInstanceState);
 
@@ -1077,6 +1081,19 @@ public class MainActivity extends AppCompatActivity
         AppLog.i(this, "onUnreadMessageCountChanged()");
         // Count saved in PodUserProfile
         invalidateOptionsMenu();
+    }
+
+    @Override
+    public void onCustomTabsConnected() {
+        if(customTabsSession == null) {
+            AppLog.i(this, "CustomTabs warmup: "+customTabActivityHelper.warmup(0));
+            customTabsSession = customTabActivityHelper.getSession();
+        }
+    }
+
+    @Override
+    public void onCustomTabsDisconnected() {
+
     }
 
     private class JavaScriptInterface {
