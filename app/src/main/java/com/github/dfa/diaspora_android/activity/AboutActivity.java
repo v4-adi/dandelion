@@ -71,7 +71,7 @@ public class AboutActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_about);
+        setContentView(R.layout.about__activity);
         ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
@@ -111,7 +111,7 @@ public class AboutActivity extends AppCompatActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_about, container, false);
+            View rootView = inflater.inflate(R.layout.about__fragment_about, container, false);
             TextView appVersion = (TextView) rootView.findViewById(R.id.fragment_about__app_version);
 
             if (isAdded()) {
@@ -143,7 +143,7 @@ public class AboutActivity extends AppCompatActivity {
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_license, container, false);
+            View rootView = inflater.inflate(R.layout.about__fragment_license, container, false);
             ButterKnife.bind(this, rootView);
             final Context context = rootView.getContext();
             accentColor = Helpers.hexColorFromRessourceColor(context, R.color.colorAccent);
@@ -201,7 +201,7 @@ public class AboutActivity extends AppCompatActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_debug, container, false);
+            View rootView = inflater.inflate(R.layout.about__fragment_debug, container, false);
             TextView packageName = (TextView) rootView.findViewById(R.id.fragment_debug__package_name);
             TextView appVersion = (TextView) rootView.findViewById(R.id.fragment_debug__app_version);
             TextView osVersion = (TextView) rootView.findViewById(R.id.fragment_debug__android_version);

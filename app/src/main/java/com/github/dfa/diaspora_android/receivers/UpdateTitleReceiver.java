@@ -12,7 +12,7 @@ import com.github.dfa.diaspora_android.util.AppLog;
 import com.github.dfa.diaspora_android.util.DiasporaUrlHelper;
 
 /**
- * BroadcastReceiver used to update the title of the MainActivity depending on the url of the webview
+ * BroadcastReceiver used to update the title of the MainActivity depending on the url of the ui__webview
  * Created by vanitas on 11.09.16.
  */
 public class UpdateTitleReceiver extends BroadcastReceiver {

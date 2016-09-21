@@ -224,7 +224,7 @@ public class PodSelectionActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.pods__menu, menu);
+        getMenuInflater().inflate(R.menu.podselection__menu, menu);
         return true;
     }
 

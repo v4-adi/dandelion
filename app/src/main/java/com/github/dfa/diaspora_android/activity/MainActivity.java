@@ -235,7 +235,7 @@ public class MainActivity extends AppCompatActivity
         boolean newWebView = (webView == null);
         if (newWebView) {
             AppLog.v(this, "WebView was null. Create new one.");
-            View webviewHolder = getLayoutInflater().inflate(R.layout.webview, this.contentLayout, false);
+            View webviewHolder = getLayoutInflater().inflate(R.layout.ui__webview, this.contentLayout, false);
             this.webView = (ContextMenuWebView) webviewHolder.findViewById(R.id.webView);
             ((LinearLayout) webView.getParent()).removeView(webView);
             setupWebView(savedInstanceState);
@@ -840,7 +840,7 @@ public class MainActivity extends AppCompatActivity
                 if (WebHelper.isOnline(MainActivity.this)) {
                     final InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 
-                    View layout = getLayoutInflater().inflate(R.layout.dialog_search__people_tags, null, false);
+                    View layout = getLayoutInflater().inflate(R.layout.ui__dialog_search__people_tags, null, false);
                     final EditText input = (EditText) layout.findViewById(R.id.dialog_search__input);
                     final DialogInterface.OnClickListener clickListener = new DialogInterface.OnClickListener() {
                         @Override
@@ -1249,7 +1249,7 @@ public class MainActivity extends AppCompatActivity
             AppLog.v(this, "Apply NetCipher proxy settings");
             NetCipher.setProxy(host, port); //Proxy for HttpsUrlConnections
             try {
-                //Proxy for the webview
+                //Proxy for the ui__webview
                 AppLog.v(this, "Apply Webkit proxy settings");
                 WebkitProxy.setProxy(MainActivity.class.getName(), getApplicationContext(), null, host, port);
             } catch (Exception e) {

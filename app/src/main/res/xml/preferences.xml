@@ -125,21 +125,26 @@
             android:summary="@string/pref_desc__clear_cache"
             android:title="@string/pref_title__clear_cache"/>
 
-        <CheckBoxPreference
-            android:defaultValue="false"
-            android:key="@string/pref_key__proxy_enabled"
-            android:summary="@string/pref_desc__proxy_enabled"
-            android:title="@string/pref_title__proxy_enabled"/>
-        <EditTextPreference
-            android:dependency="@string/pref_key__proxy_enabled"
-            android:inputType="textNoSuggestions"
-            android:key="@string/pref_key__proxy_host"
-            android:title="@string/pref_title__proxy_host"/>
-        <EditTextPreference
-            android:dependency="@string/pref_key__proxy_enabled"
-            android:inputType="number"
-            android:key="@string/pref_key__proxy_port"
-            android:title="@string/pref_title__proxy_port"/>
+
+        <PreferenceScreen
+            android:summary="@string/pref_desc__sub_proxy"
+            android:title="@string/pref_title__sub_proxy">
+            <CheckBoxPreference
+                android:defaultValue="false"
+                android:key="@string/pref_key__proxy_enabled"
+                android:summary="@string/pref_desc__proxy_enabled"
+                android:title="@string/pref_title__proxy_enabled"/>
+            <EditTextPreference
+                android:dependency="@string/pref_key__proxy_enabled"
+                android:inputType="textNoSuggestions"
+                android:key="@string/pref_key__proxy_host"
+                android:title="@string/pref_title__proxy_host"/>
+            <EditTextPreference
+                android:dependency="@string/pref_key__proxy_enabled"
+                android:inputType="number"
+                android:key="@string/pref_key__proxy_port"
+                android:title="@string/pref_title__proxy_port"/>
+        </PreferenceScreen>
     </PreferenceCategory>
 
     <!-- More -->
