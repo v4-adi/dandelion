@@ -18,13 +18,7 @@
  */
 package com.github.dfa.diaspora_android.activity;
 
-import android.Manifest;
-import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.app.AlarmManager;
-import android.app.AlertDialog;
-import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -32,16 +26,12 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
-import android.graphics.Bitmap;
 import android.graphics.drawable.LayerDrawable;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
-import android.os.StrictMode;
-import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.customtabs.CustomTabsSession;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -61,16 +51,10 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
-import android.webkit.JavascriptInterface;
-import android.webkit.ValueCallback;
-import android.webkit.WebChromeClient;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -84,39 +68,24 @@ import com.github.dfa.diaspora_android.listener.WebUserProfileChangedListener;
 import com.github.dfa.diaspora_android.receiver.OpenExternalLinkReceiver;
 import com.github.dfa.diaspora_android.receiver.UpdateTitleReceiver;
 import com.github.dfa.diaspora_android.ui.BadgeDrawable;
-import com.github.dfa.diaspora_android.ui.ContextMenuWebView;
-import com.github.dfa.diaspora_android.ui.CustomWebViewClient;
 import com.github.dfa.diaspora_android.util.AppLog;
 import com.github.dfa.diaspora_android.util.CustomTabHelpers.CustomTabActivityHelper;
 import com.github.dfa.diaspora_android.util.DiasporaUrlHelper;
 import com.github.dfa.diaspora_android.util.Helpers;
 import com.github.dfa.diaspora_android.util.WebHelper;
 
-import org.json.JSONException;
-
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import info.guardianproject.netcipher.NetCipher;
-import info.guardianproject.netcipher.webkit.WebkitProxy;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, WebUserProfileChangedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, WebUserProfileChangedListener, CustomTabActivityHelper.ConnectionCallback {
 
 
-    public static final int INPUT_FILE_REQUEST_CODE_NEW = 1;
-    public static final int INPUT_FILE_REQUEST_CODE_OLD = 2;
     public static final int REQUEST_CODE_ASK_PERMISSIONS = 123;
     public static final int REQUEST_CODE__ACCESS_EXTERNAL_STORAGE = 124;
+    public static final int INPUT_FILE_REQUEST_CODE_NEW = 1;
+    public static final int INPUT_FILE_REQUEST_CODE_OLD = 2;
 
     public static final String ACTION_OPEN_URL = "com.github.dfa.diaspora_android.MainActivity.open_url";
     public static final String ACTION_OPEN_EXTERNAL_URL = "com.github.dfa.diaspora_android.MainActivity.open_external_url";
@@ -129,9 +98,6 @@ public class MainActivity extends AppCompatActivity
     public static final String CONTENT_HASHTAG = "content://com.github.dfa.diaspora_android.mainactivity/";
 
     private App app;
-    private ValueCallback<Uri[]> imageUploadFilePathCallbackNew;
-    private ValueCallback<Uri> imageUploadFilePathCallbackOld;
-    private String mCameraPhotoPath;
     private CustomTabActivityHelper customTabActivityHelper;
     private AppSettings appSettings;
     private DiasporaUrlHelper urls;
@@ -141,8 +107,8 @@ public class MainActivity extends AppCompatActivity
     private BroadcastReceiver brSetTitle;
     private Snackbar snackbarExitApp;
     private Snackbar snackbarNoInternet;
-
     private FragmentManager fm;
+    private CustomTabsSession customTabsSession;
 
     /**
      * UI Bindings
@@ -191,6 +157,7 @@ public class MainActivity extends AppCompatActivity
         podUserProfile.setListener(this);
         urls = new DiasporaUrlHelper(appSettings);
         customTabActivityHelper = new CustomTabActivityHelper();
+        customTabActivityHelper.setConnectionCallback(this);
 
         fm = getSupportFragmentManager();
         StreamFragment sf = getStreamFragment();
@@ -411,70 +378,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        AppLog.v(this, "onActivityResult()");
-        switch (requestCode) {
-            case INPUT_FILE_REQUEST_CODE_NEW: {
-                AppLog.v(this, "Upload image using recent method (Lollipop+)");
-                if (imageUploadFilePathCallbackNew == null || resultCode != Activity.RESULT_OK) {
-                    AppLog.e(this, "Callback is null: " + (imageUploadFilePathCallbackNew == null)
-                            + " resultCode: " + resultCode);
-                    if(imageUploadFilePathCallbackNew != null)
-                        imageUploadFilePathCallbackNew.onReceiveValue(new Uri[]{});
-                    return;
-                }
-                Uri[] results = null;
-                if (data == null) {
-                    if (mCameraPhotoPath != null) {
-                        AppLog.v(this, "Intent data is null. Try to parse cameraPhotoPath");
-                        results = new Uri[]{Uri.parse(mCameraPhotoPath)};
-                    } else {
-                        AppLog.w(this, "Intent data is null and cameraPhotoPath is null");
-                    }
-                } else {
-                    String dataString = data.getDataString();
-                    if (dataString != null) {
-                        AppLog.v(this, "Intent has data. Try to parse dataString");
-                        results = new Uri[]{Uri.parse(dataString)};
-                    }
-                    AppLog.w(this, "dataString is null");
-                }
-                AppLog.v(this, "handle received result over to callback");
-                imageUploadFilePathCallbackNew.onReceiveValue(results);
-                imageUploadFilePathCallbackNew = null;
-                return;
-            }
-            case INPUT_FILE_REQUEST_CODE_OLD: {
-                AppLog.v(this, "Upload image using legacy method (Jelly Bean, Kitkat)");
-                if (imageUploadFilePathCallbackOld == null || resultCode != Activity.RESULT_OK) {
-                    AppLog.e(this, "Callback is null: " + (imageUploadFilePathCallbackOld == null)
-                            + " resultCode: " + resultCode);
-                    if(imageUploadFilePathCallbackOld != null)
-                        imageUploadFilePathCallbackOld.onReceiveValue(null);
-                    return;
-                }
-                Uri results = null;
-                if (data == null) {
-                    if (mCameraPhotoPath != null) {
-                        AppLog.v(this, "Intent has no data. Try to parse cameraPhotoPath");
-                        results = Uri.parse(mCameraPhotoPath);
-                    } else {
-                        AppLog.w(this, "Intent has no data and cameraPhotoPath is null");
-                    }
-                } else {
-                    String dataString = data.getDataString();
-                    if (dataString != null) {
-                        AppLog.v(this, "Intent has data. Try to parse dataString");
-                        results = Uri.parse(dataString);
-                    } else {
-                        AppLog.w(this, "dataString is null");
-                    }
-                }
-                AppLog.v(this, "handle received result over to callback");
-                imageUploadFilePathCallbackOld.onReceiveValue(results);
-                imageUploadFilePathCallbackOld = null;
-                return;
-            }
-        }
+        AppLog.d(this, "onActivityResult(): "+requestCode);
         super.onActivityResult(requestCode, resultCode, data);
     }
 
@@ -508,10 +412,13 @@ public class MainActivity extends AppCompatActivity
         }
         CustomFragment top = (CustomFragment) getTopFragment();
         if(top != null) {
+            AppLog.d(this, "Top Fragment is not null");
             if(!top.onBackPressed()) {
+                AppLog.d(this, "Top Fragment.onBackPressed was false");
                 //TODO: Go back in Fragment backstack
                 return;
             } else {
+                AppLog.d(this, "Top Fragment.onBackPressed was true");
                 return;
             }
         }
@@ -737,13 +644,11 @@ public class MainActivity extends AppCompatActivity
         if (sharedSubject != null) {
             AppLog.v(this, "Append subject to shared text");
             String escapedSubject = WebHelper.escapeHtmlText(WebHelper.replaceUrlWithMarkdown(sharedSubject));
-            //textToBeShared = "**" + escapedSubject + "** " + escapedBody;
+            getStreamFragment().setTextToBeShared("**" + escapedSubject + "** " + escapedBody);
         } else {
             AppLog.v(this, "Set shared text; Subject: \"" + sharedSubject + "\" Body: \"" + sharedBody + "\"");
-            //textToBeShared = escapedBody;
+            getStreamFragment().setTextToBeShared(escapedBody);
         }
-
-
     }
 
     //TODO: Implement?
@@ -759,7 +664,6 @@ public class MainActivity extends AppCompatActivity
         Toast.makeText(this, "Not yet implemented.", Toast.LENGTH_SHORT).show();
     }
 
-    // TODO: Move from Javascript interface
     @Override
     public void onNotificationCountChanged(int notificationCount) {
         AppLog.i(this, "onNotificationCountChanged()");
@@ -767,12 +671,24 @@ public class MainActivity extends AppCompatActivity
         invalidateOptionsMenu();
     }
 
-    // TODO: Move from Javascript interface
     @Override
     public void onUnreadMessageCountChanged(int unreadMessageCount) {
         AppLog.i(this, "onUnreadMessageCountChanged()");
         // Count saved in PodUserProfile
         invalidateOptionsMenu();
+    }
+
+    @Override
+    public void onCustomTabsConnected() {
+        if(customTabsSession == null) {
+            AppLog.i(this, "CustomTabs warmup: "+customTabActivityHelper.warmup(0));
+            customTabsSession = customTabActivityHelper.getSession();
+        }
+    }
+
+    @Override
+    public void onCustomTabsDisconnected() {
+
     }
 
     @SuppressWarnings("StatementWithEmptyBody")

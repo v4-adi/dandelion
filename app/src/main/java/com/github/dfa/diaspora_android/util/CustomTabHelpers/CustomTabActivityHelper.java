@@ -118,6 +118,10 @@ public class CustomTabActivityHelper {
         return session.mayLaunchUrl(uri, extras, otherLikelyBundles);
     }
 
+    public boolean warmup(int flags) {
+        return mClient.warmup(flags);
+    }
+
     /**
      * A Callback for when the service is connected or disconnected. Use those callbacks to
      * handle UI changes when the service is connected or disconnected

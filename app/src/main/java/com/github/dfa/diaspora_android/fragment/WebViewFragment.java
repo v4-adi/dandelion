@@ -15,9 +15,6 @@ import android.os.StrictMode;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
-import android.webkit.JavascriptInterface;
-import android.webkit.ValueCallback;
-import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -28,13 +25,9 @@ import com.github.dfa.diaspora_android.App;
 import com.github.dfa.diaspora_android.R;
 import com.github.dfa.diaspora_android.activity.MainActivity;
 import com.github.dfa.diaspora_android.data.AppSettings;
-import com.github.dfa.diaspora_android.data.PodUserProfile;
 import com.github.dfa.diaspora_android.ui.ContextMenuWebView;
 import com.github.dfa.diaspora_android.ui.CustomWebViewClient;
 import com.github.dfa.diaspora_android.util.AppLog;
-import com.github.dfa.diaspora_android.util.WebHelper;
-
-import org.json.JSONException;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -60,8 +53,6 @@ public abstract class WebViewFragment extends CustomFragment {
     protected ContextMenuWebView webView;
     protected ProgressBar progressBar;
     protected AppSettings appSettings;
-
-    protected String textToBeShared;
 
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -100,9 +91,6 @@ public abstract class WebViewFragment extends CustomFragment {
         //webView.setParentActivity(this);
         webView.setOverScrollMode(WebView.OVER_SCROLL_ALWAYS);
 
-        // Setup WebView
-        webView.addJavascriptInterface(new JavaScriptInterface(), "AndroidBridge");
-
         //Set proxy
         if (appSettings.isProxyEnabled()) {
             if (!setProxy(appSettings.getProxyHost(), appSettings.getProxyPort())) {
@@ -118,118 +106,6 @@ public abstract class WebViewFragment extends CustomFragment {
          */
         this.webViewClient = new CustomWebViewClient((App) getActivity().getApplication(), webView);
         webView.setWebViewClient(webViewClient);
-
-        /*
-         * WebChromeClient
-         */
-        webView.setWebChromeClient(new WebChromeClient() {
-            final ProgressBar pb = progressBar;
-
-            public void onProgressChanged(WebView wv, int progress) {
-                pb.setProgress(progress);
-
-                if (progress > 0 && progress <= 60) {
-                    WebHelper.getUserProfile(wv);
-                    WebHelper.optimizeMobileSiteLayout(wv);
-                }
-
-                if (progress > 60) {
-                    WebHelper.optimizeMobileSiteLayout(wv);
-
-                    if (textToBeShared != null) {
-                        WebHelper.shareTextIntoWebView(wv, textToBeShared);
-                    }
-                }
-
-                progressBar.setVisibility(progress == 100 ? View.GONE : View.VISIBLE);
-            }
-
-            //For Android 4.1/4.2 only. DO NOT REMOVE!
-            @SuppressWarnings("unused")
-            protected void openFileChooser(ValueCallback<Uri> uploadMsg, String acceptType, String capture)
-            {
-                AppLog.v(this, "openFileChooser(ValCallback<Uri>, String, String");
-                //imageUploadFilePathCallbackOld = uploadMsg;
-                Intent intent = new Intent();
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                intent.putExtra("return-data", true);
-                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                AppLog.v(this, "startActivityForResult");
-                startActivityForResult(Intent.createChooser(intent, "Select Picture"), MainActivity.INPUT_FILE_REQUEST_CODE_OLD);
-            }
-
-            /*
-            @Override
-            public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> filePathCallback, FileChooserParams fileChooserParams) {
-                if(Build.VERSION.SDK_INT >= 23) {
-                    int hasWRITE_EXTERNAL_STORAGE = getActivity().checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE);
-                    if (hasWRITE_EXTERNAL_STORAGE != PackageManager.PERMISSION_GRANTED) {
-                        if (!shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-                            new AlertDialog.Builder(getContext())
-                                    .setMessage(R.string.permissions_image)
-                                    .setNegativeButton(android.R.string.no, null)
-                                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            if (android.os.Build.VERSION.SDK_INT >= 23)
-                                                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                                                        MainActivity.REQUEST_CODE_ASK_PERMISSIONS);
-                                        }
-                                    })
-                                    .show();
-                            return false;
-                        }
-                        requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                                MainActivity.REQUEST_CODE_ASK_PERMISSIONS);
-                        return false;
-                    }
-                }
-                AppLog.d(this, "onOpenFileChooser");
-                if (MainActivity.imageUploadFilePathCallbackNew != null) imageUploadFilePathCallbackNew.onReceiveValue(null);
-                imageUploadFilePathCallbackNew = filePathCallback;
-                Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-                    // Create the File where the photo should go
-                    File photoFile;
-                    try {
-                        photoFile = Helpers.createImageFile();
-                        takePictureIntent.putExtra("PhotoPath", mCameraPhotoPath);
-                    } catch (IOException ex) {
-                       AppLog.e(this, "ERROR creating temp file: "+ ex.toString());
-                        // Error occurred while creating the File
-                        Snackbar.make(contentLayout, R.string.unable_to_load_image, Snackbar.LENGTH_LONG).show();
-                        return false;
-                    }
-                    // Continue only if the File was successfully created
-                    if (photoFile != null) {
-                        mCameraPhotoPath = "file:" + photoFile.getAbsolutePath();
-                        takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
-                                Uri.fromFile(photoFile));
-                    } else {
-                        takePictureIntent = null;
-                    }
-                }
-                Intent contentSelectionIntent = new Intent(Intent.ACTION_GET_CONTENT);
-                contentSelectionIntent.addCategory(Intent.CATEGORY_OPENABLE);
-                contentSelectionIntent.setType("image/*");
-                Intent[] intentArray;
-                if (takePictureIntent != null) {
-                    intentArray = new Intent[]{takePictureIntent};
-                } else {
-                    intentArray = new Intent[0];
-                }
-                Intent chooserIntent = new Intent(Intent.ACTION_CHOOSER);
-                chooserIntent.putExtra(Intent.EXTRA_INTENT, contentSelectionIntent);
-                chooserIntent.putExtra(Intent.EXTRA_TITLE, "Image Chooser");
-                chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, intentArray);
-                Log.d(App.TAG,"startActivityForResult");
-                startActivityForResult(chooserIntent, INPUT_FILE_REQUEST_CODE_NEW);
-                return true;
-            }
-            */
-        });
-
     }
 
     /**
@@ -309,25 +185,6 @@ public abstract class WebViewFragment extends CustomFragment {
         AlarmManager mgr = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
         mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, pendingIntent);
         System.exit(0);
-    }
-
-    private class JavaScriptInterface {
-        @JavascriptInterface
-        public void setUserProfile(final String webMessage) throws JSONException {
-            PodUserProfile pup = ((App)getActivity().getApplication()).getPodUserProfile();
-            AppLog.i(this, "StreamFragment.JavaScriptInterface.setUserProfile()");
-            if (pup.isRefreshNeeded()) {
-                AppLog.v(this, "PodUserProfile needs refresh; Try to parse JSON");
-                pup.parseJson(webMessage);
-            } else {
-                AppLog.v(this, "No PodUserProfile refresh needed");
-            }
-        }
-
-        @JavascriptInterface
-        public void contentHasBeenShared() {
-            textToBeShared = null;
-        }
     }
 
     @SuppressWarnings("ResultOfMethodCallIgnored")
@@ -412,7 +269,17 @@ public abstract class WebViewFragment extends CustomFragment {
         return true;
     }
 
+    @Override
+    public boolean onBackPressed() {
+        if(webView.canGoBack()) {
+            webView.goBack();
+            return true;
+        }
+        return false;
+    }
+
     public void loadUrl(String url) {
+        AppLog.v(this, "loadUrl("+url+")");
         getWebView().loadUrlNew(url);
     }
 
@@ -421,6 +288,7 @@ public abstract class WebViewFragment extends CustomFragment {
     }
 
     public void reloadUrl() {
+        AppLog.v(this, "reloadUrl()");
         getWebView().reload();
     }
 
