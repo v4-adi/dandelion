@@ -65,7 +65,7 @@ public class PodSelectionActivity extends AppCompatActivity {
     @BindView(R.id.podselection__listpods)
     ListView listPods;
 
-    @BindView(R.id.toolbar)
+    @BindView(R.id.main__topbar)
     Toolbar toolbar;
 
     @Override

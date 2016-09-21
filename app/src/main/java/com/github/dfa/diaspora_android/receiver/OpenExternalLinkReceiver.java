@@ -1,4 +1,4 @@
-package com.github.dfa.diaspora_android.receivers;
+package com.github.dfa.diaspora_android.receiver;
 
 import android.app.Activity;
 import android.content.BroadcastReceiver;
@@ -9,7 +9,6 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.support.customtabs.CustomTabsIntent;
 
-import com.github.dfa.diaspora_android.App;
 import com.github.dfa.diaspora_android.R;
 import com.github.dfa.diaspora_android.activity.MainActivity;
 import com.github.dfa.diaspora_android.data.AppSettings;
@@ -17,7 +16,6 @@ import com.github.dfa.diaspora_android.util.AppLog;
 import com.github.dfa.diaspora_android.util.CustomTabHelpers.BrowserFallback;
 import com.github.dfa.diaspora_android.util.CustomTabHelpers.CustomTabActivityHelper;
 import com.github.dfa.diaspora_android.util.Helpers;
-import com.github.dfa.diaspora_android.util.Log;
 
 /**
  * BroadcastReceiver that opens links in a Chrome CustomTab

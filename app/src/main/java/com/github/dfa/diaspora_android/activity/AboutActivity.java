@@ -62,7 +62,7 @@ public class AboutActivity extends AppCompatActivity {
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
 
-    @BindView(R.id.toolbar)
+    @BindView(R.id.main__topbar)
     protected Toolbar toolbar;
 
     @BindView(R.id.linearlayout)

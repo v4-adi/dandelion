@@ -8,42 +8,31 @@
         android:id="@+id/action_search"
         android:icon="@drawable/ic_search_white_48px"
         app:showAsAction="always"
+        android:orderInCategory="100"
         android:title="@string/action_search_by_tags_or_persons" />
-
 
     <item
         android:id="@+id/action_compose"
         android:icon="@drawable/ic_mode_edit_white_48px"
         app:showAsAction="always"
+        android:orderInCategory="200"
         android:title="@string/action_compose_new_post" />
-
-    <item
-        android:icon="@drawable/ic_share_white_48px"
-        android:title="@string/action_share_dotdotdot"
-        app:showAsAction="always"  >
-        <menu>
-            <item android:id="@+id/action_share_screenshot" android:title="@string/share__share_screenshot"/>
-            <item android:id="@+id/action_take_screenshot" android:title="@string/share__take_screenshot"/>
-            <item android:id="@+id/action_share_link" android:title="@string/share__share_link_as_text"/>
-        </menu>
-    </item>
 
     <!-- Keep right most -->
     <item
         android:id="@+id/action_go_to_top"
         android:icon="@drawable/ic_arrow_upward_white_48px"
-        android:title="@string/action_go_to_top"
-        app:showAsAction="always"/>
+        app:showAsAction="always"
+        android:orderInCategory="400"
+        android:title="@string/action_go_to_top" />
 
     <!-- overflow menu -->
-    <item
-        android:id="@+id/action_toggle_desktop_page"
-        android:icon="@drawable/ic_sync_white_48px"
-        android:title="@string/action_toggle_desktop_page" />
 
     <item
         android:id="@+id/action_exit"
+        app:showAsAction="never"
+        android:orderInCategory="600"
         android:title="@string/action_exit_app"
-        app:showAsAction="never" />
+        />
 
 </menu>

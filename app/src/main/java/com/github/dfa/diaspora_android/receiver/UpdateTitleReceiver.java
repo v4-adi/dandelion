@@ -1,4 +1,4 @@
-package com.github.dfa.diaspora_android.receivers;
+package com.github.dfa.diaspora_android.receiver;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
