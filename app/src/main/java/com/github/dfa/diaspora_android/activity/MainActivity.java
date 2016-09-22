@@ -180,6 +180,7 @@ public class MainActivity extends AppCompatActivity
                 MainActivity.this.setTitle(title);
             }
         });
+        handleIntent(getIntent());
     }
 
     private void setupUI(Bundle savedInstanceState) {
@@ -218,10 +219,10 @@ public class MainActivity extends AppCompatActivity
         }
 
         AppLog.v(this, "UI successfully set up");
-        handleIntent(getIntent());
     }
 
     public void openDiasporaUrl(String url) {
+        AppLog.v(this, "openDiasporaUrl()");
         StreamFragment streamFragment = getStreamFragment();
         if(!streamFragment.isVisible()) {
             AppLog.d(this, "StreamFragment not visible");
@@ -232,6 +233,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     public StreamFragment getStreamFragment() {
+        AppLog.v(this, "getStreamFragment()");
         StreamFragment streamFragment = (StreamFragment) fm.findFragmentByTag(StreamFragment.TAG);
         if(streamFragment == null) {
             AppLog.d(this, "StreamFragment was null");
@@ -345,6 +347,7 @@ public class MainActivity extends AppCompatActivity
                 return;
             } else {
                 loadUrl = intent.getDataString();
+                AppLog.v(this, "Intent has a delicious URL for us: "+loadUrl);
             }
         } else if (ACTION_CHANGE_ACCOUNT.equals(action)) {
             AppLog.v(this, "Reset pod data and animate to PodSelectionActivity");
@@ -416,13 +419,13 @@ public class MainActivity extends AppCompatActivity
         }
         CustomFragment top = (CustomFragment) getTopFragment();
         if(top != null) {
-            AppLog.d(this, "Top Fragment is not null");
+            AppLog.v(this, "Top Fragment is not null");
             if(!top.onBackPressed()) {
-                AppLog.d(this, "Top Fragment.onBackPressed was false");
-                //TODO: Go back in Fragment backstack
+                AppLog.v(this, "Top Fragment.onBackPressed was false");
+                snackbarExitApp.show();
                 return;
             } else {
-                AppLog.d(this, "Top Fragment.onBackPressed was true");
+                AppLog.v(this, "Top Fragment.onBackPressed was true");
                 return;
             }
         }
