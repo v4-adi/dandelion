@@ -52,7 +52,6 @@ public class StreamFragment extends WebViewFragment {
     private ValueCallback<Uri[]> imageUploadFilePathCallbackNew;
     private ValueCallback<Uri> imageUploadFilePathCallbackOld;
     private String mCameraPhotoPath;
-    protected String textToBeShared;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -76,11 +75,19 @@ public class StreamFragment extends WebViewFragment {
 
         // Setup WebView
         webView.addJavascriptInterface(new JavaScriptInterface(), "AndroidBridge");
+        setWebChromeClient();
 
-        if(webView.getUrl() == null) {
+        if(pendingUrl != null) {
+            loadUrl(pendingUrl);
+            pendingUrl = null;
+        } else if (webView.getUrl() == null) {
             loadUrl(urls.getPodUrl());
         }
 
+        this.setRetainInstance(true);
+    }
+
+    private void setWebChromeClient() {
         //Set WebChromeClient
         webView.setWebChromeClient(new WebChromeClient() {
             final ProgressBar pb = progressBar;
@@ -96,6 +103,7 @@ public class StreamFragment extends WebViewFragment {
                 if (progress > 60) {
                     WebHelper.optimizeMobileSiteLayout(wv);
 
+                    String textToBeShared = ((MainActivity)getActivity()).getTextToBeShared();
                     if (textToBeShared != null) {
                         AppLog.d(this, "Share text into webView");
                         WebHelper.shareTextIntoWebView(wv, textToBeShared);
@@ -110,7 +118,7 @@ public class StreamFragment extends WebViewFragment {
             protected void openFileChooser(ValueCallback<Uri> uploadMsg, String acceptType, String capture)
             {
                 AppLog.v(this, "openFileChooser(ValCallback<Uri>, String, String");
-                //imageUploadFilePathCallbackOld = uploadMsg;
+                imageUploadFilePathCallbackOld = uploadMsg;
                 Intent intent = new Intent();
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -188,8 +196,6 @@ public class StreamFragment extends WebViewFragment {
                 return true;
             }
         });
-
-        this.setRetainInstance(true);
     }
 
     @Override
@@ -271,10 +277,6 @@ public class StreamFragment extends WebViewFragment {
     public ContextMenuWebView getWebView() {
         AppLog.d(this, "getWebView: "+(this.webView != null));
         return this.webView;
-    }
-
-    public void setTextToBeShared(String text) {
-        this.textToBeShared = text;
     }
 
     public void onImageUploadResult(int requestCode, int resultCode, Intent data) {
@@ -359,7 +361,7 @@ public class StreamFragment extends WebViewFragment {
 
         @JavascriptInterface
         public void contentHasBeenShared() {
-            textToBeShared = null;
+            ((MainActivity)getActivity()).setTextToBeShared(null);
         }
     }
 }

@@ -54,6 +54,8 @@ public abstract class WebViewFragment extends CustomFragment {
     protected ProgressBar progressBar;
     protected AppSettings appSettings;
 
+    protected String pendingUrl;
+
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
     }
@@ -279,17 +281,28 @@ public abstract class WebViewFragment extends CustomFragment {
     }
 
     public void loadUrl(String url) {
-        AppLog.v(this, "loadUrl("+url+")");
-        getWebView().loadUrlNew(url);
+        if(getWebView() != null) {
+            AppLog.v(this, "loadUrl(): load "+url);
+            getWebView().loadUrlNew(url);
+        } else {
+            AppLog.v(this, "loadUrl(): WebView null: Set pending url to "+url);
+            pendingUrl = url;
+        }
     }
 
     public String getUrl() {
-        return getWebView().getUrl();
+        if(getWebView() != null) {
+            return getWebView().getUrl();
+        } else {
+            return pendingUrl;
+        }
     }
 
     public void reloadUrl() {
         AppLog.v(this, "reloadUrl()");
-        getWebView().reload();
+        if(getWebView() != null) {
+            getWebView().reload();
+        }
     }
 
     public ContextMenuWebView getWebView() {

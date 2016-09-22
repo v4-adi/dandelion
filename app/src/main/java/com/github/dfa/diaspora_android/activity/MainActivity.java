@@ -134,6 +134,8 @@ public class MainActivity extends AppCompatActivity
     private TextView navheaderDescription;
     private ImageView navheaderImage;
 
+    private String textToBeShared;
+
 
     /**
      * END  UI Bindings
@@ -234,6 +236,7 @@ public class MainActivity extends AppCompatActivity
         if(streamFragment == null) {
             AppLog.d(this, "StreamFragment was null");
             streamFragment = new StreamFragment();
+            fm.beginTransaction().add(streamFragment, StreamFragment.TAG).commit();
         }
         return streamFragment;
     }
@@ -601,11 +604,10 @@ public class MainActivity extends AppCompatActivity
         AppLog.v(this, "handleSendText()");
         try {
             setSharedTexts(null, intent.getStringExtra(Intent.EXTRA_TEXT));
+            openDiasporaUrl(urls.getNewPostUrl());
         } catch (Exception e) {
             AppLog.e(this, e.toString());
         }
-        openDiasporaUrl(urls.getBlankUrl());
-        openDiasporaUrl(urls.getNewPostUrl());
     }
 
     /**
@@ -617,11 +619,10 @@ public class MainActivity extends AppCompatActivity
         AppLog.v(this, "handleSendSubject()");
         try {
             setSharedTexts(intent.getStringExtra(Intent.EXTRA_SUBJECT), intent.getStringExtra(Intent.EXTRA_TEXT));
+            openDiasporaUrl(urls.getNewPostUrl());
         } catch (Exception e) {
             AppLog.e(this, e.toString());
         }
-        openDiasporaUrl(urls.getBlankUrl()); //TODO: Necessary?
-        openDiasporaUrl(urls.getNewPostUrl());
     }
 
     /**
@@ -645,10 +646,11 @@ public class MainActivity extends AppCompatActivity
         if (sharedSubject != null) {
             AppLog.v(this, "Append subject to shared text");
             String escapedSubject = WebHelper.escapeHtmlText(WebHelper.replaceUrlWithMarkdown(sharedSubject));
-            getStreamFragment().setTextToBeShared("**" + escapedSubject + "** " + escapedBody);
+            AppLog.v(this, "Set shared text; Subject: \"" + escapedSubject + "\" Body: \"" + escapedBody + "\"");
+            textToBeShared = "**" + escapedSubject + "** " + escapedBody;
         } else {
             AppLog.v(this, "Set shared text; Subject: \"" + sharedSubject + "\" Body: \"" + sharedBody + "\"");
-            getStreamFragment().setTextToBeShared(escapedBody);
+            textToBeShared = escapedBody;
         }
     }
 
@@ -823,5 +825,13 @@ public class MainActivity extends AppCompatActivity
                 super.onRequestPermissionsResult(requestCode, permissions,
                         grantResults);
         }
+    }
+
+    public String getTextToBeShared() {
+        return textToBeShared;
+    }
+
+    public void setTextToBeShared(String textToBeShared) {
+        this.textToBeShared = textToBeShared;
     }
 }
