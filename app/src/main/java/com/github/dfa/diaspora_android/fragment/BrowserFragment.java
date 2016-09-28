@@ -14,10 +14,13 @@ import android.os.Environment;
 import android.os.StrictMode;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -27,6 +30,7 @@ import com.github.dfa.diaspora_android.activity.MainActivity;
 import com.github.dfa.diaspora_android.data.AppSettings;
 import com.github.dfa.diaspora_android.ui.ContextMenuWebView;
 import com.github.dfa.diaspora_android.ui.CustomWebViewClient;
+import com.github.dfa.diaspora_android.ui.ProgressBarWebChromeClient;
 import com.github.dfa.diaspora_android.util.AppLog;
 
 import java.io.File;
@@ -42,29 +46,49 @@ import info.guardianproject.netcipher.NetCipher;
 import info.guardianproject.netcipher.webkit.WebkitProxy;
 
 /**
- * Fragment that contains a WebView with a bunch of functionality
- * Created by vanitas on 21.09.16.
+ * Fragment with a webView and a ProgressBar.
+ * This Fragment retains its instance.
+ * Created by vanitas on 26.09.16.
  */
 
-public abstract class WebViewFragment extends CustomFragment {
+public class BrowserFragment extends CustomFragment {
+    public static final String TAG = "com.github.dfa.diaspora_android.BrowserFragment";
 
-    protected WebSettings webSettings;
-    protected WebViewClient webViewClient;
+    protected View rootLayout;
     protected ContextMenuWebView webView;
     protected ProgressBar progressBar;
     protected AppSettings appSettings;
+    protected CustomWebViewClient webViewClient;
+    protected WebSettings webSettings;
 
     protected String pendingUrl;
 
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        AppLog.d(this, "onCreateView()");
+        if(rootLayout == null) {
+            rootLayout = inflater.inflate(R.layout.browser__fragment, container, false);
+        }
+        return rootLayout;
     }
 
-    protected void setup(ContextMenuWebView webView, final ProgressBar progressBar, AppSettings appSettings) {
-        this.appSettings = appSettings;
-        this.webSettings = webView.getSettings();
-        this.webView = webView;
-        this.progressBar = progressBar;
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        AppLog.d(this, "onViewCreated()");
+        super.onViewCreated(view, savedInstanceState);
+
+        if(this.appSettings == null) {
+            this.appSettings = ((App) getActivity().getApplication()).getSettings();
+        }
+
+        if(this.webView == null) {
+            this.webView = (ContextMenuWebView) view.findViewById(R.id.webView);
+            this.applyWebViewSettings();
+        }
+
+        if(this.progressBar == null) {
+            this.progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
+        }
 
         if (appSettings.isProxyEnabled()) {
             if (!setProxy(appSettings.getProxyHost(), appSettings.getProxyPort())) {
@@ -75,7 +99,25 @@ public abstract class WebViewFragment extends CustomFragment {
             resetProxy();
         }
 
-        webSettings.setJavaScriptEnabled(true);
+        if(pendingUrl != null) {
+            loadUrl(pendingUrl);
+            pendingUrl = null;
+        }
+
+        this.setRetainInstance(true);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+
+        if (getRetainInstance() && rootLayout.getParent() instanceof ViewGroup) {
+            ((ViewGroup) rootLayout.getParent()).removeView(rootLayout);
+        }
+    }
+
+    private void applyWebViewSettings() {
+        this.webSettings = webView.getSettings();
         webSettings.setAllowFileAccess(false);
         webSettings.setUseWideViewPort(true);
         webSettings.setLoadWithOverviewMode(true);
@@ -93,21 +135,9 @@ public abstract class WebViewFragment extends CustomFragment {
         //webView.setParentActivity(this);
         webView.setOverScrollMode(WebView.OVER_SCROLL_ALWAYS);
 
-        //Set proxy
-        if (appSettings.isProxyEnabled()) {
-            if (!setProxy(appSettings.getProxyHost(), appSettings.getProxyPort())) {
-                AppLog.d(this, "Could not enable Proxy");
-                Toast.makeText(getContext(), R.string.toast_set_proxy_failed, Toast.LENGTH_SHORT).show();
-            }
-        } else if (appSettings.wasProxyEnabled()) {
-            resetProxy();
-        }
-
-        /*
-         * WebViewClient
-         */
         this.webViewClient = new CustomWebViewClient((App) getActivity().getApplication(), webView);
         webView.setWebViewClient(webViewClient);
+        webView.setWebChromeClient(new ProgressBarWebChromeClient(webView, progressBar));
     }
 
     /**
@@ -153,6 +183,7 @@ public abstract class WebViewFragment extends CustomFragment {
         }
     }
 
+    @SuppressWarnings("unused")
     private boolean setProxy() {
         return setProxy(appSettings.getProxyHost(), appSettings.getProxyPort());
     }
@@ -175,7 +206,7 @@ public abstract class WebViewFragment extends CustomFragment {
             AppLog.v(this, "clear WebKit proxy");
             WebkitProxy.resetProxy(MainActivity.class.getName(), getContext());
         } catch (Exception e) {
-           AppLog.e(this, "Could not clear WebKit proxy:\n"+e.toString());
+            AppLog.e(this, "Could not clear WebKit proxy:\n"+e.toString());
         }
         AppLog.v(this, "Reset old ThreadPolicy");
         StrictMode.setThreadPolicy(old);
@@ -272,6 +303,15 @@ public abstract class WebViewFragment extends CustomFragment {
     }
 
     @Override
+    public String getFragmentTag() {
+        return TAG;
+    }
+
+    @Override
+    public void onCreateBottomOptionsMenu(Menu menu, MenuInflater inflater) {
+        /* Nothing to do here */
+    }
+
     public boolean onBackPressed() {
         if(webView.canGoBack()) {
             webView.goBack();

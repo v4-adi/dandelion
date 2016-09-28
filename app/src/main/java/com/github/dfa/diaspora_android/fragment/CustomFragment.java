@@ -12,6 +12,8 @@ import android.view.MenuInflater;
 
 public abstract class CustomFragment extends Fragment {
 
+    public static final String TAG = "com.github.dfa.diaspora_android.CustomFragment";
+
     /**
      * We have an optionsMenu
      * @param savedInstanceState state

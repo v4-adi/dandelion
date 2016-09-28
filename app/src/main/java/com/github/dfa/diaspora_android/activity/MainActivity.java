@@ -62,8 +62,10 @@ import com.github.dfa.diaspora_android.App;
 import com.github.dfa.diaspora_android.R;
 import com.github.dfa.diaspora_android.data.AppSettings;
 import com.github.dfa.diaspora_android.data.PodUserProfile;
+import com.github.dfa.diaspora_android.fragment.BrowserFragment;
 import com.github.dfa.diaspora_android.fragment.CustomFragment;
-import com.github.dfa.diaspora_android.fragment.StreamFragment;
+import com.github.dfa.diaspora_android.fragment.DiasporaStreamFragment;
+import com.github.dfa.diaspora_android.fragment.TestFragment;
 import com.github.dfa.diaspora_android.listener.WebUserProfileChangedListener;
 import com.github.dfa.diaspora_android.receiver.OpenExternalLinkReceiver;
 import com.github.dfa.diaspora_android.receiver.UpdateTitleReceiver;
@@ -162,10 +164,6 @@ public class MainActivity extends AppCompatActivity
         customTabActivityHelper.setConnectionCallback(this);
 
         fm = getSupportFragmentManager();
-        StreamFragment sf = getStreamFragment();
-        fm.beginTransaction().replace(R.id.fragment_container, sf, StreamFragment.TAG).commit();
-        sf.onCreateBottomOptionsMenu(toolbarBottom.getMenu(), getMenuInflater());
-
         setupUI(savedInstanceState);
 
         brOpenExternalLink = new OpenExternalLinkReceiver(this);
@@ -180,7 +178,13 @@ public class MainActivity extends AppCompatActivity
                 MainActivity.this.setTitle(title);
             }
         });
-        handleIntent(getIntent());
+        //Handle intent
+        Intent intent = getIntent();
+        if(intent != null && intent.getAction() != null) {
+            handleIntent(intent);
+        } else {
+            openDiasporaUrl(urls.getStreamUrl());
+        }
     }
 
     private void setupUI(Bundle savedInstanceState) {
@@ -191,8 +195,8 @@ public class MainActivity extends AppCompatActivity
         getMenuInflater().inflate(R.menu.main__menu_bottom, toolbarBottom.getMenu());
         toolbarBottom.setOnMenuItemClickListener(new ActionMenuView.OnMenuItemClickListener() {
             public boolean onMenuItemClick(MenuItem item) {
-                CustomFragment topFrag = (CustomFragment) getTopFragment();
-                return MainActivity.this.onOptionsItemSelected(item) || (topFrag != null && topFrag.onOptionsItemSelected(item));
+                CustomFragment top = getTopFragment();
+                return MainActivity.this.onOptionsItemSelected(item) || (top != null && top.onOptionsItemSelected(item));
             }
         });
         setTitle(R.string.app_name);
@@ -221,26 +225,64 @@ public class MainActivity extends AppCompatActivity
         AppLog.v(this, "UI successfully set up");
     }
 
-    public void openDiasporaUrl(String url) {
+    /**
+     * Show DiasporaStreamFragment if necessary and load URL url
+     * @param url URL to load in the DiasporaStreamFragment
+     */
+    protected void openDiasporaUrl(String url) {
         AppLog.v(this, "openDiasporaUrl()");
-        StreamFragment streamFragment = getStreamFragment();
-        if(!streamFragment.isVisible()) {
-            AppLog.d(this, "StreamFragment not visible");
-            fm.beginTransaction().replace(R.id.fragment_container, streamFragment, StreamFragment.TAG).commit();
-            streamFragment.onCreateBottomOptionsMenu(toolbarBottom.getMenu(), getMenuInflater());
-        }
+        DiasporaStreamFragment streamFragment = (DiasporaStreamFragment) getFragment(DiasporaStreamFragment.TAG);
+        showFragment(streamFragment);
         streamFragment.loadUrl(url);
     }
 
-    public StreamFragment getStreamFragment() {
-        AppLog.v(this, "getStreamFragment()");
-        StreamFragment streamFragment = (StreamFragment) fm.findFragmentByTag(StreamFragment.TAG);
-        if(streamFragment == null) {
-            AppLog.d(this, "StreamFragment was null");
-            streamFragment = new StreamFragment();
-            fm.beginTransaction().add(streamFragment, StreamFragment.TAG).commit();
+    /**
+     * Get an instance of the CustomFragment with the tag fragmentTag.
+     * If there was no instance so far, create a new one and add it to the FragmentManagers pool.
+     * If there is no Fragment with the corresponding Tag, return null.
+     * @param fragmentTag tag
+     * @return corresponding Fragment
+     */
+    protected CustomFragment getFragment(String fragmentTag) {
+        CustomFragment fragment = (CustomFragment) fm.findFragmentByTag(fragmentTag);
+        if(fragment != null) {
+            return fragment;
+        } else {
+            switch (fragmentTag) {
+                case DiasporaStreamFragment.TAG:
+                    DiasporaStreamFragment dsf = new DiasporaStreamFragment();
+                    fm.beginTransaction().add(dsf, fragmentTag).commit();
+                    return dsf;
+                case BrowserFragment.TAG:
+                    BrowserFragment bf = new BrowserFragment();
+                    fm.beginTransaction().add(bf, fragmentTag).commit();
+                    return bf;
+                case TestFragment.TAG:
+                    TestFragment tf = new TestFragment();
+                    fm.beginTransaction().add(tf, fragmentTag).commit();
+                    return tf;
+                default:
+                    AppLog.e(this,"Invalid Fragment Tag: "+fragmentTag
+                            +"\nAdd Fragments Tag to getFragment()'s switch case.");
+                    return null;
+            }
         }
-        return streamFragment;
+    }
+
+    /**
+     * Show the Fragment fragment in R.id.fragment_container. If the fragment was already visible, do nothing.
+     * @param fragment Fragment to show
+     */
+    protected void showFragment(CustomFragment fragment) {
+        AppLog.d(this, "showFragment()");
+        CustomFragment currentTop = (CustomFragment) fm.findFragmentById(R.id.fragment_container);
+        if(currentTop == null || !currentTop.getFragmentTag().equals(fragment.getFragmentTag())) {
+            AppLog.d(this, "Fragment was not visible. Replace it.");
+            fm.beginTransaction().addToBackStack(null).replace(R.id.fragment_container, fragment, fragment.getFragmentTag()).commit();
+            fragment.onCreateBottomOptionsMenu(toolbarBottom.getMenu(), getMenuInflater());
+        } else {
+            AppLog.d(this, "Fragment was already visible. Do nothing.");
+        }
     }
 
     @Override
@@ -307,7 +349,7 @@ public class MainActivity extends AppCompatActivity
         navMenu.findItem(R.id.nav_aspects).setVisible(appSettings.isVisibleInNavAspects());
         navMenu.findItem(R.id.nav_commented).setVisible(appSettings.isVisibleInNavCommented());
         navMenu.findItem(R.id.nav_followed_tags).setVisible(appSettings.isVisibleInNavFollowed_tags());
-        navMenu.findItem(R.id.nav_help_license).setVisible(appSettings.isVisibleInNavHelp_license());
+        navMenu.findItem(R.id.nav_about).setVisible(appSettings.isVisibleInNavHelp_license());
         navMenu.findItem(R.id.nav_liked).setVisible(appSettings.isVisibleInNavLiked());
         navMenu.findItem(R.id.nav_mentions).setVisible(appSettings.isVisibleInNavMentions());
         navMenu.findItem(R.id.nav_profile).setVisible(appSettings.isVisibleInNavProfile());
@@ -351,11 +393,11 @@ public class MainActivity extends AppCompatActivity
             }
         } else if (ACTION_CHANGE_ACCOUNT.equals(action)) {
             AppLog.v(this, "Reset pod data and animate to PodSelectionActivity");
-            app.resetPodData(getStreamFragment().getWebView());
+            app.resetPodData(((DiasporaStreamFragment) getFragment(DiasporaStreamFragment.TAG)).getWebView());
             Helpers.animateToActivity(MainActivity.this, PodSelectionActivity.class, true);
         } else if (ACTION_CLEAR_CACHE.equals(action)) {
             AppLog.v(this, "Clear WebView cache");
-            getStreamFragment().getWebView().clearCache(true);
+            ((DiasporaStreamFragment) getFragment(DiasporaStreamFragment.TAG)).getWebView().clearCache(true);
         } else if (ACTION_RELOAD_ACTIVITY.equals(action)) {
             AppLog.v(this, "Recreate activity");
             recreate();
@@ -401,11 +443,10 @@ public class MainActivity extends AppCompatActivity
         super.onRestoreInstanceState(savedInstanceState);
     }
 
-    private Fragment getTopFragment() {
-        for(Fragment f : fm.getFragments()) {
-            if(f.isVisible()) {
-                return f;
-            }
+    private CustomFragment getTopFragment() {
+        Fragment top = fm.findFragmentById(R.id.fragment_container);
+        if(top != null) {
+            return (CustomFragment) top;
         }
         return null;
     }
@@ -417,12 +458,17 @@ public class MainActivity extends AppCompatActivity
             navDrawer.closeDrawer(navView);
             return;
         }
-        CustomFragment top = (CustomFragment) getTopFragment();
+        CustomFragment top = getTopFragment();
         if(top != null) {
             AppLog.v(this, "Top Fragment is not null");
             if(!top.onBackPressed()) {
                 AppLog.v(this, "Top Fragment.onBackPressed was false");
-                snackbarExitApp.show();
+                AppLog.d(this, "BackStackEntryCount: "+fm.getBackStackEntryCount());
+                if(fm.getBackStackEntryCount()>0) {
+                    fm.popBackStack();
+                } else {
+                    snackbarExitApp.show();
+                }
                 return;
             } else {
                 AppLog.v(this, "Top Fragment.onBackPressed was true");
@@ -515,6 +561,11 @@ public class MainActivity extends AppCompatActivity
             case R.id.action_exit: {
                 moveTaskToBack(true);
                 finish();
+                return true;
+            }
+
+            case R.id.action_debug_button: {
+                showFragment(getFragment(TestFragment.TAG));
                 return true;
             }
 
@@ -723,9 +774,10 @@ public class MainActivity extends AppCompatActivity
 
             //TODO: Replace with fragment
             case R.id.nav_followed_tags: {
+                DiasporaStreamFragment stream = (DiasporaStreamFragment) getFragment(DiasporaStreamFragment.TAG);
                 if (WebHelper.isOnline(MainActivity.this)) {
                     openDiasporaUrl(urls.getBlankUrl());
-                    WebHelper.showFollowedTagsList(getStreamFragment().getWebView(), app);
+                    WebHelper.showFollowedTagsList(stream.getWebView(), app);
                     setTitle(R.string.nav_followed_tags);
                 } else {
                     snackbarNoInternet.show();
@@ -735,9 +787,10 @@ public class MainActivity extends AppCompatActivity
 
             //TODO: Replace with fragment
             case R.id.nav_aspects: {
+                DiasporaStreamFragment stream = (DiasporaStreamFragment) getFragment(DiasporaStreamFragment.TAG);
                 if (WebHelper.isOnline(MainActivity.this)) {
                     openDiasporaUrl(DiasporaUrlHelper.URL_BLANK);
-                    WebHelper.showAspectList(getStreamFragment().getWebView(), app);
+                    WebHelper.showAspectList(stream.getWebView(), app);
                     setTitle(R.string.aspects);
                 } else {
                     snackbarNoInternet.show();
@@ -801,7 +854,7 @@ public class MainActivity extends AppCompatActivity
             }
             break;
 
-            case R.id.nav_help_license: {
+            case R.id.nav_about: {
                 startActivity(new Intent(MainActivity.this, AboutActivity.class));
             }
             break;

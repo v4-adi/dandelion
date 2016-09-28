@@ -65,7 +65,7 @@ public class AboutActivity extends AppCompatActivity {
     @BindView(R.id.main__topbar)
     protected Toolbar toolbar;
 
-    @BindView(R.id.linearlayout)
+    @BindView(R.id.appbar_linear_layout)
     protected LinearLayout linearLayout;
 
     @Override
