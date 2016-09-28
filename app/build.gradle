@@ -3,14 +3,14 @@ apply plugin: 'android-apt'
 
 android {
     compileSdkVersion 24
-    buildToolsVersion "24.0.1"
+    buildToolsVersion "24.0.2"
 
     defaultConfig {
         applicationId "com.github.dfa.diaspora_android"
         minSdkVersion 17
         targetSdkVersion 24
         versionCode 8
-        versionName "0.1.6"
+        versionName "0.1.6-next"
     }
     buildTypes {
         release {

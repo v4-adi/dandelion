@@ -21,6 +21,8 @@
   <string name="pref_title__load_images">画像の読み込み</string>
   <string name="pref_desc__load_images">安全なモバイルデータのため、画像の読み込みを無効にします</string>
   <!-- Proxy -->
+  <string name="pref_title__sub_proxy">プロキシ</string>
+  <string name="pref_desc__sub_proxy">@string/pref_desc__proxy_enabled</string>
   <string name="pref_title__proxy_enabled">プロキシを有効にする</string>
   <string name="pref_desc__proxy_enabled">Diaspora の通信をプロキシして、ファイアウォールに回避します。\n再起動が必要になることがあります</string>
   <string name="pref_title__proxy_host">ホスト</string>
