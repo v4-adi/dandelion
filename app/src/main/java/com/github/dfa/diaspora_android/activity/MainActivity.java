@@ -192,7 +192,6 @@ public class MainActivity extends AppCompatActivity
 
         // Setup toolbar
         setSupportActionBar(toolbarTop);
-        getMenuInflater().inflate(R.menu.main__menu_bottom, toolbarBottom.getMenu());
         toolbarBottom.setOnMenuItemClickListener(new ActionMenuView.OnMenuItemClickListener() {
             public boolean onMenuItemClick(MenuItem item) {
                 CustomFragment top = getTopFragment();
@@ -274,14 +273,14 @@ public class MainActivity extends AppCompatActivity
      * @param fragment Fragment to show
      */
     protected void showFragment(CustomFragment fragment) {
-        AppLog.d(this, "showFragment()");
+        AppLog.v(this, "showFragment()");
         CustomFragment currentTop = (CustomFragment) fm.findFragmentById(R.id.fragment_container);
         if(currentTop == null || !currentTop.getFragmentTag().equals(fragment.getFragmentTag())) {
-            AppLog.d(this, "Fragment was not visible. Replace it.");
+            AppLog.v(this, "Fragment was not visible. Replace it.");
             fm.beginTransaction().addToBackStack(null).replace(R.id.fragment_container, fragment, fragment.getFragmentTag()).commit();
-            fragment.onCreateBottomOptionsMenu(toolbarBottom.getMenu(), getMenuInflater());
+            invalidateOptionsMenu();
         } else {
-            AppLog.d(this, "Fragment was already visible. Do nothing.");
+            AppLog.v(this, "Fragment was already visible. Do nothing.");
         }
     }
 
@@ -427,7 +426,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        AppLog.d(this, "onActivityResult(): "+requestCode);
+        AppLog.v(this, "onActivityResult(): "+requestCode);
         super.onActivityResult(requestCode, resultCode, data);
     }
 
@@ -463,7 +462,7 @@ public class MainActivity extends AppCompatActivity
             AppLog.v(this, "Top Fragment is not null");
             if(!top.onBackPressed()) {
                 AppLog.v(this, "Top Fragment.onBackPressed was false");
-                AppLog.d(this, "BackStackEntryCount: "+fm.getBackStackEntryCount());
+                AppLog.v(this, "BackStackEntryCount: "+fm.getBackStackEntryCount());
                 if(fm.getBackStackEntryCount()>0) {
                     fm.popBackStack();
                 } else {
@@ -514,7 +513,14 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         AppLog.v(this, "onCreateOptionsMenu()");
+        menu.clear();
         getMenuInflater().inflate(R.menu.main__menu_top, menu);
+        toolbarBottom.getMenu().clear();
+        getMenuInflater().inflate(R.menu.main__menu_bottom, toolbarBottom.getMenu());
+        CustomFragment top = getTopFragment();
+        if(top != null) {
+            top.onCreateBottomOptionsMenu(toolbarBottom.getMenu(), getMenuInflater());
+        }
         return true;
     }
 

@@ -85,7 +85,7 @@ public class DiasporaStreamFragment extends BrowserFragment {
         switch (requestCode) {
             case MainActivity.INPUT_FILE_REQUEST_CODE_NEW:
             case MainActivity.INPUT_FILE_REQUEST_CODE_OLD:
-                AppLog.d(this, "INPUT_FILE_REQUEST_CODE: "+requestCode);
+                AppLog.v(this, "INPUT_FILE_REQUEST_CODE: "+requestCode);
                 onImageUploadResult(requestCode, resultCode, data);
                 return;
         }
@@ -243,7 +243,7 @@ public class DiasporaStreamFragment extends BrowserFragment {
                     return false;
                 }
             }
-            AppLog.d(this, "onOpenFileChooser");
+            AppLog.v(this, "onOpenFileChooser");
             if (imageUploadFilePathCallbackNew != null) imageUploadFilePathCallbackNew.onReceiveValue(null);
             imageUploadFilePathCallbackNew = filePathCallback;
             Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
