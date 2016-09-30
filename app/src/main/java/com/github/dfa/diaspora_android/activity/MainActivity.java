@@ -182,8 +182,10 @@ public class MainActivity extends AppCompatActivity
         });
 
         if(!appSettings.hasPodDomain()) {
+            AppLog.d(this, "We have no pod. Show PodSelectionFragment");
             showFragment(getFragment(PodSelectionFragment.TAG));
         } else {
+            AppLog.d(this, "Pod found. Handle intents.");
             //Handle intent
             Intent intent = getIntent();
             if (intent != null && intent.getAction() != null) {
@@ -386,7 +388,9 @@ public class MainActivity extends AppCompatActivity
         String type = intent.getType();
         String loadUrl = null;
         AppLog.v(this, "Action: " + action + " Type: " + type);
-        if (ACTION_OPEN_URL.equals(action)) {
+        if (Intent.ACTION_MAIN.equals(action)) {
+            loadUrl = urls.getStreamUrl();
+        } else if (ACTION_OPEN_URL.equals(action)) {
             loadUrl = intent.getStringExtra(URL_MESSAGE);
         } else if (Intent.ACTION_VIEW.equals(action) && intent.getDataString() != null) {
             Uri data = intent.getData();
