@@ -29,8 +29,8 @@ import com.github.dfa.diaspora_android.R;
 import com.github.dfa.diaspora_android.activity.MainActivity;
 import com.github.dfa.diaspora_android.data.AppSettings;
 import com.github.dfa.diaspora_android.ui.ContextMenuWebView;
-import com.github.dfa.diaspora_android.ui.CustomWebViewClient;
-import com.github.dfa.diaspora_android.ui.ProgressBarWebChromeClient;
+import com.github.dfa.diaspora_android.webview.CustomWebViewClient;
+import com.github.dfa.diaspora_android.webview.ProgressBarWebChromeClient;
 import com.github.dfa.diaspora_android.util.AppLog;
 
 import java.io.File;

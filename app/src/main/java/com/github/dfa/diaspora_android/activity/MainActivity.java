@@ -288,13 +288,6 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        AppLog.i(this, "onConfigurationChanged()");
-
-        super.onConfigurationChanged(newConfig);
-    }
-
     private void setupNavigationSlider() {
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, navDrawer, toolbarTop, R.string.navigation_drawer_open, R.string.navigation_drawer_close);

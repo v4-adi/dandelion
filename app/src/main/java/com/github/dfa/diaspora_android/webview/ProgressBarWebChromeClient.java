@@ -1,4 +1,4 @@
-package com.github.dfa.diaspora_android.ui;
+package com.github.dfa.diaspora_android.webview;
 
 import android.view.View;
 import android.webkit.WebChromeClient;

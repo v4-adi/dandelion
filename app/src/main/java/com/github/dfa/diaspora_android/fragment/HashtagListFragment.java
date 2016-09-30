@@ -52,6 +52,9 @@ public class HashtagListFragment extends CustomFragment {
 
         final FollowedTagsAdapter adapter = new FollowedTagsAdapter(followedTags, onHashtagClickListener);
         followedTagsRecyclerView.setAdapter(adapter);
+
+        //Set window title
+        getActivity().setTitle(R.string.nav_followed_tags);
     }
 
     @Override

@@ -26,8 +26,8 @@ import com.github.dfa.diaspora_android.App;
 import com.github.dfa.diaspora_android.R;
 import com.github.dfa.diaspora_android.activity.MainActivity;
 import com.github.dfa.diaspora_android.data.PodUserProfile;
-import com.github.dfa.diaspora_android.ui.DiasporaStreamWebChromeClient;
-import com.github.dfa.diaspora_android.ui.FileUploadWebChromeClient;
+import com.github.dfa.diaspora_android.webview.DiasporaStreamWebChromeClient;
+import com.github.dfa.diaspora_android.webview.FileUploadWebChromeClient;
 import com.github.dfa.diaspora_android.util.AppLog;
 import com.github.dfa.diaspora_android.util.DiasporaUrlHelper;
 import com.github.dfa.diaspora_android.util.Helpers;
@@ -51,7 +51,6 @@ public class DiasporaStreamFragment extends BrowserFragment {
     private ValueCallback<Uri[]> imageUploadFilePathCallbackNew;
     private ValueCallback<Uri> imageUploadFilePathCallbackOld;
     private String mCameraPhotoPath;
-    private String sharedText;
 
     @SuppressLint("SetJavaScriptEnabled")
     @Override

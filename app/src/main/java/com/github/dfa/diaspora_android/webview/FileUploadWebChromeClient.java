@@ -1,4 +1,4 @@
-package com.github.dfa.diaspora_android.ui;
+package com.github.dfa.diaspora_android.webview;
 
 import android.net.Uri;
 import android.webkit.ValueCallback;
