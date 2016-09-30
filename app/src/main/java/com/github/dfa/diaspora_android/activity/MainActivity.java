@@ -65,6 +65,7 @@ import com.github.dfa.diaspora_android.data.PodUserProfile;
 import com.github.dfa.diaspora_android.fragment.BrowserFragment;
 import com.github.dfa.diaspora_android.fragment.CustomFragment;
 import com.github.dfa.diaspora_android.fragment.DiasporaStreamFragment;
+import com.github.dfa.diaspora_android.fragment.HashtagListFragment;
 import com.github.dfa.diaspora_android.fragment.TestFragment;
 import com.github.dfa.diaspora_android.listener.WebUserProfileChangedListener;
 import com.github.dfa.diaspora_android.receiver.OpenExternalLinkReceiver;
@@ -228,7 +229,7 @@ public class MainActivity extends AppCompatActivity
      * Show DiasporaStreamFragment if necessary and load URL url
      * @param url URL to load in the DiasporaStreamFragment
      */
-    protected void openDiasporaUrl(String url) {
+    public void openDiasporaUrl(String url) {
         AppLog.v(this, "openDiasporaUrl()");
         DiasporaStreamFragment streamFragment = (DiasporaStreamFragment) getFragment(DiasporaStreamFragment.TAG);
         showFragment(streamFragment);
@@ -256,14 +257,17 @@ public class MainActivity extends AppCompatActivity
                     BrowserFragment bf = new BrowserFragment();
                     fm.beginTransaction().add(bf, fragmentTag).commit();
                     return bf;
+                case HashtagListFragment.TAG:
+                    HashtagListFragment hlf = new HashtagListFragment();
+                    fm.beginTransaction().add(hlf, fragmentTag).commit();
+                    return hlf;
                 case TestFragment.TAG:
-                    TestFragment tf = new TestFragment();
-                    fm.beginTransaction().add(tf, fragmentTag).commit();
-                    return tf;
                 default:
                     AppLog.e(this,"Invalid Fragment Tag: "+fragmentTag
                             +"\nAdd Fragments Tag to getFragment()'s switch case.");
-                    return null;
+                    TestFragment tf = new TestFragment();
+                    fm.beginTransaction().add(tf, fragmentTag).commit();
+                    return tf;
             }
         }
     }
@@ -780,7 +784,7 @@ public class MainActivity extends AppCompatActivity
 
             //TODO: Replace with fragment
             case R.id.nav_followed_tags: {
-                DiasporaStreamFragment stream = (DiasporaStreamFragment) getFragment(DiasporaStreamFragment.TAG);
+                /*DiasporaStreamFragment stream = (DiasporaStreamFragment) getFragment(DiasporaStreamFragment.TAG);
                 if (WebHelper.isOnline(MainActivity.this)) {
                     openDiasporaUrl(urls.getBlankUrl());
                     WebHelper.showFollowedTagsList(stream.getWebView(), app);
@@ -788,6 +792,8 @@ public class MainActivity extends AppCompatActivity
                 } else {
                     snackbarNoInternet.show();
                 }
+                */
+                showFragment(getFragment(HashtagListFragment.TAG));
             }
             break;
 
