@@ -66,6 +66,7 @@ import com.github.dfa.diaspora_android.fragment.BrowserFragment;
 import com.github.dfa.diaspora_android.fragment.CustomFragment;
 import com.github.dfa.diaspora_android.fragment.DiasporaStreamFragment;
 import com.github.dfa.diaspora_android.fragment.HashtagListFragment;
+import com.github.dfa.diaspora_android.fragment.PodSelectionFragment;
 import com.github.dfa.diaspora_android.fragment.TestFragment;
 import com.github.dfa.diaspora_android.listener.WebUserProfileChangedListener;
 import com.github.dfa.diaspora_android.receiver.OpenExternalLinkReceiver;
@@ -179,12 +180,17 @@ public class MainActivity extends AppCompatActivity
                 MainActivity.this.setTitle(title);
             }
         });
-        //Handle intent
-        Intent intent = getIntent();
-        if(intent != null && intent.getAction() != null) {
-            handleIntent(intent);
+
+        if(!appSettings.hasPodDomain()) {
+            showFragment(getFragment(PodSelectionFragment.TAG));
         } else {
-            openDiasporaUrl(urls.getStreamUrl());
+            //Handle intent
+            Intent intent = getIntent();
+            if (intent != null && intent.getAction() != null) {
+                handleIntent(intent);
+            } else {
+                openDiasporaUrl(urls.getStreamUrl());
+            }
         }
     }
 
@@ -261,6 +267,10 @@ public class MainActivity extends AppCompatActivity
                     HashtagListFragment hlf = new HashtagListFragment();
                     fm.beginTransaction().add(hlf, fragmentTag).commit();
                     return hlf;
+                case PodSelectionFragment.TAG:
+                    PodSelectionFragment psf = new PodSelectionFragment();
+                    fm.beginTransaction().add(psf, fragmentTag).commit();
+                    return psf;
                 case TestFragment.TAG:
                 default:
                     AppLog.e(this,"Invalid Fragment Tag: "+fragmentTag
@@ -388,9 +398,9 @@ public class MainActivity extends AppCompatActivity
                 AppLog.v(this, "Intent has a delicious URL for us: "+loadUrl);
             }
         } else if (ACTION_CHANGE_ACCOUNT.equals(action)) {
-            AppLog.v(this, "Reset pod data and animate to PodSelectionActivity");
+            AppLog.v(this, "Reset pod data and  show PodSelectionFragment");
             app.resetPodData(((DiasporaStreamFragment) getFragment(DiasporaStreamFragment.TAG)).getWebView());
-            Helpers.animateToActivity(MainActivity.this, PodSelectionActivity.class, true);
+            showFragment(getFragment(PodSelectionFragment.TAG));
         } else if (ACTION_CLEAR_CACHE.equals(action)) {
             AppLog.v(this, "Clear WebView cache");
             ((DiasporaStreamFragment) getFragment(DiasporaStreamFragment.TAG)).getWebView().clearCache(true);
@@ -510,13 +520,24 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         AppLog.v(this, "onCreateOptionsMenu()");
+        //Clear the menus
         menu.clear();
-        getMenuInflater().inflate(R.menu.main__menu_top, menu);
         toolbarBottom.getMenu().clear();
-        getMenuInflater().inflate(R.menu.main__menu_bottom, toolbarBottom.getMenu());
+        toolbarBottom.setVisibility(View.VISIBLE);
+
         CustomFragment top = getTopFragment();
         if(top != null) {
-            top.onCreateBottomOptionsMenu(toolbarBottom.getMenu(), getMenuInflater());
+            //Are we displaying a Fragment other than PodSelectionFragment?
+            if(!top.getFragmentTag().equals(PodSelectionFragment.TAG)) {
+                getMenuInflater().inflate(R.menu.main__menu_top, menu);
+                getMenuInflater().inflate(R.menu.main__menu_bottom, toolbarBottom.getMenu());
+                top.onCreateBottomOptionsMenu(toolbarBottom.getMenu(), getMenuInflater());
+            }
+            //PodSelectionFragment
+            else {
+                //Hide bottom toolbar
+                toolbarBottom.setVisibility(View.GONE);
+            }
         }
         return true;
     }
