@@ -25,7 +25,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
-import android.content.res.Configuration;
 import android.graphics.drawable.LayerDrawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -67,7 +66,6 @@ import com.github.dfa.diaspora_android.fragment.CustomFragment;
 import com.github.dfa.diaspora_android.fragment.DiasporaStreamFragment;
 import com.github.dfa.diaspora_android.fragment.HashtagListFragment;
 import com.github.dfa.diaspora_android.fragment.PodSelectionFragment;
-import com.github.dfa.diaspora_android.fragment.TestFragment;
 import com.github.dfa.diaspora_android.listener.WebUserProfileChangedListener;
 import com.github.dfa.diaspora_android.receiver.OpenExternalLinkReceiver;
 import com.github.dfa.diaspora_android.receiver.UpdateTitleReceiver;
@@ -75,7 +73,6 @@ import com.github.dfa.diaspora_android.ui.BadgeDrawable;
 import com.github.dfa.diaspora_android.util.AppLog;
 import com.github.dfa.diaspora_android.util.CustomTabHelpers.CustomTabActivityHelper;
 import com.github.dfa.diaspora_android.util.DiasporaUrlHelper;
-import com.github.dfa.diaspora_android.util.Helpers;
 import com.github.dfa.diaspora_android.util.WebHelper;
 
 import butterknife.BindView;
@@ -273,13 +270,10 @@ public class MainActivity extends AppCompatActivity
                     PodSelectionFragment psf = new PodSelectionFragment();
                     fm.beginTransaction().add(psf, fragmentTag).commit();
                     return psf;
-                case TestFragment.TAG:
                 default:
                     AppLog.e(this,"Invalid Fragment Tag: "+fragmentTag
                             +"\nAdd Fragments Tag to getFragment()'s switch case.");
-                    TestFragment tf = new TestFragment();
-                    fm.beginTransaction().add(tf, fragmentTag).commit();
-                    return tf;
+                    return getTopFragment();
             }
         }
     }
@@ -592,11 +586,6 @@ public class MainActivity extends AppCompatActivity
                 return true;
             }
 
-            case R.id.action_debug_button: {
-                showFragment(getFragment(TestFragment.TAG));
-                return true;
-            }
-
             case R.id.action_compose: {
                 if (WebHelper.isOnline(MainActivity.this)) {
                     openDiasporaUrl(urls.getNewPostUrl());
@@ -736,13 +725,12 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    //TODO: Implement?
+    //TODO: Implement some day
     private void handleSendImage(Intent intent) {
         AppLog.i(this, "handleSendImage()");
         final Uri imageUri = intent.getParcelableExtra(Intent.EXTRA_STREAM);
         if (imageUri != null) {
             AppLog.v(this, "imageUri is not null. Handle shared image");
-            // TODO: Update UI to reflect text being shared
         } else {
             AppLog.w(this, "imageUri is null. Cannot precede.");
         }
@@ -800,17 +788,7 @@ public class MainActivity extends AppCompatActivity
             }
             break;
 
-            //TODO: Replace with fragment
             case R.id.nav_followed_tags: {
-                /*DiasporaStreamFragment stream = (DiasporaStreamFragment) getFragment(DiasporaStreamFragment.TAG);
-                if (WebHelper.isOnline(MainActivity.this)) {
-                    openDiasporaUrl(urls.getBlankUrl());
-                    WebHelper.showFollowedTagsList(stream.getWebView(), app);
-                    setTitle(R.string.nav_followed_tags);
-                } else {
-                    snackbarNoInternet.show();
-                }
-                */
                 showFragment(getFragment(HashtagListFragment.TAG));
             }
             break;

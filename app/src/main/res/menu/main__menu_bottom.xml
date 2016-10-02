@@ -35,11 +35,4 @@
         android:title="@string/action_exit_app"
         />
 
-    <item
-        android:id="@+id/action_debug_button"
-        app:showAsAction="never"
-        android:orderInCategory="1000"
-        android:title="DEBUG"
-        />
-
 </menu>
