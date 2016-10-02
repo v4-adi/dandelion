@@ -141,9 +141,10 @@ public class ContextMenuWebView extends NestedWebView {
                                                 })
                                                 .setNegativeButton(context.getText(android.R.string.no), null)
                                                 .show();
+                                    } else {
+                                        parentActivity.requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                                                MainActivity.REQUEST_CODE__ACCESS_EXTERNAL_STORAGE);
                                     }
-                                    parentActivity.requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                                            MainActivity.REQUEST_CODE__ACCESS_EXTERNAL_STORAGE);
                                 }
                             }
                             if (writeToStoragePermitted) {
@@ -157,7 +158,7 @@ public class ContextMenuWebView extends NestedWebView {
                                         sharingIntent.putExtra(Intent.EXTRA_STREAM, myUri);
                                         sharingIntent.setType("image/png");
                                         sharingIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                                        context.startActivity(Intent.createChooser(sharingIntent, "Share image using"));
+                                        context.startActivity(Intent.createChooser(sharingIntent, getResources().getString(R.string.action_share_dotdotdot)));
                                     }
                                 }.execute(url);
                             }
