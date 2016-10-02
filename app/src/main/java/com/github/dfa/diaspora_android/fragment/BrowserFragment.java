@@ -104,6 +104,8 @@ public class BrowserFragment extends CustomFragment {
             pendingUrl = null;
         }
 
+        webView.setParentActivity(getActivity());
+
         this.setRetainInstance(true);
     }
 

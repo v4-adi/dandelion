@@ -123,22 +123,48 @@ public class ContextMenuWebView extends NestedWebView {
 
                     case ID_SHARE_IMAGE:
                         if (url != null) {
-                            final Uri local = Uri.parse(Environment.getExternalStorageDirectory() + "/Pictures/Diaspora/" + System.currentTimeMillis() + ".png");
-                            new ImageDownloadTask(null, local.getPath()) {
-                                @Override
-                                protected void onPostExecute(Bitmap result) {
-                                    Uri myUri = Uri.fromFile(new File(local.getPath()));
-                                    Intent sharingIntent = new Intent();
-                                    sharingIntent.setAction(Intent.ACTION_SEND);
-                                    sharingIntent.putExtra(Intent.EXTRA_STREAM, myUri);
-                                    sharingIntent.setType("image/png");
-                                    sharingIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                                    context.startActivity(Intent.createChooser(sharingIntent, "Share image using"));
+                            boolean writeToStoragePermitted = true;
+                            if (android.os.Build.VERSION.SDK_INT >= 23) {
+                                int hasWRITE_EXTERNAL_STORAGE = parentActivity.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+                                if (hasWRITE_EXTERNAL_STORAGE != PackageManager.PERMISSION_GRANTED) {
+                                    writeToStoragePermitted = false;
+                                    if (!parentActivity.shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                                        new AlertDialog.Builder(parentActivity)
+                                                .setMessage(R.string.permissions_image)
+                                                .setPositiveButton(context.getText(android.R.string.yes), new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialog, int which) {
+                                                        if (android.os.Build.VERSION.SDK_INT >= 23)
+                                                            parentActivity.requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                                                                    MainActivity.REQUEST_CODE__ACCESS_EXTERNAL_STORAGE);
+                                                    }
+                                                })
+                                                .setNegativeButton(context.getText(android.R.string.no), null)
+                                                .show();
+                                    }
+                                    parentActivity.requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                                            MainActivity.REQUEST_CODE__ACCESS_EXTERNAL_STORAGE);
                                 }
-                            }.execute(url);
+                            }
+                            if (writeToStoragePermitted) {
+                                final Uri local = Uri.parse(Environment.getExternalStorageDirectory() + "/Pictures/Diaspora/" + System.currentTimeMillis() + ".png");
+                                new ImageDownloadTask(null, local.getPath()) {
+                                    @Override
+                                    protected void onPostExecute(Bitmap result) {
+                                        Uri myUri = Uri.fromFile(new File(local.getPath()));
+                                        Intent sharingIntent = new Intent();
+                                        sharingIntent.setAction(Intent.ACTION_SEND);
+                                        sharingIntent.putExtra(Intent.EXTRA_STREAM, myUri);
+                                        sharingIntent.setType("image/png");
+                                        sharingIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                                        context.startActivity(Intent.createChooser(sharingIntent, "Share image using"));
+                                    }
+                                }.execute(url);
+                            }
                         } else {
                             Toast.makeText(context, "Cannot share image: url is null", Toast.LENGTH_SHORT).show();
                         }
+
                         break;
 
                     case ID_IMAGE_EXTERNAL_BROWSER:
