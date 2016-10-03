@@ -169,12 +169,18 @@ public class MainActivity extends AppCompatActivity
         brSetTitle = new UpdateTitleReceiver(app, urls, new UpdateTitleReceiver.TitleCallback() {
             @Override
             public void setTitle(int rId) {
-                MainActivity.this.setTitle(rId);
+                CustomFragment top = getTopFragment();
+                if(top != null && top.getFragmentTag().equals(DiasporaStreamFragment.TAG)) {
+                    MainActivity.this.setTitle(rId);
+                }
             }
 
             @Override
             public void setTitle(String title) {
-                MainActivity.this.setTitle(title);
+                CustomFragment top = getTopFragment();
+                if(top != null && top.getFragmentTag().equals(DiasporaStreamFragment.TAG)) {
+                    MainActivity.this.setTitle(title);
+                }
             }
         });
 
