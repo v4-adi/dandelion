@@ -24,9 +24,11 @@ import android.os.AsyncTask;
 import android.os.IBinder;
 import android.support.v4.content.LocalBroadcastManager;
 
+import com.github.dfa.diaspora_android.data.DiasporaPodList;
 import com.github.dfa.diaspora_android.util.AppLog;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -41,7 +43,9 @@ import javax.net.ssl.HttpsURLConnection;
 import info.guardianproject.netcipher.NetCipher;
 
 public class GetPodsService extends Service {
+    public static final String EXTRA_PODLIST = "pods";
     public static final String MESSAGE_PODS_RECEIVED = "com.github.dfa.diaspora.podsreceived";
+    public static final String PODDY_PODLIST_URL = "https://raw.githubusercontent.com/Diaspora-for-Android/diaspora-android-extras/master/podList/podlist.json";
 
     public GetPodsService() {
     }
@@ -53,75 +57,48 @@ public class GetPodsService extends Service {
     }
 
     private void getPods() {
-        /*
-         * Most of the code in this AsyncTask is from the file getPodlistTask.java
-         * from the app "Diaspora Webclient".
-         * A few modifications and adaptations were made by me.
-         * Source:
-         * https://github.com/voidcode/Diaspora-Webclient/blob/master/src/com/voidcode/diasporawebclient/getPodlistTask.java
-         * Thanks to Terkel Sørensen ; License : GPLv3
-         */
-        AsyncTask<Void, Void, String[]> getPodsAsync = new AsyncTask<Void, Void, String[]>() {
+        AsyncTask<Void, Void, DiasporaPodList> getPodsAsync = new AsyncTask<Void, Void, DiasporaPodList>() {
             @Override
-            protected String[] doInBackground(Void... params) {
-
-                // TODO: Update deprecated code
-
-                StringBuilder builder = new StringBuilder();
-                //HttpClient client = new DefaultHttpClient();
-                List<String> list = null;
-                HttpsURLConnection connection;
-                InputStream inStream;
+            protected DiasporaPodList doInBackground(Void... params) {
+                StringBuilder sb = new StringBuilder();
+                BufferedReader br = null;
                 try {
-                    connection = NetCipher.getHttpsURLConnection("https://podupti.me/api.php?key=4r45tg&format=json");
-                    int statusCode = connection.getResponseCode();
-                    if (statusCode == 200) {
-                        inStream = connection.getInputStream();
-                        BufferedReader reader = new BufferedReader(
-                                new InputStreamReader(inStream));
+                    HttpsURLConnection con = NetCipher.getHttpsURLConnection(PODDY_PODLIST_URL);
+                    if (con.getResponseCode() == HttpsURLConnection.HTTP_OK) {
+                        br = new BufferedReader(new InputStreamReader(con.getInputStream()));
                         String line;
-                        while ((line = reader.readLine()) != null) {
-                            builder.append(line);
+                        while ((line = br.readLine()) != null) {
+                            sb.append(line);
                         }
 
-                        try {
-                            inStream.close();
-                        } catch (IOException e) {/*Nothing to do*/}
-
-                        connection.disconnect();
+                        // Parse JSON & return pod list
+                        JSONObject json = new JSONObject(sb.toString());
+                        return new DiasporaPodList().fromJson(json);
                     } else {
                         AppLog.e(this, "Failed to download list of pods");
                     }
-                } catch (IOException e) {
-                    //TODO handle json buggy feed
+                } catch (IOException | JSONException e) {
                     e.printStackTrace();
-                }
-                //Parse the JSON Data
-                try {
-                    JSONObject jsonObjectAll = new JSONObject(builder.toString());
-                    JSONArray jsonArrayAll = jsonObjectAll.getJSONArray("pods");
-                    AppLog.d(this, "Number of entries " + jsonArrayAll.length());
-                    list = new ArrayList<>();
-                    for (int i = 0; i < jsonArrayAll.length(); i++) {
-                        JSONObject jo = jsonArrayAll.getJSONObject(i);
-                        if (jo.getString("secure").equals("true"))
-                            list.add(jo.getString("domain"));
+                } finally {
+                    if (br != null) {
+                        try {
+                            br.close();
+                        } catch (IOException ignored) {
+                        }
                     }
-
-                } catch (Exception e) {
-                    //TODO Handle Parsing errors here
-                    e.printStackTrace();
                 }
-                if (list != null)
-                    return list.toArray(new String[list.size()]);
-                else
-                    return null;
+
+                // Could not fetch list of pods :(
+                return new DiasporaPodList();
             }
 
             @Override
-            protected void onPostExecute(String[] pods) {
+            protected void onPostExecute(DiasporaPodList pods) {
+                if (pods == null) {
+                    pods = new DiasporaPodList();
+                }
                 Intent broadcastIntent = new Intent(MESSAGE_PODS_RECEIVED);
-                broadcastIntent.putExtra("pods", pods != null ? pods : new String[0]);
+                broadcastIntent.putExtra(EXTRA_PODLIST, pods);
                 LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(broadcastIntent);
                 stopSelf();
             }
