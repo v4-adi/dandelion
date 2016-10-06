@@ -105,4 +105,8 @@
     <string name="permission_denied">Permission denied.</string>
     <string name="permission_granted_try_again">Permission granted. Please try again.</string>
     <string name="podselection__custom_pod">Custom Pod</string>
+    <string name="pod_name">Pod name</string>
+    <string name="http_protocol">Protocol</string>
+    <string name="pod_address">Pod address</string>
+    <string name="missing_value">Missing value</string>
 </resources>

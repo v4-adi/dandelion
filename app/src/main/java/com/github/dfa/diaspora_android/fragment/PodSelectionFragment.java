@@ -1,9 +1,7 @@
 package com.github.dfa.diaspora_android.fragment;
 
-import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Build;
@@ -12,8 +10,6 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.SearchView;
-import android.text.SpannableString;
-import android.text.util.Linkify;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -32,10 +28,10 @@ import com.github.dfa.diaspora_android.data.AppSettings;
 import com.github.dfa.diaspora_android.data.DiasporaPodList;
 import com.github.dfa.diaspora_android.data.DiasporaPodList.DiasporaPod;
 import com.github.dfa.diaspora_android.task.GetPodsService;
+import com.github.dfa.diaspora_android.ui.PodSelectionDialog;
 import com.github.dfa.diaspora_android.util.AppLog;
 import com.github.dfa.diaspora_android.util.DiasporaUrlHelper;
 import com.github.dfa.diaspora_android.util.Helpers;
-import com.github.dfa.diaspora_android.util.WebHelper;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -44,16 +40,17 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Fragment that lets the user choose a Pod
  * Created by vanitas on 01.10.16.
  */
 
-public class PodSelectionFragment extends CustomFragment implements SearchView.OnQueryTextListener {
+public class PodSelectionFragment extends CustomFragment implements SearchView.OnQueryTextListener, PodSelectionDialog.PodSelectionDialogResultListener {
     public static final String TAG = "com.github.dfa.diaspora_android.PodSelectionFragment";
 
-    @BindView(R.id.podselection__listpods)
+    @BindView(R.id.podselection__fragment__listpods)
     protected ListView listViewPod;
 
     protected App app;
@@ -85,9 +82,8 @@ public class PodSelectionFragment extends CustomFragment implements SearchView.O
 
         listViewPod.setTextFilterEnabled(true);
         listViewPod.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                showPodConfirmationDialog((String) listViewPod.getAdapter().getItem(i));
+                showPodSelectionDialog(podList.getPodAt(i));
             }
         });
         LocalBroadcastManager.getInstance(getContext()).registerReceiver(podListReceiver, new IntentFilter(GetPodsService.MESSAGE_PODS_RECEIVED));
@@ -104,28 +100,14 @@ public class PodSelectionFragment extends CustomFragment implements SearchView.O
         }
     }
 
-    // Called when a pod was clicked (or custom)
+    @OnClick(R.id.podselection__fragment__button_use_custom_pod)
     public void onPodButtonClicked(View v) {
-        //if (editFilter.getText().length() > 4 && editFilter.getText().toString().contains("")) {
-        showPodConfirmationDialog(filterString);
-        //} else {
-        //    Snackbar.make(listViewPod, R.string.valid_pod, Snackbar.LENGTH_LONG).show();
-        //}
+        showPodSelectionDialog(new DiasporaPod());
     }
 
     @Override
     public String getFragmentTag() {
         return TAG;
-    }
-
-    @Override
-    public void onCreateBottomOptionsMenu(Menu menu, MenuInflater inflater) {
-        /* Nothing to do */
-    }
-
-    @Override
-    public boolean onBackPressed() {
-        return false;
     }
 
     private final BroadcastReceiver podListReceiver = new BroadcastReceiver() {
@@ -175,49 +157,9 @@ public class PodSelectionFragment extends CustomFragment implements SearchView.O
         listViewPodAdapter.getFilter().filter(filterString);
     }
 
-    private void showPodConfirmationDialog(final String selectedPod) {
-        // Make a clickable link
-        final SpannableString dialogMessage = new SpannableString(getString(R.string.confirm_pod, selectedPod));
-        Linkify.addLinks(dialogMessage, Linkify.ALL);
-
-        // Check if online
-        if (!WebHelper.isOnline(getContext())) {
-            Snackbar.make(listViewPod, R.string.no_internet, Snackbar.LENGTH_LONG).show();
-            return;
-        }
-
-        // Show dialog
-        new AlertDialog.Builder(getContext())
-                .setTitle(getString(R.string.confirmation))
-                .setMessage(dialogMessage)
-                .setPositiveButton(android.R.string.yes,
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                onPodSelectionConfirmed(selectedPod);
-                            }
-                        })
-                .setNegativeButton(android.R.string.no, null)
-                .show();
-    }
-
-    private void onPodSelectionConfirmed(String selectedPod) {
-        app.getSettings().setPodDomain(selectedPod);
-
-        try {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                CookieManager.getInstance().removeAllCookies(null);
-                CookieManager.getInstance().removeSessionCookies(null);
-            } else {
-                //noinspection deprecation
-                CookieManager.getInstance().removeAllCookie();
-                //noinspection deprecation
-                CookieManager.getInstance().removeSessionCookie();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        ((MainActivity) getActivity()).openDiasporaUrl(new DiasporaUrlHelper(appSettings).getPodUrl());
+    private void showPodSelectionDialog(final DiasporaPod selectedPod) {
+        PodSelectionDialog dialog = PodSelectionDialog.newInstance(selectedPod, this);
+        dialog.show(getFragmentManager(), PodSelectionDialog.TAG);
     }
 
     @Override
@@ -254,15 +196,54 @@ public class PodSelectionFragment extends CustomFragment implements SearchView.O
     }
 
     @Override
-    public boolean onQueryTextSubmit(String query) {
-        return false;
-    }
-
-    @Override
     public boolean onQueryTextChange(String newText) {
         if (listViewPodAdapter != null) {
             (listViewPodAdapter).getFilter().filter(newText);
         }
         return true;
+    }
+
+    @Override
+    public void onPodSelectionDialogResult(DiasporaPod pod, boolean accepted) {
+        System.out.println(accepted + ": " + pod.toString());
+        if (accepted) {
+            //TODO: Rework for new pod url system ;)
+            app.getSettings().setPodDomain(pod.getPodUrls().get(0).getHost());
+
+            try {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    CookieManager.getInstance().removeAllCookies(null);
+                    CookieManager.getInstance().removeSessionCookies(null);
+                } else {
+                    //noinspection deprecation
+                    CookieManager.getInstance().removeAllCookie();
+                    //noinspection deprecation
+                    CookieManager.getInstance().removeSessionCookie();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            ((MainActivity) getActivity()).openDiasporaUrl(new DiasporaUrlHelper(appSettings).getPodUrl());
+        }
+    }
+
+
+    /*
+     *  Dummy implementations
+     */
+
+    @Override
+    public void onCreateBottomOptionsMenu(Menu menu, MenuInflater inflater) {
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onBackPressed() {
+        return false;
     }
 }

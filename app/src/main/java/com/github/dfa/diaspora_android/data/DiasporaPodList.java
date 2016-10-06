@@ -417,6 +417,23 @@ public class DiasporaPodList implements Iterable<DiasporaPodList.DiasporaPod>, S
             }
 
             /**
+             * Set default values for https
+             */
+            public void setHttpsDefaults(){
+                setProtocol("https");
+                setPort(443);
+            }
+
+
+            /**
+             * Set default values for http
+             */
+            public void setHttpDefaults(){
+                setProtocol("http");
+                setPort(80);
+            }
+
+            /**
              * Tells if the ports needs to shown
              */
             public boolean isPortNeeded() {
