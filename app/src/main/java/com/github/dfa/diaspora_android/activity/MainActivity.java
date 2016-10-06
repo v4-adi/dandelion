@@ -370,17 +370,7 @@ public class MainActivity extends AppCompatActivity
         navMenu.findItem(R.id.nav_profile).setVisible(appSettings.isVisibleInNavProfile());
         navMenu.findItem(R.id.nav_public).setVisible(appSettings.isVisibleInNavPublic_activities());
     }
-
-    /**
-     * Forward toolbar clicks to onNavigationItemSelected
-     * @param view selected view
-     */
-    @OnClick(R.id.main__topbar)
-    public void onToolBarClicked(View view) {
-        AppLog.i(this, "onToolBarClicked()");
-        onNavigationItemSelected(navView.getMenu().findItem(R.id.nav_stream));
-    }
-
+    
     /**
      * Forward incoming intents to handleIntent()
      * @param intent incoming
