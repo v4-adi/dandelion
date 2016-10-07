@@ -1,16 +1,14 @@
 package com.github.dfa.diaspora_android.data;
 
-import android.support.annotation.NonNull;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 
 /**
@@ -25,6 +23,8 @@ public class DiasporaPodList implements Iterable<DiasporaPodList.DiasporaPod>, S
     private boolean trackMergeChanges = false;
     private Integer trackAddedIndexStart = -1;
     private List<Integer> trackUpdatedIndexes = new ArrayList<>();
+    private boolean keepOldNameDuringMerge = false;
+    private long timestamp;
 
     public DiasporaPodList() {
     }
@@ -45,6 +45,9 @@ public class DiasporaPodList implements Iterable<DiasporaPodList.DiasporaPod>, S
                 pods.add(pod);
             }
         }
+        if (json.has("timestamp")) {
+            timestamp = json.getLong("timestamp");
+        }
         return this;
     }
 
@@ -58,6 +61,7 @@ public class DiasporaPodList implements Iterable<DiasporaPodList.DiasporaPod>, S
             jpods.put(pod.toJson());
         }
         json.put("pods", jpods);
+        json.put("timestamp", System.currentTimeMillis());
         return json;
     }
 
@@ -88,6 +92,9 @@ public class DiasporaPodList implements Iterable<DiasporaPodList.DiasporaPod>, S
                 }
                 if (updatePodBak.getScore() != 0 && updatePod.getScore() == 0) {
                     updatePod.setScore(updatePodBak.getScore());
+                }
+                if (!updatePodBak.getName().equals("") && keepOldNameDuringMerge) {
+                    updatePod.setName(updatePodBak.getName());
                 }
                 if (isTrackMergeChanges()) {
                     trackUpdatedIndexes.add(index);
@@ -154,12 +161,20 @@ public class DiasporaPodList implements Iterable<DiasporaPodList.DiasporaPod>, S
         return trackUpdatedIndexes;
     }
 
+    public boolean isKeepOldNameDuringMerge() {
+        return keepOldNameDuringMerge;
+    }
+
+    public void setKeepOldNameDuringMerge(boolean keepOldNameDuringMerge) {
+        this.keepOldNameDuringMerge = keepOldNameDuringMerge;
+    }
+
     /*      ██████╗  ██████╗ ██████╗
-             *      ██╔══██╗██╔═══██╗██╔══██╗
-             *      ██████╔╝██║   ██║██║  ██║
-             *      ██╔═══╝ ██║   ██║██║  ██║
-             *      ██║     ╚██████╔╝██████╔╝
-             *      ╚═╝      ╚═════╝ ╚═════╝    */
+         *      ██╔══██╗██╔═══██╗██╔══██╗
+         *      ██████╔╝██║   ██║██║  ██║
+         *      ██╔═══╝ ██║   ██║██║  ██║
+         *      ██║     ╚██████╔╝██████╔╝
+         *      ╚═╝      ╚═════╝ ╚═════╝    */
     public static class DiasporaPod implements Iterable<DiasporaPodList.DiasporaPod.DiasporaPodUrl>, Comparable<DiasporaPod>, Serializable {
         private List<DiasporaPodUrl> podUrls = new ArrayList<>();
         private List<String> mainLangs = new ArrayList<>();
@@ -289,7 +304,6 @@ public class DiasporaPodList implements Iterable<DiasporaPodList.DiasporaPod>, S
         /*
         * Getter & Setter
         */
-        @NonNull
         public List<DiasporaPodUrl> getPodUrls() {
             return podUrls;
         }
@@ -299,7 +313,6 @@ public class DiasporaPodList implements Iterable<DiasporaPodList.DiasporaPod>, S
             return this;
         }
 
-        @NonNull
         public List<String> getMainLangs() {
             return mainLangs;
         }
@@ -319,8 +332,8 @@ public class DiasporaPodList implements Iterable<DiasporaPodList.DiasporaPod>, S
         /**
          * Returns the first DiasporaPodUrl in the list
          */
-        public DiasporaPodUrl getPodUrl(){
-            if(podUrls.size() > 0){
+        public DiasporaPodUrl getPodUrl() {
+            if (podUrls.size() > 0) {
                 return podUrls.get(0);
             }
             return null;
@@ -433,7 +446,7 @@ public class DiasporaPodList implements Iterable<DiasporaPodList.DiasporaPod>, S
             /**
              * Set default values for https
              */
-            public void setHttpsDefaults(){
+            public void setHttpsDefaults() {
                 setProtocol("https");
                 setPort(443);
             }
@@ -442,7 +455,7 @@ public class DiasporaPodList implements Iterable<DiasporaPodList.DiasporaPod>, S
             /**
              * Set default values for http
              */
-            public void setHttpDefaults(){
+            public void setHttpDefaults() {
                 setProtocol("http");
                 setPort(80);
             }

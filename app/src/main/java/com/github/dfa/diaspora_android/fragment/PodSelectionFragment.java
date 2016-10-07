@@ -20,6 +20,7 @@ import android.webkit.CookieManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.github.dfa.diaspora_android.App;
 import com.github.dfa.diaspora_android.R;
@@ -83,7 +84,14 @@ public class PodSelectionFragment extends CustomFragment implements SearchView.O
         listViewPod.setTextFilterEnabled(true);
         listViewPod.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                showPodSelectionDialog(podList.getPodAt(i));
+                String text = ((TextView) view).getText().toString();
+                for (DiasporaPod pod : podList) {
+                    if (pod.getPodUrl().getHost().equals(text)) {
+                        showPodSelectionDialog(pod);
+                        return;
+                    }
+                }
+
             }
         });
         LocalBroadcastManager.getInstance(getContext()).registerReceiver(podListReceiver, new IntentFilter(GetPodsService.MESSAGE_PODS_RECEIVED));
@@ -139,7 +147,7 @@ public class PodSelectionFragment extends CustomFragment implements SearchView.O
     private void updateListedPods() {
         final ArrayList<String> listedPodsList = new ArrayList<>();
         for (DiasporaPod pod : this.podList) {
-            listedPodsList.add(pod.getPodUrls().get(0).getHost());
+            listedPodsList.add(pod.getPodUrl().getHost());
         }
 
         listViewPodAdapter = new ArrayAdapter<>(
