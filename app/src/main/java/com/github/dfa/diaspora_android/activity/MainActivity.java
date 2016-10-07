@@ -60,7 +60,6 @@ import android.widget.Toast;
 import com.github.dfa.diaspora_android.App;
 import com.github.dfa.diaspora_android.R;
 import com.github.dfa.diaspora_android.data.AppSettings;
-import com.github.dfa.diaspora_android.data.DiasporaPodList;
 import com.github.dfa.diaspora_android.data.PodUserProfile;
 import com.github.dfa.diaspora_android.fragment.BrowserFragment;
 import com.github.dfa.diaspora_android.fragment.CustomFragment;
@@ -179,7 +178,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        if(!appSettings.hasPod()) {
+        if (!appSettings.hasPod()) {
             AppLog.d(this, "We have no pod. Show PodSelectionFragment");
             showFragment(getFragment(PodSelectionFragment.TAG));
         } else {
@@ -233,6 +232,7 @@ public class MainActivity extends AppCompatActivity
 
     /**
      * Show DiasporaStreamFragment if necessary and load URL url
+     *
      * @param url URL to load in the DiasporaStreamFragment
      */
     public void openDiasporaUrl(String url) {
@@ -246,12 +246,13 @@ public class MainActivity extends AppCompatActivity
      * Get an instance of the CustomFragment with the tag fragmentTag.
      * If there was no instance so far, create a new one and add it to the FragmentManagers pool.
      * If there is no Fragment with the corresponding Tag, return null.
+     *
      * @param fragmentTag tag
      * @return corresponding Fragment
      */
     protected CustomFragment getFragment(String fragmentTag) {
         CustomFragment fragment = (CustomFragment) fm.findFragmentByTag(fragmentTag);
-        if(fragment != null) {
+        if (fragment != null) {
             return fragment;
         } else {
             switch (fragmentTag) {
@@ -272,8 +273,8 @@ public class MainActivity extends AppCompatActivity
                     fm.beginTransaction().add(psf, fragmentTag).commit();
                     return psf;
                 default:
-                    AppLog.e(this,"Invalid Fragment Tag: "+fragmentTag
-                            +"\nAdd Fragments Tag to getFragment()'s switch case.");
+                    AppLog.e(this, "Invalid Fragment Tag: " + fragmentTag
+                            + "\nAdd Fragments Tag to getFragment()'s switch case.");
                     return getTopFragment();
             }
         }
@@ -281,12 +282,13 @@ public class MainActivity extends AppCompatActivity
 
     /**
      * Show the Fragment fragment in R.id.fragment_container. If the fragment was already visible, do nothing.
+     *
      * @param fragment Fragment to show
      */
     protected void showFragment(CustomFragment fragment) {
         AppLog.v(this, "showFragment()");
         CustomFragment currentTop = (CustomFragment) fm.findFragmentById(R.id.fragment_container);
-        if(currentTop == null || !currentTop.getFragmentTag().equals(fragment.getFragmentTag())) {
+        if (currentTop == null || !currentTop.getFragmentTag().equals(fragment.getFragmentTag())) {
             AppLog.v(this, "Fragment was not visible. Replace it.");
             fm.beginTransaction().addToBackStack(null).replace(R.id.fragment_container, fragment, fragment.getFragmentTag()).commit();
             invalidateOptionsMenu();
@@ -344,21 +346,6 @@ public class MainActivity extends AppCompatActivity
                 }
             }
         }
-
-        // Set visibility
-        Menu navMenu = navView.getMenu();
-        navMenu.findItem(R.id.nav_exit).setVisible(appSettings.isVisibleInNavExit());
-        navMenu.findItem(R.id.nav_activities).setVisible(appSettings.isVisibleInNavActivities());
-        navMenu.findItem(R.id.nav_aspects).setVisible(appSettings.isVisibleInNavAspects());
-        navMenu.findItem(R.id.nav_commented).setVisible(appSettings.isVisibleInNavCommented());
-        navMenu.findItem(R.id.nav_followed_tags).setVisible(appSettings.isVisibleInNavFollowed_tags());
-        navMenu.findItem(R.id.nav_about).setVisible(appSettings.isVisibleInNavHelp_license());
-        navMenu.findItem(R.id.nav_liked).setVisible(appSettings.isVisibleInNavLiked());
-        navMenu.findItem(R.id.nav_mentions).setVisible(appSettings.isVisibleInNavMentions());
-        navMenu.findItem(R.id.nav_profile).setVisible(appSettings.isVisibleInNavProfile());
-        navMenu.findItem(R.id.nav_public).setVisible(appSettings.isVisibleInNavPublic_activities());
-        // Hide all pod related options if no pod is selected
-        navMenu.setGroupVisible(navMenu.findItem(R.id.nav_exit).getGroupId(), appSettings.getPod() != null);
     }
 
     @OnClick(R.id.main__topbar)
@@ -396,7 +383,7 @@ public class MainActivity extends AppCompatActivity
                 return;
             } else {
                 loadUrl = intent.getDataString();
-                AppLog.v(this, "Intent has a delicious URL for us: "+loadUrl);
+                AppLog.v(this, "Intent has a delicious URL for us: " + loadUrl);
             }
         } else if (ACTION_CHANGE_ACCOUNT.equals(action)) {
             AppLog.v(this, "Reset pod data and  show PodSelectionFragment");
@@ -435,7 +422,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        AppLog.v(this, "onActivityResult(): "+requestCode);
+        AppLog.v(this, "onActivityResult(): " + requestCode);
         super.onActivityResult(requestCode, resultCode, data);
     }
 
@@ -453,7 +440,7 @@ public class MainActivity extends AppCompatActivity
 
     private CustomFragment getTopFragment() {
         Fragment top = fm.findFragmentById(R.id.fragment_container);
-        if(top != null) {
+        if (top != null) {
             return (CustomFragment) top;
         }
         return null;
@@ -467,12 +454,12 @@ public class MainActivity extends AppCompatActivity
             return;
         }
         CustomFragment top = getTopFragment();
-        if(top != null) {
+        if (top != null) {
             AppLog.v(this, "Top Fragment is not null");
-            if(!top.onBackPressed()) {
+            if (!top.onBackPressed()) {
                 AppLog.v(this, "Top Fragment.onBackPressed was false");
-                AppLog.v(this, "BackStackEntryCount: "+fm.getBackStackEntryCount());
-                if(fm.getBackStackEntryCount()>0) {
+                AppLog.v(this, "BackStackEntryCount: " + fm.getBackStackEntryCount());
+                if (fm.getBackStackEntryCount() > 0) {
                     fm.popBackStack();
                 } else {
                     snackbarExitApp.show();
@@ -528,9 +515,9 @@ public class MainActivity extends AppCompatActivity
         toolbarBottom.setVisibility(View.VISIBLE);
 
         CustomFragment top = getTopFragment();
-        if(top != null) {
+        if (top != null) {
             //Are we displaying a Fragment other than PodSelectionFragment?
-            if(!top.getFragmentTag().equals(PodSelectionFragment.TAG)) {
+            if (!top.getFragmentTag().equals(PodSelectionFragment.TAG)) {
                 getMenuInflater().inflate(R.menu.main__menu_top, menu);
                 getMenuInflater().inflate(R.menu.main__menu_bottom, toolbarBottom.getMenu());
                 top.onCreateBottomOptionsMenu(toolbarBottom.getMenu(), getMenuInflater());
@@ -547,6 +534,21 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         MenuItem item;
+
+        Menu navMenu = navView.getMenu();
+        navMenu.findItem(R.id.nav_exit).setVisible(appSettings.isVisibleInNavExit());
+        navMenu.findItem(R.id.nav_activities).setVisible(appSettings.isVisibleInNavActivities());
+        navMenu.findItem(R.id.nav_aspects).setVisible(appSettings.isVisibleInNavAspects());
+        navMenu.findItem(R.id.nav_commented).setVisible(appSettings.isVisibleInNavCommented());
+        navMenu.findItem(R.id.nav_followed_tags).setVisible(appSettings.isVisibleInNavFollowed_tags());
+        navMenu.findItem(R.id.nav_about).setVisible(appSettings.isVisibleInNavHelp_license());
+        navMenu.findItem(R.id.nav_liked).setVisible(appSettings.isVisibleInNavLiked());
+        navMenu.findItem(R.id.nav_mentions).setVisible(appSettings.isVisibleInNavMentions());
+        navMenu.findItem(R.id.nav_profile).setVisible(appSettings.isVisibleInNavProfile());
+        navMenu.findItem(R.id.nav_public).setVisible(appSettings.isVisibleInNavPublic_activities());
+        if (appSettings.getPod() == null) {
+            navMenu.setGroupVisible(navView.getMenu().findItem(R.id.nav_exit).getGroupId(), false);
+        }
 
         if ((item = menu.findItem(R.id.action_notifications)) != null) {
             LayerDrawable icon = (LayerDrawable) item.getIcon();
@@ -757,8 +759,8 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onCustomTabsConnected() {
-        if(customTabsSession == null) {
-            AppLog.i(this, "CustomTabs warmup: "+customTabActivityHelper.warmup(0));
+        if (customTabsSession == null) {
+            AppLog.i(this, "CustomTabs warmup: " + customTabActivityHelper.warmup(0));
             customTabsSession = customTabActivityHelper.getSession();
         }
     }

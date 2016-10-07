@@ -215,7 +215,6 @@ public class PodSelectionFragment extends CustomFragment implements SearchView.O
     public void onPodSelectionDialogResult(DiasporaPod pod, boolean accepted) {
         System.out.println(accepted + ": " + pod.toString());
         if (accepted) {
-            //TODO: Rework for new pod url system ;)
             app.getSettings().setPod(pod);
 
             try {
@@ -232,7 +231,10 @@ public class PodSelectionFragment extends CustomFragment implements SearchView.O
                 e.printStackTrace();
             }
 
-            ((MainActivity) getActivity()).openDiasporaUrl(new DiasporaUrlHelper(appSettings).getPodUrl());
+            MainActivity mainActivity = (MainActivity) getActivity();
+            DiasporaUrlHelper urlHelper = new DiasporaUrlHelper(appSettings);
+            mainActivity.openDiasporaUrl(urlHelper.getSignInUrl());
+            mainActivity.invalidateOptionsMenu();
         }
     }
 

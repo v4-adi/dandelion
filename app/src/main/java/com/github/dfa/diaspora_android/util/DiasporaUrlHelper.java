@@ -52,6 +52,7 @@ public class DiasporaUrlHelper {
     public static final String SUBURL_STATISTICS = "/statistics";
     public static final String SUBURL_PERSONAL_SETTINGS = "/user/edit";
     public static final String SUBURL_MANAGE_TAGS = "/tag_followings/manage";
+    public static final String SUBURL_SIGN_IN = "/users/sign_in";
     public static final String SUBURL_MANAGE_CONTACTS = "/contacts";
     public static final String URL_BLANK = "about:blank";
 
@@ -68,7 +69,7 @@ public class DiasporaUrlHelper {
     public String getPodUrl() {
         DiasporaPod pod = settings.getPod();
         if (pod != null){
-            return settings.getPod().getPodUrl().getBaseUrl();
+            return pod.getPodUrl().getBaseUrl();
         }
         return "http://127.0.0.1";
 
@@ -218,6 +219,14 @@ public class DiasporaUrlHelper {
      */
     public String getStatisticsUrl() {
         return getPodUrl() + SUBURL_STATISTICS;
+    }
+
+    /**
+     * Return a url that points to the sign in page of the pod.
+     * @return https://(pod-domain.tld)/users/sign_in
+     */
+    public String getSignInUrl() {
+        return getPodUrl() + SUBURL_SIGN_IN;
     }
 
     /**
