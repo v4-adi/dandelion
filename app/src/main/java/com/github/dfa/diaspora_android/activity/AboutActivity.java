@@ -236,7 +236,9 @@ public class AboutActivity extends AppCompatActivity {
 
                     osVersion.setText(getString(R.string.fragment_debug__android_version, Build.VERSION.RELEASE));
                     deviceName.setText(getString(R.string.fragment_debug__device_name, Build.MANUFACTURER + " " + Build.MODEL));
-                    podDomain.setText(getString(R.string.fragment_debug__pod_domain, settings.getPodDomain()));
+                    if (settings.getPod() != null) {
+                        podDomain.setText(getString(R.string.fragment_debug__pod_domain, settings.getPod().getName()));
+                    }
 
                 } catch (PackageManager.NameNotFoundException e) {
                     e.printStackTrace();

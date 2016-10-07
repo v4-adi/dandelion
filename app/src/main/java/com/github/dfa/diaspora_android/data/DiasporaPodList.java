@@ -1,5 +1,7 @@
 package com.github.dfa.diaspora_android.data;
 
+import android.support.annotation.NonNull;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -287,6 +289,7 @@ public class DiasporaPodList implements Iterable<DiasporaPodList.DiasporaPod>, S
         /*
         * Getter & Setter
         */
+        @NonNull
         public List<DiasporaPodUrl> getPodUrls() {
             return podUrls;
         }
@@ -296,6 +299,7 @@ public class DiasporaPodList implements Iterable<DiasporaPodList.DiasporaPod>, S
             return this;
         }
 
+        @NonNull
         public List<String> getMainLangs() {
             return mainLangs;
         }
@@ -310,6 +314,16 @@ public class DiasporaPodList implements Iterable<DiasporaPodList.DiasporaPod>, S
                 this.mainLangs.add(mainLang);
             }
             return this;
+        }
+
+        /**
+         * Returns the first DiasporaPodUrl in the list
+         */
+        public DiasporaPodUrl getPodUrl(){
+            if(podUrls.size() > 0){
+                return podUrls.get(0);
+            }
+            return null;
         }
 
         public DiasporaPod appendPodUrls(DiasporaPodUrl... values) {

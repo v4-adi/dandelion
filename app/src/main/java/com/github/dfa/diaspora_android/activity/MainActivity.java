@@ -60,6 +60,7 @@ import android.widget.Toast;
 import com.github.dfa.diaspora_android.App;
 import com.github.dfa.diaspora_android.R;
 import com.github.dfa.diaspora_android.data.AppSettings;
+import com.github.dfa.diaspora_android.data.DiasporaPodList;
 import com.github.dfa.diaspora_android.data.PodUserProfile;
 import com.github.dfa.diaspora_android.fragment.BrowserFragment;
 import com.github.dfa.diaspora_android.fragment.CustomFragment;
@@ -178,7 +179,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        if(!appSettings.hasPodDomain()) {
+        if(!appSettings.hasPod()) {
             AppLog.d(this, "We have no pod. Show PodSelectionFragment");
             showFragment(getFragment(PodSelectionFragment.TAG));
         } else {
@@ -324,8 +325,8 @@ public class MainActivity extends AppCompatActivity
         if (!appSettings.getName().equals("")) {
             navheaderTitle.setText(appSettings.getName());
         }
-        if (!appSettings.getPodDomain().equals("")) {
-            navheaderDescription.setText(appSettings.getPodDomain());
+        if (appSettings.getPod() != null) {
+            navheaderDescription.setText(appSettings.getPod().getName());
         }
         String avatarUrl = appSettings.getAvatarUrl();
         if (!avatarUrl.equals("")) {
@@ -356,6 +357,8 @@ public class MainActivity extends AppCompatActivity
         navMenu.findItem(R.id.nav_mentions).setVisible(appSettings.isVisibleInNavMentions());
         navMenu.findItem(R.id.nav_profile).setVisible(appSettings.isVisibleInNavProfile());
         navMenu.findItem(R.id.nav_public).setVisible(appSettings.isVisibleInNavPublic_activities());
+        // Hide all pod related options if no pod is selected
+        navMenu.setGroupVisible(navMenu.findItem(R.id.nav_exit).getGroupId(), appSettings.getPod() != null);
     }
 
     @OnClick(R.id.main__topbar)
@@ -397,6 +400,7 @@ public class MainActivity extends AppCompatActivity
             }
         } else if (ACTION_CHANGE_ACCOUNT.equals(action)) {
             AppLog.v(this, "Reset pod data and  show PodSelectionFragment");
+            appSettings.setPod(null);
             app.resetPodData(((DiasporaStreamFragment) getFragment(DiasporaStreamFragment.TAG)).getWebView());
             showFragment(getFragment(PodSelectionFragment.TAG));
         } else if (ACTION_CLEAR_CACHE.equals(action)) {

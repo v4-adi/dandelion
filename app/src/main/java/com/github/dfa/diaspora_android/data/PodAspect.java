@@ -70,8 +70,8 @@ public class PodAspect {
     public String toHtmlLink(final App app) {
         final AppSettings appSettings = app.getSettings();
         return String.format(Locale.getDefault(),
-                "<a href='https://%s/aspects?a_ids[]=%d' style='color: #000000; text-decoration: none;'>%s</a>",
-                appSettings.getPodDomain(), id, name);
+                "<a href='%s/aspects?a_ids[]=%d' style='color: #000000; text-decoration: none;'>%s</a>",
+                appSettings.getPod().getPodUrl().getBaseUrl(), id, name);
     }
 
     @Override

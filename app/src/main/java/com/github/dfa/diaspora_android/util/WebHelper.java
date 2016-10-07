@@ -29,6 +29,7 @@ import android.webkit.WebView;
 import com.github.dfa.diaspora_android.App;
 import com.github.dfa.diaspora_android.R;
 import com.github.dfa.diaspora_android.data.AppSettings;
+import com.github.dfa.diaspora_android.data.DiasporaPodList;
 import com.github.dfa.diaspora_android.data.PodAspect;
 import com.github.dfa.diaspora_android.data.PodUserProfile;
 
@@ -139,16 +140,17 @@ public class WebHelper {
 
         // Content
         AppSettings appSettings = app.getSettings();
+        String pod0BaseUrl = appSettings.getPod().getPodUrl().getBaseUrl();
         sb.append("<span style='margin-left: 30px; '></span>&raquo; &nbsp;");
         sb.append(String.format(Locale.getDefault(),
-                "<a href='https://%s/followed_tags' style='color: #000000; text-decoration: none;'><b>%s</b></a>",
-                appSettings.getPodDomain(), app.getString(R.string.all_tags)));
+                "<a href='%s/followed_tags' style='color: #000000; text-decoration: none;'><b>%s</b></a>",
+                pod0BaseUrl, app.getString(R.string.all_tags)));
         sb.append("<hr style='height:5px;' />");
         for (String tag: profile.getFollowedTags()) {
             sb.append("<span style='margin-left: 30px; '></span>&raquo; &nbsp;");
             sb.append(String.format(Locale.getDefault(),
-                    "<a href='https://%s/tags/%s' style='color: #000000; text-decoration: none;'>#%s</a>",
-                    appSettings.getPodDomain(), tag, tag));
+                    "<a href='%s/tags/%s' style='color: #000000; text-decoration: none;'>#%s</a>",
+                    pod0BaseUrl, tag, tag));
             sb.append("<hr style='height:5px;' />");
         }
 

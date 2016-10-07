@@ -35,7 +35,10 @@ import android.view.MenuItem;
 import com.github.dfa.diaspora_android.App;
 import com.github.dfa.diaspora_android.R;
 import com.github.dfa.diaspora_android.data.AppSettings;
+import com.github.dfa.diaspora_android.data.DiasporaPodList;
+import com.github.dfa.diaspora_android.data.DiasporaPodList.DiasporaPod;
 import com.github.dfa.diaspora_android.util.AppLog;
+import com.github.dfa.diaspora_android.util.DiasporaUrlHelper;
 
 /**
  * @author vanitas
@@ -124,21 +127,22 @@ public class SettingsActivity extends AppCompatActivity {
         @Override
         public boolean onPreferenceTreeClick(PreferenceScreen screen, Preference preference) {
             Intent intent = new Intent(getActivity(), MainActivity.class);
-            String podDomain = ((App) getActivity().getApplication()).getSettings().getPodDomain();
+            App app = ((App) getActivity().getApplication());
+            DiasporaUrlHelper diasporaUrlHelper = new DiasporaUrlHelper(app.getSettings());
             switch (preference.getTitleRes()) {
                 case R.string.pref_title__personal_settings: {
                     intent.setAction(MainActivity.ACTION_OPEN_URL);
-                    intent.putExtra(MainActivity.URL_MESSAGE, "https://" + podDomain + "/user/edit");
+                    intent.putExtra(MainActivity.URL_MESSAGE, diasporaUrlHelper.getPersonalSettingsUrl());
                     break;
                 }
                 case R.string.pref_title__manage_tags: {
                     intent.setAction(MainActivity.ACTION_OPEN_URL);
-                    intent.putExtra(MainActivity.URL_MESSAGE, "https://" + podDomain + "/tag_followings/manage");
+                    intent.putExtra(MainActivity.URL_MESSAGE, diasporaUrlHelper.getManageTagsUrl());
                     break;
                 }
                 case R.string.pref_title__manage_contacts: {
                     intent.setAction(MainActivity.ACTION_OPEN_URL);
-                    intent.putExtra(MainActivity.URL_MESSAGE, "https://" + podDomain + "/contacts");
+                    intent.putExtra(MainActivity.URL_MESSAGE, diasporaUrlHelper.getManageContactsUrl());
                     break;
                 }
                 case R.string.pref_title__change_account: {

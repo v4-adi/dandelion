@@ -19,7 +19,6 @@
 package com.github.dfa.diaspora_android.webview;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.support.v4.content.LocalBroadcastManager;
 import android.webkit.CookieManager;
 import android.webkit.WebView;
@@ -39,7 +38,7 @@ public class CustomWebViewClient extends WebViewClient {
 
     //Open non-diaspora links in customtab/external browser
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
-        if (!url.contains(app.getSettings().getPodDomain())) {
+        if (!url.contains(app.getSettings().getPod().getPodUrl().getHost())) {
             Intent i = new Intent(MainActivity.ACTION_OPEN_EXTERNAL_URL);
             i.putExtra(MainActivity.EXTRA_URL, url);
             LocalBroadcastManager.getInstance(app.getApplicationContext()).sendBroadcast(i);
@@ -57,7 +56,7 @@ public class CustomWebViewClient extends WebViewClient {
 
         if (cookies != null) {
             cookieManager.setCookie(url, cookies);
-            cookieManager.setCookie("https://" + app.getSettings().getPodDomain(), cookies);
+            cookieManager.setCookie(app.getSettings().getPod().getPodUrl().getBaseUrl(), cookies);
             //for (String c : cookies.split(";")) {
             //AppLog.d(this, "Cookie: " + c.split("=")[0] + " Value:" + c.split("=")[1]);
             //}

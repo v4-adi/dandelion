@@ -208,7 +208,7 @@ public class PodSelectionFragment extends CustomFragment implements SearchView.O
         System.out.println(accepted + ": " + pod.toString());
         if (accepted) {
             //TODO: Rework for new pod url system ;)
-            app.getSettings().setPodDomain(pod.getPodUrls().get(0).getHost());
+            app.getSettings().setPod(pod);
 
             try {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
