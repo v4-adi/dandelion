@@ -77,7 +77,6 @@ import com.github.dfa.diaspora_android.util.WebHelper;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, WebUserProfileChangedListener, CustomTabActivityHelper.ConnectionCallback {
@@ -163,18 +162,24 @@ public class MainActivity extends AppCompatActivity
         customTabActivityHelper.setConnectionCallback(this);
 
         fm = getSupportFragmentManager();
-        setupUI(savedInstanceState);
+        setupUI();
 
         brOpenExternalLink = new OpenExternalLinkReceiver(this);
         brSetTitle = new UpdateTitleReceiver(app, urls, new UpdateTitleReceiver.TitleCallback() {
             @Override
             public void setTitle(int rId) {
-                MainActivity.this.setTitle(rId);
+                CustomFragment top = getTopFragment();
+                if (top != null && top.getFragmentTag().equals(DiasporaStreamFragment.TAG)) {
+                    MainActivity.this.setTitle(rId);
+                }
             }
 
             @Override
             public void setTitle(String title) {
-                MainActivity.this.setTitle(title);
+                CustomFragment top = getTopFragment();
+                if (top != null && top.getFragmentTag().equals(DiasporaStreamFragment.TAG)) {
+                    MainActivity.this.setTitle(title);
+                }
             }
         });
 
@@ -193,7 +198,11 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    private void setupUI(Bundle savedInstanceState) {
+    /**
+     * Setup the user interface. Set up both toolbars and initialize the snackbars.
+     * Initialize the navigation drawer and apply intellihide settings.
+     */
+    private void setupUI() {
         AppLog.i(this, "setupUI()");
 
         // Setup toolbar
@@ -245,7 +254,7 @@ public class MainActivity extends AppCompatActivity
     /**
      * Get an instance of the CustomFragment with the tag fragmentTag.
      * If there was no instance so far, create a new one and add it to the FragmentManagers pool.
-     * If there is no Fragment with the corresponding Tag, return null.
+     * If there is no Fragment with the corresponding Tag, return the top fragment.
      *
      * @param fragmentTag tag
      * @return corresponding Fragment
@@ -297,6 +306,9 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    /**
+     * Initialize the navigation slider
+     */
     private void setupNavigationSlider() {
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, navDrawer, toolbarTop, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -348,19 +360,22 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    @OnClick(R.id.main__topbar)
-    public void onToolBarClicked(View view) {
-        AppLog.i(this, "onToolBarClicked()");
-        onNavigationItemSelected(navView.getMenu().findItem(R.id.nav_stream));
-    }
-
+    /**
+     * Forward incoming intents to handleIntent()
+     *
+     * @param intent incoming
+     */
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-
         handleIntent(intent);
     }
 
+    /**
+     * Handle intents and execute intent specific actions
+     *
+     * @param intent intent to get handled
+     */
     private void handleIntent(Intent intent) {
         AppLog.i(this, "handleIntent()");
         if (intent == null) {
@@ -411,7 +426,8 @@ public class MainActivity extends AppCompatActivity
                     break;
             }
         } else if (Intent.ACTION_SEND_MULTIPLE.equals(action) && type != null) {
-            //TODO: Implement and add filter to manifest
+            /* TODO: Implement and add filter to manifest */
+            return;
         }
 
         if (loadUrl != null) {
@@ -420,24 +436,24 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    /**
+     * Handle activity results
+     *
+     * @param requestCode reqCode
+     * @param resultCode  resCode
+     * @param data        data
+     */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         AppLog.v(this, "onActivityResult(): " + requestCode);
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        AppLog.v(this, "onSaveInstanceState()");
-        super.onSaveInstanceState(outState);
-    }
-
-    @Override
-    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
-        AppLog.v(this, "onRestoreInstanceState()");
-        super.onRestoreInstanceState(savedInstanceState);
-    }
-
+    /**
+     * Return the fragment which is currently displayed in R.id.fragment_container
+     *
+     * @return top fragment or null if there is none displayed
+     */
     private CustomFragment getTopFragment() {
         Fragment top = fm.findFragmentById(R.id.fragment_container);
         if (top != null) {
@@ -446,6 +462,9 @@ public class MainActivity extends AppCompatActivity
         return null;
     }
 
+    /**
+     * Handle presses on the back button
+     */
     @Override
     public void onBackPressed() {
         AppLog.v(this, "onBackPressed()");
@@ -506,6 +525,13 @@ public class MainActivity extends AppCompatActivity
         LocalBroadcastManager.getInstance(this).registerReceiver(brOpenExternalLink, new IntentFilter(ACTION_OPEN_EXTERNAL_URL));
     }
 
+    /**
+     * Clear and repopulate top and bottom toolbar.
+     * Also add menu items of the displayed fragment
+     *
+     * @param menu top toolbar
+     * @return boolean
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         AppLog.v(this, "onCreateOptionsMenu()");
@@ -531,10 +557,15 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    /**
+     * Set the notification and messages counter in the top toolbar
+     *
+     * @param menu menu
+     * @return boolean
+     */
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        MenuItem item;
-
+        // Navigation slider
         Menu navMenu = navView.getMenu();
         navMenu.findItem(R.id.nav_exit).setVisible(appSettings.isVisibleInNavExit());
         navMenu.findItem(R.id.nav_activities).setVisible(appSettings.isVisibleInNavActivities());
@@ -546,6 +577,9 @@ public class MainActivity extends AppCompatActivity
         navMenu.findItem(R.id.nav_mentions).setVisible(appSettings.isVisibleInNavMentions());
         navMenu.findItem(R.id.nav_profile).setVisible(appSettings.isVisibleInNavProfile());
         navMenu.findItem(R.id.nav_public).setVisible(appSettings.isVisibleInNavPublic_activities());
+
+        // Top bar
+        MenuItem item;
         if (appSettings.getPod() == null) {
             navMenu.setGroupVisible(navView.getMenu().findItem(R.id.nav_exit).getGroupId(), false);
         }
@@ -562,6 +596,12 @@ public class MainActivity extends AppCompatActivity
         return super.onPrepareOptionsMenu(menu);
     }
 
+    /**
+     * Handle clicks on the optionsmenu
+     *
+     * @param item item
+     * @return boolean
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         AppLog.i(this, "onOptionsItemSelected()");
@@ -655,18 +695,33 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Update the profile name in the navigation slider
+     *
+     * @param name name
+     */
     @Override
     public void onUserProfileNameChanged(String name) {
         AppLog.i(this, "onUserProfileNameChanged()");
         navheaderTitle.setText(name);
     }
 
+    /**
+     * Update the profile picture in the navigation slider
+     *
+     * @param avatarUrl url of the new profile pic
+     */
     @Override
     public void onUserProfileAvatarChanged(String avatarUrl) {
         AppLog.i(this, "onUserProfileAvatarChanged()");
         app.getAvatarImageLoader().startImageDownload(navheaderImage, avatarUrl);
     }
 
+    /**
+     * Handle hashtag clicks. Open the new-post-url and inject the clicked hashtag into the post-editor
+     *
+     * @param intent intent
+     */
     private void handleHashtag(Intent intent) {
         AppLog.v(this, "handleHashtag()");
         try {
@@ -677,6 +732,11 @@ public class MainActivity extends AppCompatActivity
         openDiasporaUrl(urls.getNewPostUrl());
     }
 
+    /**
+     * Open the new-post-url and inject text that was shared into the app into the post editors text field
+     *
+     * @param intent shareTextIntent
+     */
     private void handleSendText(Intent intent) {
         AppLog.v(this, "handleSendText()");
         try {
@@ -731,6 +791,11 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    /**
+     * Share an image shared to the app via diaspora
+     *
+     * @param intent shareImageIntent
+     */
     //TODO: Implement some day
     private void handleSendImage(Intent intent) {
         AppLog.i(this, "handleSendImage()");
@@ -743,6 +808,11 @@ public class MainActivity extends AppCompatActivity
         Toast.makeText(this, "Not yet implemented.", Toast.LENGTH_SHORT).show();
     }
 
+    /**
+     * Invalidate the top toolbar to update the notification counter
+     *
+     * @param notificationCount new notification count
+     */
     @Override
     public void onNotificationCountChanged(int notificationCount) {
         AppLog.i(this, "onNotificationCountChanged()");
@@ -750,6 +820,11 @@ public class MainActivity extends AppCompatActivity
         invalidateOptionsMenu();
     }
 
+    /**
+     * Invalidate the top toolbar to update the unread messages counter
+     *
+     * @param unreadMessageCount new unread messages count
+     */
     @Override
     public void onUnreadMessageCountChanged(int unreadMessageCount) {
         AppLog.i(this, "onUnreadMessageCountChanged()");
@@ -878,6 +953,13 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    /**
+     * React to results of requestPermission
+     *
+     * @param requestCode  resCode
+     * @param permissions  requested permissions
+     * @param grantResults granted results
+     */
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode) {
@@ -897,10 +979,20 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    /**
+     * Return the string that will be shared into the new-post-editor
+     *
+     * @return String
+     */
     public String getTextToBeShared() {
         return textToBeShared;
     }
 
+    /**
+     * Set the string that will be shared into the new-post-editor
+     *
+     * @param textToBeShared
+     */
     public void setTextToBeShared(String textToBeShared) {
         this.textToBeShared = textToBeShared;
     }
