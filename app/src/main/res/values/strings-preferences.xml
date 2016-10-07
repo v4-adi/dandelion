@@ -82,7 +82,7 @@
 
     <!-- Proxy -->
     <string name="pref_title__sub_proxy">Proxy</string>
-    <string name="pref_desc__sub_proxy">@string/pref_desc__proxy_enabled</string>
+    <string name="pref_desc__sub_proxy" translatable="false">@string/pref_desc__proxy_enabled</string>
     <string name="pref_title__proxy_enabled">Enable Proxy</string>
     <string name="pref_desc__proxy_enabled">Proxy Diaspora\'s traffic to circumvent firewalls.\nMay require restart</string>
     <string name="pref_title__proxy_host">Host</string>

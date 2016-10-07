@@ -22,14 +22,12 @@
   <string name="pref_desc__load_images">Disabilita il caricamento delle immagini per risparmiare la rete dati</string>
   <!-- Proxy -->
   <string name="pref_title__sub_proxy">Proxy</string>
-  <string name="pref_desc__sub_proxy">@string/pref_desc__proxy_enabled</string>
   <string name="pref_title__proxy_enabled">Attiva proxy</string>
   <string name="pref_desc__proxy_enabled">Traffico del proxy di Diaspora per bypassare i firewall.\nPuò essere necessario il riavvio dell\'app</string>
   <string name="pref_title__proxy_host">Host</string>
   <string name="pref_title__proxy_port">Porta</string>
   <!-- Chrome custom tabs -->
   <string name="pref_title__chrome_custom_tabs_enabled">Schede personalizzate di Chrome</string>
-  <string name="pref_desc__chrome_custom_tabs_enabled">Apri collegamento esterno nelle schede personalizzate di Chrome. Per usare questa funzione Chromium o Google Chrome deve essere installato</string>
   <!-- Diaspora Settings -->
   <string name="pref_title__personal_settings">Impostazioni personali</string>
   <string name="pref_desc__personal_settings">Apri le impostazioni del tuo account Diaspora</string>
