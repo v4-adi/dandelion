@@ -68,6 +68,7 @@ import com.github.dfa.diaspora_android.fragment.HashtagListFragment;
 import com.github.dfa.diaspora_android.fragment.PodSelectionFragment;
 import com.github.dfa.diaspora_android.listener.WebUserProfileChangedListener;
 import com.github.dfa.diaspora_android.receiver.OpenExternalLinkReceiver;
+import com.github.dfa.diaspora_android.util.ProxyHandler;
 import com.github.dfa.diaspora_android.receiver.UpdateTitleReceiver;
 import com.github.dfa.diaspora_android.ui.BadgeDrawable;
 import com.github.dfa.diaspora_android.util.AppLog;
@@ -77,7 +78,6 @@ import com.github.dfa.diaspora_android.util.WebHelper;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, WebUserProfileChangedListener, CustomTabActivityHelper.ConnectionCallback {
@@ -161,6 +161,7 @@ public class MainActivity extends AppCompatActivity
         urls = new DiasporaUrlHelper(appSettings);
         customTabActivityHelper = new CustomTabActivityHelper();
         customTabActivityHelper.setConnectionCallback(this);
+        ProxyHandler.getInstance().updateProxySettings(this);
 
         fm = getSupportFragmentManager();
         setupUI();

@@ -18,7 +18,10 @@
  */
 package com.github.dfa.diaspora_android.activity;
 
+import android.app.AlarmManager;
 import android.app.AlertDialog;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -35,20 +38,23 @@ import android.view.MenuItem;
 import com.github.dfa.diaspora_android.App;
 import com.github.dfa.diaspora_android.R;
 import com.github.dfa.diaspora_android.data.AppSettings;
+import com.github.dfa.diaspora_android.util.ProxyHandler;
 import com.github.dfa.diaspora_android.util.AppLog;
 
 /**
  * @author vanitas
  */
 public class SettingsActivity extends AppCompatActivity {
-    private boolean activityRestartRequired;
-
+    private ProxyHandler.ProxySettings oldProxySettings;
+    private AppSettings appSettings;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActionBar toolbar = getSupportActionBar();
         if (toolbar != null)
             toolbar.setDisplayHomeAsUpEnabled(true);
+        this.appSettings = new AppSettings(this);
+        oldProxySettings = appSettings.getProxySettings();
         getFragmentManager().beginTransaction().replace(android.R.id.content, new SettingsFragment()).commit();
     }
 
@@ -61,10 +67,6 @@ public class SettingsActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(menuItem);
         }
-    }
-
-    private void setActivityRestartRequired() {
-        this.activityRestartRequired = true;
     }
 
     public static class SettingsFragment extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
@@ -94,15 +96,6 @@ public class SettingsActivity extends AppCompatActivity {
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
             updatePreference(findPreference(key));
-            if (key != null && isAdded() && (key.equals(getString(R.string.pref_key__font_size)) ||
-                    key.equals(getString(R.string.pref_key__load_images)) ||
-                    key.equals(getString(R.string.pref_key__intellihide_toolbars)) ||
-                    key.equals(getString(R.string.pref_key__http_proxy_enabled)) ||
-                    key.equals(getString(R.string.pref_key__http_proxy_host)) ||
-                    key.equals(getString(R.string.pref_key__http_proxy_port)) ||
-                    key.startsWith("pref_key__visibility_nav__"))) {
-                ((SettingsActivity) getActivity()).setActivityRestartRequired();
-            }
         }
 
         private void updatePreference(Preference preference) {
@@ -198,11 +191,21 @@ public class SettingsActivity extends AppCompatActivity {
 
     @Override
     protected void onStop() {
-        super.onStop();
-        if (activityRestartRequired) {
-            Intent intent = new Intent(this, MainActivity.class);
-            intent.setAction(MainActivity.ACTION_RELOAD_ACTIVITY);
-            startActivity(intent);
+        ProxyHandler.ProxySettings newProxySettings = appSettings.getProxySettings();
+        if(!oldProxySettings.equals(newProxySettings)) {
+            AppLog.d(this, "ProxySettings changed.");
+            //Proxy on-off? => Restart app
+            if(oldProxySettings.isEnabled() && !newProxySettings.isEnabled()) {
+                Intent restartActivity = new Intent(SettingsActivity.this, MainActivity.class);
+                PendingIntent pendingIntent = PendingIntent.getActivity(SettingsActivity.this, 12374, restartActivity, PendingIntent.FLAG_CANCEL_CURRENT);
+                AlarmManager mgr = (AlarmManager) SettingsActivity.this.getSystemService(Context.ALARM_SERVICE);
+                mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, pendingIntent);
+                System.exit(0);
+            } //Proxy changed? => Update
+            else {
+                ProxyHandler.getInstance().updateProxySettings(this);
+            }
         }
+        super.onStop();
     }
 }

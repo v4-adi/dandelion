@@ -23,6 +23,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.github.dfa.diaspora_android.R;
+import com.github.dfa.diaspora_android.util.ProxyHandler;
 
 /**
  * Settings
@@ -257,6 +258,10 @@ public class AppSettings {
 
     public void setProxyHttpPort(int value) {
         setInt(prefApp, R.string.pref_key__http_proxy_port, value);
+    }
+
+    public ProxyHandler.ProxySettings getProxySettings() {
+        return new ProxyHandler.ProxySettings(isProxyEnabled(), getProxyHost(), getProxyPort());
     }
 
     public boolean isIntellihideToolbars() {
