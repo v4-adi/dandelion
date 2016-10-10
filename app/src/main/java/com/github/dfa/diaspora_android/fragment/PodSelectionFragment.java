@@ -16,7 +16,7 @@
 
     If not, see <http://www.gnu.org/licenses/>.
  */
-package com.github.dfa.diaspora_android.activity;
+package com.github.dfa.diaspora_android.fragment;
 
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
@@ -28,64 +28,103 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.LocalBroadcastManager;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.SpannableString;
 import android.text.TextWatcher;
 import android.text.util.Linkify;
+import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.webkit.CookieManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.github.dfa.diaspora_android.App;
 import com.github.dfa.diaspora_android.R;
+import com.github.dfa.diaspora_android.activity.MainActivity;
+import com.github.dfa.diaspora_android.data.AppSettings;
 import com.github.dfa.diaspora_android.task.GetPodsService;
-import com.github.dfa.diaspora_android.util.Helpers;
+import com.github.dfa.diaspora_android.util.AppLog;
+import com.github.dfa.diaspora_android.util.DiasporaUrlHelper;
 import com.github.dfa.diaspora_android.util.WebHelper;
 
 import java.util.ArrayList;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-import butterknife.OnItemClick;
+/**
+ * Fragment that lets the user choose a Pod
+ * Created by vanitas on 01.10.16.
+ */
 
+public class PodSelectionFragment extends CustomFragment {
+    public static final String TAG = "com.github.dfa.diaspora_android.PodSelectionFragment";
 
-public class PodSelectionActivity extends AppCompatActivity {
-    private App app;
+    protected EditText editFilter;
+    protected ListView listPods;
+    protected ImageView selectPodButton;
 
-    @BindView(R.id.podselection__edit_filter)
-    EditText editFilter;
-
-    @BindView(R.id.podselection__listpods)
-    ListView listPods;
-
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
+    protected App app;
+    protected AppSettings appSettings;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.podselection__activity);
-        ButterKnife.bind(this);
-        app = (App) getApplication();
-        setSupportActionBar(toolbar);
-
-
-        listPods.setTextFilterEnabled(true);
-        setListedPods(app.getSettings().getPreviousPodlist());
-        LocalBroadcastManager.getInstance(this).registerReceiver(podListReceiver, new IntentFilter(GetPodsService.MESSAGE_PODS_RECEIVED));
-
-        if (!WebHelper.isOnline(PodSelectionActivity.this)) {
-            Snackbar.make(listPods, R.string.no_internet, Snackbar.LENGTH_LONG).show();
-        }
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        AppLog.d(this, "onCreateView()");
+        return inflater.inflate(R.layout.podselection__fragment, container, false);
     }
 
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        this.app = (App) getActivity().getApplication();
+        this.appSettings = app.getSettings();
+
+        this.editFilter = (EditText) view.findViewById(R.id.podselection__edit_filter);
+        this.listPods = (ListView) view.findViewById(R.id.podselection__listpods);
+        this.selectPodButton = (ImageView) view.findViewById(R.id.podselection__button_select_pod);
+
+        listPods.setTextFilterEnabled(true);
+        listPods.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                showPodConfirmationDialog((String) listPods.getAdapter().getItem(i));
+            }
+        });
+        setListedPods(appSettings.getPreviousPodlist());
+        LocalBroadcastManager.getInstance(getContext()).registerReceiver(podListReceiver, new IntentFilter(GetPodsService.MESSAGE_PODS_RECEIVED));
+        if (!WebHelper.isOnline(getContext())) {
+            Snackbar.make(listPods, R.string.no_internet, Snackbar.LENGTH_LONG).show();
+        }
+        selectPodButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (editFilter.getText().length() > 4 && editFilter.getText().toString().contains("")) {
+                    showPodConfirmationDialog(editFilter.getText().toString());
+                } else {
+                    Snackbar.make(listPods, R.string.valid_pod, Snackbar.LENGTH_LONG).show();
+                }
+            }
+        });
+    }
+
+    @Override
+    public String getFragmentTag() {
+        return TAG;
+    }
+
+    @Override
+    public void onCreateBottomOptionsMenu(Menu menu, MenuInflater inflater) {
+        /* Nothing to do */
+    }
+
+    @Override
+    public boolean onBackPressed() {
+        return false;
+    }
 
     private final BroadcastReceiver podListReceiver = new BroadcastReceiver() {
         @Override
@@ -104,20 +143,11 @@ public class PodSelectionActivity extends AppCompatActivity {
         }
     };
 
-    @OnClick(R.id.podselection__button_select_pod)
-    public void onButtonSelectPodClicked(View view) {
-        if (editFilter.getText().length() > 4 && editFilter.getText().toString().contains("")) {
-            showPodConfirmationDialog(editFilter.getText().toString());
-        } else {
-            Snackbar.make(listPods, R.string.valid_pod, Snackbar.LENGTH_LONG).show();
-        }
-    }
-
     @Override
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
-        Intent i = new Intent(PodSelectionActivity.this, GetPodsService.class);
-        startService(i);
+        Intent i = new Intent(getContext(), GetPodsService.class);
+        getContext().startService(i);
     }
 
 
@@ -128,7 +158,7 @@ public class PodSelectionActivity extends AppCompatActivity {
         }
 
         final ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                PodSelectionActivity.this,
+                getContext(),
                 android.R.layout.simple_list_item_1,
                 listedPodsList);
 
@@ -154,24 +184,19 @@ public class PodSelectionActivity extends AppCompatActivity {
         });
     }
 
-    @OnItemClick(R.id.podselection__listpods)
-    public void onListPodsItemClicked(int position) {
-        showPodConfirmationDialog((String) listPods.getAdapter().getItem(position));
-    }
-
     private void showPodConfirmationDialog(final String selectedPod) {
         // Make a clickable link
         final SpannableString dialogMessage = new SpannableString(getString(R.string.confirm_pod, selectedPod));
         Linkify.addLinks(dialogMessage, Linkify.ALL);
 
         // Check if online
-        if (!WebHelper.isOnline(PodSelectionActivity.this)) {
+        if (!WebHelper.isOnline(getContext())) {
             Snackbar.make(listPods, R.string.no_internet, Snackbar.LENGTH_LONG).show();
             return;
         }
 
         // Show dialog
-        new AlertDialog.Builder(PodSelectionActivity.this)
+        new AlertDialog.Builder(getContext())
                 .setTitle(getString(R.string.confirmation))
                 .setMessage(dialogMessage)
                 .setPositiveButton(android.R.string.yes,
@@ -201,40 +226,28 @@ public class PodSelectionActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        Helpers.animateToActivity(this, MainActivity.class, true);
-    }
-
-
-    @Override
-    public void onBackPressed() {
-        Snackbar.make(listPods, R.string.confirm_exit, Snackbar.LENGTH_LONG)
-                .setAction(android.R.string.yes, new View.OnClickListener() {
-                    public void onClick(View view) {
-                        finish();
-                    }
-                })
-                .show();
+        ((MainActivity)getActivity()).openDiasporaUrl(new DiasporaUrlHelper(appSettings).getPodUrl());
     }
 
     @Override
-    protected void onDestroy() {
-        LocalBroadcastManager.getInstance(this).unregisterReceiver(podListReceiver);
+    public void onDestroy() {
+        LocalBroadcastManager.getInstance(getContext()).unregisterReceiver(podListReceiver);
         super.onDestroy();
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.podselection__menu, menu);
-        return true;
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.podselection__menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_reload: {
-                if (WebHelper.isOnline(PodSelectionActivity.this)) {
-                    Intent i = new Intent(PodSelectionActivity.this, GetPodsService.class);
-                    startService(i);
+                if (WebHelper.isOnline(getContext())) {
+                    Intent i = new Intent(getContext(), GetPodsService.class);
+                    getContext().startService(i);
                     return true;
                 } else {
                     Snackbar.make(listPods, R.string.no_internet, Snackbar.LENGTH_LONG).show();

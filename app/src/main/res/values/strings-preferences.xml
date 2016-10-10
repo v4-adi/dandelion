@@ -85,7 +85,7 @@
     <string name="pref_title__http_proxy_load_tor_preset">Load Tor Preset</string>
     <string name="pref_desc__http_proxy_load_tor_preset">Load proxy settings for Tor (Orbot) HTTP Proxy</string>
     <string name="pref_title__sub_proxy">Proxy</string>
-    <string name="pref_desc__sub_proxy">@string/pref_desc__http_proxy_enabled</string>
+    <string name="pref_desc__sub_proxy" translatable="false">@string/pref_desc__http_proxy_enabled</string>
     <string name="pref_title__proxy_enabled">Enable Proxy</string>
     <string name="pref_desc__http_proxy_enabled">Proxy Diaspora\'s traffic to circumvent firewalls.\nMay require restart</string>
     <string name="pref_title__http_proxy_host">Host</string>
@@ -96,7 +96,7 @@
 
     <!-- Chrome custom tabs -->
     <string name="pref_title__chrome_custom_tabs_enabled">Chrome Custom Tabs</string>
-    <string name="pref_desc__chrome_custom_tabs_enabled">Open external links with Chrome Custom Tabs. Chromium or Google Chrome needs to be installed for this feature</string>
+    <string name="pref_desc__chrome_custom_tabs_enabled">Open external links with Chrome Custom Tabs. Chromium or Google Chrome needs to be installed for this feature. \nIMPORTANT NOTE: Chrome Custom Tabs do not use configured proxy servers!</string>
 
     <!-- Diaspora Settings -->
     <string name="pref_title__personal_settings">Personal settings</string>

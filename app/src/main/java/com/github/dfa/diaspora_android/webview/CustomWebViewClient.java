@@ -16,7 +16,7 @@
 
     If not, see <http://www.gnu.org/licenses/>.
  */
-package com.github.dfa.diaspora_android.ui;
+package com.github.dfa.diaspora_android.webview;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -37,6 +37,7 @@ public class CustomWebViewClient extends WebViewClient {
         this.webView = webView;
     }
 
+    //Open non-diaspora links in customtab/external browser
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
         if (!url.contains(app.getSettings().getPodDomain())) {
             Intent i = new Intent(MainActivity.ACTION_OPEN_EXTERNAL_URL);

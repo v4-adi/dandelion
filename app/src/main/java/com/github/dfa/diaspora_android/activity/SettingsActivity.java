@@ -94,8 +94,7 @@ public class SettingsActivity extends AppCompatActivity {
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
             updatePreference(findPreference(key));
-            if (key != null && isAdded() && (key.equals(getString(R.string.pref_key__clear_cache)) ||
-                    key.equals(getString(R.string.pref_key__font_size)) ||
+            if (key != null && isAdded() && (key.equals(getString(R.string.pref_key__font_size)) ||
                     key.equals(getString(R.string.pref_key__load_images)) ||
                     key.equals(getString(R.string.pref_key__intellihide_toolbars)) ||
                     key.equals(getString(R.string.pref_key__http_proxy_enabled)) ||
@@ -162,9 +161,15 @@ public class SettingsActivity extends AppCompatActivity {
                     return true;
                 }
                 case R.string.pref_title__http_proxy_load_tor_preset: {
-                    ((EditTextPreference)findPreference(getString(R.string.pref_key__http_proxy_host))).setText("127.0.0.1");
-                    ((EditTextPreference)findPreference(getString(R.string.pref_key__http_proxy_port))).setText("8118");
+                    ((EditTextPreference) findPreference(getString(R.string.pref_key__http_proxy_host))).setText("127.0.0.1");
+                    ((EditTextPreference) findPreference(getString(R.string.pref_key__http_proxy_port))).setText("8118");
                     return true;
+                }
+
+                case R.string.pref_title__clear_cache:
+                {
+                    intent.setAction(MainActivity.ACTION_CLEAR_CACHE);
+                    break;
                 }
 
                 default: {
