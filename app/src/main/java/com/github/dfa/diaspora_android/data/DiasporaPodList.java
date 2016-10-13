@@ -169,12 +169,14 @@ public class DiasporaPodList implements Iterable<DiasporaPodList.DiasporaPod>, S
         this.keepOldNameDuringMerge = keepOldNameDuringMerge;
     }
 
+
     /*      ██████╗  ██████╗ ██████╗
-         *      ██╔══██╗██╔═══██╗██╔══██╗
-         *      ██████╔╝██║   ██║██║  ██║
-         *      ██╔═══╝ ██║   ██║██║  ██║
-         *      ██║     ╚██████╔╝██████╔╝
-         *      ╚═╝      ╚═════╝ ╚═════╝    */
+     *      ██╔══██╗██╔═══██╗██╔══██╗
+     *      ██████╔╝██║   ██║██║  ██║
+     *      ██╔═══╝ ██║   ██║██║  ██║
+     *      ██║     ╚██████╔╝██████╔╝
+     *      ╚═╝      ╚═════╝ ╚═════╝
+     */
     public static class DiasporaPod implements Iterable<DiasporaPodList.DiasporaPod.DiasporaPodUrl>, Comparable<DiasporaPod>, Serializable {
         private List<DiasporaPodUrl> podUrls = new ArrayList<>();
         private List<String> mainLangs = new ArrayList<>();
