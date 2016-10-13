@@ -1,19 +1,15 @@
 /*
     This file is part of the Diaspora for Android.
-
     Diaspora for Android is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
-
     Diaspora for Android is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-
     You should have received a copy of the GNU General Public License
     along with the Diaspora for Android.
-
     If not, see <http://www.gnu.org/licenses/>.
  */
 package com.github.dfa.diaspora_android.data;
@@ -23,6 +19,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.github.dfa.diaspora_android.R;
+import com.github.dfa.diaspora_android.util.ProxyHandler;
 import com.github.dfa.diaspora_android.data.DiasporaPodList.DiasporaPod;
 import com.github.dfa.diaspora_android.data.DiasporaPodList.DiasporaPod.DiasporaPodUrl;
 
@@ -228,7 +225,7 @@ public class AppSettings {
     @SuppressLint("CommitPrefEdits")
     public void setProxyEnabled(boolean enabled) {
         //commit instead of apply because the app is likely to be killed before apply is called.
-        prefApp.edit().putBoolean(context.getString(R.string.pref_key__proxy_enabled), enabled).commit();
+        prefApp.edit().putBoolean(context.getString(R.string.pref_key__http_proxy_enabled), enabled).commit();
     }
 
     /**
@@ -237,7 +234,7 @@ public class AppSettings {
      * @return whether proxy is enabled or not
      */
     public boolean isProxyEnabled() {
-        return getBoolean(prefApp, R.string.pref_key__proxy_enabled, false);
+        return getBoolean(prefApp, R.string.pref_key__http_proxy_enabled, false);
     }
 
     public boolean wasProxyEnabled() {
@@ -261,9 +258,12 @@ public class AppSettings {
      * @return proxy host
      */
     public String getProxyHost() {
-        return getString(prefApp, R.string.pref_key__proxy_host, "");
+        return getString(prefApp, R.string.pref_key__http_proxy_host, "");
     }
 
+    public void setProxyHttpHost(String value) {
+        setString(prefApp, R.string.pref_key__http_proxy_host, value);
+    }
     /**
      * Default value: 0
      *
@@ -271,11 +271,19 @@ public class AppSettings {
      */
     public int getProxyPort() {
         try {
-            return Integer.parseInt(getString(prefApp, R.string.pref_key__proxy_port, "0"));
+            return Integer.parseInt(getString(prefApp, R.string.pref_key__http_proxy_port, "0"));
         } catch (Exception e) {
-            setString(prefApp, R.string.pref_key__proxy_port, "0");
+            setString(prefApp, R.string.pref_key__http_proxy_port, "0");
             return 0;
         }
+    }
+
+    public void setProxyHttpPort(int value) {
+        setInt(prefApp, R.string.pref_key__http_proxy_port, value);
+    }
+
+    public ProxyHandler.ProxySettings getProxySettings() {
+        return new ProxyHandler.ProxySettings(isProxyEnabled(), getProxyHost(), getProxyPort());
     }
 
     public boolean isIntellihideToolbars() {
@@ -332,5 +340,37 @@ public class AppSettings {
 
     public boolean isVisibleInNavProfile() {
         return getBoolean(prefApp, R.string.pref_key__visibility_nav__profile, false);
+    }
+
+    public void setPrimaryColorSettings(int base, int shade) {
+        setInt(prefApp, R.string.pref_key__primary_color_base, base);
+        setInt(prefApp, R.string.pref_key__primary_color_shade, shade);
+    }
+
+    public int[] getPrimaryColorSettings() {
+        return new int[]{
+                getInt(prefApp, R.string.pref_key__primary_color_base, context.getResources().getColor(R.color.md_blue_500)),
+                getInt(prefApp, R.string.pref_key__primary_color_shade, context.getResources().getColor(R.color.primary))
+        };
+    }
+
+    public int getPrimaryColor() {
+        return getInt(prefApp, R.string.pref_key__primary_color_shade, context.getResources().getColor(R.color.primary));
+    }
+
+    public void setAccentColorSettings(int base, int shade) {
+        setInt(prefApp, R.string.pref_key__accent_color_base, base);
+        setInt(prefApp, R.string.pref_key__accent_color_shade, shade);
+    }
+
+    public int[] getAccentColorSettings() {
+        return new int[]{
+                getInt(prefApp, R.string.pref_key__accent_color_base, context.getResources().getColor(R.color.md_deep_orange_500)),
+                getInt(prefApp, R.string.pref_key__accent_color_shade, context.getResources().getColor(R.color.accent))
+        };
+    }
+
+    public int getAccentColor() {
+        return getInt(prefApp, R.string.pref_key__accent_color_shade, context.getResources().getColor(R.color.accent));
     }
 }

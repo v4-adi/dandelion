@@ -16,21 +16,28 @@
 
     If not, see <http://www.gnu.org/licenses/>.
  */
-package com.github.dfa.diaspora_android.util.CustomTabHelpers;
+package com.github.dfa.diaspora_android.fragment;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.net.Uri;
+import com.github.dfa.diaspora_android.App;
+import com.github.dfa.diaspora_android.data.AppSettings;
+import com.github.dfa.diaspora_android.util.theming.ThemeHelper;
 
 /**
- * Adapted from https://medium.com/ribot-labs/exploring-chrome-customs-tabs-on-android-ef427effe2f4
+ * Fragment that supports color schemes
+ * Created by vanitas on 06.10.16.
  */
 
-public class BrowserFallback implements CustomTabActivityHelper.CustomTabFallback {
+public abstract class ThemedFragment extends CustomFragment {
+    protected AppSettings getAppSettings() {
+        return ((App)getActivity().getApplication()).getSettings();
+    }
+
+    protected abstract void applyColorToViews();
+
     @Override
-    public void openUri(Activity activity, Uri uri) {
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setData(uri);
-        activity.startActivity(intent);
+    public void onResume() {
+        super.onResume();
+        ThemeHelper.getInstance(getAppSettings());
+        applyColorToViews();
     }
 }

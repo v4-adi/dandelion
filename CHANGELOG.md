@@ -1,3 +1,9 @@
+# v0.1.7 wip
+- Added: Custom Theme Colors!
+- Increased the overall performance by using Fragments
+- Lots of bugfixes
+- Fixes for the bugfixes!
+
 # v0.1.6
 - Added: New languages
 - Changed: New delicious visual style + launcher icon

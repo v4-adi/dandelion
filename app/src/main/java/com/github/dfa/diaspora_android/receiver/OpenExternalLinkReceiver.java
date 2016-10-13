@@ -1,3 +1,21 @@
+/*
+    This file is part of the Diaspora for Android.
+
+    Diaspora for Android is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Diaspora for Android is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with the Diaspora for Android.
+
+    If not, see <http://www.gnu.org/licenses/>.
+ */
 package com.github.dfa.diaspora_android.receiver;
 
 import android.app.Activity;
@@ -15,7 +33,7 @@ import com.github.dfa.diaspora_android.data.AppSettings;
 import com.github.dfa.diaspora_android.util.AppLog;
 import com.github.dfa.diaspora_android.util.CustomTabHelpers.BrowserFallback;
 import com.github.dfa.diaspora_android.util.CustomTabHelpers.CustomTabActivityHelper;
-import com.github.dfa.diaspora_android.util.Helpers;
+import com.github.dfa.diaspora_android.util.theming.ThemeHelper;
 
 /**
  * BroadcastReceiver that opens links in a Chrome CustomTab
@@ -30,9 +48,10 @@ public class OpenExternalLinkReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context c, Intent receiveIntent) {
-        AppSettings settings = new AppSettings(c);
+        AppSettings appSettings = new AppSettings(c);
+        ThemeHelper.getInstance(appSettings);
 
-       AppLog.v(this, "OpenExternalLinkReceiver.onReceive(): url");
+        AppLog.v(this, "OpenExternalLinkReceiver.onReceive(): url");
 
         Uri url = null;
         try {
@@ -43,10 +62,10 @@ public class OpenExternalLinkReceiver extends BroadcastReceiver {
             return;
         }
 
-        if (settings.isChromeCustomTabsEnabled()) {
+        if (appSettings.isChromeCustomTabsEnabled()) {
             // Setup Chrome Custom Tab
             CustomTabsIntent.Builder customTab = new CustomTabsIntent.Builder();
-            customTab.setToolbarColor(Helpers.getColorFromRessource(c, R.color.colorPrimary));
+            customTab.setToolbarColor(ThemeHelper.getPrimaryColor());
             customTab.addDefaultShareMenuItem();
 
             Bitmap backButtonIcon = BitmapFactory.decodeResource(c.getResources(), R.drawable.chrome_custom_tab__back);

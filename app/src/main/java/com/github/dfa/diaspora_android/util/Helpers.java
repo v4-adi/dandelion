@@ -114,6 +114,10 @@ public class Helpers {
         return "#" + Integer.toHexString(context.getResources().getColor(idColor) & 0x00ffffff);
     }
 
+    public static String colorToHex(int color) {
+        return "#" + Integer.toHexString(color & 0x00ffffff);
+    }
+
     public static void printBundle(Bundle savedInstanceState, String k) {
         if (savedInstanceState != null) {
             for (String key : savedInstanceState.keySet()) {

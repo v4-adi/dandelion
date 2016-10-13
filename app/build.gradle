@@ -31,6 +31,13 @@ android {
     }
 }
 
+repositories {
+    maven {
+        //Color picker
+        url  "http://dl.bintray.com/dasar/maven"
+    }
+}
+
 dependencies {
     // Sub-Projects
     //compile project(':subprojectFromRoot')
@@ -40,15 +47,16 @@ dependencies {
     testCompile 'junit:junit:4.12'
 
     // Android standard libs
-    compile 'com.android.support:appcompat-v7:24.2.0'
-    compile 'com.android.support:design:24.1.0' //Don't u dare to upd8!
-    compile 'com.android.support:support-v4:24.2.0'
-    compile "com.android.support:customtabs:24.2.0"
+    compile 'com.android.support:appcompat-v7:24.2.1'
+    compile 'com.android.support:design:24.1.0' //Don't update. Broken up to 24.2.1
+    compile 'com.android.support:support-v4:24.2.1'
+    compile "com.android.support:customtabs:24.2.1"
 
     // More libraries
     compile 'com.jakewharton:butterknife:8.0.1'
     compile 'info.guardianproject.netcipher:netcipher:2.0.0-alpha1'
     compile 'info.guardianproject.netcipher:netcipher-webkit:2.0.0-alpha1'
+    compile(group: 'uz.shift', name: 'colorpicker', version: '0.5', ext: 'aar') //Color picker
     apt 'com.jakewharton:butterknife-compiler:8.0.1'
 }
 

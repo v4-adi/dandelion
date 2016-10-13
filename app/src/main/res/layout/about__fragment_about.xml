@@ -35,6 +35,7 @@
             android:layout_height="16dp" />
 
         <com.github.dfa.diaspora_android.ui.HtmlTextView
+            android:id="@+id/fragment_about__about_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/fragment_about__about_content"
