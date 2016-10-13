@@ -54,6 +54,12 @@ public class DiasporaUrlHelper {
     public static final String SUBURL_SIGN_IN = "/users/sign_in";
     public static final String SUBURL_MANAGE_CONTACTS = "/contacts";
     public static final String URL_BLANK = "about:blank";
+    public static final String SUBURL_NOTIFICATIONS_ALSO_COMMENTED = "/notifications?type=also_commented";
+    public static final String SUBURL_NOTIFICATIONS_COMMENT_ON_POST = "/notifications?type=comment_on_post";
+    public static final String SUBURL_NOTIFICATIONS_LIKED = "/notifications?type=liked";
+    public static final String SUBURL_NOTIFICATIONS_MENTIONED = "/notifications?type=mentioned";
+    public static final String SUBURL_NOTIFICATIONS_RESHARED = "/notifications?type=reshared";
+    public static final String SUBURL_NOTIFICATIONS_STARTED_SHARING = "/notifications?type=started_sharing";
 
     public DiasporaUrlHelper(AppSettings settings) {
         this.settings = settings;
@@ -255,6 +261,31 @@ public class DiasporaUrlHelper {
      */
     public String getManageContactsUrl() {
         return getPodUrl() + SUBURL_MANAGE_CONTACTS;
+    }
+
+
+    public String getSuburlNotificationsAlsoCommentedUrl() {
+        return getPodUrl() + SUBURL_NOTIFICATIONS_ALSO_COMMENTED;
+    }
+
+    public String getSuburlNotificationsCommentOnPostUrl() {
+        return getPodUrl() + SUBURL_NOTIFICATIONS_COMMENT_ON_POST;
+    }
+
+    public String getSuburlNotificationsLikedUrl() {
+        return getPodUrl() + SUBURL_NOTIFICATIONS_LIKED;
+    }
+
+    public String getSuburlNotificationsMentionedUrl() {
+        return getPodUrl() + SUBURL_NOTIFICATIONS_MENTIONED;
+    }
+
+    public String getSuburlNotificationsResharedUrl() {
+        return getPodUrl() + SUBURL_NOTIFICATIONS_RESHARED;
+    }
+
+    public String getSuburlNotificationsStartedSharingUrl() {
+        return getPodUrl() + SUBURL_NOTIFICATIONS_STARTED_SHARING;
     }
 
     /**
