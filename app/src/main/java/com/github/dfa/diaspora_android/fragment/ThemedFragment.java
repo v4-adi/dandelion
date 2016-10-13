@@ -29,7 +29,7 @@ import com.github.dfa.diaspora_android.util.theming.ThemeHelper;
 
 public abstract class ThemedFragment extends CustomFragment {
     protected AppSettings getAppSettings() {
-        return ((App)getActivity().getApplication()).getSettings();
+        return ((App) getActivity().getApplication()).getSettings();
     }
 
     protected abstract void applyColorToViews();

@@ -44,12 +44,12 @@ import com.github.dfa.diaspora_android.App;
 import com.github.dfa.diaspora_android.R;
 import com.github.dfa.diaspora_android.activity.MainActivity;
 import com.github.dfa.diaspora_android.data.PodUserProfile;
-import com.github.dfa.diaspora_android.webview.DiasporaStreamWebChromeClient;
-import com.github.dfa.diaspora_android.webview.FileUploadWebChromeClient;
 import com.github.dfa.diaspora_android.util.AppLog;
 import com.github.dfa.diaspora_android.util.DiasporaUrlHelper;
 import com.github.dfa.diaspora_android.util.Helpers;
 import com.github.dfa.diaspora_android.util.WebHelper;
+import com.github.dfa.diaspora_android.webview.DiasporaStreamWebChromeClient;
+import com.github.dfa.diaspora_android.webview.FileUploadWebChromeClient;
 
 import org.json.JSONException;
 
@@ -79,9 +79,9 @@ public class DiasporaStreamFragment extends BrowserFragment {
 
         webView.getSettings().setJavaScriptEnabled(true);
         webView.addJavascriptInterface(new JavaScriptInterface(), "AndroidBridge");
-        if(((MainActivity)getActivity()).getTextToBeShared() != null) {
+        if (((MainActivity) getActivity()).getTextToBeShared() != null) {
             loadUrl(urls.getNewPostUrl());
-        } else if(webView.getUrl() == null) {
+        } else if (webView.getUrl() == null) {
             loadUrl(urls.getStreamUrl());
         }
     }
@@ -98,11 +98,11 @@ public class DiasporaStreamFragment extends BrowserFragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        AppLog.d(this, "onActivityResult(): "+requestCode);
+        AppLog.d(this, "onActivityResult(): " + requestCode);
         switch (requestCode) {
             case MainActivity.INPUT_FILE_REQUEST_CODE_NEW:
             case MainActivity.INPUT_FILE_REQUEST_CODE_OLD:
-                AppLog.v(this, "INPUT_FILE_REQUEST_CODE: "+requestCode);
+                AppLog.v(this, "INPUT_FILE_REQUEST_CODE: " + requestCode);
                 onImageUploadResult(requestCode, resultCode, data);
                 return;
         }
@@ -114,7 +114,7 @@ public class DiasporaStreamFragment extends BrowserFragment {
         AppLog.d(this, "StreamFragment.onOptionsItemSelected()");
         switch (item.getItemId()) {
             case R.id.action_reload: {
-                if(WebHelper.isOnline(getContext())) {
+                if (WebHelper.isOnline(getContext())) {
                     reloadUrl();
                     return true;
                 } else {
@@ -226,18 +226,19 @@ public class DiasporaStreamFragment extends BrowserFragment {
     protected DiasporaStreamWebChromeClient.SharedTextCallback sharedTextCallback = new DiasporaStreamWebChromeClient.SharedTextCallback() {
         @Override
         public String getSharedText() {
-            return ((MainActivity)getActivity()).getTextToBeShared();
+            return ((MainActivity) getActivity()).getTextToBeShared();
         }
+
         @Override
         public void setSharedText(String shared) {
-            ((MainActivity)getActivity()).setTextToBeShared(shared);
+            ((MainActivity) getActivity()).setTextToBeShared(shared);
         }
     };
 
     protected FileUploadWebChromeClient.FileUploadCallback fileUploadCallback = new FileUploadWebChromeClient.FileUploadCallback() {
         @Override
         public boolean imageUpload(WebView webView, ValueCallback<Uri[]> filePathCallback, WebChromeClient.FileChooserParams fileChooserParams) {
-            if(Build.VERSION.SDK_INT >= 23) {
+            if (Build.VERSION.SDK_INT >= 23) {
                 int hasWRITE_EXTERNAL_STORAGE = getActivity().checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE);
                 if (hasWRITE_EXTERNAL_STORAGE != PackageManager.PERMISSION_GRANTED) {
                     if (!shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
@@ -261,7 +262,8 @@ public class DiasporaStreamFragment extends BrowserFragment {
                 }
             }
             AppLog.v(this, "onOpenFileChooser");
-            if (imageUploadFilePathCallbackNew != null) imageUploadFilePathCallbackNew.onReceiveValue(null);
+            if (imageUploadFilePathCallbackNew != null)
+                imageUploadFilePathCallbackNew.onReceiveValue(null);
             imageUploadFilePathCallbackNew = filePathCallback;
             Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             if (takePictureIntent.resolveActivity(getContext().getPackageManager()) != null) {
@@ -271,7 +273,7 @@ public class DiasporaStreamFragment extends BrowserFragment {
                     photoFile = Helpers.createImageFile();
                     takePictureIntent.putExtra("PhotoPath", mCameraPhotoPath);
                 } catch (IOException ex) {
-                    AppLog.e(this, "ERROR creating temp file: "+ ex.toString());
+                    AppLog.e(this, "ERROR creating temp file: " + ex.toString());
                     // Error occurred while creating the File
                     Snackbar.make(webView, R.string.unable_to_load_image, Snackbar.LENGTH_LONG).show();
                     return false;
@@ -321,7 +323,7 @@ public class DiasporaStreamFragment extends BrowserFragment {
         @SuppressWarnings("unused")
         @JavascriptInterface
         public void setUserProfile(final String webMessage) throws JSONException {
-            PodUserProfile pup = ((App)getActivity().getApplication()).getPodUserProfile();
+            PodUserProfile pup = ((App) getActivity().getApplication()).getPodUserProfile();
             AppLog.v(this, "StreamFragment.JavaScriptInterface.setUserProfile()");
             if (pup.isRefreshNeeded()) {
                 AppLog.v(this, "PodUserProfile needs refresh; Try to parse JSON");
@@ -334,7 +336,7 @@ public class DiasporaStreamFragment extends BrowserFragment {
         @SuppressWarnings("unused")
         @JavascriptInterface
         public void contentHasBeenShared() {
-            ((MainActivity)getActivity()).setTextToBeShared(null);
+            ((MainActivity) getActivity()).setTextToBeShared(null);
         }
     }
 

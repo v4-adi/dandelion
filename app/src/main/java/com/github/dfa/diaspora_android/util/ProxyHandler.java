@@ -46,7 +46,7 @@ public class ProxyHandler {
     }
 
     public static ProxyHandler getInstance() {
-        if(instance == null) {
+        if (instance == null) {
             instance = new ProxyHandler();
         }
         return instance;
@@ -77,7 +77,7 @@ public class ProxyHandler {
 
     public void addWebView(WebView wv) {
         AppLog.d(this, "AddWebView");
-        if(wv != null && !webViews.contains(wv)) {
+        if (wv != null && !webViews.contains(wv)) {
             webViews.add(wv);
             updateWebViewProxySettings(wv, wv.getContext());
         }
@@ -89,7 +89,7 @@ public class ProxyHandler {
         StrictMode.ThreadPolicy old = StrictMode.getThreadPolicy();
         StrictMode.ThreadPolicy tmp = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(tmp);
-        if(appSettings.isProxyEnabled()) {
+        if (appSettings.isProxyEnabled()) {
             if (wv != null) {
                 try {
                     WebkitProxy.setProxy(MainActivity.class.getName(), context.getApplicationContext(), wv, appSettings.getProxyHost(), appSettings.getProxyPort());

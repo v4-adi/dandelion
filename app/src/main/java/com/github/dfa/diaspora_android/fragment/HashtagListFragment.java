@@ -94,9 +94,9 @@ public class HashtagListFragment extends CustomFragment {
         @Override
         public void onClick(View view) {
             int itemPosition = followedTagsRecyclerView.getChildLayoutPosition(view);
-            if(itemPosition > -1 && itemPosition < followedTags.length) {
+            if (itemPosition > -1 && itemPosition < followedTags.length) {
                 String tag = followedTags[itemPosition];
-                ((MainActivity)getActivity()).openDiasporaUrl(urls.getSearchTagsUrl(tag));
+                ((MainActivity) getActivity()).openDiasporaUrl(urls.getSearchTagsUrl(tag));
             }
         }
     };

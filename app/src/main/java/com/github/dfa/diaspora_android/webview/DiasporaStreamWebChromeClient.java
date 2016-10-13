@@ -57,6 +57,7 @@ public class DiasporaStreamWebChromeClient extends FileUploadWebChromeClient {
 
     public interface SharedTextCallback {
         String getSharedText();
+
         void setSharedText(String shared);
     }
 }

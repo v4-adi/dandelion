@@ -63,7 +63,7 @@ import butterknife.ButterKnife;
  * Activity that holds some fragments that show information about the app in a tab layout
  */
 public class AboutActivity extends ThemedActivity
-implements IntellihideToolbarActivityListener {
+        implements IntellihideToolbarActivityListener {
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
@@ -108,7 +108,7 @@ implements IntellihideToolbarActivityListener {
     @Override
     public void onResume() {
         super.onResume();
-        if(getAppSettings().isIntellihideToolbars()) {
+        if (getAppSettings().isIntellihideToolbars()) {
             this.enableToolbarHiding();
         } else {
             this.disableToolbarHiding();

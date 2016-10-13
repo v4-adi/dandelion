@@ -16,7 +16,7 @@
 
     If not, see <http://www.gnu.org/licenses/>.
  */
- 
+
 package com.github.dfa.diaspora_android.util;
 
 import android.content.Context;
@@ -29,7 +29,6 @@ import android.webkit.WebView;
 import com.github.dfa.diaspora_android.App;
 import com.github.dfa.diaspora_android.R;
 import com.github.dfa.diaspora_android.data.AppSettings;
-import com.github.dfa.diaspora_android.data.DiasporaPodList;
 import com.github.dfa.diaspora_android.data.PodAspect;
 import com.github.dfa.diaspora_android.data.PodUserProfile;
 
@@ -47,14 +46,14 @@ public class WebHelper {
         return ni != null && ni.isConnectedOrConnecting();
     }
 
-    public static String replaceUrlWithMarkdown(String url){
-        if( url != null && URLUtil.isHttpUrl(url) || URLUtil.isHttpsUrl(url)){
+    public static String replaceUrlWithMarkdown(String url) {
+        if (url != null && URLUtil.isHttpUrl(url) || URLUtil.isHttpsUrl(url)) {
             return "<" + url + ">";
         }
         return url;
     }
 
-    public static String escapeHtmlText(String text){
+    public static String escapeHtmlText(String text) {
         text = Html.escapeHtml(text);
         text = text.replace("\n", "&#10;");
         return text;
@@ -96,7 +95,7 @@ public class WebHelper {
                 "})();");
     }
 
-    public static void shareTextIntoWebView(final WebView webView, String sharedText){
+    public static void shareTextIntoWebView(final WebView webView, String sharedText) {
         sharedText = sharedText.replace("'", "&apos;").replace("\"", "&quot;");
         webView.loadUrl("javascript:(function() { " +
                 "        document.documentElement.style.paddingBottom = '500px';" +
@@ -146,7 +145,7 @@ public class WebHelper {
                 "<a href='%s/followed_tags' style='color: #000000; text-decoration: none;'><b>%s</b></a>",
                 pod0BaseUrl, app.getString(R.string.all_tags)));
         sb.append("<hr style='height:5px;' />");
-        for (String tag: profile.getFollowedTags()) {
+        for (String tag : profile.getFollowedTags()) {
             sb.append("<span style='margin-left: 30px; '></span>&raquo; &nbsp;");
             sb.append(String.format(Locale.getDefault(),
                     "<a href='%s/tags/%s' style='color: #000000; text-decoration: none;'>#%s</a>",

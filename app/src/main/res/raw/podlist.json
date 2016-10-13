@@ -1,7 +1,7 @@
 {
   "pods": [
     {
-      "active6": 10775,
+      "active6": 11683,
       "score": 20,
       "podUrls": [
         {"host": "joindiaspora.com"},
@@ -16,7 +16,7 @@
       "id": 38077
     },
     {
-      "active6": 7260,
+      "active6": 7194,
       "score": 20,
       "podUrls": [{"host": "pod.geraspora.de"}],
       "name": "Geraspora",
@@ -24,15 +24,15 @@
       "id": 24783
     },
     {
-      "active6": 0,
-      "score": 0,
+      "active6": 3712,
+      "score": 20,
       "podUrls": [{"host": "diasp.org"}],
       "name": "diasporg*",
       "mainLangs": [],
       "id": 12688
     },
     {
-      "active6": 9039,
+      "active6": 9849,
       "score": 20,
       "podUrls": [{"host": "framasphere.org"}],
       "name": "Framasphere",
@@ -40,7 +40,7 @@
       "id": 38776
     },
     {
-      "active6": 540,
+      "active6": 519,
       "score": 20,
       "podUrls": [{"host": "nerdpol.ch"}],
       "name": "nerdpol.ch*",
@@ -48,7 +48,7 @@
       "id": 17343
     },
     {
-      "active6": 859,
+      "active6": 858,
       "score": 20,
       "podUrls": [{"host": "despora.de"}],
       "name": "Despora*",
@@ -56,7 +56,7 @@
       "id": 6695
     },
     {
-      "active6": 626,
+      "active6": 611,
       "score": 20,
       "podUrls": [
         {"host": "sechat.org"},
@@ -87,7 +87,7 @@
       "id": 25432
     },
     {
-      "active6": 179,
+      "active6": 175,
       "score": 20,
       "podUrls": [{"host": "berlinspora.de"}],
       "name": "berlinspora.de",
@@ -159,7 +159,7 @@
       "id": 13926
     },
     {
-      "active6": 146,
+      "active6": 143,
       "score": 20,
       "podUrls": [{"host": "diasp.ca"}],
       "name": "diasp.ca",
@@ -199,7 +199,7 @@
       "id": 4343
     },
     {
-      "active6": 199,
+      "active6": 214,
       "score": 20,
       "podUrls": [{"host": "diasp.nl"}],
       "name": "diasp.nl",
@@ -207,7 +207,7 @@
       "id": 33262
     },
     {
-      "active6": 234,
+      "active6": 217,
       "score": 20,
       "podUrls": [{"host": "diaspod.de"}],
       "name": "diaspod.de",
@@ -231,7 +231,7 @@
       "id": 13402
     },
     {
-      "active6": 30,
+      "active6": 34,
       "score": 20,
       "podUrls": [{"host": "diaspora.bohramt.de"}],
       "name": "bohramt.de",
@@ -247,7 +247,7 @@
       "id": 22994
     },
     {
-      "active6": 27,
+      "active6": 26,
       "score": 20,
       "podUrls": [{"host": "diaspora.deadhexagon.com"}],
       "name": "deadhexagon.com",
@@ -256,7 +256,7 @@
     },
     {
       "active6": 0,
-      "score": 12,
+      "score": 20,
       "podUrls": [{"host": "diaspora.digi-merc.org"}],
       "name": "digi-merc.org",
       "mainLangs": [],
@@ -303,7 +303,7 @@
       "id": 12684
     },
     {
-      "active6": 102,
+      "active6": 100,
       "score": 20,
       "podUrls": [{"host": "diaspora.hzsogood.net"}],
       "name": "hzsogood.net",
@@ -311,7 +311,7 @@
       "id": 3651
     },
     {
-      "active6": 78,
+      "active6": 69,
       "score": 20,
       "podUrls": [{"host": "diaspora.kapper.net"}],
       "name": "kapper.net",
@@ -319,7 +319,7 @@
       "id": 40765
     },
     {
-      "active6": 155,
+      "active6": 146,
       "score": 20,
       "podUrls": [{"host": "diaspora.koehn.com"}],
       "name": "koehn.com",
@@ -375,7 +375,7 @@
       "id": 9863
     },
     {
-      "active6": 278,
+      "active6": 272,
       "score": 20,
       "podUrls": [{"host": "diaspora.permutationsofchaos.com"}],
       "name": "permutationsofchaos.com",
@@ -383,7 +383,7 @@
       "id": 1513
     },
     {
-      "active6": 61,
+      "active6": 50,
       "score": 20,
       "podUrls": [{"host": "diaspora.pimpmypony.eu"}],
       "name": "pimpmypony.eu",
@@ -407,7 +407,7 @@
       "id": 12139
     },
     {
-      "active6": 59,
+      "active6": 57,
       "score": 20,
       "podUrls": [{"host": "diaspora.poleni.com"}],
       "name": "poleni.com",
@@ -415,7 +415,7 @@
       "id": 1154
     },
     {
-      "active6": 179,
+      "active6": 181,
       "score": 20,
       "podUrls": [{"host": "diaspora.psyco.fr"}],
       "name": "psyco.fr",
@@ -423,8 +423,8 @@
       "id": 31397
     },
     {
-      "active6": 0,
-      "score": 0,
+      "active6": 307,
+      "score": 20,
       "podUrls": [{"host": "diaspora.punkbeer.me"}],
       "name": "punkbeer.me",
       "mainLangs": [],
@@ -471,7 +471,7 @@
       "id": 24365
     },
     {
-      "active6": 0,
+      "active6": 74,
       "score": 20,
       "podUrls": [{"host": "diaspora.soh.re"}],
       "name": "soh.re",
@@ -479,7 +479,7 @@
       "id": 39183
     },
     {
-      "active6": 38,
+      "active6": 37,
       "score": 20,
       "podUrls": [{"host": "diaspora.subsignal.org"}],
       "name": "subsignal.org",
@@ -495,7 +495,7 @@
       "id": 46672
     },
     {
-      "active6": 23,
+      "active6": 30,
       "score": 20,
       "podUrls": [{"host": "diaspora.u4u.org"}],
       "name": "u4u.org",
@@ -543,7 +543,7 @@
       "id": 18248
     },
     {
-      "active6": 394,
+      "active6": 374,
       "score": 20,
       "podUrls": [{"host": "diasporabrazil.org"}],
       "name": "diasporabrazil.org",
@@ -575,7 +575,7 @@
       "id": 46740
     },
     {
-      "active6": 9,
+      "active6": 20,
       "score": 20,
       "podUrls": [{"host": "diasporing.ch"}],
       "name": "Diasporing.ch",
@@ -623,7 +623,7 @@
       "id": 11247
     },
     {
-      "active6": 220,
+      "active6": 235,
       "score": 20,
       "podUrls": [{"host": "espora.social"}],
       "name": "espora.social",
@@ -639,7 +639,7 @@
       "id": 41690
     },
     {
-      "active6": 174,
+      "active6": 171,
       "score": 20,
       "podUrls": [{"host": "flokk.no"}],
       "name": "flokk.no",
@@ -647,7 +647,7 @@
       "id": 45658
     },
     {
-      "active6": 193,
+      "active6": 177,
       "score": 20,
       "podUrls": [{"host": "freehuman.fr"}],
       "name": "freehuman.fr",
@@ -671,7 +671,7 @@
       "id": 13758
     },
     {
-      "active6": 71,
+      "active6": 74,
       "score": 20,
       "podUrls": [{"host": "idoru.pl"}],
       "name": "idoru.pl",
@@ -679,7 +679,7 @@
       "id": 40630
     },
     {
-      "active6": 65,
+      "active6": 67,
       "score": 20,
       "podUrls": [{"host": "iliketoast.net"}],
       "name": "iliketoast.net",
@@ -703,7 +703,7 @@
       "id": 32786
     },
     {
-      "active6": 70,
+      "active6": 68,
       "score": 20,
       "podUrls": [{"host": "karmasphe.re"}],
       "name": "karmasphe.re",
@@ -719,7 +719,7 @@
       "id": 46869
     },
     {
-      "active6": 25,
+      "active6": 26,
       "score": 20,
       "podUrls": [{"host": "laba.mba"}],
       "name": "laba.mba",
@@ -727,7 +727,7 @@
       "id": 32393
     },
     {
-      "active6": 147,
+      "active6": 145,
       "score": 20,
       "podUrls": [{"host": "liberdade.digital"}],
       "name": "liberdade.digital",
@@ -743,7 +743,7 @@
       "id": 33200
     },
     {
-      "active6": 39,
+      "active6": 42,
       "score": 20,
       "podUrls": [{"host": "librenet.co.za"}],
       "name": "librenet.co.za",
@@ -751,7 +751,7 @@
       "id": 14862
     },
     {
-      "active6": 177,
+      "active6": 175,
       "score": 20,
       "podUrls": [{"host": "librenet.gr"}],
       "name": "librenet.gr",
@@ -775,7 +775,7 @@
       "id": 16366
     },
     {
-      "active6": 663,
+      "active6": 643,
       "score": 20,
       "podUrls": [{"host": "mondiaspora.net"}],
       "name": "mondiaspora.net",
@@ -807,7 +807,7 @@
       "id": 31558
     },
     {
-      "active6": 37,
+      "active6": 39,
       "score": 20,
       "podUrls": [{"host": "pe.spbstu.ru"}],
       "name": "pe.spbstu.ru",
@@ -815,8 +815,8 @@
       "id": 39808
     },
     {
-      "active6": 0,
-      "score": 0,
+      "active6": 111,
+      "score": 20,
       "podUrls": [{"host": "pod.4ray.co"}],
       "name": "4ray.co",
       "mainLangs": [],
@@ -872,7 +872,7 @@
     },
     {
       "active6": 13,
-      "score": 14,
+      "score": 20,
       "podUrls": [{"host": "pod.dapor.net"}],
       "name": "dapor.net",
       "mainLangs": [],
@@ -904,7 +904,7 @@
     },
     {
       "active6": 0,
-      "score": 0,
+      "score": 20,
       "podUrls": [{"host": "pod.disroot.org"}],
       "name": "disroot.org",
       "mainLangs": [],
@@ -959,7 +959,7 @@
       "id": 36615
     },
     {
-      "active6": 58,
+      "active6": 56,
       "score": 20,
       "podUrls": [{"host": "pod.hashtagueule.fr"}],
       "name": "hashtagueule.fr",
@@ -1031,7 +1031,7 @@
       "id": 9248
     },
     {
-      "active6": 109,
+      "active6": 104,
       "score": 20,
       "podUrls": [{"host": "pod.nomorestars.com"}],
       "name": "nomorestars.com",
@@ -1039,7 +1039,7 @@
       "id": 31958
     },
     {
-      "active6": 398,
+      "active6": 401,
       "score": 20,
       "podUrls": [{"host": "pod.orkz.net"}],
       "name": "orkz.net",
@@ -1047,7 +1047,7 @@
       "id": 41604
     },
     {
-      "active6": 32,
+      "active6": 35,
       "score": 20,
       "podUrls": [{"host": "pod.ponk.pink"}],
       "name": "ponk.pink",
@@ -1063,7 +1063,7 @@
       "id": 21338
     },
     {
-      "active6": 94,
+      "active6": 90,
       "score": 20,
       "podUrls": [{"host": "pod.psynet.su"}],
       "name": "psynet.su",
@@ -1127,7 +1127,7 @@
       "id": 47610
     },
     {
-      "active6": 5,
+      "active6": 6,
       "score": 20,
       "podUrls": [{"host": "pod.storel.li"}],
       "name": "storel.li",
@@ -1143,7 +1143,7 @@
       "id": 20115
     },
     {
-      "active6": 51,
+      "active6": 52,
       "score": 20,
       "podUrls": [{"host": "pod.thomasdalichow.de"}],
       "name": "thomasdalichow.de",
@@ -1160,14 +1160,14 @@
     },
     {
       "active6": 1,
-      "score": 11,
+      "score": 20,
       "podUrls": [{"host": "pod.volt.io"}],
       "name": "volt.io",
       "mainLangs": [],
       "id": 19139
     },
     {
-      "active6": 48,
+      "active6": 50,
       "score": 20,
       "podUrls": [{"host": "podbay.net"}],
       "name": "podbay.net",
@@ -1191,7 +1191,7 @@
       "id": 6398
     },
     {
-      "active6": 88,
+      "active6": 91,
       "score": 20,
       "podUrls": [{"host": "pubpod.alqualonde.org"}],
       "name": "pubpod.alqualonde.org",
@@ -1215,7 +1215,7 @@
       "id": 41788
     },
     {
-      "active6": 108,
+      "active6": 104,
       "score": 20,
       "podUrls": [{"host": "ruhrspora.de"}],
       "name": "ruhrspora.de",
@@ -1239,15 +1239,15 @@
       "id": 39003
     },
     {
-      "active6": 1,
-      "score": -18,
+      "active6": 3,
+      "score": 20,
       "podUrls": [{"host": "social.acclaro.digital"}],
       "name": "acclaro.digital",
       "mainLangs": [],
       "id": 33853
     },
     {
-      "active6": 23,
+      "active6": 22,
       "score": 20,
       "podUrls": [{"host": "social.baldr.io"}],
       "name": "baldr.io",
@@ -1263,7 +1263,7 @@
       "id": 37517
     },
     {
-      "active6": 85,
+      "active6": 87,
       "score": 20,
       "podUrls": [{"host": "social.elaon.de"}],
       "name": "elaon.de",
@@ -1279,7 +1279,7 @@
       "id": 48421
     },
     {
-      "active6": 21,
+      "active6": 19,
       "score": 20,
       "podUrls": [{"host": "social.mbuto.me"}],
       "name": "mbuto.me",
@@ -1295,7 +1295,7 @@
       "id": 8983
     },
     {
-      "active6": 176,
+      "active6": 178,
       "score": 20,
       "podUrls": [{"host": "socializer.cc"}],
       "name": "socializer.cc",
@@ -1319,7 +1319,7 @@
       "id": 29359
     },
     {
-      "active6": 49,
+      "active6": 45,
       "score": 20,
       "podUrls": [{"host": "sysad.org"}],
       "name": "sysad.org",
@@ -1335,7 +1335,7 @@
       "id": 5276
     },
     {
-      "active6": 4222,
+      "active6": 4150,
       "score": 20,
       "podUrls": [{"host": "therealtalk.org"}],
       "name": "therealtalk.org",
@@ -1343,7 +1343,7 @@
       "id": 26786
     },
     {
-      "active6": 47,
+      "active6": 43,
       "score": 20,
       "podUrls": [{"host": "thinkopen.net"}],
       "name": "thinkopen.net",
@@ -1351,7 +1351,7 @@
       "id": 7366
     },
     {
-      "active6": 92,
+      "active6": 93,
       "score": 20,
       "podUrls": [{"host": "tippentappen.de"}],
       "name": "tippentappen.de",
@@ -1375,7 +1375,7 @@
       "id": 5842
     },
     {
-      "active6": 312,
+      "active6": 314,
       "score": 20,
       "podUrls": [{"host": "wk3.org"}],
       "name": "wk3.org",
@@ -1383,7 +1383,7 @@
       "id": 39292
     },
     {
-      "active6": 45,
+      "active6": 46,
       "score": 20,
       "podUrls": [{"host": "www.datataffel.dk"}],
       "name": "datataffel.dk",
@@ -1397,7 +1397,39 @@
       "name": "diasporaix.de",
       "mainLangs": ["de"],
       "id": 26219
+    },
+    {
+      "active6": 0,
+      "score": 20,
+      "podUrls": [{"host": "diaspora.hofud.com"}],
+      "name": "hofud.com",
+      "mainLangs": [],
+      "id": 10983
+    },
+    {
+      "active6": 0,
+      "score": 20,
+      "podUrls": [{"host": "diaspora.softwarelivre.org"}],
+      "name": "softwarelivre.org",
+      "mainLangs": [],
+      "id": 33510
+    },
+    {
+      "active6": 0,
+      "score": 13,
+      "podUrls": [{"host": "confetticake.club"}],
+      "name": "confetticake.club",
+      "mainLangs": [],
+      "id": 41623
+    },
+    {
+      "active6": 0,
+      "score": -15,
+      "podUrls": [{"host": "diaspora.mike-jones.me.uk"}],
+      "name": "mike-jones.me.uk",
+      "mainLangs": [],
+      "id": 8574
     }
   ],
-  "timestamp": 1475804650123
+  "timestamp": 1476399808521
 }

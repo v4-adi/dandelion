@@ -153,12 +153,12 @@ public class PodSelectionDialog extends AppCompatDialogFragment {
     public boolean checkInputs() {
         boolean ok = true;
         String s = editPodAddress.getText().toString();
-        if(TextUtils.isEmpty(s) || s.length() < 3){
+        if (TextUtils.isEmpty(s) || s.length() < 3) {
             editPodAddress.setError(getString(R.string.missing_value));
             ok = false;
         }
         s = editPodName.getText().toString();
-        if(TextUtils.isEmpty(s) || s.length() < 3){
+        if (TextUtils.isEmpty(s) || s.length() < 3) {
             editPodName.setError(getString(R.string.missing_value));
             ok = false;
         }

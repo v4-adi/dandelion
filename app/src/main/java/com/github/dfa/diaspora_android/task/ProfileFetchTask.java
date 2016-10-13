@@ -20,13 +20,11 @@ package com.github.dfa.diaspora_android.task;
 
 import android.content.Context;
 import android.os.AsyncTask;
-
-import com.github.dfa.diaspora_android.util.AppLog;
-import com.github.dfa.diaspora_android.util.Log;
 import android.webkit.CookieManager;
 
 import com.github.dfa.diaspora_android.App;
 import com.github.dfa.diaspora_android.data.PodUserProfile;
+import com.github.dfa.diaspora_android.util.AppLog;
 import com.github.dfa.diaspora_android.util.DiasporaUrlHelper;
 
 import java.io.BufferedReader;
@@ -62,7 +60,7 @@ public class ProfileFetchTask extends AsyncTask<Void, Void, Void> {
         String extractedProfileData = null;
         final CookieManager cookieManager = app.getCookieManager();
         String cookies = cookieManager.getCookie(urls.getPodUrl());
-       AppLog.d(this, cookies);
+        AppLog.d(this, cookies);
 
         HttpsURLConnection connection;
         InputStream inStream;
@@ -88,10 +86,10 @@ public class ProfileFetchTask extends AsyncTask<Void, Void, Void> {
                 }
             }
 
-            try{
+            try {
                 br.close();
                 inStream.close();
-            } catch (IOException e){/*Nothing*/}
+            } catch (IOException e) {/*Nothing*/}
 
             connection.disconnect();
 
@@ -103,7 +101,7 @@ public class ProfileFetchTask extends AsyncTask<Void, Void, Void> {
         if (extractedProfileData != null) {
             PodUserProfile profile = new PodUserProfile(app);
             profile.parseJson(extractedProfileData);
-           AppLog.d(this, "Extracted new_messages (service):" + profile.getUnreadMessagesCount());
+            AppLog.d(this, "Extracted new_messages (service):" + profile.getUnreadMessagesCount());
         }
 
         return null;

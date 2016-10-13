@@ -19,9 +19,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.github.dfa.diaspora_android.R;
-import com.github.dfa.diaspora_android.util.ProxyHandler;
 import com.github.dfa.diaspora_android.data.DiasporaPodList.DiasporaPod;
 import com.github.dfa.diaspora_android.data.DiasporaPodList.DiasporaPod.DiasporaPodUrl;
+import com.github.dfa.diaspora_android.util.ProxyHandler;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -264,6 +264,7 @@ public class AppSettings {
     public void setProxyHttpHost(String value) {
         setString(prefApp, R.string.pref_key__http_proxy_host, value);
     }
+
     /**
      * Default value: 0
      *

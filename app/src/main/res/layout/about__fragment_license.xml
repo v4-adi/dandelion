@@ -16,32 +16,33 @@
         <android.support.v4.widget.Space
             android:layout_width="match_parent"
             android:layout_height="@dimen/activity_vertical_margin" />
+
         <TextView
+            style="@android:style/TextAppearance.DeviceDefault.Large"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/fragment_license__copyright_years"
-            style="@android:style/TextAppearance.DeviceDefault.Large"/>
+            android:text="@string/fragment_license__copyright_years" />
 
         <com.github.dfa.diaspora_android.ui.HtmlTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/fragment_license__licensetext"
-            android:text="@string/fragment_license__license_content"
             style="@android:style/TextAppearance.DeviceDefault.Small"
-            android:linksClickable="true" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:linksClickable="true"
+            android:text="@string/fragment_license__license_content" />
 
         <TextView
+            style="@android:style/TextAppearance.DeviceDefault.Large"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/fragment_license__3rd_party_libs_title"
             android:paddingTop="@dimen/activity_vertical_margin"
-            style="@android:style/TextAppearance.DeviceDefault.Large"/>
+            android:text="@string/fragment_license__3rd_party_libs_title" />
 
         <com.github.dfa.diaspora_android.ui.HtmlTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/fragment_license__3rdparty"
             style="@android:style/TextAppearance.DeviceDefault.Small"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:linksClickable="true" />
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>

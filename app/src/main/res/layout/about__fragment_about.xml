@@ -19,16 +19,16 @@
 
         <TextView
             android:id="@+id/fragment_about__app_name"
+            style="@android:style/TextAppearance.DeviceDefault.Large"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
             android:text="@string/diaspora_for_android"
-            style="@android:style/TextAppearance.DeviceDefault.Large"/>
+            android:textAlignment="center" />
 
         <TextView
+            android:id="@+id/fragment_about__app_version"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/fragment_about__app_version"/>
+            android:layout_height="wrap_content" />
 
         <android.support.v4.widget.Space
             android:layout_width="match_parent"
@@ -36,10 +36,10 @@
 
         <com.github.dfa.diaspora_android.ui.HtmlTextView
             android:id="@+id/fragment_about__about_text"
+            style="@android:style/TextAppearance.DeviceDefault.Small"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/fragment_about__about_content"
-            style="@android:style/TextAppearance.DeviceDefault.Small"
-            android:linksClickable="true" />
+            android:linksClickable="true"
+            android:text="@string/fragment_about__about_content" />
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>

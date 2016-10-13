@@ -20,74 +20,77 @@
         <!-- APP SECTION -->
         <TextView
             android:id="@+id/fragment_debug__section_app"
+            style="@android:style/TextAppearance.DeviceDefault.Large"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/fragment_debug__section_app"
-            style="@android:style/TextAppearance.DeviceDefault.Large"/>
+            android:text="@string/fragment_debug__section_app" />
 
         <TextView
+            android:id="@+id/fragment_debug__package_name"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/fragment_debug__package_name"/>
+            android:layout_height="wrap_content" />
 
         <TextView
+            android:id="@+id/fragment_debug__app_version"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/fragment_debug__app_version"/>
+            android:layout_height="wrap_content" />
 
         <!-- DEVICE SECTION -->
         <TextView
             android:id="@+id/fragment_debug__section_device"
+            style="@android:style/TextAppearance.DeviceDefault.Large"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/fragment_debug__section_device"
             android:paddingTop="@dimen/activity_vertical_margin"
-            style="@android:style/TextAppearance.DeviceDefault.Large"/>
+            android:text="@string/fragment_debug__section_device" />
 
         <TextView
+            android:id="@+id/fragment_debug__android_version"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/fragment_debug__android_version"/>
+            android:layout_height="wrap_content" />
 
         <TextView
+            android:id="@+id/fragment_debug__device_name"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/fragment_debug__device_name"/>
+            android:layout_height="wrap_content" />
 
         <!-- POD SECTION -->
         <TextView
             android:id="@+id/fragment_debug__section_pod"
+            style="@android:style/TextAppearance.DeviceDefault.Large"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/fragment_debug__section_pod"
             android:paddingTop="@dimen/activity_vertical_margin"
-            style="@android:style/TextAppearance.DeviceDefault.Large"/>
+            android:text="@string/fragment_debug__section_pod" />
 
         <TextView
+            android:id="@+id/fragment_debug__pod_domain"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/fragment_debug__pod_domain"/>
+            android:layout_height="wrap_content" />
 
         <!-- LOG SECTION -->
         <TextView
             android:id="@+id/fragment_debug__section_log"
+            style="@android:style/TextAppearance.DeviceDefault.Large"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/fragment_debug__section_log"
             android:paddingTop="@dimen/activity_vertical_margin"
-            style="@android:style/TextAppearance.DeviceDefault.Large"/>
+            android:text="@string/fragment_debug__section_log" />
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
                 <TextView
+                    android:id="@+id/fragment_debug__log_box"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:clickable="true"
-                    android:longClickable="true"
-                    android:id="@+id/fragment_debug__log_box" />
+                    android:longClickable="true" />
             </HorizontalScrollView>
         </ScrollView>
     </LinearLayout>

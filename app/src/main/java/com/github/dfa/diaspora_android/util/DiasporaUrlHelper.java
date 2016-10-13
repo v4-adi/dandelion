@@ -21,7 +21,6 @@ package com.github.dfa.diaspora_android.util;
 import com.github.dfa.diaspora_android.App;
 import com.github.dfa.diaspora_android.R;
 import com.github.dfa.diaspora_android.data.AppSettings;
-import com.github.dfa.diaspora_android.data.DiasporaPodList;
 import com.github.dfa.diaspora_android.data.DiasporaPodList.DiasporaPod;
 import com.github.dfa.diaspora_android.data.PodAspect;
 
@@ -68,7 +67,7 @@ public class DiasporaUrlHelper {
      */
     public String getPodUrl() {
         DiasporaPod pod = settings.getPod();
-        if (pod != null){
+        if (pod != null) {
             return pod.getPodUrl().getBaseUrl();
         }
         return "http://127.0.0.1";
@@ -215,6 +214,7 @@ public class DiasporaUrlHelper {
 
     /**
      * Return a url that points to the statistics page of the pod.
+     *
      * @return https://(pod-domain.tld)/statistics
      */
     public String getStatisticsUrl() {
@@ -223,6 +223,7 @@ public class DiasporaUrlHelper {
 
     /**
      * Return a url that points to the sign in page of the pod.
+     *
      * @return https://(pod-domain.tld)/users/sign_in
      */
     public String getSignInUrl() {
@@ -231,6 +232,7 @@ public class DiasporaUrlHelper {
 
     /**
      * Return a url that points to the personal settings page of the pod.
+     *
      * @return https://(pod-domain.tld)/user/edit
      */
     public String getPersonalSettingsUrl() {
@@ -239,6 +241,7 @@ public class DiasporaUrlHelper {
 
     /**
      * Return a url that points to the manage tags page of the pod.
+     *
      * @return https://(pod-domain.tld)/tag_followings/manage
      */
     public String getManageTagsUrl() {
@@ -247,6 +250,7 @@ public class DiasporaUrlHelper {
 
     /**
      * Return a url that points to the manage tags page of the pod.
+     *
      * @return https://(pod-domain.tld)/contacts
      */
     public String getManageContactsUrl() {

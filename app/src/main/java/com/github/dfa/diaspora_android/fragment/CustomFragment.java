@@ -34,6 +34,7 @@ public abstract class CustomFragment extends Fragment {
 
     /**
      * We have an optionsMenu
+     *
      * @param savedInstanceState state
      */
     @Override
@@ -44,13 +45,15 @@ public abstract class CustomFragment extends Fragment {
 
     /**
      * Return the tag used to identify the Fragment.
+     *
      * @return tag
      */
     public abstract String getFragmentTag();
 
     /**
      * Add fragment-dependent options to the bottom options toolbar
-     * @param menu bottom menu
+     *
+     * @param menu     bottom menu
      * @param inflater inflater
      */
     public abstract void onCreateBottomOptionsMenu(Menu menu, MenuInflater inflater);
@@ -58,6 +61,7 @@ public abstract class CustomFragment extends Fragment {
     /**
      * Return true if the fragment reacted to a back button press, false else.
      * In case the fragment returned false, the parent activity should handle the backPress.
+     *
      * @return did we react to the back press?
      */
     public abstract boolean onBackPressed();

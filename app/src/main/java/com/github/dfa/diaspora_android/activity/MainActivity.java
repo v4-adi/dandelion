@@ -40,7 +40,6 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ActionMenuView;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
@@ -69,19 +68,18 @@ import com.github.dfa.diaspora_android.fragment.HashtagListFragment;
 import com.github.dfa.diaspora_android.fragment.PodSelectionFragment;
 import com.github.dfa.diaspora_android.listener.WebUserProfileChangedListener;
 import com.github.dfa.diaspora_android.receiver.OpenExternalLinkReceiver;
-import com.github.dfa.diaspora_android.util.ProxyHandler;
 import com.github.dfa.diaspora_android.receiver.UpdateTitleReceiver;
 import com.github.dfa.diaspora_android.ui.BadgeDrawable;
 import com.github.dfa.diaspora_android.ui.IntellihideToolbarActivityListener;
 import com.github.dfa.diaspora_android.util.AppLog;
 import com.github.dfa.diaspora_android.util.CustomTabHelpers.CustomTabActivityHelper;
 import com.github.dfa.diaspora_android.util.DiasporaUrlHelper;
-import com.github.dfa.diaspora_android.util.theming.ThemeHelper;
+import com.github.dfa.diaspora_android.util.ProxyHandler;
 import com.github.dfa.diaspora_android.util.WebHelper;
+import com.github.dfa.diaspora_android.util.theming.ThemeHelper;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class MainActivity extends ThemedActivity
         implements NavigationView.OnNavigationItemSelectedListener,
@@ -183,7 +181,7 @@ public class MainActivity extends ThemedActivity
             @Override
             public void setTitle(int rId) {
                 CustomFragment top = getTopFragment();
-                if(top != null && top.getFragmentTag().equals(DiasporaStreamFragment.TAG)) {
+                if (top != null && top.getFragmentTag().equals(DiasporaStreamFragment.TAG)) {
                     MainActivity.this.setTitle(rId);
                 }
             }
@@ -191,7 +189,7 @@ public class MainActivity extends ThemedActivity
             @Override
             public void setTitle(String title) {
                 CustomFragment top = getTopFragment();
-                if(top != null && top.getFragmentTag().equals(DiasporaStreamFragment.TAG)) {
+                if (top != null && top.getFragmentTag().equals(DiasporaStreamFragment.TAG)) {
                     MainActivity.this.setTitle(title);
                 }
             }
@@ -199,6 +197,7 @@ public class MainActivity extends ThemedActivity
 
         if (!appSettings.hasPod()) {
             AppLog.d(this, "We have no pod. Show PodSelectionFragment");
+            updateNavigationViewEntryVisibilities();
             showFragment(getFragment(PodSelectionFragment.TAG));
         } else {
             AppLog.d(this, "Pod found. Handle intents.");
@@ -248,6 +247,7 @@ public class MainActivity extends ThemedActivity
 
     /**
      * Show DiasporaStreamFragment if necessary and load URL url
+     *
      * @param url URL to load in the DiasporaStreamFragment
      */
     public void openDiasporaUrl(String url) {
@@ -261,12 +261,13 @@ public class MainActivity extends ThemedActivity
      * Get an instance of the CustomFragment with the tag fragmentTag.
      * If there was no instance so far, create a new one and add it to the FragmentManagers pool.
      * If there is no Fragment with the corresponding Tag, return the top fragment.
+     *
      * @param fragmentTag tag
      * @return corresponding Fragment
      */
     protected CustomFragment getFragment(String fragmentTag) {
         CustomFragment fragment = (CustomFragment) fm.findFragmentByTag(fragmentTag);
-        if(fragment != null) {
+        if (fragment != null) {
             return fragment;
         } else {
             switch (fragmentTag) {
@@ -287,8 +288,8 @@ public class MainActivity extends ThemedActivity
                     fm.beginTransaction().add(psf, fragmentTag).commit();
                     return psf;
                 default:
-                    AppLog.e(this,"Invalid Fragment Tag: "+fragmentTag
-                            +"\nAdd Fragments Tag to getFragment()'s switch case.");
+                    AppLog.e(this, "Invalid Fragment Tag: " + fragmentTag
+                            + "\nAdd Fragments Tag to getFragment()'s switch case.");
                     return getTopFragment();
             }
         }
@@ -296,12 +297,13 @@ public class MainActivity extends ThemedActivity
 
     /**
      * Show the Fragment fragment in R.id.fragment_container. If the fragment was already visible, do nothing.
+     *
      * @param fragment Fragment to show
      */
     protected void showFragment(CustomFragment fragment) {
         AppLog.v(this, "showFragment()");
         CustomFragment currentTop = (CustomFragment) fm.findFragmentById(R.id.fragment_container);
-        if(currentTop == null || !currentTop.getFragmentTag().equals(fragment.getFragmentTag())) {
+        if (currentTop == null || !currentTop.getFragmentTag().equals(fragment.getFragmentTag())) {
             AppLog.v(this, "Fragment was not visible. Replace it.");
             fm.beginTransaction().addToBackStack(null).replace(R.id.fragment_container, fragment, fragment.getFragmentTag()).commit();
             invalidateOptionsMenu();
@@ -380,13 +382,14 @@ public class MainActivity extends ThemedActivity
         navMenu.findItem(R.id.nav_public).setVisible(appSettings.isVisibleInNavPublic_activities());
 
         // Top bar
-        if (appSettings.getPod() == null) {
+        if (!appSettings.hasPod()) {
             navMenu.setGroupVisible(navMenu.findItem(R.id.nav_exit).getGroupId(), false);
         }
     }
-    
+
     /**
      * Forward incoming intents to handleIntent()
+     *
      * @param intent incoming
      */
     @Override
@@ -397,6 +400,7 @@ public class MainActivity extends ThemedActivity
 
     /**
      * Handle intents and execute intent specific actions
+     *
      * @param intent intent to get handled
      */
     private void handleIntent(Intent intent) {
@@ -421,7 +425,7 @@ public class MainActivity extends ThemedActivity
                 return;
             } else {
                 loadUrl = intent.getDataString();
-                AppLog.v(this, "Intent has a delicious URL for us: "+loadUrl);
+                AppLog.v(this, "Intent has a delicious URL for us: " + loadUrl);
             }
         } else if (ACTION_CHANGE_ACCOUNT.equals(action)) {
             AppLog.v(this, "Reset pod data and  show PodSelectionFragment");
@@ -457,23 +461,25 @@ public class MainActivity extends ThemedActivity
 
     /**
      * Handle activity results
+     *
      * @param requestCode reqCode
-     * @param resultCode resCode
-     * @param data data
+     * @param resultCode  resCode
+     * @param data        data
      */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        AppLog.v(this, "onActivityResult(): "+requestCode);
+        AppLog.v(this, "onActivityResult(): " + requestCode);
         super.onActivityResult(requestCode, resultCode, data);
     }
 
     /**
      * Return the fragment which is currently displayed in R.id.fragment_container
+     *
      * @return top fragment or null if there is none displayed
      */
     private CustomFragment getTopFragment() {
         Fragment top = fm.findFragmentById(R.id.fragment_container);
-        if(top != null) {
+        if (top != null) {
             return (CustomFragment) top;
         }
         return null;
@@ -490,12 +496,12 @@ public class MainActivity extends ThemedActivity
             return;
         }
         CustomFragment top = getTopFragment();
-        if(top != null) {
+        if (top != null) {
             AppLog.v(this, "Top Fragment is not null");
-            if(!top.onBackPressed()) {
+            if (!top.onBackPressed()) {
                 AppLog.v(this, "Top Fragment.onBackPressed was false");
-                AppLog.v(this, "BackStackEntryCount: "+fm.getBackStackEntryCount());
-                if(fm.getBackStackEntryCount()>0) {
+                AppLog.v(this, "BackStackEntryCount: " + fm.getBackStackEntryCount());
+                if (fm.getBackStackEntryCount() > 0) {
                     fm.popBackStack();
                 } else {
                     snackbarExitApp.show();
@@ -552,6 +558,7 @@ public class MainActivity extends ThemedActivity
     /**
      * Clear and repopulate top and bottom toolbar.
      * Also add menu items of the displayed fragment
+     *
      * @param menu top toolbar
      * @return boolean
      */
@@ -564,9 +571,9 @@ public class MainActivity extends ThemedActivity
         toolbarBottom.setVisibility(View.VISIBLE);
 
         CustomFragment top = getTopFragment();
-        if(top != null) {
+        if (top != null) {
             //Are we displaying a Fragment other than PodSelectionFragment?
-            if(!top.getFragmentTag().equals(PodSelectionFragment.TAG)) {
+            if (!top.getFragmentTag().equals(PodSelectionFragment.TAG)) {
                 getMenuInflater().inflate(R.menu.main__menu_top, menu);
                 getMenuInflater().inflate(R.menu.main__menu_bottom, toolbarBottom.getMenu());
                 top.onCreateBottomOptionsMenu(toolbarBottom.getMenu(), getMenuInflater());
@@ -582,6 +589,7 @@ public class MainActivity extends ThemedActivity
 
     /**
      * Set the notification and messages counter in the top toolbar
+     *
      * @param menu menu
      * @return boolean
      */
@@ -604,6 +612,7 @@ public class MainActivity extends ThemedActivity
 
     /**
      * Handle clicks on the optionsmenu
+     *
      * @param item item
      * @return boolean
      */
@@ -702,6 +711,7 @@ public class MainActivity extends ThemedActivity
 
     /**
      * Update the profile name in the navigation slider
+     *
      * @param name name
      */
     @Override
@@ -712,6 +722,7 @@ public class MainActivity extends ThemedActivity
 
     /**
      * Update the profile picture in the navigation slider
+     *
      * @param avatarUrl url of the new profile pic
      */
     @Override
@@ -722,6 +733,7 @@ public class MainActivity extends ThemedActivity
 
     /**
      * Handle hashtag clicks. Open the new-post-url and inject the clicked hashtag into the post-editor
+     *
      * @param intent intent
      */
     private void handleHashtag(Intent intent) {
@@ -736,6 +748,7 @@ public class MainActivity extends ThemedActivity
 
     /**
      * Open the new-post-url and inject text that was shared into the app into the post editors text field
+     *
      * @param intent shareTextIntent
      */
     private void handleSendText(Intent intent) {
@@ -794,6 +807,7 @@ public class MainActivity extends ThemedActivity
 
     /**
      * Share an image shared to the app via diaspora
+     *
      * @param intent shareImageIntent
      */
     //TODO: Implement some day
@@ -810,6 +824,7 @@ public class MainActivity extends ThemedActivity
 
     /**
      * Invalidate the top toolbar to update the notification counter
+     *
      * @param notificationCount new notification count
      */
     @Override
@@ -821,6 +836,7 @@ public class MainActivity extends ThemedActivity
 
     /**
      * Invalidate the top toolbar to update the unread messages counter
+     *
      * @param unreadMessageCount new unread messages count
      */
     @Override
@@ -832,8 +848,8 @@ public class MainActivity extends ThemedActivity
 
     @Override
     public void onCustomTabsConnected() {
-        if(customTabsSession == null) {
-            AppLog.i(this, "CustomTabs warmup: "+customTabActivityHelper.warmup(0));
+        if (customTabsSession == null) {
+            AppLog.i(this, "CustomTabs warmup: " + customTabActivityHelper.warmup(0));
             customTabsSession = customTabActivityHelper.getSession();
         }
     }
@@ -953,8 +969,9 @@ public class MainActivity extends ThemedActivity
 
     /**
      * React to results of requestPermission
-     * @param requestCode resCode
-     * @param permissions requested permissions
+     *
+     * @param requestCode  resCode
+     * @param permissions  requested permissions
      * @param grantResults granted results
      */
     @Override
@@ -978,6 +995,7 @@ public class MainActivity extends ThemedActivity
 
     /**
      * Return the string that will be shared into the new-post-editor
+     *
      * @return String
      */
     public String getTextToBeShared() {
@@ -986,6 +1004,7 @@ public class MainActivity extends ThemedActivity
 
     /**
      * Set the string that will be shared into the new-post-editor
+     *
      * @param textToBeShared
      */
     public void setTextToBeShared(String textToBeShared) {

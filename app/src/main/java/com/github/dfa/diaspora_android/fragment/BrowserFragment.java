@@ -41,10 +41,10 @@ import com.github.dfa.diaspora_android.App;
 import com.github.dfa.diaspora_android.R;
 import com.github.dfa.diaspora_android.activity.MainActivity;
 import com.github.dfa.diaspora_android.data.AppSettings;
-import com.github.dfa.diaspora_android.util.ProxyHandler;
 import com.github.dfa.diaspora_android.ui.ContextMenuWebView;
-import com.github.dfa.diaspora_android.util.theming.ThemeHelper;
 import com.github.dfa.diaspora_android.util.AppLog;
+import com.github.dfa.diaspora_android.util.ProxyHandler;
+import com.github.dfa.diaspora_android.util.theming.ThemeHelper;
 import com.github.dfa.diaspora_android.webview.CustomWebViewClient;
 import com.github.dfa.diaspora_android.webview.ProgressBarWebChromeClient;
 
@@ -78,7 +78,7 @@ public class BrowserFragment extends ThemedFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         AppLog.d(this, "onCreateView()");
-        if(rootLayout == null) {
+        if (rootLayout == null) {
             rootLayout = inflater.inflate(R.layout.browser__fragment, container, false);
         }
         return rootLayout;
@@ -89,21 +89,21 @@ public class BrowserFragment extends ThemedFragment {
         AppLog.d(this, "onViewCreated()");
         super.onViewCreated(view, savedInstanceState);
 
-        if(this.appSettings == null) {
+        if (this.appSettings == null) {
             this.appSettings = ((App) getActivity().getApplication()).getSettings();
         }
 
-        if(this.webView == null) {
+        if (this.webView == null) {
             this.webView = (ContextMenuWebView) view.findViewById(R.id.webView);
             this.applyWebViewSettings();
             ProxyHandler.getInstance().addWebView(webView);
         }
 
-        if(this.progressBar == null) {
+        if (this.progressBar == null) {
             this.progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
         }
 
-        if(pendingUrl != null) {
+        if (pendingUrl != null) {
             loadUrl(pendingUrl);
             pendingUrl = null;
         }
@@ -149,7 +149,7 @@ public class BrowserFragment extends ThemedFragment {
     @Override
     public void onResume() {
         super.onResume();
-        if(webView != null) {
+        if (webView != null) {
             webSettings.setMinimumFontSize(appSettings.getMinimumFontSize());
             webSettings.setLoadsImagesAutomatically(appSettings.isLoadImages());
         }
@@ -188,8 +188,8 @@ public class BrowserFragment extends ThemedFragment {
 
         String fileSaveName = hasToShareScreenshot ? ".DfA_share.jpg" : String.format("DfA_%s.jpg", dateFormat.format(dateNow));
         if (!fileSaveDirectory.exists()) {
-            if(!fileSaveDirectory.mkdirs()) {
-                AppLog.w(this, "Could not mkdir "+fileSaveDirectory.getAbsolutePath());
+            if (!fileSaveDirectory.mkdirs()) {
+                AppLog.w(this, "Could not mkdir " + fileSaveDirectory.getAbsolutePath());
             }
         }
 
@@ -248,7 +248,7 @@ public class BrowserFragment extends ThemedFragment {
     }
 
     public boolean onBackPressed() {
-        if(webView.canGoBack()) {
+        if (webView.canGoBack()) {
             webView.goBack();
             return true;
         }
@@ -256,17 +256,17 @@ public class BrowserFragment extends ThemedFragment {
     }
 
     public void loadUrl(String url) {
-        if(getWebView() != null) {
-            AppLog.v(this, "loadUrl(): load "+url);
+        if (getWebView() != null) {
+            AppLog.v(this, "loadUrl(): load " + url);
             getWebView().loadUrlNew(url);
         } else {
-            AppLog.v(this, "loadUrl(): WebView null: Set pending url to "+url);
+            AppLog.v(this, "loadUrl(): WebView null: Set pending url to " + url);
             pendingUrl = url;
         }
     }
 
     public String getUrl() {
-        if(getWebView() != null) {
+        if (getWebView() != null) {
             return getWebView().getUrl();
         } else {
             return pendingUrl;
@@ -275,7 +275,7 @@ public class BrowserFragment extends ThemedFragment {
 
     public void reloadUrl() {
         AppLog.v(this, "reloadUrl()");
-        if(getWebView() != null) {
+        if (getWebView() != null) {
             getWebView().reload();
         }
     }

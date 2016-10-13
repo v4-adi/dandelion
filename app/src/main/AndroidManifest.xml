@@ -241,6 +241,10 @@
                 <data android:host="wk3.org" android:scheme="https" />
                 <data android:host="www.datataffel.dk" android:scheme="https" />
                 <data android:host="www.diasporaix.de" android:scheme="https" />
+                <data android:host="diaspora.hofud.com" android:scheme="https" />
+                <data android:host="diaspora.softwarelivre.org" android:scheme="https" />
+                <data android:host="confetticake.club" android:scheme="https" />
+                <data android:host="diaspora.mike-jones.me.uk" android:scheme="https" />
                 <!--@@@ PODLIST END-->
             </intent-filter>
 

@@ -12,7 +12,7 @@ import com.github.dfa.diaspora_android.R;
  */
 public class ColorPalette {
 
-    public static int[] getAccentColors(Context context){
+    public static int[] getAccentColors(Context context) {
         return new int[]{
                 ContextCompat.getColor(context, R.color.md_red_500),
                 ContextCompat.getColor(context, R.color.md_purple_500),
@@ -30,7 +30,7 @@ public class ColorPalette {
         };
     }
 
-    public static int getObscuredColor(int c){
+    public static int getObscuredColor(int c) {
         float[] hsv = new float[3];
         int color = c;
         Color.colorToHSV(color, hsv);
@@ -39,14 +39,14 @@ public class ColorPalette {
         return color;
     }
 
-    public static int getTransparentColor(int color, int alpha){
-        return  ColorUtils.setAlphaComponent(color, alpha);
+    public static int getTransparentColor(int color, int alpha) {
+        return ColorUtils.setAlphaComponent(color, alpha);
     }
 
     public static int[] getTransparencyShadows(int color) {
         int[] shadows = new int[10];
-        for (int i=0; i<10;i++)
-            shadows[i]= (ColorPalette.getTransparentColor(color, ((100-(i*10))*255) /100));
+        for (int i = 0; i < 10; i++)
+            shadows[i] = (ColorPalette.getTransparentColor(color, ((100 - (i * 10)) * 255) / 100));
         return shadows;
     }
 

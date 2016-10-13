@@ -28,8 +28,6 @@ import android.webkit.CookieSyncManager;
 import android.webkit.WebView;
 
 import com.github.dfa.diaspora_android.data.AppSettings;
-import com.github.dfa.diaspora_android.data.DiasporaPodList;
-import com.github.dfa.diaspora_android.data.DiasporaPodList.DiasporaPod;
 import com.github.dfa.diaspora_android.data.PodUserProfile;
 import com.github.dfa.diaspora_android.util.AppLog;
 import com.github.dfa.diaspora_android.util.AvatarImageLoader;
