@@ -14,6 +14,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see https://www.gnu.org/licenses/.
 
 
-# Splashscreen-Images
+# Miscellaneous
 
-The splashscreen images can be found on [flickr](https://www.flickr.com/photos/129581906@N06/sets/72157651933980136/with/16594947123/).
+We took some inspiration and code from LeafPic. Go check it out, its free software as well!
+https://github.com/HoraApps/LeafPic

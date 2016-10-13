@@ -43,6 +43,7 @@ import com.github.dfa.diaspora_android.activity.MainActivity;
 import com.github.dfa.diaspora_android.data.AppSettings;
 import com.github.dfa.diaspora_android.util.ProxyHandler;
 import com.github.dfa.diaspora_android.ui.ContextMenuWebView;
+import com.github.dfa.diaspora_android.util.theming.ThemeHelper;
 import com.github.dfa.diaspora_android.util.AppLog;
 import com.github.dfa.diaspora_android.webview.CustomWebViewClient;
 import com.github.dfa.diaspora_android.webview.ProgressBarWebChromeClient;
@@ -62,7 +63,7 @@ import java.util.Locale;
  * Created by vanitas on 26.09.16.
  */
 
-public class BrowserFragment extends CustomFragment {
+public class BrowserFragment extends ThemedFragment {
     public static final String TAG = "com.github.dfa.diaspora_android.BrowserFragment";
 
     protected View rootLayout;
@@ -143,6 +144,15 @@ public class BrowserFragment extends CustomFragment {
         this.webViewClient = new CustomWebViewClient((App) getActivity().getApplication(), webView);
         webView.setWebViewClient(webViewClient);
         webView.setWebChromeClient(new ProgressBarWebChromeClient(webView, progressBar));
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(webView != null) {
+            webSettings.setMinimumFontSize(appSettings.getMinimumFontSize());
+            webSettings.setLoadsImagesAutomatically(appSettings.isLoadImages());
+        }
     }
 
     @SuppressWarnings("ResultOfMethodCallIgnored")
@@ -272,5 +282,10 @@ public class BrowserFragment extends CustomFragment {
 
     public ContextMenuWebView getWebView() {
         return this.webView;
+    }
+
+    @Override
+    protected void applyColorToViews() {
+        ThemeHelper.updateProgressBarColor(progressBar);
     }
 }

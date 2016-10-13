@@ -33,7 +33,7 @@ import com.github.dfa.diaspora_android.data.AppSettings;
 import com.github.dfa.diaspora_android.util.AppLog;
 import com.github.dfa.diaspora_android.util.CustomTabHelpers.BrowserFallback;
 import com.github.dfa.diaspora_android.util.CustomTabHelpers.CustomTabActivityHelper;
-import com.github.dfa.diaspora_android.util.Helpers;
+import com.github.dfa.diaspora_android.util.theming.ThemeHelper;
 
 /**
  * BroadcastReceiver that opens links in a Chrome CustomTab
@@ -48,9 +48,10 @@ public class OpenExternalLinkReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context c, Intent receiveIntent) {
-        AppSettings settings = new AppSettings(c);
+        AppSettings appSettings = new AppSettings(c);
+        ThemeHelper.getInstance(appSettings);
 
-       AppLog.v(this, "OpenExternalLinkReceiver.onReceive(): url");
+        AppLog.v(this, "OpenExternalLinkReceiver.onReceive(): url");
 
         Uri url = null;
         try {
@@ -61,10 +62,10 @@ public class OpenExternalLinkReceiver extends BroadcastReceiver {
             return;
         }
 
-        if (settings.isChromeCustomTabsEnabled()) {
+        if (appSettings.isChromeCustomTabsEnabled()) {
             // Setup Chrome Custom Tab
             CustomTabsIntent.Builder customTab = new CustomTabsIntent.Builder();
-            customTab.setToolbarColor(Helpers.getColorFromRessource(c, R.color.colorPrimary));
+            customTab.setToolbarColor(ThemeHelper.getPrimaryColor());
             customTab.addDefaultShareMenuItem();
 
             Bitmap backButtonIcon = BitmapFactory.decodeResource(c.getResources(), R.drawable.chrome_custom_tab__back);

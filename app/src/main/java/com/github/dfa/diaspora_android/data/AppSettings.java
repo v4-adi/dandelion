@@ -1,19 +1,15 @@
 /*
     This file is part of the Diaspora for Android.
-
     Diaspora for Android is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
-
     Diaspora for Android is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-
     You should have received a copy of the GNU General Public License
     along with the Diaspora for Android.
-
     If not, see <http://www.gnu.org/licenses/>.
  */
 package com.github.dfa.diaspora_android.data;
@@ -318,5 +314,37 @@ public class AppSettings {
 
     public boolean isVisibleInNavProfile() {
         return getBoolean(prefApp, R.string.pref_key__visibility_nav__profile, false);
+    }
+
+    public void setPrimaryColorSettings(int base, int shade) {
+        setInt(prefApp, R.string.pref_key__primary_color_base, base);
+        setInt(prefApp, R.string.pref_key__primary_color_shade, shade);
+    }
+
+    public int[] getPrimaryColorSettings() {
+        return new int[]{
+                getInt(prefApp, R.string.pref_key__primary_color_base, context.getResources().getColor(R.color.md_blue_500)),
+                getInt(prefApp, R.string.pref_key__primary_color_shade, context.getResources().getColor(R.color.primary))
+        };
+    }
+
+    public int getPrimaryColor() {
+        return getInt(prefApp, R.string.pref_key__primary_color_shade, context.getResources().getColor(R.color.primary));
+    }
+
+    public void setAccentColorSettings(int base, int shade) {
+        setInt(prefApp, R.string.pref_key__accent_color_base, base);
+        setInt(prefApp, R.string.pref_key__accent_color_shade, shade);
+    }
+
+    public int[] getAccentColorSettings() {
+        return new int[]{
+                getInt(prefApp, R.string.pref_key__accent_color_base, context.getResources().getColor(R.color.md_deep_orange_500)),
+                getInt(prefApp, R.string.pref_key__accent_color_shade, context.getResources().getColor(R.color.accent))
+        };
+    }
+
+    public int getAccentColor() {
+        return getInt(prefApp, R.string.pref_key__accent_color_shade, context.getResources().getColor(R.color.accent));
     }
 }

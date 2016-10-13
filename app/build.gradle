@@ -31,6 +31,13 @@ android {
     }
 }
 
+repositories {
+    maven {
+        //Color picker
+        url  "http://dl.bintray.com/dasar/maven"
+    }
+}
+
 dependencies {
     // Sub-Projects
     //compile project(':subprojectFromRoot')
@@ -49,6 +56,7 @@ dependencies {
     compile 'com.jakewharton:butterknife:8.0.1'
     compile 'info.guardianproject.netcipher:netcipher:2.0.0-alpha1'
     compile 'info.guardianproject.netcipher:netcipher-webkit:2.0.0-alpha1'
+    compile(group: 'uz.shift', name: 'colorpicker', version: '0.5', ext: 'aar') //Color picker
     apt 'com.jakewharton:butterknife-compiler:8.0.1'
 }
 

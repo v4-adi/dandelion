@@ -1,19 +1,15 @@
 /*
     This file is part of the Diaspora for Android.
-
     Diaspora for Android is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
-
     Diaspora for Android is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-
     You should have received a copy of the GNU General Public License
     along with the Diaspora for Android.
-
     If not, see <http://www.gnu.org/licenses/>.
  */
 package com.github.dfa.diaspora_android.activity;
@@ -25,37 +21,63 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.EditTextPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceScreen;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
+import android.support.design.widget.AppBarLayout;
+import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.Window;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import com.github.dfa.diaspora_android.App;
 import com.github.dfa.diaspora_android.R;
 import com.github.dfa.diaspora_android.data.AppSettings;
+import com.github.dfa.diaspora_android.ui.IntellihideToolbarActivityListener;
+import com.github.dfa.diaspora_android.util.theming.ColorPalette;
 import com.github.dfa.diaspora_android.util.ProxyHandler;
 import com.github.dfa.diaspora_android.util.AppLog;
+import com.github.dfa.diaspora_android.util.theming.ThemeHelper;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import uz.shift.colorpicker.LineColorPicker;
+import uz.shift.colorpicker.OnColorChangedListener;
 
 /**
  * @author vanitas
  */
-public class SettingsActivity extends AppCompatActivity {
+public class SettingsActivity extends ThemedActivity implements IntellihideToolbarActivityListener {
+    @BindView(R.id.settings__appbar)
+    protected AppBarLayout appBarLayout;
+
+    @BindView(R.id.settings__toolbar)
+    protected Toolbar toolbar;
+
     private ProxyHandler.ProxySettings oldProxySettings;
-    private AppSettings appSettings;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ActionBar toolbar = getSupportActionBar();
-        if (toolbar != null)
-            toolbar.setDisplayHomeAsUpEnabled(true);
-        this.appSettings = new AppSettings(this);
-        oldProxySettings = appSettings.getProxySettings();
-        getFragmentManager().beginTransaction().replace(android.R.id.content, new SettingsFragment()).commit();
+        setContentView(R.layout.settings__activity);
+        ButterKnife.bind(this);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_arrow_back_white_24px));
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SettingsActivity.this.onBackPressed();
+            }
+        });
+        oldProxySettings = getAppSettings().getProxySettings();
+        getFragmentManager().beginTransaction().replace(R.id.settings__fragment_container, new SettingsFragment()).commit();
     }
 
     @Override
@@ -67,6 +89,28 @@ public class SettingsActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(menuItem);
         }
+    }
+
+    @Override
+    protected void applyColorToViews() {
+        ThemeHelper.updateToolbarColor(toolbar);
+    }
+
+    @Override
+    public void enableToolbarHiding() {
+        AppLog.d(this, "Enable Intellihide");
+        AppBarLayout.LayoutParams params = (AppBarLayout.LayoutParams) toolbar.getLayoutParams();
+        //scroll|enterAlways|snap
+        params.setScrollFlags(toolbarDefaultScrollFlags);
+        appBarLayout.setExpanded(true, true);
+    }
+
+    @Override
+    public void disableToolbarHiding() {
+        AppLog.d(this, "Disable Intellihide");
+        AppBarLayout.LayoutParams params = (AppBarLayout.LayoutParams) toolbar.getLayoutParams();
+        params.setScrollFlags(0);  // clear all scroll flags
+        appBarLayout.setExpanded(true, true);
     }
 
     public static class SettingsFragment extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
@@ -96,6 +140,13 @@ public class SettingsActivity extends AppCompatActivity {
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
             updatePreference(findPreference(key));
+            if(key.equals(getString(R.string.pref_key__intellihide_toolbars))) {
+                if(sharedPreferences.getBoolean(getString(R.string.pref_key__intellihide_toolbars), false)) {
+                    ((SettingsActivity)getActivity()).enableToolbarHiding();
+                } else {
+                    ((SettingsActivity)getActivity()).disableToolbarHiding();
+                }
+            }
         }
 
         private void updatePreference(Preference preference) {
@@ -117,10 +168,29 @@ public class SettingsActivity extends AppCompatActivity {
         public boolean onPreferenceTreeClick(PreferenceScreen screen, Preference preference) {
             App app = ((App) getActivity().getApplication());
             AppSettings appSettings = app.getSettings();
+            if(Build.VERSION.SDK_INT >= 21) {
+                if (preference instanceof PreferenceScreen && ((PreferenceScreen) preference).getDialog() != null) {
+                    Window window = ((PreferenceScreen) preference).getDialog().getWindow();
+                    if (window != null) {
+                        window.setStatusBarColor(ThemeHelper.getPrimaryDarkColor());
+                    }
+                }
+            }
+
             Intent intent = new Intent(getActivity(), MainActivity.class);
             String podDomain = appSettings.getPodDomain();
 
             switch (preference.getTitleRes()) {
+                case R.string.pref_title__primary_color: {
+                    showColorPickerDialog(1);
+                    intent = null;
+                    break;
+                }
+                case R.string.pref_title__accent_color: {
+                    showColorPickerDialog(2);
+                    intent = null;
+                    break;
+                }
                 case R.string.pref_title__personal_settings: {
                     intent.setAction(MainActivity.ACTION_OPEN_URL);
                     intent.putExtra(MainActivity.URL_MESSAGE, "https://" + podDomain + "/user/edit");
@@ -177,6 +247,71 @@ public class SettingsActivity extends AppCompatActivity {
             }
             return super.onPreferenceTreeClick(screen, preference);
         }
+
+        /**
+         * Show a colorPicker Dialog
+         * @param type 1 -> Primary Color, 2 -> Accent Color
+         */
+        public void showColorPickerDialog(final int type) {
+            final AppSettings appSettings = ((App)getActivity().getApplication()).getSettings();
+            final Context context = getActivity();
+
+            //Inflate dialog layout
+            LayoutInflater inflater = getActivity().getLayoutInflater();
+            View dialogLayout = inflater.inflate(R.layout.color_picker__dialog, null);
+            final android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(context);
+            builder.setView(dialogLayout);
+
+            final FrameLayout titleBackground = (FrameLayout) dialogLayout.findViewById(R.id.color_picker_dialog__title_background);
+            final TextView title = (TextView) dialogLayout.findViewById(R.id.color_picker_dialog__title);
+            final LineColorPicker base = (LineColorPicker) dialogLayout.findViewById(R.id.color_picker_dialog__base_picker);
+            final LineColorPicker shade = (LineColorPicker) dialogLayout.findViewById(R.id.color_picker_dialog__shade_picker);
+
+            title.setText(type == 1 ? R.string.pref_title__primary_color : R.string.pref_title__accent_color);
+            title.setTextColor(getResources().getColor(R.color.white));
+            final int[] current = (type == 1 ? appSettings.getPrimaryColorSettings() : appSettings.getAccentColorSettings());
+            base.setColors((type == 1 ? ColorPalette.getBaseColors(context) : ColorPalette.getAccentColors(context)));
+            base.setSelectedColor(current[0]);
+            shade.setColors(ColorPalette.getColors(context, current[0]));
+            shade.setSelectedColor(current[1]);
+            titleBackground.setBackgroundColor(shade.getColor());
+            base.setOnColorChangedListener(new OnColorChangedListener() {
+                @Override
+                public void onColorChanged(int i) {
+                    AppLog.d(this, "Selected Base color changed: "+i);
+                    shade.setColors(ColorPalette.getColors(context, i));
+                    titleBackground.setBackgroundColor(i);
+                    if(i == current[0]) {
+                        shade.setSelectedColor(current[1]);
+                        titleBackground.setBackgroundColor(shade.getColor());
+                    }
+                }
+            });
+            shade.setOnColorChangedListener(new OnColorChangedListener() {
+                @Override
+                public void onColorChanged(int i) {
+                    titleBackground.setBackgroundColor(i);
+                }
+            });
+
+            //Build dialog
+            builder
+                    .setNegativeButton(android.R.string.cancel, null)
+                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            if(type == 1) {
+                                appSettings.setPrimaryColorSettings(base.getColor(), shade.getColor());
+                                if(Build.VERSION.SDK_INT >= 21) {
+                                    getActivity().getWindow().setStatusBarColor(ThemeHelper.getPrimaryDarkColor());
+                                }
+                                ((ThemedActivity)getActivity()).applyColorToViews();
+                            } else {
+                                appSettings.setAccentColorSettings(base.getColor(), shade.getColor());
+                            }
+                        }
+                    }).show();
+        }
     }
 
     @Override
@@ -191,7 +326,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     @Override
     protected void onStop() {
-        ProxyHandler.ProxySettings newProxySettings = appSettings.getProxySettings();
+        ProxyHandler.ProxySettings newProxySettings = getAppSettings().getProxySettings();
         if(!oldProxySettings.equals(newProxySettings)) {
             AppLog.d(this, "ProxySettings changed.");
             //Proxy on-off? => Restart app

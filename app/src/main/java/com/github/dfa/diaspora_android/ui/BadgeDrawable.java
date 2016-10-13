@@ -48,7 +48,7 @@ public class BadgeDrawable extends Drawable {
         float textSize = context.getResources().getDimension(R.dimen.textsize_badge_count);
 
         badgeBackground = new Paint();
-        badgeBackground.setColor(ContextCompat.getColor(context.getApplicationContext(), R.color.accent));
+        badgeBackground.setColor(ContextCompat.getColor(context.getApplicationContext(), R.color.md_deep_orange_650));
         badgeBackground.setAntiAlias(true);
         badgeBackground.setStyle(Paint.Style.FILL);
         badgeStroke = new Paint();
