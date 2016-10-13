@@ -47,51 +47,52 @@ public class ThemeHelper {
     }
 
     public static ThemeHelper getInstance(AppSettings appSettings) {
-        if(instance == null) {
+        if (instance == null) {
             instance = new ThemeHelper(appSettings);
         }
         return instance;
     }
 
     public static ThemeHelper getInstance() {
-        if(instance == null) throw new IllegalStateException("ThemeHelper must be initialized using getInstance(AppSettings) before it can be used!");
+        if (instance == null)
+            throw new IllegalStateException("ThemeHelper must be initialized using getInstance(AppSettings) before it can be used!");
         return instance;
     }
 
     public static void updateEditTextColor(EditText editText) {
-        if(editText != null) {
+        if (editText != null) {
             editText.setHighlightColor(getInstance().appSettings.getAccentColor());
         }
     }
 
     public static void updateCheckBoxColor(CheckBox checkBox) {
-        if(checkBox != null) {
+        if (checkBox != null) {
             checkBox.setHighlightColor(getInstance().appSettings.getAccentColor());
         }
     }
 
     public static void updateTabLayoutColor(TabLayout tabLayout) {
-        if(tabLayout != null) {
+        if (tabLayout != null) {
             tabLayout.setBackgroundColor(getInstance().appSettings.getPrimaryColor());
             tabLayout.setSelectedTabIndicatorColor(getInstance().appSettings.getAccentColor());
         }
     }
 
     public static void updateTextViewColor(TextView textView) {
-        if(textView != null) {
+        if (textView != null) {
             textView.setHighlightColor(getInstance().appSettings.getAccentColor());
             textView.setLinkTextColor(getInstance().appSettings.getAccentColor());
         }
     }
 
     public static void updateToolbarColor(Toolbar toolbar) {
-        if(toolbar != null) {
+        if (toolbar != null) {
             toolbar.setBackgroundColor(getInstance().appSettings.getPrimaryColor());
         }
     }
 
     public static void updateActionMenuViewColor(ActionMenuView actionMenuView) {
-        if(actionMenuView != null) {
+        if (actionMenuView != null) {
             actionMenuView.setBackgroundColor(getInstance().appSettings.getPrimaryColor());
         }
     }
@@ -105,7 +106,7 @@ public class ThemeHelper {
     }
 
     public static void setPrimaryColorAsBackground(View view) {
-        if(view != null) {
+        if (view != null) {
             view.setBackgroundColor(getPrimaryColor());
         }
     }
@@ -115,13 +116,13 @@ public class ThemeHelper {
     }
 
     public static void updateActionBarColor(ActionBar actionBar) {
-        if(actionBar != null) {
+        if (actionBar != null) {
             actionBar.setBackgroundDrawable(new ColorDrawable(getInstance().appSettings.getPrimaryColor()));
         }
     }
 
     public static void updateProgressBarColor(ProgressBar progressBar) {
-        if(progressBar != null && progressBar.getProgressDrawable() != null) {
+        if (progressBar != null && progressBar.getProgressDrawable() != null) {
             progressBar.getProgressDrawable().setColorFilter(getAccentColor(), PorterDuff.Mode.SRC_IN);
         }
     }

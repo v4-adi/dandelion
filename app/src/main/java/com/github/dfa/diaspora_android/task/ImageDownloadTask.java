@@ -22,12 +22,9 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.support.annotation.Nullable;
-
-import com.github.dfa.diaspora_android.util.AppLog;
-import com.github.dfa.diaspora_android.util.Log;
 import android.widget.ImageView;
 
-import com.github.dfa.diaspora_android.App;
+import com.github.dfa.diaspora_android.util.AppLog;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -80,7 +77,7 @@ public class ImageDownloadTask extends AsyncTask<String, Void, Bitmap> {
             connection.disconnect();
 
         } catch (Exception e) {
-           AppLog.e(this, e.getMessage());
+            AppLog.e(this, e.getMessage());
         } finally {
             try {
                 if (out != null) {

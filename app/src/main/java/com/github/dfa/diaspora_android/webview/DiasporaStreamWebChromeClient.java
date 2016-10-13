@@ -39,7 +39,7 @@ public class DiasporaStreamWebChromeClient extends FileUploadWebChromeClient {
     @Override
     public void onProgressChanged(WebView wv, int progress) {
         super.onProgressChanged(wv, progress);
-        if (progress > 0 && progress <= 60) {
+        if (progress > 10 && progress <= 60) {
             WebHelper.getUserProfile(wv);
             WebHelper.optimizeMobileSiteLayout(wv);
         }
@@ -57,6 +57,7 @@ public class DiasporaStreamWebChromeClient extends FileUploadWebChromeClient {
 
     public interface SharedTextCallback {
         String getSharedText();
+
         void setSharedText(String shared);
     }
 }

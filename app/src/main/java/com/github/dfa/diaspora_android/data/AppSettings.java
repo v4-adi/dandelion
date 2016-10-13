@@ -19,7 +19,12 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.github.dfa.diaspora_android.R;
+import com.github.dfa.diaspora_android.data.DiasporaPodList.DiasporaPod;
+import com.github.dfa.diaspora_android.data.DiasporaPodList.DiasporaPod.DiasporaPodUrl;
 import com.github.dfa.diaspora_android.util.ProxyHandler;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * Settings
@@ -29,6 +34,7 @@ public class AppSettings {
     private final SharedPreferences prefApp;
     private final SharedPreferences prefPod;
     private final Context context;
+    private DiasporaPod currentPod0Cached;
 
     public AppSettings(Context context) {
         this.context = context.getApplicationContext();
@@ -135,24 +141,44 @@ public class AppSettings {
         setString(prefPod, R.string.pref_key__podprofile_name, name);
     }
 
-    public String getPodDomain() {
-        return getString(prefPod, R.string.pref_key__poddomain, "");
+
+    // TODO: Remove legacy at some time ;)
+    public void upgradeLegacyPoddomain() {
+        String legacy = getString(prefPod, R.string.pref_key__poddomain_legacy, "");
+        if (!legacy.equals("")) {
+            DiasporaPod pod = new DiasporaPod();
+            pod.setName(legacy);
+            pod.getPodUrls().add(new DiasporaPodUrl().setHost(legacy));
+            setPod(pod);
+        }
     }
 
-    public void setPodDomain(String podDomain) {
-        setString(prefPod, R.string.pref_key__poddomain, podDomain);
+    public DiasporaPod getPod() {
+        upgradeLegacyPoddomain();
+        if (currentPod0Cached == null) {
+            String pref = getString(prefPod, R.string.pref_key__current_pod_0, "");
+
+            try {
+                currentPod0Cached = new DiasporaPod().fromJson(new JSONObject(pref));
+            } catch (JSONException e) {
+                currentPod0Cached = null;
+            }
+        }
+        return currentPod0Cached;
     }
 
-    public boolean hasPodDomain() {
-        return !getString(prefPod, R.string.pref_key__poddomain, "").equals("");
+    public void setPod(DiasporaPod pod) {
+        try {
+            setString(prefPod, R.string.pref_key__current_pod_0,
+                    pod == null ? null : pod.toJson().toString());
+            currentPod0Cached = pod;
+        } catch (JSONException ignored) {
+        }
     }
 
-    public String[] getPreviousPodlist() {
-        return getStringArray(prefApp, R.string.pref_key__previous_podlist);
-    }
-
-    public void setPreviousPodlist(String[] pods) {
-        setStringArray(prefApp, R.string.pref_key__previous_podlist, pods);
+    public boolean hasPod() {
+        upgradeLegacyPoddomain();
+        return !getString(prefPod, R.string.pref_key__current_pod_0, "").equals("");
     }
 
     public void setPodAspects(PodAspect[] aspects) {
@@ -238,6 +264,7 @@ public class AppSettings {
     public void setProxyHttpHost(String value) {
         setString(prefApp, R.string.pref_key__http_proxy_host, value);
     }
+
     /**
      * Default value: 0
      *

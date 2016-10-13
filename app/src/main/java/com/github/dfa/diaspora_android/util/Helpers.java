@@ -26,8 +26,9 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.design.widget.Snackbar;
+import android.view.View;
 
-import com.github.dfa.diaspora_android.App;
 import com.github.dfa.diaspora_android.R;
 
 import java.io.BufferedReader;
@@ -72,7 +73,7 @@ public class Helpers {
         // Create an image file name
         String timeStamp = new SimpleDateFormat("dd-MM-yy_HH-mm", Locale.getDefault()).format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
-       AppLog.d(Helpers.class, Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath());
+        AppLog.d(Helpers.class, Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath());
         File storageDir = Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_PICTURES);
         return new File(
@@ -120,18 +121,32 @@ public class Helpers {
     public static void printBundle(Bundle savedInstanceState, String k) {
         if (savedInstanceState != null) {
             for (String key : savedInstanceState.keySet()) {
-               AppLog.d("SAVED", key + " is a key in the bundle " + k);
+                AppLog.d("SAVED", key + " is a key in the bundle " + k);
                 Object bun = savedInstanceState.get(key);
                 if (bun != null) {
                     if (bun instanceof Bundle) {
                         printBundle((Bundle) bun, k + "." + key);
                     } else if (bun instanceof byte[]) {
-                       AppLog.d("SAVED", "Key: " + k + "." + key + ": " + Arrays.toString((byte[]) bun));
+                        AppLog.d("SAVED", "Key: " + k + "." + key + ": " + Arrays.toString((byte[]) bun));
                     } else {
-                       AppLog.d("SAVED", "Key: " + k + "." + key + ": " + bun.toString());
+                        AppLog.d("SAVED", "Key: " + k + "." + key + ": " + bun.toString());
                     }
                 }
             }
         }
+    }
+
+    /**
+     * Show Information if user is offline, returns true if is not connected to internet
+     *
+     * @param context Context
+     * @param anchor  A view anchor
+     */
+    public static boolean showInfoIfUserNotConnectedToInternet(Context context, View anchor) {
+        boolean isOnline = WebHelper.isOnline(context);
+        if (!isOnline) {
+            Snackbar.make(anchor, R.string.no_internet, Snackbar.LENGTH_LONG).show();
+        }
+        return !isOnline;
     }
 }

@@ -43,8 +43,9 @@ public class Log extends Observable {
     private Log() {
         this(null);
     }
+
     private Log(AppSettings appSettings) {
-        if(appSettings != null) {
+        if (appSettings != null) {
             //TODO: Store/Restore logBuffer between app starts
             logBuffer = new ArrayList<>();
         } else {
@@ -55,17 +56,17 @@ public class Log extends Observable {
     }
 
     public static Log getInstance() {
-        if(instance == null) instance = new Log();
+        if (instance == null) instance = new Log();
         return instance;
     }
 
     public static Log getInstance(AppSettings appSettings) {
-        if(instance == null) instance = new Log(appSettings);
+        if (instance == null) instance = new Log(appSettings);
         return instance;
     }
 
     private static String time() {
-        return getInstance().dateFormat.format(new Date())+": ";
+        return getInstance().dateFormat.format(new Date()) + ": ";
     }
 
     public static void d(String tag, String msg) {
@@ -116,23 +117,23 @@ public class Log extends Observable {
 
     public synchronized static String getLogBuffer() {
         String out = "";
-        for(String s : getInstance().logBuffer) {
+        for (String s : getInstance().logBuffer) {
             out = out + s + "\n";
         }
         return out;
     }
 
     private void notifyLogBufferChanged() {
-        if(observers == null) return;
-        for(Observer o : observers) {
-            if(o != null) {
+        if (observers == null) return;
+        for (Observer o : observers) {
+            if (o != null) {
                 o.update(this, null);
             }
         }
     }
 
     private synchronized void addLogEntry(String msg) {
-        logBuffer.add(time()+msg);
+        logBuffer.add(time() + msg);
         while (logBuffer.size() > MAX_BUFFER_SIZE) {
             logBuffer.remove(0);
         }

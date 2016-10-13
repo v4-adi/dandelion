@@ -63,7 +63,7 @@ import butterknife.ButterKnife;
  * Activity that holds some fragments that show information about the app in a tab layout
  */
 public class AboutActivity extends ThemedActivity
-implements IntellihideToolbarActivityListener {
+        implements IntellihideToolbarActivityListener {
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
@@ -108,7 +108,7 @@ implements IntellihideToolbarActivityListener {
     @Override
     public void onResume() {
         super.onResume();
-        if(getAppSettings().isIntellihideToolbars()) {
+        if (getAppSettings().isIntellihideToolbars()) {
             this.enableToolbarHiding();
         } else {
             this.disableToolbarHiding();
@@ -310,6 +310,7 @@ implements IntellihideToolbarActivityListener {
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.about__fragment_debug, container, false);
             ButterKnife.bind(this, rootView);
+            App app = (App) getActivity().getApplication();
             logBox.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View view) {
@@ -338,6 +339,9 @@ implements IntellihideToolbarActivityListener {
                     osVersion.setText(getString(R.string.fragment_debug__android_version, Build.VERSION.RELEASE));
                     deviceName.setText(getString(R.string.fragment_debug__device_name, Build.MANUFACTURER + " " + Build.MODEL));
                     podDomain.setText(getString(R.string.fragment_debug__pod_domain, urls.getPodUrl()));
+                    if (app.getSettings().getPod() != null) {
+                        podDomain.setText(getString(R.string.fragment_debug__pod_domain, app.getSettings().getPod().getName()));
+                    }
 
                 } catch (PackageManager.NameNotFoundException e) {
                     e.printStackTrace();

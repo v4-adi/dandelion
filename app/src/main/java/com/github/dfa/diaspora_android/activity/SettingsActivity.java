@@ -41,9 +41,10 @@ import com.github.dfa.diaspora_android.App;
 import com.github.dfa.diaspora_android.R;
 import com.github.dfa.diaspora_android.data.AppSettings;
 import com.github.dfa.diaspora_android.ui.IntellihideToolbarActivityListener;
-import com.github.dfa.diaspora_android.util.theming.ColorPalette;
-import com.github.dfa.diaspora_android.util.ProxyHandler;
 import com.github.dfa.diaspora_android.util.AppLog;
+import com.github.dfa.diaspora_android.util.DiasporaUrlHelper;
+import com.github.dfa.diaspora_android.util.ProxyHandler;
+import com.github.dfa.diaspora_android.util.theming.ColorPalette;
 import com.github.dfa.diaspora_android.util.theming.ThemeHelper;
 
 import butterknife.BindView;
@@ -62,6 +63,7 @@ public class SettingsActivity extends ThemedActivity implements IntellihideToolb
     protected Toolbar toolbar;
 
     private ProxyHandler.ProxySettings oldProxySettings;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -140,11 +142,11 @@ public class SettingsActivity extends ThemedActivity implements IntellihideToolb
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
             updatePreference(findPreference(key));
-            if(key.equals(getString(R.string.pref_key__intellihide_toolbars))) {
-                if(sharedPreferences.getBoolean(getString(R.string.pref_key__intellihide_toolbars), false)) {
-                    ((SettingsActivity)getActivity()).enableToolbarHiding();
+            if (key.equals(getString(R.string.pref_key__intellihide_toolbars))) {
+                if (sharedPreferences.getBoolean(getString(R.string.pref_key__intellihide_toolbars), false)) {
+                    ((SettingsActivity) getActivity()).enableToolbarHiding();
                 } else {
-                    ((SettingsActivity)getActivity()).disableToolbarHiding();
+                    ((SettingsActivity) getActivity()).disableToolbarHiding();
                 }
             }
         }
@@ -168,7 +170,7 @@ public class SettingsActivity extends ThemedActivity implements IntellihideToolb
         public boolean onPreferenceTreeClick(PreferenceScreen screen, Preference preference) {
             App app = ((App) getActivity().getApplication());
             AppSettings appSettings = app.getSettings();
-            if(Build.VERSION.SDK_INT >= 21) {
+            if (Build.VERSION.SDK_INT >= 21) {
                 if (preference instanceof PreferenceScreen && ((PreferenceScreen) preference).getDialog() != null) {
                     Window window = ((PreferenceScreen) preference).getDialog().getWindow();
                     if (window != null) {
@@ -178,7 +180,7 @@ public class SettingsActivity extends ThemedActivity implements IntellihideToolb
             }
 
             Intent intent = new Intent(getActivity(), MainActivity.class);
-            String podDomain = appSettings.getPodDomain();
+            DiasporaUrlHelper diasporaUrlHelper = new DiasporaUrlHelper(app.getSettings());
 
             switch (preference.getTitleRes()) {
                 case R.string.pref_title__primary_color: {
@@ -193,17 +195,17 @@ public class SettingsActivity extends ThemedActivity implements IntellihideToolb
                 }
                 case R.string.pref_title__personal_settings: {
                     intent.setAction(MainActivity.ACTION_OPEN_URL);
-                    intent.putExtra(MainActivity.URL_MESSAGE, "https://" + podDomain + "/user/edit");
+                    intent.putExtra(MainActivity.URL_MESSAGE, diasporaUrlHelper.getPersonalSettingsUrl());
                     break;
                 }
                 case R.string.pref_title__manage_tags: {
                     intent.setAction(MainActivity.ACTION_OPEN_URL);
-                    intent.putExtra(MainActivity.URL_MESSAGE, "https://" + podDomain + "/tag_followings/manage");
+                    intent.putExtra(MainActivity.URL_MESSAGE, diasporaUrlHelper.getManageTagsUrl());
                     break;
                 }
                 case R.string.pref_title__manage_contacts: {
                     intent.setAction(MainActivity.ACTION_OPEN_URL);
-                    intent.putExtra(MainActivity.URL_MESSAGE, "https://" + podDomain + "/contacts");
+                    intent.putExtra(MainActivity.URL_MESSAGE, diasporaUrlHelper.getManageContactsUrl());
                     break;
                 }
                 case R.string.pref_title__change_account: {
@@ -229,8 +231,7 @@ public class SettingsActivity extends ThemedActivity implements IntellihideToolb
                     return true;
                 }
 
-                case R.string.pref_title__clear_cache:
-                {
+                case R.string.pref_title__clear_cache: {
                     intent.setAction(MainActivity.ACTION_CLEAR_CACHE);
                     break;
                 }
@@ -250,10 +251,11 @@ public class SettingsActivity extends ThemedActivity implements IntellihideToolb
 
         /**
          * Show a colorPicker Dialog
+         *
          * @param type 1 -> Primary Color, 2 -> Accent Color
          */
         public void showColorPickerDialog(final int type) {
-            final AppSettings appSettings = ((App)getActivity().getApplication()).getSettings();
+            final AppSettings appSettings = ((App) getActivity().getApplication()).getSettings();
             final Context context = getActivity();
 
             //Inflate dialog layout
@@ -278,10 +280,10 @@ public class SettingsActivity extends ThemedActivity implements IntellihideToolb
             base.setOnColorChangedListener(new OnColorChangedListener() {
                 @Override
                 public void onColorChanged(int i) {
-                    AppLog.d(this, "Selected Base color changed: "+i);
+                    AppLog.d(this, "Selected Base color changed: " + i);
                     shade.setColors(ColorPalette.getColors(context, i));
                     titleBackground.setBackgroundColor(i);
-                    if(i == current[0]) {
+                    if (i == current[0]) {
                         shade.setSelectedColor(current[1]);
                         titleBackground.setBackgroundColor(shade.getColor());
                     }
@@ -300,12 +302,12 @@ public class SettingsActivity extends ThemedActivity implements IntellihideToolb
                     .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                            if(type == 1) {
+                            if (type == 1) {
                                 appSettings.setPrimaryColorSettings(base.getColor(), shade.getColor());
-                                if(Build.VERSION.SDK_INT >= 21) {
+                                if (Build.VERSION.SDK_INT >= 21) {
                                     getActivity().getWindow().setStatusBarColor(ThemeHelper.getPrimaryDarkColor());
                                 }
-                                ((ThemedActivity)getActivity()).applyColorToViews();
+                                ((ThemedActivity) getActivity()).applyColorToViews();
                             } else {
                                 appSettings.setAccentColorSettings(base.getColor(), shade.getColor());
                             }
@@ -327,10 +329,10 @@ public class SettingsActivity extends ThemedActivity implements IntellihideToolb
     @Override
     protected void onStop() {
         ProxyHandler.ProxySettings newProxySettings = getAppSettings().getProxySettings();
-        if(!oldProxySettings.equals(newProxySettings)) {
+        if (!oldProxySettings.equals(newProxySettings)) {
             AppLog.d(this, "ProxySettings changed.");
             //Proxy on-off? => Restart app
-            if(oldProxySettings.isEnabled() && !newProxySettings.isEnabled()) {
+            if (oldProxySettings.isEnabled() && !newProxySettings.isEnabled()) {
                 Intent restartActivity = new Intent(SettingsActivity.this, MainActivity.class);
                 PendingIntent pendingIntent = PendingIntent.getActivity(SettingsActivity.this, 12374, restartActivity, PendingIntent.FLAG_CANCEL_CURRENT);
                 AlarmManager mgr = (AlarmManager) SettingsActivity.this.getSystemService(Context.ALARM_SERVICE);

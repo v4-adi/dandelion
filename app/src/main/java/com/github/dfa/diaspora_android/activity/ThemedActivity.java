@@ -37,7 +37,7 @@ import com.github.dfa.diaspora_android.util.theming.ThemeHelper;
 public abstract class ThemedActivity extends AppCompatActivity {
 
     protected AppSettings getAppSettings() {
-        return ((App)getApplication()).getSettings();
+        return ((App) getApplication()).getSettings();
     }
 
     @Override
@@ -48,6 +48,7 @@ public abstract class ThemedActivity extends AppCompatActivity {
         updateRecentAppColor();
         applyColorToViews();
     }
+
     protected abstract void applyColorToViews();
 
     /**
@@ -64,10 +65,10 @@ public abstract class ThemedActivity extends AppCompatActivity {
      * Update primary color in recent apps overview
      */
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    private void updateRecentAppColor(){
+    private void updateRecentAppColor() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             BitmapDrawable drawable = ((BitmapDrawable) getDrawable(R.drawable.ic_launcher));
-            if(drawable != null) {
+            if (drawable != null) {
                 setTaskDescription(new ActivityManager.TaskDescription(
                         getResources().getString(R.string.app_name),
                         drawable.getBitmap(),

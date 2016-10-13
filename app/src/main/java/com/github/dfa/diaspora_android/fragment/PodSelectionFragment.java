@@ -18,20 +18,16 @@
  */
 package com.github.dfa.diaspora_android.fragment;
 
-import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.LocalBroadcastManager;
-import android.text.Editable;
-import android.text.SpannableString;
-import android.text.TextWatcher;
-import android.text.util.Linkify;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -41,74 +37,98 @@ import android.view.ViewGroup;
 import android.webkit.CookieManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.github.dfa.diaspora_android.App;
 import com.github.dfa.diaspora_android.R;
 import com.github.dfa.diaspora_android.activity.MainActivity;
 import com.github.dfa.diaspora_android.data.AppSettings;
+import com.github.dfa.diaspora_android.data.DiasporaPodList;
+import com.github.dfa.diaspora_android.data.DiasporaPodList.DiasporaPod;
 import com.github.dfa.diaspora_android.task.GetPodsService;
+import com.github.dfa.diaspora_android.ui.PodSelectionDialog;
 import com.github.dfa.diaspora_android.util.AppLog;
 import com.github.dfa.diaspora_android.util.DiasporaUrlHelper;
-import com.github.dfa.diaspora_android.util.WebHelper;
+import com.github.dfa.diaspora_android.util.Helpers;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Fragment that lets the user choose a Pod
  * Created by vanitas on 01.10.16.
  */
 
-public class PodSelectionFragment extends CustomFragment {
+public class PodSelectionFragment extends CustomFragment implements SearchView.OnQueryTextListener, PodSelectionDialog.PodSelectionDialogResultListener {
     public static final String TAG = "com.github.dfa.diaspora_android.PodSelectionFragment";
 
-    protected EditText editFilter;
-    protected ListView listPods;
-    protected ImageView selectPodButton;
+    @BindView(R.id.podselection__fragment__listpods)
+    protected ListView listViewPod;
 
     protected App app;
     protected AppSettings appSettings;
+    private DiasporaPodList podList;
+    private ArrayAdapter<String> listViewPodAdapter;
+    private String filterString = "";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         AppLog.d(this, "onCreateView()");
-        return inflater.inflate(R.layout.podselection__fragment, container, false);
+        View view = inflater.inflate(R.layout.podselection__fragment, container, false);
+        ButterKnife.bind(this, view);
+        return view;
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        this.app = (App) getActivity().getApplication();
-        this.appSettings = app.getSettings();
+        app = (App) getActivity().getApplication();
+        appSettings = app.getSettings();
 
-        this.editFilter = (EditText) view.findViewById(R.id.podselection__edit_filter);
-        this.listPods = (ListView) view.findViewById(R.id.podselection__listpods);
-        this.selectPodButton = (ImageView) view.findViewById(R.id.podselection__button_select_pod);
+        // Load local podlist
+        podList = new DiasporaPodList();
+        mergePodlistWithRessources(podList);
+        podList.setTrackMergeChanges(true);
+        updateListedPods();
 
-        listPods.setTextFilterEnabled(true);
-        listPods.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
+
+        listViewPod.setTextFilterEnabled(true);
+        listViewPod.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                showPodConfirmationDialog((String) listPods.getAdapter().getItem(i));
-            }
-        });
-        setListedPods(appSettings.getPreviousPodlist());
-        LocalBroadcastManager.getInstance(getContext()).registerReceiver(podListReceiver, new IntentFilter(GetPodsService.MESSAGE_PODS_RECEIVED));
-        if (!WebHelper.isOnline(getContext())) {
-            Snackbar.make(listPods, R.string.no_internet, Snackbar.LENGTH_LONG).show();
-        }
-        selectPodButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (editFilter.getText().length() > 4 && editFilter.getText().toString().contains("")) {
-                    showPodConfirmationDialog(editFilter.getText().toString());
-                } else {
-                    Snackbar.make(listPods, R.string.valid_pod, Snackbar.LENGTH_LONG).show();
+                String text = ((TextView) view).getText().toString();
+                for (DiasporaPod pod : podList) {
+                    if (pod.getPodUrl().getHost().equals(text)) {
+                        showPodSelectionDialog(pod);
+                        return;
+                    }
                 }
+
             }
         });
+        LocalBroadcastManager.getInstance(getContext()).registerReceiver(podListReceiver, new IntentFilter(GetPodsService.MESSAGE_PODS_RECEIVED));
+        Helpers.showInfoIfUserNotConnectedToInternet(getContext(), listViewPod);
+    }
+
+    public void mergePodlistWithRessources(DiasporaPodList podlist) {
+        String sPodlist = Helpers.readTextfileFromRawRessource(getContext(), R.raw.podlist, "", "");
+        try {
+            JSONObject jPodlist = new JSONObject(sPodlist);
+            podlist.mergeWithNewerEntries(new DiasporaPodList().fromJson(jPodlist));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @OnClick(R.id.podselection__fragment__button_use_custom_pod)
+    public void onPodButtonClicked(View v) {
+        showPodSelectionDialog(new DiasporaPod());
     }
 
     @Override
@@ -116,28 +136,20 @@ public class PodSelectionFragment extends CustomFragment {
         return TAG;
     }
 
-    @Override
-    public void onCreateBottomOptionsMenu(Menu menu, MenuInflater inflater) {
-        /* Nothing to do */
-    }
-
-    @Override
-    public boolean onBackPressed() {
-        return false;
-    }
-
     private final BroadcastReceiver podListReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            if (intent.hasExtra("pods")) {
+            if (intent.hasExtra(GetPodsService.EXTRA_PODLIST)) {
                 Bundle extras = intent.getExtras();
-                String[] pods = extras.getStringArray("pods");
-                if (pods != null && pods.length > 0) {
-                    app.getSettings().setPreviousPodlist(pods);
-                    setListedPods(pods);
+                DiasporaPodList newPods = (DiasporaPodList) extras.get(GetPodsService.EXTRA_PODLIST);
+                if (newPods != null && newPods.getPods().size() > 0) {
+                    try {
+                        podList.mergeWithNewerEntries(newPods);
+                        updateListedPods();
+                    } catch (JSONException ignored) {
+                    }
                 } else {
-                    setListedPods(app.getSettings().getPreviousPodlist());
-                    Snackbar.make(listPods, R.string.podlist_error, Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(listViewPod, R.string.podlist_error, Snackbar.LENGTH_SHORT).show();
                 }
             }
         }
@@ -150,83 +162,30 @@ public class PodSelectionFragment extends CustomFragment {
         getContext().startService(i);
     }
 
-
-    private void setListedPods(String[] listedPodsArr) {
+    private void updateListedPods() {
         final ArrayList<String> listedPodsList = new ArrayList<>();
-        for (String pod : listedPodsArr) {
-            listedPodsList.add(pod.toLowerCase());
+        for (DiasporaPod pod : this.podList) {
+            listedPodsList.add(pod.getPodUrl().getHost());
         }
 
-        final ArrayAdapter<String> adapter = new ArrayAdapter<>(
+        listViewPodAdapter = new ArrayAdapter<>(
                 getContext(),
                 android.R.layout.simple_list_item_1,
                 listedPodsList);
 
         // save index and top position
-        int index = listPods.getFirstVisiblePosition();
-        View v = listPods.getChildAt(0);
-        int top = (v == null) ? 0 : (v.getTop() - listPods.getPaddingTop());
-        listPods.setAdapter(adapter);
-        listPods.setSelectionFromTop(index, top);
+        int index = listViewPod.getFirstVisiblePosition();
+        View v = listViewPod.getChildAt(0);
+        int top = (v == null) ? 0 : (v.getTop() - listViewPod.getPaddingTop());
+        listViewPod.setAdapter(listViewPodAdapter);
+        listViewPod.setSelectionFromTop(index, top);
 
-        adapter.getFilter().filter(editFilter.getText());
-        editFilter.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                (adapter).getFilter().filter(s.toString());
-            }
-
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            public void afterTextChanged(Editable s) {
-            }
-        });
+        listViewPodAdapter.getFilter().filter(filterString);
     }
 
-    private void showPodConfirmationDialog(final String selectedPod) {
-        // Make a clickable link
-        final SpannableString dialogMessage = new SpannableString(getString(R.string.confirm_pod, selectedPod));
-        Linkify.addLinks(dialogMessage, Linkify.ALL);
-
-        // Check if online
-        if (!WebHelper.isOnline(getContext())) {
-            Snackbar.make(listPods, R.string.no_internet, Snackbar.LENGTH_LONG).show();
-            return;
-        }
-
-        // Show dialog
-        new AlertDialog.Builder(getContext())
-                .setTitle(getString(R.string.confirmation))
-                .setMessage(dialogMessage)
-                .setPositiveButton(android.R.string.yes,
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                onPodSelectionConfirmed(selectedPod);
-                            }
-                        })
-                .setNegativeButton(android.R.string.no, null)
-                .show();
-    }
-
-    private void onPodSelectionConfirmed(String selectedPod) {
-        app.getSettings().setPodDomain(selectedPod);
-
-        try {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                CookieManager.getInstance().removeAllCookies(null);
-                CookieManager.getInstance().removeSessionCookies(null);
-            } else {
-                //noinspection deprecation
-                CookieManager.getInstance().removeAllCookie();
-                //noinspection deprecation
-                CookieManager.getInstance().removeSessionCookie();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        ((MainActivity)getActivity()).openDiasporaUrl(new DiasporaUrlHelper(appSettings).getPodUrl());
+    private void showPodSelectionDialog(final DiasporaPod selectedPod) {
+        PodSelectionDialog dialog = PodSelectionDialog.newInstance(selectedPod, this);
+        dialog.show(getFragmentManager(), PodSelectionDialog.TAG);
     }
 
     @Override
@@ -238,6 +197,13 @@ public class PodSelectionFragment extends CustomFragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.podselection__menu, menu);
+
+        MenuItem searchItem = menu.findItem(R.id.podselection__action_search);
+        if (searchItem != null) {
+            SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+            searchView.setOnQueryTextListener(this);
+        }
+
         super.onCreateOptionsMenu(menu, inflater);
     }
 
@@ -245,16 +211,67 @@ public class PodSelectionFragment extends CustomFragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_reload: {
-                if (WebHelper.isOnline(getContext())) {
+                if (!Helpers.showInfoIfUserNotConnectedToInternet(getContext(), listViewPod)) {
                     Intent i = new Intent(getContext(), GetPodsService.class);
                     getContext().startService(i);
                     return true;
-                } else {
-                    Snackbar.make(listPods, R.string.no_internet, Snackbar.LENGTH_LONG).show();
-                    return false;
                 }
             }
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        if (listViewPodAdapter != null) {
+            (listViewPodAdapter).getFilter().filter(newText);
+        }
+        return true;
+    }
+
+    @Override
+    public void onPodSelectionDialogResult(DiasporaPod pod, boolean accepted) {
+        System.out.println(accepted + ": " + pod.toString());
+        if (accepted) {
+            app.getSettings().setPod(pod);
+
+            try {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    CookieManager.getInstance().removeAllCookies(null);
+                    CookieManager.getInstance().removeSessionCookies(null);
+                } else {
+                    //noinspection deprecation
+                    CookieManager.getInstance().removeAllCookie();
+                    //noinspection deprecation
+                    CookieManager.getInstance().removeSessionCookie();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            MainActivity mainActivity = (MainActivity) getActivity();
+            DiasporaUrlHelper urlHelper = new DiasporaUrlHelper(appSettings);
+            mainActivity.invalidateOptionsMenu();
+            mainActivity.openDiasporaUrl(urlHelper.getSignInUrl());
+        }
+    }
+
+
+    /*
+     *  Dummy implementations
+     */
+
+    @Override
+    public void onCreateBottomOptionsMenu(Menu menu, MenuInflater inflater) {
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onBackPressed() {
+        return false;
     }
 }

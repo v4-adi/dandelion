@@ -68,15 +68,15 @@ import com.github.dfa.diaspora_android.fragment.HashtagListFragment;
 import com.github.dfa.diaspora_android.fragment.PodSelectionFragment;
 import com.github.dfa.diaspora_android.listener.WebUserProfileChangedListener;
 import com.github.dfa.diaspora_android.receiver.OpenExternalLinkReceiver;
-import com.github.dfa.diaspora_android.util.ProxyHandler;
 import com.github.dfa.diaspora_android.receiver.UpdateTitleReceiver;
 import com.github.dfa.diaspora_android.ui.BadgeDrawable;
 import com.github.dfa.diaspora_android.ui.IntellihideToolbarActivityListener;
 import com.github.dfa.diaspora_android.util.AppLog;
 import com.github.dfa.diaspora_android.util.CustomTabHelpers.CustomTabActivityHelper;
 import com.github.dfa.diaspora_android.util.DiasporaUrlHelper;
-import com.github.dfa.diaspora_android.util.theming.ThemeHelper;
+import com.github.dfa.diaspora_android.util.ProxyHandler;
 import com.github.dfa.diaspora_android.util.WebHelper;
+import com.github.dfa.diaspora_android.util.theming.ThemeHelper;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -181,7 +181,7 @@ public class MainActivity extends ThemedActivity
             @Override
             public void setTitle(int rId) {
                 CustomFragment top = getTopFragment();
-                if(top != null && top.getFragmentTag().equals(DiasporaStreamFragment.TAG)) {
+                if (top != null && top.getFragmentTag().equals(DiasporaStreamFragment.TAG)) {
                     MainActivity.this.setTitle(rId);
                 }
             }
@@ -189,14 +189,15 @@ public class MainActivity extends ThemedActivity
             @Override
             public void setTitle(String title) {
                 CustomFragment top = getTopFragment();
-                if(top != null && top.getFragmentTag().equals(DiasporaStreamFragment.TAG)) {
+                if (top != null && top.getFragmentTag().equals(DiasporaStreamFragment.TAG)) {
                     MainActivity.this.setTitle(title);
                 }
             }
         });
 
-        if (!appSettings.hasPodDomain()) {
+        if (!appSettings.hasPod()) {
             AppLog.d(this, "We have no pod. Show PodSelectionFragment");
+            updateNavigationViewEntryVisibilities();
             showFragment(getFragment(PodSelectionFragment.TAG));
         } else {
             AppLog.d(this, "Pod found. Handle intents.");
@@ -246,6 +247,7 @@ public class MainActivity extends ThemedActivity
 
     /**
      * Show DiasporaStreamFragment if necessary and load URL url
+     *
      * @param url URL to load in the DiasporaStreamFragment
      */
     public void openDiasporaUrl(String url) {
@@ -259,6 +261,7 @@ public class MainActivity extends ThemedActivity
      * Get an instance of the CustomFragment with the tag fragmentTag.
      * If there was no instance so far, create a new one and add it to the FragmentManagers pool.
      * If there is no Fragment with the corresponding Tag, return the top fragment.
+     *
      * @param fragmentTag tag
      * @return corresponding Fragment
      */
@@ -294,6 +297,7 @@ public class MainActivity extends ThemedActivity
 
     /**
      * Show the Fragment fragment in R.id.fragment_container. If the fragment was already visible, do nothing.
+     *
      * @param fragment Fragment to show
      */
     protected void showFragment(CustomFragment fragment) {
@@ -342,8 +346,8 @@ public class MainActivity extends ThemedActivity
         if (!appSettings.getName().equals("")) {
             navheaderTitle.setText(appSettings.getName());
         }
-        if (!appSettings.getPodDomain().equals("")) {
-            navheaderDescription.setText(appSettings.getPodDomain());
+        if (appSettings.getPod() != null) {
+            navheaderDescription.setText(appSettings.getPod().getName());
         }
         String avatarUrl = appSettings.getAvatarUrl();
         if (!avatarUrl.equals("")) {
@@ -376,10 +380,16 @@ public class MainActivity extends ThemedActivity
         navMenu.findItem(R.id.nav_mentions).setVisible(appSettings.isVisibleInNavMentions());
         navMenu.findItem(R.id.nav_profile).setVisible(appSettings.isVisibleInNavProfile());
         navMenu.findItem(R.id.nav_public).setVisible(appSettings.isVisibleInNavPublic_activities());
+
+        // Top bar
+        if (!appSettings.hasPod()) {
+            navMenu.setGroupVisible(navMenu.findItem(R.id.nav_exit).getGroupId(), false);
+        }
     }
 
     /**
      * Forward incoming intents to handleIntent()
+     *
      * @param intent incoming
      */
     @Override
@@ -390,6 +400,7 @@ public class MainActivity extends ThemedActivity
 
     /**
      * Handle intents and execute intent specific actions
+     *
      * @param intent intent to get handled
      */
     private void handleIntent(Intent intent) {
@@ -418,6 +429,7 @@ public class MainActivity extends ThemedActivity
             }
         } else if (ACTION_CHANGE_ACCOUNT.equals(action)) {
             AppLog.v(this, "Reset pod data and  show PodSelectionFragment");
+            appSettings.setPod(null);
             app.resetPodData(((DiasporaStreamFragment) getFragment(DiasporaStreamFragment.TAG)).getWebView());
             showFragment(getFragment(PodSelectionFragment.TAG));
         } else if (ACTION_CLEAR_CACHE.equals(action)) {
@@ -462,6 +474,7 @@ public class MainActivity extends ThemedActivity
 
     /**
      * Return the fragment which is currently displayed in R.id.fragment_container
+     *
      * @return top fragment or null if there is none displayed
      */
     private CustomFragment getTopFragment() {
@@ -545,6 +558,7 @@ public class MainActivity extends ThemedActivity
     /**
      * Clear and repopulate top and bottom toolbar.
      * Also add menu items of the displayed fragment
+     *
      * @param menu top toolbar
      * @return boolean
      */
@@ -575,12 +589,14 @@ public class MainActivity extends ThemedActivity
 
     /**
      * Set the notification and messages counter in the top toolbar
+     *
      * @param menu menu
      * @return boolean
      */
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         MenuItem item;
+        updateNavigationViewEntryVisibilities();
 
         if ((item = menu.findItem(R.id.action_notifications)) != null) {
             LayerDrawable icon = (LayerDrawable) item.getIcon();
@@ -596,6 +612,7 @@ public class MainActivity extends ThemedActivity
 
     /**
      * Handle clicks on the optionsmenu
+     *
      * @param item item
      * @return boolean
      */
@@ -694,6 +711,7 @@ public class MainActivity extends ThemedActivity
 
     /**
      * Update the profile name in the navigation slider
+     *
      * @param name name
      */
     @Override
@@ -704,6 +722,7 @@ public class MainActivity extends ThemedActivity
 
     /**
      * Update the profile picture in the navigation slider
+     *
      * @param avatarUrl url of the new profile pic
      */
     @Override
@@ -714,6 +733,7 @@ public class MainActivity extends ThemedActivity
 
     /**
      * Handle hashtag clicks. Open the new-post-url and inject the clicked hashtag into the post-editor
+     *
      * @param intent intent
      */
     private void handleHashtag(Intent intent) {
@@ -728,6 +748,7 @@ public class MainActivity extends ThemedActivity
 
     /**
      * Open the new-post-url and inject text that was shared into the app into the post editors text field
+     *
      * @param intent shareTextIntent
      */
     private void handleSendText(Intent intent) {
@@ -786,6 +807,7 @@ public class MainActivity extends ThemedActivity
 
     /**
      * Share an image shared to the app via diaspora
+     *
      * @param intent shareImageIntent
      */
     //TODO: Implement some day
@@ -802,6 +824,7 @@ public class MainActivity extends ThemedActivity
 
     /**
      * Invalidate the top toolbar to update the notification counter
+     *
      * @param notificationCount new notification count
      */
     @Override
@@ -813,6 +836,7 @@ public class MainActivity extends ThemedActivity
 
     /**
      * Invalidate the top toolbar to update the unread messages counter
+     *
      * @param unreadMessageCount new unread messages count
      */
     @Override
@@ -945,8 +969,9 @@ public class MainActivity extends ThemedActivity
 
     /**
      * React to results of requestPermission
-     * @param requestCode resCode
-     * @param permissions requested permissions
+     *
+     * @param requestCode  resCode
+     * @param permissions  requested permissions
      * @param grantResults granted results
      */
     @Override
@@ -970,6 +995,7 @@ public class MainActivity extends ThemedActivity
 
     /**
      * Return the string that will be shared into the new-post-editor
+     *
      * @return String
      */
     public String getTextToBeShared() {
@@ -978,6 +1004,7 @@ public class MainActivity extends ThemedActivity
 
     /**
      * Set the string that will be shared into the new-post-editor
+     *
      * @param textToBeShared
      */
     public void setTextToBeShared(String textToBeShared) {

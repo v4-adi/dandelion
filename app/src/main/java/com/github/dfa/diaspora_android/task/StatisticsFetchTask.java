@@ -20,12 +20,10 @@ package com.github.dfa.diaspora_android.task;
 
 import android.content.Context;
 import android.os.AsyncTask;
-
-import com.github.dfa.diaspora_android.util.AppLog;
-import com.github.dfa.diaspora_android.util.Log;
 import android.webkit.CookieManager;
 
 import com.github.dfa.diaspora_android.App;
+import com.github.dfa.diaspora_android.util.AppLog;
 import com.github.dfa.diaspora_android.util.DiasporaUrlHelper;
 
 import java.io.BufferedReader;
@@ -79,13 +77,13 @@ public class StatisticsFetchTask extends AsyncTask<Void, Void, Void> {
             BufferedReader br = new BufferedReader(new InputStreamReader(inStream));
             String line;
             while ((line = br.readLine()) != null) {
-               AppLog.d(this, "STATS: "+line);
+                AppLog.d(this, "STATS: " + line);
             }
 
-            try{
+            try {
                 br.close();
                 inStream.close();
-            } catch (IOException e){/*Nothing*/}
+            } catch (IOException e) {/*Nothing*/}
 
             connection.disconnect();
 

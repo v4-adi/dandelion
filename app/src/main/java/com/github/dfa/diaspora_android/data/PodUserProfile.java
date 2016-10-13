@@ -20,11 +20,9 @@ package com.github.dfa.diaspora_android.data;
 
 import android.os.Handler;
 
-import com.github.dfa.diaspora_android.util.AppLog;
-import com.github.dfa.diaspora_android.util.Log;
-
 import com.github.dfa.diaspora_android.App;
 import com.github.dfa.diaspora_android.listener.WebUserProfileChangedListener;
+import com.github.dfa.diaspora_android.util.AppLog;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -128,7 +126,7 @@ public class PodUserProfile {
 
             isWebUserProfileLoaded = true;
         } catch (JSONException e) {
-           AppLog.d(this, e.getMessage());
+            AppLog.d(this, e.getMessage());
             isWebUserProfileLoaded = false;
         }
         lastLoaded = System.currentTimeMillis();
@@ -173,6 +171,7 @@ public class PodUserProfile {
 
     /**
      * Sets the avatar, returns true if this was a new one, false if already the old one
+     *
      * @param avatarUrl url
      * @return true if new avatar url
      */

@@ -42,8 +42,7 @@ public class FileUploadWebChromeClient extends ProgressBarWebChromeClient {
 
     //For Android 4.1/4.2 only. DO NOT REMOVE!
     @SuppressWarnings("unused")
-    protected void openFileChooser(ValueCallback<Uri> uploadMsg, String acceptType, String capture)
-    {
+    protected void openFileChooser(ValueCallback<Uri> uploadMsg, String acceptType, String capture) {
         fileUploadCallback.legacyImageUpload(uploadMsg, acceptType, capture);
     }
 
@@ -54,6 +53,7 @@ public class FileUploadWebChromeClient extends ProgressBarWebChromeClient {
 
     public interface FileUploadCallback {
         boolean imageUpload(WebView webView, ValueCallback<Uri[]> filePathCallback, FileChooserParams fileChooserParams);
+
         void legacyImageUpload(ValueCallback<Uri> uploadMsg, String acceptType, String capture);
     }
 }

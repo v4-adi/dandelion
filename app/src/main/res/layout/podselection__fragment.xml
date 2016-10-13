@@ -4,62 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:showIn="@layout/podselection__fragment">
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <ListView
-        android:id="@+id/podselection__listpods"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/podselection__podupti_notice"
-        android:layout_below="@+id/podselection__edit_filter"
-        android:choiceMode="singleChoice" />
-
-    <EditText
-        android:id="@+id/podselection__edit_filter"
+    <Button
+        android:id="@+id/podselection__fragment__button_use_custom_pod"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_toEndOf="@+id/textView"
-        android:layout_toStartOf="@+id/podselection__button_select_pod"
-        android:hint="@string/filter_hint"
-        android:inputType="textUri|textWebEditText" />
+        android:text="@string/podselection__custom_pod"
+        tools:text="Benutzerdefinierter Pod" />
 
-    <ImageView
-        android:id="@+id/podselection__button_select_pod"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/podselection__listpods"
-        android:layout_alignEnd="@+id/podselection__listpods"
-        android:layout_alignTop="@+id/podselection__edit_filter"
-        android:contentDescription="@string/confirm_url"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
-        android:src="@drawable/ic_arrow_forward_black_48px" />
 
-    <TextView
-        android:id="@+id/podselection__podupti_notice"
+    <ListView
+        android:id="@+id/podselection__fragment__listpods"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:autoLink="web"
-        android:text="@string/podlist_source_note"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:layout_below="@+id/podselection__fragment__button_use_custom_pod"
+        android:choiceMode="singleChoice" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/podselection__listpods"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginEnd="0dp"
-        android:gravity="center_vertical"
-        android:text="@string/prefix_https"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+
 </RelativeLayout>

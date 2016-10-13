@@ -21,6 +21,7 @@ package com.github.dfa.diaspora_android.util;
 import com.github.dfa.diaspora_android.App;
 import com.github.dfa.diaspora_android.R;
 import com.github.dfa.diaspora_android.data.AppSettings;
+import com.github.dfa.diaspora_android.data.DiasporaPodList.DiasporaPod;
 import com.github.dfa.diaspora_android.data.PodAspect;
 
 /**
@@ -31,7 +32,6 @@ import com.github.dfa.diaspora_android.data.PodAspect;
 public class DiasporaUrlHelper {
     private final AppSettings settings;
 
-    public static final String HTTPS = "https://";
     public static final String SUBURL_NOTIFICATIONS = "/notifications";
     public static final String SUBURL_POSTS = "/posts/";
     public static final String SUBURL_STREAM = "/stream";
@@ -49,6 +49,10 @@ public class DiasporaUrlHelper {
     public static final String SUBURL_FOLOWED_TAGS = "/followed_tags";
     public static final String SUBURL_ASPECTS = "/aspects";
     public static final String SUBURL_STATISTICS = "/statistics";
+    public static final String SUBURL_PERSONAL_SETTINGS = "/user/edit";
+    public static final String SUBURL_MANAGE_TAGS = "/tag_followings/manage";
+    public static final String SUBURL_SIGN_IN = "/users/sign_in";
+    public static final String SUBURL_MANAGE_CONTACTS = "/contacts";
     public static final String URL_BLANK = "about:blank";
 
     public DiasporaUrlHelper(AppSettings settings) {
@@ -56,17 +60,22 @@ public class DiasporaUrlHelper {
     }
 
     /**
-     * Return a https url of the pod set in AppSettings.
+     * Return a url of the pod set in AppSettings.
      * Eg. https://pod.geraspora.de
      *
      * @return https://(pod-domain.tld)
      */
     public String getPodUrl() {
-        return HTTPS + settings.getPodDomain();
+        DiasporaPod pod = settings.getPod();
+        if (pod != null) {
+            return pod.getPodUrl().getBaseUrl();
+        }
+        return "http://127.0.0.1";
+
     }
 
     /**
-     * Return a https url that points to the stream of the configured diaspora account
+     * Return a url that points to the stream of the configured diaspora account
      *
      * @return https://(pod-domain.tld)/stream
      */
@@ -75,7 +84,7 @@ public class DiasporaUrlHelper {
     }
 
     /**
-     * Return a https url that points to the notifications feed of the configured diaspora account
+     * Return a url that points to the notifications feed of the configured diaspora account
      *
      * @return https://(pod-domain.tld)/notifications
      */
@@ -84,7 +93,7 @@ public class DiasporaUrlHelper {
     }
 
     /**
-     * Returns a https url that points to the post with the id postId
+     * Returns a url that points to the post with the id postId
      *
      * @return https://(pod-domain.tld)/posts/(postId)
      */
@@ -93,7 +102,7 @@ public class DiasporaUrlHelper {
     }
 
     /**
-     * Return a https url that points to the conversations overview of the registered diaspora account
+     * Return a url that points to the conversations overview of the registered diaspora account
      *
      * @return https://(pod-domain.tld)/conversations
      */
@@ -102,7 +111,7 @@ public class DiasporaUrlHelper {
     }
 
     /**
-     * Return a https url that points to the new-post form that lets the user create a new post
+     * Return a url that points to the new-post form that lets the user create a new post
      *
      * @return https://(pod-domain.tld)/status_messages/new
      */
@@ -111,7 +120,7 @@ public class DiasporaUrlHelper {
     }
 
     /**
-     * Return a https url that shows the profile of the currently registered diaspora account
+     * Return a url that shows the profile of the currently registered diaspora account
      *
      * @return https://(pod-domain.tld)/people/(profileId)
      */
@@ -120,7 +129,7 @@ public class DiasporaUrlHelper {
     }
 
     /**
-     * Return a https url that shows the profile of the user with user id profileId
+     * Return a url that shows the profile of the user with user id profileId
      *
      * @param profileId Id of the profile to be shown
      * @return https://(pod-domain.tld)/people/(profileId)
@@ -130,7 +139,7 @@ public class DiasporaUrlHelper {
     }
 
     /**
-     * Return a https url that points to the activities feed of the currently registered diaspora account
+     * Return a url that points to the activities feed of the currently registered diaspora account
      *
      * @return https://(pod-domain.tld)/activity
      */
@@ -139,7 +148,7 @@ public class DiasporaUrlHelper {
     }
 
     /**
-     * Return a https url that points to the feed of posts that were liked by the currently registered diaspora account
+     * Return a url that points to the feed of posts that were liked by the currently registered diaspora account
      *
      * @return https://(pod-domain.tld)/liked
      */
@@ -148,7 +157,7 @@ public class DiasporaUrlHelper {
     }
 
     /**
-     * Return a https url that points to the stream of posts that were commented by the currently registered diaspora account
+     * Return a url that points to the stream of posts that were commented by the currently registered diaspora account
      *
      * @return https://(pod-domain.tld)/commented
      */
@@ -157,7 +166,7 @@ public class DiasporaUrlHelper {
     }
 
     /**
-     * Return a https url that points to the stream of posts in which the currently registered diaspora account has been mentioned in
+     * Return a url that points to the stream of posts in which the currently registered diaspora account has been mentioned in
      *
      * @return https://(pod-domain.tld)/mentions
      */
@@ -166,7 +175,7 @@ public class DiasporaUrlHelper {
     }
 
     /**
-     * Return a https url that points to the stream of public posts
+     * Return a url that points to the stream of public posts
      *
      * @return https://(pod-domain.tld)/public
      */
@@ -175,7 +184,7 @@ public class DiasporaUrlHelper {
     }
 
     /**
-     * Return a https url that toggles between mobile and desktop view when opened
+     * Return a url that toggles between mobile and desktop view when opened
      *
      * @return https://(pod-domain.tld)/mobile/toggle
      */
@@ -184,7 +193,7 @@ public class DiasporaUrlHelper {
     }
 
     /**
-     * Return a https url that queries posts for the given hashtag query
+     * Return a url that queries posts for the given hashtag query
      *
      * @param query hashtag to be searched
      * @return https://(pod-domain.tld)/tags/query
@@ -194,7 +203,7 @@ public class DiasporaUrlHelper {
     }
 
     /**
-     * Return a https url that queries user accounts for query
+     * Return a url that queries user accounts for query
      *
      * @param query search term
      * @return https://(pod-domain.tld)/people.mobile?q=(query)
@@ -204,11 +213,48 @@ public class DiasporaUrlHelper {
     }
 
     /**
-     * Return a https url that points to the statistics page of the pod.
+     * Return a url that points to the statistics page of the pod.
+     *
      * @return https://(pod-domain.tld)/statistics
      */
     public String getStatisticsUrl() {
         return getPodUrl() + SUBURL_STATISTICS;
+    }
+
+    /**
+     * Return a url that points to the sign in page of the pod.
+     *
+     * @return https://(pod-domain.tld)/users/sign_in
+     */
+    public String getSignInUrl() {
+        return getPodUrl() + SUBURL_SIGN_IN;
+    }
+
+    /**
+     * Return a url that points to the personal settings page of the pod.
+     *
+     * @return https://(pod-domain.tld)/user/edit
+     */
+    public String getPersonalSettingsUrl() {
+        return getPodUrl() + SUBURL_PERSONAL_SETTINGS;
+    }
+
+    /**
+     * Return a url that points to the manage tags page of the pod.
+     *
+     * @return https://(pod-domain.tld)/tag_followings/manage
+     */
+    public String getManageTagsUrl() {
+        return getPodUrl() + SUBURL_MANAGE_TAGS;
+    }
+
+    /**
+     * Return a url that points to the manage tags page of the pod.
+     *
+     * @return https://(pod-domain.tld)/contacts
+     */
+    public String getManageContactsUrl() {
+        return getPodUrl() + SUBURL_MANAGE_CONTACTS;
     }
 
     /**

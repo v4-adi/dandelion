@@ -58,7 +58,7 @@ public class OpenExternalLinkReceiver extends BroadcastReceiver {
             String sUrl = receiveIntent.getStringExtra(MainActivity.EXTRA_URL);
             url = Uri.parse(sUrl);
         } catch (Exception _ignored) {
-           AppLog.v(this, "Could not open Chrome Custom Tab (bad URL)");
+            AppLog.v(this, "Could not open Chrome Custom Tab (bad URL)");
             return;
         }
 

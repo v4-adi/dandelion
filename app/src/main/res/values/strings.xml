@@ -34,6 +34,7 @@
     <string name="title_activity_pods">Select Pod</string>
     <string name="filter_hint">Enter pod domain</string>
     <string name="confirm_url">Confirm pod url</string>
+    <string name="search_for_pod">Search for Pod…</string>
     <string name="podlist_source_note">Note: The podlist is populated by secure pods listed on https://podupti.me. You can enter in the edit field any pod not listed.</string>
     <string name="valid_pod">Please enter a valid domain name</string>
     <string name="podlist_error">Error: Could not retrieve list of pods!</string>
@@ -103,4 +104,9 @@
         Diaspora. In the permissions section you can grant the \"write storage permission\".</string>
     <string name="permission_denied">Permission denied.</string>
     <string name="permission_granted_try_again">Permission granted. Please try again.</string>
+    <string name="podselection__custom_pod">Custom Pod</string>
+    <string name="pod_name">Pod name</string>
+    <string name="http_protocol">Protocol</string>
+    <string name="pod_address">Pod address</string>
+    <string name="missing_value">Missing value</string>
 </resources>

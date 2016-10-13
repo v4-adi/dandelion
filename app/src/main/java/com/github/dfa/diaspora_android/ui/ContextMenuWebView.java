@@ -217,7 +217,7 @@ public class ContextMenuWebView extends NestedWebView {
         }
     }
 
-    public void loadUrlNew(String url){
+    public void loadUrlNew(String url) {
         stopLoading();
         loadUrl(url);
     }
