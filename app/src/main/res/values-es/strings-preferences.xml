@@ -22,9 +22,9 @@
   <string name="pref_desc__load_images">Desactivar la carga de de imágenes a datos móviles seguros</string>
   <!-- Proxy -->
   <string name="pref_title__proxy_enabled">Activar Proxy</string>
-  <string name="pref_desc__proxy_enabled">El tráfico proxificado de Diaspora para evitar firewalls.\nPuede necesitar reiniciarse</string>
-  <string name="pref_title__proxy_host">Anfitrión</string>
-  <string name="pref_title__proxy_port">Puerto</string>
+  <string name="pref_desc__http_proxy_enabled">El tráfico proxificado de Diaspora para evitar firewalls.\nPuede necesitar reiniciarse</string>
+  <string name="pref_title__http_proxy_host">Anfitrión</string>
+  <string name="pref_title__http_proxy_port">Puerto</string>
   <!-- Chrome custom tabs -->
   <!-- Diaspora Settings -->
   <string name="pref_title__personal_settings">Configuración personal</string>

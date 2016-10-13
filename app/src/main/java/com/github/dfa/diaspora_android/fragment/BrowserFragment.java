@@ -1,9 +1,24 @@
+/*
+    This file is part of the Diaspora for Android.
+
+    Diaspora for Android is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Diaspora for Android is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with the Diaspora for Android.
+
+    If not, see <http://www.gnu.org/licenses/>.
+ */
 package com.github.dfa.diaspora_android.fragment;
 
 import android.Manifest;
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -11,23 +26,27 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.StrictMode;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.github.dfa.diaspora_android.App;
 import com.github.dfa.diaspora_android.R;
 import com.github.dfa.diaspora_android.activity.MainActivity;
 import com.github.dfa.diaspora_android.data.AppSettings;
+import com.github.dfa.diaspora_android.util.ProxyHandler;
 import com.github.dfa.diaspora_android.ui.ContextMenuWebView;
-import com.github.dfa.diaspora_android.ui.CustomWebViewClient;
+import com.github.dfa.diaspora_android.util.theming.ThemeHelper;
 import com.github.dfa.diaspora_android.util.AppLog;
+import com.github.dfa.diaspora_android.webview.CustomWebViewClient;
+import com.github.dfa.diaspora_android.webview.ProgressBarWebChromeClient;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -38,42 +57,73 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import info.guardianproject.netcipher.NetCipher;
-import info.guardianproject.netcipher.webkit.WebkitProxy;
-
 /**
- * Fragment that contains a WebView with a bunch of functionality
- * Created by vanitas on 21.09.16.
+ * Fragment with a webView and a ProgressBar.
+ * This Fragment retains its instance.
+ * Created by vanitas on 26.09.16.
  */
 
-public abstract class WebViewFragment extends CustomFragment {
+public class BrowserFragment extends ThemedFragment {
+    public static final String TAG = "com.github.dfa.diaspora_android.BrowserFragment";
 
-    protected WebSettings webSettings;
-    protected WebViewClient webViewClient;
+    protected View rootLayout;
     protected ContextMenuWebView webView;
     protected ProgressBar progressBar;
     protected AppSettings appSettings;
+    protected CustomWebViewClient webViewClient;
+    protected WebSettings webSettings;
 
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    protected String pendingUrl;
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        AppLog.d(this, "onCreateView()");
+        if(rootLayout == null) {
+            rootLayout = inflater.inflate(R.layout.browser__fragment, container, false);
+        }
+        return rootLayout;
     }
 
-    protected void setup(ContextMenuWebView webView, final ProgressBar progressBar, AppSettings appSettings) {
-        this.appSettings = appSettings;
-        this.webSettings = webView.getSettings();
-        this.webView = webView;
-        this.progressBar = progressBar;
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        AppLog.d(this, "onViewCreated()");
+        super.onViewCreated(view, savedInstanceState);
 
-        if (appSettings.isProxyEnabled()) {
-            if (!setProxy(appSettings.getProxyHost(), appSettings.getProxyPort())) {
-                AppLog.e(this, "Could not enable Proxy");
-                Toast.makeText(getContext(), R.string.toast_set_proxy_failed, Toast.LENGTH_SHORT).show();
-            }
-        } else if (appSettings.wasProxyEnabled()) {
-            resetProxy();
+        if(this.appSettings == null) {
+            this.appSettings = ((App) getActivity().getApplication()).getSettings();
         }
 
-        webSettings.setJavaScriptEnabled(true);
+        if(this.webView == null) {
+            this.webView = (ContextMenuWebView) view.findViewById(R.id.webView);
+            this.applyWebViewSettings();
+            ProxyHandler.getInstance().addWebView(webView);
+        }
+
+        if(this.progressBar == null) {
+            this.progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
+        }
+
+        if(pendingUrl != null) {
+            loadUrl(pendingUrl);
+            pendingUrl = null;
+        }
+
+        webView.setParentActivity(getActivity());
+
+        this.setRetainInstance(true);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+
+        if (getRetainInstance() && rootLayout.getParent() instanceof ViewGroup) {
+            ((ViewGroup) rootLayout.getParent()).removeView(rootLayout);
+        }
+    }
+
+    private void applyWebViewSettings() {
+        this.webSettings = webView.getSettings();
         webSettings.setAllowFileAccess(false);
         webSettings.setUseWideViewPort(true);
         webSettings.setLoadWithOverviewMode(true);
@@ -91,100 +141,18 @@ public abstract class WebViewFragment extends CustomFragment {
         //webView.setParentActivity(this);
         webView.setOverScrollMode(WebView.OVER_SCROLL_ALWAYS);
 
-        //Set proxy
-        if (appSettings.isProxyEnabled()) {
-            if (!setProxy(appSettings.getProxyHost(), appSettings.getProxyPort())) {
-                AppLog.d(this, "Could not enable Proxy");
-                Toast.makeText(getContext(), R.string.toast_set_proxy_failed, Toast.LENGTH_SHORT).show();
-            }
-        } else if (appSettings.wasProxyEnabled()) {
-            resetProxy();
-        }
-
-        /*
-         * WebViewClient
-         */
         this.webViewClient = new CustomWebViewClient((App) getActivity().getApplication(), webView);
         webView.setWebViewClient(webViewClient);
+        webView.setWebChromeClient(new ProgressBarWebChromeClient(webView, progressBar));
     }
 
-    /**
-     * Set proxy according to arguments. host must not be "" or null, port must be positive.
-     * Return true on success and update appSettings' proxy related values.
-     *
-     * @param host proxy host (eg. localhost or 127.0.0.1)
-     * @param port proxy port (eg. 8118)
-     * @return success
-     * @throws IllegalArgumentException if arguments do not fit specifications above
-     */
-    private boolean setProxy(final String host, final int port) {
-        AppLog.i(this, "StreamFragment.setProxy()");
-        if (host != null && !host.equals("") && port >= 0) {
-            AppLog.i(this, "Set proxy to "+host+":"+port);
-            //Temporary change thread policy
-            AppLog.v(this, "Set temporary ThreadPolicy");
-            StrictMode.ThreadPolicy old = StrictMode.getThreadPolicy();
-            StrictMode.ThreadPolicy tmp = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-            StrictMode.setThreadPolicy(tmp);
-
-            AppLog.v(this, "Apply NetCipher proxy settings");
-            NetCipher.setProxy(host, port); //Proxy for HttpsUrlConnections
-            try {
-                //Proxy for the webview
-                AppLog.v(this, "Apply Webkit proxy settings");
-                WebkitProxy.setProxy(MainActivity.class.getName(), getContext().getApplicationContext(), null, host, port);
-            } catch (Exception e) {
-                AppLog.e(this, "Could not apply WebKit proxy settings:\n"+e.toString());
-            }
-            AppLog.v(this, "Save changes in appSettings");
-            appSettings.setProxyEnabled(true);
-            appSettings.setProxyWasEnabled(true);
-
-            AppLog.v(this, "Reset old ThreadPolicy");
-            StrictMode.setThreadPolicy(old);
-            AppLog.i(this, "Success! Reload WebView");
-            webView.reload();
-            return true;
-        } else {
-            AppLog.e(this, "Invalid proxy configuration. Host: "+host+" Port: "+port+"\nRefuse to set proxy");
-            return false;
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(webView != null) {
+            webSettings.setMinimumFontSize(appSettings.getMinimumFontSize());
+            webSettings.setLoadsImagesAutomatically(appSettings.isLoadImages());
         }
-    }
-
-    private boolean setProxy() {
-        return setProxy(appSettings.getProxyHost(), appSettings.getProxyPort());
-    }
-
-    private void resetProxy() {
-        AppLog.i(this, "StreamFragment.resetProxy()");
-        AppLog.v(this, "write changes to appSettings");
-        appSettings.setProxyEnabled(false);
-        appSettings.setProxyWasEnabled(false);
-
-        //Temporary change thread policy
-        AppLog.v(this, "Set temporary ThreadPolicy");
-        StrictMode.ThreadPolicy old = StrictMode.getThreadPolicy();
-        StrictMode.ThreadPolicy tmp = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(tmp);
-
-        AppLog.v(this, "clear NetCipher proxy");
-        NetCipher.clearProxy();
-        try {
-            AppLog.v(this, "clear WebKit proxy");
-            WebkitProxy.resetProxy(MainActivity.class.getName(), getContext());
-        } catch (Exception e) {
-           AppLog.e(this, "Could not clear WebKit proxy:\n"+e.toString());
-        }
-        AppLog.v(this, "Reset old ThreadPolicy");
-        StrictMode.setThreadPolicy(old);
-
-        //Restart app
-        AppLog.i(this, "Success! Restart app due to proxy reset");
-        Intent restartActivity = new Intent(getContext(), MainActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 12374, restartActivity, PendingIntent.FLAG_CANCEL_CURRENT);
-        AlarmManager mgr = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
-        mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, pendingIntent);
-        System.exit(0);
     }
 
     @SuppressWarnings("ResultOfMethodCallIgnored")
@@ -270,6 +238,15 @@ public abstract class WebViewFragment extends CustomFragment {
     }
 
     @Override
+    public String getFragmentTag() {
+        return TAG;
+    }
+
+    @Override
+    public void onCreateBottomOptionsMenu(Menu menu, MenuInflater inflater) {
+        /* Nothing to do here */
+    }
+
     public boolean onBackPressed() {
         if(webView.canGoBack()) {
             webView.goBack();
@@ -279,20 +256,36 @@ public abstract class WebViewFragment extends CustomFragment {
     }
 
     public void loadUrl(String url) {
-        AppLog.v(this, "loadUrl("+url+")");
-        getWebView().loadUrlNew(url);
+        if(getWebView() != null) {
+            AppLog.v(this, "loadUrl(): load "+url);
+            getWebView().loadUrlNew(url);
+        } else {
+            AppLog.v(this, "loadUrl(): WebView null: Set pending url to "+url);
+            pendingUrl = url;
+        }
     }
 
     public String getUrl() {
-        return getWebView().getUrl();
+        if(getWebView() != null) {
+            return getWebView().getUrl();
+        } else {
+            return pendingUrl;
+        }
     }
 
     public void reloadUrl() {
         AppLog.v(this, "reloadUrl()");
-        getWebView().reload();
+        if(getWebView() != null) {
+            getWebView().reload();
+        }
     }
 
     public ContextMenuWebView getWebView() {
         return this.webView;
+    }
+
+    @Override
+    protected void applyColorToViews() {
+        ThemeHelper.updateProgressBarColor(progressBar);
     }
 }

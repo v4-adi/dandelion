@@ -31,9 +31,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -43,10 +44,14 @@ import android.widget.Toast;
 import com.github.dfa.diaspora_android.App;
 import com.github.dfa.diaspora_android.R;
 import com.github.dfa.diaspora_android.data.AppSettings;
+import com.github.dfa.diaspora_android.fragment.ThemedFragment;
 import com.github.dfa.diaspora_android.ui.HtmlTextView;
+import com.github.dfa.diaspora_android.ui.IntellihideToolbarActivityListener;
 import com.github.dfa.diaspora_android.util.AppLog;
+import com.github.dfa.diaspora_android.util.DiasporaUrlHelper;
 import com.github.dfa.diaspora_android.util.Helpers;
 import com.github.dfa.diaspora_android.util.Log;
+import com.github.dfa.diaspora_android.util.theming.ThemeHelper;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -57,16 +62,23 @@ import butterknife.ButterKnife;
 /**
  * Activity that holds some fragments that show information about the app in a tab layout
  */
-public class AboutActivity extends AppCompatActivity {
+public class AboutActivity extends ThemedActivity
+implements IntellihideToolbarActivityListener {
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
 
+    @BindView(R.id.about__appbar)
+    AppBarLayout appBarLayout;
+
     @BindView(R.id.main__topbar)
     protected Toolbar toolbar;
 
-    @BindView(R.id.linearlayout)
+    @BindView(R.id.appbar_linear_layout)
     protected LinearLayout linearLayout;
+
+    @BindView(R.id.tabs)
+    protected TabLayout tabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,23 +99,58 @@ public class AboutActivity extends AppCompatActivity {
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager = ButterKnife.findById(this, R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
+    }
 
-        //Apply intellihide
-        if (!((App) getApplication()).getSettings().isIntellihideToolbars()) {
-            AppBarLayout.LayoutParams params = (AppBarLayout.LayoutParams) linearLayout.getLayoutParams();
-            params.setScrollFlags(0);
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(getAppSettings().isIntellihideToolbars()) {
+            this.enableToolbarHiding();
+        } else {
+            this.disableToolbarHiding();
         }
+    }
+
+    @Override
+    protected void applyColorToViews() {
+        ThemeHelper.updateToolbarColor(toolbar);
+        ThemeHelper.updateTabLayoutColor(tabLayout);
+        ThemeHelper.setPrimaryColorAsBackground(linearLayout);
+    }
+
+    @Override
+    public void enableToolbarHiding() {
+        AppLog.d(this, "Enable Intellihide");
+        AppBarLayout.LayoutParams params = (AppBarLayout.LayoutParams) linearLayout.getLayoutParams();
+        //scroll|enterAlways|snap
+        params.setScrollFlags(toolbarDefaultScrollFlags);
+        appBarLayout.setExpanded(true, true);
+    }
+
+    @Override
+    public void disableToolbarHiding() {
+        AppLog.d(this, "Disable Intellihide");
+        AppBarLayout.LayoutParams params = (AppBarLayout.LayoutParams) linearLayout.getLayoutParams();
+        params.setScrollFlags(0);  // clear all scroll flags
+        appBarLayout.setExpanded(true, true);
     }
 
     /**
      * Fragment that shows general information about the app
      */
-    public static class AboutFragment extends Fragment {
+    public static class AboutFragment extends ThemedFragment {
+
+        public static final String TAG = "com.github.dfa.diaspora_android.AboutActivity.AboutFragment";
+
+        @BindView(R.id.fragment_about__about_text)
+        TextView aboutText;
+
+        @BindView(R.id.fragment_about__app_version)
+        TextView appVersion;
 
         public AboutFragment() {
         }
@@ -112,8 +159,7 @@ public class AboutActivity extends AppCompatActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.about__fragment_about, container, false);
-            TextView appVersion = (TextView) rootView.findViewById(R.id.fragment_about__app_version);
-
+            ButterKnife.bind(this, rootView);
             if (isAdded()) {
                 try {
                     PackageInfo pInfo = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0);
@@ -125,17 +171,41 @@ public class AboutActivity extends AppCompatActivity {
             }
             return rootView;
         }
+
+        @Override
+        protected void applyColorToViews() {
+            ThemeHelper.updateTextViewColor(aboutText);
+        }
+
+        @Override
+        public String getFragmentTag() {
+            return TAG;
+        }
+
+        @Override
+        public void onCreateBottomOptionsMenu(Menu menu, MenuInflater inflater) {
+            /* Nothing to do */
+        }
+
+        @Override
+        public boolean onBackPressed() {
+            return false;
+        }
     }
 
     /**
      * Fragment that shows information about the license of the app and used 3rd party libraries
      */
-    public static class LicenseFragment extends Fragment {
+    public static class LicenseFragment extends ThemedFragment {
+        public static final String TAG = "com.github.dfa.diaspora_android.AboutActivity.LicenseFragment";
+
         @BindView(R.id.fragment_license__licensetext)
         HtmlTextView textLicenseBox;
 
         @BindView(R.id.fragment_license__3rdparty)
         HtmlTextView textLicense3partyBox;
+
+        private String accentColor;
 
 
         public LicenseFragment() {
@@ -146,7 +216,7 @@ public class AboutActivity extends AppCompatActivity {
             View rootView = inflater.inflate(R.layout.about__fragment_license, container, false);
             ButterKnife.bind(this, rootView);
             final Context context = rootView.getContext();
-            accentColor = Helpers.hexColorFromRessourceColor(context, R.color.colorAccent);
+            accentColor = Helpers.colorToHex(ThemeHelper.getAccentColor());
 
             textLicenseBox.setTextFormatted(getString(R.string.fragment_license__license_content,
                     getMaintainersHtml(context),
@@ -159,8 +229,6 @@ public class AboutActivity extends AppCompatActivity {
             );
             return rootView;
         }
-
-        private String accentColor;
 
         public String getContributorsHtml(Context context) {
             String text = Helpers.readTextfileFromRawRessource(context, R.raw.contributors,
@@ -187,13 +255,52 @@ public class AboutActivity extends AppCompatActivity {
             text = text.replace("NEWENTRY", "<font color='" + accentColor + "'><b>*</b></font> ");
             return text;
         }
+
+        @Override
+        protected void applyColorToViews() {
+            ThemeHelper.updateTextViewColor(textLicense3partyBox);
+            ThemeHelper.updateTextViewColor(textLicenseBox);
+        }
+
+        @Override
+        public String getFragmentTag() {
+            return TAG;
+        }
+
+        @Override
+        public void onCreateBottomOptionsMenu(Menu menu, MenuInflater inflater) {
+            /* Nothing to do */
+        }
+
+        @Override
+        public boolean onBackPressed() {
+            return false;
+        }
     }
 
     /**
      * Fragment that shows debug information like app version, pod version...
      */
     public static class DebugFragment extends Fragment implements Observer {
-        private TextView logBox;
+        public static final String TAG = "com.github.dfa.diaspora_android.AboutActivity.DebugFragment";
+
+        @BindView(R.id.fragment_debug__package_name)
+        TextView packageName;
+
+        @BindView(R.id.fragment_debug__app_version)
+        TextView appVersion;
+
+        @BindView(R.id.fragment_debug__android_version)
+        TextView osVersion;
+
+        @BindView(R.id.fragment_debug__device_name)
+        TextView deviceName;
+
+        @BindView(R.id.fragment_debug__pod_domain)
+        TextView podDomain;
+
+        @BindView(R.id.fragment_debug__log_box)
+        TextView logBox;
 
         public DebugFragment() {
         }
@@ -202,16 +309,10 @@ public class AboutActivity extends AppCompatActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.about__fragment_debug, container, false);
-            TextView packageName = (TextView) rootView.findViewById(R.id.fragment_debug__package_name);
-            TextView appVersion = (TextView) rootView.findViewById(R.id.fragment_debug__app_version);
-            TextView osVersion = (TextView) rootView.findViewById(R.id.fragment_debug__android_version);
-            TextView deviceName = (TextView) rootView.findViewById(R.id.fragment_debug__device_name);
-            TextView podDomain = (TextView) rootView.findViewById(R.id.fragment_debug__pod_domain);
-            logBox = (TextView) rootView.findViewById(R.id.fragment_debug__log_box);
+            ButterKnife.bind(this, rootView);
             logBox.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View view) {
-                    AppLog.d(this, "Long click registered");
                     if (isAdded()) {
                         ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(CLIPBOARD_SERVICE);
                         ClipData clip = ClipData.newPlainText("DEBUG_LOG", Log.getLogBuffer());
@@ -229,14 +330,14 @@ public class AboutActivity extends AppCompatActivity {
             if (isAdded()) {
                 try {
                     PackageInfo pInfo = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0);
-                    AppSettings settings = ((App) getActivity().getApplication()).getSettings();
-
+                    AppSettings appSettings = ((App) getActivity().getApplication()).getSettings();
+                    DiasporaUrlHelper urls = new DiasporaUrlHelper(appSettings);
                     packageName.setText(pInfo.packageName);
                     appVersion.setText(getString(R.string.fragment_debug__app_version, pInfo.versionName + " (" + pInfo.versionCode + ")"));
 
                     osVersion.setText(getString(R.string.fragment_debug__android_version, Build.VERSION.RELEASE));
                     deviceName.setText(getString(R.string.fragment_debug__device_name, Build.MANUFACTURER + " " + Build.MODEL));
-                    podDomain.setText(getString(R.string.fragment_debug__pod_domain, settings.getPodDomain()));
+                    podDomain.setText(getString(R.string.fragment_debug__pod_domain, urls.getPodUrl()));
 
                 } catch (PackageManager.NameNotFoundException e) {
                     e.printStackTrace();

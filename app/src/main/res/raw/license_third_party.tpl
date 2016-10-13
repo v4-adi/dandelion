@@ -4,6 +4,9 @@ https://github.com/guardianproject/NetCipher
 NEWENTRY ButterKnife
 https://jakewharton.github.io/butterknife
 
+NEWENTRY ShiftColorPicker
+https://github.com/DASAR/ShiftColorPicker
+
 NEWENTRY Android Support Library
 https://developer.android.com/topic/libraries/support-library/index.html
 
