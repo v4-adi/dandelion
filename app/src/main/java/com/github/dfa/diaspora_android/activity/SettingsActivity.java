@@ -142,11 +142,13 @@ public class SettingsActivity extends ThemedActivity implements IntellihideToolb
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
             updatePreference(findPreference(key));
-            if (key.equals(getString(R.string.pref_key__intellihide_toolbars))) {
-                if (sharedPreferences.getBoolean(getString(R.string.pref_key__intellihide_toolbars), false)) {
-                    ((SettingsActivity) getActivity()).enableToolbarHiding();
-                } else {
-                    ((SettingsActivity) getActivity()).disableToolbarHiding();
+            if(isAdded()) {
+                if (key.equals(getString(R.string.pref_key__intellihide_toolbars))) {
+                    if (sharedPreferences.getBoolean(getString(R.string.pref_key__intellihide_toolbars), false)) {
+                        ((SettingsActivity) getActivity()).enableToolbarHiding();
+                    } else {
+                        ((SettingsActivity) getActivity()).disableToolbarHiding();
+                    }
                 }
             }
         }
