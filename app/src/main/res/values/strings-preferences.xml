@@ -15,7 +15,7 @@
     <string name="pref_key__load_images" translatable="false">pref_key_load_images</string>
     <string name="pref_key__clear_cache" translatable="false">pref_key_clear_cache</string>
     <string name="pref_key__chrome_custom_tabs_enabled" translatable="false">pref_key__chrome_custom_tabs_enabled</string>
-    <string name="pref_key__http_proxy_load_tor_preset">pref_key__http_proxy_load_tor_preset</string>
+    <string name="pref_key__http_proxy_load_tor_preset" translatable="false">pref_key__http_proxy_load_tor_preset</string>
 
     <!-- Themes -->
     <string name="pref_key__primary_color__preference_click" translatable="false">pref_key_primary_color</string>
