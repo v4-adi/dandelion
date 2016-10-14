@@ -620,9 +620,70 @@ public class MainActivity extends ThemedActivity
     public boolean onOptionsItemSelected(MenuItem item) {
         AppLog.i(this, "onOptionsItemSelected()");
         switch (item.getItemId()) {
-            case R.id.action_notifications: {
+            case R.id.action_notifications_all: {
                 if (WebHelper.isOnline(MainActivity.this)) {
                     openDiasporaUrl(urls.getNotificationsUrl());
+                    return true;
+                } else {
+                    snackbarNoInternet.show();
+                    return false;
+                }
+            }
+
+
+            case R.id.action_notifications_also_commented: {
+                if (WebHelper.isOnline(MainActivity.this)) {
+                    openDiasporaUrl(urls.getSuburlNotificationsAlsoCommentedUrl());
+                    return true;
+                } else {
+                    snackbarNoInternet.show();
+                    return false;
+                }
+            }
+
+            case R.id.action_notifications_comment_on_post: {
+                if (WebHelper.isOnline(MainActivity.this)) {
+                    openDiasporaUrl(urls.getSuburlNotificationsCommentOnPostUrl());
+                    return true;
+                } else {
+                    snackbarNoInternet.show();
+                    return false;
+                }
+            }
+
+            case R.id.action_notifications_liked: {
+                if (WebHelper.isOnline(MainActivity.this)) {
+                    openDiasporaUrl(urls.getSuburlNotificationsLikedUrl());
+                    return true;
+                } else {
+                    snackbarNoInternet.show();
+                    return false;
+                }
+            }
+
+            case R.id.action_notifications_mentioned: {
+                if (WebHelper.isOnline(MainActivity.this)) {
+                    openDiasporaUrl(urls.getSuburlNotificationsMentionedUrl());
+                    return true;
+                } else {
+                    snackbarNoInternet.show();
+                    return false;
+                }
+            }
+
+            case R.id.action_notifications_reshared: {
+                if (WebHelper.isOnline(MainActivity.this)) {
+                    openDiasporaUrl(urls.getSuburlNotificationsResharedUrl());
+                    return true;
+                } else {
+                    snackbarNoInternet.show();
+                    return false;
+                }
+            }
+
+            case R.id.action_notifications_started_sharing: {
+                if (WebHelper.isOnline(MainActivity.this)) {
+                    openDiasporaUrl(urls.getSuburlNotificationsStartedSharingUrl());
                     return true;
                 } else {
                     snackbarNoInternet.show();
