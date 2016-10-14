@@ -288,7 +288,7 @@ public class AppSettings {
     }
 
     public boolean isIntellihideToolbars() {
-        return getBoolean(prefApp, R.string.pref_key__intellihide_toolbars, false);
+        return getBoolean(prefApp, R.string.pref_key__intellihide_toolbars, true);
     }
 
     public boolean isChromeCustomTabsEnabled() {
