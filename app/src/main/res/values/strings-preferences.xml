@@ -16,6 +16,7 @@
     <string name="pref_key__clear_cache" translatable="false">pref_key_clear_cache</string>
     <string name="pref_key__chrome_custom_tabs_enabled" translatable="false">pref_key__chrome_custom_tabs_enabled</string>
     <string name="pref_key__http_proxy_load_tor_preset" translatable="false">pref_key__http_proxy_load_tor_preset</string>
+    <string name="pref_key__extended_notifications" translatable="false">pref_key__extended_notifications</string>
 
     <!-- Themes -->
     <string name="pref_key__primary_color__preference_click" translatable="false">pref_key_primary_color</string>
@@ -77,6 +78,10 @@
     <string name="pref_desc__primary_color">Color of the toolbars</string>
     <string name="pref_title__accent_color">Accent Color</string>
     <string name="pref_desc__accent_color">Color of the progressbar</string>
+
+    <!-- Notifications dropdown -->
+    <string name="pref_title__extended_notifications">Extended Notifications</string>
+    <string name="pref_desc__extended_notifications">Extend the notifications bell with a dropdown menu that shows notification categories</string>
 
     <!-- Font size -->
     <string name="pref_title__font_size">Font size</string>

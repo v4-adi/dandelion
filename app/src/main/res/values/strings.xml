@@ -29,6 +29,15 @@
     <string name="public_">Public</string>
     <string name="search">Search</string>
 
+    <!-- Notifications dropdown menu -->
+    <string name="notifications__all">All Notifications</string>
+    <string name="notifications__also_commented">Also Commented</string>
+    <string name="notifications__comment_on_post">Comment on Post</string>
+    <string name="notifications__liked">Liked</string>
+    <string name="notifications__mentioned">Mentioned</string>
+    <string name="notifications__reshared">Reshared</string>
+    <string name="notifications__started_sharing">Started Sharing</string>
+
 
     <!-- Pod Activity -->
     <string name="title_activity_pods">Select Pod</string>

@@ -546,6 +546,7 @@ public class MainActivity extends ThemedActivity
         AppLog.v(this, "Register BroadcastReceivers");
         LocalBroadcastManager.getInstance(this).registerReceiver(brSetTitle, new IntentFilter(ACTION_UPDATE_TITLE_FROM_URL));
         LocalBroadcastManager.getInstance(this).registerReceiver(brOpenExternalLink, new IntentFilter(ACTION_OPEN_EXTERNAL_URL));
+        invalidateOptionsMenu();
         this.appSettings = getAppSettings();
         if (appSettings.isIntellihideToolbars()) {
             this.enableToolbarHiding();
@@ -572,16 +573,15 @@ public class MainActivity extends ThemedActivity
 
         CustomFragment top = getTopFragment();
         if (top != null) {
-            //Are we displaying a Fragment other than PodSelectionFragment?
-            if (!top.getFragmentTag().equals(PodSelectionFragment.TAG)) {
-                getMenuInflater().inflate(R.menu.main__menu_top, menu);
+            //PodSelectionFragment?
+            if (top.getFragmentTag().equals(PodSelectionFragment.TAG)) {
+                ///Hide bottom toolbar
+                toolbarBottom.setVisibility(View.GONE);
+            } else {
+                getMenuInflater().inflate(appSettings.isExtendedNotificationsActivated() ?
+                        R.menu.main__menu_top__notifications_dropdown : R.menu.main__menu_top, menu);
                 getMenuInflater().inflate(R.menu.main__menu_bottom, toolbarBottom.getMenu());
                 top.onCreateBottomOptionsMenu(toolbarBottom.getMenu(), getMenuInflater());
-            }
-            //PodSelectionFragment
-            else {
-                //Hide bottom toolbar
-                toolbarBottom.setVisibility(View.GONE);
             }
         }
         return true;
@@ -620,6 +620,12 @@ public class MainActivity extends ThemedActivity
     public boolean onOptionsItemSelected(MenuItem item) {
         AppLog.i(this, "onOptionsItemSelected()");
         switch (item.getItemId()) {
+            case R.id.action_notifications: {
+                if(appSettings.isExtendedNotificationsActivated()) {
+                    return true;
+                }
+                //Otherwise we execute the action of action_notifications_all
+            }
             case R.id.action_notifications_all: {
                 if (WebHelper.isOnline(MainActivity.this)) {
                     openDiasporaUrl(urls.getNotificationsUrl());

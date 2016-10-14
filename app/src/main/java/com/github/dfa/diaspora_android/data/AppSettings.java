@@ -374,4 +374,8 @@ public class AppSettings {
     public int getAccentColor() {
         return getInt(prefApp, R.string.pref_key__accent_color_shade, context.getResources().getColor(R.color.accent));
     }
+
+    public boolean isExtendedNotificationsActivated() {
+        return getBoolean(prefApp, R.string.pref_key__extended_notifications, false);
+    }
 }
