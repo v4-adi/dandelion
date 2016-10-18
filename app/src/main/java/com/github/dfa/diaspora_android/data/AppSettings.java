@@ -271,12 +271,7 @@ public class AppSettings {
      * @return proxy port
      */
     public int getProxyPort() {
-        try {
-            return Integer.parseInt(getString(prefApp, R.string.pref_key__http_proxy_port, "0"));
-        } catch (Exception e) {
-            setString(prefApp, R.string.pref_key__http_proxy_port, "0");
-            return 0;
-        }
+        return getInt(prefApp, R.string.pref_key__http_proxy_port, 0);
     }
 
     public void setProxyHttpPort(int value) {
