@@ -19,9 +19,14 @@
  */
 package com.github.dfa.diaspora_android.util.theming;
 
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.support.design.widget.TabLayout;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.CompoundButtonCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.ActionMenuView;
 import android.support.v7.widget.Toolbar;
@@ -29,8 +34,11 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.github.dfa.diaspora_android.R;
 import com.github.dfa.diaspora_android.data.AppSettings;
 
 /**
@@ -62,12 +70,17 @@ public class ThemeHelper {
     public static void updateEditTextColor(EditText editText) {
         if (editText != null) {
             editText.setHighlightColor(getInstance().appSettings.getAccentColor());
+            if(Build.VERSION.SDK_INT >= 21) {
+                editText.getBackground().mutate().setColorFilter(getAccentColor(), PorterDuff.Mode.SRC_ATOP);
+            }
         }
     }
 
     public static void updateCheckBoxColor(CheckBox checkBox) {
         if (checkBox != null) {
-            checkBox.setHighlightColor(getInstance().appSettings.getAccentColor());
+            int states[][] = {{android.R.attr.state_checked}, {}};
+            int colors[] = {ThemeHelper.getAccentColor(), getNeutralGreyColor()};
+            CompoundButtonCompat.setButtonTintList(checkBox, new ColorStateList(states, colors));
         }
     }
 
@@ -125,5 +138,21 @@ public class ThemeHelper {
         if (progressBar != null && progressBar.getProgressDrawable() != null) {
             progressBar.getProgressDrawable().setColorFilter(getAccentColor(), PorterDuff.Mode.SRC_IN);
         }
+    }
+
+    public static void updateRadioGroupColor(RadioGroup radioGroup) {
+        if(radioGroup != null && Build.VERSION.SDK_INT >= 21) {
+            for (int i = 0; i < radioGroup.getChildCount(); ++i) {
+                RadioButton btn = ((RadioButton) radioGroup.getChildAt(i));
+                btn.setButtonTintList(new ColorStateList(
+                        new int[][]{ new int[]{-android.R.attr.state_enabled}, new int[]{android.R.attr.state_enabled} },
+                        new int[] { Color.BLACK ,ThemeHelper.getAccentColor() }));
+                btn.invalidate();
+            }
+        }
+    }
+
+    public static int getNeutralGreyColor() {
+        return ContextCompat.getColor(getInstance().appSettings.getApplicationContext(), R.color.md_grey_800);
     }
 }
