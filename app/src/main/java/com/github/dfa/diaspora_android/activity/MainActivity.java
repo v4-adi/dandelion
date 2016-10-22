@@ -60,6 +60,7 @@ import android.widget.Toast;
 import com.github.dfa.diaspora_android.App;
 import com.github.dfa.diaspora_android.R;
 import com.github.dfa.diaspora_android.data.AppSettings;
+import com.github.dfa.diaspora_android.data.DiasporaPodList;
 import com.github.dfa.diaspora_android.data.PodUserProfile;
 import com.github.dfa.diaspora_android.fragment.BrowserFragment;
 import com.github.dfa.diaspora_android.fragment.CustomFragment;
@@ -71,6 +72,7 @@ import com.github.dfa.diaspora_android.receiver.OpenExternalLinkReceiver;
 import com.github.dfa.diaspora_android.receiver.UpdateTitleReceiver;
 import com.github.dfa.diaspora_android.ui.BadgeDrawable;
 import com.github.dfa.diaspora_android.ui.IntellihideToolbarActivityListener;
+import com.github.dfa.diaspora_android.ui.PodSelectionDialog;
 import com.github.dfa.diaspora_android.util.AppLog;
 import com.github.dfa.diaspora_android.util.CustomTabHelpers.CustomTabActivityHelper;
 import com.github.dfa.diaspora_android.util.DiasporaUrlHelper;
@@ -85,7 +87,8 @@ public class MainActivity extends ThemedActivity
         implements NavigationView.OnNavigationItemSelectedListener,
         WebUserProfileChangedListener,
         CustomTabActivityHelper.ConnectionCallback,
-        IntellihideToolbarActivityListener {
+        IntellihideToolbarActivityListener,
+        PodSelectionDialog.PodSelectionDialogResultListener{
 
 
     public static final int REQUEST_CODE_ASK_PERMISSIONS = 123;
@@ -370,6 +373,11 @@ public class MainActivity extends ThemedActivity
 
     protected void updateNavigationViewEntryVisibilities() {
         Menu navMenu = navView.getMenu();
+
+        // Initially show all items visible when logged in
+        navMenu.setGroupVisible(navMenu.findItem(R.id.nav_exit).getGroupId(), true);
+
+        // Hide by app settings
         navMenu.findItem(R.id.nav_exit).setVisible(appSettings.isVisibleInNavExit());
         navMenu.findItem(R.id.nav_activities).setVisible(appSettings.isVisibleInNavActivities());
         navMenu.findItem(R.id.nav_aspects).setVisible(appSettings.isVisibleInNavAspects());
@@ -380,8 +388,10 @@ public class MainActivity extends ThemedActivity
         navMenu.findItem(R.id.nav_mentions).setVisible(appSettings.isVisibleInNavMentions());
         navMenu.findItem(R.id.nav_profile).setVisible(appSettings.isVisibleInNavProfile());
         navMenu.findItem(R.id.nav_public).setVisible(appSettings.isVisibleInNavPublic_activities());
+        navMenu.findItem(R.id.nav_stream).setVisible(true);
 
-        // Top bar
+
+        // Hide whole group (for logged in use) if no pod was selected
         if (!appSettings.hasPod()) {
             navMenu.setGroupVisible(navMenu.findItem(R.id.nav_exit).getGroupId(), false);
         }
@@ -918,6 +928,14 @@ public class MainActivity extends ThemedActivity
         if (customTabsSession == null) {
             AppLog.i(this, "CustomTabs warmup: " + customTabActivityHelper.warmup(0));
             customTabsSession = customTabActivityHelper.getSession();
+        }
+    }
+
+    @Override
+    public void onPodSelectionDialogResult(DiasporaPodList.DiasporaPod pod, boolean accepted) {
+        if(accepted) {
+            invalidateOptionsMenu();
+            navheaderDescription.setText(pod.getName());
         }
     }
 
