@@ -19,10 +19,10 @@
     <string name="pref_key__extended_notifications" translatable="false">pref_key__extended_notifications</string>
 
     <!-- Themes -->
-    <string name="pref_key__primary_color__preference_click" translatable="false">pref_key_primary_color</string>
+    <string name="pref_key__primary_color__preference_click" translatable="false">@string/pref_key__primary_color_shade</string>
     <string name="pref_key__primary_color_base" translatable="false">pref_key_primary_color_base</string>
     <string name="pref_key__primary_color_shade" translatable="false">pref_key_primary_color_shade</string>
-    <string name="pref_key__accent_color__preference_click" translatable="false">pref_key_accent_color</string>
+    <string name="pref_key__accent_color__preference_click" translatable="false">@string/pref_key__accent_color_shade</string>
     <string name="pref_key__accent_color_base" translatable="false">pref_key_accent_color_base</string>
     <string name="pref_key__accent_color_shade" translatable="false">pref_key_accent_color_shade</string>
 
@@ -151,4 +151,18 @@
 
 
     <!-- Recently added - Please move to right section-->
+    <!-- Sorry -->
+    <string name="pref_key__title__appearance" translatable="false">pref_key__title__appearance</string>
+    <string name="pref_key__title__pod_settings" translatable="false">pref_key__title__pod_settings</string>
+    <string name="pref_key__title__network" translatable="false">pref_key__title__network</string>
+    <string name="pref_key__title__more" translatable="false">pref_key__title__more</string>
+    <string name="pref_key__title__debugging" translatable="false">pref_key__title__debugging</string>
+    <string name="pref_key__title__visibility_nav" translatable="false">pref_key__title__visibility_nav</string>
+    <string name="pref_key__title__proxy" translatable="false">pref_key__title__proxy</string>
+    <string name="pref_key__title__themes" translatable="false">pref_key__title__themes</string>
+
+    <string name="pref_key__cat_themes" translatable="false">pref_key__cat_themes</string>
+    <string name="pref_key__cat_nav_slider" translatable="false">pref_key__cat_nav_slider</string>
+    <string name="pref_key__cat_proxy" translatable="false">pref_key__cat_proxy</string>
+    <string name="pref_key__cat_debugging" translatable="false">pref_key__cat_debugging</string>
 </resources>

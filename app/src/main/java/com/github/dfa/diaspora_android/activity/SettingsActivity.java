@@ -1,21 +1,8 @@
-/*
-    This file is part of the Diaspora for Android.
-    Diaspora for Android is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-    Diaspora for Android is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-    You should have received a copy of the GNU General Public License
-    along with the Diaspora for Android.
-    If not, see <http://www.gnu.org/licenses/>.
- */
 package com.github.dfa.diaspora_android.activity;
 
 import android.app.AlarmManager;
 import android.app.AlertDialog;
+import android.app.FragmentTransaction;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -23,24 +10,20 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.EditTextPreference;
-import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceScreen;
 import android.support.design.widget.AppBarLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.github.dfa.diaspora_android.App;
 import com.github.dfa.diaspora_android.R;
 import com.github.dfa.diaspora_android.data.AppSettings;
-import com.github.dfa.diaspora_android.ui.IntellihideToolbarActivityListener;
+import com.github.dfa.diaspora_android.fragment.ThemedPreferenceFragment;
 import com.github.dfa.diaspora_android.util.AppLog;
 import com.github.dfa.diaspora_android.util.DiasporaUrlHelper;
 import com.github.dfa.diaspora_android.util.ProxyHandler;
@@ -53,9 +36,13 @@ import uz.shift.colorpicker.LineColorPicker;
 import uz.shift.colorpicker.OnColorChangedListener;
 
 /**
- * @author vanitas
+ * SettingsActivity
+ * Created by vanitas on 24.10.16.
  */
-public class SettingsActivity extends ThemedActivity implements IntellihideToolbarActivityListener {
+
+public class SettingsActivity extends ThemedActivity {
+
+    //Toolbar
     @BindView(R.id.settings__appbar)
     protected AppBarLayout appBarLayout;
 
@@ -64,13 +51,13 @@ public class SettingsActivity extends ThemedActivity implements IntellihideToolb
 
     private ProxyHandler.ProxySettings oldProxySettings;
 
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onCreate(Bundle b) {
+        super.onCreate(b);
         setContentView(R.layout.settings__activity);
         ButterKnife.bind(this);
+        toolbar.setTitle(R.string.settings);
         setSupportActionBar(toolbar);
+
         toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_arrow_back_white_24px));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,139 +65,131 @@ public class SettingsActivity extends ThemedActivity implements IntellihideToolb
                 SettingsActivity.this.onBackPressed();
             }
         });
+
         oldProxySettings = getAppSettings().getProxySettings();
-        getFragmentManager().beginTransaction().replace(R.id.settings__fragment_container, new SettingsFragment()).commit();
+        showFragment(SettingsFragmentMaster.TAG, false);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem menuItem) {
-        switch (menuItem.getItemId()) {
-            case android.R.id.home:
-                onBackPressed();
-                return true;
-            default:
-                return super.onOptionsItemSelected(menuItem);
+    protected void showFragment(String tag, boolean addToBackStack) {
+        PreferenceFragment fragment = (PreferenceFragment) getFragmentManager().findFragmentByTag(tag);
+        if(fragment == null) {
+            switch (tag) {
+                case SettingsFragmentThemes.TAG:
+                    fragment = new SettingsFragmentThemes();
+                    break;
+                case SettingsFragmentNavSlider.TAG:
+                    fragment = new SettingsFragmentNavSlider();
+                    break;
+                case SettingsFragmentProxy.TAG:
+                    fragment = new SettingsFragmentProxy();
+                    break;
+                case SettingsFragmentDebugging.TAG:
+                    fragment = new SettingsFragmentDebugging();
+                    break;
+                case SettingsFragmentMaster.TAG:
+                default:
+                    fragment = new SettingsFragmentMaster();
+                    break;
+            }
         }
+        FragmentTransaction t = getFragmentManager().beginTransaction();
+        if(addToBackStack) {
+            t.addToBackStack(tag);
+        }
+        t.replace(R.id.settings__fragment_container, fragment, tag).commit();
     }
 
     @Override
-    protected void applyColorToViews() {
+    public void applyColorToViews() {
+        //Toolbar
         ThemeHelper.updateToolbarColor(toolbar);
     }
 
     @Override
-    public void enableToolbarHiding() {
-        AppLog.d(this, "Enable Intellihide");
-        AppBarLayout.LayoutParams params = (AppBarLayout.LayoutParams) toolbar.getLayoutParams();
-        //scroll|enterAlways|snap
-        params.setScrollFlags(toolbarDefaultScrollFlags);
-        appBarLayout.setExpanded(true, true);
+    protected void onStop() {
+        ProxyHandler.ProxySettings newProxySettings = getAppSettings().getProxySettings();
+        if (!oldProxySettings.equals(newProxySettings)) {
+            AppLog.d(this, "ProxySettings changed.");
+            //Proxy on-off? => Restart app
+            if (oldProxySettings.isEnabled() && !newProxySettings.isEnabled()) {
+                AppLog.d(this, "Proxy deactivated. Restarting app...");
+                Intent restartActivity = new Intent(SettingsActivity.this, MainActivity.class);
+                PendingIntent pendingIntent = PendingIntent.getActivity(SettingsActivity.this, 12374, restartActivity, PendingIntent.FLAG_CANCEL_CURRENT);
+                AlarmManager mgr = (AlarmManager) SettingsActivity.this.getSystemService(Context.ALARM_SERVICE);
+                mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, pendingIntent);
+                System.exit(0);
+            } //Proxy changed? => Update
+            else {
+                ProxyHandler.getInstance().updateProxySettings(this);
+            }
+        }
+        super.onStop();
     }
 
-    @Override
-    public void disableToolbarHiding() {
-        AppLog.d(this, "Disable Intellihide");
-        AppBarLayout.LayoutParams params = (AppBarLayout.LayoutParams) toolbar.getLayoutParams();
-        params.setScrollFlags(0);  // clear all scroll flags
-        appBarLayout.setExpanded(true, true);
-    }
-
-    public static class SettingsFragment extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
-        private SharedPreferences sharedPreferences;
+    public static class SettingsFragmentMaster extends ThemedPreferenceFragment {
+        public static final String TAG = "com.github.dfa.diaspora_android.settings.SettingsFragmentMaster";
 
         public void onCreate(Bundle savedInstances) {
             super.onCreate(savedInstances);
             getPreferenceManager().setSharedPreferencesName("app");
-            addPreferencesFromResource(R.xml.preferences);
-            sharedPreferences = getPreferenceScreen().getSharedPreferences();
-            sharedPreferences.registerOnSharedPreferenceChangeListener(this);
-            setPreferenceSummaries();
-            sharedPreferences.edit().putBoolean(getString(R.string.pref_key__proxy_was_enabled),
-                    sharedPreferences.getBoolean(getString(R.string.pref_key__http_proxy_enabled), false)).apply();
-        }
-
-        private void setPreferenceSummaries() {
-            String[] editTextKeys = new String[]{
-                    getString(R.string.pref_key__http_proxy_host), getString(R.string.pref_key__http_proxy_port)
-            };
-            for (String key : editTextKeys) {
-                EditTextPreference p = (EditTextPreference) findPreference(key);
-                p.setSummary(p.getText());
-            }
+            addPreferencesFromResource(R.xml.preferences__master);
         }
 
         @Override
-        public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-            updatePreference(findPreference(key));
-            if(isAdded()) {
-                if (key.equals(getString(R.string.pref_key__intellihide_toolbars))) {
-                    if (sharedPreferences.getBoolean(getString(R.string.pref_key__intellihide_toolbars), false)) {
-                        ((SettingsActivity) getActivity()).enableToolbarHiding();
-                    } else {
-                        ((SettingsActivity) getActivity()).disableToolbarHiding();
-                    }
-                }
-            }
-        }
+        public void updateViewColors() {
 
-        private void updatePreference(Preference preference) {
-            if (preference == null) {
-                return;
-            }
-            if (preference instanceof EditTextPreference) {
-                EditTextPreference textPref = (EditTextPreference) preference;
-                textPref.setSummary(textPref.getText());
-                return;
-            }
-            if (preference instanceof ListPreference) {
-                ListPreference listPref = (ListPreference) preference;
-                listPref.setSummary(listPref.getEntry());
-            }
         }
 
         @Override
         public boolean onPreferenceTreeClick(PreferenceScreen screen, Preference preference) {
-            App app = ((App) getActivity().getApplication());
-            AppSettings appSettings = app.getSettings();
-            if (Build.VERSION.SDK_INT >= 21) {
-                if (preference instanceof PreferenceScreen && ((PreferenceScreen) preference).getDialog() != null) {
-                    Window window = ((PreferenceScreen) preference).getDialog().getWindow();
-                    if (window != null) {
-                        window.setStatusBarColor(ThemeHelper.getPrimaryDarkColor());
-                    }
+            if(isAdded() && preference.hasKey()) {
+                DiasporaUrlHelper diasporaUrlHelper = new DiasporaUrlHelper(((App)getActivity().getApplication()).getSettings());
+                String key = preference.getKey();
+                /** Sub-Categories */
+                if(key.equals(getString(R.string.pref_key__cat_themes))) {
+                    ((SettingsActivity) getActivity()).showFragment(SettingsFragmentThemes.TAG, true);
+                    return true;
+                } else if (key.equals(getString(R.string.pref_key__cat_nav_slider))) {
+                    ((SettingsActivity) getActivity()).showFragment(SettingsFragmentNavSlider.TAG, true);
+                    return true;
+                } else if (key.equals(getString(R.string.pref_key__cat_proxy))) {
+                    ((SettingsActivity)getActivity()).showFragment(SettingsFragmentProxy.TAG, true);
+                    return true;
+                } else if (key.equals(getString(R.string.pref_key__cat_debugging))) {
+                    ((SettingsActivity)getActivity()).showFragment(SettingsFragmentDebugging.TAG, true);
+                    return true;
                 }
-            }
-
-            Intent intent = new Intent(getActivity(), MainActivity.class);
-            DiasporaUrlHelper diasporaUrlHelper = new DiasporaUrlHelper(app.getSettings());
-
-            switch (preference.getTitleRes()) {
-                case R.string.pref_title__primary_color: {
-                    showColorPickerDialog(1);
-                    intent = null;
-                    break;
+                /** Network */
+                else if (key.equals(getString(R.string.pref_key__clear_cache))) {
+                    Intent intent = new Intent(getActivity(), MainActivity.class);
+                    intent.setAction(MainActivity.ACTION_CLEAR_CACHE);
+                    startActivity(intent);
+                    getActivity().finish();
+                    return true;
                 }
-                case R.string.pref_title__accent_color: {
-                    showColorPickerDialog(2);
-                    intent = null;
-                    break;
-                }
-                case R.string.pref_title__personal_settings: {
+                /** Pod Settings */
+                if (key.equals(getString(R.string.pref_key__personal_settings))) {
+                    Intent intent = new Intent(getActivity(), MainActivity.class);
                     intent.setAction(MainActivity.ACTION_OPEN_URL);
                     intent.putExtra(MainActivity.URL_MESSAGE, diasporaUrlHelper.getPersonalSettingsUrl());
-                    break;
-                }
-                case R.string.pref_title__manage_tags: {
+                    startActivity(intent);
+                    getActivity().finish();
+                    return true;
+                } else if (key.equals(getString(R.string.pref_key__manage_tags))) {
+                    Intent intent = new Intent(getActivity(), MainActivity.class);
                     intent.setAction(MainActivity.ACTION_OPEN_URL);
                     intent.putExtra(MainActivity.URL_MESSAGE, diasporaUrlHelper.getManageTagsUrl());
-                    break;
-                }
-                case R.string.pref_title__manage_contacts: {
+                    startActivity(intent);
+                    getActivity().finish();
+                    return true;
+                } else if (key.equals(getString(R.string.pref_key__manage_contacts))) {
+                    Intent intent = new Intent(getActivity(), MainActivity.class);
                     intent.setAction(MainActivity.ACTION_OPEN_URL);
                     intent.putExtra(MainActivity.URL_MESSAGE, diasporaUrlHelper.getManageContactsUrl());
-                    break;
-                }
-                case R.string.pref_title__change_account: {
+                    startActivity(intent);
+                    getActivity().finish();
+                    return true;
+                } else if (key.equals(getString(R.string.pref_key__change_account))) {
                     new AlertDialog.Builder(getActivity())
                             .setTitle(getString(R.string.confirmation))
                             .setMessage(getString(R.string.pref_warning__change_account))
@@ -226,27 +205,42 @@ public class SettingsActivity extends ThemedActivity implements IntellihideToolb
                                     })
                             .show();
                     return true;
-                }
-                case R.string.pref_title__http_proxy_load_tor_preset: {
-                    ((EditTextPreference) findPreference(getString(R.string.pref_key__http_proxy_host))).setText("127.0.0.1");
-                    ((EditTextPreference) findPreference(getString(R.string.pref_key__http_proxy_port))).setText("8118");
-                    return true;
-                }
 
-                case R.string.pref_title__clear_cache: {
-                    intent.setAction(MainActivity.ACTION_CLEAR_CACHE);
-                    break;
-                }
-
-                default: {
-                    intent = null;
-                    break;
                 }
             }
-            if (intent != null) {
-                startActivity(intent);
-                getActivity().finish();
-                return true;
+            return super.onPreferenceTreeClick(screen, preference);
+        }
+    }
+
+    public static class SettingsFragmentThemes extends ThemedPreferenceFragment {
+        public static final String TAG = "com.github.dfa.diaspora_android.settings.SettingsFragmentThemes";
+
+        public void onCreate(Bundle savedInstances) {
+            super.onCreate(savedInstances);
+            getPreferenceManager().setSharedPreferencesName("app");
+            addPreferencesFromResource(R.xml.preferences__sub_themes);
+        }
+
+        @Override
+        public void updateViewColors() {
+            if(isAdded()) {
+                //Trigger redraw of whole preference screen in order to reflect changes
+                setPreferenceScreen(null);
+                addPreferencesFromResource(R.xml.preferences__sub_themes);
+            }
+        }
+
+        @Override
+        public boolean onPreferenceTreeClick(PreferenceScreen screen, Preference preference) {
+            if (isAdded() && preference.hasKey()) {
+                String key = preference.getKey();
+                if(key.equals(getString(R.string.pref_key__primary_color__preference_click))) {
+                    showColorPickerDialog(1);
+                    return true;
+                } else if (key.equals(getString(R.string.pref_key__accent_color__preference_click))) {
+                    showColorPickerDialog(2);
+                    return true;
+                }
             }
             return super.onPreferenceTreeClick(screen, preference);
         }
@@ -282,12 +276,13 @@ public class SettingsActivity extends ThemedActivity implements IntellihideToolb
             base.setOnColorChangedListener(new OnColorChangedListener() {
                 @Override
                 public void onColorChanged(int i) {
-                    AppLog.d(this, "Selected Base color changed: " + i);
                     shade.setColors(ColorPalette.getColors(context, i));
                     titleBackground.setBackgroundColor(i);
                     if (i == current[0]) {
                         shade.setSelectedColor(current[1]);
                         titleBackground.setBackgroundColor(shade.getColor());
+                    } else {
+                        shade.setSelectedColor(i);
                     }
                 }
             });
@@ -313,38 +308,94 @@ public class SettingsActivity extends ThemedActivity implements IntellihideToolb
                             } else {
                                 appSettings.setAccentColorSettings(base.getColor(), shade.getColor());
                             }
+                            updateViewColors();
                         }
                     }).show();
         }
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
+    public static class SettingsFragmentNavSlider extends ThemedPreferenceFragment {
+        public static final String TAG = "com.github.dfa.diaspora_android.settings.SettingsFragmentNavSlider";
 
-        // Reset logging
-        AppSettings settings = new AppSettings(getApplicationContext());
-        AppLog.setLoggingEnabled(settings.isLoggingEnabled());
-        AppLog.setLoggingSpamEnabled(settings.isLoggingSpamEnabled());
+        public void onCreate(Bundle savedInstances) {
+            super.onCreate(savedInstances);
+            getPreferenceManager().setSharedPreferencesName("app");
+            addPreferencesFromResource(R.xml.preferences__sub_navslider_vis);
+        }
+
+        @Override
+        public void updateViewColors() {
+
+        }
     }
 
-    @Override
-    protected void onStop() {
-        ProxyHandler.ProxySettings newProxySettings = getAppSettings().getProxySettings();
-        if (!oldProxySettings.equals(newProxySettings)) {
-            AppLog.d(this, "ProxySettings changed.");
-            //Proxy on-off? => Restart app
-            if (oldProxySettings.isEnabled() && !newProxySettings.isEnabled()) {
-                Intent restartActivity = new Intent(SettingsActivity.this, MainActivity.class);
-                PendingIntent pendingIntent = PendingIntent.getActivity(SettingsActivity.this, 12374, restartActivity, PendingIntent.FLAG_CANCEL_CURRENT);
-                AlarmManager mgr = (AlarmManager) SettingsActivity.this.getSystemService(Context.ALARM_SERVICE);
-                mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, pendingIntent);
-                System.exit(0);
-            } //Proxy changed? => Update
-            else {
-                ProxyHandler.getInstance().updateProxySettings(this);
+    public static class SettingsFragmentProxy extends ThemedPreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
+        public static final String TAG = "com.github.dfa.diaspora_android.settings.SettingsFragmentProxy";
+
+        public void onCreate(Bundle savedInstances) {
+            super.onCreate(savedInstances);
+            getPreferenceManager().setSharedPreferencesName("app");
+            addPreferencesFromResource(R.xml.preferences__sub_proxy);
+            SharedPreferences sharedPreferences = getPreferenceScreen().getSharedPreferences();
+            sharedPreferences.registerOnSharedPreferenceChangeListener(this);
+        }
+
+        @Override
+        public void onActivityCreated(Bundle bundle) {
+            super.onActivityCreated(bundle);
+            updateSummaries();
+        }
+
+        public void updateSummaries() {
+            if(isAdded()) {
+                AppSettings appSettings = ((App) getActivity().getApplication()).getSettings();
+                findPreference(getString(R.string.pref_key__http_proxy_host)).setSummary(appSettings.getProxyHttpHost());
+                findPreference(getString(R.string.pref_key__http_proxy_port)).setSummary(Integer.toString(appSettings.getProxyHttpPort()));
             }
         }
-        super.onStop();
+
+        @Override
+        public boolean onPreferenceTreeClick(PreferenceScreen screen, Preference preference) {
+            if (isAdded() && preference.hasKey()) {
+                AppSettings appSettings = ((App) getActivity().getApplication()).getSettings();
+                String key = preference.getKey();
+                if(key.equals(getString(R.string.pref_key__http_proxy_load_tor_preset))) {
+                    appSettings.setProxyHttpHost("127.0.0.1");
+                    appSettings.setProxyHttpPort(8118);
+                    return true;
+                }
+            }
+            return super.onPreferenceTreeClick(screen, preference);
+        }
+
+        @Override
+        public void updateViewColors() {
+
+        }
+
+        @Override
+        public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
+            if(isAdded()) {
+                if (s.equals(getString(R.string.pref_key__http_proxy_host)) ||
+                        s.equals(getString(R.string.pref_key__http_proxy_port))) {
+                    updateSummaries();
+                }
+            }
+        }
+    }
+
+    public static class SettingsFragmentDebugging extends ThemedPreferenceFragment {
+        public static final String TAG = "com.github.dfa.diaspora_android.settings.SettingsFragmentDebugging";
+
+        public void onCreate(Bundle savedInstances) {
+            super.onCreate(savedInstances);
+            getPreferenceManager().setSharedPreferencesName("app");
+            addPreferencesFromResource(R.xml.preferences__sub_debugging);
+        }
+
+        @Override
+        public void updateViewColors() {
+
+        }
     }
 }

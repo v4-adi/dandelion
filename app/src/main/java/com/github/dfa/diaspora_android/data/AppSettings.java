@@ -379,4 +379,8 @@ public class AppSettings {
     public boolean isExtendedNotificationsActivated() {
         return getBoolean(prefApp, R.string.pref_key__extended_notifications, false);
     }
+
+    public int getColor(String key) {
+        return prefApp.getInt(key, context.getResources().getColor(R.color.primary));
+    }
 }

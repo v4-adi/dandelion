@@ -22,12 +22,10 @@ package com.github.dfa.diaspora_android.util.theming;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.support.design.widget.TabLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.CompoundButtonCompat;
-import android.support.v7.app.ActionBar;
 import android.support.v7.widget.ActionMenuView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -91,10 +89,16 @@ public class ThemeHelper {
         }
     }
 
-    public static void updateTextViewColor(TextView textView) {
+    public static void updateTextViewLinkColor(TextView textView) {
         if (textView != null) {
             textView.setHighlightColor(getInstance().appSettings.getAccentColor());
             textView.setLinkTextColor(getInstance().appSettings.getAccentColor());
+        }
+    }
+
+    public static void updateTextViewTextColor(TextView textView) {
+        if(textView != null) {
+            textView.setTextColor(getInstance().appSettings.getAccentColor());
         }
     }
 
@@ -126,12 +130,6 @@ public class ThemeHelper {
 
     public static int getPrimaryDarkColor() {
         return ColorPalette.getObscuredColor(getPrimaryColor());
-    }
-
-    public static void updateActionBarColor(ActionBar actionBar) {
-        if (actionBar != null) {
-            actionBar.setBackgroundDrawable(new ColorDrawable(getInstance().appSettings.getPrimaryColor()));
-        }
     }
 
     public static void updateProgressBarColor(ProgressBar progressBar) {

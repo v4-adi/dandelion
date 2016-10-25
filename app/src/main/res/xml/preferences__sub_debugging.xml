@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.github.dfa.diaspora_android.ui.ThemedPreferenceCategory
+        android:key="@string/pref_key__title__debugging"
+        android:title="@string/pref_title__sub_logging">
+
+        <com.github.dfa.diaspora_android.ui.ThemedCheckBoxPreference
+            android:defaultValue="true"
+            android:key="@string/pref_key__logging_enabled"
+            android:title="@string/pref_title__logging_enabled"/>
+        <com.github.dfa.diaspora_android.ui.ThemedCheckBoxPreference
+            android:defaultValue="true"
+            android:key="@string/pref_key__logging_spam_enabled"
+            android:title="@string/pref_title__logging_spam_enabled"/>
+    </com.github.dfa.diaspora_android.ui.ThemedPreferenceCategory>
+</PreferenceScreen>
