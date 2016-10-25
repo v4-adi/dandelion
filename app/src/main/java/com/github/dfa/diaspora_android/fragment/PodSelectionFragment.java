@@ -100,6 +100,9 @@ public class PodSelectionFragment extends ThemedFragment implements SearchView.O
         podList.setTrackMergeChanges(true);
         updateListedPods();
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            listViewPod.setNestedScrollingEnabled(true);
+        }
 
         listViewPod.setTextFilterEnabled(true);
         listViewPod.setOnItemClickListener(new AdapterView.OnItemClickListener() {
