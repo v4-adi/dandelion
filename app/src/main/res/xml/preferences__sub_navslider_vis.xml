@@ -19,6 +19,10 @@
         android:title="@string/nav_aspects"/>
     <com.github.dfa.diaspora_android.ui.ThemedCheckBoxPreference
         android:defaultValue="false"
+        android:key="@string/pref_key__visibility_nav__contacts"
+        android:title="@string/nav_contacts" />
+    <com.github.dfa.diaspora_android.ui.ThemedCheckBoxPreference
+        android:defaultValue="false"
         android:key="@string/pref_key__visibility_nav__activities"
         android:title="@string/nav_activities"/>
     <com.github.dfa.diaspora_android.ui.ThemedCheckBoxPreference

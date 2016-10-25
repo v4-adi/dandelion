@@ -381,6 +381,7 @@ public class MainActivity extends ThemedActivity
         navMenu.findItem(R.id.nav_exit).setVisible(appSettings.isVisibleInNavExit());
         navMenu.findItem(R.id.nav_activities).setVisible(appSettings.isVisibleInNavActivities());
         navMenu.findItem(R.id.nav_aspects).setVisible(appSettings.isVisibleInNavAspects());
+        navMenu.findItem(R.id.nav_contacts).setVisible(appSettings.isVisibleInNavContacts());
         navMenu.findItem(R.id.nav_commented).setVisible(appSettings.isVisibleInNavCommented());
         navMenu.findItem(R.id.nav_followed_tags).setVisible(appSettings.isVisibleInNavFollowed_tags());
         navMenu.findItem(R.id.nav_about).setVisible(appSettings.isVisibleInNavHelp_license());
@@ -996,6 +997,14 @@ public class MainActivity extends ThemedActivity
                 }
             }
             break;
+
+            case R.id.nav_contacts: {
+                if(WebHelper.isOnline(MainActivity.this)) {
+                    openDiasporaUrl(urls.getManageContactsUrl());
+                } else {
+                    snackbarNoInternet.show();
+                }
+            }
 
             case R.id.nav_activities: {
                 if (WebHelper.isOnline(MainActivity.this)) {

@@ -22,6 +22,11 @@
             android:title="@string/nav_aspects" />
 
         <item
+            android:id="@+id/nav_contacts"
+            android:icon="@drawable/ic_contacts_black_24px"
+            android:title="@string/nav_contacts" />
+
+        <item
             android:id="@+id/nav_activities"
             android:icon="@drawable/ic_history_black_48px"
             android:title="@string/nav_activities" />

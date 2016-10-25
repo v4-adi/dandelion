@@ -28,6 +28,7 @@
     <string name="mentions">Mentions</string>
     <string name="public_">Public</string>
     <string name="search">Search</string>
+    <string name="contacts">Contacts</string>
     <string name="tor" translatable="false">Tor</string>
 
     <!-- Notifications dropdown menu -->
@@ -68,6 +69,7 @@
     <string name="nav_help_license">About | Help</string>
     <string name="nav_followed_tags">Followed Tags</string>
     <string name="nav_public_activities">Public activities</string>
+    <string name="nav_contacts" translatable="false">@string/contacts</string>
 
     <string name="share__share_link_as_text">Share link as text</string>
     <string name="share__share_screenshot">Share screenshot of webpage</string>

@@ -344,6 +344,10 @@ public class AppSettings {
         return getBoolean(prefApp, R.string.pref_key__visibility_nav__profile, true);
     }
 
+    public boolean isVisibleInNavContacts() {
+        return getBoolean(prefApp, R.string.pref_key__visibility_nav__contacts, false);
+    }
+
     public void setPrimaryColorSettings(int base, int shade) {
         setInt(prefApp, R.string.pref_key__primary_color_base, base);
         setInt(prefApp, R.string.pref_key__primary_color_shade, shade);
