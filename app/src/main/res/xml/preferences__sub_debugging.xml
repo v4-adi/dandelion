@@ -9,7 +9,7 @@
             android:key="@string/pref_key__logging_enabled"
             android:title="@string/pref_title__logging_enabled"/>
         <com.github.dfa.diaspora_android.ui.ThemedCheckBoxPreference
-            android:defaultValue="true"
+            android:defaultValue="false"
             android:key="@string/pref_key__logging_spam_enabled"
             android:title="@string/pref_title__logging_spam_enabled"/>
     </com.github.dfa.diaspora_android.ui.ThemedPreferenceCategory>

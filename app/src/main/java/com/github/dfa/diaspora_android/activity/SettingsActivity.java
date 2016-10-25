@@ -143,24 +143,25 @@ public class SettingsActivity extends ThemedActivity {
         @Override
         public boolean onPreferenceTreeClick(PreferenceScreen screen, Preference preference) {
             if(isAdded() && preference.hasKey()) {
-                DiasporaUrlHelper diasporaUrlHelper = new DiasporaUrlHelper(((App)getActivity().getApplication()).getSettings());
+                AppSettings settings = ((App)getActivity().getApplication()).getSettings();
+                DiasporaUrlHelper diasporaUrlHelper = new DiasporaUrlHelper(settings);
                 String key = preference.getKey();
                 /** Sub-Categories */
-                if(key.equals(getString(R.string.pref_key__cat_themes))) {
+                if(settings.isKeyEqual(key,R.string.pref_key__cat_themes)) {
                     ((SettingsActivity) getActivity()).showFragment(SettingsFragmentThemes.TAG, true);
                     return true;
-                } else if (key.equals(getString(R.string.pref_key__cat_nav_slider))) {
+                } else if (settings.isKeyEqual(key,R.string.pref_key__cat_nav_slider)) {
                     ((SettingsActivity) getActivity()).showFragment(SettingsFragmentNavSlider.TAG, true);
                     return true;
-                } else if (key.equals(getString(R.string.pref_key__cat_proxy))) {
+                } else if (settings.isKeyEqual(key,R.string.pref_key__cat_proxy)) {
                     ((SettingsActivity)getActivity()).showFragment(SettingsFragmentProxy.TAG, true);
                     return true;
-                } else if (key.equals(getString(R.string.pref_key__cat_debugging))) {
+                } else if (settings.isKeyEqual(key,R.string.pref_key__cat_debugging)) {
                     ((SettingsActivity)getActivity()).showFragment(SettingsFragmentDebugging.TAG, true);
                     return true;
                 }
                 /** Network */
-                else if (key.equals(getString(R.string.pref_key__clear_cache))) {
+                else if (settings.isKeyEqual(key,R.string.pref_key__clear_cache)) {
                     Intent intent = new Intent(getActivity(), MainActivity.class);
                     intent.setAction(MainActivity.ACTION_CLEAR_CACHE);
                     startActivity(intent);
@@ -168,28 +169,28 @@ public class SettingsActivity extends ThemedActivity {
                     return true;
                 }
                 /** Pod Settings */
-                if (key.equals(getString(R.string.pref_key__personal_settings))) {
+                if (settings.isKeyEqual(key,R.string.pref_key__personal_settings)) {
                     Intent intent = new Intent(getActivity(), MainActivity.class);
                     intent.setAction(MainActivity.ACTION_OPEN_URL);
                     intent.putExtra(MainActivity.URL_MESSAGE, diasporaUrlHelper.getPersonalSettingsUrl());
                     startActivity(intent);
                     getActivity().finish();
                     return true;
-                } else if (key.equals(getString(R.string.pref_key__manage_tags))) {
+                } else if (settings.isKeyEqual(key,R.string.pref_key__manage_tags)) {
                     Intent intent = new Intent(getActivity(), MainActivity.class);
                     intent.setAction(MainActivity.ACTION_OPEN_URL);
                     intent.putExtra(MainActivity.URL_MESSAGE, diasporaUrlHelper.getManageTagsUrl());
                     startActivity(intent);
                     getActivity().finish();
                     return true;
-                } else if (key.equals(getString(R.string.pref_key__manage_contacts))) {
+                } else if (settings.isKeyEqual(key,R.string.pref_key__manage_contacts)) {
                     Intent intent = new Intent(getActivity(), MainActivity.class);
                     intent.setAction(MainActivity.ACTION_OPEN_URL);
                     intent.putExtra(MainActivity.URL_MESSAGE, diasporaUrlHelper.getManageContactsUrl());
                     startActivity(intent);
                     getActivity().finish();
                     return true;
-                } else if (key.equals(getString(R.string.pref_key__change_account))) {
+                } else if (settings.isKeyEqual(key,R.string.pref_key__change_account)) {
                     new AlertDialog.Builder(getActivity())
                             .setTitle(getString(R.string.confirmation))
                             .setMessage(getString(R.string.pref_warning__change_account))
@@ -348,9 +349,9 @@ public class SettingsActivity extends ThemedActivity {
 
         public void updateSummaries() {
             if(isAdded()) {
-                AppSettings appSettings = ((App) getActivity().getApplication()).getSettings();
-                findPreference(getString(R.string.pref_key__http_proxy_host)).setSummary(appSettings.getProxyHttpHost());
-                findPreference(getString(R.string.pref_key__http_proxy_port)).setSummary(Integer.toString(appSettings.getProxyHttpPort()));
+                AppSettings settings = ((App) getActivity().getApplication()).getSettings();
+                findPreference(settings.getKey(R.string.pref_key__http_proxy_host)).setSummary(settings.getProxyHttpHost());
+                findPreference(settings.getKey(R.string.pref_key__http_proxy_port)).setSummary(Integer.toString(settings.getProxyHttpPort()));
             }
         }
 
@@ -359,7 +360,7 @@ public class SettingsActivity extends ThemedActivity {
             if (isAdded() && preference.hasKey()) {
                 AppSettings appSettings = ((App) getActivity().getApplication()).getSettings();
                 String key = preference.getKey();
-                if(key.equals(getString(R.string.pref_key__http_proxy_load_tor_preset))) {
+                if(appSettings.isKeyEqual(key, R.string.pref_key__http_proxy_load_tor_preset)) {
                     appSettings.setProxyHttpHost("127.0.0.1");
                     appSettings.setProxyHttpPort(8118);
                     return true;
@@ -374,10 +375,10 @@ public class SettingsActivity extends ThemedActivity {
         }
 
         @Override
-        public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
+        public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
             if(isAdded()) {
-                if (s.equals(getString(R.string.pref_key__http_proxy_host)) ||
-                        s.equals(getString(R.string.pref_key__http_proxy_port))) {
+                if (key.equals(getString(R.string.pref_key__http_proxy_host)) ||
+                        key.equals(getString(R.string.pref_key__http_proxy_port))) {
                     updateSummaries();
                 }
             }

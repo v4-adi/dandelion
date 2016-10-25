@@ -54,6 +54,14 @@ public class AppSettings {
         prefApp.edit().clear().apply();
     }
 
+    public String getKey(int stringKeyRessourceId){
+        return context.getString(stringKeyRessourceId);
+    }
+
+    public boolean isKeyEqual(String key, int stringKeyRessourceId){
+        return key.equals(getKey(stringKeyRessourceId));
+    }
+
     private void setString(SharedPreferences pref, int keyRessourceId, String value) {
         pref.edit().putString(context.getString(keyRessourceId), value).apply();
     }
@@ -93,6 +101,10 @@ public class AppSettings {
 
     private int getInt(SharedPreferences pref, int ressourceId, int defaultValue) {
         return pref.getInt(context.getString(ressourceId), defaultValue);
+    }
+
+    public int getColor(SharedPreferences pref, String key, int defaultColor) {
+        return pref.getInt(key, defaultColor);
     }
 
 
@@ -383,9 +395,5 @@ public class AppSettings {
 
     public boolean isExtendedNotificationsActivated() {
         return getBoolean(prefApp, R.string.pref_key__extended_notifications, false);
-    }
-
-    public int getColor(String key) {
-        return prefApp.getInt(key, context.getResources().getColor(R.color.primary));
     }
 }

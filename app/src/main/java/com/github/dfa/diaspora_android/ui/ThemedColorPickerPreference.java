@@ -8,7 +8,9 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.github.dfa.diaspora_android.R;
 import com.github.dfa.diaspora_android.data.AppSettings;
+import com.github.dfa.diaspora_android.util.Helpers;
 
 /**
  * Preference that shows selected Color in a circle
@@ -17,14 +19,17 @@ import com.github.dfa.diaspora_android.data.AppSettings;
 
 public class ThemedColorPickerPreference extends Preference implements Themeable {
     protected ImageView colorPreview;
+
     @SuppressWarnings("unused")
     public ThemedColorPickerPreference(Context context) {
         super(context);
     }
+
     @SuppressWarnings("unused")
     public ThemedColorPickerPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
+
     @SuppressWarnings("unused")
     public ThemedColorPickerPreference(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
@@ -39,12 +44,21 @@ public class ThemedColorPickerPreference extends Preference implements Themeable
 
     @Override
     public void setColors() {
-        AppSettings appSettings = new AppSettings(getContext());
-        if(colorPreview != null) {
-            Drawable circle = colorPreview.getDrawable();
-            if(circle != null) {
-                circle.setColorFilter(appSettings.getColor(getKey()), PorterDuff.Mode.SRC_ATOP);
+        Drawable circle;
+        if (colorPreview != null && (circle = colorPreview.getDrawable()) != null) {
+            Context c = getContext();
+            AppSettings appSettings = new AppSettings(getContext());
+            String key = getKey();
+
+            int color = Helpers.getColorFromRessource(c, R.color.primary);
+            if ((appSettings.isKeyEqual(key, R.string.pref_key__primary_color_shade))) {
+                color = appSettings.getPrimaryColor();
+            } else if ((appSettings.isKeyEqual(key, R.string.pref_key__accent_color_shade))) {
+                color = appSettings.getAccentColor();
+            } else {
+                color = appSettings.getColor(getSharedPreferences(), key, color);
             }
+            circle.setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
         }
     }
 }
