@@ -40,3 +40,11 @@ Please post the output of adb logcat. The log should begin with the start of Dia
 ````
 adb logcat -s com.github.dfa.diaspora_android
 ````
+
+#### In-App debug log
+
+This is useful for visual bugs without application crashes
+
+````
+You can long click on the in-app debug log in order to copy it to the clipboard
+````
