@@ -247,6 +247,7 @@
                 <data android:host="diaspora.mike-jones.me.uk" android:scheme="https" />
                 <data android:host="diaspote.org" android:scheme="https" />
                 <data android:host="diaspora.zone" android:scheme="https" />
+                <data android:host="pod.userzap.de" android:scheme="https" />
                 <!--@@@ PODLIST END-->
             </intent-filter>
 

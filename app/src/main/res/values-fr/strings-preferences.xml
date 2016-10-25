@@ -45,7 +45,6 @@
   <!-- Diaspora Settings -->
   <string name="pref_title__personal_settings">Paramètres personnels</string>
   <string name="pref_desc__personal_settings">Ouvrir vos paramètres de compte diaspora</string>
-  <string name="pref_title__manage_contacts">Contacts</string>
   <string name="pref_desc__manage_contacts">Gérer votre liste de contacts</string>
   <string name="pref_title__manage_tags">Gérer les Hashtags</string>
   <string name="pref_desc__manage_tags">Ajouter et supprimer les hashtags que vous suivez</string>
@@ -60,4 +59,5 @@
   <string name="pref_desc__append_shared_via_app">Ajoutez une référence à l\'application (« partagée via &#8230;\") aux textes partagés</string>
   <!-- More -->
   <!-- Recently added - Please move to right section-->
+  <!-- Sorry -->
 </resources>
