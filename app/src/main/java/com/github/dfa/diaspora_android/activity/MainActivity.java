@@ -440,11 +440,22 @@ public class MainActivity extends ThemedActivity
         } else if (ACTION_CHANGE_ACCOUNT.equals(action)) {
             AppLog.v(this, "Reset pod data and  show PodSelectionFragment");
             appSettings.setPod(null);
-            app.resetPodData(((DiasporaStreamFragment) getFragment(DiasporaStreamFragment.TAG)).getWebView());
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    app.resetPodData(((DiasporaStreamFragment) getFragment(DiasporaStreamFragment.TAG)).getWebView());
+                }
+            });
             showFragment(getFragment(PodSelectionFragment.TAG));
         } else if (ACTION_CLEAR_CACHE.equals(action)) {
             AppLog.v(this, "Clear WebView cache");
-            ((DiasporaStreamFragment) getFragment(DiasporaStreamFragment.TAG)).getWebView().clearCache(true);
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    ((DiasporaStreamFragment) getFragment(DiasporaStreamFragment.TAG)).getWebView().clearCache(true);
+                }
+            });
+
         } else if (Intent.ACTION_SEND.equals(action) && type != null) {
             switch (type) {
                 case "text/plain":

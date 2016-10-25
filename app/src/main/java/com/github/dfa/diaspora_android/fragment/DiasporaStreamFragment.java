@@ -75,15 +75,20 @@ public class DiasporaStreamFragment extends BrowserFragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         this.urls = new DiasporaUrlHelper(appSettings);
-        webView.setWebChromeClient(new DiasporaStreamWebChromeClient(webView, progressBar, fileUploadCallback, sharedTextCallback));
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                webView.setWebChromeClient(new DiasporaStreamWebChromeClient(webView, progressBar, fileUploadCallback, sharedTextCallback));
+                webView.getSettings().setJavaScriptEnabled(true);
+                webView.addJavascriptInterface(new JavaScriptInterface(), "AndroidBridge");
+                if (((MainActivity) getActivity()).getTextToBeShared() != null) {
+                    loadUrl(urls.getNewPostUrl());
+                } else if (webView.getUrl() == null) {
+                    loadUrl(urls.getStreamUrl());
+                }
+            }
+        });
 
-        webView.getSettings().setJavaScriptEnabled(true);
-        webView.addJavascriptInterface(new JavaScriptInterface(), "AndroidBridge");
-        if (((MainActivity) getActivity()).getTextToBeShared() != null) {
-            loadUrl(urls.getNewPostUrl());
-        } else if (webView.getUrl() == null) {
-            loadUrl(urls.getStreamUrl());
-        }
     }
 
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {

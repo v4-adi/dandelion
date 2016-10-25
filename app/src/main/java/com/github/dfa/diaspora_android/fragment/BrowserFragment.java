@@ -95,7 +95,13 @@ public class BrowserFragment extends ThemedFragment {
 
         if (this.webView == null) {
             this.webView = (ContextMenuWebView) view.findViewById(R.id.webView);
-            this.applyWebViewSettings();
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    BrowserFragment.this.applyWebViewSettings();
+                }
+            });
+
             ProxyHandler.getInstance().addWebView(webView);
         }
 
@@ -249,16 +255,27 @@ public class BrowserFragment extends ThemedFragment {
 
     public boolean onBackPressed() {
         if (webView.canGoBack()) {
-            webView.goBack();
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    webView.goBack();
+                }
+            });
             return true;
         }
         return false;
     }
 
-    public void loadUrl(String url) {
+    public void loadUrl(final String url) {
         if (getWebView() != null) {
             AppLog.v(this, "loadUrl(): load " + url);
-            getWebView().loadUrlNew(url);
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    getWebView().loadUrlNew(url);
+                }
+            });
+
         } else {
             AppLog.v(this, "loadUrl(): WebView null: Set pending url to " + url);
             pendingUrl = url;
@@ -276,7 +293,13 @@ public class BrowserFragment extends ThemedFragment {
     public void reloadUrl() {
         AppLog.v(this, "reloadUrl()");
         if (getWebView() != null) {
-            getWebView().reload();
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    getWebView().reload();
+                }
+            });
+
         }
     }
 
