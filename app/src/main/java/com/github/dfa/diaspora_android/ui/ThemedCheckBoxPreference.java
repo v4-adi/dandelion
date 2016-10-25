@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 
+import com.github.dfa.diaspora_android.R;
 import com.github.dfa.diaspora_android.data.AppSettings;
 import com.github.dfa.diaspora_android.util.theming.ThemeHelper;
 

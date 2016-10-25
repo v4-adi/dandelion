@@ -272,16 +272,17 @@ public class AppSettings {
      */
     public int getProxyHttpPort() {
         try {
-            return getInt(prefApp, R.string.pref_key__http_proxy_port, 0);
-        } catch(Exception _anything){
-            //TODO: Backward Compatibility for older versions. REMOVE after App v1.7.0
             String str = getString(prefApp, R.string.pref_key__http_proxy_port, "0");
             return Integer.parseInt(str);
+        } catch (ClassCastException e) {
+            int port = getInt(prefApp, R.string.pref_key__http_proxy_port, 0);
+            setProxyHttpPort(port);
+            return port;
         }
     }
 
     public void setProxyHttpPort(int value) {
-        setInt(prefApp, R.string.pref_key__http_proxy_port, value);
+        setString(prefApp, R.string.pref_key__http_proxy_port, Integer.toString(value));
     }
 
     public ProxyHandler.ProxySettings getProxySettings() {
