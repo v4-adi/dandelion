@@ -174,7 +174,7 @@ public class AboutActivity extends ThemedActivity
 
         @Override
         protected void applyColorToViews() {
-            ThemeHelper.updateTextViewColor(aboutText);
+            ThemeHelper.updateTextViewLinkColor(aboutText);
         }
 
         @Override
@@ -258,8 +258,8 @@ public class AboutActivity extends ThemedActivity
 
         @Override
         protected void applyColorToViews() {
-            ThemeHelper.updateTextViewColor(textLicense3partyBox);
-            ThemeHelper.updateTextViewColor(textLicenseBox);
+            ThemeHelper.updateTextViewLinkColor(textLicense3partyBox);
+            ThemeHelper.updateTextViewLinkColor(textLicenseBox);
         }
 
         @Override

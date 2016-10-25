@@ -76,7 +76,7 @@ public class App extends Application {
         // Clear avatar image
         new AvatarImageLoader(this).clearAvatarImage();
 
-        // Clear preferences
+        // Clear preferences__master
         appSettings.clearPodSettings();
 
         // Clear cookies
