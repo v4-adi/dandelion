@@ -74,6 +74,7 @@ import com.github.dfa.diaspora_android.util.AppLog;
 import com.github.dfa.diaspora_android.util.AppSettings;
 import com.github.dfa.diaspora_android.util.DiasporaUrlHelper;
 import com.github.dfa.diaspora_android.web.BrowserFragment;
+import com.github.dfa.diaspora_android.web.ContextMenuWebView;
 import com.github.dfa.diaspora_android.web.ProxyHandler;
 import com.github.dfa.diaspora_android.web.WebHelper;
 import com.github.dfa.diaspora_android.web.custom_tab.CustomTabActivityHelper;
@@ -455,7 +456,10 @@ public class MainActivity extends ThemedActivity
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    ((DiasporaStreamFragment) getFragment(DiasporaStreamFragment.TAG)).getWebView().clearCache(true);
+                    ContextMenuWebView wv = ((DiasporaStreamFragment) getFragment(DiasporaStreamFragment.TAG)).getWebView();
+                    if(wv != null) {
+                        wv.clearCache(true);
+                    }
                 }
             });
 
