@@ -26,14 +26,6 @@ import android.text.Html;
 import android.webkit.URLUtil;
 import android.webkit.WebView;
 
-import com.github.dfa.diaspora_android.App;
-import com.github.dfa.diaspora_android.R;
-import com.github.dfa.diaspora_android.data.AppSettings;
-import com.github.dfa.diaspora_android.data.PodAspect;
-import com.github.dfa.diaspora_android.data.PodUserProfile;
-
-import java.util.Locale;
-
 /**
  * Created by Gregor Santner on 07.08.16.
  * https://gsantner.github.io
@@ -110,52 +102,4 @@ public class WebHelper {
                 "    }" +
                 "})();");
     }
-
-    public static void showAspectList(final WebView wv, final App app) {
-        wv.stopLoading();
-        PodUserProfile profile = app.getPodUserProfile();
-        StringBuilder sb = new StringBuilder();
-
-        sb.append("<html><body style='margin-top: 25px; margin-left:auto;margin-right:auto; font-size: 400%;'>");
-
-        // Content
-        for (PodAspect aspect : profile.getAspects()) {
-            sb.append("<span style='margin-left: 30px; '></span>&raquo; &nbsp;");
-            sb.append(aspect.toHtmlLink(app));
-            sb.append("<hr style='height:5px;' />");
-        }
-
-        // End
-        sb.append("</body></html>");
-        wv.loadDataWithBaseURL(null, sb.toString(), "text/html", "UTF-16", null);
-    }
-
-    public static void showFollowedTagsList(final WebView wv, final App app) {
-        wv.stopLoading();
-        PodUserProfile profile = app.getPodUserProfile();
-        StringBuilder sb = new StringBuilder();
-
-        sb.append("<html><body style='margin-top: 25px; margin-left:auto;margin-right:auto; font-size: 400%;'>");
-
-        // Content
-        AppSettings appSettings = app.getSettings();
-        String pod0BaseUrl = appSettings.getPod().getPodUrl().getBaseUrl();
-        sb.append("<span style='margin-left: 30px; '></span>&raquo; &nbsp;");
-        sb.append(String.format(Locale.getDefault(),
-                "<a href='%s/followed_tags' style='color: #000000; text-decoration: none;'><b>%s</b></a>",
-                pod0BaseUrl, app.getString(R.string.all_tags)));
-        sb.append("<hr style='height:5px;' />");
-        for (String tag : profile.getFollowedTags()) {
-            sb.append("<span style='margin-left: 30px; '></span>&raquo; &nbsp;");
-            sb.append(String.format(Locale.getDefault(),
-                    "<a href='%s/tags/%s' style='color: #000000; text-decoration: none;'>#%s</a>",
-                    pod0BaseUrl, tag, tag));
-            sb.append("<hr style='height:5px;' />");
-        }
-
-        // End
-        sb.append("</body></html>");
-        wv.loadDataWithBaseURL(null, sb.toString(), "text/html", "UTF-16", null);
-    }
-
 }

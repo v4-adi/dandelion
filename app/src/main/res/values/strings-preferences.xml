@@ -51,7 +51,9 @@
     <string name="pref_key__podprofile_name" translatable="false">podUserProfile_name</string>
     <string name="pref_key__podprofile_id" translatable="false">podUserProfile_guid</string>
     <string name="pref_key__podprofile_aspects" translatable="false">podUserProfile_aspects</string>
+    <string name="pref_key__podprofile_aspects_favs" translatable="false">podUserProfile_aspects_favs</string>
     <string name="pref_key__podprofile_followed_tags" translatable="false">podUserProfile_followedTags</string>
+    <string name="pref_key__podprofile_followed_tags_favs" translatable="false">podUserProfile_followedTags_favs</string>
     <string name="pref_key__podprofile_unread_message_count" translatable="false">podUserProfile_unreadMessageCount</string>
     <string name="pref_key__podprofile_notification_count" translatable="false">podUserProfile_NotificationCount</string>
 

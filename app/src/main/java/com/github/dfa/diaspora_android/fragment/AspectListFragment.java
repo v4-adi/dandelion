@@ -36,6 +36,7 @@ import com.github.dfa.diaspora_android.App;
 import com.github.dfa.diaspora_android.R;
 import com.github.dfa.diaspora_android.activity.MainActivity;
 import com.github.dfa.diaspora_android.data.AppSettings;
+import com.github.dfa.diaspora_android.data.PodAspect;
 import com.github.dfa.diaspora_android.listener.OnSomethingClickListener;
 import com.github.dfa.diaspora_android.util.AppLog;
 import com.github.dfa.diaspora_android.util.DiasporaUrlHelper;
@@ -49,13 +50,13 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * Fragment that shows a list of the HashTags the user follows
+ * Fragment that shows a list of the Aspects
  */
-public class HashtagListFragment extends ThemedFragment implements OnSomethingClickListener<Object> {
+public class AspectListFragment extends ThemedFragment implements OnSomethingClickListener<Object> {
 
-    public static final String TAG = "com.github.dfa.diaspora_android.HashtagListFragment";
+    public static final String TAG = "com.github.dfa.diaspora_android.AspectListFragment";
 
-    protected RecyclerView followedTagsRecyclerView;
+    protected RecyclerView aspectsRecyclerView;
     protected App app;
     protected DiasporaUrlHelper urls;
 
@@ -68,22 +69,22 @@ public class HashtagListFragment extends ThemedFragment implements OnSomethingCl
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        followedTagsRecyclerView = (RecyclerView) view.findViewById(R.id.fragment_list__recycler_view);
+        aspectsRecyclerView = (RecyclerView) view.findViewById(R.id.fragment_list__recycler_view);
         app = (App) getActivity().getApplication();
         AppSettings appSettings = app.getSettings();
         urls = new DiasporaUrlHelper(appSettings);
 
-        followedTagsRecyclerView.setHasFixedSize(true);
-        followedTagsRecyclerView.setNestedScrollingEnabled(false);
+        aspectsRecyclerView.setHasFixedSize(true);
+        aspectsRecyclerView.setNestedScrollingEnabled(false);
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
-        followedTagsRecyclerView.setLayoutManager(layoutManager);
+        aspectsRecyclerView.setLayoutManager(layoutManager);
 
-        final FollowedTagsAdapter adapter = new FollowedTagsAdapter(appSettings, this);
-        followedTagsRecyclerView.setAdapter(adapter);
+        final AspectAdapter adapter = new AspectAdapter(appSettings, this);
+        aspectsRecyclerView.setAdapter(adapter);
 
         //Set window title
-        getActivity().setTitle(R.string.nav_followed_tags);
+        getActivity().setTitle(R.string.nav_aspects);
     }
 
     @Override
@@ -102,20 +103,20 @@ public class HashtagListFragment extends ThemedFragment implements OnSomethingCl
     }
 
     @Override
-    public void onSomethingClicked(Object null1, Integer null2, String tag) {
-        ((MainActivity) getActivity()).openDiasporaUrl(urls.getSearchTagsUrl(tag));
+    public void onSomethingClicked(Object null1, Integer null2, String aspectId) {
+        ((MainActivity) getActivity()).openDiasporaUrl(urls.getAspectUrl(aspectId));
     }
 
     @Override
     protected void applyColorToViews() {
-        followedTagsRecyclerView.invalidate();
+        aspectsRecyclerView.invalidate();
     }
 
-    public static class FollowedTagsAdapter extends RecyclerView.Adapter<FollowedTagsAdapter.ViewHolder> {
+    public static class AspectAdapter extends RecyclerView.Adapter<AspectAdapter.ViewHolder> {
         private AppSettings appSettings;
-        private String[] followedTagsList;
-        private List<String> followedTagsFavsList;
-        private OnSomethingClickListener<Object> tagClickedListener;
+        private PodAspect[] aspectList;
+        private List<String> aspectFavsList;
+        private OnSomethingClickListener<Object> aspectClickedListener;
 
         static class ViewHolder extends RecyclerView.ViewHolder {
             @BindView(R.id.recycler_view__list_item__text)
@@ -132,60 +133,60 @@ public class HashtagListFragment extends ThemedFragment implements OnSomethingCl
         }
 
 
-        FollowedTagsAdapter(AppSettings appSettings, OnSomethingClickListener<Object> tagClickedListener) {
+        AspectAdapter(AppSettings appSettings, OnSomethingClickListener<Object> aspectClickedListener) {
             this.appSettings = appSettings;
-            this.followedTagsList = appSettings.getFollowedTags();
-            this.followedTagsFavsList = new ArrayList<>(Arrays.asList(appSettings.getFollowedTagsFavs()));
-            this.tagClickedListener = tagClickedListener;
+            this.aspectList = appSettings.getAspects();
+            this.aspectFavsList = new ArrayList<>(Arrays.asList(appSettings.getAspectFavs()));
+            this.aspectClickedListener = aspectClickedListener;
         }
 
         @Override
         public int getItemCount() {
-            return followedTagsList.length;
+            return aspectList.length;
         }
 
         @Override
-        public FollowedTagsAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        public AspectAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View v = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.recycler_view__list_item, parent, false);
             return new ViewHolder(v);
         }
 
         @Override
-        public void onBindViewHolder(final ViewHolder holder, final int position) {
+        public void onBindViewHolder(final ViewHolder holder, int position) {
             // Alternating colors
             final Context c = holder.root.getContext();
-            final String tag = followedTagsList[position];
-            holder.title.setText(tag);
+            final PodAspect aspect = aspectList[position];
+            holder.title.setText(aspect.name);
             if (position % 2 == 1) {
                 holder.root.setBackgroundColor(Helpers.getColorFromRessource(c, R.color.md_grey_300));
             }
 
             // Favourite (Star) Image
-            applyFavouriteImage(holder.favouriteImage, isFollowedTagFaved(tag));
+            applyFavouriteImage(holder.favouriteImage, isAspectFaved(aspect.name));
 
             // Click on fav button
             holder.favouriteImage.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    if (isFollowedTagFaved(tag)) {
-                        followedTagsFavsList.remove(followedTagsFavsList.indexOf(tag));
+                    if (isAspectFaved(aspect.name)) {
+                        aspectFavsList.remove(aspectFavsList.indexOf(aspect.name));
                     } else {
-                        followedTagsFavsList.add(tag);
+                        aspectFavsList.add(aspect.name);
                     }
-                    appSettings.setFollowedTagsFavs(followedTagsFavsList);
-                    applyFavouriteImage(holder.favouriteImage, isFollowedTagFaved(tag));
+                    appSettings.setAspectFavs(aspectFavsList);
+                    applyFavouriteImage(holder.favouriteImage, isAspectFaved(aspect.name));
                 }
             });
 
             holder.root.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    tagClickedListener.onSomethingClicked(null, null, tag);
+                    aspectClickedListener.onSomethingClicked(null, null, aspect.id + "");
                 }
             });
         }
 
-        private boolean isFollowedTagFaved(String tag) {
-            return followedTagsFavsList.contains(tag);
+        private boolean isAspectFaved(String tag) {
+            return aspectFavsList.contains(tag);
         }
 
         private void applyFavouriteImage(AppCompatImageView imageView, boolean isFaved) {

@@ -26,6 +26,8 @@ import com.github.dfa.diaspora_android.util.ProxyHandler;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.List;
+
 /**
  * Settings
  * Created by gsantner (https://gsantner.github.io/) on 20.03.16. Part of Diaspora for Android.
@@ -197,7 +199,7 @@ public class AppSettings {
         setStringArray(prefPod, R.string.pref_key__podprofile_aspects, aspects);
     }
 
-    public PodAspect[] getPodAspects() {
+    public PodAspect[] getAspects() {
         String[] s = getStringArray(prefPod, R.string.pref_key__podprofile_aspects);
         PodAspect[] aspects = new PodAspect[s.length];
         for (int i = 0; i < aspects.length; i++) {
@@ -210,8 +212,24 @@ public class AppSettings {
         return getStringArray(prefPod, R.string.pref_key__podprofile_followed_tags);
     }
 
-    public void setFollowedTags(String[] tags) {
-        setStringArray(prefPod, R.string.pref_key__podprofile_followed_tags, tags);
+    public void setFollowedTags(String[] values) {
+        setStringArray(prefPod, R.string.pref_key__podprofile_followed_tags, values);
+    }
+
+    public String[] getFollowedTagsFavs() {
+        return getStringArray(prefPod, R.string.pref_key__podprofile_followed_tags_favs);
+    }
+
+    public void setFollowedTagsFavs(List<String> values) {
+        setStringArray(prefPod, R.string.pref_key__podprofile_followed_tags_favs, values.toArray(new String[values.size()]));
+    }
+
+    public String[] getAspectFavs() {
+        return getStringArray(prefPod, R.string.pref_key__podprofile_aspects_favs);
+    }
+
+    public void setAspectFavs(List<String> values) {
+        setStringArray(prefPod, R.string.pref_key__podprofile_aspects_favs, values.toArray(new String[values.size()]));
     }
 
     public int getUnreadMessageCount() {

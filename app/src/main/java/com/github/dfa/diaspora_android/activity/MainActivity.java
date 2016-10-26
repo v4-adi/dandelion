@@ -62,6 +62,7 @@ import com.github.dfa.diaspora_android.R;
 import com.github.dfa.diaspora_android.data.AppSettings;
 import com.github.dfa.diaspora_android.data.DiasporaPodList;
 import com.github.dfa.diaspora_android.data.PodUserProfile;
+import com.github.dfa.diaspora_android.fragment.AspectListFragment;
 import com.github.dfa.diaspora_android.fragment.BrowserFragment;
 import com.github.dfa.diaspora_android.fragment.CustomFragment;
 import com.github.dfa.diaspora_android.fragment.DiasporaStreamFragment;
@@ -286,6 +287,10 @@ public class MainActivity extends ThemedActivity
                     HashtagListFragment hlf = new HashtagListFragment();
                     fm.beginTransaction().add(hlf, fragmentTag).commit();
                     return hlf;
+                case AspectListFragment.TAG:
+                    AspectListFragment alf = new AspectListFragment();
+                    fm.beginTransaction().add(alf, fragmentTag).commit();
+                    return alf;
                 case PodSelectionFragment.TAG:
                     PodSelectionFragment psf = new PodSelectionFragment();
                     fm.beginTransaction().add(psf, fragmentTag).commit();
@@ -987,14 +992,7 @@ public class MainActivity extends ThemedActivity
 
             //TODO: Replace with fragment
             case R.id.nav_aspects: {
-                DiasporaStreamFragment stream = (DiasporaStreamFragment) getFragment(DiasporaStreamFragment.TAG);
-                if (WebHelper.isOnline(MainActivity.this)) {
-                    openDiasporaUrl(DiasporaUrlHelper.URL_BLANK);
-                    WebHelper.showAspectList(stream.getWebView(), app);
-                    setTitle(R.string.aspects);
-                } else {
-                    snackbarNoInternet.show();
-                }
+                showFragment(getFragment(AspectListFragment.TAG));
             }
             break;
 
