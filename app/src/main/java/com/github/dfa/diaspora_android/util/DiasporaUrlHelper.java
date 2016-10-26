@@ -43,6 +43,7 @@ public class DiasporaUrlHelper {
     public static final String SUBURL_COMMENTED = "/commented";
     public static final String SUBURL_MENTIONS = "/mentions";
     public static final String SUBURL_PUBLIC = "/public";
+    public static final String SUBURL_ASPECT = "/aspects?a_ids[]=";
     public static final String SUBURL_TOGGLE_MOBILE = "/mobile/toggle";
     public static final String SUBURL_SEARCH_TAGS = "/tags/";
     public static final String SUBURL_SEARCH_PEOPLE = "/people.mobile?q=";
@@ -142,6 +143,16 @@ public class DiasporaUrlHelper {
      */
     public String getProfileUrl(long profileId) {
         return getPodUrl() + SUBURL_PEOPLE + profileId;
+    }
+
+    /**
+     * Return a url that queries posts from the given aspect
+     *
+     * @param aspectId ID of the aspect
+     * @return https://(pod-domain.tld)//aspects?a_ids[]=aspectId
+     */
+    public String getAspectUrl(String aspectId)  {
+        return getPodUrl() + SUBURL_ASPECT + aspectId;
     }
 
     /**
@@ -262,7 +273,6 @@ public class DiasporaUrlHelper {
     public String getManageContactsUrl() {
         return getPodUrl() + SUBURL_MANAGE_CONTACTS;
     }
-
 
     public String getSuburlNotificationsAlsoCommentedUrl() {
         return getPodUrl() + SUBURL_NOTIFICATIONS_ALSO_COMMENTED;

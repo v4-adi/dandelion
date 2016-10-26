@@ -329,12 +329,12 @@ public class DiasporaStreamFragment extends BrowserFragment {
         @JavascriptInterface
         public void setUserProfile(final String webMessage) throws JSONException {
             PodUserProfile pup = ((App) getActivity().getApplication()).getPodUserProfile();
-            AppLog.v(this, "StreamFragment.JavaScriptInterface.setUserProfile()");
+            AppLog.spam(this, "StreamFragment.JavaScriptInterface.setUserProfile()");
             if (pup.isRefreshNeeded()) {
                 AppLog.v(this, "PodUserProfile needs refresh; Try to parse JSON");
                 pup.parseJson(webMessage);
             } else {
-                AppLog.v(this, "No PodUserProfile refresh needed");
+                AppLog.spam(this, "No PodUserProfile refresh needed");
             }
         }
 

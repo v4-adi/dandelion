@@ -59,7 +59,7 @@ public class PodUserProfile {
         avatarUrl = appSettings.getAvatarUrl();
         guid = appSettings.getProfileId();
         name = appSettings.getName();
-        podAspects = appSettings.getPodAspects();
+        podAspects = appSettings.getAspects();
         followedTags = appSettings.getFollowedTags();
         notificationCount = appSettings.getNotificationCount();
         unreadMessagesCount = appSettings.getUnreadMessageCount();
