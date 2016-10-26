@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group android:checkableBehavior="none" android:id="@+id/nav_group__pod">
+    <group
+        android:id="@+id/nav_group__pod"
+        android:checkableBehavior="none">
         <item
             android:id="@+id/nav_stream"
             android:icon="@drawable/ic_stream"
@@ -55,7 +57,7 @@
             android:id="@+id/nav_exit"
             android:icon="@drawable/ic_cancel_black_48px"
             android:title="@string/action_exit_app"
-            android:visible="false"/>
+            android:visible="false" />
     </group>
 
     <item android:title="@string/nav_menu_more">

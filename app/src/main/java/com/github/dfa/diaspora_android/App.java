@@ -27,10 +27,10 @@ import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
 import android.webkit.WebView;
 
-import com.github.dfa.diaspora_android.data.AppSettings;
-import com.github.dfa.diaspora_android.data.PodUserProfile;
+import com.github.dfa.diaspora_android.data.DiasporaUserProfile;
+import com.github.dfa.diaspora_android.service.AvatarImageLoader;
 import com.github.dfa.diaspora_android.util.AppLog;
-import com.github.dfa.diaspora_android.util.AvatarImageLoader;
+import com.github.dfa.diaspora_android.util.AppSettings;
 import com.github.dfa.diaspora_android.util.DiasporaUrlHelper;
 
 public class App extends Application {
@@ -38,7 +38,7 @@ public class App extends Application {
     private AppSettings appSettings;
     private AvatarImageLoader avatarImageLoader;
     private CookieManager cookieManager;
-    private PodUserProfile podUserProfile;
+    private DiasporaUserProfile diasporaUserProfile;
 
     @Override
     public void onCreate() {
@@ -52,7 +52,7 @@ public class App extends Application {
 
         // Init pod profile
         avatarImageLoader = new AvatarImageLoader(c);
-        podUserProfile = new PodUserProfile(this);
+        diasporaUserProfile = new DiasporaUserProfile(this);
 
 
         // Get cookie manager
@@ -87,8 +87,8 @@ public class App extends Application {
         }
     }
 
-    public PodUserProfile getPodUserProfile() {
-        return podUserProfile;
+    public DiasporaUserProfile getDiasporaUserProfile() {
+        return diasporaUserProfile;
     }
 
     public AppSettings getSettings() {

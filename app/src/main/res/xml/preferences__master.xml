@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- Appearance -->
-    <com.github.dfa.diaspora_android.ui.ThemedPreferenceCategory
+    <com.github.dfa.diaspora_android.ui.theme.ThemedPreferenceCategory
         android:key="@string/pref_key__title__appearance"
         android:title="@string/pref_cat__visuals">
 
@@ -23,34 +23,34 @@
             android:summary="%s"
             android:title="@string/pref_title__font_size"/>
 
-        <com.github.dfa.diaspora_android.ui.ThemedCheckBoxPreference
+        <com.github.dfa.diaspora_android.ui.theme.ThemedCheckBoxPreference
             android:defaultValue="true"
             android:key="@string/pref_key__intellihide_toolbars"
             android:summary="@string/pref_desc__intellihide_toolbars"
             android:title="@string/pref_title__intellihide_toolbars"/>
 
-        <com.github.dfa.diaspora_android.ui.ThemedCheckBoxPreference
+        <com.github.dfa.diaspora_android.ui.theme.ThemedCheckBoxPreference
             android:defaultValue="false"
             android:key="@string/pref_key__extended_notifications"
             android:summary="@string/pref_desc__extended_notifications"
             android:title="@string/pref_title__extended_notifications"/>
 
-        <com.github.dfa.diaspora_android.ui.ThemedCheckBoxPreference
+        <com.github.dfa.diaspora_android.ui.theme.ThemedCheckBoxPreference
             android:defaultValue="true"
             android:key="@string/pref_key__append_shared_via_app"
             android:summary="@string/pref_desc__append_shared_via_app"
             android:title="@string/pref_title__append_shared_via_app"/>
 
-        <com.github.dfa.diaspora_android.ui.ThemedCheckBoxPreference
+        <com.github.dfa.diaspora_android.ui.theme.ThemedCheckBoxPreference
             android:defaultValue="true"
             android:key="@string/pref_key__chrome_custom_tabs_enabled"
             android:summary="@string/pref_desc__chrome_custom_tabs_enabled"
             android:title="@string/pref_title__chrome_custom_tabs_enabled"/>
 
-    </com.github.dfa.diaspora_android.ui.ThemedPreferenceCategory>
+    </com.github.dfa.diaspora_android.ui.theme.ThemedPreferenceCategory>
 
     <!-- Diaspora Pod Settings -->
-    <com.github.dfa.diaspora_android.ui.ThemedPreferenceCategory
+    <com.github.dfa.diaspora_android.ui.theme.ThemedPreferenceCategory
         android:key="@string/pref_key__title__pod_settings"
         android:title="@string/pref_cat__pod_settings">
         <Preference
@@ -72,13 +72,13 @@
             android:key="@string/pref_key__change_account"
             android:summary="@string/pref_desc__change_account"
             android:title="@string/pref_title__change_account"/>
-    </com.github.dfa.diaspora_android.ui.ThemedPreferenceCategory>
+    </com.github.dfa.diaspora_android.ui.theme.ThemedPreferenceCategory>
 
     <!-- Networking -->
-    <com.github.dfa.diaspora_android.ui.ThemedPreferenceCategory
+    <com.github.dfa.diaspora_android.ui.theme.ThemedPreferenceCategory
         android:key="@string/pref_key__title__network"
         android:title="@string/pref_cat__network">
-        <com.github.dfa.diaspora_android.ui.ThemedCheckBoxPreference
+        <com.github.dfa.diaspora_android.ui.theme.ThemedCheckBoxPreference
             android:defaultValue="true"
             android:key="@string/pref_key__load_images"
             android:summary="@string/pref_desc__load_images"
@@ -94,10 +94,10 @@
             android:summary="@string/pref_desc__sub_proxy"
             android:title="@string/pref_title__sub_proxy" />
 
-    </com.github.dfa.diaspora_android.ui.ThemedPreferenceCategory>
+    </com.github.dfa.diaspora_android.ui.theme.ThemedPreferenceCategory>
 
     <!-- More -->
-    <com.github.dfa.diaspora_android.ui.ThemedPreferenceCategory
+    <com.github.dfa.diaspora_android.ui.theme.ThemedPreferenceCategory
         android:key="@string/pref_key__title__more"
         android:title="@string/pref_cat__more">
 
@@ -106,5 +106,5 @@
             android:summary="@string/pref_desc__sub_logging"
             android:title="@string/pref_title__sub_logging" />
 
-    </com.github.dfa.diaspora_android.ui.ThemedPreferenceCategory>
+    </com.github.dfa.diaspora_android.ui.theme.ThemedPreferenceCategory>
 </PreferenceScreen>

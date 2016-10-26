@@ -5,8 +5,8 @@
     <item
         android:id="@+id/action_reload"
         android:icon="@drawable/ic_refresh_white_48px"
-        app:showAsAction="always"
         android:orderInCategory="1000"
-        android:title="@string/reload"/>
+        android:title="@string/reload"
+        app:showAsAction="always" />
 
 </menu>

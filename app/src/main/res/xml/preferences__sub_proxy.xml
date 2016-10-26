@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <com.github.dfa.diaspora_android.ui.ThemedPreferenceCategory
+    <com.github.dfa.diaspora_android.ui.theme.ThemedPreferenceCategory
         android:key="@string/pref_key__title__proxy"
         android:title="@string/HTTP">
-        <com.github.dfa.diaspora_android.ui.ThemedCheckBoxPreference
+        <com.github.dfa.diaspora_android.ui.theme.ThemedCheckBoxPreference
             android:defaultValue="false"
             android:key="@string/pref_key__http_proxy_enabled"
             android:summary="@string/pref_desc__http_proxy_enabled"
@@ -27,5 +27,5 @@
             android:summary="@string/pref_desc__http_proxy_load_tor_preset"
             android:title="@string/pref_title__http_proxy_load_tor_preset"/>
 
-    </com.github.dfa.diaspora_android.ui.ThemedPreferenceCategory>
+    </com.github.dfa.diaspora_android.ui.theme.ThemedPreferenceCategory>
 </PreferenceScreen>

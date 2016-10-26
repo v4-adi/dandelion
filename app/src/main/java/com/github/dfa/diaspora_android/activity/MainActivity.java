@@ -59,37 +59,34 @@ import android.widget.Toast;
 
 import com.github.dfa.diaspora_android.App;
 import com.github.dfa.diaspora_android.R;
-import com.github.dfa.diaspora_android.data.AppSettings;
 import com.github.dfa.diaspora_android.data.DiasporaPodList;
-import com.github.dfa.diaspora_android.data.PodUserProfile;
-import com.github.dfa.diaspora_android.fragment.AspectListFragment;
-import com.github.dfa.diaspora_android.fragment.BrowserFragment;
-import com.github.dfa.diaspora_android.fragment.CustomFragment;
-import com.github.dfa.diaspora_android.fragment.DiasporaStreamFragment;
-import com.github.dfa.diaspora_android.fragment.HashtagListFragment;
-import com.github.dfa.diaspora_android.fragment.PodSelectionFragment;
-import com.github.dfa.diaspora_android.listener.WebUserProfileChangedListener;
+import com.github.dfa.diaspora_android.data.DiasporaUserProfile;
+import com.github.dfa.diaspora_android.listener.DiasporaUserProfileChangedListener;
+import com.github.dfa.diaspora_android.listener.IntellihideToolbarActivityListener;
 import com.github.dfa.diaspora_android.receiver.OpenExternalLinkReceiver;
 import com.github.dfa.diaspora_android.receiver.UpdateTitleReceiver;
 import com.github.dfa.diaspora_android.ui.BadgeDrawable;
-import com.github.dfa.diaspora_android.ui.IntellihideToolbarActivityListener;
 import com.github.dfa.diaspora_android.ui.PodSelectionDialog;
+import com.github.dfa.diaspora_android.ui.theme.CustomFragment;
+import com.github.dfa.diaspora_android.ui.theme.ThemeHelper;
+import com.github.dfa.diaspora_android.ui.theme.ThemedActivity;
 import com.github.dfa.diaspora_android.util.AppLog;
-import com.github.dfa.diaspora_android.util.CustomTabHelpers.CustomTabActivityHelper;
+import com.github.dfa.diaspora_android.util.AppSettings;
 import com.github.dfa.diaspora_android.util.DiasporaUrlHelper;
-import com.github.dfa.diaspora_android.util.ProxyHandler;
-import com.github.dfa.diaspora_android.util.WebHelper;
-import com.github.dfa.diaspora_android.util.theming.ThemeHelper;
+import com.github.dfa.diaspora_android.web.BrowserFragment;
+import com.github.dfa.diaspora_android.web.ProxyHandler;
+import com.github.dfa.diaspora_android.web.WebHelper;
+import com.github.dfa.diaspora_android.web.custom_tab.CustomTabActivityHelper;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends ThemedActivity
         implements NavigationView.OnNavigationItemSelectedListener,
-        WebUserProfileChangedListener,
+        DiasporaUserProfileChangedListener,
         CustomTabActivityHelper.ConnectionCallback,
         IntellihideToolbarActivityListener,
-        PodSelectionDialog.PodSelectionDialogResultListener{
+        PodSelectionDialog.PodSelectionDialogResultListener {
 
 
     public static final int REQUEST_CODE_ASK_PERMISSIONS = 123;
@@ -110,7 +107,7 @@ public class MainActivity extends ThemedActivity
     private CustomTabActivityHelper customTabActivityHelper;
     private AppSettings appSettings;
     private DiasporaUrlHelper urls;
-    private PodUserProfile podUserProfile;
+    private DiasporaUserProfile diasporaUserProfile;
     private final Handler uiHandler = new Handler();
     private OpenExternalLinkReceiver brOpenExternalLink;
     private BroadcastReceiver brSetTitle;
@@ -168,10 +165,10 @@ public class MainActivity extends ThemedActivity
 
         if ((app = (App) getApplication()) == null) AppLog.e(this, "App is null!");
         if ((appSettings = app.getSettings()) == null) AppLog.e(this, "AppSettings is null!");
-        if ((podUserProfile = app.getPodUserProfile()) == null)
-            AppLog.e(this, "PodUserProfile is null!");
-        podUserProfile.setCallbackHandler(uiHandler);
-        podUserProfile.setListener(this);
+        if ((diasporaUserProfile = app.getDiasporaUserProfile()) == null)
+            AppLog.e(this, "DiasporaUserProfile is null!");
+        diasporaUserProfile.setCallbackHandler(uiHandler);
+        diasporaUserProfile.setListener(this);
         urls = new DiasporaUrlHelper(appSettings);
         customTabActivityHelper = new CustomTabActivityHelper();
         customTabActivityHelper.setConnectionCallback(this);
@@ -283,8 +280,8 @@ public class MainActivity extends ThemedActivity
                     BrowserFragment bf = new BrowserFragment();
                     fm.beginTransaction().add(bf, fragmentTag).commit();
                     return bf;
-                case HashtagListFragment.TAG:
-                    HashtagListFragment hlf = new HashtagListFragment();
+                case TagListFragment.TAG:
+                    TagListFragment hlf = new TagListFragment();
                     fm.beginTransaction().add(hlf, fragmentTag).commit();
                     return hlf;
                 case AspectListFragment.TAG:
@@ -627,12 +624,12 @@ public class MainActivity extends ThemedActivity
 
         if ((item = menu.findItem(R.id.action_notifications)) != null) {
             LayerDrawable icon = (LayerDrawable) item.getIcon();
-            BadgeDrawable.setBadgeCount(this, icon, podUserProfile.getNotificationCount());
+            BadgeDrawable.setBadgeCount(this, icon, diasporaUserProfile.getNotificationCount());
         }
 
         if ((item = menu.findItem(R.id.action_conversations)) != null) {
             LayerDrawable icon = (LayerDrawable) item.getIcon();
-            BadgeDrawable.setBadgeCount(this, icon, podUserProfile.getUnreadMessagesCount());
+            BadgeDrawable.setBadgeCount(this, icon, diasporaUserProfile.getUnreadMessagesCount());
         }
         return super.onPrepareOptionsMenu(menu);
     }
@@ -648,7 +645,7 @@ public class MainActivity extends ThemedActivity
         AppLog.i(this, "onOptionsItemSelected()");
         switch (item.getItemId()) {
             case R.id.action_notifications: {
-                if(appSettings.isExtendedNotificationsActivated()) {
+                if (appSettings.isExtendedNotificationsActivated()) {
                     return true;
                 }
                 //Otherwise we execute the action of action_notifications_all
@@ -803,25 +800,17 @@ public class MainActivity extends ThemedActivity
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * Update the profile name in the navigation slider
-     *
-     * @param name name
-     */
     @Override
-    public void onUserProfileNameChanged(String name) {
+    public void onUserProfileNameChanged(DiasporaUserProfile diasporaUserProfile, String name) {
         AppLog.i(this, "onUserProfileNameChanged()");
+        // Update the profile name in the navigation slider
         navheaderTitle.setText(name);
     }
 
-    /**
-     * Update the profile picture in the navigation slider
-     *
-     * @param avatarUrl url of the new profile pic
-     */
     @Override
-    public void onUserProfileAvatarChanged(String avatarUrl) {
+    public void onUserProfileAvatarChanged(DiasporaUserProfile diasporaUserProfile, String avatarUrl) {
         AppLog.i(this, "onUserProfileAvatarChanged()");
+        // Update the profile picture in the navigation slider
         app.getAvatarImageLoader().startImageDownload(navheaderImage, avatarUrl);
     }
 
@@ -916,27 +905,20 @@ public class MainActivity extends ThemedActivity
         Toast.makeText(this, "Not yet implemented.", Toast.LENGTH_SHORT).show();
     }
 
-    /**
-     * Invalidate the top toolbar to update the notification counter
-     *
-     * @param notificationCount new notification count
-     */
     @Override
-    public void onNotificationCountChanged(int notificationCount) {
+    public void onNotificationCountChanged(DiasporaUserProfile diasporaUserProfile, int notificationCount) {
         AppLog.i(this, "onNotificationCountChanged()");
-        // Count saved in PodUserProfile
+        // Count saved in DiasporaUserProfile
+        // Invalidate the top toolbar to update the unread messages counter
         invalidateOptionsMenu();
     }
 
-    /**
-     * Invalidate the top toolbar to update the unread messages counter
-     *
-     * @param unreadMessageCount new unread messages count
-     */
+
     @Override
-    public void onUnreadMessageCountChanged(int unreadMessageCount) {
+    public void onUnreadMessageCountChanged(DiasporaUserProfile diasporaUserProfile, int unreadMessageCount) {
         AppLog.i(this, "onUnreadMessageCountChanged()");
-        // Count saved in PodUserProfile
+        // Count saved in DiasporaUserProfile
+        // Invalidate the top toolbar to update the unread messages counter
         invalidateOptionsMenu();
     }
 
@@ -950,7 +932,7 @@ public class MainActivity extends ThemedActivity
 
     @Override
     public void onPodSelectionDialogResult(DiasporaPodList.DiasporaPod pod, boolean accepted) {
-        if(accepted) {
+        if (accepted) {
             invalidateOptionsMenu();
             navheaderDescription.setText(pod.getName());
         }
@@ -986,7 +968,7 @@ public class MainActivity extends ThemedActivity
             break;
 
             case R.id.nav_followed_tags: {
-                showFragment(getFragment(HashtagListFragment.TAG));
+                showFragment(getFragment(TagListFragment.TAG));
             }
             break;
 
@@ -997,7 +979,7 @@ public class MainActivity extends ThemedActivity
             break;
 
             case R.id.nav_contacts: {
-                if(WebHelper.isOnline(MainActivity.this)) {
+                if (WebHelper.isOnline(MainActivity.this)) {
                     openDiasporaUrl(urls.getManageContactsUrl());
                 } else {
                     snackbarNoInternet.show();

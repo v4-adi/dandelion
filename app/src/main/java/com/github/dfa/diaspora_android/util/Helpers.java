@@ -30,6 +30,7 @@ import android.support.design.widget.Snackbar;
 import android.view.View;
 
 import com.github.dfa.diaspora_android.R;
+import com.github.dfa.diaspora_android.web.WebHelper;
 
 import java.io.BufferedReader;
 import java.io.File;

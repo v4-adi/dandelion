@@ -4,13 +4,19 @@
 
     <item
         android:icon="@drawable/ic_share_white_48px"
-        app:showAsAction="always"
         android:orderInCategory="300"
-        android:title="@string/action_share_dotdotdot">
+        android:title="@string/action_share_dotdotdot"
+        app:showAsAction="always">
         <menu>
-            <item android:id="@+id/action_share_screenshot" android:title="@string/share__share_screenshot"/>
-            <item android:id="@+id/action_take_screenshot" android:title="@string/share__take_screenshot"/>
-            <item android:id="@+id/action_share_link" android:title="@string/share__share_link_as_text"/>
+            <item
+                android:id="@+id/action_share_screenshot"
+                android:title="@string/share__share_screenshot" />
+            <item
+                android:id="@+id/action_take_screenshot"
+                android:title="@string/share__take_screenshot" />
+            <item
+                android:id="@+id/action_share_link"
+                android:title="@string/share__share_link_as_text" />
         </menu>
     </item>
 

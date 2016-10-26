@@ -5,7 +5,6 @@ import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatDialogFragment;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,12 +17,12 @@ import android.widget.TextView;
 
 import com.github.dfa.diaspora_android.App;
 import com.github.dfa.diaspora_android.R;
-import com.github.dfa.diaspora_android.data.AppSettings;
 import com.github.dfa.diaspora_android.data.DiasporaPodList.DiasporaPod;
 import com.github.dfa.diaspora_android.data.DiasporaPodList.DiasporaPod.DiasporaPodUrl;
-import com.github.dfa.diaspora_android.fragment.ThemedAppCompatDialogFragment;
-import com.github.dfa.diaspora_android.util.ProxyHandler;
-import com.github.dfa.diaspora_android.util.theming.ThemeHelper;
+import com.github.dfa.diaspora_android.ui.theme.ThemeHelper;
+import com.github.dfa.diaspora_android.ui.theme.ThemedAppCompatDialogFragment;
+import com.github.dfa.diaspora_android.util.AppSettings;
+import com.github.dfa.diaspora_android.web.ProxyHandler;
 
 import org.json.JSONException;
 
@@ -38,7 +37,7 @@ import butterknife.OnItemSelected;
  * Created by gsantner (https://gsantner.github.io) on 06.10.16.
  */
 public class PodSelectionDialog extends ThemedAppCompatDialogFragment {
-    public static final String TAG = "com.github.dfa.diaspora_android.PodSelectionDialog";
+    public static final String TAG = "com.github.dfa.diaspora_android.ui.PodSelectionDialog";
 
     public static interface PodSelectionDialogResultListener {
         void onPodSelectionDialogResult(DiasporaPod pod, boolean accepted);
@@ -145,7 +144,7 @@ public class PodSelectionDialog extends ThemedAppCompatDialogFragment {
 
     @Override
     protected AppSettings getAppSettings() {
-        if(isAdded()) {
+        if (isAdded()) {
             return ((App) getActivity().getApplication()).getSettings();
         } else {
             return new AppSettings(getContext().getApplicationContext());
@@ -202,7 +201,7 @@ public class PodSelectionDialog extends ThemedAppCompatDialogFragment {
             pod.getPodUrls().add(podUrl);
 
             // Load Tor preset
-            if(pod.getPodUrl().getHost().endsWith(".onion") && checkboxTorPreset.isChecked()){
+            if (pod.getPodUrl().getHost().endsWith(".onion") && checkboxTorPreset.isChecked()) {
                 AppSettings settings = app.getSettings();
                 settings.setProxyHttpEnabled(true);
                 settings.setProxyWasEnabled(false);

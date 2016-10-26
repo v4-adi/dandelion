@@ -31,7 +31,7 @@ import android.graphics.drawable.LayerDrawable;
 import android.support.v4.content.ContextCompat;
 
 import com.github.dfa.diaspora_android.R;
-import com.github.dfa.diaspora_android.data.AppSettings;
+import com.github.dfa.diaspora_android.util.AppSettings;
 
 public class BadgeDrawable extends Drawable {
     // Source: http://mobikul.com/adding-badge-count-on-menu-items-like-cart-notification-etc/

@@ -14,11 +14,11 @@
         android:theme="@style/DiasporaLight" >
 
         <provider
-            android:name="com.github.dfa.diaspora_android.data.HashtagProvider"
+            android:name="com.github.dfa.diaspora_android.service.HashtagContentProvider"
             android:authorities="com.github.dfa.diaspora_android.mainactivity" />
 
         <service
-            android:name="com.github.dfa.diaspora_android.task.GetPodsService"
+            android:name="com.github.dfa.diaspora_android.service.FetchPodsService"
             android:enabled="true"
             android:exported="false" />
 

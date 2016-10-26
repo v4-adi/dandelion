@@ -22,13 +22,14 @@ import android.widget.TextView;
 
 import com.github.dfa.diaspora_android.App;
 import com.github.dfa.diaspora_android.R;
-import com.github.dfa.diaspora_android.data.AppSettings;
-import com.github.dfa.diaspora_android.fragment.ThemedPreferenceFragment;
+import com.github.dfa.diaspora_android.ui.theme.ColorPalette;
+import com.github.dfa.diaspora_android.ui.theme.ThemeHelper;
+import com.github.dfa.diaspora_android.ui.theme.ThemedActivity;
+import com.github.dfa.diaspora_android.ui.theme.ThemedPreferenceFragment;
 import com.github.dfa.diaspora_android.util.AppLog;
+import com.github.dfa.diaspora_android.util.AppSettings;
 import com.github.dfa.diaspora_android.util.DiasporaUrlHelper;
-import com.github.dfa.diaspora_android.util.ProxyHandler;
-import com.github.dfa.diaspora_android.util.theming.ColorPalette;
-import com.github.dfa.diaspora_android.util.theming.ThemeHelper;
+import com.github.dfa.diaspora_android.web.ProxyHandler;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -72,7 +73,7 @@ public class SettingsActivity extends ThemedActivity {
 
     protected void showFragment(String tag, boolean addToBackStack) {
         PreferenceFragment fragment = (PreferenceFragment) getFragmentManager().findFragmentByTag(tag);
-        if(fragment == null) {
+        if (fragment == null) {
             switch (tag) {
                 case SettingsFragmentThemes.TAG:
                     fragment = new SettingsFragmentThemes();
@@ -93,7 +94,7 @@ public class SettingsActivity extends ThemedActivity {
             }
         }
         FragmentTransaction t = getFragmentManager().beginTransaction();
-        if(addToBackStack) {
+        if (addToBackStack) {
             t.addToBackStack(tag);
         }
         t.replace(R.id.settings__fragment_container, fragment, tag).commit();
@@ -142,26 +143,26 @@ public class SettingsActivity extends ThemedActivity {
 
         @Override
         public boolean onPreferenceTreeClick(PreferenceScreen screen, Preference preference) {
-            if(isAdded() && preference.hasKey()) {
-                AppSettings settings = ((App)getActivity().getApplication()).getSettings();
+            if (isAdded() && preference.hasKey()) {
+                AppSettings settings = ((App) getActivity().getApplication()).getSettings();
                 DiasporaUrlHelper diasporaUrlHelper = new DiasporaUrlHelper(settings);
                 String key = preference.getKey();
                 /** Sub-Categories */
-                if(settings.isKeyEqual(key,R.string.pref_key__cat_themes)) {
+                if (settings.isKeyEqual(key, R.string.pref_key__cat_themes)) {
                     ((SettingsActivity) getActivity()).showFragment(SettingsFragmentThemes.TAG, true);
                     return true;
-                } else if (settings.isKeyEqual(key,R.string.pref_key__cat_nav_slider)) {
+                } else if (settings.isKeyEqual(key, R.string.pref_key__cat_nav_slider)) {
                     ((SettingsActivity) getActivity()).showFragment(SettingsFragmentNavSlider.TAG, true);
                     return true;
-                } else if (settings.isKeyEqual(key,R.string.pref_key__cat_proxy)) {
-                    ((SettingsActivity)getActivity()).showFragment(SettingsFragmentProxy.TAG, true);
+                } else if (settings.isKeyEqual(key, R.string.pref_key__cat_proxy)) {
+                    ((SettingsActivity) getActivity()).showFragment(SettingsFragmentProxy.TAG, true);
                     return true;
-                } else if (settings.isKeyEqual(key,R.string.pref_key__cat_debugging)) {
-                    ((SettingsActivity)getActivity()).showFragment(SettingsFragmentDebugging.TAG, true);
+                } else if (settings.isKeyEqual(key, R.string.pref_key__cat_debugging)) {
+                    ((SettingsActivity) getActivity()).showFragment(SettingsFragmentDebugging.TAG, true);
                     return true;
                 }
                 /** Network */
-                else if (settings.isKeyEqual(key,R.string.pref_key__clear_cache)) {
+                else if (settings.isKeyEqual(key, R.string.pref_key__clear_cache)) {
                     Intent intent = new Intent(getActivity(), MainActivity.class);
                     intent.setAction(MainActivity.ACTION_CLEAR_CACHE);
                     startActivity(intent);
@@ -169,28 +170,28 @@ public class SettingsActivity extends ThemedActivity {
                     return true;
                 }
                 /** Pod Settings */
-                if (settings.isKeyEqual(key,R.string.pref_key__personal_settings)) {
+                if (settings.isKeyEqual(key, R.string.pref_key__personal_settings)) {
                     Intent intent = new Intent(getActivity(), MainActivity.class);
                     intent.setAction(MainActivity.ACTION_OPEN_URL);
                     intent.putExtra(MainActivity.URL_MESSAGE, diasporaUrlHelper.getPersonalSettingsUrl());
                     startActivity(intent);
                     getActivity().finish();
                     return true;
-                } else if (settings.isKeyEqual(key,R.string.pref_key__manage_tags)) {
+                } else if (settings.isKeyEqual(key, R.string.pref_key__manage_tags)) {
                     Intent intent = new Intent(getActivity(), MainActivity.class);
                     intent.setAction(MainActivity.ACTION_OPEN_URL);
                     intent.putExtra(MainActivity.URL_MESSAGE, diasporaUrlHelper.getManageTagsUrl());
                     startActivity(intent);
                     getActivity().finish();
                     return true;
-                } else if (settings.isKeyEqual(key,R.string.pref_key__manage_contacts)) {
+                } else if (settings.isKeyEqual(key, R.string.pref_key__manage_contacts)) {
                     Intent intent = new Intent(getActivity(), MainActivity.class);
                     intent.setAction(MainActivity.ACTION_OPEN_URL);
                     intent.putExtra(MainActivity.URL_MESSAGE, diasporaUrlHelper.getManageContactsUrl());
                     startActivity(intent);
                     getActivity().finish();
                     return true;
-                } else if (settings.isKeyEqual(key,R.string.pref_key__change_account)) {
+                } else if (settings.isKeyEqual(key, R.string.pref_key__change_account)) {
                     new AlertDialog.Builder(getActivity())
                             .setTitle(getString(R.string.confirmation))
                             .setMessage(getString(R.string.pref_warning__change_account))
@@ -224,7 +225,7 @@ public class SettingsActivity extends ThemedActivity {
 
         @Override
         public void updateViewColors() {
-            if(isAdded()) {
+            if (isAdded()) {
                 //Trigger redraw of whole preference screen in order to reflect changes
                 setPreferenceScreen(null);
                 addPreferencesFromResource(R.xml.preferences__sub_themes);
@@ -235,7 +236,7 @@ public class SettingsActivity extends ThemedActivity {
         public boolean onPreferenceTreeClick(PreferenceScreen screen, Preference preference) {
             if (isAdded() && preference.hasKey()) {
                 String key = preference.getKey();
-                if(key.equals(getString(R.string.pref_key__primary_color__preference_click))) {
+                if (key.equals(getString(R.string.pref_key__primary_color__preference_click))) {
                     showColorPickerDialog(1);
                     return true;
                 } else if (key.equals(getString(R.string.pref_key__accent_color__preference_click))) {
@@ -257,7 +258,7 @@ public class SettingsActivity extends ThemedActivity {
 
             //Inflate dialog layout
             LayoutInflater inflater = getActivity().getLayoutInflater();
-            View dialogLayout = inflater.inflate(R.layout.color_picker__dialog, null);
+            View dialogLayout = inflater.inflate(R.layout.ui__dialog__color_picker, null);
             final android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(context);
             builder.setView(dialogLayout);
 
@@ -305,7 +306,7 @@ public class SettingsActivity extends ThemedActivity {
                                 if (Build.VERSION.SDK_INT >= 21) {
                                     getActivity().getWindow().setStatusBarColor(ThemeHelper.getPrimaryDarkColor());
                                 }
-                                ((ThemedActivity) getActivity()).applyColorToViews();
+                                ((SettingsActivity) getActivity()).applyColorToViews();
                             } else {
                                 appSettings.setAccentColorSettings(base.getColor(), shade.getColor());
                             }
@@ -348,7 +349,7 @@ public class SettingsActivity extends ThemedActivity {
         }
 
         public void updateSummaries() {
-            if(isAdded()) {
+            if (isAdded()) {
                 AppSettings settings = ((App) getActivity().getApplication()).getSettings();
                 findPreference(settings.getKey(R.string.pref_key__http_proxy_host)).setSummary(settings.getProxyHttpHost());
                 findPreference(settings.getKey(R.string.pref_key__http_proxy_port)).setSummary(Integer.toString(settings.getProxyHttpPort()));
@@ -360,7 +361,7 @@ public class SettingsActivity extends ThemedActivity {
             if (isAdded() && preference.hasKey()) {
                 AppSettings appSettings = ((App) getActivity().getApplication()).getSettings();
                 String key = preference.getKey();
-                if(appSettings.isKeyEqual(key, R.string.pref_key__http_proxy_load_tor_preset)) {
+                if (appSettings.isKeyEqual(key, R.string.pref_key__http_proxy_load_tor_preset)) {
                     appSettings.setProxyHttpHost("127.0.0.1");
                     appSettings.setProxyHttpPort(8118);
                     return true;
@@ -376,7 +377,7 @@ public class SettingsActivity extends ThemedActivity {
 
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-            if(isAdded()) {
+            if (isAdded()) {
                 if (key.equals(getString(R.string.pref_key__http_proxy_host)) ||
                         key.equals(getString(R.string.pref_key__http_proxy_port))) {
                     updateSummaries();

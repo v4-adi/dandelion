@@ -4,22 +4,22 @@ files:
     translation: '/app/src/main/res/values-%android_code%/%original_file_name%'
     languages_mapping:
       android_code:
-        sv-SE: sv
-        es-ES: es
-        ml-IN: ml
-        pt-PT: pt
-        "no": 'no'
-        de: de
-        tr: tr
-        ca: ca
-        ru: ru
-        pl: pl
-        nl: nl
-        ja: ja
-        it: it
-        hu: hu
-        hi: hi
-        fr: fr
-        el: el
-        cs: cs
-        kn: kn
+        ml-IN: ml 	# Malayalam
+        sv-SE: sv 	# Swedish
+        es-ES: es 	# Espanol
+        de: de 		# German
+        ru: ru 		# Russian
+        pl: pl 		# Polish
+        ja: ja 		# Japanese
+        it: it 		# Italian
+        fr: fr 		# French
+        kn: kn 		# Kannada (Asian)
+#       hu: hu 		# Hungarian
+#       hi: hi 		# Hindi
+#       nl: nl 		# Dutch
+#       el: el 		# Greel
+#       cs: cs 		# Czeck
+#       "no": 'no' 	# Norwegian
+#       tr: tr 		# Turkish
+#       ca: ca 		# Catalan
+#       pt-PT: pt 	# Portugese

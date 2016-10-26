@@ -29,11 +29,11 @@ import android.support.customtabs.CustomTabsIntent;
 
 import com.github.dfa.diaspora_android.R;
 import com.github.dfa.diaspora_android.activity.MainActivity;
-import com.github.dfa.diaspora_android.data.AppSettings;
+import com.github.dfa.diaspora_android.ui.theme.ThemeHelper;
 import com.github.dfa.diaspora_android.util.AppLog;
-import com.github.dfa.diaspora_android.util.CustomTabHelpers.BrowserFallback;
-import com.github.dfa.diaspora_android.util.CustomTabHelpers.CustomTabActivityHelper;
-import com.github.dfa.diaspora_android.util.theming.ThemeHelper;
+import com.github.dfa.diaspora_android.util.AppSettings;
+import com.github.dfa.diaspora_android.web.custom_tab.BrowserFallback;
+import com.github.dfa.diaspora_android.web.custom_tab.CustomTabActivityHelper;
 
 /**
  * BroadcastReceiver that opens links in a Chrome CustomTab

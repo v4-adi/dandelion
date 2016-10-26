@@ -43,15 +43,15 @@ import android.widget.Toast;
 
 import com.github.dfa.diaspora_android.App;
 import com.github.dfa.diaspora_android.R;
-import com.github.dfa.diaspora_android.data.AppSettings;
-import com.github.dfa.diaspora_android.fragment.ThemedFragment;
+import com.github.dfa.diaspora_android.listener.IntellihideToolbarActivityListener;
 import com.github.dfa.diaspora_android.ui.HtmlTextView;
-import com.github.dfa.diaspora_android.ui.IntellihideToolbarActivityListener;
+import com.github.dfa.diaspora_android.ui.theme.ThemeHelper;
+import com.github.dfa.diaspora_android.ui.theme.ThemedActivity;
+import com.github.dfa.diaspora_android.ui.theme.ThemedFragment;
 import com.github.dfa.diaspora_android.util.AppLog;
+import com.github.dfa.diaspora_android.util.AppSettings;
 import com.github.dfa.diaspora_android.util.DiasporaUrlHelper;
 import com.github.dfa.diaspora_android.util.Helpers;
-import com.github.dfa.diaspora_android.util.Log;
-import com.github.dfa.diaspora_android.util.theming.ThemeHelper;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -316,7 +316,7 @@ public class AboutActivity extends ThemedActivity
                 public boolean onLongClick(View view) {
                     if (isAdded()) {
                         ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(CLIPBOARD_SERVICE);
-                        ClipData clip = ClipData.newPlainText("DEBUG_LOG", Log.getLogBuffer());
+                        ClipData clip = ClipData.newPlainText("DEBUG_LOG", AppLog.Log.getLogBuffer());
                         clipboard.setPrimaryClip(clip);
                         Toast.makeText(DebugFragment.this.getActivity(), R.string.fragment_debug__toast_log_copied, Toast.LENGTH_SHORT).show();
                     } else {
@@ -325,8 +325,8 @@ public class AboutActivity extends ThemedActivity
                     return true;
                 }
             });
-            Log.addLogObserver(this);
-            update(Log.getInstance(), null);
+            AppLog.Log.addLogObserver(this);
+            update(AppLog.Log.getInstance(), null);
 
             if (isAdded()) {
                 try {
@@ -353,14 +353,14 @@ public class AboutActivity extends ThemedActivity
 
         @Override
         public void onDestroyView() {
-            Log.removeLogObserver(this);
+            AppLog.Log.removeLogObserver(this);
             super.onDestroyView();
         }
 
         @Override
         public void update(Observable observable, Object o) {
             if (logBox != null) {
-                logBox.setText(Log.getLogBuffer());
+                logBox.setText(AppLog.Log.getLogBuffer());
             }
         }
     }

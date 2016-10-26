@@ -20,9 +20,8 @@ package com.github.dfa.diaspora_android.util;
 
 import com.github.dfa.diaspora_android.App;
 import com.github.dfa.diaspora_android.R;
-import com.github.dfa.diaspora_android.data.AppSettings;
 import com.github.dfa.diaspora_android.data.DiasporaPodList.DiasporaPod;
-import com.github.dfa.diaspora_android.data.PodAspect;
+import com.github.dfa.diaspora_android.data.DiasporaAspect;
 
 /**
  * Helper class that provides easy access to specific urls related to diaspora
@@ -151,7 +150,7 @@ public class DiasporaUrlHelper {
      * @param aspectId ID of the aspect
      * @return https://(pod-domain.tld)//aspects?a_ids[]=aspectId
      */
-    public String getAspectUrl(String aspectId)  {
+    public String getAspectUrl(String aspectId) {
         return getPodUrl() + SUBURL_ASPECT + aspectId;
     }
 
@@ -315,7 +314,7 @@ public class DiasporaUrlHelper {
         url = url.replace(getPodUrl() + "/aspects?a_ids[]=", "").split(",")[0];
         try {
             int id = Integer.parseInt(url);
-            for (PodAspect aspect : app.getPodUserProfile().getAspects()) {
+            for (DiasporaAspect aspect : app.getDiasporaUserProfile().getAspects()) {
                 if (aspect.id == id) {
                     return aspect.name;
                 }

@@ -36,7 +36,7 @@ import java.util.regex.Pattern;
  * TextView, that renders HTML with highlited and clickable links and hashtags.
  * Links are opened in a webbrowser.
  * Hashtags open the MainActivity, load the new-post site of the selected pod and insert the
- * hashtag into the post editor. See data/HashtagProvider.
+ * hashtag into the post editor. See data/HashtagContentProvider.
  */
 public class HtmlTextView extends TextView {
 
