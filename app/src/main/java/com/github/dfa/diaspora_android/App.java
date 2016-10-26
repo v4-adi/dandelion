@@ -23,6 +23,7 @@ import android.app.Application;
 import android.content.Context;
 import android.os.Build;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatDelegate;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
 import android.webkit.WebView;
@@ -62,6 +63,7 @@ public class App extends Application {
             CookieSyncManager.createInstance(c);
         }
         cookieManager.setAcceptCookie(true);
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
     }
 
     public void resetPodData(@Nullable WebView webView) {
