@@ -313,6 +313,11 @@ public class MainActivity extends ThemedActivity
             AppLog.v(this, "Fragment was not visible. Replace it.");
             fm.beginTransaction().addToBackStack(null).replace(R.id.fragment_container, fragment, fragment.getFragmentTag()).commit();
             invalidateOptionsMenu();
+            if (appSettings.isIntellihideToolbars() && fragment.isAllowedIntellihide()) {
+                this.enableToolbarHiding();
+            } else {
+                this.disableToolbarHiding();
+            }
         } else {
             AppLog.v(this, "Fragment was already visible. Do nothing.");
         }
@@ -576,16 +581,6 @@ public class MainActivity extends ThemedActivity
         LocalBroadcastManager.getInstance(this).registerReceiver(brOpenExternalLink, new IntentFilter(ACTION_OPEN_EXTERNAL_URL));
         invalidateOptionsMenu();
         this.appSettings = getAppSettings();
-        boolean podSelection = getTopFragment() != null && getTopFragment().getFragmentTag().equals(PodSelectionFragment.TAG);
-        if (appSettings.isIntellihideToolbars()) {
-            if(podSelection) {
-                this.disableToolbarHiding();
-            } else {
-                this.enableToolbarHiding();
-            }
-        } else {
-            this.disableToolbarHiding();
-        }
         updateNavigationViewEntryVisibilities();
     }
 

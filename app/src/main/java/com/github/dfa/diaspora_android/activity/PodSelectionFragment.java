@@ -282,4 +282,9 @@ public class PodSelectionFragment extends ThemedFragment implements SearchView.O
     public boolean onBackPressed() {
         return false;
     }
+
+    @Override
+    public boolean isAllowedIntellihide() {
+        return false;
+    }
 }

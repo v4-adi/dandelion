@@ -65,5 +65,9 @@ public abstract class CustomFragment extends Fragment {
      * @return did we react to the back press?
      */
     public abstract boolean onBackPressed();
+
+    public boolean isAllowedIntellihide() {
+        return true;
+    }
 }
 
