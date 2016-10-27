@@ -14,7 +14,6 @@ import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceScreen;
 import android.support.design.widget.AppBarLayout;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,7 +24,6 @@ import android.widget.Toast;
 import com.github.dfa.diaspora_android.App;
 import com.github.dfa.diaspora_android.R;
 import com.github.dfa.diaspora_android.ui.theme.ColorPalette;
-import com.github.dfa.diaspora_android.ui.theme.CustomFragment;
 import com.github.dfa.diaspora_android.ui.theme.ThemeHelper;
 import com.github.dfa.diaspora_android.ui.theme.ThemedActivity;
 import com.github.dfa.diaspora_android.ui.theme.ThemedPreferenceFragment;
@@ -132,17 +130,13 @@ public class SettingsActivity extends ThemedActivity {
 
     @Override
     public void onBackPressed() {
-        AppLog.d(this, "onBackPressed");
         ThemedPreferenceFragment top = getTopFragment();
         if(top != null && top.getFragmentTag().equals(SettingsFragmentProxy.TAG)) {
-            AppLog.d(this, "top was proxy");
             ProxyHandler.ProxySettings newProxySettings = getAppSettings().getProxySettings();
             if(oldProxySettings.isEnabled() && !newProxySettings.isEnabled()) {
-                AppLog.d(this, "proxy disabled");
                 Toast.makeText(this, R.string.toast__proxy_disabled__restart_required, Toast.LENGTH_LONG).show();
             }
         }
-        AppLog.d(this, "top is null: "+(top == null));
         super.onBackPressed();
     }
 
