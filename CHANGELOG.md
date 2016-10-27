@@ -1,6 +1,9 @@
 # v0.1.7 wip
 - Added: Custom Theme Colors!
+- Eye candy for the settings activity
+- Added: "Contacts" shortcut in the navigation slider
 - Increased the overall performance by using Fragments
+- Improved account setup with easy tor hidden service configuration
 - Lots of bugfixes
 - Fixes for the bugfixes!
 
