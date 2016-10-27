@@ -8,8 +8,8 @@
 07l>>   Username (Link): Text  
 08l>>   Username (E-Mail): Text  
 ## 99l CONTRIBUTORS  
+Martín Vukovic (martinvukovic@protonmail.com): Diaspora Native WebApp
+Gaukler Faun (https://github.com/scoute-dich): Diaspora Native WebApp additions
 Abhijith Balan (abhijithb21 AT openmailbox DOT org): Malayalam translation
 Airon90 (https://diasp.eu/u/airon90): Italian translation
-Gaukler Faun (https://github.com/scoute-dich): Diaspora Native WebApp additions
-Martín Vukovic (martinvukovic@protonmail.com): Diaspora Native WebApp
 SansPseudoFix (https://github.com/SansPseudoFix): French translation
