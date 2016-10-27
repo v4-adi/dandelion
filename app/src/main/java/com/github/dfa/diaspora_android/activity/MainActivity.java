@@ -511,11 +511,7 @@ public class MainActivity extends ThemedActivity
      * @return top fragment or null if there is none displayed
      */
     private CustomFragment getTopFragment() {
-        Fragment top = fm.findFragmentById(R.id.fragment_container);
-        if (top != null) {
-            return (CustomFragment) top;
-        }
-        return null;
+        return (CustomFragment) fm.findFragmentById(R.id.fragment_container);
     }
 
     /**

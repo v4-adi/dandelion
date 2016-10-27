@@ -14,15 +14,18 @@ import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceScreen;
 import android.support.design.widget.AppBarLayout;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.dfa.diaspora_android.App;
 import com.github.dfa.diaspora_android.R;
 import com.github.dfa.diaspora_android.ui.theme.ColorPalette;
+import com.github.dfa.diaspora_android.ui.theme.CustomFragment;
 import com.github.dfa.diaspora_android.ui.theme.ThemeHelper;
 import com.github.dfa.diaspora_android.ui.theme.ThemedActivity;
 import com.github.dfa.diaspora_android.ui.theme.ThemedPreferenceFragment;
@@ -127,6 +130,31 @@ public class SettingsActivity extends ThemedActivity {
         super.onStop();
     }
 
+    @Override
+    public void onBackPressed() {
+        AppLog.d(this, "onBackPressed");
+        ThemedPreferenceFragment top = getTopFragment();
+        if(top != null && top.getFragmentTag().equals(SettingsFragmentProxy.TAG)) {
+            AppLog.d(this, "top was proxy");
+            ProxyHandler.ProxySettings newProxySettings = getAppSettings().getProxySettings();
+            if(oldProxySettings.isEnabled() && !newProxySettings.isEnabled()) {
+                AppLog.d(this, "proxy disabled");
+                Toast.makeText(this, R.string.toast__proxy_disabled__restart_required, Toast.LENGTH_LONG).show();
+            }
+        }
+        AppLog.d(this, "top is null: "+(top == null));
+        super.onBackPressed();
+    }
+
+    /**
+     * Return the fragment which is currently displayed in R.id.fragment_container
+     *
+     * @return top fragment or null if there is none displayed
+     */
+    private ThemedPreferenceFragment getTopFragment() {
+        return (ThemedPreferenceFragment) getFragmentManager().findFragmentById(R.id.settings__fragment_container);
+    }
+
     public static class SettingsFragmentMaster extends ThemedPreferenceFragment {
         public static final String TAG = "com.github.dfa.diaspora_android.settings.SettingsFragmentMaster";
 
@@ -212,6 +240,11 @@ public class SettingsActivity extends ThemedActivity {
             }
             return super.onPreferenceTreeClick(screen, preference);
         }
+
+        @Override
+        public String getFragmentTag() {
+            return TAG;
+        }
     }
 
     public static class SettingsFragmentThemes extends ThemedPreferenceFragment {
@@ -245,6 +278,11 @@ public class SettingsActivity extends ThemedActivity {
                 }
             }
             return super.onPreferenceTreeClick(screen, preference);
+        }
+
+        @Override
+        public String getFragmentTag() {
+            return TAG;
         }
 
         /**
@@ -329,6 +367,11 @@ public class SettingsActivity extends ThemedActivity {
         public void updateViewColors() {
 
         }
+
+        @Override
+        public String getFragmentTag() {
+            return TAG;
+        }
     }
 
     public static class SettingsFragmentProxy extends ThemedPreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
@@ -364,10 +407,16 @@ public class SettingsActivity extends ThemedActivity {
                 if (appSettings.isKeyEqual(key, R.string.pref_key__http_proxy_load_tor_preset)) {
                     appSettings.setProxyHttpHost("127.0.0.1");
                     appSettings.setProxyHttpPort(8118);
+                    Toast.makeText(screen.getContext(), R.string.toast__proxy_orbot_preset_loaded, Toast.LENGTH_SHORT).show();
                     return true;
                 }
             }
             return super.onPreferenceTreeClick(screen, preference);
+        }
+
+        @Override
+        public String getFragmentTag() {
+            return TAG;
         }
 
         @Override
@@ -398,6 +447,11 @@ public class SettingsActivity extends ThemedActivity {
         @Override
         public void updateViewColors() {
 
+        }
+
+        @Override
+        public String getFragmentTag() {
+            return TAG;
         }
     }
 }

@@ -39,4 +39,6 @@ public abstract class ThemedPreferenceFragment extends PreferenceFragment {
         }
         return super.onPreferenceTreeClick(screen, preference);
     }
+
+    public abstract String getFragmentTag();
 }
