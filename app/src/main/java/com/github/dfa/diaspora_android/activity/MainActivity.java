@@ -576,8 +576,13 @@ public class MainActivity extends ThemedActivity
         LocalBroadcastManager.getInstance(this).registerReceiver(brOpenExternalLink, new IntentFilter(ACTION_OPEN_EXTERNAL_URL));
         invalidateOptionsMenu();
         this.appSettings = getAppSettings();
+        boolean podSelection = getTopFragment() != null && getTopFragment().getFragmentTag().equals(PodSelectionFragment.TAG);
         if (appSettings.isIntellihideToolbars()) {
-            this.enableToolbarHiding();
+            if(podSelection) {
+                this.disableToolbarHiding();
+            } else {
+                this.enableToolbarHiding();
+            }
         } else {
             this.disableToolbarHiding();
         }
