@@ -577,6 +577,11 @@ public class MainActivity extends ThemedActivity
         LocalBroadcastManager.getInstance(this).registerReceiver(brOpenExternalLink, new IntentFilter(ACTION_OPEN_EXTERNAL_URL));
         invalidateOptionsMenu();
         this.appSettings = getAppSettings();
+        if(appSettings.isIntellihideToolbars()) {
+            enableToolbarHiding();
+        } else {
+            disableToolbarHiding();
+        }
         updateNavigationViewEntryVisibilities();
     }
 
