@@ -113,7 +113,7 @@
     <string name="pref_title__sub_proxy">Proxy</string>
     <string name="pref_desc__sub_proxy" translatable="false">@string/pref_desc__http_proxy_enabled</string>
     <string name="pref_title__proxy_enabled">Enable Proxy</string>
-    <string name="pref_desc__http_proxy_enabled">Proxy Diaspora\'s traffic to circumvent firewalls.\nMay require restart</string>
+    <string name="pref_desc__http_proxy_enabled">Proxy Diaspora\'s traffic to circumvent firewalls.\nMay require restart. This might not work on some phones.</string>
     <string name="pref_title__http_proxy_host">Host</string>
     <string name="pref_title__http_proxy_port">Port</string>
     <string name="HTTP" translatable="false">HTTP</string>
