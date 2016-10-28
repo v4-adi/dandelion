@@ -88,10 +88,10 @@
 
     <!-- Font size -->
     <string name="pref_title__font_size">Font size</string>
-    <array name="pref_entries__font_size">
-        <item>Normal</item>
-        <item>Large</item>
-        <item>Huge</item>
+    <array name="pref_entries__font_size" translatable="false">
+        <item>@string/font_size_normal</item>
+        <item>@string/font_size_large</item>
+        <item>@string/font_size_huge</item>
     </array>
     <!-- prefix 's' is needed to make this a string array. Otherwise ListPreference would crash -->
     <array name="pref_entries_values__font_size" translatable="false">
@@ -99,6 +99,9 @@
         <item>large</item>
         <item>huge</item>
     </array>
+    <string name="font_size_normal">Normal</string>
+    <string name="font_size_large">Large</string>
+    <string name="font_size_huge">Huge</string>
 
     <!-- Load images -->
     <string name="pref_title__load_images">Load images</string>
