@@ -105,7 +105,7 @@
 
     <!-- Load images -->
     <string name="pref_title__load_images">Load images</string>
-    <string name="pref_desc__load_images">Disable image loading to safe mobile data</string>
+    <string name="pref_desc__load_images">Toggle image loading to eg. safe mobile data</string>
 
     <!-- Proxy -->
     <string name="pref_title__http_proxy_load_tor_preset">Load Tor Preset</string>
@@ -124,7 +124,7 @@
 
     <!-- Chrome custom tabs -->
     <string name="pref_title__chrome_custom_tabs_enabled">Chrome Custom Tabs</string>
-    <string name="pref_desc__chrome_custom_tabs_enabled">Open external links with Chrome Custom Tabs. Chromium or Google Chrome needs to be installed for this feature. \nIMPORTANT NOTE: Chrome Custom Tabs do not use configured proxy servers!</string>
+    <string name="pref_desc__chrome_custom_tabs_enabled">Open external links with Chrome Custom Tabs. Chromium or Google Chrome needs to be installed in order to use this feature. \nIMPORTANT NOTE: Chrome Custom Tabs do not use configured proxy servers!</string>
 
     <!-- Diaspora Settings -->
     <string name="pref_title__personal_settings">Personal settings</string>
@@ -144,7 +144,7 @@
     <string name="pref_desc__clear_cache">Clear WebView cache</string>
 
 
-    <string name="pref_desc__intellihide_toolbars">Hide top and bottom toolbars automatically while scrolling</string>
+    <string name="pref_desc__intellihide_toolbars">Automatically hide top and bottom toolbars while scrolling</string>
     <string name="pref_title__intellihide_toolbars">Intellihide Toolbars</string>
 
     <string name="pref_title__append_shared_via_app">Append shared-by-notice</string>
