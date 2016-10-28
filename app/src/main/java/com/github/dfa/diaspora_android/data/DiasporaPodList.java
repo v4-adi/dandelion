@@ -19,6 +19,7 @@ import java.util.List;
  * For all Classes a loading and saving to JSON method is available
  */
 public class DiasporaPodList implements Iterable<DiasporaPodList.DiasporaPod>, Serializable {
+    private static final boolean EXPORT_TOJSON_ACTIVE6 = false;
     private List<DiasporaPod> pods = new ArrayList<>();
     private boolean trackMergeChanges = false;
     private Integer trackAddedIndexStart = -1;
@@ -237,8 +238,12 @@ public class DiasporaPodList implements Iterable<DiasporaPodList.DiasporaPod>, S
             JSONObject json = new JSONObject();
             json.put("name", name);
             json.put("score", score);
-            json.put("active6", active6);
             json.put("id", id);
+
+            // Only export active6 (frequently changing if told to do)
+            if (EXPORT_TOJSON_ACTIVE6) {
+                json.put("active6", active6);
+            }
 
             // Pod urls
             JSONArray jarr = new JSONArray();
