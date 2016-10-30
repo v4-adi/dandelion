@@ -19,7 +19,9 @@
     <string name="fragment_debug__package_name">Package Name: %1$s</string>
     <string name="fragment_debug__android_version">Android Version: %1$s</string>
     <string name="fragment_debug__device_name">Device Name: %1$s</string>
-    <string name="fragment_debug__pod_domain">Pod Domain: %1$s</string>
+    <string name="fragment_debug__app_codename">Codename: %1$s</string>
+    <string name="fragment_debug__pod_profile_name">Pod Profile Name: %1$s</string>
+    <string name="fragment_debug__pod_profile_url">Pod Domain: %1$s</string>
     <string name="fragment_debug__toast_log_copied">Debug log copied to clipboard</string>
     <string name="fragment_license__3rd_party_libs_title">Used 3rd Party Libraries</string>
 
@@ -29,7 +31,7 @@
         DiasporaForAndroid is your companion app for browsing the Diaspora social network. It adds features like useful toolbars and support for proxy servers like the Tor Network to your social experience. &lt;br>&lt;br>
 
         Diaspora uses Markdown to format posts. You can find more information at&lt;br>
-        https://wiki.diasporafoundation.org/Markdown_reference_guide &lt;br> &lt;br>
+        https://diasporafoundation.org/formatting &lt;br> &lt;br>
 
         DiasporaForAndroid is developed free as in freedom and follows the ideas of the Diaspora project. &lt;br>
         You can find the source code on Github: &lt;br>
