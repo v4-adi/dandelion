@@ -7,6 +7,7 @@
   <string name="about_activity__title_debug_info">Debugowanie</string>
   <string name="fragment_debug__section_app">Aplikacja</string>
   <string name="fragment_debug__section_device">Urządzenie</string>
+  <string name="fragment_debug__section_pod">Pod Diaspory</string>
   <string name="fragment_debug__section_log">Log debugowania</string>
   <string name="fragment_debug__section_log_spam">Log debugowania (rozszerzony)</string>
   <string name="fragment_debug__app_version">Wersja aplikacji: %1$s</string>

@@ -26,6 +26,8 @@
   <string name="notifications__comment_on_post">Skomentował/a Twój wpis</string>
   <string name="notifications__liked">Polubienia</string>
   <string name="notifications__mentioned">Wzmianki</string>
+  <string name="notifications__reshared">Powtórzenia</string>
+  <string name="notifications__started_sharing">Zaczęli się z Tobą dzielić</string>
   <!-- Pod Activity -->
   <string name="title_activity_pods">Wybierz Pod</string>
   <string name="filter_hint">Wprowadź domenę poda</string>
@@ -64,12 +66,17 @@
   <string name="context_menu_open_external_browser">Otwórz w zewnętrznej przeglądarce&#8230;</string>
   <string name="context_menu_copy_link">Skopiuj adres odnośnika do schowka</string>
   <!-- More from MainActivity -->
+  <string name="toast_set_proxy_failed">Ostrzeżenie: Nie udało się ustawić proxy&#8230;</string>
   <string name="unable_to_load_image">Nie udało się wczytać obrazu</string>
   <string name="all_tags">Wszystkie tagi</string>
   <!-- Permissions -->
+  <string name="permissions_screenshot">By móc zapisywać zrzuty ekranu musisz nadać aplikacji uprawnienia do \"modyfikowania i usuwania zawartości karty SD\". Gdy to zrobisz powinieneś całkowicie zamknąć aplikację lub zrestartować urządzenie. Jeśli nie nadasz teraz tego uprawnienia, ale będziesz chciał zrobić to w przyszłości, otwórz Ustawienia - Aplikacje - Diaspora. W sekcji uprawnień zaznacz \"Pamięć\".</string>
+  <string name="permissions_image">By móc zapisywać/wysyłać obrazy musisz nadać aplikacji uprawnienia do \"modyfikowania i usuwania zawartości karty SD\". Gdy to zrobisz powinieneś całkowicie zamknąć aplikację lub zrestartować urządzenie. Jeśli nie nadasz teraz tego uprawnienia, ale będziesz chciał zrobić to w przyszłości, otwórz Ustawienia - Aplikacje - Diaspora. W sekcji uprawnień zaznacz \"Pamięć\".</string>
   <string name="permission_denied">Odmowa dostępu.</string>
   <string name="permission_granted_try_again">Dostęp przyznany. Spróbuj ponownie.</string>
+  <string name="podselection__custom_pod">Pod spoza listy</string>
   <string name="pod_name">Nazwa Poda</string>
   <string name="http_protocol">Protokół</string>
   <string name="pod_address">Adres Poda</string>
+  <string name="missing_value">Nie podano danych</string>
 </resources>

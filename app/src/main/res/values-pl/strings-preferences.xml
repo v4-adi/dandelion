@@ -32,6 +32,8 @@
   <string name="pref_title__load_images">Wczytuj obrazy</string>
   <string name="pref_desc__load_images">Wyłącz wczytywanie obrazków by oszczędzać transfer</string>
   <!-- Proxy -->
+  <string name="pref_title__http_proxy_load_tor_preset">Wczytaj domyślną konfigurację Tora</string>
+  <string name="pref_desc__http_proxy_load_tor_preset">Wczytaj ustawienia proxy HTTP Tora (Orbot)</string>
   <string name="pref_title__sub_proxy">Serwer proxy</string>
   <string name="pref_title__proxy_enabled">Włącz serwer Proxy</string>
   <string name="pref_title__http_proxy_host">Host</string>
