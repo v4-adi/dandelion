@@ -76,5 +76,29 @@ task copyRepoFiles(type: Copy) {
         }
     }
 
+    // Download Podlist
+    final String PODLIST_PATH = "app/src/main/res/raw/podlist.json"
+    final String PODLIST_URL = 'https://raw.githubusercontent.com/Diaspora-for-Android/diaspora-android-extras/master/podList/podlist.json'
+    downloadFile(PODLIST_PATH, PODLIST_URL, false)
+
+    // Do if we build in release (signed apk) mode
+    android.applicationVariants.all {  v ->
+        if (v.buildType.name == "release"){
+            v.assemble.doFirst {
+                downloadFile(PODLIST_PATH, PODLIST_URL, true)
+            }
+        }
+    }
 }
+
+def downloadFile(filePath, url, downloadIfExists ) {
+    def f = new File(filePath)
+    if (f.exists() && downloadIfExists){
+        f.delete();
+    }
+    if (!f.exists()) {
+        new URL(url).withInputStream{ i -> f.withOutputStream{ it << i }}
+    }
+}
+
 tasks.copyRepoFiles.execute()
