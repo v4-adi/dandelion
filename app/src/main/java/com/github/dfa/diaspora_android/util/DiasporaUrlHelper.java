@@ -20,8 +20,8 @@ package com.github.dfa.diaspora_android.util;
 
 import com.github.dfa.diaspora_android.App;
 import com.github.dfa.diaspora_android.R;
-import com.github.dfa.diaspora_android.data.DiasporaPodList.DiasporaPod;
 import com.github.dfa.diaspora_android.data.DiasporaAspect;
+import com.github.dfa.diaspora_android.data.DiasporaPodList.DiasporaPod;
 
 /**
  * Helper class that provides easy access to specific urls related to diaspora

@@ -34,7 +34,6 @@ import android.support.customtabs.CustomTabsSession;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.GravityCompat;
@@ -462,7 +461,7 @@ public class MainActivity extends ThemedActivity
                 @Override
                 public void run() {
                     ContextMenuWebView wv = ((DiasporaStreamFragment) getFragment(DiasporaStreamFragment.TAG)).getWebView();
-                    if(wv != null) {
+                    if (wv != null) {
                         wv.clearCache(true);
                     }
                 }
@@ -486,7 +485,7 @@ public class MainActivity extends ThemedActivity
             return;
         }
         //Catch split screen recreation
-        if(action.equals(Intent.ACTION_MAIN) && getTopFragment() != null) {
+        if (action.equals(Intent.ACTION_MAIN) && getTopFragment() != null) {
             return;
         }
 
@@ -581,7 +580,7 @@ public class MainActivity extends ThemedActivity
         LocalBroadcastManager.getInstance(this).registerReceiver(brOpenExternalLink, new IntentFilter(ACTION_OPEN_EXTERNAL_URL));
         invalidateOptionsMenu();
         this.appSettings = getAppSettings();
-        if(appSettings.isIntellihideToolbars()) {
+        if (appSettings.isIntellihideToolbars()) {
             enableToolbarHiding();
         } else {
             disableToolbarHiding();
