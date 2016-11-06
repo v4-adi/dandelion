@@ -28,6 +28,7 @@
         <activity
             android:name=".activity.SettingsActivity"
             android:launchMode="singleInstance"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@style/DiasporaLight.NoActionBar"
             android:label="@string/settings" />
 
