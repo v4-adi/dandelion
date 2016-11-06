@@ -18,6 +18,7 @@
  */
 package com.github.dfa.diaspora_android.util;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -25,6 +26,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 /**
+ * Class that logs debug messages to Androids Log and to additional targets (like textviews)
  * Created by gregor on 18.09.16.
  */
 public class AppLog {
@@ -59,37 +61,61 @@ public class AppLog {
      */
     public static void v(Object source, String _text) {
         if (isLoggingEnabled()) {
-            Log.v(getLogPrefix(source), _text);
+            if(source != null) {
+                Log.v(getLogPrefix(source), _text);
+            } else {
+                Log.v("null", _text);
+            }
         }
     }
 
     public static void i(Object source, String _text) {
         if (isLoggingEnabled()) {
-            Log.i(getLogPrefix(source), _text);
+            if(source != null) {
+                Log.i(getLogPrefix(source), _text);
+            } else {
+                Log.i("null", _text);
+            }
         }
     }
 
     public static void d(Object source, String _text) {
         if (isLoggingEnabled()) {
-            Log.d(getLogPrefix(source), _text);
+            if(source != null) {
+                Log.d(getLogPrefix(source), _text);
+            } else {
+                Log.d("null", _text);
+            }
         }
     }
 
     public static void e(Object source, String _text) {
         if (isLoggingEnabled()) {
-            Log.e(getLogPrefix(source), _text);
+            if(source != null) {
+                Log.e(getLogPrefix(source), _text);
+            } else {
+                Log.e("null", _text);
+            }
         }
     }
 
     public static void w(Object source, String _text) {
         if (isLoggingEnabled()) {
-            Log.w(getLogPrefix(source), _text);
+            if(source != null) {
+                Log.w(getLogPrefix(source), _text);
+            } else {
+                Log.w("null", _text);
+            }
         }
     }
 
     public static void spam(Object source, String _text) {
         if (isLoggingEnabled() && isLoggingSpamEnabled()) {
-            Log.v(getLogPrefix(source), _text);
+            if(source != null) {
+                Log.v(getLogPrefix(source), _text);
+            } else {
+                Log.v("null", _text);
+            }
         }
     }
 
@@ -103,7 +129,7 @@ public class AppLog {
 
         public static Log instance;
         private AppSettings appSettings;
-        private SimpleDateFormat dateFormat;
+        private DateFormat dateFormat;
         private ArrayList<String> logBuffer;
         private ArrayList<Observer> observers;
 
@@ -118,7 +144,8 @@ public class AppLog {
             } else {
                 logBuffer = new ArrayList<>();
             }
-            dateFormat = new SimpleDateFormat("HH:mm:ss");
+            SimpleDateFormat.getTimeInstance();
+            dateFormat = SimpleDateFormat.getDateInstance();
             observers = new ArrayList<>();
         }
 
