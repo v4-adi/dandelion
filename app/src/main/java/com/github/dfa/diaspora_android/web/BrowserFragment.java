@@ -21,6 +21,7 @@ package com.github.dfa.diaspora_android.web;
 import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.MutableContextWrapper;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -76,7 +77,11 @@ public class BrowserFragment extends ThemedFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         AppLog.d(this, "onCreateView()");
         if (rootLayout == null) {
-            rootLayout = inflater.inflate(R.layout.browser__fragment, container, false);
+            LayoutInflater inflater1 = inflater.cloneInContext(new MutableContextWrapper(getContext()));
+            rootLayout = inflater1.inflate(R.layout.browser__fragment, container, false);
+        } else {
+            MutableContextWrapper context = (MutableContextWrapper) rootLayout.getContext();
+            context.setBaseContext(getContext());
         }
         return rootLayout;
     }
