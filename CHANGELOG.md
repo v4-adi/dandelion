@@ -1,3 +1,6 @@
+# v0.2.0-next
+
+
 # v0.2.0
 - Added: Customizable Theme Colors!
 - Improved account setup with easy tor hidden service configuration
