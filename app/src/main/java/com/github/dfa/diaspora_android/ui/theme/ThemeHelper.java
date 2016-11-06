@@ -19,6 +19,7 @@
  */
 package com.github.dfa.diaspora_android.ui.theme;
 
+import android.content.DialogInterface;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -26,9 +27,11 @@ import android.os.Build;
 import android.support.design.widget.TabLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.CompoundButtonCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.ActionMenuView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -152,5 +155,16 @@ public class ThemeHelper {
 
     public static int getNeutralGreyColor() {
         return ContextCompat.getColor(getInstance().appSettings.getApplicationContext(), R.color.md_grey_800);
+    }
+
+    public static void updateAlertDialogColor(AlertDialog alertDialog) {
+        if(alertDialog != null) {
+            for(int i : new int[]{DialogInterface.BUTTON_POSITIVE, DialogInterface.BUTTON_NEGATIVE, DialogInterface.BUTTON_NEUTRAL}) {
+                Button b = alertDialog.getButton(i);
+                if(b != null) {
+                    b.setTextColor(getAccentColor());
+                }
+            }
+        }
     }
 }
