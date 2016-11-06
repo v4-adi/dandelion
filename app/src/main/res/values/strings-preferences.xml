@@ -61,6 +61,7 @@
     <string name="pref_catkey__category_more" translatable="false">pref_catkey__category_more</string>
     <string name="pref_key__logging_spam_enabled" translatable="false">pref_key__logging_spam_enabled</string>
     <string name="pref_key__logging_enabled" translatable="false">pref_key__logging_enabled</string>
+    <string name="pref_key__wipe_settings" translatable="false">pref_key__wipe_settings</string>
 
     <!-- Category Titles -->
     <string name="pref_cat__visuals">Appearance</string>
@@ -153,10 +154,15 @@
     <!-- More -->
     <string name="pref_title__sub_logging" translatable="false">@string/about_activity__title_debug_info</string>
     <string name="pref_desc__sub_logging" translatable="false">@string/fragment_debug__section_log</string>
+    <string name="pref_title__sub_miscelaneous">Miscellaneous</string>
 
     <string name="pref_title__logging_enabled" translatable="false">@string/fragment_debug__section_log</string>
     <string name="pref_title__logging_spam_enabled" translatable="false">@string/fragment_debug__section_log_spam</string>
 
+    <string name="pref_title__wipe_settings">Full Reset</string>
+    <string name="pref_desc__wipe_settings">Locally wipe all settings related to the app and log out from all accounts</string>
+
+    <string name="dialog_content__wipe_settings">This will reset all changed settings of the app to their default values and log you out from all pods. Your downloaded images will stay untouched. Are you sure you want to proceed?</string>
 
     <!-- Recently added - Please move to right section-->
     <!-- Sorry -->

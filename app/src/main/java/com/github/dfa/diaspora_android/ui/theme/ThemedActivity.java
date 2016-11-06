@@ -22,6 +22,7 @@ import android.annotation.TargetApi;
 import android.app.ActivityManager;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 
 import com.github.dfa.diaspora_android.App;
