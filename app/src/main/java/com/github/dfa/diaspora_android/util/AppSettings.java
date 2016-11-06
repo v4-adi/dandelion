@@ -49,10 +49,24 @@ public class AppSettings {
         return context;
     }
 
+    /**
+     * Clear all settings in prefPod (Settings related to the configured pod)
+     * This uses commit instead of apply, since
+     * SettingsActivity.SettingsFragmentDebugging.showWipeSettingsDialog()
+     * kills the app after the calling this, so we have to block until we are finished.
+     */
+    @SuppressLint("CommitPrefEdits")
     public void clearPodSettings() {
         prefPod.edit().clear().commit();
     }
 
+    /**
+     * Clear all settings in prefApp (related to the App itself)
+     * This uses commit instead of apply, since
+     * SettingsActivity.SettingsFragmentDebugging.showWipeSettingsDialog()
+     * kills the app after the calling this, so we have to block until we are finished.
+     */
+    @SuppressLint("CommitPrefEdits")
     public void clearAppSettings() {
         prefApp.edit().clear().commit();
     }
