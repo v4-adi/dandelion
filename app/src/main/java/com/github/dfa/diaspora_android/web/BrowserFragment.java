@@ -19,6 +19,7 @@
 package com.github.dfa.diaspora_android.web;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.MutableContextWrapper;
@@ -254,6 +255,14 @@ public class BrowserFragment extends ThemedFragment {
     @Override
     public void onCreateBottomOptionsMenu(Menu menu, MenuInflater inflater) {
         /* Nothing to do here */
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if(webView != null && webView.getContext() instanceof MutableContextWrapper) {
+            ((MutableContextWrapper) webView.getContext()).setBaseContext(context);
+        }
     }
 
     public boolean onBackPressed() {
