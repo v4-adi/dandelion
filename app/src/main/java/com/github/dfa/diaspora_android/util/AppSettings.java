@@ -50,15 +50,15 @@ public class AppSettings {
     }
 
     public void clearPodSettings() {
-        prefPod.edit().clear().apply();
+        prefPod.edit().clear().commit();
     }
 
     public void clearAppSettings() {
-        prefApp.edit().clear().apply();
+        prefApp.edit().clear().commit();
     }
 
-    public String getKey(int stringKeyRessourceId) {
-        return context.getString(stringKeyRessourceId);
+    public String getKey(int stringKeyResourceId) {
+        return context.getString(stringKeyResourceId);
     }
 
     public boolean isKeyEqual(String key, int stringKeyRessourceId) {

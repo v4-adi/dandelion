@@ -39,6 +39,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.ActionMenuView;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
@@ -69,6 +70,7 @@ import com.github.dfa.diaspora_android.ui.PodSelectionDialog;
 import com.github.dfa.diaspora_android.ui.theme.CustomFragment;
 import com.github.dfa.diaspora_android.ui.theme.ThemeHelper;
 import com.github.dfa.diaspora_android.ui.theme.ThemedActivity;
+import com.github.dfa.diaspora_android.ui.theme.ThemedAlertDialogBuilder;
 import com.github.dfa.diaspora_android.util.AppLog;
 import com.github.dfa.diaspora_android.util.AppSettings;
 import com.github.dfa.diaspora_android.util.DiasporaUrlHelper;
@@ -485,7 +487,7 @@ public class MainActivity extends ThemedActivity
             return;
         }
         //Catch split screen recreation
-        if (action.equals(Intent.ACTION_MAIN) && getTopFragment() != null) {
+        if (action != null && action.equals(Intent.ACTION_MAIN) && getTopFragment() != null) {
             return;
         }
 
@@ -774,7 +776,7 @@ public class MainActivity extends ThemedActivity
                         }
                     };
 
-                    final android.support.v7.app.AlertDialog dialog = new android.support.v7.app.AlertDialog.Builder(this)
+                    final AlertDialog dialog = new ThemedAlertDialogBuilder(this, appSettings)
                             .setView(layout).setTitle(R.string.search_alert_title)
                             .setCancelable(true)
                             .setPositiveButton(R.string.search_alert_tag, clickListener)

@@ -62,7 +62,7 @@ public class HtmlTextView extends TextView {
     }
 
     /**
-     * Linkify, format markdown and escape the displayed text.
+     * Linkify, format markdown and escape the displayed message.
      */
     private void init() {
         formatHtmlAndCustomTags();

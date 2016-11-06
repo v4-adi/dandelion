@@ -40,6 +40,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.github.dfa.diaspora_android.R;
+import com.github.dfa.diaspora_android.util.AppLog;
 import com.github.dfa.diaspora_android.util.AppSettings;
 
 /**
@@ -159,7 +160,10 @@ public class ThemeHelper {
 
     public static void updateAlertDialogColor(AlertDialog alertDialog) {
         if(alertDialog != null) {
-            for(int i : new int[]{DialogInterface.BUTTON_POSITIVE, DialogInterface.BUTTON_NEGATIVE, DialogInterface.BUTTON_NEUTRAL}) {
+            for(int i : new int[]{
+                    DialogInterface.BUTTON_POSITIVE,
+                    DialogInterface.BUTTON_NEUTRAL,
+                    DialogInterface.BUTTON_NEGATIVE}) {
                 Button b = alertDialog.getButton(i);
                 if(b != null) {
                     b.setTextColor(getAccentColor());

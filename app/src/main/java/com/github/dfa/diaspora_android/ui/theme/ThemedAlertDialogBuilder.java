@@ -1,6 +1,7 @@
 package com.github.dfa.diaspora_android.ui.theme;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.support.annotation.StyleRes;
 import android.support.v7.app.AlertDialog;
@@ -27,8 +28,13 @@ public class ThemedAlertDialogBuilder extends AlertDialog.Builder {
 
     @Override
     public AlertDialog create() {
-        AlertDialog dialog = super.create();
-        applyColors(dialog);
+        final AlertDialog dialog = super.create();
+        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialogInterface) {
+                applyColors(dialog);
+            }
+        });
         return dialog;
     }
 
@@ -36,5 +42,4 @@ public class ThemedAlertDialogBuilder extends AlertDialog.Builder {
         ThemeHelper.getInstance(appSettings);
         ThemeHelper.updateAlertDialogColor(alertDialog);
     }
-
 }

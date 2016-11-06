@@ -2,7 +2,6 @@ package com.github.dfa.diaspora_android.activity;
 
 import android.annotation.SuppressLint;
 import android.app.AlarmManager;
-import android.app.AlertDialog;
 import android.app.FragmentTransaction;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -27,6 +26,7 @@ import com.github.dfa.diaspora_android.R;
 import com.github.dfa.diaspora_android.ui.theme.ColorPalette;
 import com.github.dfa.diaspora_android.ui.theme.ThemeHelper;
 import com.github.dfa.diaspora_android.ui.theme.ThemedActivity;
+import com.github.dfa.diaspora_android.ui.theme.ThemedAlertDialogBuilder;
 import com.github.dfa.diaspora_android.ui.theme.ThemedPreferenceFragment;
 import com.github.dfa.diaspora_android.util.AppLog;
 import com.github.dfa.diaspora_android.util.AppSettings;
@@ -215,7 +215,7 @@ public class SettingsActivity extends ThemedActivity {
                     getActivity().finish();
                     return true;
                 } else if (settings.isKeyEqual(key, R.string.pref_key__change_account)) {
-                    new AlertDialog.Builder(getActivity())
+                    new ThemedAlertDialogBuilder(getActivity(), new AppSettings(getActivity().getApplication()))
                             .setTitle(getString(R.string.confirmation))
                             .setMessage(getString(R.string.pref_warning__change_account))
                             .setNegativeButton(android.R.string.no, null)
@@ -293,7 +293,7 @@ public class SettingsActivity extends ThemedActivity {
             //Inflate dialog layout
             LayoutInflater inflater = getActivity().getLayoutInflater();
             View dialogLayout = inflater.inflate(R.layout.ui__dialog__color_picker, null);
-            final android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(context);
+            final ThemedAlertDialogBuilder builder = new ThemedAlertDialogBuilder(context, appSettings);
             builder.setView(dialogLayout);
 
             final FrameLayout titleBackground = (FrameLayout) dialogLayout.findViewById(R.id.color_picker_dialog__title_background);
@@ -448,6 +448,40 @@ public class SettingsActivity extends ThemedActivity {
         @Override
         public String getFragmentTag() {
             return TAG;
+        }
+
+        @Override
+        public boolean onPreferenceTreeClick(PreferenceScreen screen, Preference preference) {
+            if (isAdded() && preference.hasKey()) {
+                AppSettings appSettings = ((App) getActivity().getApplication()).getSettings();
+                String key = preference.getKey();
+                if (appSettings.isKeyEqual(key, R.string.pref_key__wipe_settings)) {
+                    showWipeSettingsDialog();
+                    return true;
+                }
+            }
+            return super.onPreferenceTreeClick(screen, preference);
+        }
+
+        private void showWipeSettingsDialog() {
+            final AppSettings appSettings = new AppSettings(this.getActivity().getApplication());
+
+            ThemedAlertDialogBuilder builder = new ThemedAlertDialogBuilder(getActivity(), appSettings);
+            builder.setTitle(R.string.confirmation)
+                    .setMessage(R.string.dialog_content__wipe_settings)
+                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            appSettings.clearAppSettings();
+                            appSettings.clearPodSettings();
+                            Intent restartActivity = new Intent(getActivity(), MainActivity.class);
+                            PendingIntent pendingIntent = PendingIntent.getActivity(getActivity(), 12374, restartActivity, PendingIntent.FLAG_CANCEL_CURRENT);
+                            AlarmManager mgr = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
+                            mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, pendingIntent);
+                            System.exit(0);
+                        }
+                    }).setNegativeButton(android.R.string.cancel, null)
+                    .create().show();
         }
     }
 }
