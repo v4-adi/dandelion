@@ -10,7 +10,7 @@ android {
         minSdkVersion 17
         targetSdkVersion 24
         versionCode 10
-        versionName "0.2.0-next"
+        versionName "0.2.0a"
         setProperty("archivesBaseName", "diasporaAndroid__${versionName}__")
 
         vectorDrawables.useSupportLibrary = true
@@ -61,8 +61,6 @@ dependencies {
 //  #####################
 final String RAW_DIR = "app/src/main/res/raw"
 final String[] ROOT_TO_RAW_COPYFILES = ["README.md", "LICENSE.md", "CHANGELOG.md", "CONTRIBUTORS.txt"]
-final String PODLIST_URL = 'https://raw.githubusercontent.com/Diaspora-for-Android/diaspora-android-extras/master/podList/podlist.json'
-final String PODLIST_PATH = "${RAW_DIR}/podlist.json"
 
 // Called before building
 task copyRepoFiles(type: Copy) {
@@ -83,26 +81,6 @@ task copyRepoFiles(type: Copy) {
         filter { line ->
             (line.toString().matches("..l>>.*") || line.toString().startsWith("## 99l CONTRIBUTORS")) ? null : line.toString().trim().replaceAll(" \\(.*\\)", "")
         }
-    }
-
-    // Download PodList
-    downloadFile(PODLIST_PATH, PODLIST_URL, false)
-
-    // Application variants
-    android.applicationVariants.all { v ->
-        // Do if we build in release (signed apk) mode
-        if (v.buildType.name == "release") {
-            downloadFile(PODLIST_PATH, PODLIST_URL, true)
-        }
-    }
-}
-
-// Downloads a file
-def downloadFile(filePath, url, downloadIfExists) {
-    def f = new File(filePath)
-    f.exists() && downloadIfExists && f.delete();
-    if (!f.exists()) {
-        new URL(url).withInputStream { i -> f.withOutputStream { it << i } }
     }
 }
 

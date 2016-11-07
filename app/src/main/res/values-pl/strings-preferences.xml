@@ -15,9 +15,12 @@
   <string name="pref_title__sub_nav_slider">Pasek nawigacji</string>
   <string name="pref_desc__sub_nav_slider">Wybierz elementy widoczne w pasku nawigacji</string>
   <string name="pref_cat__visibility_nav_items">Widoczność elementu</string>
+  <string name="pref_cat__visibility_nav_items__user">Użytkownik</string>
+  <string name="pref_cat__visibility_nav_items__general">Ogólne</string>
+  <string name="pref_cat__visibility_nav_items__admin">Administracja</string>
   <!-- Themes -->
   <string name="pref_title__themes">Motywy i kolory</string>
-  <string name="pref_desc__themes">Ustaw których kolorów ma używać aplikacja</string>
+  <string name="pref_desc__themes">Ustaw jakich kolorów ma używać aplikacja</string>
   <string name="pref_title__primary_color">Kolor podstawowy</string>
   <string name="pref_desc__primary_color">Kolor pasków narzędzi</string>
   <string name="pref_title__accent_color">Kolor dodatkowy</string>
@@ -33,7 +36,7 @@
   <string name="font_size_huge">Bardzo duży</string>
   <!-- Load images -->
   <string name="pref_title__load_images">Wczytuj obrazy</string>
-  <string name="pref_desc__load_images">Wyłącz wczytywanie obrazków by oszczędzać transfer</string>
+  <string name="pref_desc__load_images">Odznacz by wyłączyć wczytywanie obrazów, np. w celu oszczędzania transferu</string>
   <!-- Proxy -->
   <string name="pref_title__http_proxy_load_tor_preset">Wczytaj domyślną konfigurację Tora</string>
   <string name="pref_desc__http_proxy_load_tor_preset">Wczytaj ustawienia proxy HTTP Tora (Orbot)</string>
@@ -62,6 +65,10 @@
   <string name="pref_title__append_shared_via_app">Informacja o użytej aplikacji</string>
   <string name="pref_desc__append_shared_via_app">Dodawaj do wpisów informację o użytej aplikacji (\"udostępniono za pomocą&#8230;\")</string>
   <!-- More -->
+  <string name="pref_title__sub_miscelaneous">Różne</string>
+  <string name="pref_title__wipe_settings">Całkowity restart</string>
+  <string name="pref_desc__wipe_settings">Wyczyść wszystkie lokalne ustawienia aplikacji i wyloguj ze wszystkich kont</string>
+  <string name="dialog_content__wipe_settings">Ta operacja przywróci wszystkie zmodyfikowane przez Ciebie ustawienia aplikacji do ich domyślnych wartości i wyloguje Cię ze wszystkich Podów. Na pewno chcesz to zrobić?</string>
   <!-- Recently added - Please move to right section-->
   <!-- Sorry -->
 </resources>
