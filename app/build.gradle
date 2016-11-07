@@ -11,7 +11,7 @@ android {
         targetSdkVersion 24
         versionCode 11
         versionName "0.2.0-next"
-        setProperty("archivesBaseName", "diasporaAndroid__${versionName}__")
+        setProperty("archivesBaseName", "DiasporaForAndroid__${versionName}__")
 
         vectorDrawables.useSupportLibrary = true
     }

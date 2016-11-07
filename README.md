@@ -6,7 +6,7 @@
 [![Chat - Gitter](https://img.shields.io/badge/chat-on%20gitter-blue.svg)](https://gitter.im/Diaspora-for-Android/diaspora-android)
 
 
-# Diaspora for Android
+# DiasporaForAndroid
 
 This is an unofficial webview based client for the community-run, distributed social network **[Diaspora*](https://diasporafoundation.org/)**. It's currently under development and should be used with that in mind. Please submit any bugs you might find.  
 
