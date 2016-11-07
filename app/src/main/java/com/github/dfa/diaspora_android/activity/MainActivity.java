@@ -996,6 +996,7 @@ public class MainActivity extends ThemedActivity
                     snackbarNoInternet.show();
                 }
             }
+            break;
 
             case R.id.nav_activities: {
                 if (WebHelper.isOnline(MainActivity.this)) {
