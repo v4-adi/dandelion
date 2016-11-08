@@ -34,6 +34,7 @@ import android.support.customtabs.CustomTabsSession;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.GravityCompat;
@@ -763,6 +764,7 @@ public class MainActivity extends ThemedActivity
 
                     View layout = getLayoutInflater().inflate(R.layout.ui__dialog_search__people_tags, null, false);
                     final EditText input = (EditText) layout.findViewById(R.id.dialog_search__input);
+                    ThemeHelper.updateEditTextColor(input);
                     final DialogInterface.OnClickListener clickListener = new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int which) {

@@ -192,10 +192,10 @@ public class AboutActivity extends ThemedActivity
         protected void applyColorToViews() {
             ThemeHelper.getInstance(getAppSettings());
             ThemeHelper.updateTextViewLinkColor(spreadText);
-            contributeBtn.setTextColor(ThemeHelper.getAccentColor());
-            feedbackBtn.setTextColor(ThemeHelper.getAccentColor());
-            spreadBtn.setTextColor(ThemeHelper.getAccentColor());
-            translateBtn.setTextColor(ThemeHelper.getAccentColor());
+            ThemeHelper.updateButtonTextColor(contributeBtn);
+            ThemeHelper.updateButtonTextColor(feedbackBtn);
+            ThemeHelper.updateButtonTextColor(spreadBtn);
+            ThemeHelper.updateButtonTextColor(translateBtn);
         }
 
         @Override
@@ -311,8 +311,8 @@ public class AboutActivity extends ThemedActivity
         @Override
         protected void applyColorToViews() {
             ThemeHelper.getInstance(getAppSettings());
-            leafpicBtn.setTextColor(ThemeHelper.getAccentColor());
-            licenseBtn.setTextColor(ThemeHelper.getAccentColor());
+            ThemeHelper.updateButtonTextColor(leafpicBtn);
+            ThemeHelper.updateButtonTextColor(licenseBtn);
             ThemeHelper.updateTextViewLinkColor(maintainers);
             ThemeHelper.updateTextViewLinkColor(thirdPartyLibs);
         }
@@ -440,7 +440,7 @@ public class AboutActivity extends ThemedActivity
                     return new AboutFragment();
                 case 1: //License
                     return new LicenseFragment();
-                case 3: //Debug
+                case 2: //Debug
                 default:
                     return new DebugFragment();
             }

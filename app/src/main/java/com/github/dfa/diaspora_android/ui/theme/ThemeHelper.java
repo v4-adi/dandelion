@@ -171,4 +171,10 @@ public class ThemeHelper {
             }
         }
     }
+
+    public static void updateButtonTextColor(Button button) {
+        if (button != null) {
+            button.setTextColor(getAccentColor());
+        }
+    }
 }
