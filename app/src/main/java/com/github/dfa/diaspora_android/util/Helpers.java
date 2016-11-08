@@ -150,4 +150,15 @@ public class Helpers {
         }
         return !isOnline;
     }
+
+    /**
+     * Send an Intent that opens url in any browser
+     * @param context context
+     * @param url url
+     */
+    public static void openInExternalBrowser(Context context, String url) {
+        Intent openBrowserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+        openBrowserIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(openBrowserIntent);
+    }
 }
