@@ -4,9 +4,9 @@
 * **Device:**   <!-- eg Nexus 5 -->
 * **Android Version:**  <!--eg Android 6.0.1 -->
 * **App version:**  <!-- See in About -> Debug. eg 0.1.5, or commit -->
-* **App source:**  <!--F-Droid, self build (latest HEAD)  -- Can be left blank if not related -->
-* **Pod:** <!--eg pod.geraspora.de -- Can be left blank if not related -->
-* **Diaspora pod version:** <!--eg 0.5.99.0-p9bd2337c  (can be found on the bottom)  -- Can be left blank if not related -->
+* **App source:**  <!--F-Droid, self build (latest HEAD) Can be left blank if not related -->
+* **Pod:**  <!--eg pod.geraspora.de Can be left blank if not related -->
+* **Diaspora pod version:**  <!--eg 0.5.99.0-p9bd2337c  (can be found on the bottom) Can be left blank if not related -->
 
 
 <!--
@@ -37,6 +37,7 @@ Upload screenshots via drag&drop if needed and apply resizing:
 #### Debug output
 
 Please post the output of adb logcat. The log should begin with the start of Diaspora for Android and include all the steps it takes to reproduce the problem.
+IMPORTANT: In-App debug log must be activated and the app restarted first!
 
 ````
 adb logcat -s com.github.dfa.diaspora_android
