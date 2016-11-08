@@ -21,8 +21,10 @@ package com.github.dfa.diaspora_android.activity;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
@@ -37,6 +39,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -58,6 +61,7 @@ import java.util.Observer;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Activity that holds some fragments that show information about the app in a tab layout
@@ -146,11 +150,23 @@ public class AboutActivity extends ThemedActivity
 
         public static final String TAG = "com.github.dfa.diaspora_android.AboutActivity.AboutFragment";
 
-        @BindView(R.id.fragment_about__about_text)
-        TextView aboutText;
-
         @BindView(R.id.fragment_about__app_version)
         TextView appVersion;
+
+        @BindView(R.id.fragment_about__spread_the_word_text)
+        HtmlTextView spreadText;
+
+        @BindView(R.id.fragment_about__contribute_button)
+        Button contributeBtn;
+
+        @BindView(R.id.fragment_about__translate_button)
+        Button translateBtn;
+
+        @BindView(R.id.fragment_about__feedback_button)
+        Button feedbackBtn;
+
+        @BindView(R.id.fragment_about__spread_the_word_button)
+        Button spreadBtn;
 
         public AboutFragment() {
         }
@@ -174,7 +190,12 @@ public class AboutActivity extends ThemedActivity
 
         @Override
         protected void applyColorToViews() {
-            ThemeHelper.updateTextViewLinkColor(aboutText);
+            ThemeHelper.getInstance(getAppSettings());
+            ThemeHelper.updateTextViewLinkColor(spreadText);
+            contributeBtn.setTextColor(ThemeHelper.getAccentColor());
+            feedbackBtn.setTextColor(ThemeHelper.getAccentColor());
+            spreadBtn.setTextColor(ThemeHelper.getAccentColor());
+            translateBtn.setTextColor(ThemeHelper.getAccentColor());
         }
 
         @Override
@@ -191,6 +212,28 @@ public class AboutActivity extends ThemedActivity
         public boolean onBackPressed() {
             return false;
         }
+
+        @OnClick({R.id.fragment_about__contribute_button, R.id.fragment_about__translate_button, R.id.fragment_about__feedback_button, R.id.fragment_about__spread_the_word_button})
+        public void buttonClicked(View view) {
+            switch (view.getId()) {
+                case R.id.fragment_about__contribute_button:
+                    Helpers.openInExternalBrowser(getContext(), getString(R.string.fragment_about__contribute_link));
+                    break;
+                case R.id.fragment_about__translate_button:
+                    Helpers.openInExternalBrowser(getContext(), getString(R.string.fragment_about__translate_link));
+                    break;
+                case R.id.fragment_about__feedback_button:
+                    Helpers.openInExternalBrowser(getContext(), getString(R.string.fragment_About__feedback_link));
+                    break;
+                case R.id.fragment_about__spread_the_word_button:
+                    Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+                    sharingIntent.setType("text/plain");
+                    sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, getString(R.string.app_name));
+                    sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, getString(R.string.fragment_about__spread_the_word_share_text, getString(R.string.fragment_about__fdroid_link)));
+                    startActivity(Intent.createChooser(sharingIntent, getResources().getString(R.string.action_share_dotdotdot)));
+                    break;
+            }
+        }
     }
 
     /**
@@ -199,11 +242,20 @@ public class AboutActivity extends ThemedActivity
     public static class LicenseFragment extends ThemedFragment {
         public static final String TAG = "com.github.dfa.diaspora_android.AboutActivity.LicenseFragment";
 
-        @BindView(R.id.fragment_license__licensetext)
-        HtmlTextView textLicenseBox;
+        @BindView(R.id.fragment_license__maintainers_text)
+        HtmlTextView maintainers;
 
-        @BindView(R.id.fragment_license__3rdparty)
-        HtmlTextView textLicense3partyBox;
+        @BindView(R.id.fragment_license__contributors_text)
+        HtmlTextView contributors;
+
+        @BindView(R.id.fragment_license__thirdparty_libs_text)
+        HtmlTextView thirdPartyLibs;
+
+        @BindView(R.id.fragment_license__license_button)
+        Button licenseBtn;
+
+        @BindView(R.id.fragment_license__leafpic_button)
+        Button leafpicBtn;
 
         private String accentColor;
 
@@ -218,16 +270,22 @@ public class AboutActivity extends ThemedActivity
             final Context context = rootView.getContext();
             accentColor = Helpers.colorToHex(ThemeHelper.getAccentColor());
 
-            textLicenseBox.setTextFormatted(getString(R.string.fragment_license__license_content,
-                    getMaintainersHtml(context),
-                    getContributorsHtml(context),
-                    getLicenseHtml(context)
-            ));
-
-            textLicense3partyBox.setTextFormatted(
-                    getLicense3dPartyHtml(context)
-            );
+            maintainers.setTextFormatted(getString(R.string.fragment_license__maintainers_text, getMaintainersHtml(context)));
+            contributors.setTextFormatted(getString(R.string.fragment_license__contributors_thank_you, getContributorsHtml(context)));
+            thirdPartyLibs.setTextFormatted(getLicense3dPartyHtml(context));
             return rootView;
+        }
+
+        @OnClick({R.id.fragment_license__leafpic_button, R.id.fragment_license__license_button})
+        public void buttonClicked(View v) {
+            switch (v.getId()) {
+                case R.id.fragment_license__leafpic_button:
+                    Helpers.openInExternalBrowser(getContext(), getString(R.string.fragment_licesen__misc_leafpic_link));
+                    break;
+                case R.id.fragment_license__license_button:
+                    Helpers.openInExternalBrowser(getContext(), getString(R.string.fragment_license__license_gpl_link));
+                    break;
+            }
         }
 
         public String getContributorsHtml(Context context) {
@@ -244,12 +302,6 @@ public class AboutActivity extends ThemedActivity
             return text;
         }
 
-        public String getLicenseHtml(Context context) {
-            String text = Helpers.readTextfileFromRawRessource(context, R.raw.license,
-                    "", "").replace("\n\n", "<br><br>");
-            return text;
-        }
-
         public String getLicense3dPartyHtml(Context context) {
             String text = Helpers.readTextfileFromRawRessource(context, R.raw.license_third_party, "", "<br>");
             text = text.replace("NEWENTRY", "<font color='" + accentColor + "'><b>*</b></font> ");
@@ -258,8 +310,11 @@ public class AboutActivity extends ThemedActivity
 
         @Override
         protected void applyColorToViews() {
-            ThemeHelper.updateTextViewLinkColor(textLicense3partyBox);
-            ThemeHelper.updateTextViewLinkColor(textLicenseBox);
+            ThemeHelper.getInstance(getAppSettings());
+            leafpicBtn.setTextColor(ThemeHelper.getAccentColor());
+            licenseBtn.setTextColor(ThemeHelper.getAccentColor());
+            ThemeHelper.updateTextViewLinkColor(maintainers);
+            ThemeHelper.updateTextViewLinkColor(thirdPartyLibs);
         }
 
         @Override
