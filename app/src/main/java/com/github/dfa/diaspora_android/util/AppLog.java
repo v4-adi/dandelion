@@ -129,9 +129,9 @@ public class AppLog {
 
         public static Log instance;
         private AppSettings appSettings;
-        private DateFormat dateFormat;
-        private ArrayList<String> logBuffer;
-        private ArrayList<Observer> observers;
+        private final DateFormat dateFormat;
+        private final ArrayList<String> logBuffer;
+        private final ArrayList<Observer> observers;
 
         private Log() {
             this(null);

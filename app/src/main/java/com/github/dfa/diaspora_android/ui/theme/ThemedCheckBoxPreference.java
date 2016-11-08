@@ -10,6 +10,7 @@ import android.widget.CheckBox;
 import com.github.dfa.diaspora_android.util.AppSettings;
 
 /**
+ * CheckboxPreference that colors its checkbox with accent color
  * Created by vanitas on 24.10.16.
  */
 

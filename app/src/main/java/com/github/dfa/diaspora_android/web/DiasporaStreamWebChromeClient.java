@@ -24,6 +24,7 @@ import android.widget.ProgressBar;
 import com.github.dfa.diaspora_android.util.AppLog;
 
 /**
+ * WebChromeClient that handles sharing text to diaspora*
  * Created by vanitas on 26.09.16.
  */
 

@@ -8,6 +8,7 @@ import android.support.v4.graphics.ColorUtils;
 import com.github.dfa.diaspora_android.R;
 
 /**
+ * Class that handles Colors
  * Created by dnld on 24/02/16.
  */
 public class ColorPalette {

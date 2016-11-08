@@ -330,9 +330,7 @@ public class DiasporaPodList implements Iterable<DiasporaPodList.DiasporaPod>, S
         }
 
         public DiasporaPod appendMainLangs(String... values) {
-            for (String mainLang : values) {
-                this.mainLangs.add(mainLang);
-            }
+            Collections.addAll(this.mainLangs, values);
             return this;
         }
 
@@ -347,9 +345,7 @@ public class DiasporaPodList implements Iterable<DiasporaPodList.DiasporaPod>, S
         }
 
         public DiasporaPod appendPodUrls(DiasporaPodUrl... values) {
-            for (DiasporaPodUrl value : values) {
-                this.podUrls.add(value);
-            }
+            Collections.addAll(this.podUrls, values);
             return this;
         }
 
@@ -411,7 +407,7 @@ public class DiasporaPodList implements Iterable<DiasporaPodList.DiasporaPod>, S
             /**
              * Get the base url
              *
-             * @return
+             * @return base url with port
              */
             public String getBaseUrl() {
                 return protocol + "://" + host + (isPortNeeded() ? port : "");

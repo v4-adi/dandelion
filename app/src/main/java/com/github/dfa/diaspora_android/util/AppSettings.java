@@ -172,7 +172,7 @@ public class AppSettings {
 
 
     // TODO: Remove legacy at some time ;)
-    public void upgradeLegacyPoddomain() {
+    private void upgradeLegacyPoddomain() {
         String legacy = getString(prefPod, R.string.pref_key__poddomain_legacy, "");
         if (!legacy.equals("")) {
             DiasporaPod pod = new DiasporaPod();

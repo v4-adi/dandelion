@@ -24,7 +24,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
@@ -69,11 +68,8 @@ import butterknife.OnClick;
 public class AboutActivity extends ThemedActivity
         implements IntellihideToolbarActivityListener {
 
-    private SectionsPagerAdapter mSectionsPagerAdapter;
-    private ViewPager mViewPager;
-
     @BindView(R.id.about__appbar)
-    AppBarLayout appBarLayout;
+    protected AppBarLayout appBarLayout;
 
     @BindView(R.id.main__topbar)
     protected Toolbar toolbar;
@@ -100,10 +96,10 @@ public class AboutActivity extends ThemedActivity
         });
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        SectionsPagerAdapter mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
-        mViewPager = ButterKnife.findById(this, R.id.container);
+        ViewPager mViewPager = ButterKnife.findById(this, R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
         tabLayout.setupWithViewPager(mViewPager);
@@ -289,9 +285,8 @@ public class AboutActivity extends ThemedActivity
         }
 
         public String getContributorsHtml(Context context) {
-            String text = Helpers.readTextfileFromRawRessource(context, R.raw.contributors,
+            return Helpers.readTextfileFromRawRessource(context, R.raw.contributors,
                     "<font color='" + accentColor + "'><b>*</b></font> ", "<br>");
-            return text;
         }
 
         public String getMaintainersHtml(Context context) {
@@ -390,7 +385,6 @@ public class AboutActivity extends ThemedActivity
                 try {
                     PackageInfo pInfo = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0);
                     AppSettings appSettings = ((App) getActivity().getApplication()).getSettings();
-                    DiasporaUrlHelper urls = new DiasporaUrlHelper(appSettings);
                     packageName.setText(pInfo.packageName);
                     appVersion.setText(getString(R.string.fragment_debug__app_version, pInfo.versionName + " (" + pInfo.versionCode + ")"));
 

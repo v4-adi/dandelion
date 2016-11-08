@@ -29,11 +29,9 @@ import com.github.dfa.diaspora_android.activity.MainActivity;
 
 public class CustomWebViewClient extends WebViewClient {
     private final App app;
-    private WebView webView;
 
     public CustomWebViewClient(App app, WebView webView) {
         this.app = app;
-        this.webView = webView;
     }
 
     //Open non-diaspora links in customtab/external browser

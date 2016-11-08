@@ -40,7 +40,6 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.github.dfa.diaspora_android.R;
-import com.github.dfa.diaspora_android.util.AppLog;
 import com.github.dfa.diaspora_android.util.AppSettings;
 
 /**

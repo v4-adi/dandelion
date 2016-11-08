@@ -113,10 +113,10 @@ public class AspectListFragment extends ThemedFragment implements OnSomethingCli
     }
 
     public static class AspectAdapter extends RecyclerView.Adapter<AspectAdapter.ViewHolder> {
-        private AppSettings appSettings;
-        private DiasporaAspect[] aspectList;
-        private List<String> aspectFavsList;
-        private OnSomethingClickListener<Object> aspectClickedListener;
+        private final AppSettings appSettings;
+        private final DiasporaAspect[] aspectList;
+        private final List<String> aspectFavsList;
+        private final OnSomethingClickListener<Object> aspectClickedListener;
 
         static class ViewHolder extends RecyclerView.ViewHolder {
             @BindView(R.id.recycler_view__list_item__text)

@@ -34,7 +34,6 @@ import android.support.customtabs.CustomTabsSession;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.GravityCompat;
@@ -762,7 +761,7 @@ public class MainActivity extends ThemedActivity
                 if (WebHelper.isOnline(MainActivity.this)) {
                     final InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 
-                    View layout = getLayoutInflater().inflate(R.layout.ui__dialog_search__people_tags, null, false);
+                    @SuppressLint("InflateParams") View layout = getLayoutInflater().inflate(R.layout.ui__dialog_search__people_tags, null, false);
                     final EditText input = (EditText) layout.findViewById(R.id.dialog_search__input);
                     ThemeHelper.updateEditTextColor(input);
                     final DialogInterface.OnClickListener clickListener = new DialogInterface.OnClickListener() {
@@ -896,7 +895,7 @@ public class MainActivity extends ThemedActivity
             AppLog.v(this, "Set shared text; Subject: \"" + escapedSubject + "\" Body: \"" + escapedBody + "\"");
             textToBeShared = "**" + escapedSubject + "** " + escapedBody;
         } else {
-            AppLog.v(this, "Set shared text; Subject: \"" + sharedSubject + "\" Body: \"" + sharedBody + "\"");
+            AppLog.v(this, "Set shared text; Subject: \"null\" Body: \"" + sharedBody + "\"");
             textToBeShared = escapedBody;
         }
     }
@@ -1112,7 +1111,7 @@ public class MainActivity extends ThemedActivity
     /**
      * Set the string that will be shared into the new-post-editor
      *
-     * @param textToBeShared
+     * @param textToBeShared text that will be shared into the post-editor
      */
     public void setTextToBeShared(String textToBeShared) {
         this.textToBeShared = textToBeShared;

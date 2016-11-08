@@ -36,12 +36,13 @@ import butterknife.OnClick;
 import butterknife.OnItemSelected;
 
 /**
+ * Dialog that helps the user configure a pod
  * Created by gsantner (https://gsantner.github.io) on 06.10.16.
  */
 public class PodSelectionDialog extends ThemedAppCompatDialogFragment {
     public static final String TAG = "com.github.dfa.diaspora_android.ui.PodSelectionDialog";
 
-    public static interface PodSelectionDialogResultListener {
+    public interface PodSelectionDialogResultListener {
         void onPodSelectionDialogResult(DiasporaPod pod, boolean accepted);
     }
 
@@ -127,7 +128,7 @@ public class PodSelectionDialog extends ThemedAppCompatDialogFragment {
             spinnerProfile.setVisibility(View.VISIBLE);
             String[] podUrlss = new String[podUrls.size()];
             for (int i = 0; i < podUrls.size(); podUrlss[i] = podUrls.get(i++).getBaseUrl()) ;
-            ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, podUrlss);
+            ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, podUrlss);
             spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spinnerProfile.setAdapter(spinnerAdapter);
         }

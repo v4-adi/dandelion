@@ -10,6 +10,7 @@ import com.github.dfa.diaspora_android.App;
 import com.github.dfa.diaspora_android.util.AppSettings;
 
 /**
+ * PreferenceFragment with a colored status bar
  * Created by vanitas on 24.10.16.
  */
 
