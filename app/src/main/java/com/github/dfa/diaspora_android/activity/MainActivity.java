@@ -421,7 +421,7 @@ public class MainActivity extends ThemedActivity
     @OnClick(R.id.main__topbar)
     public void onToolBarClicked(View view) {
         AppLog.i(this, "onToolBarClicked()");
-        if(appSettings.isTopbarStreamShortcutEnabled()) {
+        if(appSettings.isTopbarStreamShortcutEnabled() && appSettings.hasPod()) {
             onNavigationItemSelected(navView.getMenu().findItem(R.id.nav_stream));
         }
     }
