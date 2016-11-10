@@ -14,24 +14,43 @@
   <!-- Navigiation Slider -->
   <string name="pref_title__sub_nav_slider">Navigations Slider</string>
   <string name="pref_desc__sub_nav_slider">Konfiguration der Sichtbarkeit von Einträgen im Navigation-Slider</string>
-  <string name="pref_cat__visibility_nav_items">Sichtbarkeit der Einträge</string>
+  <string name="pref_cat__visibility_nav_items__user">Nutzer</string>
+  <string name="pref_cat__visibility_nav_items__general">Generelles</string>
+  <string name="pref_cat__visibility_nav_items__admin">Administrator</string>
   <!-- Themes -->
+  <string name="pref_title__themes">Farbschema</string>
+  <string name="pref_desc__themes">Einstellungen des Farbdesigns</string>
+  <string name="pref_title__primary_color">Primärfarbe</string>
+  <string name="pref_desc__primary_color">Färbung der Werkzeugleisten</string>
+  <string name="pref_title__accent_color">Akzentfarbe</string>
+  <string name="pref_desc__accent_color">Färbung der Details</string>
+  <!-- Notifications dropdown -->
+  <string name="pref_title__extended_notifications">Erweiterte Benachrichtigungen</string>
+  <string name="pref_desc__extended_notifications">Erweitere die Benachrichtigungsglocke um ein Ausklappmenü mit verschiedenen Benachrichtigungskategorien</string>
   <!-- Font size -->
   <string name="pref_title__font_size">Schriftgröße</string>
   <!-- prefix 's' is needed to make this a string array. Otherwise ListPreference would crash -->
+  <string name="font_size_normal">Normal</string>
+  <string name="font_size_large">Groß</string>
+  <string name="font_size_huge">Größer</string>
   <!-- Load images -->
   <string name="pref_title__load_images">Lade Bilder</string>
   <string name="pref_desc__load_images">Deaktiviere das Laden von Bildern, um den Datenverbrauch zu verringern</string>
   <!-- Proxy -->
+  <string name="pref_title__http_proxy_load_tor_preset">Tor Voreinstellungen laden</string>
+  <string name="pref_desc__http_proxy_load_tor_preset">Proxy Einstellungen für Tor (Orbot) HTTP Proxy laden</string>
   <string name="pref_title__sub_proxy">Proxy</string>
   <string name="pref_title__proxy_enabled">Aktiviere Netzwerkproxy</string>
+  <string name="pref_desc__http_proxy_enabled">Nutze einen Proxyserver, um Firewalls zu umgehen.\nDie App muss neu gestartet werden</string>
+  <string name="pref_title__http_proxy_host">Host</string>
+  <string name="pref_title__http_proxy_port">Port</string>
+  <string name="toast__proxy_disabled__restart_required">App muss neu gestartet werden um den Proxy zu deaktivieren</string>
+  <string name="toast__proxy_orbot_preset_loaded">Orbot Proxy Preset geladen</string>
   <!-- Chrome custom tabs -->
-  <string name="pref_title__chrome_custom_tabs_enabled">Chrome Custom Tabs</string>
   <string name="pref_desc__chrome_custom_tabs_enabled">Externe Links mit Chrome Custom Tabs öffnen. Chromium oder Google Chrome muss für dieses Feature installiert sein.\nWICHTIGER HINWEIS: Chrome Custom Tabs verwenden die konfigurierten Proxy-Server nicht!</string>
   <!-- Diaspora Settings -->
   <string name="pref_title__personal_settings">Persönliche Einstellungen</string>
   <string name="pref_desc__personal_settings">Öffne die Einstellungen deines Diaspora Accounts</string>
-  <string name="pref_title__manage_contacts">Kontakte</string>
   <string name="pref_desc__manage_contacts">Bearbeite deine Kontaktliste</string>
   <string name="pref_title__manage_tags">Tags verwalten</string>
   <string name="pref_desc__manage_tags">Verwalte die Liste der Hashtags, denen du folgst</string>
@@ -45,5 +64,10 @@
   <string name="pref_title__append_shared_via_app">Verweise auf App</string>
   <string name="pref_desc__append_shared_via_app">Füge beim Teilen von Texten einen Verweis auf diese App an (\"geteilt durch&#8230;\")</string>
   <!-- More -->
+  <string name="pref_title__sub_miscelaneous">Verschiedenes</string>
+  <string name="pref_title__wipe_settings">Zurücksetzen</string>
+  <string name="pref_desc__wipe_settings">Setze alle Einstellungen der Anwendung zurück und melde alle Konten ab</string>
+  <string name="dialog_content__wipe_settings">Dies wird alle geänderten Einstellungen der Anwendung auf die Standardwerte zurücksetzen und alle Konten abmelden. Deine heruntergeladenen Medien bleiben unberührt. Bist du sicher, dass du fortfahren willst?</string>
   <!-- Recently added - Please move to right section-->
+  <!-- Sorry -->
 </resources>
