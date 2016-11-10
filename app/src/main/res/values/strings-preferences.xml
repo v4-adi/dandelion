@@ -14,6 +14,7 @@
     <string name="pref_key__chrome_custom_tabs_enabled" translatable="false">pref_key__chrome_custom_tabs_enabled</string>
     <string name="pref_key__http_proxy_load_tor_preset" translatable="false">pref_key__http_proxy_load_tor_preset</string>
     <string name="pref_key__extended_notifications" translatable="false">pref_key__extended_notifications</string>
+    <string name="pref_key__topbar_stream_shortcut" translatable="false">pref_key__topbar_stream_shortcut</string>
 
     <!-- Themes -->
     <string name="pref_key__primary_color__preference_click" translatable="false">@string/pref_key__primary_color_shade</string>
@@ -28,6 +29,10 @@
     <string name="pref_key__http_proxy_host" translatable="false">pref_key_proxy_host</string>
     <string name="pref_key__http_proxy_port" translatable="false">pref_key_proxy_port</string>
     <string name="pref_key__proxy_was_enabled" translatable="false">wasProxyEnabled</string>
+
+    <!-- Operability -->
+    <string name="pref_title__topbar_stream_shortcut">Top toolbar loads stream</string>
+    <string name="pref_desc__topbar_stream_shortcut">Click an empty space in the top toolbar to open the stream</string>
 
     <!-- Navigiation Slider -->
     <string name="pref_key__visibility_nav__exit" translatable="false">pref_key__visibility_navslider__exit</string>
@@ -64,6 +69,7 @@
     <string name="pref_cat__network">Network</string>
     <string name="pref_cat__pod_settings">Pod settings</string>
     <string name="pref_cat__more" translatable="false">@string/nav_menu_more</string>
+    <string name="pref_cat__operability">Operability</string>
 
     <!-- Visuals -->
     <!-- Navigiation Slider -->

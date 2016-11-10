@@ -38,6 +38,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.ActionMenuView;
@@ -82,6 +83,7 @@ import com.github.dfa.diaspora_android.web.custom_tab.CustomTabActivityHelper;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MainActivity extends ThemedActivity
         implements NavigationView.OnNavigationItemSelectedListener,
@@ -223,6 +225,10 @@ public class MainActivity extends ThemedActivity
 
         // Setup toolbar
         setSupportActionBar(toolbarTop);
+        ActionBar actionBar = getSupportActionBar();
+        if(actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
         toolbarBottom.setOnMenuItemClickListener(new ActionMenuView.OnMenuItemClickListener() {
             public boolean onMenuItemClick(MenuItem item) {
                 CustomFragment top = getTopFragment();
@@ -405,6 +411,18 @@ public class MainActivity extends ThemedActivity
         // Hide whole group (for logged in use) if no pod was selected
         if (!appSettings.hasPod()) {
             navMenu.setGroupVisible(navMenu.findItem(R.id.nav_exit).getGroupId(), false);
+        }
+    }
+
+    /**
+     * Forward toolbar clicks to onNavigationItemSelected
+     * @param view selected view
+     */
+    @OnClick(R.id.main__topbar)
+    public void onToolBarClicked(View view) {
+        AppLog.i(this, "onToolBarClicked()");
+        if(appSettings.isTopbarStreamShortcutEnabled()) {
+            onNavigationItemSelected(navView.getMenu().findItem(R.id.nav_stream));
         }
     }
 

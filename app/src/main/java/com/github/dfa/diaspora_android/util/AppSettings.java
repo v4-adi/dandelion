@@ -398,6 +398,10 @@ public class AppSettings {
         return getBoolean(prefApp, R.string.pref_key__visibility_nav__reports, false);
     }
 
+    public boolean isTopbarStreamShortcutEnabled() {
+        return getBoolean(prefApp, R.string.pref_key__topbar_stream_shortcut, false);
+    }
+
     public void setPrimaryColorSettings(int base, int shade) {
         setInt(prefApp, R.string.pref_key__primary_color_base, base);
         setInt(prefApp, R.string.pref_key__primary_color_shade, shade);

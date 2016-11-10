@@ -33,6 +33,12 @@
             android:title="@string/pref_title__intellihide_toolbars"
             android:icon="@drawable/ic_zoom_out_map_black_24px"/>
 
+    </com.github.dfa.diaspora_android.ui.theme.ThemedPreferenceCategory>
+
+    <!-- Operability -->
+    <com.github.dfa.diaspora_android.ui.theme.ThemedPreferenceCategory
+        android:title="@string/pref_cat__operability">
+
         <com.github.dfa.diaspora_android.ui.theme.ThemedCheckBoxPreference
             android:defaultValue="false"
             android:key="@string/pref_key__extended_notifications"
@@ -53,6 +59,13 @@
             android:summary="@string/pref_desc__chrome_custom_tabs_enabled"
             android:title="@string/pref_title__chrome_custom_tabs_enabled"
             android:icon="@drawable/ic_open_in_new_black_24px"/>
+
+        <com.github.dfa.diaspora_android.ui.theme.ThemedCheckBoxPreference
+            android:defaultValue="false"
+            android:key="@string/pref_key__topbar_stream_shortcut"
+            android:summary="@string/pref_desc__topbar_stream_shortcut"
+            android:title="@string/pref_title__topbar_stream_shortcut"
+            android:icon="@drawable/ic_touch_app_black_24px"/>
 
     </com.github.dfa.diaspora_android.ui.theme.ThemedPreferenceCategory>
 
