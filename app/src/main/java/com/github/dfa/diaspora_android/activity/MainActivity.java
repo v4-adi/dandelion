@@ -415,7 +415,7 @@ public class MainActivity extends ThemedActivity
     }
 
     /**
-     * Forward toolbar clicks to onNavigationItemSelected
+     * Open Stream when clicked on top toolbar AND preference stream shortcut is true
      * @param view selected view
      */
     @OnClick(R.id.main__topbar)
