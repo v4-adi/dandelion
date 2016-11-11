@@ -12,6 +12,8 @@
 <!--
 I have:
 
+- At least version 0.2.0 installed, see About-> Debug. If it is not visible you have an very old version, and 
+  your issue will be closed.
 - searched open and closed issues for duplicates
 - read <https://github.com/Diaspora-for-Android/diaspora-android/blob/master/CONTRIBUTING.md>
 - not submitted translations - see [Crowdin](https://crowdin.com/project/diaspora-for-android/invite)  
