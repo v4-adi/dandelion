@@ -33,6 +33,7 @@
     <!-- Operability -->
     <string name="pref_title__topbar_stream_shortcut">Top toolbar loads stream</string>
     <string name="pref_desc__topbar_stream_shortcut">Click an empty space in the top toolbar to open the stream</string>
+    <string name="pref_key__screen_rotation" translatable="false">pref_key__screen_rotation</string>
 
     <!-- Navigiation Slider -->
     <string name="pref_key__visibility_nav__exit" translatable="false">pref_key__visibility_navslider__exit</string>
@@ -112,6 +113,25 @@
     <string name="pref_title__load_images">Load images</string>
     <string name="pref_desc__load_images">Toggle image loading to eg. safe mobile data</string>
 
+    <!-- Rotate Screen -->
+    <string name="pref_title__screen_rotation">Screen rotation</string>
+    <string name="pref_desc__screen_rotation">Control automatic screen rotation</string>
+    <string name="rotation_val_auto" translatable="false">auto</string>
+    <string name="rotation_val_portrait" translatable="false">portrait</string>
+    <string name="rotation_val_landscape" translatable="false">landscape</string>
+    <string name="rotation_auto">Automatic</string>
+    <string name="rotation_portrait">Portrait</string>
+    <string name="rotation_landscape">Landscape</string>
+    <array name="pref_entries_values__screen_rotation" translatable="false">
+        <item>@string/rotation_val_auto</item>
+        <item>@string/rotation_val_portrait</item>
+        <item>@string/rotation_val_landscape</item>
+    </array>
+    <array name="pref_entries__screen_rotation" translatable="false">
+        <item>@string/rotation_auto</item>
+        <item>@string/rotation_portrait</item>
+        <item>@string/rotation_landscape</item>
+    </array>
     <!-- Proxy -->
     <string name="pref_title__http_proxy_load_tor_preset">Load Tor Preset</string>
     <string name="pref_desc__http_proxy_load_tor_preset">Load proxy settings for Tor (Orbot) HTTP Proxy</string>

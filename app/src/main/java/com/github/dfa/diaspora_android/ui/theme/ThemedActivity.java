@@ -20,6 +20,7 @@ package com.github.dfa.diaspora_android.ui.theme;
 
 import android.annotation.TargetApi;
 import android.app.ActivityManager;
+import android.content.pm.ActivityInfo;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
@@ -46,6 +47,7 @@ public abstract class ThemedActivity extends AppCompatActivity {
         updateStatusBarColor();
         updateRecentAppColor();
         applyColorToViews();
+        updateScreenRotation();
     }
 
     protected abstract void applyColorToViews();
@@ -73,6 +75,17 @@ public abstract class ThemedActivity extends AppCompatActivity {
                         drawable.getBitmap(),
                         getAppSettings().getPrimaryColor()));
             }
+        }
+    }
+
+    protected void updateScreenRotation() {
+        String rotation = getAppSettings().getScreenRotation();
+        if (rotation.equals(getString(R.string.rotation_val_auto))) {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
+        } else if (rotation.equals(getString(R.string.rotation_val_portrait))) {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        } else {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         }
     }
 }
