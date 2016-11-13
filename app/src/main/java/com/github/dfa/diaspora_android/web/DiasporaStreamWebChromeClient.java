@@ -18,10 +18,16 @@
  */
 package com.github.dfa.diaspora_android.web;
 
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
+import android.webkit.JsResult;
 import android.webkit.WebView;
 import android.widget.ProgressBar;
 
+import com.github.dfa.diaspora_android.R;
+import com.github.dfa.diaspora_android.ui.theme.ThemedAlertDialogBuilder;
 import com.github.dfa.diaspora_android.util.AppLog;
+import com.github.dfa.diaspora_android.util.AppSettings;
 
 /**
  * WebChromeClient that handles sharing text to diaspora*
@@ -52,6 +58,32 @@ public class DiasporaStreamWebChromeClient extends FileUploadWebChromeClient {
                 WebHelper.shareTextIntoWebView(wv, textToBeShared);
             }
         }
+    }
+
+    @Override
+    public boolean onJsConfirm(WebView view, String url, String message, final JsResult result) {
+        ThemedAlertDialogBuilder builder = new ThemedAlertDialogBuilder(view.getContext(), new AppSettings(view.getContext()));
+        builder.setTitle(view.getContext().getString(R.string.confirmation))
+                .setMessage(message)
+                .setPositiveButton(android.R.string.ok,
+                        new DialogInterface.OnClickListener()
+                        {
+                            public void onClick(DialogInterface dialog, int which)
+                            {
+                                result.confirm();
+                            }
+                        })
+                .setNegativeButton(android.R.string.cancel,
+                        new DialogInterface.OnClickListener()
+                        {
+                            public void onClick(DialogInterface dialog, int which)
+                            {
+                                result.cancel();
+                            }
+                        })
+                .create()
+                .show();
+        return true;
     }
 
     public interface SharedTextCallback {
