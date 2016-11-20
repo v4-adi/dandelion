@@ -904,7 +904,7 @@ public class MainActivity extends ThemedActivity
         String body = WebHelper.replaceUrlWithMarkdown(sharedBody);
         if (appSettings.isAppendSharedViaApp()) {
             AppLog.v(this, "Append app reference to shared text");
-            body = body + "\n\n" + getString(R.string.shared_by_diaspora_android);
+            body = body + "\n\n" + getString(R.string.shared_via_app);
         }
         final String escapedBody = WebHelper.escapeHtmlText(body);
         if (sharedSubject != null) {

@@ -1,7 +1,9 @@
 # v0.2.0-next
+- App name changed to **dandelion\***
+- Rotation options
 
 
-# v0.2.0
+# v0.2.0a
 - Added: Customizable Theme Colors!
 - Improved account setup with easy tor hidden service configuration
 - Eye candy for the settings activity

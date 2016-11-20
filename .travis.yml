@@ -23,6 +23,8 @@ env:
 branches:
   except:
   - l10n_master
+  - l10n_master2
+  - crowdin
 notifications:
   webhooks:
     urls:

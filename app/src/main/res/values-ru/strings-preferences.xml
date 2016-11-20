@@ -3,6 +3,9 @@
 <resources>
   <!-- Key Names (Untranslatable) -->
   <!-- Themes -->
+  <!-- Operability -->
+  <string name="pref_title__topbar_stream_shortcut">Верхняя панель инструментов загружает Поток</string>
+  <string name="pref_desc__topbar_stream_shortcut">Нажмите на пустое пространство на верхней панели инструментов, чтобы открыть Поток</string>
   <!-- Navigiation Slider -->
   <!-- PodProfile -->
   <!-- More -->
@@ -10,6 +13,7 @@
   <string name="pref_cat__visuals">Внешний вид</string>
   <string name="pref_cat__network">Сеть</string>
   <string name="pref_cat__pod_settings">Настройки пода</string>
+  <string name="pref_cat__operability">Работоспособность</string>
   <!-- Visuals -->
   <!-- Navigiation Slider -->
   <string name="pref_title__sub_nav_slider">Слайдер навигации</string>
@@ -36,6 +40,7 @@
   <!-- Load images -->
   <string name="pref_title__load_images">Загрузка изображений</string>
   <string name="pref_desc__load_images">Отключить загрузку изображений для экономии трафика</string>
+  <!-- Rotate Screen -->
   <!-- Proxy -->
   <string name="pref_title__http_proxy_load_tor_preset">Загрузить шаблон конфигурации Tor</string>
   <string name="pref_desc__http_proxy_load_tor_preset">Загрузить настройки прокси для Tor (Orbot)</string>

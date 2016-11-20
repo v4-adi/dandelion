@@ -138,7 +138,7 @@
     <string name="pref_title__sub_proxy">Proxy</string>
     <string name="pref_desc__sub_proxy" translatable="false">@string/pref_desc__http_proxy_enabled</string>
     <string name="pref_title__proxy_enabled">Enable Proxy</string>
-    <string name="pref_desc__http_proxy_enabled">Proxy Diaspora\'s traffic to circumvent firewalls.\nMay require restart. This might not work on some phones.</string>
+    <string name="pref_desc__http_proxy_enabled">Proxy dandelion*\'s traffic to circumvent firewalls.\nMay require restart. This might not work on some phones.</string>
     <string name="pref_title__http_proxy_host">Host</string>
     <string name="pref_title__http_proxy_port">Port</string>
     <string name="HTTP" translatable="false">HTTP</string>
@@ -153,7 +153,7 @@
 
     <!-- Diaspora Settings -->
     <string name="pref_title__personal_settings">Personal settings</string>
-    <string name="pref_desc__personal_settings">Open your Diaspora account settings</string>
+    <string name="pref_desc__personal_settings">Open your diaspora* account settings</string>
 
     <string name="pref_title__manage_contacts" translatable="false">@string/contacts</string>
     <string name="pref_desc__manage_contacts">Manage your contact list</string>
@@ -162,7 +162,7 @@
     <string name="pref_desc__manage_tags">Add and delete the hashtags you are following</string>
 
     <string name="pref_title__change_account">Change Account</string>
-    <string name="pref_desc__change_account">Erase local session data and switch to another Diaspora pod/account</string>
+    <string name="pref_desc__change_account">Erase local session data and switch to another diaspora* pod/account</string>
     <string name="pref_warning__change_account">This will erase all cookies and session data. Do you really want to change your account?</string>
 
     <string name="pref_title__clear_cache">Clear cache</string>

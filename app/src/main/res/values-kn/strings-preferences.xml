@@ -3,6 +3,7 @@
 <resources>
   <!-- Key Names (Untranslatable) -->
   <!-- Themes -->
+  <!-- Operability -->
   <!-- Navigiation Slider -->
   <!-- PodProfile -->
   <!-- More -->
@@ -14,6 +15,7 @@
   <!-- Font size -->
   <!-- prefix 's' is needed to make this a string array. Otherwise ListPreference would crash -->
   <!-- Load images -->
+  <!-- Rotate Screen -->
   <!-- Proxy -->
   <!-- Chrome custom tabs -->
   <!-- Diaspora Settings -->

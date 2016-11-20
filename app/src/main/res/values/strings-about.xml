@@ -5,7 +5,7 @@
     <string name="about_activity__title_debug_info">Debugging</string>
     <string name="fragment_debug__section_app">Application</string>
     <string name="fragment_debug__section_device">Device</string>
-    <string name="fragment_debug__section_pod">Diaspora Pod</string>
+    <string name="fragment_debug__section_pod">diaspora* Pod</string>
     <string name="fragment_debug__section_log">Debug Log</string>
     <string name="fragment_debug__section_log_spam">Debug Log (Verbose)</string>
     <string name="fragment_debug__app_version">App Version: %1$s</string>
@@ -16,13 +16,13 @@
     <string name="fragment_debug__pod_profile_url">Pod Domain: %1$s</string>
     <string name="fragment_debug__toast_log_copied">Debug log copied to clipboard</string>
 
-    <string name="fragment_about__about" translatable="false">@string/diaspora_for_android</string>
-    <string name="fragment_about__about_text">DiasporaForAndroid is your companion app for browsing the social network diaspora*. It adds features like useful toolbars and support for proxy servers like the Tor Network to your social experience.</string>
+    <string name="fragment_about__about" translatable="false">@string/dandelion</string>
+    <string name="fragment_about__about_text">dandelion* is your companion app for browsing the social network diaspora*. It adds features like useful toolbars and support for proxy servers like the Tor Network to your social experience.</string>
 
     <string name="fragment_about__contribute">Contribute Code!</string>
-    <string name="fragment_about__contribute_text">DiasporaForAndroid is developed free as in Freedom and follows the ideas of the diaspora* project. If you want to contribute, go ahead! Currently we are a very small team, so we greatly appreciate any kind of help!</string>
+    <string name="fragment_about__contribute_text">dandelion* is developed free as in Freedom and follows the ideas of the diaspora* project. If you want to contribute, go ahead! Currently we are a very small team, so we greatly appreciate any kind of help!</string>
     <string name="fragment_about__contribute_button">Get the source</string>
-    <string name="fragment_about__contribute_link" translatable="false">https://github.com/Diaspora-for-Android/diaspora-android</string>
+    <string name="fragment_about__contribute_link" translatable="false">https://github.com/Diaspora-for-Android/dandelion</string>
 
     <string name="fragment_about__translate">Translate the App!</string>
     <string name="fragment_about__translate_text">The app is not available in your language? You can change that! Why don\'t you help us by translating it? We use the crowdin platform to enable anyone to translate the app.</string>
@@ -30,14 +30,14 @@
     <string name="fragment_about__translate_link" translatable="false">https://crowdin.com/project/diaspora-for-android/invite</string>
 
     <string name="fragment_about__feedback">Give Feedback!</string>
-    <string name="fragment_about__feedback_text">DiasporaForAndroid is still in development, so if you have suggestions or any kind of feedback, please use our bug tracker to let us know!</string>
+    <string name="fragment_about__feedback_text">dandelion* is still in development, so if you have suggestions or any kind of feedback, please use our bug tracker to let us know!</string>
     <string name="fragment_about__feedback_button">Report Bugs</string>
-    <string name="fragment_About__feedback_link" translatable="false">https://github.com/Diaspora-for-Android/diaspora-android/issues</string>
+    <string name="fragment_About__feedback_link" translatable="false">https://github.com/Diaspora-for-Android/dandelion/issues</string>
 
     <string name="fragment_about__spread_the_word">Spread the word!</string>
-    <string name="fragment_about__spread_the_word_text">Tell your friends and family about diaspora* and #DiasporaForAndroid! Why don\'t you blog about your experiences? We\'d love to hear from you!</string>
+    <string name="fragment_about__spread_the_word_text">Tell your friends and family about diaspora* and #dandelion! Why don\'t you blog about your experiences? We\'d love to hear from you!</string>
     <string name="fragment_about__spread_the_word_button">Share the app</string>
-    <string name="fragment_about__spread_the_word_share_text">Hey! Check out #DiasporaForAndroid! %1$s</string>
+    <string name="fragment_about__spread_the_word_share_text">Hey! Check out #dandelion! %1$s</string>
     <string name="fragment_about__fdroid_link" translatable="false">https://f-droid.org/repository/browse/?fdid=com.github.dfa.diaspora_android</string>
 
 

@@ -55,7 +55,7 @@ public class UpdateTitleReceiver extends BroadcastReceiver {
             if (subUrl.startsWith(DiasporaUrlHelper.SUBURL_STREAM)) {
                 setTitle(R.string.nav_stream);
             } else if (subUrl.startsWith(DiasporaUrlHelper.SUBURL_POSTS)) {
-                setTitle(R.string.diaspora);
+                setTitle(R.string.app_name);
             } else if (subUrl.startsWith(DiasporaUrlHelper.SUBURL_NOTIFICATIONS)) {
                 setTitle(R.string.notifications);
             } else if (subUrl.startsWith(DiasporaUrlHelper.SUBURL_CONVERSATIONS)) {
