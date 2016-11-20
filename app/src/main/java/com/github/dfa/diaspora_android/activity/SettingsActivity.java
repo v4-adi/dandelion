@@ -43,7 +43,7 @@ import uz.shift.colorpicker.OnColorChangedListener;
  * Created by vanitas on 24.10.16.
  */
 
-public class SettingsActivity extends ThemedActivity {
+public class SettingsActivity extends ThemedActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
 
     //Toolbar
     @BindView(R.id.settings__appbar)
@@ -68,7 +68,7 @@ public class SettingsActivity extends ThemedActivity {
                 SettingsActivity.this.onBackPressed();
             }
         });
-
+        getAppSettings().registerPrefAppPreferenceChangedListener(this);
         oldProxySettings = getAppSettings().getProxySettings();
         showFragment(SettingsFragmentMaster.TAG, false);
     }
@@ -126,6 +126,7 @@ public class SettingsActivity extends ThemedActivity {
                 ProxyHandler.getInstance().updateProxySettings(this);
             }
         }
+        getAppSettings().unregisterPrefAppPreferenceChangedListener(this);
         super.onStop();
     }
 
@@ -148,6 +149,13 @@ public class SettingsActivity extends ThemedActivity {
      */
     private ThemedPreferenceFragment getTopFragment() {
         return (ThemedPreferenceFragment) getFragmentManager().findFragmentById(R.id.settings__fragment_container);
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
+        if(s.equals(getString(R.string.pref_key__screen_rotation))) {
+            this.updateScreenRotation();
+        }
     }
 
     public static class SettingsFragmentMaster extends ThemedPreferenceFragment {

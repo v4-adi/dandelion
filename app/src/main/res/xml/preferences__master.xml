@@ -67,6 +67,15 @@
             android:title="@string/pref_title__topbar_stream_shortcut"
             android:icon="@drawable/ic_touch_app_black_24px"/>
 
+        <ListPreference
+            android:defaultValue="@string/rotation_val_auto"
+            android:key="@string/pref_key__screen_rotation"
+            android:title="@string/pref_title__screen_rotation"
+            android:summary="@string/pref_desc__screen_rotation"
+            android:entries="@array/pref_entries__screen_rotation"
+            android:entryValues="@array/pref_entries_values__screen_rotation"
+            android:icon="@drawable/ic_screen_rotation_black_24px"/>
+
     </com.github.dfa.diaspora_android.ui.theme.ThemedPreferenceCategory>
 
     <!-- Diaspora Pod Settings -->

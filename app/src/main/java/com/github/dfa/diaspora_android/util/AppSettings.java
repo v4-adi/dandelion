@@ -402,6 +402,10 @@ public class AppSettings {
         return getBoolean(prefApp, R.string.pref_key__topbar_stream_shortcut, false);
     }
 
+    public String getScreenRotation() {
+        return getString(prefApp, R.string.pref_key__screen_rotation, "auto");
+    }
+
     public void setPrimaryColorSettings(int base, int shade) {
         setInt(prefApp, R.string.pref_key__primary_color_base, base);
         setInt(prefApp, R.string.pref_key__primary_color_shade, shade);
@@ -436,5 +440,13 @@ public class AppSettings {
 
     public boolean isExtendedNotificationsActivated() {
         return getBoolean(prefApp, R.string.pref_key__extended_notifications, false);
+    }
+
+    public void registerPrefAppPreferenceChangedListener(SharedPreferences.OnSharedPreferenceChangeListener listener) {
+        prefApp.registerOnSharedPreferenceChangeListener(listener);
+    }
+
+    public void unregisterPrefAppPreferenceChangedListener(SharedPreferences.OnSharedPreferenceChangeListener listener) {
+        prefApp.unregisterOnSharedPreferenceChangeListener(listener);
     }
 }
