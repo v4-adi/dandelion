@@ -10,8 +10,8 @@ android {
         minSdkVersion 17
         targetSdkVersion 24
         versionCode 11
-        versionName "0.2.0-next"
-        setProperty("archivesBaseName", "DiasporaForAndroid__${versionName}__")
+        versionName "0.2.1"
+        setProperty("archivesBaseName", "dandelion__${versionName}__")
 
         vectorDrawables.useSupportLibrary = true
     }

@@ -1,7 +1,9 @@
-# v0.2.0-next
+# v0.2.1
 - App name changed to **dandelion\***
 - Rotation options
-
+- Top toolbar loads screen again (toggleable in settings)
+- Fixed overlapping fragments
+- Visual rework of the About-section of the app
 
 # v0.2.0a
 - Added: Customizable Theme Colors!

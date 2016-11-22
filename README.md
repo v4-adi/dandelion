@@ -7,6 +7,7 @@
 
 
 # dandelion\*
+FORMERLY KNOWN AS DIASPORA-FOR-ANDROID
 
 This is an unofficial webview based client for the community-run, distributed social network **[Diaspora*](https://diasporafoundation.org/)**. It's currently under development and should be used with that in mind. Please submit any bugs you might find.  
 
