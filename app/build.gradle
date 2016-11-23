@@ -9,8 +9,8 @@ android {
         applicationId "com.github.dfa.diaspora_android"
         minSdkVersion 17
         targetSdkVersion 24
-        versionCode 11
-        versionName "0.2.1"
+        versionCode 12
+        versionName "0.2.1-next"
         setProperty("archivesBaseName", "dandelion__${versionName}__")
 
         vectorDrawables.useSupportLibrary = true
