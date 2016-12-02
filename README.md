@@ -2,7 +2,7 @@
 
 <a name="badgers"></a>[![Build Status](https://travis-ci.org/Diaspora-for-Android/dandelion.svg?branch=master)](https://travis-ci.org/Diaspora-for-Android/dandelion)
 [![Crowdin](https://d322cqt584bo4o.cloudfront.net/diaspora-for-android/localized.svg)](https://crowdin.com/project/diaspora-for-android)
-[![Chat - FreeNode IRC](https://img.shields.io/badge/chat-on%20freenode-blue.svg)](https://kiwiirc.com/client/irc.freenode.net/?nick=user-dandelion|?#dandelion)
+[![Chat - FreeNode IRC](https://img.shields.io/badge/chat-on%20freenode-blue.svg)](https://kiwiirc.com/client/irc.freenode.net/?nick=user-dandelion|?#diaspora-for-android)
 [![Chat - Gitter](https://img.shields.io/badge/chat-on%20gitter-blue.svg)](https://gitter.im/Diaspora-for-Android/dandelion)
 
 
