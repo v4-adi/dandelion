@@ -167,10 +167,9 @@ public class MainActivity extends ThemedActivity
         setContentView(R.layout.main__activity);
         ButterKnife.bind(this);
 
-        if ((app = (App) getApplication()) == null) AppLog.e(this, "App is null!");
-        if ((appSettings = app.getSettings()) == null) AppLog.e(this, "AppSettings is null!");
-        if ((diasporaUserProfile = app.getDiasporaUserProfile()) == null)
-            AppLog.e(this, "DiasporaUserProfile is null!");
+        app = (App) getApplication();
+        appSettings = app.getSettings();
+        diasporaUserProfile = app.getDiasporaUserProfile();
         diasporaUserProfile.setCallbackHandler(uiHandler);
         diasporaUserProfile.setListener(this);
         urls = new DiasporaUrlHelper(appSettings);
@@ -183,15 +182,13 @@ public class MainActivity extends ThemedActivity
 
         brOpenExternalLink = new OpenExternalLinkReceiver(this);
         brSetTitle = new UpdateTitleReceiver(app, urls, new UpdateTitleReceiver.TitleCallback() {
-            @Override
-            public void setTitle(int rId) {
+            public void setTitle(int resId) {
                 CustomFragment top = getTopFragment();
                 if (top != null && top.getFragmentTag().equals(DiasporaStreamFragment.TAG)) {
-                    MainActivity.this.setTitle(rId);
+                    MainActivity.this.setTitle(resId);
                 }
             }
 
-            @Override
             public void setTitle(String title) {
                 CustomFragment top = getTopFragment();
                 if (top != null && top.getFragmentTag().equals(DiasporaStreamFragment.TAG)) {
@@ -226,7 +223,7 @@ public class MainActivity extends ThemedActivity
         // Setup toolbar
         setSupportActionBar(toolbarTop);
         ActionBar actionBar = getSupportActionBar();
-        if(actionBar != null) {
+        if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
         toolbarBottom.setOnMenuItemClickListener(new ActionMenuView.OnMenuItemClickListener() {
@@ -347,13 +344,10 @@ public class MainActivity extends ThemedActivity
         navDrawerLayout = ButterKnife.findById(navHeader, R.id.nav_drawer);
         //Handle clicks on profile picture
         navProfilePictureArea.setOnClickListener(new View.OnClickListener() {
-            @Override
             public void onClick(View view) {
                 navDrawer.closeDrawer(GravityCompat.START);
-                if (WebHelper.isOnline(MainActivity.this)) {
+                if (!appSettings.getProfileId().equals("")) {
                     openDiasporaUrl(urls.getProfileUrl());
-                } else {
-                    snackbarNoInternet.show();
                 }
             }
         });
@@ -416,12 +410,13 @@ public class MainActivity extends ThemedActivity
 
     /**
      * Open Stream when clicked on top toolbar AND preference stream shortcut is true
+     *
      * @param view selected view
      */
     @OnClick(R.id.main__topbar)
     public void onToolBarClicked(View view) {
         AppLog.i(this, "onToolBarClicked()");
-        if(appSettings.isTopbarStreamShortcutEnabled() && appSettings.hasPod()) {
+        if (appSettings.isTopbarStreamShortcutEnabled() && appSettings.hasPod()) {
             onNavigationItemSelected(navView.getMenu().findItem(R.id.nav_stream));
         }
     }
@@ -470,8 +465,10 @@ public class MainActivity extends ThemedActivity
             AppLog.v(this, "Reset pod data and  show PodSelectionFragment");
             appSettings.setPod(null);
             runOnUiThread(new Runnable() {
-                @Override
                 public void run() {
+                    navheaderTitle.setText(R.string.app_name);
+                    navheaderDescription.setText(R.string.app_subtitle);
+                    navheaderImage.setImageResource(R.drawable.ic_launcher);
                     app.resetPodData(((DiasporaStreamFragment) getFragment(DiasporaStreamFragment.TAG)).getWebView());
                 }
             });
@@ -479,7 +476,6 @@ public class MainActivity extends ThemedActivity
         } else if (ACTION_CLEAR_CACHE.equals(action)) {
             AppLog.v(this, "Clear WebView cache");
             runOnUiThread(new Runnable() {
-                @Override
                 public void run() {
                     ContextMenuWebView wv = ((DiasporaStreamFragment) getFragment(DiasporaStreamFragment.TAG)).getWebView();
                     if (wv != null) {
@@ -989,10 +985,8 @@ public class MainActivity extends ThemedActivity
             break;
 
             case R.id.nav_profile: {
-                if (WebHelper.isOnline(MainActivity.this)) {
+                if (!appSettings.getProfileId().equals("")) {
                     openDiasporaUrl(urls.getProfileUrl());
-                } else {
-                    snackbarNoInternet.show();
                 }
             }
             break;
@@ -1002,7 +996,6 @@ public class MainActivity extends ThemedActivity
             }
             break;
 
-            //TODO: Replace with fragment
             case R.id.nav_aspects: {
                 showFragment(getFragment(AspectListFragment.TAG));
             }
@@ -1062,7 +1055,7 @@ public class MainActivity extends ThemedActivity
             break;
 
             case R.id.nav_reports: {
-                if(WebHelper.isOnline(MainActivity.this)) {
+                if (WebHelper.isOnline(MainActivity.this)) {
                     openDiasporaUrl(urls.getReportsUrl());
                 } else {
                     snackbarNoInternet.show();

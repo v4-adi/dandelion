@@ -56,7 +56,10 @@ public class DiasporaUserProfile {
     public DiasporaUserProfile(App app) {
         this.app = app;
         appSettings = app.getSettings();
+        loadFromAppSettings();
+    }
 
+    public void loadFromAppSettings(){
         avatarUrl = appSettings.getAvatarUrl();
         guid = appSettings.getProfileId();
         name = appSettings.getName();

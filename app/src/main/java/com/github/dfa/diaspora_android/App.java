@@ -81,6 +81,9 @@ public class App extends Application {
         // Clear preferences__master
         appSettings.clearPodSettings();
 
+        // Clear User profile  - reload empty AppSettings data
+        diasporaUserProfile.loadFromAppSettings();
+
         // Clear cookies
         //noinspection deprecation
         cookieManager.removeAllCookie();
