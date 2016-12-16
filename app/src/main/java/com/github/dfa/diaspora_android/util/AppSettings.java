@@ -112,6 +112,10 @@ public class AppSettings {
         return pref.getString(context.getString(ressourceId), defaultValue);
     }
 
+    private String getString(SharedPreferences pref, int ressourceId, int ressourceIdDefaultValue) {
+        return pref.getString(context.getString(ressourceId), context.getString(ressourceIdDefaultValue));
+    }
+
     private boolean getBoolean(SharedPreferences pref, int ressourceId, boolean defaultValue) {
         return pref.getBoolean(context.getString(ressourceId), defaultValue);
     }
@@ -170,20 +174,7 @@ public class AppSettings {
         setString(prefPod, R.string.pref_key__podprofile_name, name);
     }
 
-
-    // TODO: Remove legacy at some time ;)
-    private void upgradeLegacyPoddomain() {
-        String legacy = getString(prefPod, R.string.pref_key__poddomain_legacy, "");
-        if (!legacy.equals("")) {
-            DiasporaPod pod = new DiasporaPod();
-            pod.setName(legacy);
-            pod.getPodUrls().add(new DiasporaPodUrl().setHost(legacy));
-            setPod(pod);
-        }
-    }
-
     public DiasporaPod getPod() {
-        upgradeLegacyPoddomain();
         if (currentPod0Cached == null) {
             String pref = getString(prefPod, R.string.pref_key__current_pod_0, "");
 
@@ -206,7 +197,6 @@ public class AppSettings {
     }
 
     public boolean hasPod() {
-        upgradeLegacyPoddomain();
         return !getString(prefPod, R.string.pref_key__current_pod_0, "").equals("");
     }
 
@@ -403,7 +393,7 @@ public class AppSettings {
     }
 
     public String getScreenRotation() {
-        return getString(prefApp, R.string.pref_key__screen_rotation, "auto");
+        return getString(prefApp, R.string.pref_key__screen_rotation, R.string.rotation_val_system);
     }
 
     public void setPrimaryColorSettings(int base, int shade) {
