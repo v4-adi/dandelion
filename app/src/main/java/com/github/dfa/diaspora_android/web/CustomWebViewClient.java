@@ -29,6 +29,7 @@ import com.github.dfa.diaspora_android.activity.MainActivity;
 
 public class CustomWebViewClient extends WebViewClient {
     private final App app;
+    private String lastLoadUrl ="";
 
     public CustomWebViewClient(App app, WebView webView) {
         this.app = app;

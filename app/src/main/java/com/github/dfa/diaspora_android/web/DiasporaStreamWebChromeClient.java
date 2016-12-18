@@ -45,6 +45,7 @@ public class DiasporaStreamWebChromeClient extends FileUploadWebChromeClient {
     public void onProgressChanged(WebView wv, int progress) {
         super.onProgressChanged(wv, progress);
         WebHelper.optimizeMobileSiteLayout(wv);
+        WebHelper.sendUpdateTitleByUrlIntent(wv.getUrl(), wv.getContext());
 
         if (progress > 0 && progress <= 85) {
             WebHelper.getUserProfile(wv);

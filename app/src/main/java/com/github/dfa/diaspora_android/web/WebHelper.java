@@ -20,11 +20,15 @@
 package com.github.dfa.diaspora_android.web;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.support.v4.content.LocalBroadcastManager;
 import android.text.Html;
 import android.webkit.URLUtil;
 import android.webkit.WebView;
+
+import com.github.dfa.diaspora_android.activity.MainActivity;
 
 /**
  * Created by Gregor Santner on 07.08.16.
@@ -101,5 +105,21 @@ public class WebHelper {
                 "        window.lastShared = textToBeShared;" +
                 "    }" +
                 "})();");
+    }
+
+    private static String lastUpdateTitleByUrl ="";
+    public static synchronized void sendUpdateTitleByUrlIntent(String url, Context context){
+        // Ignore javascript stuff
+        if (url != null && url.startsWith("javascript:")){
+            return;
+        }
+
+        // Don't spam intents
+        if (lastUpdateTitleByUrl != null && !lastUpdateTitleByUrl.equals(url) && url != null) {
+            Intent updateActivityTitleIntent = new Intent(MainActivity.ACTION_UPDATE_TITLE_FROM_URL);
+            updateActivityTitleIntent.putExtra(MainActivity.EXTRA_URL, url);
+            LocalBroadcastManager.getInstance(context).sendBroadcast(updateActivityTitleIntent);
+        }
+        lastUpdateTitleByUrl = url;
     }
 }

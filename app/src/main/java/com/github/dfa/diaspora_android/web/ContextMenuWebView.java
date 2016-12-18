@@ -58,7 +58,7 @@ public class ContextMenuWebView extends NestedWebView {
 
     private final Context context;
     private Activity parentActivity;
-    private String lasLoadUrl = "";
+    private String lastLoadUrl = "";
 
     public ContextMenuWebView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
@@ -226,14 +226,7 @@ public class ContextMenuWebView extends NestedWebView {
     @Override
     public void loadUrl(String url) {
         super.loadUrl(url);
-
-        // Don't spam intents ;)
-        if (!lasLoadUrl.equals(url)) {
-            Intent updateActivityTitleIntent = new Intent(MainActivity.ACTION_UPDATE_TITLE_FROM_URL);
-            updateActivityTitleIntent.putExtra(MainActivity.EXTRA_URL, getUrl());
-            LocalBroadcastManager.getInstance(context).sendBroadcast(updateActivityTitleIntent);
-        }
-        lasLoadUrl = url;
+        WebHelper.sendUpdateTitleByUrlIntent(url, getContext());
     }
 
     public void setParentActivity(Activity activity) {
