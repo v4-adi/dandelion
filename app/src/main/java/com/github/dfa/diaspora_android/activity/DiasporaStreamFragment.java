@@ -28,7 +28,6 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.design.widget.Snackbar;
 import android.view.Menu;
@@ -232,7 +231,7 @@ public class DiasporaStreamFragment extends BrowserFragment {
     protected DiasporaStreamWebChromeClient.SharedTextCallback sharedTextCallback = new DiasporaStreamWebChromeClient.SharedTextCallback() {
         @Override
         public String getSharedText() {
-            if(getActivity() != null) {
+            if (getActivity() != null) {
                 return ((MainActivity) getActivity()).getTextToBeShared();
             }
             return "";

@@ -61,7 +61,7 @@ public class AppLog {
      */
     public static void v(Object source, String _text) {
         if (isLoggingEnabled()) {
-            if(source != null) {
+            if (source != null) {
                 Log.v(getLogPrefix(source), _text);
             } else {
                 Log.v("null", _text);
@@ -71,7 +71,7 @@ public class AppLog {
 
     public static void i(Object source, String _text) {
         if (isLoggingEnabled()) {
-            if(source != null) {
+            if (source != null) {
                 Log.i(getLogPrefix(source), _text);
             } else {
                 Log.i("null", _text);
@@ -81,7 +81,7 @@ public class AppLog {
 
     public static void d(Object source, String _text) {
         if (isLoggingEnabled()) {
-            if(source != null) {
+            if (source != null) {
                 Log.d(getLogPrefix(source), _text);
             } else {
                 Log.d("null", _text);
@@ -91,7 +91,7 @@ public class AppLog {
 
     public static void e(Object source, String _text) {
         if (isLoggingEnabled()) {
-            if(source != null) {
+            if (source != null) {
                 Log.e(getLogPrefix(source), _text);
             } else {
                 Log.e("null", _text);
@@ -101,7 +101,7 @@ public class AppLog {
 
     public static void w(Object source, String _text) {
         if (isLoggingEnabled()) {
-            if(source != null) {
+            if (source != null) {
                 Log.w(getLogPrefix(source), _text);
             } else {
                 Log.w("null", _text);
@@ -111,7 +111,7 @@ public class AppLog {
 
     public static void spam(Object source, String _text) {
         if (isLoggingEnabled() && isLoggingSpamEnabled()) {
-            if(source != null) {
+            if (source != null) {
                 Log.v(getLogPrefix(source), _text);
             } else {
                 Log.v("null", _text);

@@ -311,8 +311,8 @@ public class MainActivity extends ThemedActivity
         streamFragment.loadUrl(url);
     }
 
-    public void showLastVisitedTimestampMessageIfNeeded(String url){
-        if (url.equals(urls.getStreamUrl()) && diasporaUserProfile.hasLastVisitedTimestampInStream()){
+    public void showLastVisitedTimestampMessageIfNeeded(String url) {
+        if (url.equals(urls.getStreamUrl()) && diasporaUserProfile.hasLastVisitedTimestampInStream()) {
             snackbarLastVisitedTimestampInStream.show();
             diasporaUserProfile.resetLastVisitedPositionInStream();
         }

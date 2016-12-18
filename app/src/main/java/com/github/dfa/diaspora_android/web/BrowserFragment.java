@@ -260,7 +260,7 @@ public class BrowserFragment extends ThemedFragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if(webView != null && webView.getContext() instanceof MutableContextWrapper) {
+        if (webView != null && webView.getContext() instanceof MutableContextWrapper) {
             ((MutableContextWrapper) webView.getContext()).setBaseContext(context);
         }
     }

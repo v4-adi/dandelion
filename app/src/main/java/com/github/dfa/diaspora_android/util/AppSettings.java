@@ -21,7 +21,6 @@ import android.content.SharedPreferences;
 import com.github.dfa.diaspora_android.R;
 import com.github.dfa.diaspora_android.data.DiasporaAspect;
 import com.github.dfa.diaspora_android.data.DiasporaPodList.DiasporaPod;
-import com.github.dfa.diaspora_android.data.DiasporaPodList.DiasporaPod.DiasporaPodUrl;
 import com.github.dfa.diaspora_android.web.ProxyHandler;
 
 import org.json.JSONException;
@@ -127,6 +126,7 @@ public class AppSettings {
     private int getInt(SharedPreferences pref, int ressourceId, int defaultValue) {
         return pref.getInt(context.getString(ressourceId), defaultValue);
     }
+
     private long getLong(SharedPreferences pref, int ressourceId, long defaultValue) {
         return pref.getLong(context.getString(ressourceId), defaultValue);
     }
@@ -413,10 +413,11 @@ public class AppSettings {
     }
 
 
-    public long getLastVisitedPositionInStream(){
+    public long getLastVisitedPositionInStream() {
         return getLong(prefPod, R.string.pref_key__podprofile_last_stream_position, -1);
     }
-    public void setLastVisitedPositionInStream(long timestamp){
+
+    public void setLastVisitedPositionInStream(long timestamp) {
         setLong(prefPod, R.string.pref_key__podprofile_last_stream_position, timestamp);
     }
 

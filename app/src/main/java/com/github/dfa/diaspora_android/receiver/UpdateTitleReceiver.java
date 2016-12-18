@@ -93,6 +93,7 @@ public class UpdateTitleReceiver extends BroadcastReceiver {
 
     public interface TitleCallback {
         void setTitle(String url, int resId);
+
         void setTitle(String url, String title);
     }
 }

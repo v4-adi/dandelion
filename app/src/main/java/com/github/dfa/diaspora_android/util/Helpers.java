@@ -153,8 +153,9 @@ public class Helpers {
 
     /**
      * Send an Intent that opens url in any browser
+     *
      * @param context context
-     * @param url url
+     * @param url     url
      */
     public static void openInExternalBrowser(Context context, String url) {
         Intent openBrowserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));

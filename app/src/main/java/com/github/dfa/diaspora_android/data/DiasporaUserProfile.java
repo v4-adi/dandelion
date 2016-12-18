@@ -18,7 +18,6 @@
  */
 package com.github.dfa.diaspora_android.data;
 
-import android.net.ParseException;
 import android.os.Handler;
 
 import com.github.dfa.diaspora_android.App;

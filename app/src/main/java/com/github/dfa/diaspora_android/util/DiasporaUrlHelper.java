@@ -34,7 +34,7 @@ public class DiasporaUrlHelper {
     public static final String SUBURL_NOTIFICATIONS = "/notifications";
     public static final String SUBURL_POSTS = "/posts/";
     public static final String SUBURL_STREAM = "/stream";
-    public static final String SUBURL_STREAM_WITH_TIMESTAMP = SUBURL_STREAM+"?max_time=";
+    public static final String SUBURL_STREAM_WITH_TIMESTAMP = SUBURL_STREAM + "?max_time=";
     public static final String SUBURL_CONVERSATIONS = "/conversations";
     public static final String SUBURL_NEW_POST = "/status_messages/new";
     public static final String SUBURL_PEOPLE = "/people/";

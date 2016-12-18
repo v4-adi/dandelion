@@ -158,13 +158,13 @@ public class ThemeHelper {
     }
 
     public static void updateAlertDialogColor(AlertDialog alertDialog) {
-        if(alertDialog != null) {
-            for(int i : new int[]{
+        if (alertDialog != null) {
+            for (int i : new int[]{
                     DialogInterface.BUTTON_POSITIVE,
                     DialogInterface.BUTTON_NEUTRAL,
                     DialogInterface.BUTTON_NEGATIVE}) {
                 Button b = alertDialog.getButton(i);
-                if(b != null) {
+                if (b != null) {
                     b.setTextColor(getAccentColor());
                 }
             }
