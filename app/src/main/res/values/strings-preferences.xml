@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Key Names (Untranslatable) -->
-    <string name="pref_key__poddomain_legacy" translatable="false">podDomain</string>
     <string name="pref_key__current_pod_0" translatable="false">pref_key__current_pod_0</string>
     <string name="pref_key__font_size" translatable="false">pref_key_font_size</string>
     <string name="pref_key__intellihide_toolbars" translatable="false">pref_key_intellihide_toolbars</string>
@@ -59,6 +58,7 @@
     <string name="pref_key__podprofile_followed_tags_favs" translatable="false">podUserProfile_followedTags_favs</string>
     <string name="pref_key__podprofile_unread_message_count" translatable="false">podUserProfile_unreadMessageCount</string>
     <string name="pref_key__podprofile_notification_count" translatable="false">podUserProfile_NotificationCount</string>
+    <string name="pref_key__podprofile_last_stream_position" translatable="false">podUserProfile_LastStreamPosition</string>
 
     <!-- More -->
     <string name="pref_key__logging_spam_enabled" translatable="false">pref_key__logging_spam_enabled</string>

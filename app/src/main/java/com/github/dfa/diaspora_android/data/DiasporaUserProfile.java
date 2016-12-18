@@ -18,12 +18,14 @@
  */
 package com.github.dfa.diaspora_android.data;
 
+import android.net.ParseException;
 import android.os.Handler;
 
 import com.github.dfa.diaspora_android.App;
 import com.github.dfa.diaspora_android.listener.DiasporaUserProfileChangedListener;
 import com.github.dfa.diaspora_android.util.AppLog;
 import com.github.dfa.diaspora_android.util.AppSettings;
+import com.github.dfa.diaspora_android.util.DiasporaUrlHelper;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,6 +42,7 @@ public class DiasporaUserProfile {
     private DiasporaUserProfileChangedListener listener;
     private final App app;
     private final AppSettings appSettings;
+    DiasporaUrlHelper urls;
     private JSONObject json;
     private long userProfileLastLoadedTimestamp;
     private boolean isWebUserProfileLoaded;
@@ -51,15 +54,17 @@ public class DiasporaUserProfile {
     private String[] followedTags;
     private int notificationCount;
     private int unreadMessagesCount;
+    private long lastVisitedPositionInStream = -1;
 
 
     public DiasporaUserProfile(App app) {
         this.app = app;
         appSettings = app.getSettings();
+        urls = new DiasporaUrlHelper(appSettings);
         loadFromAppSettings();
     }
 
-    public void loadFromAppSettings(){
+    public void loadFromAppSettings() {
         avatarUrl = appSettings.getAvatarUrl();
         guid = appSettings.getProfileId();
         name = appSettings.getName();
@@ -67,6 +72,7 @@ public class DiasporaUserProfile {
         followedTags = appSettings.getFollowedTags();
         notificationCount = appSettings.getNotificationCount();
         unreadMessagesCount = appSettings.getUnreadMessageCount();
+        lastVisitedPositionInStream = appSettings.getLastVisitedPositionInStream();
     }
 
     public DiasporaUserProfile(App app, Handler callbackHandler, DiasporaUserProfileChangedListener listener) {
@@ -137,6 +143,16 @@ public class DiasporaUserProfile {
         return isWebUserProfileLoaded;
     }
 
+    public void analyzeUrl(String url) {
+        String prefix = urls.getPodUrl() + DiasporaUrlHelper.SUBURL_STREAM_WITH_TIMESTAMP;
+        if (url.startsWith(prefix)) {
+            try {
+                setLastVisitedPositionInStream(Long.parseLong(url.replace(prefix, "")));
+            } catch (NumberFormatException ignored) {
+            }
+        }
+    }
+
     /*
     //  Getters & Setters
      */
@@ -167,6 +183,23 @@ public class DiasporaUserProfile {
 
     public String[] getFollowedTags() {
         return followedTags;
+    }
+
+    public long getLastVisitedPositionInStream() {
+        return lastVisitedPositionInStream;
+    }
+
+    public void setLastVisitedPositionInStream(long lastVisitedPositionInStream) {
+        this.lastVisitedPositionInStream = lastVisitedPositionInStream;
+        appSettings.setLastVisitedPositionInStream(lastVisitedPositionInStream);
+    }
+
+    public boolean hasLastVisitedTimestampInStream() {
+        return appSettings.getLastVisitedPositionInStream() != -1;
+    }
+
+    public void resetLastVisitedPositionInStream() {
+        appSettings.setLastVisitedPositionInStream(-1);
     }
 
     /*

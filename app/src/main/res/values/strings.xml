@@ -113,4 +113,5 @@
     <string name="https" translatable="false">https</string>
     <string name="pod_address">Pod address</string>
     <string name="missing_value">Missing value</string>
+    <string name="jump_to_last_visited_timestamp_in_stream">Jump to last visited page?</string>
 </resources>

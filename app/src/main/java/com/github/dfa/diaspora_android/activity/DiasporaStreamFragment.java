@@ -28,6 +28,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.design.widget.Snackbar;
 import android.view.Menu;
@@ -231,7 +232,10 @@ public class DiasporaStreamFragment extends BrowserFragment {
     protected DiasporaStreamWebChromeClient.SharedTextCallback sharedTextCallback = new DiasporaStreamWebChromeClient.SharedTextCallback() {
         @Override
         public String getSharedText() {
-            return ((MainActivity) getActivity()).getTextToBeShared();
+            if(getActivity() != null) {
+                return ((MainActivity) getActivity()).getTextToBeShared();
+            }
+            return "";
         }
 
         @Override
@@ -328,11 +332,16 @@ public class DiasporaStreamFragment extends BrowserFragment {
         @SuppressWarnings("unused")
         @JavascriptInterface
         public void setUserProfile(final String webMessage) throws JSONException {
-            DiasporaUserProfile pup = ((App) getActivity().getApplication()).getDiasporaUserProfile();
+            final DiasporaUserProfile pup = ((App) getActivity().getApplication()).getDiasporaUserProfile();
             AppLog.spam(this, "StreamFragment.JavaScriptInterface.setUserProfile()");
             if (pup.isRefreshNeeded()) {
                 AppLog.v(this, "DiasporaUserProfile needs refresh; Try to parse JSON");
                 pup.parseJson(webMessage);
+                getActivity().runOnUiThread(new Runnable() {
+                    public void run() {
+                        pup.analyzeUrl(webView.getUrl());
+                    }
+                });
             } else {
                 AppLog.spam(this, "No DiasporaUserProfile refresh needed");
             }
@@ -341,7 +350,9 @@ public class DiasporaStreamFragment extends BrowserFragment {
         @SuppressWarnings("unused")
         @JavascriptInterface
         public void contentHasBeenShared() {
-            ((MainActivity) getActivity()).setTextToBeShared(null);
+            if (getActivity() != null) {
+                ((MainActivity) getActivity()).setTextToBeShared(null);
+            }
         }
     }
 

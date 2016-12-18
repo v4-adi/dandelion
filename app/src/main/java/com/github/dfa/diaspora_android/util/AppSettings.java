@@ -87,6 +87,10 @@ public class AppSettings {
         pref.edit().putInt(context.getString(keyRessourceId), value).apply();
     }
 
+    private void setLong(SharedPreferences pref, int keyRessourceId, long value) {
+        pref.edit().putLong(context.getString(keyRessourceId), value).apply();
+    }
+
     private void setBool(SharedPreferences pref, int keyRessourceId, boolean value) {
         pref.edit().putBoolean(context.getString(keyRessourceId), value).apply();
     }
@@ -123,9 +127,21 @@ public class AppSettings {
     private int getInt(SharedPreferences pref, int ressourceId, int defaultValue) {
         return pref.getInt(context.getString(ressourceId), defaultValue);
     }
+    private long getLong(SharedPreferences pref, int ressourceId, long defaultValue) {
+        return pref.getLong(context.getString(ressourceId), defaultValue);
+    }
+
 
     public int getColor(SharedPreferences pref, String key, int defaultColor) {
         return pref.getInt(key, defaultColor);
+    }
+
+    public void registerPrefAppPreferenceChangedListener(SharedPreferences.OnSharedPreferenceChangeListener listener) {
+        prefApp.registerOnSharedPreferenceChangeListener(listener);
+    }
+
+    public void unregisterPrefAppPreferenceChangedListener(SharedPreferences.OnSharedPreferenceChangeListener listener) {
+        prefApp.unregisterOnSharedPreferenceChangeListener(listener);
     }
 
 
@@ -396,6 +412,14 @@ public class AppSettings {
         return getString(prefApp, R.string.pref_key__screen_rotation, R.string.rotation_val_system);
     }
 
+
+    public long getLastVisitedPositionInStream(){
+        return getLong(prefPod, R.string.pref_key__podprofile_last_stream_position, -1);
+    }
+    public void setLastVisitedPositionInStream(long timestamp){
+        setLong(prefPod, R.string.pref_key__podprofile_last_stream_position, timestamp);
+    }
+
     public void setPrimaryColorSettings(int base, int shade) {
         setInt(prefApp, R.string.pref_key__primary_color_base, base);
         setInt(prefApp, R.string.pref_key__primary_color_shade, shade);
@@ -430,13 +454,5 @@ public class AppSettings {
 
     public boolean isExtendedNotificationsActivated() {
         return getBoolean(prefApp, R.string.pref_key__extended_notifications, false);
-    }
-
-    public void registerPrefAppPreferenceChangedListener(SharedPreferences.OnSharedPreferenceChangeListener listener) {
-        prefApp.registerOnSharedPreferenceChangeListener(listener);
-    }
-
-    public void unregisterPrefAppPreferenceChangedListener(SharedPreferences.OnSharedPreferenceChangeListener listener) {
-        prefApp.unregisterOnSharedPreferenceChangeListener(listener);
     }
 }

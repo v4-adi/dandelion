@@ -34,6 +34,7 @@ public class DiasporaUrlHelper {
     public static final String SUBURL_NOTIFICATIONS = "/notifications";
     public static final String SUBURL_POSTS = "/posts/";
     public static final String SUBURL_STREAM = "/stream";
+    public static final String SUBURL_STREAM_WITH_TIMESTAMP = SUBURL_STREAM+"?max_time=";
     public static final String SUBURL_CONVERSATIONS = "/conversations";
     public static final String SUBURL_NEW_POST = "/status_messages/new";
     public static final String SUBURL_PEOPLE = "/people/";
@@ -88,6 +89,15 @@ public class DiasporaUrlHelper {
      */
     public String getStreamUrl() {
         return getPodUrl() + SUBURL_STREAM;
+    }
+
+    /**
+     * Return a url that points to the stream of the configured diaspora account on a timestamp
+     *
+     * @return https://(pod-domain.tld)/stream?max_time=1482057867
+     */
+    public String getStreamWithTimestampUrl(long timestamp) {
+        return getPodUrl() + SUBURL_STREAM_WITH_TIMESTAMP + timestamp;
     }
 
     /**

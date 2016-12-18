@@ -115,8 +115,7 @@ public class MainActivity extends ThemedActivity
     private final Handler uiHandler = new Handler();
     private OpenExternalLinkReceiver brOpenExternalLink;
     private BroadcastReceiver brSetTitle;
-    private Snackbar snackbarExitApp;
-    private Snackbar snackbarNoInternet;
+    private Snackbar snackbarExitApp, snackbarNoInternet, snackbarLastVisitedTimestampInStream;
     private FragmentManager fm;
     private CustomTabsSession customTabsSession;
 
@@ -182,14 +181,15 @@ public class MainActivity extends ThemedActivity
 
         brOpenExternalLink = new OpenExternalLinkReceiver(this);
         brSetTitle = new UpdateTitleReceiver(app, urls, new UpdateTitleReceiver.TitleCallback() {
-            public void setTitle(int resId) {
+            public void setTitle(String url, int resId) {
                 CustomFragment top = getTopFragment();
                 if (top != null && top.getFragmentTag().equals(DiasporaStreamFragment.TAG)) {
                     MainActivity.this.setTitle(resId);
+                    showLastVisitedTimestampMessageIfNeeded(url);
                 }
             }
 
-            public void setTitle(String title) {
+            public void setTitle(String url, String title) {
                 CustomFragment top = getTopFragment();
                 if (top != null && top.getFragmentTag().equals(DiasporaStreamFragment.TAG)) {
                     MainActivity.this.setTitle(title);
@@ -238,10 +238,15 @@ public class MainActivity extends ThemedActivity
         snackbarExitApp = Snackbar
                 .make(fragmentContainer, R.string.confirm_exit, Snackbar.LENGTH_LONG)
                 .setAction(android.R.string.yes, new View.OnClickListener() {
-                    @Override
                     public void onClick(View view) {
                         finish();
                         moveTaskToBack(true);
+                    }
+                });
+        snackbarLastVisitedTimestampInStream = Snackbar.make(fragmentContainer, R.string.jump_to_last_visited_timestamp_in_stream, Snackbar.LENGTH_SHORT)
+                .setAction(android.R.string.yes, new View.OnClickListener() {
+                    public void onClick(View view) {
+                        openDiasporaUrl(urls.getStreamWithTimestampUrl(diasporaUserProfile.getLastVisitedPositionInStream()));
                     }
                 });
         snackbarNoInternet = Snackbar.make(fragmentContainer, R.string.no_internet, Snackbar.LENGTH_LONG);
@@ -249,18 +254,6 @@ public class MainActivity extends ThemedActivity
         // Load app settings
         setupNavigationSlider();
         AppLog.v(this, "UI successfully set up");
-    }
-
-    /**
-     * Show DiasporaStreamFragment if necessary and load URL url
-     *
-     * @param url URL to load in the DiasporaStreamFragment
-     */
-    public void openDiasporaUrl(String url) {
-        AppLog.v(this, "openDiasporaUrl()");
-        DiasporaStreamFragment streamFragment = (DiasporaStreamFragment) getFragment(DiasporaStreamFragment.TAG);
-        showFragment(streamFragment);
-        streamFragment.loadUrl(url);
     }
 
     /**
@@ -302,6 +295,26 @@ public class MainActivity extends ThemedActivity
                             + "\nAdd Fragments Tag to getFragment()'s switch case.");
                     return getTopFragment();
             }
+        }
+    }
+
+    /**
+     * Show DiasporaStreamFragment if necessary and load URL url
+     *
+     * @param url URL to load in the DiasporaStreamFragment
+     */
+    public void openDiasporaUrl(String url) {
+        AppLog.v(this, "openDiasporaUrl()");
+        DiasporaStreamFragment streamFragment = (DiasporaStreamFragment) getFragment(DiasporaStreamFragment.TAG);
+        showFragment(streamFragment);
+        showLastVisitedTimestampMessageIfNeeded(url);
+        streamFragment.loadUrl(url);
+    }
+
+    public void showLastVisitedTimestampMessageIfNeeded(String url){
+        if (url.equals(urls.getStreamUrl()) && diasporaUserProfile.hasLastVisitedTimestampInStream()){
+            snackbarLastVisitedTimestampInStream.show();
+            diasporaUserProfile.resetLastVisitedPositionInStream();
         }
     }
 

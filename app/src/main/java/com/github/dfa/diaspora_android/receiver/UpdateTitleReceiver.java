@@ -38,6 +38,7 @@ public class UpdateTitleReceiver extends BroadcastReceiver {
     private AppSettings appSettings;
     private App app;
     private TitleCallback callback;
+    private String lastUrl;
 
     public UpdateTitleReceiver(App app, DiasporaUrlHelper urls, TitleCallback callback) {
         this.urls = urls;
@@ -48,9 +49,9 @@ public class UpdateTitleReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        String url = intent.getStringExtra(MainActivity.EXTRA_URL);
-        if (url != null && url.startsWith(urls.getPodUrl())) {
-            String subUrl = url.substring((urls.getPodUrl()).length());
+        lastUrl = intent.getStringExtra(MainActivity.EXTRA_URL);
+        if (lastUrl != null && lastUrl.startsWith(urls.getPodUrl())) {
+            String subUrl = lastUrl.substring((urls.getPodUrl()).length());
             AppLog.spam(this, "onReceive()- Set title for subUrl " + subUrl);
             if (subUrl.startsWith(DiasporaUrlHelper.SUBURL_STREAM)) {
                 setTitle(R.string.nav_stream);
@@ -74,24 +75,24 @@ public class UpdateTitleReceiver extends BroadcastReceiver {
                 setTitle(R.string.nav_mentions);
             } else if (subUrl.startsWith(DiasporaUrlHelper.SUBURL_PUBLIC)) {
                 setTitle(R.string.public_);
-            } else if (urls.isAspectUrl(url)) {
-                setTitle(urls.getAspectNameFromUrl(url, app));
+            } else if (urls.isAspectUrl(lastUrl)) {
+                setTitle(urls.getAspectNameFromUrl(lastUrl, app));
             }
         } else {
-            AppLog.spam(this, "onReceive()- Invalid url: " + url);
+            AppLog.spam(this, "onReceive()- Invalid url: " + lastUrl);
         }
     }
 
     private void setTitle(int rId) {
-        callback.setTitle(rId);
+        callback.setTitle(lastUrl, rId);
     }
 
     private void setTitle(String title) {
-        callback.setTitle(title);
+        callback.setTitle(lastUrl, title);
     }
 
     public interface TitleCallback {
-        void setTitle(int resId);
-        void setTitle(String title);
+        void setTitle(String url, int resId);
+        void setTitle(String url, String title);
     }
 }
