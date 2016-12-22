@@ -51,6 +51,7 @@
   <string name="action_share_dotdotdot">Sdílet&#8230;</string>
   <string name="search_alert_tag">podle tagů</string>
   <string name="search_alert_people">podle lidí</string>
+  <string name="search_alert_bypeople_validate_needsomedata">Prosím, vyplň jméno</string>
   <string name="context_menu_share_link">Sdílet adresu linku</string>
   <string name="context_menu_save_image">Uložit obrázek</string>
   <string name="context_menu_share_image">Sdílet obrázek</string>
