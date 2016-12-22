@@ -38,9 +38,16 @@
   <string name="nav_public_activities">Veřejné aktivity</string>
   <string name="nav_reports">Nahlášení</string>
   <string name="share__share_link_as_text">Sdílet link jako text</string>
+  <string name="share__share_screenshot">Sdílet screenshot webové stránky</string>
+  <string name="share__take_screenshot">Vytvořit screenshot webové stránky</string>
+  <string name="share__toast_saved_image_to_location">Uložit obrázek jako</string>
+  <string name="share__toast_screenshot">Uložit screenshot jako:</string>
+  <string name="share__toast_link_address_copied">Adresa linku byla zkopírována &#8230;</string>
   <string name="new_post">Nový příspěvek</string>
   <string name="action_go_to_top">Jít nahoru</string>
+  <string name="action_search_by_tags_or_persons">Hledat podle tagů nebo osob</string>
   <string name="action_exit_app">Ukončit aplikaci</string>
+  <string name="action_toggle_desktop_page">Přepnout na mobilní/počítačovou verzi</string>
   <string name="action_share_dotdotdot">Sdílet&#8230;</string>
   <string name="search_alert_tag">podle tagů</string>
   <string name="search_alert_people">podle lidí</string>
