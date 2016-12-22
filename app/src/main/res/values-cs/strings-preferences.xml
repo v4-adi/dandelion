@@ -58,6 +58,7 @@
   <string name="toast__proxy_disabled__restart_required">Aplikace musí být restartována, aby mohlo být vypnuto použití proxy</string>
   <string name="toast__proxy_orbot_preset_loaded">Orbot proxy přednastavení bylo načteno</string>
   <!-- Chrome custom tabs -->
+  <string name="pref_desc__chrome_custom_tabs_enabled">Otevři externí linky s Chrome Custom Tabs. Chromium nebo Google Chrome musí být nainstalovány, pokud chceš tuto funkci používat. \nDŮLEŽITÁ POZNÁMKA: Chrome Custom Tabs nepoužívá žádné konfigurované proxy servery!</string>
   <!-- Diaspora Settings -->
   <string name="pref_title__personal_settings">Osobní nastavení</string>
   <string name="pref_desc__personal_settings">Otevře nastavení Tvého účtu diaspora*</string>
@@ -76,6 +77,8 @@
   <!-- More -->
   <string name="pref_title__sub_miscelaneous">Různé</string>
   <string name="pref_title__wipe_settings">Celkový reset</string>
+  <string name="pref_desc__wipe_settings">Smaž lokálně všechna nastavení této aplikace a odhlaš ze všech účtů</string>
+  <string name="dialog_content__wipe_settings">Toto zresetuje všechna změněná nastavení aplikace na jejich původně nastavené hodnoty a odhlásí Tě ze všech podů. Tvé stažené obrázky zůstanou nedotknuty. Jsi si jistý, že chceš pokračovat?</string>
   <!-- Recently added - Please move to right section-->
   <!-- Sorry -->
 </resources>
