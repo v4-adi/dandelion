@@ -17,7 +17,7 @@ cache:
     - $HOME/.gradle/wrapper/
 script: "./gradlew $TASK"
 env:
-    - TASK="lintDebug"
+    - TASK="lintFlavorDandelionDebug"
     - TASK="build check --stacktrace"
 
 branches:

@@ -243,7 +243,9 @@ public class MainActivity extends ThemedActivity
                         moveTaskToBack(true);
                     }
                 });
-        snackbarLastVisitedTimestampInStream = Snackbar.make(fragmentContainer, R.string.jump_to_last_visited_timestamp_in_stream, Snackbar.LENGTH_SHORT)
+        snackbarLastVisitedTimestampInStream = 
+        Snackbar.make(fragmentContainer, 
+        R.string.jump_to_last_visited_timestamp_in_stream, Snackbar.LENGTH_LONG)
                 .setAction(android.R.string.yes, new View.OnClickListener() {
                     public void onClick(View view) {
                         openDiasporaUrl(urls.getStreamWithTimestampUrl(diasporaUserProfile.getLastVisitedPositionInStream()));
