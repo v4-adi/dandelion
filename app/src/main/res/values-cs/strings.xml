@@ -34,8 +34,10 @@
   <!-- Drawer, Menu, Toolbar, ContextMenu -->
   <string name="nav_menu_more">Více</string>
   <string name="nav_help_license">O aplikaci | Pomoc</string>
+  <string name="nav_followed_tags">Sledované tagy</string>
   <string name="nav_public_activities">Veřejné aktivity</string>
   <string name="nav_reports">Nahlášení</string>
+  <string name="share__share_link_as_text">Sdílet link jako text</string>
   <string name="new_post">Nový příspěvek</string>
   <string name="action_go_to_top">Jít nahoru</string>
   <string name="action_exit_app">Ukončit aplikaci</string>
