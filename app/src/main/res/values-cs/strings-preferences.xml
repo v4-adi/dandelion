@@ -69,6 +69,10 @@
   <string name="pref_warning__change_account">Toto vymaže vše cookies a session data. Chceš opravdu změnit účet?</string>
   <string name="pref_title__clear_cache">Vyprázdnit cache</string>
   <string name="pref_desc__clear_cache">Vyčistit WebView cache</string>
+  <string name="pref_desc__intellihide_toolbars">Automaticky schovat horní a dolní nástrojovou lištu během scrollování</string>
+  <string name="pref_title__intellihide_toolbars">Inteligentně schovat nástrojovou lištu</string>
+  <string name="pref_title__append_shared_via_app">Přidej „sdíleno (kým)“-poznámku</string>
+  <string name="pref_desc__append_shared_via_app">Připoj referenci na tuto aplikaci („sdíleno (kým)&#8230;“) ke sdílenému textu</string>
   <!-- More -->
   <string name="pref_title__sub_miscelaneous">Různé</string>
   <string name="pref_title__wipe_settings">Celkový reset</string>
