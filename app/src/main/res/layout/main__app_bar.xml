@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.MainActivity">
+    tools:context="com.github.dfa.diaspora_android.activity.MainActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/main__appbar"
@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:theme="@style/AppTheme.AppBarOverlay"
-        app:layout_behavior=".ui.BottomBarBehavior">
+        app:layout_behavior="com.github.dfa.diaspora_android.ui.BottomBarBehavior">
 
         <android.support.v7.widget.ActionMenuView
             android:id="@+id/main__bottombar"

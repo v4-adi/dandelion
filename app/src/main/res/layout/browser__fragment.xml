@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".activity.MainActivity">
+    tools:context="com.github.dfa.diaspora_android.activity.MainActivity">
 
     <com.github.dfa.diaspora_android.web.ContextMenuWebView
         android:id="@+id/webView"

@@ -22,6 +22,18 @@ android {
         }
     }
 
+    productFlavors {
+        flavorDandelion {
+            applicationId "com.github.dfa.diaspora_android"
+            manifestPlaceholders = [appName: "dandelion*"]
+        }
+
+        flavorSecondlion {
+            applicationId "com.github.dfa.diaspora_android2"
+            manifestPlaceholders = [appName: "secondlion*"]
+        }
+    }
+
     lintOptions {
         disable 'MissingTranslation'
     }
