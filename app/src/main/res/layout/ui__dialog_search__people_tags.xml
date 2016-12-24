@@ -11,6 +11,6 @@
         android:id="@+id/dialog_search__input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/app_hashtag"
+        android:hint="@string/dandelion"
         android:maxLines="1" />
 </LinearLayout>
