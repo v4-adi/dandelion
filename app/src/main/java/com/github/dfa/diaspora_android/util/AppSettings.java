@@ -285,7 +285,12 @@ public class AppSettings {
      * @return whether proxy is enabled or not
      */
     public boolean isProxyHttpEnabled() {
-        return getBoolean(prefApp, R.string.pref_key__http_proxy_enabled, false);
+        try {
+            return getBoolean(prefApp, R.string.pref_key__http_proxy_enabled, false);
+        } catch (ClassCastException e) {
+            setProxyHttpEnabled(false);
+            return false;
+        }
     }
 
     public boolean wasProxyEnabled() {

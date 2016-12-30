@@ -52,6 +52,7 @@ public class ContextMenuWebView extends NestedWebView {
 
     public static final int ID_SAVE_IMAGE = 10;
     public static final int ID_IMAGE_EXTERNAL_BROWSER = 11;
+    public static final int ID_COPY_IMAGE_LINK = 15;
     public static final int ID_COPY_LINK = 12;
     public static final int ID_SHARE_LINK = 13;
     public static final int ID_SHARE_IMAGE = 14;
@@ -177,6 +178,7 @@ public class ContextMenuWebView extends NestedWebView {
                         break;
 
                     //Copy url to clipboard
+                    case ID_COPY_IMAGE_LINK:
                     case ID_COPY_LINK:
                         if (url != null) {
                             ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
@@ -209,6 +211,7 @@ public class ContextMenuWebView extends NestedWebView {
             menu.add(0, ID_SAVE_IMAGE, 0, context.getString(R.string.context_menu_save_image)).setOnMenuItemClickListener(handler);
             menu.add(0, ID_IMAGE_EXTERNAL_BROWSER, 0, context.getString(R.string.context_menu_open_external_browser)).setOnMenuItemClickListener(handler);
             menu.add(0, ID_SHARE_IMAGE, 0, context.getString(R.string.context_menu_share_image)).setOnMenuItemClickListener(handler);
+            menu.add(0, ID_COPY_IMAGE_LINK, 0, context.getString(R.string.context_menu_copy_image_link)).setOnMenuItemClickListener(handler);
         } else if (result.getType() == HitTestResult.ANCHOR_TYPE ||
                 result.getType() == HitTestResult.SRC_ANCHOR_TYPE) {
             // Menu options for a hyperlink.
