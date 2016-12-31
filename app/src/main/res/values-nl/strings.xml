@@ -57,6 +57,7 @@
   <string name="context_menu_share_image">Deel afbeelding</string>
   <string name="context_menu_open_external_browser">Geopend in externe browser&#8230;</string>
   <string name="context_menu_copy_link">Link-adres kopiëren naar Klembord</string>
+  <string name="context_menu_copy_image_link">Kopieer adres van de afbeelding naar klembord</string>
   <!-- More from MainActivity -->
   <string name="unable_to_load_image">Niet in staat om afbeelding te laden</string>
   <!-- Permissions -->
@@ -69,4 +70,5 @@
   <string name="http_protocol">Protocol</string>
   <string name="pod_address">Pod-adres</string>
   <string name="missing_value">Ontbrekende waarde</string>
+  <string name="jump_to_last_visited_timestamp_in_stream">Ga naar laatstbezochte pagina in stream?</string>
 </resources>
