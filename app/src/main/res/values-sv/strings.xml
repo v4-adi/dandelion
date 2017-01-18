@@ -52,6 +52,11 @@
   <string name="search_alert_tag">efter taggar</string>
   <string name="search_alert_people">efter människor</string>
   <string name="search_alert_bypeople_validate_needsomedata">Var god ange namn</string>
+  <string name="context_menu_share_link">Dela länkadress</string>
+  <string name="context_menu_save_image">Spara bild</string>
+  <string name="context_menu_share_image">Dela bild</string>
+  <string name="context_menu_open_external_browser">Öppna i en extern webbläsare&#8230;</string>
+  <string name="context_menu_copy_link">Kopiera länkadress</string>
   <!-- More from MainActivity -->
   <!-- Permissions -->
 </resources>
