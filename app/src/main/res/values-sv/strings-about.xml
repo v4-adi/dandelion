@@ -10,5 +10,11 @@
   <string name="fragment_debug__section_log">Avlusningslogg</string>
   <string name="fragment_debug__section_log_spam">Avlusningslogg (detaljerad)</string>
   <string name="fragment_debug__app_version">Programversion: %1$s</string>
+  <string name="fragment_debug__android_version">Androidversion: %1$s</string>
+  <string name="fragment_debug__device_name">Enhetens namn: %1$s</string>
+  <string name="fragment_debug__app_codename">Kodnamn: %1$s</string>
+  <string name="fragment_debug__pod_profile_name">Podprofilens namn: %1$s</string>
+  <string name="fragment_debug__pod_profile_url">Poddomän: %1$s</string>
+  <string name="fragment_debug__toast_log_copied">Texten kopierad till urklippen</string>
   <!-- License & help (large amount of text) -->
 </resources>
