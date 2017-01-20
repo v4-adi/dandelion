@@ -52,9 +52,31 @@
   <string name="pref_desc__http_proxy_load_tor_preset">Ladda proxyinställningar för Tor (Orbot) HTTP Proxy</string>
   <string name="pref_title__sub_proxy">Proxy</string>
   <string name="pref_title__proxy_enabled">Aktivera proxy</string>
+  <string name="pref_desc__http_proxy_enabled">Använd proxy med dandelion* för att kringgå brandväggar.\nKan kräva omstart. Detta fungerar inte på vissa telefoner.</string>
+  <string name="pref_title__http_proxy_host">Värd</string>
+  <string name="pref_title__http_proxy_port">Port</string>
+  <string name="toast__proxy_disabled__restart_required">Appen måste startas om för att inaktivera proxyanvändning</string>
+  <string name="toast__proxy_orbot_preset_loaded">Orbot-proxyinställningar laddade</string>
   <!-- Chrome custom tabs -->
+  <string name="pref_desc__chrome_custom_tabs_enabled">Öppna externa länkar med Chrome Custom Tabs. Chromium eller Google Chrome måste installeras för att använda den här funktionen. \nOBSERVERA: Chrome Custom Tabs använder inte den konfigurerade proxyservern!</string>
   <!-- Diaspora Settings -->
+  <string name="pref_title__personal_settings">Personliga inställningar</string>
+  <string name="pref_desc__personal_settings">Öppna dina kontoinställningar i diaspora*</string>
+  <string name="pref_desc__manage_contacts">Hantera din kontaktlista</string>
+  <string name="pref_title__manage_tags">Hantera fyrkantstaggar</string>
+  <string name="pref_desc__manage_tags">Lägga till och ta bort fyrkantstaggar</string>
+  <string name="pref_title__change_account">Ändra Konto</string>
+  <string name="pref_desc__change_account">Radera lokal sessionsdata och växla till en annan diaspora*-pod eller -konto</string>
+  <string name="pref_warning__change_account">Detta kommer att radera alla kakor och all sessionsdata. Vill du verkligen byta konto?</string>
+  <string name="pref_title__clear_cache">Rensa cache</string>
+  <string name="pref_desc__clear_cache">Rensa WebView-cache</string>
+  <string name="pref_desc__intellihide_toolbars">Dölj automatiskt de övre och undre verktygsfälten när du skrollar</string>
+  <string name="pref_title__intellihide_toolbars">Intellihide-verktygsfält</string>
+  <string name="pref_title__append_shared_via_app">Lägg till delade-av-meddelande</string>
+  <string name="pref_desc__append_shared_via_app">Lägg till en hänvisning till denna app (\"delas av...\") till delade texter</string>
   <!-- More -->
+  <string name="pref_title__sub_miscelaneous">Diverse</string>
+  <string name="pref_title__wipe_settings">Total återställning</string>
   <!-- Recently added - Please move to right section-->
   <!-- Sorry -->
 </resources>
