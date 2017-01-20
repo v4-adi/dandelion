@@ -18,5 +18,11 @@
   <string name="fragment_debug__toast_log_copied">Texten kopierad till urklippen</string>
   <string name="fragment_about__about_text">dandelion* är en kompletterande app till att använda det sociala nätverket diaspora*. Den lägger till funktioner såsom användbara verktyg and stöd för proxyservrar såsom Tor.</string>
   <string name="fragment_about__contribute">Bidrag med kod!</string>
+  <string name="fragment_about__contribute_text">dandelion* är utvecklat för att vara fritt som i frihet och lyder under samma filosofi som diaspora*-projektet. Om du vill bidra, är det fritt fram! I dagsläget är vi få, så uppskattar öppenhjärtigt all hjälp!</string>
+  <string name="fragment_about__contribute_button">Hämta källkoden</string>
+  <string name="fragment_about__translate">Översätt appen!</string>
+  <string name="fragment_about__translate_text">Är appen inte tillgänglig på ditt mål? Det kan du ändra på! Hjälp oss översätta! Vi använder oss av plattformen Crowdin så att alla kan hjälpa till att översätta appen.</string>
+  <string name="fragment_about__translate_button">Jag vill översätta</string>
+  <string name="fragment_about__feedback">Lämna respons!</string>
   <!-- License & help (large amount of text) -->
 </resources>
