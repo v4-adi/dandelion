@@ -16,5 +16,7 @@
   <string name="fragment_debug__pod_profile_name">Podprofilens namn: %1$s</string>
   <string name="fragment_debug__pod_profile_url">Poddomän: %1$s</string>
   <string name="fragment_debug__toast_log_copied">Texten kopierad till urklippen</string>
+  <string name="fragment_about__about_text">dandelion* är en kompletterande app till att använda det sociala nätverket diaspora*. Den lägger till funktioner såsom användbara verktyg and stöd för proxyservrar såsom Tor.</string>
+  <string name="fragment_about__contribute">Bidrag med kod!</string>
   <!-- License & help (large amount of text) -->
 </resources>
