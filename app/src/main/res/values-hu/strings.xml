@@ -61,7 +61,6 @@
   <!-- More from MainActivity -->
   <string name="unable_to_load_image">Nem lehet betölteni a képet</string>
   <!-- Permissions -->
-  <string name="permissions_screenshot">Engedélyezned kell a tárhely elérését a képernyőképek mentéséhez. Aztán teljesen be kell zárnod az alkalmazást vagy újra kell indítanod az eszközt. Ha most nem akarod engedélyezni a tárhely elérését, de később szeretnéd használni a képernyőkép-funkciót, kérlek, tedd meg az alábbi helyen: Rendszerbeállítások - Alkalmazások - dandelion*. Itt az engedélyeknél hozzáadhatod az a tárhelyre való írást.</string>
   <string name="permissions_image">Engedélyezned kell a tárhely elérését a képek mentéséhez/feltöltéséhez. Aztán teljesen be kell zárnod az alkalmazást vagy újra kell indítanod az eszközt. Ha most nem akarod engedélyezni a tárhely elérését, de később szeretnéd használni a képernyőkép-funkciót, kérlek, tedd meg az alábbi helyen: Rendszerbeállítások - Alkalmazások - dandelion*. Itt az engedélyeknél hozzáadhatod az a tárhelyre való írást.</string>
   <string name="permission_denied">Hozzáférés megtagadva.</string>
   <string name="permission_granted_try_again">Hozzáférés megtagadva. Kérlek, próbáld újra!</string>
