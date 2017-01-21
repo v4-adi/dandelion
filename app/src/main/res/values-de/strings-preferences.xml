@@ -39,6 +39,7 @@
   <string name="font_size_huge">Größer</string>
   <!-- Load images -->
   <string name="pref_title__load_images">Lade Bilder</string>
+  <string name="pref_desc__load_images">Deaktiviere das Laden von Bildern, um den Datenverbrauch zu verringern</string>
   <!-- Screen rotation -->
   <string name="pref_title__screen_rotation">Bildschirmrotation</string>
   <string name="pref_desc__screen_rotation">Kontrolliere die automatische Bildschirmrotation</string>
@@ -63,6 +64,7 @@
   <string name="pref_desc__personal_settings">Öffne die Einstellungen deines diaspora* Accounts</string>
   <string name="pref_desc__manage_contacts">Bearbeite deine Kontaktliste</string>
   <string name="pref_title__manage_tags">Tags verwalten</string>
+  <string name="pref_desc__manage_tags">Bereits verfolgte Hashtags nicht mehr verfolgen</string>
   <string name="pref_title__change_account">Konto wechseln</string>
   <string name="pref_desc__change_account">Lösche lokale Sitzungsdaten und wechsele zu einem anderen diaspora* Pod/Benutzerkonto</string>
   <string name="pref_warning__change_account">Das wird alle Cookies und Sitzungsdaten löschen. Willst du wirklich dein Konto wechseln?</string>
