@@ -39,6 +39,7 @@
   <string name="font_size_huge">Bardzo duży</string>
   <!-- Load images -->
   <string name="pref_title__load_images">Wczytuj obrazy</string>
+  <string name="pref_desc__load_images">Odznacz by wyłączyć wczytywanie obrazów, np. w celu oszczędzania transferu</string>
   <!-- Screen rotation -->
   <string name="pref_title__screen_rotation">Orientacja ekranu</string>
   <string name="pref_desc__screen_rotation">Wybierz pożądaną orientację ekranu</string>
