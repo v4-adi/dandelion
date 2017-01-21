@@ -39,7 +39,6 @@
   <string name="font_size_huge">巨大</string>
   <!-- Load images -->
   <string name="pref_title__load_images">画像の読み込み</string>
-  <string name="pref_desc__load_images">安全なモバイルデータのため、画像の読み込みを無効にします</string>
   <!-- Screen rotation -->
   <string name="pref_title__screen_rotation">画面の回転</string>
   <string name="pref_desc__screen_rotation">画面の回転を自動でコントロール</string>
