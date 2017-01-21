@@ -61,6 +61,10 @@
   <!-- More from MainActivity -->
   <string name="unable_to_load_image">Kunde inte ladda bilden</string>
   <!-- Permissions -->
+  <string name="permissions_screenshot">Du måste bevilja lagringsbehörighet för att spara skärmdumpar. När du gjort det, bör du
+        stänga ned appen eller starta om din enhet. Om du inte vill bevilja lagringsbehörighet men ändå vill använda
+        skärmdumpsfunktionen senare, kan du bevilja behörighet senare. Öppna då systeminställningarna, appar,
+        dandelion*. Bland behörigheterna väljer du att bevilja den att skriva data.</string>
   <string name="permissions_image">Du måste bevilja lagringsbehörighet för att spara och ladda upp bilder. När du gjort det, bör du
         stänga ned appen eller starta om din enhet. Om du inte vill bevilja lagringsbehörighet men ändå vill spara bilder
          senare, kan du bevilja behörighet senare. Öppna då systeminställningarna, appar,
