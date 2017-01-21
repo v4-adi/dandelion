@@ -38,5 +38,6 @@
   <string name="fragment_license__license_button">GNU GPLv3+ Licence</string>
   <string name="fragment_license__thirdparty_libs">Knihovny třetího nabízejícího</string>
   <string name="fragment_license__thirdparty_libs_text">Následující knihovny jsou používány:</string>
+  <string name="fragment_license__misc_leafpic">Nechali jsme se trochu inspirovat a použili kód od LeafPic. Podívej se na ně, je to také svobodný software!</string>
   <string name="fragment_license__misc_leafpic_button">Řekni mi více</string>
 </resources>
