@@ -38,5 +38,6 @@
   <string name="fragment_license__license_button">GNU GPLv3+</string>
   <string name="fragment_license__thirdparty_libs">Tredjepartsbibliotek</string>
   <string name="fragment_license__thirdparty_libs_text">Följande bibliotek används:</string>
+  <string name="fragment_license__misc_leafpic">Vi hämtade inspiration och kod från LeafPic. Kika på det, det är också fri programvara!</string>
   <string name="fragment_license__misc_leafpic_button">Berätta mer</string>
 </resources>
