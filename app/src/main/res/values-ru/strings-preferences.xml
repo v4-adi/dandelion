@@ -64,7 +64,6 @@
   <string name="pref_desc__personal_settings">Открыть настройки аккаунта diaspora*</string>
   <string name="pref_desc__manage_contacts">Управление списком контактов</string>
   <string name="pref_title__manage_tags">Управление хэштегами</string>
-  <string name="pref_desc__manage_tags">Добавление и удаление хэштегов, на которые вы подписаны</string>
   <string name="pref_title__change_account">Сменить аккаунт</string>
   <string name="pref_desc__change_account">Стереть данные локального сеанса и переключиться на другой под/аккаунт diaspora*</string>
   <string name="pref_warning__change_account">Это удалит все файлы cookie и данные сеанса. Вы действительно хотите изменить вашу учетную запись?</string>
