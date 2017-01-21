@@ -64,7 +64,6 @@
   <string name="pref_desc__personal_settings">Open uw accountinstellingen van diaspora*</string>
   <string name="pref_desc__manage_contacts">Uw lijst met contactpersonen beheren</string>
   <string name="pref_title__manage_tags">Beheren van Hashtags</string>
-  <string name="pref_desc__manage_tags">Toevoegen en verwijderen van de hashtags die u volgt</string>
   <string name="pref_title__change_account">Account wijzigen</string>
   <string name="pref_desc__change_account">Lokale sessiegegevens wissen en schakel over naar een andere diaspora* pod/account</string>
   <string name="pref_warning__change_account">Dit zal alle cookies en sessiegegevens wissen. Wilt u echt uw account wijzigen?</string>
