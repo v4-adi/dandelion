@@ -39,7 +39,6 @@
   <string name="font_size_huge">Óriási</string>
   <!-- Load images -->
   <string name="pref_title__load_images">Képek betöltése</string>
-  <string name="pref_desc__load_images">Képek betöltésének be-/kikapcsolása pl. a kevesebb adatfelhasználás céljából</string>
   <!-- Screen rotation -->
   <string name="pref_title__screen_rotation">Kijelzőforgatás</string>
   <string name="pref_desc__screen_rotation">Kijelzőforgatás automatikus irányítása</string>
