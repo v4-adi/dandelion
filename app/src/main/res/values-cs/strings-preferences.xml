@@ -39,7 +39,6 @@
   <string name="font_size_huge">Obrovské</string>
   <!-- Load images -->
   <string name="pref_title__load_images">Načítej obrázky</string>
-  <string name="pref_desc__load_images">Deaktivuj načítání obrázků ke snížení spotřeby objemu dat</string>
   <!-- Screen rotation -->
   <string name="pref_title__screen_rotation">Rotace obrazovky</string>
   <string name="pref_desc__screen_rotation">Kontroluj automatickou rotaci</string>
