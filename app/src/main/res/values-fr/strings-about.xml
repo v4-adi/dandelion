@@ -38,6 +38,5 @@
   <string name="fragment_license__license_button">Licence GNU GPLv3+</string>
   <string name="fragment_license__thirdparty_libs">Bibliothèques tierces</string>
   <string name="fragment_license__thirdparty_libs_text">Les bibliothèques suivantes sont utilisées :</string>
-  <string name="fragment_license__misc_leafpic">Nous avons pris des inspirations et du code de LeafPic. Allez voir, c\'est aussi un logiciel libre !</string>
   <string name="fragment_license__misc_leafpic_button">En savoir plus</string>
 </resources>
