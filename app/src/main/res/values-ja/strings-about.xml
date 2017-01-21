@@ -38,6 +38,5 @@
   <string name="fragment_license__license_button">GNU GPLv3+ ライセンス</string>
   <string name="fragment_license__thirdparty_libs">サードパーティ ライブラリー</string>
   <string name="fragment_license__thirdparty_libs_text">以下のライブラリーが使用されます:</string>
-  <string name="fragment_license__misc_leafpic">LeafPic からいくつかのインスピレーションとコードを得ました。チェックしてみてください。同様のフリーソフトウェアです!</string>
   <string name="fragment_license__misc_leafpic_button">さらに詳しく</string>
 </resources>
