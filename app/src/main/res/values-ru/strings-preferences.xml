@@ -39,7 +39,6 @@
   <string name="font_size_huge">Огромный</string>
   <!-- Load images -->
   <string name="pref_title__load_images">Загрузка изображений</string>
-  <string name="pref_desc__load_images">Отключить загрузку изображений для экономии трафика</string>
   <!-- Screen rotation -->
   <string name="pref_title__screen_rotation">Поворот экрана</string>
   <string name="pref_desc__screen_rotation">Контролировать автоматический поворот экрана</string>
