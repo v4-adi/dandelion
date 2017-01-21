@@ -39,7 +39,6 @@
   <string name="font_size_huge">Grootst</string>
   <!-- Load images -->
   <string name="pref_title__load_images">Afbeeldingen laden</string>
-  <string name="pref_desc__load_images">Afbeeldingen uitschakelen om mobiele data te besparen</string>
   <!-- Screen rotation -->
   <string name="pref_title__screen_rotation">Schermrotatie</string>
   <string name="pref_desc__screen_rotation">Automatische schermrotatie instellen</string>
