@@ -64,7 +64,6 @@
   <string name="pref_desc__personal_settings">Ouvrir vos paramètres de compte diaspora*</string>
   <string name="pref_desc__manage_contacts">Gérer votre liste de contacts</string>
   <string name="pref_title__manage_tags">Gérer les Hashtags</string>
-  <string name="pref_desc__manage_tags">Ajouter et supprimer les hashtags que vous suivez</string>
   <string name="pref_title__change_account">Changer de compte</string>
   <string name="pref_desc__change_account">Effacer les données de session locale et passer à un autre pod/compte diaspora*</string>
   <string name="pref_warning__change_account">Cette opération va effacer les cookies et données de session. Voulez-vous vraiment changer de compte/pod?</string>
