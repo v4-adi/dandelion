@@ -64,7 +64,6 @@
   <string name="pref_desc__personal_settings">Öppna dina kontoinställningar i diaspora*</string>
   <string name="pref_desc__manage_contacts">Hantera din kontaktlista</string>
   <string name="pref_title__manage_tags">Hantera fyrkantstaggar</string>
-  <string name="pref_desc__manage_tags">Lägga till och ta bort fyrkantstaggar</string>
   <string name="pref_title__change_account">Ändra Konto</string>
   <string name="pref_desc__change_account">Radera lokal sessionsdata och växla till en annan diaspora*-pod eller -konto</string>
   <string name="pref_warning__change_account">Detta kommer att radera alla kakor och all sessionsdata. Vill du verkligen byta konto?</string>
