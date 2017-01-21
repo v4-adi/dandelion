@@ -61,6 +61,7 @@
   <!-- More from MainActivity -->
   <string name="unable_to_load_image">Nemohl být načten obrázek</string>
   <!-- Permissions -->
+  <string name="permissions_screenshot">Aby mohl být screenshot uložen, musíš nejprve aplikaci povolit přístup k datovému úložišti. Poté by měla být aplikace uzavřena, případně restartován celý přístroj. Pokud přístupu zabráníš, ale tuto funkci se rozhodneš používat později, můžeš to oprávnění povolit později. Otevři: Systémové nastavení - Aplikace - dandelion*. V oblasti oprávnění  poté můžeš změnit vybraná nastavení.</string>
   <string name="permissions_image">Abys mohl ukládat/nahrávat obrázky, musíš nejprve aplikaci povolit přístup k datovému úložišti. Poté by měla být aplikace uzavřena, případně restartován celý přístroj. Pokud přístupu zabráníš, ale časem se rozhodneš obrázky ukládat, můžeš toto oprávnění povolit později. Otevři: Systémové nastavení - Aplikace - dandelion*. V oblasti oprávnění  poté můžeš změnit vybraná nastavení.</string>
   <string name="permission_denied">Oprávnění odepřeno.</string>
   <string name="permission_granted_try_again">Oprávnění povoleno. Prosím, zkus to znovu.</string>
