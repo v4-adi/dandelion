@@ -39,6 +39,5 @@
   <string name="fragment_license__license_button">GNU GPLv3+ Licenc</string>
   <string name="fragment_license__thirdparty_libs">3. személytől származó könyvtárak</string>
   <string name="fragment_license__thirdparty_libs_text">A következő könyvtárak vannak használatban:</string>
-  <string name="fragment_license__misc_leafpic">A LeafPicből merítettünk némi inspirációt és programkódot. Próbáld ki, ez is szabad szoftver!</string>
   <string name="fragment_license__misc_leafpic_button">Tudj meg többet</string>
 </resources>
