@@ -112,7 +112,7 @@
 
     <!-- Load images -->
     <string name="pref_title__load_images">Load images</string>
-    <string name="pref_desc__load_images">Toggle image loading to eg. safe mobile data</string>
+    <string name="pref_desc__load_images">Toggle image loading to eg. save mobile data</string>
 
     <!-- Screen rotation -->
     <string name="pref_title__screen_rotation">Screen rotation</string>
@@ -165,7 +165,7 @@
     <string name="pref_desc__manage_contacts">Manage your contact list</string>
 
     <string name="pref_title__manage_tags">Manage Hashtags</string>
-    <string name="pref_desc__manage_tags">Add and delete the hashtags you are following</string>
+    <string name="pref_desc__manage_tags">Unfollow already followed hashtags</string>
 
     <string name="pref_title__change_account">Change Account</string>
     <string name="pref_desc__change_account">Erase local session data and switch to another diaspora* pod/account</string>

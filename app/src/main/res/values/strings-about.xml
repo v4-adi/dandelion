@@ -58,7 +58,7 @@
     <string name="fragment_license__thirdparty_libs">Third-Party Libraries</string>
     <string name="fragment_license__thirdparty_libs_text">The following libraries are used:</string>
     <string name="fragment_license__misc" translatable="false">@string/pref_title__sub_miscelaneous</string>
-    <string name="fragment_license__misc_leafpic">We took some inspiration and code from LeafPic. Go check it out, its free software as well!</string>
+    <string name="fragment_license__misc_leafpic">We took some inspiration and code from LeafPic. Go check it out, it\'s free software as well!</string>
     <string name="fragment_license__misc_leafpic_button">Tell me more</string>
     <string name="fragment_licesen__misc_leafpic_link" translatable="false">https://github.com/HoraApps/LeafPic</string>
 

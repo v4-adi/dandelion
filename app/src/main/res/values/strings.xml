@@ -100,7 +100,7 @@
     <string name="permissions_screenshot">You must grant \"Access Storage Permission\" to save screenshots. After that you should
         completely close the app or restart the device. If you don\'t permit the storage access but want to use the
         screenshot function at a later time, you can grant the permission later. Please open then: systemsettings - apps -
-        Diaspora. In the permissions section you can grant the \"write storage permission\".</string>
+        dandelion*. In the permissions section you can grant the \"write storage permission\".</string>
     <string name="permissions_image">You must grant \"Access Storage Permission\" to save/upload images. After that you should
         completely close the app or restart the device. If you don\'t permit the storage access but want to save images
         at a later time, you can grant the permission later. Please open then: systemsettings - apps -
