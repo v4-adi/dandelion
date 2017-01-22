@@ -64,6 +64,7 @@
   <string name="pref_desc__personal_settings">Abre la configuración de tu cuenta de diaspora*</string>
   <string name="pref_desc__manage_contacts">Administrar tu lista de contactos</string>
   <string name="pref_title__manage_tags">Administrar Etiquetas</string>
+  <string name="pref_desc__manage_tags">Dejar de seguir las etiquetas seguidas</string>
   <string name="pref_title__change_account">Cambiar cuenta</string>
   <string name="pref_desc__change_account">Borrar datos de la sesión local y cambiar a otro pod/cuenta de diaspora*</string>
   <string name="pref_warning__change_account">Esto borrará todas las cookies y datos de la sesión. ¿Realmente deseas cambiar tu cuenta?</string>
