@@ -64,6 +64,7 @@
   <string name="pref_desc__personal_settings">A diaspora*-fiókod beállításainak megnyitása</string>
   <string name="pref_desc__manage_contacts">A partnereid listájának kezelése</string>
   <string name="pref_title__manage_tags">Címkék kezelése</string>
+  <string name="pref_desc__manage_tags">Címkék követésének megszüntetése</string>
   <string name="pref_title__change_account">Fiókváltás</string>
   <string name="pref_desc__change_account">Helyi munkamenet adatának törlése és váltás másik diaspora*-podra vagy -fiókra</string>
   <string name="pref_warning__change_account">Ez törölni fogja az összes sütit és a munkamenet adatait. Tényleg fiókot akarsz váltani?</string>
