@@ -64,6 +64,7 @@
   <string name="pref_desc__personal_settings">Otevře nastavení Tvého účtu diaspora*</string>
   <string name="pref_desc__manage_contacts">Spravuj svůj seznam kontaktů</string>
   <string name="pref_title__manage_tags">Spravuj hashtagy</string>
+  <string name="pref_desc__manage_tags">Přestat sledovat dosud sledované hashtagy</string>
   <string name="pref_title__change_account">Změna konta</string>
   <string name="pref_desc__change_account">Smazat lokální session data a přepnout na jiný diaspora* pod/účet</string>
   <string name="pref_warning__change_account">Toto vymaže vše cookies a session data. Chceš opravdu změnit účet?</string>
