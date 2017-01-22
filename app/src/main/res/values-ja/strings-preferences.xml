@@ -64,6 +64,7 @@
   <string name="pref_desc__personal_settings">diaspora* アカウント設定を開きます</string>
   <string name="pref_desc__manage_contacts">連絡先リストを管理します</string>
   <string name="pref_title__manage_tags">ハッシュタグを管理</string>
+  <string name="pref_desc__manage_tags">すでにフォローしているハッシュタグのフォローをやめます</string>
   <string name="pref_title__change_account">アカウントを変更</string>
   <string name="pref_desc__change_account">ローカルのセッション データを消去し、別の diaspora* ポッド/アカウントに切り替えます</string>
   <string name="pref_warning__change_account">すべてのクッキーとセッション データが消去されます。アカウントを変更してもよろしいですか?</string>
