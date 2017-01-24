@@ -108,11 +108,17 @@ public class ContextMenuWebView extends NestedWebView {
                             }
                         }
                         if (writeToStoragePermitted) {
+                            //Make sure, Diaspora Folder exists
+                            File destinationFolder = new File(Environment.getExternalStorageDirectory() + "/Pictures/Diaspora");
+                            if(!destinationFolder.exists()) {
+                                destinationFolder.mkdirs();
+                            }
+
                             if (url != null) {
                                 Uri source = Uri.parse(url);
                                 DownloadManager.Request request = new DownloadManager.Request(source);
-                                File destinationFile = new File(Environment.getExternalStorageDirectory() + "/Pictures/Diaspora/"
-                                        + System.currentTimeMillis() + ".png");
+                                File destinationFile = new File(Environment.getExternalStorageDirectory() + "/Pictures/Diaspora/"+ System.currentTimeMillis() + ".png");
+
                                 request.setDestinationUri(Uri.fromFile(destinationFile));
                                 ((DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE)).enqueue(request);
 
@@ -150,6 +156,12 @@ public class ContextMenuWebView extends NestedWebView {
                                 }
                             }
                             if (writeToStoragePermitted) {
+                                //Make sure, Diaspora Folder exists
+                                File destinationFolder = new File(Environment.getExternalStorageDirectory() + "/Pictures/Diaspora");
+                                if(!destinationFolder.exists()) {
+                                    destinationFolder.mkdirs();
+                                }
+
                                 final Uri local = Uri.parse(Environment.getExternalStorageDirectory() + "/Pictures/Diaspora/" + System.currentTimeMillis() + ".png");
                                 new ImageDownloadTask(null, local.getPath()) {
                                     @Override
