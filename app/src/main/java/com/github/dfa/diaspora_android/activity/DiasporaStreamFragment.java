@@ -265,8 +265,6 @@ public class DiasporaStreamFragment extends BrowserFragment {
                 }
             }
             AppLog.v(this, "onOpenFileChooser");
-            if (imageUploadFilePathCallbackNew != null)
-                imageUploadFilePathCallbackNew.onReceiveValue(null);
             imageUploadFilePathCallbackNew = filePathCallback;
             Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             if (takePictureIntent.resolveActivity(getContext().getPackageManager()) != null) {
