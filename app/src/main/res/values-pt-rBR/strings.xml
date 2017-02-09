@@ -17,15 +17,26 @@
   <string name="mentions">Menções</string>
   <string name="public_">Público</string>
   <string name="search">Buscar</string>
+  <string name="contacts">Contatos</string>
   <!-- Notifications dropdown menu -->
+  <string name="notifications__all">Todas as notificações</string>
+  <string name="notifications__also_commented">Também comentado</string>
+  <string name="notifications__comment_on_post">Comentar no post</string>
+  <string name="notifications__liked">Curti</string>
+  <string name="notifications__mentioned">Mencionado</string>
+  <string name="notifications__reshared">Recompartilhado</string>
+  <string name="notifications__started_sharing">Começou a compartilhar</string>
   <!-- Pod Activity -->
   <string name="podlist_error">Erro: Não conseguimos recuperar a lista de pods!</string>
   <string name="no_internet">Desculpe, que você deve estar conectado à Internet para prosseguir</string>
   <string name="confirmation">Confirmação</string>
   <string name="confirm_exit">Deseja sair?</string>
   <!-- Drawer, Menu, Toolbar, ContextMenu -->
+  <string name="nav_menu_more">Mais</string>
+  <string name="nav_help_license">Sobre | Ajuda</string>
   <string name="nav_followed_tags">Tags selecionadas</string>
   <string name="nav_public_activities">Atividades públicas</string>
+  <string name="nav_reports">Relatórios</string>
   <string name="share__share_link_as_text">Compartilhar link como texto</string>
   <string name="share__share_screenshot">Compartilhar o screenshot da página Web</string>
   <string name="share__take_screenshot">Tirar screenshot da página Web</string>
@@ -46,6 +57,7 @@
   <string name="context_menu_share_image">Compartilhar Imagem</string>
   <string name="context_menu_open_external_browser">Abrir em navegador externo&#8230;</string>
   <string name="context_menu_copy_link">Copiar link para área de transferência</string>
+  <string name="context_menu_copy_image_link">Copiar endereço de imagem à área de transferência</string>
   <!-- More from MainActivity -->
   <string name="unable_to_load_image">Não é possível carregar a imagem</string>
   <!-- Permissions -->
