@@ -63,4 +63,10 @@
   <!-- Permissions -->
   <string name="permission_denied">Permissão negada.</string>
   <string name="permission_granted_try_again">Permissão concedida. Por favor, tente novamente.</string>
+  <string name="podselection__custom_pod">Pod personalizado</string>
+  <string name="pod_name">Nome do pod</string>
+  <string name="http_protocol">Protocolo</string>
+  <string name="pod_address">Endereço do pod</string>
+  <string name="missing_value">Sem dado</string>
+  <string name="jump_to_last_visited_timestamp_in_stream">Voltar para a última página visitada no fluxo?</string>
 </resources>
