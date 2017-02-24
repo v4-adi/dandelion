@@ -1,18 +1,18 @@
 /*
-    This file is part of the Diaspora for Android.
+    This file is part of the dandelion*.
 
-    Diaspora for Android is free software: you can redistribute it and/or modify
+    dandelion* is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    Diaspora for Android is distributed in the hope that it will be useful,
+    dandelion* is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with the Diaspora for Android.
+    along with the dandelion*.
 
     If not, see <http://www.gnu.org/licenses/>.
  */
@@ -41,7 +41,7 @@ import info.guardianproject.netcipher.NetCipher;
 public class FetchPodsService extends Service {
     public static final String EXTRA_PODLIST = "pods";
     public static final String MESSAGE_PODS_RECEIVED = "com.github.dfa.diaspora.podsreceived";
-    public static final String PODDY_PODLIST_URL = "https://raw.githubusercontent.com/Diaspora-for-Android/diaspora-android/master/app/src/main/res/raw/podlist.json";
+    public static final String PODDY_PODLIST_URL = "https://raw.githubusercontent.com/Diaspora-for-Android/dandelion/master/app/src/main/res/raw/podlist.json";
 
     public FetchPodsService() {
     }

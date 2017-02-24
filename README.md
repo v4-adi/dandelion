@@ -15,6 +15,7 @@ This is an unofficial webview based client for the community-run, distributed so
 - Download ([F-Droid](https://f-droid.org/repository/browse/?fdid=com.github.dfa.diaspora_android), [Release Archive](https://github.com/Diaspora-for-Android/dandelion/releases))
 - Watch [Changelog](https://github.com/Diaspora-for-Android/dandelion/blob/master/CHANGELOG.md)
 - See [Screenshots](https://github.com/Diaspora-for-Android/dandelion/blob/master/SCREENSHOTS.md)
+- Get updates from our diaspora\* account: [dandelion00@diasp.org](https://diasp.org/people/48b78420923501341ef3782bcb452bd5)
 
 ## Contributions
 We are always open for any kind of contribution. (PR's, bug reports, feature requests, translations, ..)  
