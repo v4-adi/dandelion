@@ -64,7 +64,7 @@
   <string name="pref_desc__personal_settings">Apri le impostazioni del tuo account diaspora*</string>
   <string name="pref_desc__manage_contacts">Gestisci il tuo elenco di contatti</string>
   <string name="pref_title__manage_tags">Gestisci hashtag</string>
-  <string name="pref_desc__manage_tags">Aggiungi ed elimina gli hashtag che stai seguendo</string>
+  <string name="pref_desc__manage_tags">Non seguire più gli hashtag seguiti</string>
   <string name="pref_title__change_account">Cambia account</string>
   <string name="pref_desc__change_account">Elimina dati della sessione locale e passa ad un altro pod/account diaspora*</string>
   <string name="pref_warning__change_account">Questo eliminerà tutti i cookie e i dati della sessione. Vuoi veramente cambiare il tuo account?</string>

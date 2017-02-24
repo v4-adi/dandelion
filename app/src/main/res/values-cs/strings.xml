@@ -57,6 +57,7 @@
   <string name="context_menu_share_image">Sdílet obrázek</string>
   <string name="context_menu_open_external_browser">Otevřít v externím prohlížeči&#8230;</string>
   <string name="context_menu_copy_link">Zkopírovat link do schránky</string>
+  <string name="context_menu_copy_image_link">Zkopíovat adresu obrázku do schránky</string>
   <!-- More from MainActivity -->
   <string name="unable_to_load_image">Nemohl být načten obrázek</string>
   <!-- Permissions -->

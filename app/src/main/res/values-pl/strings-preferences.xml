@@ -64,7 +64,7 @@
   <string name="pref_desc__personal_settings">Otwórz ustawienia konta diaspora*</string>
   <string name="pref_desc__manage_contacts">Zarządzanie listą kontaktów</string>
   <string name="pref_title__manage_tags">Zarządzanie tagami</string>
-  <string name="pref_desc__manage_tags">Dodaj i usuń tagi z listy śledzonych</string>
+  <string name="pref_desc__manage_tags">Przestań śledzić wybrane tagi</string>
   <string name="pref_title__change_account">Zmień konto</string>
   <string name="pref_desc__change_account">Skasuj dane sesji lokalnej i przełącz się do innego poda diaspora*/konta</string>
   <string name="pref_warning__change_account">Operacja spowoduje usunięcie wszystkich ciasteczek i danych sesji. Jesteś pewny, że chcesz zmienić konto?</string>

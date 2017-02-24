@@ -57,13 +57,14 @@
   <string name="context_menu_share_image">Condividi immagine</string>
   <string name="context_menu_open_external_browser">Apri nel browser&#8230;</string>
   <string name="context_menu_copy_link">Copia link negli appunti</string>
+  <string name="context_menu_copy_image_link">Copia indirizzo dell\'immagine negli appunti</string>
   <!-- More from MainActivity -->
   <string name="unable_to_load_image">Impossibile caricare immagine</string>
   <!-- Permissions -->
   <string name="permissions_screenshot">Devi garantire il permesso di accesso alla memoria per poter salvare gli screenshot. Dopodiché devi
         chiudere completamente l\'app o riavviare il dispositivo. Se non permetti l\'accesso alla memoria ma vuoi usare la 
         funzione degli screenshot più avanti, puoi garantire il permesso successivamente. Vai su: Impostazioni - App -
-        Diaspora. Nella sezione dei permessi puoi garantire il permesso per la scrittura sul dispositivo.</string>
+        dandelion*. Nella sezione dei permessi puoi garantire il permesso per la scrittura sul dispositivo.</string>
   <string name="permissions_image">Devi garantire il permesso di accesso alla memoria per poter salvare e caricare le immagini. Dopodiché devi
         chiudere completamente l\'app o riavviare il dispositivo. Se non permetti l\'accesso alla memoria ma vuoi 
         salvare le immagini più avanti, puoi garantire il permesso successivamente. Vai su: Impostazioni - App -

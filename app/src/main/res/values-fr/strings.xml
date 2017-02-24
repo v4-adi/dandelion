@@ -57,10 +57,11 @@
   <string name="context_menu_share_image">Partager l\'image</string>
   <string name="context_menu_open_external_browser">Ouvrir dans un navigateur externe&#8230;</string>
   <string name="context_menu_copy_link">Copier le lien dans le presse-papier</string>
+  <string name="context_menu_copy_image_link">Copier le lien de l\'image dans le presse-papiers</string>
   <!-- More from MainActivity -->
   <string name="unable_to_load_image">Impossible de récupérer l\'image</string>
   <!-- Permissions -->
-  <string name="permissions_screenshot">Vous devez autoriser \"Modifier ou supprimer le contenu de la carte Sd \" pour sauvegarder les captures d\'écrans. Ensuite, vous devriez fermer l\'application ou redémarrer votre téléphone. Si vous n\'avez pas autorisé l\'accès à l\'espace de stockage mais que vous souhaitez utiliser la fonctionnalité de prise de capture d\'écran plus tard, vous pouvez donner la permission plus tard. Veuillez ouvrir : Paramètres - applications - Diaspora. Dans la section Autorisations, vous pouvez autoriser \"Modifier ou supprimer le contenu de la carte Sd \".</string>
+  <string name="permissions_screenshot">Vous devez autoriser \"Modifier ou supprimer le contenu de la carte Sd \" pour sauvegarder les captures d\'écrans. Ensuite, vous devriez fermer l\'application ou redémarrer votre téléphone. Si vous n\'avez pas autorisé l\'accès à l\'espace de stockage mais que vous souhaitez utiliser la fonctionnalité de prise de capture d\'écran plus tard, vous pouvez donner la permission plus tard. Veuillez ouvrir : Paramètres - applications - dandelion*. Dans la section Autorisations, vous pouvez autoriser \"Modifier ou supprimer le contenu de la carte Sd \".</string>
   <string name="permissions_image">Vous devez autoriser \"Modifier ou supprimer le contenu de la carte Sd \" pour sauvegarder/téléverser les images. Ensuite, vous devriez        fermer l\'application ou redémarrer votre téléphone. Si vous n\'avez pas autorisé l\'accès à l\'espace de stockage mais que vous souhaitez sauvegarder des images        ultérieurement, vous pouvez donner la permission plus tard. Veuillez ouvrir : Paramètres - applications -        dandelion*. Dans la section Autorisations, vous pouvez autoriser \"Modifier ou supprimer le contenu de la carte Sd \".</string>
   <string name="permission_denied">Permission refusée.</string>
   <string name="permission_granted_try_again">Permission accordée. Veuillez réessayer.</string>

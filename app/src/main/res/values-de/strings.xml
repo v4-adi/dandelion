@@ -57,13 +57,14 @@
   <string name="context_menu_share_image">Bild teilen</string>
   <string name="context_menu_open_external_browser">In externem Browser öffnen&#8230;</string>
   <string name="context_menu_copy_link">Linkadresse kopieren</string>
+  <string name="context_menu_copy_image_link">Bildadresse in die Zwischenablage kopieren</string>
   <!-- More from MainActivity -->
   <string name="unable_to_load_image">Konnte Bild nicht laden…</string>
   <!-- Permissions -->
   <string name="permissions_screenshot">Du musst der App Zugriff auf den Gerätespeicher gewähren, damit das Bildschirmfoto
         gespeichert werden kann. Danach solltest du die Anwendung komplett schließen oder das Gerät neu starten.
         Wenn du den Zugriff verweigerst und die Funktion später doch nutzen willst, kannst du die Berechtigung
-        nachträglich erteilen. Öffne dafür: Systemeinstellungen - Apps - Diaspora. Im Bereich Berechtigungen kannst
+        nachträglich erteilen. Öffne dafür: Systemeinstellungen - Apps - dandelion*. Im Bereich Berechtigungen kannst
         dann die entsprechende Einstellung vornehmen.</string>
   <string name="permissions_image">Du musst der App Zugriff auf den Gerätespeicher gewähren, damit Bilder gespeichert oder hochgeladen werden können. Danach solltest du die Anwendung komplett schließen oder das Telefon neu starten. Wenn du den Zugriff verweigerst und die Funktion später doch nutzen willst, kannst du die Berechtigung
 nachträglich erteilen. Öffne dafür: Systemeinstellungen - Apps - dandelion*. Im Bereich Berechtigungen kannst dann die entsprechende Einstellung vornehmen.</string>

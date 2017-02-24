@@ -10,7 +10,7 @@ android {
         minSdkVersion 17
         targetSdkVersion 24
         versionCode 13
-        versionName "0.2.2-next"
+        versionName "0.2.3"
         setProperty("archivesBaseName", "dandelion__${versionName}__")
 
         vectorDrawables.useSupportLibrary = true
@@ -29,8 +29,11 @@ android {
         }
 
         flavorSecondlion {
-            applicationId "com.github.dfa.diaspora_android2"
+            applicationId "com.github.dfa.secondlion"
             manifestPlaceholders = [appName: "secondlion*"]
+            versionCode = Integer.parseInt(new Date().format('yyMMdd'))
+            versionName = new Date().format('yyMMdd')
+            setProperty("archivesBaseName", "${applicationId}__${versionName}__")
         }
     }
 
