@@ -1,3 +1,9 @@
+# v0.2.3
+- Add Czech translation (thanks @bezcitu)
+- Add option to copy image urls to clipboard
+- Fixed some bugs related to image upload/download
+- Published secondlion\* (nighly version of dandelion\*)
+
 # v0.2.2
 - Move "toggle mobile/deskop" to nav-slider
 - Reduce messages sent via broadcast
