@@ -23,7 +23,10 @@
     },
     {
       "score": 20,
-      "podUrls": [{"host": "diasp.org"}],
+      "podUrls": [
+        {"host": "diasp.org"},
+        {"host": "diasporgc3d32vv4.onion"}
+      ],
       "name": "diasporg*",
       "mainLangs": [],
       "id": 12688

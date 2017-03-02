@@ -2,8 +2,7 @@
 
 <a name="badgers"></a>[![Build Status](https://travis-ci.org/Diaspora-for-Android/dandelion.svg?branch=master)](https://travis-ci.org/Diaspora-for-Android/dandelion)
 [![Crowdin](https://d322cqt584bo4o.cloudfront.net/diaspora-for-android/localized.svg)](https://crowdin.com/project/diaspora-for-android)
-[![Chat - Gitter](https://img.shields.io/badge/chat-on%20gitter-blue.svg)](https://gitter.im/Diaspora-for-Android/dandelion)
-[![Chat - Gitter via IRC](https://img.shields.io/badge/chat-on%20gitter%20via%20IRC-blue.svg)](https://irc.gitter.im/)
+[![Chat - Matrix](https://img.shields.io/badge/chat-on%20matrix-blue.svg)](https://matrix.to/#/#dandelion:matrix.org)
 
 
 
@@ -12,7 +11,8 @@ FORMERLY KNOWN AS DIASPORA-FOR-ANDROID
 
 This is an unofficial webview based client for the community-run, distributed social network **[diaspora*](https://diasporafoundation.org/)**. It's currently under development and should be used with that in mind. Please submit any bugs you might find.  
 
-- Download ([F-Droid](https://f-droid.org/repository/browse/?fdid=com.github.dfa.diaspora_android), [Release Archive](https://github.com/Diaspora-for-Android/dandelion/releases))
+- Download latest release on ([F-Droid](https://f-droid.org/repository/browse/?fdid=com.github.dfa.diaspora_android)
+- Download latest development version (nightly): [secondlion\*](https://gsantner.gitlab.io/fdroid/latest/com.github.dfa.secondlion.apk)
 - Watch [Changelog](https://github.com/Diaspora-for-Android/dandelion/blob/master/CHANGELOG.md)
 - See [Screenshots](https://github.com/Diaspora-for-Android/dandelion/blob/master/SCREENSHOTS.md)
 - Get updates from our diaspora\* account: [dandelion00@diasp.org](https://diasp.org/people/48b78420923501341ef3782bcb452bd5)
@@ -43,4 +43,6 @@ dandelion\* requires access to the Internet and to external storage to be able t
 
 ## Maintainers
 - gsantner ([GitHub](https://github.com/gsantner), [Web](https://gsantner.github.io), [diaspora*](https://pod.geraspora.de/people/d1cbdd70095301341e834860008dbc6c))  
+    - Bitcoin: [1B9ZyYdQoY9BxMe9dRUEKaZbJWsbQqfXU5](https://gsantner.github.io/donate/#donate)
 - vanitasvitae ([GitHub](https://github.com/vanitasvitae), [diaspora*](https://pod.geraspora.de/people/bbd7af90fbec013213e34860008dbc6c))
+    - Bitcoin: 1Ao3W6NaQv3xKppviB7RSFKjHo6PGd8RTy
