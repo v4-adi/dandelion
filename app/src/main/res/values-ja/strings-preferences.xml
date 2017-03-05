@@ -73,7 +73,6 @@
   <string name="pref_desc__intellihide_toolbars">スクロールの間、自動的に上部と下部のツールバーを非表示にします</string>
   <string name="pref_title__intellihide_toolbars">Intellihide ツールバー</string>
   <string name="pref_title__append_shared_via_app">シェア方法の通知を追加</string>
-  <string name="pref_desc__append_shared_via_app">シェアしたテキストに、このアプリへの参照 (\"&#8230;でシェア\") を追加します</string>
   <!-- More -->
   <string name="pref_title__sub_miscelaneous">その他</string>
   <string name="pref_title__wipe_settings">完全なリセット</string>
