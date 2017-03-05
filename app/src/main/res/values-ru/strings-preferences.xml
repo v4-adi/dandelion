@@ -73,7 +73,6 @@
   <string name="pref_desc__intellihide_toolbars">Скрывать верхнюю и нижнюю панели инструментов автоматически во время прокрутки</string>
   <string name="pref_title__intellihide_toolbars">Интеллектуальное скрытие панелей инструментов</string>
   <string name="pref_title__append_shared_via_app">Присоединять \"Опубликовано из\" к сообщению</string>
-  <string name="pref_desc__append_shared_via_app">Присоединять ссылку на приложение (\"Опубликовано из&#8230;\") к размещенным записям</string>
   <!-- More -->
   <string name="pref_title__sub_miscelaneous">Прочее</string>
   <string name="pref_title__wipe_settings">Полный сброс</string>
