@@ -73,7 +73,6 @@
   <string name="pref_desc__intellihide_toolbars">Verstecke die obere und untere Werkzeugleiste automatisch, während gescrollt wird</string>
   <string name="pref_title__intellihide_toolbars">Werkzeugleisten intelligent verstecken</string>
   <string name="pref_title__append_shared_via_app">Verweise auf App</string>
-  <string name="pref_desc__append_shared_via_app">Füge beim Teilen von Texten einen Verweis auf diese App an (\"geteilt durch&#8230;\")</string>
   <!-- More -->
   <string name="pref_title__sub_miscelaneous">Verschiedenes</string>
   <string name="pref_title__wipe_settings">Zurücksetzen</string>
