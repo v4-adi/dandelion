@@ -24,7 +24,6 @@ android {
             manifestPlaceholders = [appName: "dandelion*"]
             versionCode 13
             versionName "0.2.3"
-            setProperty("archivesBaseName", "dandelion__${versionName}__")
         }
 
         flavorSecondlion {
@@ -32,7 +31,6 @@ android {
             manifestPlaceholders = [appName: "secondlion*"]
             versionCode = Integer.parseInt(new Date().format('yyMMdd'))
             versionName = new Date().format('yyMMdd')
-            setProperty("archivesBaseName", "${applicationId}__${versionName}__")
         }
     }
 
