@@ -77,6 +77,7 @@
   <string name="pref_desc__intellihide_toolbars">A felső és alsó eszköztárak automatikus elrejtése görgetés közben</string>
   <string name="pref_title__intellihide_toolbars">Intelligensen eltűnő eszköztárak</string>
   <string name="pref_title__append_shared_via_app">Használt program megemlítése megosztáskor</string>
+  <string name="pref_desc__append_shared_via_app">Hivatkozás erre az alkalmazásra a megosztásokban: [megosztva ezzel: #dandelion]</string>
   <!-- More -->
   <string name="pref_title__sub_miscelaneous">Egyéb</string>
   <string name="pref_title__wipe_settings">Teljes visszaállítás eredeti értékekre</string>
