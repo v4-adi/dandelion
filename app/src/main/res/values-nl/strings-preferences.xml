@@ -31,7 +31,6 @@
   <!-- Notifications dropdown -->
   <string name="pref_title__extended_notifications">Uitgebreide meldingen</string>
   <string name="pref_desc__extended_notifications">Uitbreiden van de meldingsbel met een dropdown menu dat meldingen van Categorieën toont</string>
-  <string name="pref_desc__language">Taal wijzigen van deze app. Opnieuw opstarten om wijzigingen te bevestigen</string>
   <string name="pref_title__language">Taal</string>
   <string name="language_system">Systeemtaal gebruiken</string>
   <!-- Font size -->
