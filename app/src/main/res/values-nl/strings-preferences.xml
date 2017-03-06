@@ -31,6 +31,7 @@
   <!-- Notifications dropdown -->
   <string name="pref_title__extended_notifications">Uitgebreide meldingen</string>
   <string name="pref_desc__extended_notifications">Uitbreiden van de meldingsbel met een dropdown menu dat meldingen van Categorieën toont</string>
+  <string name="pref_desc__language">De taal wijzigen van deze app. Opnieuw opstarten om wijzigingen te bevestigen</string>
   <!-- Font size -->
   <string name="pref_title__font_size">Lettergrootte</string>
   <!-- prefix 's' is needed to make this a string array. Otherwise ListPreference would crash -->
