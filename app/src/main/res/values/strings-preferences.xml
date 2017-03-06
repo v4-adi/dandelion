@@ -94,7 +94,7 @@
     <string name="pref_title__extended_notifications">Extended Notifications</string>
     <string name="pref_desc__extended_notifications">Extend the notifications bell with a dropdown menu that shows notification categories</string>
 
-    <string name="pref_desc__language">Change language of this app. Restart app for changes to take affect</string>
+    <string name="pref_desc__language">Change language of this app. Restart app for changes to take effect</string>
     <string name="pref_title__language">Language</string>
     <string name="language_system">System language</string>
 
