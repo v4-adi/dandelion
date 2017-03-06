@@ -31,7 +31,6 @@
   <!-- Notifications dropdown -->
   <string name="pref_title__extended_notifications">Расширенные уведомления</string>
   <string name="pref_desc__extended_notifications">Показывать выпадающее меню с категориями уведомлений при нажатии на иконку уведомлений</string>
-  <string name="pref_desc__language">Изменить язык этого приложения. Перезапустите приложение, чтобы изменения вступили в силу</string>
   <string name="pref_title__language">Язык</string>
   <string name="language_system">Язык системы</string>
   <!-- Font size -->
