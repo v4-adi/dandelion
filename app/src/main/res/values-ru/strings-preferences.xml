@@ -31,7 +31,11 @@
   <!-- Notifications dropdown -->
   <string name="pref_title__extended_notifications">Расширенные уведомления</string>
   <string name="pref_desc__extended_notifications">Показывать выпадающее меню с категориями уведомлений при нажатии на иконку уведомлений</string>
+  <string name="pref_desc__language">Изменить язык этого приложения. Перезапустите приложение, чтобы изменения вступили в силу</string>
+  <string name="pref_title__language">Язык</string>
+  <string name="language_system">Язык системы</string>
   <!-- Font size -->
+  <string name="pref_desc__font_size">Управление размером текста WebView</string>
   <string name="pref_title__font_size">Размер шрифта</string>
   <!-- prefix 's' is needed to make this a string array. Otherwise ListPreference would crash -->
   <string name="font_size_normal">Нормальный</string>
@@ -73,6 +77,7 @@
   <string name="pref_desc__intellihide_toolbars">Скрывать верхнюю и нижнюю панели инструментов автоматически во время прокрутки</string>
   <string name="pref_title__intellihide_toolbars">Интеллектуальное скрытие панелей инструментов</string>
   <string name="pref_title__append_shared_via_app">Присоединять \"Опубликовано из\" к сообщению</string>
+  <string name="pref_desc__append_shared_via_app">Добавлять к сообщениям ссылку на это приложение: [via #dandelion]</string>
   <!-- More -->
   <string name="pref_title__sub_miscelaneous">Прочее</string>
   <string name="pref_title__wipe_settings">Полный сброс</string>
