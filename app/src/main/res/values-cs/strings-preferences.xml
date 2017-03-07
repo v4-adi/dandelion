@@ -31,6 +31,7 @@
   <!-- Notifications dropdown -->
   <string name="pref_title__extended_notifications">Rozšířené oznámení</string>
   <string name="pref_desc__extended_notifications">Rozšiř oznámení zvonku pomocí výběrového menu, které zobrazuje kategorie oznámení</string>
+  <string name="pref_desc__language">Změnit jazyk aplikace. Restartujte aplikaci, aby mohly být provedeny změny</string>
   <string name="pref_title__language">Jazyk</string>
   <string name="language_system">Jazyk systému</string>
   <!-- Font size -->
