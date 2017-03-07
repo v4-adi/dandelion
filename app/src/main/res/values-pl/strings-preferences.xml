@@ -77,6 +77,7 @@
   <string name="pref_desc__intellihide_toolbars">Automatycznie ukryj paski narzędzi na górze i na dole podczas przewijania</string>
   <string name="pref_title__intellihide_toolbars">Autoukrywanie pasków narzędzi</string>
   <string name="pref_title__append_shared_via_app">Informacja o użytej aplikacji</string>
+  <string name="pref_desc__append_shared_via_app">Umieszczaj odnośnik do tej aplikacji na dole udostępnianych wiadomości: [via #dandelion]</string>
   <!-- More -->
   <string name="pref_title__sub_miscelaneous">Różne</string>
   <string name="pref_title__wipe_settings">Całkowity restart</string>
