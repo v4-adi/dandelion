@@ -31,7 +31,11 @@
   <!-- Notifications dropdown -->
   <string name="pref_title__extended_notifications">Notifiche estese</string>
   <string name="pref_desc__extended_notifications">Estendi il bottone delle notifiche con un menù che mostra le categorie di notifiche</string>
+  <string name="pref_desc__language">Cambia la lingua di questa app. Riavvia l\'app per rendere effettive le modifiche</string>
+  <string name="pref_title__language">Lingua</string>
+  <string name="language_system">Lingua di sistema</string>
   <!-- Font size -->
+  <string name="pref_desc__font_size">Controllo dimensione testo del WebView</string>
   <string name="pref_title__font_size">Dimensione font</string>
   <!-- prefix 's' is needed to make this a string array. Otherwise ListPreference would crash -->
   <string name="font_size_normal">Normale</string>
