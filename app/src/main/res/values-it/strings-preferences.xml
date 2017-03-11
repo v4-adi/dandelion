@@ -77,6 +77,7 @@
   <string name="pref_desc__intellihide_toolbars">Nascondi barre superiori e inferiori automaticamente quando scrolli</string>
   <string name="pref_title__intellihide_toolbars">Barre che si nascondono intelligentemente</string>
   <string name="pref_title__append_shared_via_app">Aggiungi avviso dell\'app</string>
+  <string name="pref_desc__append_shared_via_app">Aggiungere un riferimento a questa applicazione ai testi condivisi: [via #dandelion]</string>
   <!-- More -->
   <string name="pref_title__sub_miscelaneous">Vario</string>
   <string name="pref_title__wipe_settings">Reset completo</string>
