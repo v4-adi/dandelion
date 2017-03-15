@@ -65,12 +65,12 @@
         chiudere completamente l\'app o riavviare il dispositivo. Se non permetti l\'accesso alla memoria ma vuoi usare la 
         funzione degli screenshot più avanti, puoi garantire il permesso successivamente. Vai su: Impostazioni - App -
         dandelion*. Nella sezione dei permessi puoi garantire il permesso per la scrittura sul dispositivo.</string>
-  <string name="permissions_image">Devi garantire il permesso di accesso alla memoria per poter salvare e caricare le immagini. Dopodiché devi
+  <string name="permissions_image">Devi concedere il permesso di accesso alla memoria per poter salvare e caricare le immagini. Dopodiché devi
         chiudere completamente l\'app o riavviare il dispositivo. Se non permetti l\'accesso alla memoria ma vuoi 
-        salvare le immagini più avanti, puoi garantire il permesso successivamente. Vai su: Impostazioni - App -
-        dandelion*. Nella sezione dei permessi puoi garantire il permesso per la scrittura sul dispositivo.</string>
+        salvare le immagini più avanti, puoi concedere il permesso successivamente. Vai su: Impostazioni - App -
+        dandelion*. Nella sezione dei permessi puoi concedere il permesso per la scrittura sul dispositivo.</string>
   <string name="permission_denied">Permesso negato.</string>
-  <string name="permission_granted_try_again">Permesso garantito. Si prega di riprovare.</string>
+  <string name="permission_granted_try_again">Permesso concesso. Si prega di riprovare.</string>
   <string name="podselection__custom_pod">Pod personalizzato</string>
   <string name="pod_name">Nome del pod</string>
   <string name="http_protocol">Protocollo</string>
