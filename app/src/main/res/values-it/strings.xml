@@ -37,9 +37,9 @@
   <string name="nav_followed_tags">Tag seguiti</string>
   <string name="nav_public_activities">Attività pubbliche</string>
   <string name="nav_reports">Segnalazioni</string>
-  <string name="share__share_link_as_text">Condividi link</string>
-  <string name="share__share_screenshot">Condividi screensot</string>
-  <string name="share__take_screenshot">Fai uno screenshot</string>
+  <string name="share__share_link_as_text">Condividi link come testo</string>
+  <string name="share__share_screenshot">Condividi screenshot della pagina Web</string>
+  <string name="share__take_screenshot">Fai uno screenshot della pagina web</string>
   <string name="share__toast_saved_image_to_location">Salvataggio dell\'immagine in</string>
   <string name="share__toast_screenshot">Salvataggio dello screenshot come:</string>
   <string name="share__toast_link_address_copied">Indirizzo copiato&#8230;</string>
