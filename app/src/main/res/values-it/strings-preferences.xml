@@ -39,7 +39,7 @@
   <string name="pref_title__font_size">Dimensione font</string>
   <!-- prefix 's' is needed to make this a string array. Otherwise ListPreference would crash -->
   <string name="font_size_normal">Normale</string>
-  <string name="font_size_large">Grosso</string>
+  <string name="font_size_large">Grande</string>
   <string name="font_size_huge">Immenso</string>
   <!-- Load images -->
   <string name="pref_title__load_images">Carica immagini</string>
