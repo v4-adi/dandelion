@@ -9,16 +9,16 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:allowBackup="false"
-        android:icon="@drawable/ic_launcher"
         android:name="com.github.dfa.diaspora_android.App"
-        android:label="${appName}"
-        android:theme="@style/DiasporaLight" >
+        android:allowBackup="false"
+        android:icon="${appIcon}"
+        android:label="@string/app_name"
+        android:theme="@style/DiasporaLight">
 
         <provider
             android:name="com.github.dfa.diaspora_android.service.HashtagContentProvider"
             android:authorities="${applicationId}.mainactivity"
-            android:exported="false"/>
+            android:exported="false" />
 
         <service
             android:name="com.github.dfa.diaspora_android.service.FetchPodsService"
@@ -27,24 +27,25 @@
 
         <activity
             android:name="com.github.dfa.diaspora_android.activity.SettingsActivity"
-            android:launchMode="singleInstance"
             android:configChanges="keyboardHidden|locale|orientation|screenSize"
-            android:theme="@style/DiasporaLight.NoActionBar"
-            android:label="@string/settings" />
+            android:label="@string/settings"
+            android:launchMode="singleInstance"
+            android:theme="@style/DiasporaLight.NoActionBar" />
 
         <activity
             android:name="com.github.dfa.diaspora_android.activity.AboutActivity"
-            android:label="@string/about_activity__title_about_app"
             android:configChanges="locale"
-            android:theme="@style/DiasporaLight.NoActionBar"/>
+            android:label="@string/about_activity__title_about_app"
+            android:theme="@style/DiasporaLight.NoActionBar" />
 
         <activity
             android:name="com.github.dfa.diaspora_android.activity.MainActivity"
-            android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustResize"
             android:configChanges="keyboardHidden|locale|orientation|screenSize"
+            android:icon="${appIcon}"
+            android:label="@string/app_name"
+            android:launchMode="singleTop"
             android:theme="@style/DiasporaLight.NoActionBar"
-            android:label="${appName}">
+            android:windowSoftInputMode="adjustResize">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -67,12 +68,15 @@
             <!-- Intent from Web Browser / Mail / IM / Clickable Link -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
 
                 <!-- Additional allowed services -->
-                <data android:host="dia.so" android:scheme="https" />
+                <data
+                    android:host="dia.so"
+                    android:scheme="https" />
 
                 <!--@@@ PODLIST START-->
                 <data android:host="joindiaspora.com" android:scheme="https" />

@@ -1,3 +1,12 @@
+# v0.2.4
+- Different icon and color for secondlion
+- Language switcher
+- Handle dia.so links
+- Improve security at internal browser decision
+- More icons for notification dropdown
+- Update gradle build scripts
+- Added CircleCI
+
 # v0.2.3
 - Add Czech translation (thanks @bezcitu)
 - Add option to copy image urls to clipboard

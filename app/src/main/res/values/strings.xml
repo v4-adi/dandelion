@@ -3,7 +3,6 @@
     <string name="dandelion" translatable="false">dandelion*</string>
     <string name="diaspora" translatable="false">diaspora*</string>
     <string name="diaspora_for_android" translatable="false">Diaspora for Android</string>
-    <string name="app_name" translatable="false">@string/dandelion</string>
     <string name="app_hashtag" translatable="false">#dandelion</string>
     <string name="app_subtitle" translatable="false">The community-run distributed social network</string>
     <string name="shared_via_app" translatable="false">*[via #dandelion]*</string>

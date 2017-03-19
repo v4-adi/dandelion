@@ -31,12 +31,16 @@
   <!-- Notifications dropdown -->
   <string name="pref_title__extended_notifications">Notifiche estese</string>
   <string name="pref_desc__extended_notifications">Estendi il bottone delle notifiche con un menù che mostra le categorie di notifiche</string>
+  <string name="pref_desc__language">Cambia la lingua di questa app. Riavvia l\'app per rendere effettive le modifiche</string>
+  <string name="pref_title__language">Lingua</string>
+  <string name="language_system">Lingua di sistema</string>
   <!-- Font size -->
+  <string name="pref_desc__font_size">Controllo dimensione testo del WebView</string>
   <string name="pref_title__font_size">Dimensione font</string>
   <!-- prefix 's' is needed to make this a string array. Otherwise ListPreference would crash -->
   <string name="font_size_normal">Normale</string>
-  <string name="font_size_large">Grosso</string>
-  <string name="font_size_huge">Immenso</string>
+  <string name="font_size_large">Grande</string>
+  <string name="font_size_huge">Molto grande</string>
   <!-- Load images -->
   <string name="pref_title__load_images">Carica immagini</string>
   <string name="pref_desc__load_images">Disabilita il caricamento delle immagini per risparmiare la rete dati</string>
@@ -55,7 +59,7 @@
   <string name="pref_desc__http_proxy_enabled">Usa il proxy con i dati di dandelion* per eludere i firewall.\nPotrebbe essere necessario il riavvio</string>
   <string name="pref_title__http_proxy_host">Host</string>
   <string name="pref_title__http_proxy_port">Porta</string>
-  <string name="toast__proxy_disabled__restart_required">App è necessario riavviare per disattivare l\'utilizzo del proxy</string>
+  <string name="toast__proxy_disabled__restart_required">E\' necessario riavviare l\'app per disattivare l\'utilizzo del proxy</string>
   <string name="toast__proxy_orbot_preset_loaded">Orbot proxy preset caricato</string>
   <!-- Chrome custom tabs -->
   <string name="pref_desc__chrome_custom_tabs_enabled">Apri collegamenti esterni con le schede personalizzate di Chrome. Chromium o Google Chrome devono essere installati per questa funzione. \nNOTA IMPORTANTE: le schede personalizzate di Chrome non usano i server proxy configurabili!</string>
@@ -73,7 +77,7 @@
   <string name="pref_desc__intellihide_toolbars">Nascondi barre superiori e inferiori automaticamente quando scrolli</string>
   <string name="pref_title__intellihide_toolbars">Barre che si nascondono intelligentemente</string>
   <string name="pref_title__append_shared_via_app">Aggiungi avviso dell\'app</string>
-  <string name="pref_desc__append_shared_via_app">Aggiunge un riferimento a quest\'app (\"Condiviso da&#8230;\") nei testi condivisi</string>
+  <string name="pref_desc__append_shared_via_app">Aggiungere un riferimento a questa applicazione ai testi condivisi: [via #dandelion]</string>
   <!-- More -->
   <string name="pref_title__sub_miscelaneous">Vario</string>
   <string name="pref_title__wipe_settings">Reset completo</string>

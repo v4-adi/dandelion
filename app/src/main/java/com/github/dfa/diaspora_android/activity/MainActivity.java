@@ -59,6 +59,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.dfa.diaspora_android.App;
+import com.github.dfa.diaspora_android.BuildConfig;
 import com.github.dfa.diaspora_android.R;
 import com.github.dfa.diaspora_android.data.DiasporaPodList;
 import com.github.dfa.diaspora_android.data.DiasporaUserProfile;
@@ -391,6 +392,9 @@ public class MainActivity extends ThemedActivity
                     app.getAvatarImageLoader().startImageDownload(navheaderImage, avatarUrl);
                 }
             }
+        }
+        else if (BuildConfig.IS_TEST_BUILD){
+            navheaderImage.setImageResource(R.drawable.ic_launcher_test);
         }
         updateNavigationViewEntryVisibilities();
     }

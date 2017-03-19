@@ -17,7 +17,10 @@ package com.github.dfa.diaspora_android.util;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.support.annotation.ColorRes;
+import android.support.v4.content.ContextCompat;
 
+import com.github.dfa.diaspora_android.BuildConfig;
 import com.github.dfa.diaspora_android.R;
 import com.github.dfa.diaspora_android.data.DiasporaAspect;
 import com.github.dfa.diaspora_android.data.DiasporaPodList.DiasporaPod;
@@ -134,6 +137,10 @@ public class AppSettings {
 
     public int getColor(SharedPreferences pref, String key, int defaultColor) {
         return pref.getInt(key, defaultColor);
+    }
+
+    public int getColorRes(@ColorRes int resColorId){
+        return ContextCompat.getColor(context, resColorId);
     }
 
     public void registerPrefAppPreferenceChangedListener(SharedPreferences.OnSharedPreferenceChangeListener listener) {
@@ -445,13 +452,14 @@ public class AppSettings {
 
     public int[] getPrimaryColorSettings() {
         return new int[]{
-                getInt(prefApp, R.string.pref_key__primary_color_base, context.getResources().getColor(R.color.md_blue_500)),
-                getInt(prefApp, R.string.pref_key__primary_color_shade, context.getResources().getColor(R.color.primary))
+                getInt(prefApp, R.string.pref_key__primary_color_base, getColorRes(R.color.md_blue_500)),
+                getInt(prefApp, R.string.pref_key__primary_color_shade, getColorRes(R.color.primary))
         };
     }
 
     public int getPrimaryColor() {
-        return getInt(prefApp, R.string.pref_key__primary_color_shade, context.getResources().getColor(R.color.primary));
+        return getInt(prefApp, R.string.pref_key__primary_color_shade, getColorRes(
+                BuildConfig.IS_TEST_BUILD ? R.color.md_brown_800 : R.color.primary));
     }
 
     public void setAccentColorSettings(int base, int shade) {
@@ -461,13 +469,13 @@ public class AppSettings {
 
     public int[] getAccentColorSettings() {
         return new int[]{
-                getInt(prefApp, R.string.pref_key__accent_color_base, context.getResources().getColor(R.color.md_deep_orange_500)),
-                getInt(prefApp, R.string.pref_key__accent_color_shade, context.getResources().getColor(R.color.accent))
+                getInt(prefApp, R.string.pref_key__accent_color_base, getColorRes(R.color.md_deep_orange_500)),
+                getInt(prefApp, R.string.pref_key__accent_color_shade, getColorRes(R.color.accent))
         };
     }
 
     public int getAccentColor() {
-        return getInt(prefApp, R.string.pref_key__accent_color_shade, context.getResources().getColor(R.color.accent));
+        return getInt(prefApp, R.string.pref_key__accent_color_shade, getColorRes(R.color.accent));
     }
 
     public boolean isExtendedNotificationsActivated() {

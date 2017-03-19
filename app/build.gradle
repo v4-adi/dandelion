@@ -5,9 +5,18 @@ android {
     compileSdkVersion 24
     buildToolsVersion "24.0.3"
 
+    def VERSION_CODE = 14
+    def VERSION_NAME = "0.2.4"
+    def APP_NAME = "dandelion*"
+    def APP_PACKAGE = "com.github.dfa.diaspora_android"
+    def APP_ICON = "@drawable/ic_launcher"
+
     defaultConfig {
         minSdkVersion 17
         targetSdkVersion 24
+
+        buildConfigField "boolean", "IS_TEST_BUILD", "false"
+        buildConfigField "boolean", "IS_GPLAY_BUILD", "false"
 
         vectorDrawables.useSupportLibrary = true
     }
@@ -19,21 +28,31 @@ android {
     }
 
     productFlavors {
-        flavorDandelion {
-            applicationId "com.github.dfa.diaspora_android"
-            manifestPlaceholders = [appName: "dandelion*"]
-            versionCode 13
-            versionName "0.2.3"
+        flavorDefault {
+            applicationId APP_PACKAGE
+            resValue 'string', 'app_name', APP_NAME
+            manifestPlaceholders = [appIcon: APP_ICON]
+            versionCode VERSION_CODE; versionName VERSION_NAME
         }
 
-        flavorSecondlion {
-            applicationId "com.github.dfa.secondlion"
-            manifestPlaceholders = [appName: "secondlion*"]
+        flavorTest {
+            applicationId APP_PACKAGE.replace("diaspora_android", "secondlion")
+            resValue 'string', 'app_name', "secondlion*"
+            manifestPlaceholders = [appIcon: APP_ICON + "_test"]
             versionCode = Integer.parseInt(new Date().format('yyMMdd'))
             versionName = new Date().format('yyMMdd')
+            buildConfigField "boolean", "IS_TEST_BUILD", "true"
         }
-    }
 
+ /*       flavorGplay {
+            applicationId APP_PACKAGE
+            resValue 'string', 'app_name', APP_NAME
+            manifestPlaceholders = [appIcon: APP_ICON]
+            versionCode VERSION_CODE; versionName VERSION_NAME
+            buildConfigField "boolean", "IS_GPLAY_BUILD", "true"
+        }
+*/
+    }
     lintOptions {
         disable 'MissingTranslation'
     }
@@ -96,5 +115,4 @@ task copyRepoFiles(type: Copy) {
         }
     }
 }
-
 tasks.copyRepoFiles.execute()

@@ -16,7 +16,7 @@
     <string name="fragment_debug__pod_profile_url">Pod Domain: %1$s</string>
     <string name="fragment_debug__toast_log_copied">Debug log copied to clipboard</string>
 
-    <string name="fragment_about__about" translatable="false">@string/dandelion</string>
+    <string name="fragment_about__about" translatable="false">@string/app_name</string>
     <string name="fragment_about__about_text">dandelion* is your companion app for browsing the social network diaspora*. It adds features like useful toolbars and support for proxy servers like the Tor Network to your social experience.</string>
 
     <string name="fragment_about__contribute">Contribute Code!</string>
@@ -48,7 +48,7 @@
     <string name="fragment_license__contributors_thank_you">%1$s&lt;br>&lt;br>Thank you!</string>
     <string name="fragment_license__license" translatable="false">@string/about_activity__title_about_license</string>
     <string name="fragment_license__license_text" translatable="false">
-        Copyright © 2015-2016
+        Copyright © 2015-2017
         \nThis program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
         \n
         \nThis program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.

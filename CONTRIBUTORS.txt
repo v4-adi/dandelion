@@ -18,3 +18,4 @@ pskosinski (email AT pskosinski DOT pl): Polish translation
 SansPseudoFix (https://github.com/SansPseudoFix): French translation
 secitem (secitem AT tuta DOT io): Czech translation
 Zsolt Szakács (maxigaz AT diaspora DOT zone): Hungarian translation
+Danilo Raffaelli (https://crowdin.com/profile/Daraf): Italian translation
