@@ -122,7 +122,7 @@ public class AppSettings {
         return pref.getString(context.getString(ressourceId), context.getString(ressourceIdDefaultValue));
     }
 
-    private boolean getBoolean(SharedPreferences pref, int ressourceId, boolean defaultValue) {
+    private boolean getBool(SharedPreferences pref, int ressourceId, boolean defaultValue) {
         return pref.getBoolean(context.getString(ressourceId), defaultValue);
     }
 
@@ -164,7 +164,7 @@ public class AppSettings {
     }
 
     public boolean isLoadImages() {
-        return getBoolean(prefApp, R.string.pref_key__load_images, true);
+        return getBool(prefApp, R.string.pref_key__load_images, true);
     }
 
     public int getMinimumFontSize() {
@@ -277,7 +277,7 @@ public class AppSettings {
     }
 
     public boolean isAppendSharedViaApp() {
-        return getBoolean(prefApp, R.string.pref_key__append_shared_via_app, true);
+        return getBool(prefApp, R.string.pref_key__append_shared_via_app, true);
     }
 
     @SuppressLint("CommitPrefEdits")
@@ -293,7 +293,7 @@ public class AppSettings {
      */
     public boolean isProxyHttpEnabled() {
         try {
-            return getBoolean(prefApp, R.string.pref_key__http_proxy_enabled, false);
+            return getBool(prefApp, R.string.pref_key__http_proxy_enabled, false);
         } catch (ClassCastException e) {
             setProxyHttpEnabled(false);
             return false;
@@ -301,7 +301,7 @@ public class AppSettings {
     }
 
     public boolean wasProxyEnabled() {
-        return getBoolean(prefApp, R.string.pref_key__proxy_was_enabled, false);
+        return getBool(prefApp, R.string.pref_key__proxy_was_enabled, false);
     }
 
     /**
@@ -353,81 +353,92 @@ public class AppSettings {
     }
 
     public boolean isIntellihideToolbars() {
-        return getBoolean(prefApp, R.string.pref_key__intellihide_toolbars, true);
+        return getBool(prefApp, R.string.pref_key__intellihide_toolbars, true);
     }
 
     public boolean isChromeCustomTabsEnabled() {
-        return getBoolean(prefApp, R.string.pref_key__chrome_custom_tabs_enabled, true);
+        return getBool(prefApp, R.string.pref_key__chrome_custom_tabs_enabled, true);
     }
 
     public boolean isLoggingEnabled() {
-        return getBoolean(prefApp, R.string.pref_key__logging_enabled, false);
+        return getBool(prefApp, R.string.pref_key__logging_enabled, false);
     }
 
     public boolean isLoggingSpamEnabled() {
-        return getBoolean(prefApp, R.string.pref_key__logging_spam_enabled, false);
+        return getBool(prefApp, R.string.pref_key__logging_spam_enabled, false);
     }
 
     public boolean isVisibleInNavExit() {
-        return getBoolean(prefApp, R.string.pref_key__visibility_nav__exit, false);
+        return getBool(prefApp, R.string.pref_key__visibility_nav__exit, false);
     }
 
     public boolean isVisibleInNavHelp_license() {
-        return getBoolean(prefApp, R.string.pref_key__visibility_nav__help_license, true);
+        return getBool(prefApp, R.string.pref_key__visibility_nav__help_license, true);
     }
 
     public boolean isVisibleInNavPublic_activities() {
-        return getBoolean(prefApp, R.string.pref_key__visibility_nav__public_activities, false);
+        return getBool(prefApp, R.string.pref_key__visibility_nav__public_activities, false);
     }
 
     public boolean isVisibleInNavMentions() {
-        return getBoolean(prefApp, R.string.pref_key__visibility_nav__mentions, false);
+        return getBool(prefApp, R.string.pref_key__visibility_nav__mentions, false);
     }
 
     public boolean isVisibleInNavCommented() {
-        return getBoolean(prefApp, R.string.pref_key__visibility_nav__commented, true);
+        return getBool(prefApp, R.string.pref_key__visibility_nav__commented, true);
     }
 
     public boolean isVisibleInNavLiked() {
-        return getBoolean(prefApp, R.string.pref_key__visibility_nav__liked, true);
+        return getBool(prefApp, R.string.pref_key__visibility_nav__liked, true);
     }
 
     public boolean isVisibleInNavActivities() {
-        return getBoolean(prefApp, R.string.pref_key__visibility_nav__activities, true);
+        return getBool(prefApp, R.string.pref_key__visibility_nav__activities, true);
     }
 
     public boolean isVisibleInNavAspects() {
-        return getBoolean(prefApp, R.string.pref_key__visibility_nav__aspects, true);
+        return getBool(prefApp, R.string.pref_key__visibility_nav__aspects, true);
     }
 
     public boolean isVisibleInNavFollowed_tags() {
-        return getBoolean(prefApp, R.string.pref_key__visibility_nav__followed_tags, true);
+        return getBool(prefApp, R.string.pref_key__visibility_nav__followed_tags, true);
     }
 
     public boolean isVisibleInNavProfile() {
-        return getBoolean(prefApp, R.string.pref_key__visibility_nav__profile, true);
+        return getBool(prefApp, R.string.pref_key__visibility_nav__profile, true);
     }
 
     public boolean isVisibleInNavContacts() {
-        return getBoolean(prefApp, R.string.pref_key__visibility_nav__contacts, false);
+        return getBool(prefApp, R.string.pref_key__visibility_nav__contacts, false);
     }
 
     public boolean isVisibleInNavReports() {
-        return getBoolean(prefApp, R.string.pref_key__visibility_nav__reports, false);
+        return getBool(prefApp, R.string.pref_key__visibility_nav__reports, false);
     }
 
     public boolean isVisibleToggleMobileDesktop() {
-        return getBoolean(prefApp, R.string.pref_key__visibility_nav__toggle_mobile_desktop, false);
+        return getBool(prefApp, R.string.pref_key__visibility_nav__toggle_mobile_desktop, false);
     }
 
     public boolean isTopbarStreamShortcutEnabled() {
-        return getBoolean(prefApp, R.string.pref_key__topbar_stream_shortcut, false);
+        return getBool(prefApp, R.string.pref_key__topbar_stream_shortcut, false);
     }
 
     public String getScreenRotation() {
         return getString(prefApp, R.string.pref_key__screen_rotation, R.string.rotation_val_system);
     }
 
+    public boolean isAppFirstStart(){
+        boolean value = getBool(prefApp, R.string.pref_key__app_first_start, true);
+        setBool(prefApp, R.string.pref_key__app_first_start, false);
+        return value;
+    }
+
+    public boolean isAppCurrentVersionFirstStart(){
+        int value = getInt(prefApp, R.string.pref_key__app_first_start_current_version, -1);
+        setInt(prefApp, R.string.pref_key__app_first_start_current_version, BuildConfig.VERSION_CODE);
+        return value != BuildConfig.VERSION_CODE && !BuildConfig.IS_TEST_BUILD;
+    }
 
     public long getLastVisitedPositionInStream() {
         return getLong(prefPod, R.string.pref_key__podprofile_last_stream_position, -1);
@@ -479,6 +490,6 @@ public class AppSettings {
     }
 
     public boolean isExtendedNotificationsActivated() {
-        return getBoolean(prefApp, R.string.pref_key__extended_notifications, false);
+        return getBool(prefApp, R.string.pref_key__extended_notifications, false);
     }
 }

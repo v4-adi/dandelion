@@ -76,11 +76,15 @@ import com.github.dfa.diaspora_android.ui.theme.ThemedAlertDialogBuilder;
 import com.github.dfa.diaspora_android.util.AppLog;
 import com.github.dfa.diaspora_android.util.AppSettings;
 import com.github.dfa.diaspora_android.util.DiasporaUrlHelper;
+import com.github.dfa.diaspora_android.util.Helpers;
+import com.github.dfa.diaspora_android.util.SimpleMarkdownParser;
 import com.github.dfa.diaspora_android.web.BrowserFragment;
 import com.github.dfa.diaspora_android.web.ContextMenuWebView;
 import com.github.dfa.diaspora_android.web.ProxyHandler;
 import com.github.dfa.diaspora_android.web.WebHelper;
 import com.github.dfa.diaspora_android.web.custom_tab.CustomTabActivityHelper;
+
+import java.io.IOException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -212,6 +216,30 @@ public class MainActivity extends ThemedActivity
                 openDiasporaUrl(urls.getStreamUrl());
             }
         }
+
+        // Show first start dialog
+        try {
+            if (appSettings.isAppFirstStart()) {
+                SimpleMarkdownParser smp = new SimpleMarkdownParser().parse(
+                        getResources().openRawResource(R.raw.license),
+                        SimpleMarkdownParser.FILTER_ANDROID_TEXTVIEW, "");
+                String html = smp.getHtml()
+                        + "<br/><br/><br/>"
+                        + "<h1>" + getString(R.string.fragment_license__thirdparty_libs) + "</h1>"
+                        + smp.parse(getResources().openRawResource(R.raw.license_third_party),
+                        SimpleMarkdownParser.FILTER_ANDROID_TEXTVIEW, "");
+                html = smp.setHtml(html).removeMultiNewlines().getHtml();
+                Helpers.showDialogWithHtmlTextView(this, html, R.string.about_activity__title_about_license);
+                appSettings.isAppCurrentVersionFirstStart();
+            } else if (appSettings.isAppCurrentVersionFirstStart()) {
+                SimpleMarkdownParser smp = new SimpleMarkdownParser().parse(
+                        getResources().openRawResource(R.raw.changelog),
+                        SimpleMarkdownParser.FILTER_ANDROID_TEXTVIEW, "");
+                Helpers.showDialogWithHtmlTextView(this, smp.getHtml(), R.string.changelog);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -244,14 +272,14 @@ public class MainActivity extends ThemedActivity
                         moveTaskToBack(true);
                     }
                 });
-        snackbarLastVisitedTimestampInStream = 
-        Snackbar.make(fragmentContainer, 
-        R.string.jump_to_last_visited_timestamp_in_stream, Snackbar.LENGTH_LONG)
-                .setAction(android.R.string.yes, new View.OnClickListener() {
-                    public void onClick(View view) {
-                        openDiasporaUrl(urls.getStreamWithTimestampUrl(diasporaUserProfile.getLastVisitedPositionInStream()));
-                    }
-                });
+        snackbarLastVisitedTimestampInStream =
+                Snackbar.make(fragmentContainer,
+                        R.string.jump_to_last_visited_timestamp_in_stream, Snackbar.LENGTH_LONG)
+                        .setAction(android.R.string.yes, new View.OnClickListener() {
+                            public void onClick(View view) {
+                                openDiasporaUrl(urls.getStreamWithTimestampUrl(diasporaUserProfile.getLastVisitedPositionInStream()));
+                            }
+                        });
         snackbarNoInternet = Snackbar.make(fragmentContainer, R.string.no_internet, Snackbar.LENGTH_LONG);
 
         // Load app settings
@@ -392,8 +420,7 @@ public class MainActivity extends ThemedActivity
                     app.getAvatarImageLoader().startImageDownload(navheaderImage, avatarUrl);
                 }
             }
-        }
-        else if (BuildConfig.IS_TEST_BUILD){
+        } else if (BuildConfig.IS_TEST_BUILD) {
             navheaderImage.setImageResource(R.drawable.ic_launcher_test);
         }
         updateNavigationViewEntryVisibilities();

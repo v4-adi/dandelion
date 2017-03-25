@@ -265,9 +265,12 @@ public class AboutActivity extends ThemedActivity
             final Context context = rootView.getContext();
             accentColor = Helpers.colorToHex(ThemeHelper.getAccentColor());
 
-            maintainers.setTextFormatted(getString(R.string.fragment_license__maintainers_text, getMaintainersHtml(context)));
-            contributors.setTextFormatted(getString(R.string.fragment_license__contributors_thank_you, getContributorsHtml(context)));
-            thirdPartyLibs.setTextFormatted(getLicense3dPartyHtml(context));
+            maintainers.setTextFormatted(getString(R.string.fragment_license__maintainers_text,
+                    Helpers.loadMarkdownFromRawForTextView(context, R.raw.maintainers, "")));
+            contributors.setTextFormatted(getString(R.string.fragment_license__contributors_thank_you,
+                    Helpers.loadMarkdownFromRawForTextView(context, R.raw.contributors, "* ")));
+            thirdPartyLibs.setTextFormatted(
+                    Helpers.loadMarkdownFromRawForTextView(context, R.raw.license_third_party, ""));
             return rootView;
         }
 
@@ -281,25 +284,6 @@ public class AboutActivity extends ThemedActivity
                     Helpers.openInExternalBrowser(getContext(), getString(R.string.fragment_license__license_gpl_link));
                     break;
             }
-        }
-
-        public String getContributorsHtml(Context context) {
-            return Helpers.readTextfileFromRawRessource(context, R.raw.contributors,
-                    "<font color='" + accentColor + "'><b>*</b></font> ", "<br>");
-        }
-
-        public String getMaintainersHtml(Context context) {
-            String text = Helpers.readTextfileFromRawRessource(context, R.raw.maintainers, "", "<br>");
-            text = text
-                    .replace("NEWENTRY", "<font color='" + accentColor + "'><b>*</b></font> ")
-                    .replace("SUBTABBY", "&nbsp;&nbsp;");
-            return text;
-        }
-
-        public String getLicense3dPartyHtml(Context context) {
-            String text = Helpers.readTextfileFromRawRessource(context, R.raw.license_third_party, "", "<br>");
-            text = text.replace("NEWENTRY", "<font color='" + accentColor + "'><b>*</b></font> ");
-            return text;
         }
 
         @Override

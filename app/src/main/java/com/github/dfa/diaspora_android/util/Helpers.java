@@ -18,7 +18,6 @@
  */
 package com.github.dfa.diaspora_android.util;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -26,11 +25,21 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.annotation.RawRes;
+import android.support.annotation.StringRes;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
+import android.text.Html;
+import android.text.SpannableString;
 import android.text.TextUtils;
+import android.text.method.LinkMovementMethod;
+import android.util.TypedValue;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
+import android.widget.TextView;
 
-import com.github.dfa.diaspora_android.App;
 import com.github.dfa.diaspora_android.R;
 import com.github.dfa.diaspora_android.web.WebHelper;
 
@@ -44,31 +53,12 @@ import java.util.Date;
 import java.util.Locale;
 
 public class Helpers {
-
-    public static void animateToActivity(Activity from, Class to, boolean finishFromActivity) {
-        Intent intent = new Intent(from, to);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        from.startActivity(intent);
-        from.overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-        if (finishFromActivity) {
-            from.finish();
-        }
-    }
-
     public static int getColorFromRessource(Context context, int ressourceId) {
         Resources res = context.getResources();
         if (Build.VERSION.SDK_INT >= 23) {
             return res.getColor(ressourceId, context.getTheme());
         } else {
             return res.getColor(ressourceId);
-        }
-    }
-
-    public static void loadUrlInExternalBrowser(Context context, String url) {
-        try {
-            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-            context.startActivity(browserIntent);
-        } catch (Exception ignored) {
         }
     }
 
@@ -123,8 +113,41 @@ public class Helpers {
         return sb.toString();
     }
 
-    public static String hexColorFromRessourceColor(Context context, int idColor) {
-        return "#" + Integer.toHexString(context.getResources().getColor(idColor) & 0x00ffffff);
+    public static String loadMarkdownFromRawForTextView(Context context, @RawRes int rawMdFile, String prepend) {
+        try {
+            return new SimpleMarkdownParser()
+                    .parse(context.getResources().openRawResource(rawMdFile),
+                            SimpleMarkdownParser.FILTER_ANDROID_TEXTVIEW, prepend)
+                    .replaceColor("#000001", ContextCompat.getColor(context, R.color.accent))
+                    .removeMultiNewlines().replaceBulletCharacter("*").getHtml();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "";
+        }
+    }
+
+
+    public static void showDialogWithHtmlTextView(Context context, String html, @StringRes int resTitleId) {
+        LinearLayout layout = new LinearLayout(context);
+        TextView textView = new TextView(context);
+        textView.setMovementMethod(LinkMovementMethod.getInstance());
+        ScrollView root = new ScrollView(context);
+        int margin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 20,
+                context.getResources().getDisplayMetrics());
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+        layoutParams.setMargins(margin, 0, margin, 0);
+        layout.setLayoutParams(layoutParams);
+
+        layout.addView(textView);
+        root.addView(layout);
+
+        textView.setText(new SpannableString(Html.fromHtml(html)));
+        AlertDialog.Builder dialog = new AlertDialog.Builder(context)
+                .setPositiveButton(android.R.string.ok, null)
+                .setTitle(resTitleId)
+                .setView(root);
+        dialog.show();
     }
 
     public static String colorToHex(int color) {

@@ -15,6 +15,8 @@
     <string name="pref_key__http_proxy_load_tor_preset" translatable="false">pref_key__http_proxy_load_tor_preset</string>
     <string name="pref_key__extended_notifications" translatable="false">pref_key__extended_notifications</string>
     <string name="pref_key__topbar_stream_shortcut" translatable="false">pref_key__topbar_stream_shortcut</string>
+    <string name="pref_key__app_first_start" translatable="false">pref_key__app_first_start</string>
+    <string name="pref_key__app_first_start_current_version" translatable="false">pref_key__app_first_start_current_version</string>
 
     <!-- Themes -->
     <string name="pref_key__primary_color__preference_click" translatable="false">@string/pref_key__primary_color_shade</string>

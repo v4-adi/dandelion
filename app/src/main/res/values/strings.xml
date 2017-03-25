@@ -27,6 +27,7 @@
     <string name="public_">Public</string>
     <string name="search">Search</string>
     <string name="contacts">Contacts</string>
+    <string name="changelog">Changelog</string>
     <string name="tor" translatable="false">Tor</string>
 
     <!-- Notifications dropdown menu -->

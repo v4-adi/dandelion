@@ -1,4 +1,13 @@
-# v0.2.4
+### v0.2.5 WIP
+- Introduce minimalistic Markdown Parser
+- Show LICENSE at first start
+- Show CHANGELOG after update
+- Convert existing Markup files to Markdown
+- Update existing markdown files
+- Update AboutActivity to use new Parser
+- Added Korean and Danish as translation options
+
+### v0.2.4 (2017-03-19)
 - Different icon and color for secondlion
 - Language switcher
 - Handle dia.so links
@@ -7,13 +16,13 @@
 - Update gradle build scripts
 - Added CircleCI
 
-# v0.2.3
+### v0.2.3 (2017-02-24)
 - Add Czech translation (thanks @bezcitu)
 - Add option to copy image urls to clipboard
 - Fixed some bugs related to image upload/download
 - Published secondlion\* (nighly version of dandelion\*)
 
-# v0.2.2
+### v0.2.2
 - Move "toggle mobile/deskop" to nav-slider
 - Reduce messages sent via broadcast
 - Allow to jump to last visited page on stream
@@ -23,14 +32,14 @@
 - FIX #92 Roation settings
 - FIX #111 Remove legacy code
 
-# v0.2.1
+### v0.2.1
 - App name changed to **dandelion***
 - Rotation options
 - Top toolbar loads screen again (toggleable in settings)
 - Fixed overlapping fragments
 - Visual rework of the About-section of the app
 
-# v0.2.0a
+### v0.2.0a
 - Added: Customizable Theme Colors!
 - Improved account setup with easy tor hidden service configuration
 - Eye candy for the settings activity
@@ -39,7 +48,7 @@
 - Lots of bugfixes
 - Fixes for the bugfixes!
 
-# v0.1.6
+### v0.1.6
 - Added: New languages
 - Changed: New delicious visual style + launcher icon
 - Changed: Notifications-/Messages-indicator does now display number of events!
@@ -51,7 +60,7 @@
 - Fixed: Image upload for older devices
 - Added: Option to open external links in Chrome CustomTab
 
-# v0.1.5
+### v0.1.5
 - Update title depending on what the user is doing
 - New greenish color scheme
 - Replaced SwipeToRefresh functionality with refresh button
@@ -66,7 +75,7 @@
 - Allow slider customization
 - Show aspect name after selection
 
-# v0.1.4 (2016-07-31)
+### v0.1.4 (2016-07-31)
 - by @vanitasvitae, @gsantner, @di72nn
 - Allow turning off toolbar intellihide
 - Handle links from browseable intent filter #38
@@ -81,7 +90,7 @@
 - Share screenshot fix; Minor Aspects rework
 - Update to SDK 24 (Android N)
 
-# v0.1.3 (2016-07-04)
+### v0.1.3 (2016-07-04)
 - Added titles on top toolbar (by @scoute-dich)
 - Made bottom toolbar automatically disappear
 - Added option to share images to external app
@@ -92,7 +101,7 @@
 - Removed swipe-to-refresh functionality in some places
 - Big thanks and good luck to @scoute-dich and @martinchodev for accompanying this project :)
 
-# v0.1.2 (2016-06-05)
+### v0.1.2 (2016-06-05)
 - Extract and show aspects (by @gsantner)
 - Cache last podlist
 - Better sharing from app
@@ -105,7 +114,7 @@
 - Lots of refactoring; Reworked Splash,PodSelectionActivity; Switch Pod; Clear settings;
 - Activity transitions, usability MainActivity, green accent color
 
-# v0.1.1
+### v0.1.1
 - Sharing updated (by @scoute-dich)
 - Screenshotting updated
 - Gitter integration (by @gsantner)
@@ -115,8 +124,8 @@
 - Travis CI integration
 - Bump Gradle, Build-Tools, Libs to Android Studio 2.1 defaults
 
-# v0.1.0 (Diaspora for Android)
-First version of the organization *Diaspora for Android*  
+### v0.1.0 (Diaspora for Android)
+First version of the organization *Diaspora for Android*
 Consists mostly of code from:
 - Diaspora-Native-Webapp (by @martinchodev )
 - scoutedich additions (by @scoute-dich)
