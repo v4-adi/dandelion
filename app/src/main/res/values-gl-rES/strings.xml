@@ -8,6 +8,13 @@
   <string name="settings">Axustes</string>
   <string name="notifications">Notificacións</string>
   <string name="conversations">Conversas</string>
+  <string name="stream">Onda</string>
+  <string name="profile">Perfil</string>
+  <string name="aspects">Aspectos</string>
+  <string name="activities">Actividades</string>
+  <string name="liked">Gústanme</string>
+  <string name="commented">Comentados</string>
+  <string name="mentions">Mencións</string>
   <!-- Notifications dropdown menu -->
   <!-- Pod Activity -->
   <!-- Drawer, Menu, Toolbar, ContextMenu -->
