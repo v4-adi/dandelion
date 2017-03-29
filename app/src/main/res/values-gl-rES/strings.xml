@@ -72,4 +72,10 @@
         dandelion*. Na sección permisos podes conceder o \"permiso de escritura\" no almacenamento.</string>
   <string name="permission_denied">Permiso denegado.</string>
   <string name="permission_granted_try_again">Permiso concedido. Por favor, téntao de novo.</string>
+  <string name="podselection__custom_pod">Pod non listado</string>
+  <string name="pod_name">Nome do Pod</string>
+  <string name="http_protocol">Protocolo</string>
+  <string name="pod_address">Enderezo do Pod</string>
+  <string name="missing_value">Valor desaparecido</string>
+  <string name="jump_to_last_visited_timestamp_in_stream">Ir á última páxina vista na onda?</string>
 </resources>
