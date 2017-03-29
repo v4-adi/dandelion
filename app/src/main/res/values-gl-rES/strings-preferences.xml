@@ -56,7 +56,7 @@
   <string name="pref_desc__http_proxy_load_tor_preset">Carga os axustes proxy para o Tor (Orbot) HTTP Proxy</string>
   <string name="pref_title__sub_proxy">Proxy</string>
   <string name="pref_title__proxy_enabled">Activar Proxy</string>
-  <string name="pref_desc__http_proxy_enabled">Proxy do tráfico do dandelion* para rodear firewalls.\nPode requirir reiniciar. Podería non funcionar nalgúns teléfonos.</string>
+  <string name="pref_desc__http_proxy_enabled">Proxy do tráfico do dandelion* para evadir firewalls.\nPode requirir reiniciar. Podería non funcionar nalgúns teléfonos.</string>
   <string name="pref_title__http_proxy_host">Host</string>
   <string name="pref_title__http_proxy_port">Porto</string>
   <string name="toast__proxy_disabled__restart_required">A aplicación precisa reiniciar para desactivar o uso do proxy</string>
@@ -79,6 +79,10 @@
   <string name="pref_title__append_shared_via_app">Anexar shared-by-notice</string>
   <string name="pref_desc__append_shared_via_app">Anexa unha referencia a esta aplicación para compartir textos: [vía #dandelion]</string>
   <!-- More -->
+  <string name="pref_title__sub_miscelaneous">Varios</string>
+  <string name="pref_title__wipe_settings">Reinicio completo</string>
+  <string name="pref_desc__wipe_settings">Limpar localmente todos os axustes da aplicación e saír de todas as contas</string>
+  <string name="dialog_content__wipe_settings">Isto vai restaurar todos os axustes aos seus valores por defecto e saír de todos os pods. As imaxes descargadas non se tocan. Estás seguro de querer facelo?</string>
   <!-- Recently added - Please move to right section-->
   <!-- Sorry -->
 </resources>
