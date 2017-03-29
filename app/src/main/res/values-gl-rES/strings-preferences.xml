@@ -5,12 +5,21 @@
   <!-- Themes -->
   <!-- Operability -->
   <string name="pref_title__topbar_stream_shortcut">Cargar onda na barra de ferramentas superior</string>
+  <string name="pref_desc__topbar_stream_shortcut">Premer nun espazo baleiro na barra de ferramentas abre a onda</string>
   <!-- Navigiation Slider -->
   <!-- PodProfile -->
   <!-- More -->
   <!-- Category Titles -->
+  <string name="pref_cat__visuals">Aparencia</string>
+  <string name="pref_cat__network">Rede</string>
+  <string name="pref_cat__pod_settings">Axustes do Pod</string>
+  <string name="pref_cat__operability">Operatividade</string>
   <!-- Visuals -->
   <!-- Navigiation Slider -->
+  <string name="pref_title__sub_nav_slider">Menú lateral</string>
+  <string name="pref_desc__sub_nav_slider">Control da visualización de entradas na barra lateral</string>
+  <string name="pref_cat__visibility_nav_items__user">Usuario</string>
+  <string name="pref_cat__visibility_nav_items__general">Xeral</string>
   <!-- Themes -->
   <!-- Notifications dropdown -->
   <!-- Font size -->
