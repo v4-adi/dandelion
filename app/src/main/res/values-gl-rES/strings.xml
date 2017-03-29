@@ -22,7 +22,13 @@
   <!-- Notifications dropdown menu -->
   <string name="notifications__all">Todas as notificacións</string>
   <string name="notifications__also_commented">Tamén comentado</string>
+  <string name="notifications__comment_on_post">Comentado no artigo</string>
+  <string name="notifications__liked">Gústame</string>
+  <string name="notifications__mentioned">Mencionado</string>
+  <string name="notifications__reshared">Compartido</string>
+  <string name="notifications__started_sharing">Comezado a compartir</string>
   <!-- Pod Activity -->
+  <string name="podlist_error">Erro: non se pode cargar a lista de pods!</string>
   <!-- Drawer, Menu, Toolbar, ContextMenu -->
   <!-- More from MainActivity -->
   <!-- Permissions -->
