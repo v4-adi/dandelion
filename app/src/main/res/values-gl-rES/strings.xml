@@ -21,11 +21,11 @@
   <string name="changelog">Cambios</string>
   <!-- Notifications dropdown menu -->
   <string name="notifications__all">Todas as notificacións</string>
-  <string name="notifications__also_commented">Tamén comentado</string>
-  <string name="notifications__comment_on_post">Comentado na entrada</string>
-  <string name="notifications__liked">Gústame</string>
-  <string name="notifications__mentioned">Mencionado</string>
-  <string name="notifications__reshared">Compartido</string>
+  <string name="notifications__also_commented">Tamén comentadas</string>
+  <string name="notifications__comment_on_post">Comentarios na entrada</string>
+  <string name="notifications__liked">Gustadas</string>
+  <string name="notifications__mentioned">Mencións</string>
+  <string name="notifications__reshared">Compartidas</string>
   <string name="notifications__started_sharing">Comezado a compartir</string>
   <!-- Pod Activity -->
   <string name="podlist_error">Erro: non se pode cargar a lista de pods!</string>
