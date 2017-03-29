@@ -22,14 +22,32 @@
   <!-- Notifications dropdown menu -->
   <string name="notifications__all">Todas as notificacións</string>
   <string name="notifications__also_commented">Tamén comentado</string>
-  <string name="notifications__comment_on_post">Comentado no artigo</string>
+  <string name="notifications__comment_on_post">Comentado na entrada</string>
   <string name="notifications__liked">Gústame</string>
   <string name="notifications__mentioned">Mencionado</string>
   <string name="notifications__reshared">Compartido</string>
   <string name="notifications__started_sharing">Comezado a compartir</string>
   <!-- Pod Activity -->
   <string name="podlist_error">Erro: non se pode cargar a lista de pods!</string>
+  <string name="no_internet">Desculpa, tes que conectar a internet para proceder</string>
+  <string name="confirmation">Confirmación</string>
+  <string name="confirm_exit">Queres saír?</string>
   <!-- Drawer, Menu, Toolbar, ContextMenu -->
+  <string name="nav_menu_more">Máis</string>
+  <string name="nav_help_license">Acerca de | Axuda</string>
+  <string name="nav_followed_tags">Etiquetas seguidas</string>
+  <string name="nav_public_activities">Actividade pública</string>
+  <string name="nav_reports">Denuncias</string>
+  <string name="share__share_link_as_text">Compartir ligazón como texto</string>
+  <string name="share__share_screenshot">Compartir captura da páxina</string>
+  <string name="share__take_screenshot">Captura da páxina</string>
+  <string name="share__toast_saved_image_to_location">Gardar imaxe a</string>
+  <string name="share__toast_screenshot">Gardando captura como:</string>
+  <string name="share__toast_link_address_copied">Ligazón copiada &#8230;</string>
+  <string name="new_post">Nova entrada</string>
+  <string name="action_go_to_top">Ir arriba</string>
+  <string name="action_search_by_tags_or_persons">Buscar etiquetas ou persoas</string>
+  <string name="action_exit_app">Saír da app</string>
   <!-- More from MainActivity -->
   <!-- Permissions -->
 </resources>
