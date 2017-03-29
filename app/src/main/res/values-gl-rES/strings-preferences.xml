@@ -65,6 +65,17 @@
   <string name="pref_desc__chrome_custom_tabs_enabled">Abrir ligazóns externas con Chrome Custom Tabs. Hai que instalar Chromium ou Google Chrome para usar esta característica. \nNOTA IMPORTANTE: Chrome Custom Tabs non usa servidores proxy configurados!</string>
   <!-- Diaspora Settings -->
   <string name="pref_title__personal_settings">Axustes persoais</string>
+  <string name="pref_desc__personal_settings">Abre os axustes da túa conta diaspora*</string>
+  <string name="pref_desc__manage_contacts">Xestionar lista de contactos</string>
+  <string name="pref_title__manage_tags">Xestionar Hashtags</string>
+  <string name="pref_desc__manage_tags">Non seguir etiquetas xa seguidas</string>
+  <string name="pref_title__change_account">Cambiar conta</string>
+  <string name="pref_desc__change_account">Borra os datos da sesión local e cambia a outra conta/pod diaspora*</string>
+  <string name="pref_warning__change_account">Isto vai borrar todas as cookies e datos da sesión. Seguro que queres cambiar de conta?</string>
+  <string name="pref_title__clear_cache">Limpar caché</string>
+  <string name="pref_desc__clear_cache">Limpar caché da vista Web</string>
+  <string name="pref_desc__intellihide_toolbars">Agocha automaticamente as barras superior e inferior mentres desliza</string>
+  <string name="pref_title__intellihide_toolbars">Barras de ferramentas Intellihide</string>
   <!-- More -->
   <!-- Recently added - Please move to right section-->
   <!-- Sorry -->
