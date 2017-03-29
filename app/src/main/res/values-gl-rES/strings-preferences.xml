@@ -31,9 +31,19 @@
   <!-- Notifications dropdown -->
   <string name="pref_title__extended_notifications">Notificacións extendidas</string>
   <string name="pref_desc__extended_notifications">Extensión da campá de notificacións que desprega un menú onde amosa as categorías das notificacións</string>
+  <string name="pref_desc__language">Cambia o idioma da aplicación. Cumpre reiniciala</string>
+  <string name="pref_title__language">Idioma</string>
+  <string name="language_system">Idioma do sistema</string>
   <!-- Font size -->
+  <string name="pref_desc__font_size">Control do tamaño do texto na vista Web</string>
+  <string name="pref_title__font_size">Tamaño da fonte</string>
   <!-- prefix 's' is needed to make this a string array. Otherwise ListPreference would crash -->
+  <string name="font_size_normal">Normal</string>
+  <string name="font_size_large">Grande</string>
+  <string name="font_size_huge">Moi grande</string>
   <!-- Load images -->
+  <string name="pref_title__load_images">Cargar imaxes</string>
+  <string name="pref_desc__load_images">Alterna a carga de imaxes para reducir gasto de datos</string>
   <!-- Screen rotation -->
   <!-- Proxy -->
   <!-- Chrome custom tabs -->
