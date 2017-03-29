@@ -62,4 +62,14 @@
   <!-- More from MainActivity -->
   <string name="unable_to_load_image">Incapaz de cargar a imaxe</string>
   <!-- Permissions -->
+  <string name="permissions_screenshot">Tes que conceder \"Permiso de acceso ao almacenamento\" para gardar capturas. Despois deberías
+        pechar completamente a aplicación ou reiniciar o dispositivo. Se non permites o acceso ao almacenamento pero queres usar a
+        función de capturas máis adiante, podes conceder o permiso despois. Entón abre: configuración - aplicacións -
+        dandelion*. Na sección permisos podes conceder o \"permiso de escritura\" no almacenamento.</string>
+  <string name="permissions_image">Tes que conceder \"Permiso de acceso ao almacenamento\" para gardar/subir imaxes. Despois deberías
+        pechar completamente a aplicación ou reiniciar o dispositivo. Se non permites o acceso ao almacenamento pero queres gardar imaxes
+        máis adiante, podes conceder o permiso despois. Entón abre: configuración - aplicacións -
+        dandelion*. Na sección permisos podes conceder o \"permiso de escritura\" no almacenamento.</string>
+  <string name="permission_denied">Permiso denegado.</string>
+  <string name="permission_granted_try_again">Permiso concedido. Por favor, téntao de novo.</string>
 </resources>
