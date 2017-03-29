@@ -11,11 +11,17 @@
   <string name="stream">Onda</string>
   <string name="profile">Perfil</string>
   <string name="aspects">Aspectos</string>
-  <string name="activities">Actividades</string>
+  <string name="activities">Actividade</string>
   <string name="liked">Gústanme</string>
   <string name="commented">Comentados</string>
   <string name="mentions">Mencións</string>
+  <string name="public_">Pública</string>
+  <string name="search">Buscar</string>
+  <string name="contacts">Contactos</string>
+  <string name="changelog">Cambios</string>
   <!-- Notifications dropdown menu -->
+  <string name="notifications__all">Todas as notificacións</string>
+  <string name="notifications__also_commented">Tamén comentado</string>
   <!-- Pod Activity -->
   <!-- Drawer, Menu, Toolbar, ContextMenu -->
   <!-- More from MainActivity -->
