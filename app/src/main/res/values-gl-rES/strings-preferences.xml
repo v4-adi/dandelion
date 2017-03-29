@@ -56,8 +56,15 @@
   <string name="pref_desc__http_proxy_load_tor_preset">Carga os axustes proxy para o Tor (Orbot) HTTP Proxy</string>
   <string name="pref_title__sub_proxy">Proxy</string>
   <string name="pref_title__proxy_enabled">Activar Proxy</string>
+  <string name="pref_desc__http_proxy_enabled">Proxy do tráfico do dandelion* para rodear firewalls.\nPode requirir reiniciar. Podería non funcionar nalgúns teléfonos.</string>
+  <string name="pref_title__http_proxy_host">Host</string>
+  <string name="pref_title__http_proxy_port">Porto</string>
+  <string name="toast__proxy_disabled__restart_required">A aplicación precisa reiniciar para desactivar o uso do proxy</string>
+  <string name="toast__proxy_orbot_preset_loaded">Cargados axustes proxy do Orbot</string>
   <!-- Chrome custom tabs -->
+  <string name="pref_desc__chrome_custom_tabs_enabled">Abrir ligazóns externas con Chrome Custom Tabs. Hai que instalar Chromium ou Google Chrome para usar esta característica. \nNOTA IMPORTANTE: Chrome Custom Tabs non usa servidores proxy configurados!</string>
   <!-- Diaspora Settings -->
+  <string name="pref_title__personal_settings">Axustes persoais</string>
   <!-- More -->
   <!-- Recently added - Please move to right section-->
   <!-- Sorry -->
