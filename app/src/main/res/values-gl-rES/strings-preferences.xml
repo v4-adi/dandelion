@@ -45,7 +45,17 @@
   <string name="pref_title__load_images">Cargar imaxes</string>
   <string name="pref_desc__load_images">Alterna a carga de imaxes para reducir gasto de datos</string>
   <!-- Screen rotation -->
+  <string name="pref_title__screen_rotation">Rotación da pantalla</string>
+  <string name="pref_desc__screen_rotation">Control automático da rotación de pantalla</string>
+  <string name="rotation_system">Por defecto</string>
+  <string name="rotation_sensor">Sensor\n(ignora axustes do sistema)</string>
+  <string name="rotation_portrait">Vertical</string>
+  <string name="rotation_landscape">Horizontal</string>
   <!-- Proxy -->
+  <string name="pref_title__http_proxy_load_tor_preset">Cargar axustes do Tor</string>
+  <string name="pref_desc__http_proxy_load_tor_preset">Carga os axustes proxy para o Tor (Orbot) HTTP Proxy</string>
+  <string name="pref_title__sub_proxy">Proxy</string>
+  <string name="pref_title__proxy_enabled">Activar Proxy</string>
   <!-- Chrome custom tabs -->
   <!-- Diaspora Settings -->
   <!-- More -->
