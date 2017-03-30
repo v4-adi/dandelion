@@ -16,5 +16,11 @@
   <string name="fragment_debug__pod_profile_name">Nome do perfil Pod: %1$s</string>
   <string name="fragment_debug__pod_profile_url">Dominio do Pod: %1$s</string>
   <string name="fragment_debug__toast_log_copied">Rexistro de depuración copiado ao portapapeis</string>
+  <string name="fragment_about__about_text">dandelion* é a túa aplicación compañeira para navegar pola rede social diaspora*. Engade características como útiles barras de ferramentas e soporta servidores proxy como a Rede Tor para a túa experiencia social.</string>
+  <string name="fragment_about__contribute">Contribúe código!</string>
+  <string name="fragment_about__contribute_text">dandelion* é de libre desenrolo e segue as ideas do proxecto diaspora*. Se queres contribuír, adiante! Actualmente somos un equipo moi pequeno, polo que apreciamos moito calquera clase de axuda!</string>
+  <string name="fragment_about__contribute_button">Consegue a fonte</string>
+  <string name="fragment_about__translate">Traduce a aplicación!</string>
+  <string name="fragment_about__translate_text">A aplicación non está na túa lingua? Podes cambiar iso! Por que non nos axudas a traducila? Usamos a plataforma crowdin para habilitar a calquera para traducir a aplicación.</string>
   <!-- License & help (large amount of text) -->
 </resources>
