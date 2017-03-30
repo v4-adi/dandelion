@@ -22,5 +22,13 @@
   <string name="fragment_about__contribute_button">Consegue a fonte</string>
   <string name="fragment_about__translate">Traduce a aplicación!</string>
   <string name="fragment_about__translate_text">A aplicación non está na túa lingua? Podes cambiar iso! Por que non nos axudas a traducila? Usamos a plataforma crowdin para habilitar a calquera para traducir a aplicación.</string>
+  <string name="fragment_about__translate_button">Déixame traducir</string>
+  <string name="fragment_about__feedback">Dános Feedback!</string>
+  <string name="fragment_about__feedback_text">dandelion* aínda está en desenrolo, polo que se tes suxestións ou calquera clase de feedback, por favor, usa o noso xestor de bugs para facérnolo saber!</string>
+  <string name="fragment_about__feedback_button">Informar fallos (bugs)</string>
+  <string name="fragment_about__spread_the_word">Difunde!</string>
+  <string name="fragment_about__spread_the_word_text">Fálalles aos teus amigos e familia sobre diaspora* e #dandelion! Por que non publicas a túa experiencia? Encantaríanos escoitalo de ti!</string>
+  <string name="fragment_about__spread_the_word_button">Compartir a aplicación</string>
+  <string name="fragment_about__spread_the_word_share_text">Hei! Proba o #dandelion! %1$s</string>
   <!-- License & help (large amount of text) -->
 </resources>
