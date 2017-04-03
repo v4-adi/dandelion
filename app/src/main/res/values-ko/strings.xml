@@ -53,4 +53,20 @@
   <!-- More from MainActivity -->
   <string name="unable_to_load_image">이미지를 불러올 수 없습니다</string>
   <!-- Permissions -->
+  <string name="permissions_screenshot">스크린샷을 저장하려면 파일 저장소 접근 권한이 필요합니다. 권한을 승인하신 후
+        앱을 완전히 종료하시거나 재부팅하세요.
+        나중에 해당 기능을 사용하시려면 시스템 세팅 - 어플리케이션 -
+        dandelion* 에 들어가 저장소 쓰기 권한을 부여해주십시오.</string>
+  <string name="permissions_image">이미지를 업로드하거나 저장하려면 파일 저장소 접근 권한이 필요합니다. 권한을 승인하신 후
+        앱을 완전히 종료하시거나 재부팅하세요.
+        나중에 해당 기능을 사용하시려면 시스템 세팅 - 어플리케이션 -
+        dandelion* 에 들어가 저장소 쓰기 권한을 부여해주십시오.</string>
+  <string name="permission_denied">권한 거부됨.</string>
+  <string name="permission_granted_try_again">권한이 승인되었습니다. 다시 시도해보세요.</string>
+  <string name="podselection__custom_pod">사용자 정의 포드</string>
+  <string name="pod_name">포드 이름</string>
+  <string name="http_protocol">프로토콜</string>
+  <string name="pod_address">포드 주소</string>
+  <string name="missing_value">값이 없습니다</string>
+  <string name="jump_to_last_visited_timestamp_in_stream">스트림의 마지막 방문 페이지로 이동합니까?</string>
 </resources>
