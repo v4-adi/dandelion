@@ -36,6 +36,21 @@
   <string name="share__take_screenshot">웝페이지 스크린샷 찍기</string>
   <string name="share__toast_saved_image_to_location">이미지 저장하기</string>
   <string name="share__toast_screenshot">다음으로 스크린샷 저장:</string>
+  <string name="share__toast_link_address_copied">링크 주소를 복사했습니다 &#8230;</string>
+  <string name="new_post">새 게시물</string>
+  <string name="action_go_to_top">상단으로 이동</string>
+  <string name="action_search_by_tags_or_persons">태그 또는 사람으로 검색</string>
+  <string name="action_exit_app">어플리케이션 종료</string>
+  <string name="action_toggle_desktop_page">모바일/데스크톱 보기 전환</string>
+  <string name="action_share_dotdotdot">공유&#8230;</string>
+  <string name="search_alert_bypeople_validate_needsomedata">이름을 추가 하세요</string>
+  <string name="context_menu_share_link">링크 주소 공유</string>
+  <string name="context_menu_save_image">이미지 저장하기</string>
+  <string name="context_menu_share_image">이미지 공유</string>
+  <string name="context_menu_open_external_browser">다른 브라우저에서 열기&#8230;</string>
+  <string name="context_menu_copy_link">링크 주소를 클립보드에 복사</string>
+  <string name="context_menu_copy_image_link">이미지 주소를 클립보드에 복사</string>
   <!-- More from MainActivity -->
+  <string name="unable_to_load_image">이미지를 불러올 수 없습니다</string>
   <!-- Permissions -->
 </resources>
