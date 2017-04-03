@@ -16,5 +16,20 @@
   <string name="fragment_debug__pod_profile_name">포드 프로필 이름: %1$s</string>
   <string name="fragment_debug__pod_profile_url">포드 도메인: %1$s</string>
   <string name="fragment_debug__toast_log_copied">디버그 로그가 클립보드에 복사되었습니다</string>
+  <string name="fragment_about__about_text">dandelion* 은 소셜 네트워크인 diaspora* 의 어플리케이션입니다. 툴바, 토르 등의 프록시서버 지원 등의 유용한 기능들을 포함하고 있습니다.</string>
+  <string name="fragment_about__contribute">개발에 도움을 주세요!</string>
+  <string name="fragment_about__contribute_text">dandelion* 은 diaspora* 의 자유로움과 아이디어를 따라 개발됩니다. 기여하고 싶으세요? 그럼 해주십시오! 저희는 소규모의 팀으로 운영되고 있으므로 모든 기여활동을 감사히 생각합니다!</string>
+  <string name="fragment_about__contribute_button">소스코드</string>
+  <string name="fragment_about__translate">앱 번역하기</string>
+  <string name="fragment_about__translate_text">당신이 원하는 언어가 없으신가요? 오타를 발견하셨습니까? 번역하는것을 도와주세요! 누구나 번역이 가능하도롣 crowdin 플랫폼을 채용하고 있습니다.</string>
+  <string name="fragment_about__translate_button">번역하기</string>
+  <string name="fragment_about__feedback">피드백</string>
+  <string name="fragment_about__feedback_text">dandelion* 은 아직 개발단계입니다. 제안사항이나 피드백이 있으시면 버그 트래커를 이용해 알려주세요!</string>
+  <string name="fragment_about__feedback_button">버그 신고</string>
+  <string name="fragment_about__spread_the_word">당신은 홍보대사</string>
+  <string name="fragment_about__spread_the_word_text">Diaspora* 와 #dandelion 에 대해 가족들과 친구들에게 이야기해보세요. 혹은 블로그나 인터넷 커뮤니티에 글을 써보시고요. 여러분의 의견을 듣고싶습니다!</string>
+  <string name="fragment_about__spread_the_word_button">앱 공유</string>
+  <string name="fragment_about__spread_the_word_share_text">#dandelion 이거 완전 물건인데요! %1$s</string>
   <!-- License & help (large amount of text) -->
+  <string name="fragment_license__maintainers">관리자</string>
 </resources>
