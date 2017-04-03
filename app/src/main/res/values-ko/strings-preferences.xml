@@ -8,10 +8,26 @@
   <!-- PodProfile -->
   <!-- More -->
   <!-- Category Titles -->
+  <string name="pref_cat__visuals">모양</string>
+  <string name="pref_cat__network">네트워크</string>
+  <string name="pref_cat__pod_settings">포드 설정</string>
+  <string name="pref_cat__operability">운용성</string>
   <!-- Visuals -->
   <!-- Navigiation Slider -->
+  <string name="pref_title__sub_nav_slider">탐색 슬라이더</string>
+  <string name="pref_desc__sub_nav_slider">탐색 서랍에서 항목의 컨트롤 표시</string>
+  <string name="pref_cat__visibility_nav_items__user">유저</string>
+  <string name="pref_cat__visibility_nav_items__general">기본 설정</string>
+  <string name="pref_cat__visibility_nav_items__admin">관리자</string>
   <!-- Themes -->
+  <string name="pref_title__themes">테마와 색상</string>
+  <string name="pref_desc__themes">전체적인 앱의 색상을 선택하세요</string>
+  <string name="pref_title__primary_color">기본 색상</string>
+  <string name="pref_desc__primary_color">툴바 색상</string>
+  <string name="pref_title__accent_color">강조 색상</string>
+  <string name="pref_desc__accent_color">진행바 색상</string>
   <!-- Notifications dropdown -->
+  <string name="pref_title__extended_notifications">확장된 알림</string>
   <!-- Font size -->
   <!-- prefix 's' is needed to make this a string array. Otherwise ListPreference would crash -->
   <!-- Load images -->
