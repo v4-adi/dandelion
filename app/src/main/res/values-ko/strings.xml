@@ -3,7 +3,11 @@
 <resources>
   <!-- App - AppName specific -->
   <!-- Application -->
+  <string name="reload">새로고침</string>
   <!-- Common Words -->
+  <string name="settings">설정</string>
+  <string name="notifications">알림</string>
+  <string name="conversations">대화</string>
   <!-- Notifications dropdown menu -->
   <!-- Pod Activity -->
   <!-- Drawer, Menu, Toolbar, ContextMenu -->
