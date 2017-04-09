@@ -4,6 +4,8 @@
   <!-- Key Names (Untranslatable) -->
   <!-- Themes -->
   <!-- Operability -->
+  <string name="pref_title__topbar_stream_shortcut">상단 툴바에서 스트림 읽기</string>
+  <string name="pref_desc__topbar_stream_shortcut">상단 툴바의 빈 부분을 클릭해 스트림 열기</string>
   <!-- Navigiation Slider -->
   <!-- PodProfile -->
   <!-- More -->
@@ -28,6 +30,8 @@
   <string name="pref_desc__accent_color">진행바 색상</string>
   <!-- Notifications dropdown -->
   <string name="pref_title__extended_notifications">확장된 알림</string>
+  <string name="pref_desc__extended_notifications">알림 카테고리를 나타내는 드롭 다운 메뉴에서 알림 벨을 확장합니다</string>
+  <string name="pref_desc__language">언어 변경하기. 재시작이 필요합니다.</string>
   <string name="pref_title__language">언어</string>
   <string name="language_system">시스템 언어</string>
   <!-- Font size -->
@@ -38,7 +42,13 @@
   <string name="font_size_large">크게</string>
   <string name="font_size_huge">더 크게</string>
   <!-- Load images -->
+  <string name="pref_title__load_images">이미지 로드 여부</string>
+  <string name="pref_desc__load_images">이미지 로드 여부를 변경합니다. 예) 모바일 데이터를 아끼기 위해</string>
   <!-- Screen rotation -->
+  <string name="pref_title__screen_rotation">화면 회전</string>
+  <string name="pref_desc__screen_rotation">자동 화면회전 여부를 변경합니다</string>
+  <string name="rotation_system">기본값</string>
+  <string name="rotation_sensor">센서\n(시스템 설정 무시)</string>
   <!-- Proxy -->
   <!-- Chrome custom tabs -->
   <!-- Diaspora Settings -->
