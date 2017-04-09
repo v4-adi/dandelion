@@ -28,8 +28,15 @@
   <string name="pref_desc__accent_color">진행바 색상</string>
   <!-- Notifications dropdown -->
   <string name="pref_title__extended_notifications">확장된 알림</string>
+  <string name="pref_title__language">언어</string>
+  <string name="language_system">시스템 언어</string>
   <!-- Font size -->
+  <string name="pref_desc__font_size">웹뷰 글자 크기 변경</string>
+  <string name="pref_title__font_size">폰트 사이즈</string>
   <!-- prefix 's' is needed to make this a string array. Otherwise ListPreference would crash -->
+  <string name="font_size_normal">일반</string>
+  <string name="font_size_large">크게</string>
+  <string name="font_size_huge">더 크게</string>
   <!-- Load images -->
   <!-- Screen rotation -->
   <!-- Proxy -->
