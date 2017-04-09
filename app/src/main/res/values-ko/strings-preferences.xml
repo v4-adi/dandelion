@@ -49,9 +49,34 @@
   <string name="pref_desc__screen_rotation">자동 화면회전 여부를 변경합니다</string>
   <string name="rotation_system">기본값</string>
   <string name="rotation_sensor">센서\n(시스템 설정 무시)</string>
+  <string name="rotation_portrait">세로</string>
+  <string name="rotation_landscape">가로</string>
   <!-- Proxy -->
+  <string name="pref_title__http_proxy_load_tor_preset">토르 프리셋 로드</string>
+  <string name="pref_desc__http_proxy_load_tor_preset">토르 (Orbot) 프록시 설정을 로드</string>
+  <string name="pref_title__sub_proxy">프록시</string>
+  <string name="pref_title__proxy_enabled">프록시를 사용하도록 설정</string>
+  <string name="pref_desc__http_proxy_enabled">Dandelion* 트래픽이 방화벽을 우회하도록 설정합니다.\n재시작이 필요합니다. 몇몇 기기에서는 동작하지 않을 수 있습니다.</string>
+  <string name="pref_title__http_proxy_host">호스트</string>
+  <string name="pref_title__http_proxy_port">포트</string>
+  <string name="toast__proxy_disabled__restart_required">프록시 사용을 해제 하려면 다시 시작해야 합니다</string>
+  <string name="toast__proxy_orbot_preset_loaded">Orbot 프록시 프리셋 로드</string>
   <!-- Chrome custom tabs -->
+  <string name="pref_desc__chrome_custom_tabs_enabled">외부 링크를 크롬 커스텀 탭으로 엽니다. 크로미움 혹은 구글 크롬이 설치되어 있어야 합니다.
+\n경고: 크롬 커스텀 탭은 프록시 서버 설정을 무시합니다!!</string>
   <!-- Diaspora Settings -->
+  <string name="pref_title__personal_settings">개인 설정</string>
+  <string name="pref_desc__personal_settings">Diaspora* 계정 설정 열기</string>
+  <string name="pref_desc__manage_contacts">연락처 리스트 관리</string>
+  <string name="pref_title__manage_tags">해시태그 관리</string>
+  <string name="pref_desc__manage_tags">이미 팔로우된 해시태그 언팔로우</string>
+  <string name="pref_title__change_account">계정 변경</string>
+  <string name="pref_desc__change_account">로컬 세션 데이터를 지우고, 다른 diaspora* 포드/계정으로 전환</string>
+  <string name="pref_warning__change_account">모든 쿠키 및 세션 데이터를 지웁니다. 계정을 변경합니까?</string>
+  <string name="pref_title__clear_cache">캐시 삭제</string>
+  <string name="pref_desc__clear_cache">WebView 캐시 지우기</string>
+  <string name="pref_desc__intellihide_toolbars">스크롤 하는 동안 위쪽 및 아래쪽 툴바 자동으로 숨기기</string>
+  <string name="pref_title__intellihide_toolbars">Intellihide 툴바</string>
   <!-- More -->
   <!-- Recently added - Please move to right section-->
   <!-- Sorry -->
