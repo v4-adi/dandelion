@@ -77,7 +77,13 @@
   <string name="pref_desc__clear_cache">WebView 캐시 지우기</string>
   <string name="pref_desc__intellihide_toolbars">스크롤 하는 동안 위쪽 및 아래쪽 툴바 자동으로 숨기기</string>
   <string name="pref_title__intellihide_toolbars">Intellihide 툴바</string>
+  <string name="pref_title__append_shared_via_app">꼬릿말 붙이기</string>
+  <string name="pref_desc__append_shared_via_app">어플리케이션 꼬릿말을 붙입니다: [via #dandelion]</string>
   <!-- More -->
+  <string name="pref_title__sub_miscelaneous">기타</string>
+  <string name="pref_title__wipe_settings">전체 리셋</string>
+  <string name="pref_desc__wipe_settings">모든 계정에서 로그아웃 하고 응용 프로그램에 관련된 모든 로컬 설정을 삭제</string>
+  <string name="dialog_content__wipe_settings">이 어플리케이션의 모든 변경 된 설정은 기본값으로 재설정 되며 모든 포드에서 로그아웃 됩니다. 다운로드 된 이미지는 그대로 있을 것입니다. 계속합니까?</string>
   <!-- Recently added - Please move to right section-->
   <!-- Sorry -->
 </resources>
