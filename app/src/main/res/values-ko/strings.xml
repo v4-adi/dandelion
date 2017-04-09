@@ -10,6 +10,7 @@
   <string name="conversations">대화</string>
   <string name="stream">스트림</string>
   <string name="profile">프로필</string>
+  <string name="aspects">화면비율</string>
   <string name="activities">활동</string>
   <string name="liked">좋아하는</string>
   <string name="commented">댓글단</string>
