@@ -85,6 +85,7 @@ dependencies {
     compile 'info.guardianproject.netcipher:netcipher:2.0.0-alpha1'
     compile 'info.guardianproject.netcipher:netcipher-webkit:2.0.0-alpha1'
     compile 'com.github.DASAR:ShiftColorPicker:v0.5'
+    compile 'com.davemorrissey.labs:subsampling-scale-image-view:3.6.0'
     apt 'com.jakewharton:butterknife-compiler:8.0.1'
 }
 

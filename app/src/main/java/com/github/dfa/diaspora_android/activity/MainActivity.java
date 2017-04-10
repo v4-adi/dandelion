@@ -321,6 +321,10 @@ public class MainActivity extends ThemedActivity
                     PodSelectionFragment psf = new PodSelectionFragment();
                     fm.beginTransaction().add(psf, fragmentTag).commit();
                     return psf;
+                case ImageViewFragment.TAG:
+                    ImageViewFragment ivf = new ImageViewFragment();
+                    fm.beginTransaction().add(ivf, fragmentTag).commit();
+                    return ivf;
                 default:
                     AppLog.e(this, "Invalid Fragment Tag: " + fragmentTag
                             + "\nAdd Fragments Tag to getFragment()'s switch case.");

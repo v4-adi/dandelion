@@ -30,6 +30,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.AttributeSet;
@@ -38,6 +39,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.github.dfa.diaspora_android.R;
+import com.github.dfa.diaspora_android.activity.ImageViewFragment;
 import com.github.dfa.diaspora_android.activity.MainActivity;
 import com.github.dfa.diaspora_android.service.ImageDownloadTask;
 
@@ -53,6 +55,7 @@ public class ContextMenuWebView extends NestedWebView {
     public static final int ID_SAVE_IMAGE = 10;
     public static final int ID_IMAGE_EXTERNAL_BROWSER = 11;
     public static final int ID_COPY_IMAGE_LINK = 15;
+    public static final int ID_VIEW_IMAGE = 16;
     public static final int ID_COPY_LINK = 12;
     public static final int ID_SHARE_LINK = 13;
     public static final int ID_SHARE_IMAGE = 14;
@@ -82,6 +85,18 @@ public class ContextMenuWebView extends NestedWebView {
                 HitTestResult result = getHitTestResult();
                 String url = result.getExtra();
                 switch (item.getItemId()) {
+
+                    case ID_VIEW_IMAGE: {
+                        ImageViewFragment ivf = new ImageViewFragment();
+                        Bundle b = new Bundle();
+                        b.putString(ImageViewFragment.IMAGE_SOURCE, url);
+                        ivf.setArguments(b);
+                        ((MainActivity) parentActivity).getSupportFragmentManager().beginTransaction()
+                                .addToBackStack(null)
+                                .replace(R.id.fragment_container, ivf).commit();
+                        break;
+                    }
+
                     //Save image to external memory
                     case ID_SAVE_IMAGE: {
                         boolean writeToStoragePermitted = true;
@@ -224,6 +239,7 @@ public class ContextMenuWebView extends NestedWebView {
             menu.add(0, ID_IMAGE_EXTERNAL_BROWSER, 0, context.getString(R.string.context_menu_open_external_browser)).setOnMenuItemClickListener(handler);
             menu.add(0, ID_SHARE_IMAGE, 0, context.getString(R.string.context_menu_share_image)).setOnMenuItemClickListener(handler);
             menu.add(0, ID_COPY_IMAGE_LINK, 0, context.getString(R.string.context_menu_copy_image_link)).setOnMenuItemClickListener(handler);
+            menu.add(0, ID_VIEW_IMAGE, 0, "View").setOnMenuItemClickListener(handler);
         } else if (result.getType() == HitTestResult.ANCHOR_TYPE ||
                 result.getType() == HitTestResult.SRC_ANCHOR_TYPE) {
             // Menu options for a hyperlink.

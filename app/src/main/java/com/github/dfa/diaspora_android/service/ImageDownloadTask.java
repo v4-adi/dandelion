@@ -24,6 +24,9 @@ import android.os.AsyncTask;
 import android.support.annotation.Nullable;
 import android.widget.ImageView;
 
+import com.davemorrissey.labs.subscaleview.ImageSource;
+import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
+import com.github.dfa.diaspora_android.activity.ImageViewFragment;
 import com.github.dfa.diaspora_android.util.AppLog;
 
 import java.io.FileOutputStream;
@@ -93,6 +96,20 @@ public class ImageDownloadTask extends AsyncTask<String, Void, Bitmap> {
         // Display on imageview if not null
         if (imageView != null) {
             imageView.setImageBitmap(result);
+        }
+    }
+
+    public static class ImageViewFragmentDownloadTask extends ImageDownloadTask {
+        ImageViewFragment ivf;
+
+        public ImageViewFragmentDownloadTask(ImageViewFragment imageViewFragment) {
+            super(null, null);
+            this.ivf = imageViewFragment;
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap result) {
+            ivf.showBitmap(result);
         }
     }
 }
