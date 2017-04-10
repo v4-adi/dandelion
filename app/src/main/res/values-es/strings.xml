@@ -18,6 +18,7 @@
   <string name="public_">Público</string>
   <string name="search">Búsqueda</string>
   <string name="contacts">Contactos</string>
+  <string name="changelog">Registro de cambios</string>
   <!-- Notifications dropdown menu -->
   <string name="notifications__all">Todas las notificaciones</string>
   <string name="notifications__also_commented">También Comentado</string>

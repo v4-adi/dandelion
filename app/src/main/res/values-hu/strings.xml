@@ -18,6 +18,7 @@
   <string name="public_">Nyilvános</string>
   <string name="search">Keresés</string>
   <string name="contacts">Partnerek</string>
+  <string name="changelog">Újdonságok</string>
   <!-- Notifications dropdown menu -->
   <string name="notifications__all">Összes értesítés</string>
   <string name="notifications__also_commented">Más hozzászólások</string>

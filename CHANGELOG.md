@@ -1,11 +1,11 @@
-### v0.2.5 WIP
+### v0.2.5 (2017-04-10)
 - Introduce minimalistic Markdown Parser
 - Show LICENSE at first start
 - Show CHANGELOG after update
 - Convert existing Markup files to Markdown
 - Update existing markdown files
 - Update AboutActivity to use new Parser
-- Added Korean and Danish as translation options
+- Added translations: Danish, Korean, Galician
 
 ### v0.2.4 (2017-03-19)
 - Different icon and color for secondlion

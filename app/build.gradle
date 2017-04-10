@@ -5,8 +5,8 @@ android {
     compileSdkVersion 24
     buildToolsVersion "24.0.3"
 
-    def VERSION_CODE = 14
-    def VERSION_NAME = "0.2.4"
+    def VERSION_CODE = 15
+    def VERSION_NAME = "0.2.5"
     def APP_NAME = "dandelion*"
     def APP_PACKAGE = "com.github.dfa.diaspora_android"
     def APP_ICON = "@drawable/ic_launcher"

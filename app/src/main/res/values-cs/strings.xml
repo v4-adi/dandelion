@@ -18,6 +18,7 @@
   <string name="public_">Veřejné</string>
   <string name="search">Hledat</string>
   <string name="contacts">Kontakty</string>
+  <string name="changelog">Seznam změn</string>
   <!-- Notifications dropdown menu -->
   <string name="notifications__all">Všechna oznámení</string>
   <string name="notifications__also_commented">Také komentováno</string>

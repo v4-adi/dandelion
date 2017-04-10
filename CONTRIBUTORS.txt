@@ -19,3 +19,5 @@ SansPseudoFix (https://github.com/SansPseudoFix): French translation
 secitem (secitem AT tuta DOT io): Czech translation
 Zsolt Szakács (maxigaz AT diaspora DOT zone): Hungarian translation
 Danilo Raffaelli (https://crowdin.com/profile/Daraf): Italian translation
+O'Loubám (loubam AT diasp DOT org): Galician translation
+transifex3 (https://crowdin.com/profile/transifex3): Korean translation
