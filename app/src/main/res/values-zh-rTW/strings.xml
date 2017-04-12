@@ -4,9 +4,16 @@
   <!-- App - AppName specific -->
   <!-- Application -->
   <!-- Common Words -->
+  <string name="stream">流水帳</string>
   <!-- Notifications dropdown menu -->
   <!-- Pod Activity -->
+  <string name="podlist_error">錯誤: 無法取得豆莢列表！</string>
   <!-- Drawer, Menu, Toolbar, ContextMenu -->
   <!-- More from MainActivity -->
   <!-- Permissions -->
+  <string name="podselection__custom_pod">自選豆莢</string>
+  <string name="pod_name">豆莢名稱</string>
+  <string name="http_protocol">網路協定</string>
+  <string name="pod_address">豆莢網址</string>
+  <string name="jump_to_last_visited_timestamp_in_stream">回到最近瀏覽的流水帳頁面嗎？</string>
 </resources>
