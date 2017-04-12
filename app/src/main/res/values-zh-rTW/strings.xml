@@ -3,10 +3,15 @@
 <resources>
   <!-- App - AppName specific -->
   <!-- Application -->
+  <string name="reload">重新下載</string>
   <!-- Common Words -->
   <string name="notifications">通知</string>
+  <string name="conversations">對話</string>
   <string name="stream">流水帳</string>
+  <string name="profile">個人檔案</string>
+  <string name="aspects">社交面</string>
   <string name="search">搜尋</string>
+  <string name="contacts">聯絡人</string>
   <!-- Notifications dropdown menu -->
   <string name="notifications__all">全部的通知</string>
   <string name="notifications__also_commented">其他留言</string>
@@ -18,9 +23,12 @@
   <!-- Pod Activity -->
   <string name="podlist_error">錯誤: 無法取得豆莢列表！</string>
   <!-- Drawer, Menu, Toolbar, ContextMenu -->
+  <string name="nav_followed_tags">追蹤中的標籤</string>
   <string name="share__share_link_as_text">分享連結文字</string>
   <string name="share__share_screenshot">分享網頁截圖</string>
   <string name="share__take_screenshot">產生網路截圖</string>
+  <string name="share__toast_saved_image_to_location">圖片儲存為</string>
+  <string name="share__toast_screenshot">截圖儲存為:</string>
   <string name="share__toast_link_address_copied">已經複製了連結網址&#8230;</string>
   <string name="new_post">新增貼文</string>
   <string name="action_go_to_top">回到最上面</string>
