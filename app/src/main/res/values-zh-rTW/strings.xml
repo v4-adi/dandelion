@@ -4,11 +4,23 @@
   <!-- App - AppName specific -->
   <!-- Application -->
   <!-- Common Words -->
+  <string name="notifications">通知</string>
   <string name="stream">流水帳</string>
+  <string name="search">搜尋</string>
   <!-- Notifications dropdown menu -->
+  <string name="notifications__all">全部的通知</string>
+  <string name="notifications__also_commented">其他留言</string>
+  <string name="notifications__comment_on_post">貼文被留言</string>
+  <string name="notifications__liked">被按讚</string>
+  <string name="notifications__mentioned">被指指點點</string>
+  <string name="notifications__reshared">被分享</string>
+  <string name="notifications__started_sharing">開始分享</string>
   <!-- Pod Activity -->
   <string name="podlist_error">錯誤: 無法取得豆莢列表！</string>
   <!-- Drawer, Menu, Toolbar, ContextMenu -->
+  <string name="action_search_by_tags_or_persons">找人或標籤</string>
+  <string name="search_alert_tag">找標籤</string>
+  <string name="search_alert_people">找人</string>
   <!-- More from MainActivity -->
   <!-- Permissions -->
   <string name="podselection__custom_pod">自選豆莢</string>
