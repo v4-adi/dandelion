@@ -5,11 +5,16 @@
   <!-- Application -->
   <string name="reload">重新下載</string>
   <!-- Common Words -->
+  <string name="settings">設定</string>
   <string name="notifications">通知</string>
   <string name="conversations">對話</string>
   <string name="stream">流水帳</string>
   <string name="profile">個人檔案</string>
   <string name="aspects">社交面</string>
+  <string name="activities">活動</string>
+  <string name="liked">按過讚</string>
+  <string name="commented">留過言</string>
+  <string name="mentions">指指點點</string>
   <string name="search">搜尋</string>
   <string name="contacts">聯絡人</string>
   <!-- Notifications dropdown menu -->
@@ -23,7 +28,11 @@
   <!-- Pod Activity -->
   <string name="podlist_error">錯誤: 無法取得豆莢列表！</string>
   <!-- Drawer, Menu, Toolbar, ContextMenu -->
+  <string name="nav_menu_more">再來</string>
+  <string name="nav_help_license">說明 | 幫助</string>
   <string name="nav_followed_tags">追蹤中的標籤</string>
+  <string name="nav_public_activities">公開活動</string>
+  <string name="nav_reports">回報</string>
   <string name="share__share_link_as_text">分享連結文字</string>
   <string name="share__share_screenshot">分享網頁截圖</string>
   <string name="share__take_screenshot">產生網路截圖</string>
