@@ -21,10 +21,11 @@
   <string name="share__share_link_as_text">分享連結文字</string>
   <string name="share__share_screenshot">分享網頁截圖</string>
   <string name="share__take_screenshot">產生網路截圖</string>
+  <string name="share__toast_link_address_copied">已經複製了連結網址&#8230;</string>
   <string name="new_post">新增貼文</string>
   <string name="action_go_to_top">回到最上面</string>
   <string name="action_search_by_tags_or_persons">找人或標籤</string>
-  <string name="action_share_dotdotdot">分享...</string>
+  <string name="action_share_dotdotdot">分享&#8230;</string>
   <string name="search_alert_tag">找標籤</string>
   <string name="search_alert_people">找人</string>
   <string name="search_alert_bypeople_validate_needsomedata">請輸入名稱</string>
