@@ -18,6 +18,7 @@
   <string name="public_">公開</string>
   <string name="search">搜尋</string>
   <string name="contacts">聯絡人</string>
+  <string name="changelog">更新紀錄</string>
   <!-- Notifications dropdown menu -->
   <string name="notifications__all">全部的通知</string>
   <string name="notifications__also_commented">其他留言</string>
@@ -28,6 +29,8 @@
   <string name="notifications__started_sharing">開始分享</string>
   <!-- Pod Activity -->
   <string name="podlist_error">錯誤: 無法取得豆莢列表！</string>
+  <string name="confirmation">確認</string>
+  <string name="confirm_exit">確定要退出嗎？</string>
   <!-- Drawer, Menu, Toolbar, ContextMenu -->
   <string name="nav_menu_more">再來</string>
   <string name="nav_help_license">說明 | 幫助</string>
