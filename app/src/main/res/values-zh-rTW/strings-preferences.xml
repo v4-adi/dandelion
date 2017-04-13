@@ -4,12 +4,14 @@
   <!-- Key Names (Untranslatable) -->
   <!-- Themes -->
   <!-- Operability -->
-  <string name="pref_title__topbar_stream_shortcut">上方工具列可以重載流水帳</string>
+  <string name="pref_title__topbar_stream_shortcut">上方工具列可載入流水帳</string>
+  <string name="pref_desc__topbar_stream_shortcut">可以點上方工具列的空白區域來進入流水帳</string>
   <!-- Navigiation Slider -->
   <!-- PodProfile -->
   <!-- More -->
   <!-- Category Titles -->
   <string name="pref_cat__visuals">外觀</string>
+  <string name="pref_cat__pod_settings">豆莢設定</string>
   <string name="pref_cat__operability">操作</string>
   <!-- Visuals -->
   <!-- Navigiation Slider -->
@@ -40,11 +42,20 @@
   <string name="font_size_huge">超大</string>
   <!-- Load images -->
   <!-- Screen rotation -->
+  <string name="pref_title__screen_rotation">畫面旋轉</string>
+  <string name="pref_desc__screen_rotation">控制畫面自動旋轉功能</string>
+  <string name="rotation_system">系統預設</string>
+  <string name="rotation_sensor">感應\n(忽略系統設定)</string>
+  <string name="rotation_portrait">直向</string>
+  <string name="rotation_landscape">横向</string>
   <!-- Proxy -->
   <!-- Chrome custom tabs -->
   <string name="pref_desc__chrome_custom_tabs_enabled">使用 Chrome Custom Tabs 開啟外部連結。必須要安裝 Chromium 或是 Google Chrome 才能使用這個功能。
 \n請留意：Chrome Custom Tabs 不會使用應用程式設定的代理伺服器！</string>
   <!-- Diaspora Settings -->
+  <string name="pref_title__personal_settings">個人設定</string>
+  <string name="pref_desc__personal_settings">打開你的 diaspora* 帳號設定頁面</string>
+  <string name="pref_desc__manage_contacts">管理聯絡人清單</string>
   <string name="pref_desc__intellihide_toolbars">當捲動畫面時，自動隱藏上下兩邊的工具列</string>
   <string name="pref_title__intellihide_toolbars">自動隱藏工具列</string>
   <string name="pref_title__append_shared_via_app">分享時附加應用程式標記</string>
