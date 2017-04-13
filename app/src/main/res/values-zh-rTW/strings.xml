@@ -29,6 +29,7 @@
   <string name="notifications__started_sharing">開始分享</string>
   <!-- Pod Activity -->
   <string name="podlist_error">錯誤: 無法取得豆莢列表！</string>
+  <string name="no_internet">抱歉，要有網路連線才能繼續</string>
   <string name="confirmation">確認</string>
   <string name="confirm_exit">確定要退出嗎？</string>
   <!-- Drawer, Menu, Toolbar, ContextMenu -->
