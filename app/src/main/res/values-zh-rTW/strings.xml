@@ -63,9 +63,13 @@
   <string name="unable_to_load_image">無法載入圖片</string>
   <!-- Permissions -->
   <string name="permissions_screenshot">必須要給予應用程式「儲存空間」的權限，才能儲存畫面截圖。給予後應該要將應用程式完全結束，或是將裝置重新啟動。如果你現在沒給權限，之後才想要使用截圖功能，還是可以重給權限。作法是：先打開「設定」—應用程式—dandelion*，在「權限」的地方切換是否給予「儲存空間」權限。</string>
+  <string name="permissions_image">必須要給予應用程式「儲存空間」的權限，才能儲存或上傳圖片。給予後應該要將應用程式完全結束，或是將裝置重新啟動。如果你現在沒給權限，之後才想要儲存圖片，還是可以重給權限。作法是：先打開「設定」—應用程式—dandelion*，在「權限」的地方切換是否給予「儲存空間」權限。</string>
+  <string name="permission_denied">權限被拒絕了。</string>
+  <string name="permission_granted_try_again">取得權限了。請再重試一次。</string>
   <string name="podselection__custom_pod">自選豆莢</string>
   <string name="pod_name">豆莢名稱</string>
   <string name="http_protocol">網路協定</string>
   <string name="pod_address">豆莢網址</string>
+  <string name="missing_value">沒有填值</string>
   <string name="jump_to_last_visited_timestamp_in_stream">回到最近瀏覽的流水帳頁面嗎？</string>
 </resources>
