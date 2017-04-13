@@ -83,6 +83,7 @@
   <string name="pref_title__sub_miscelaneous">其他</string>
   <string name="pref_title__wipe_settings">完全重置</string>
   <string name="pref_desc__wipe_settings">將本機上此應用程式的設定全部刪掉，並將所有帳號都登出</string>
+  <string name="dialog_content__wipe_settings">將要重設此應用程式的所有設定為預設值，並登出你在所有豆莢的帳號。不過不會變動已經下載了的圖片。確定要繼續嗎？</string>
   <!-- Recently added - Please move to right section-->
   <!-- Sorry -->
 </resources>
