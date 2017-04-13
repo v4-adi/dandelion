@@ -9,6 +9,7 @@
   <!-- More -->
   <!-- Category Titles -->
   <string name="pref_cat__visuals">外觀</string>
+  <string name="pref_cat__operability">操作</string>
   <!-- Visuals -->
   <!-- Navigiation Slider -->
   <string name="pref_title__sub_nav_slider">側邊導覽選單</string>
@@ -24,14 +25,24 @@
   <string name="pref_title__accent_color">強調顏色</string>
   <string name="pref_desc__accent_color">進度條使用的顏色</string>
   <!-- Notifications dropdown -->
+  <string name="pref_title__extended_notifications">延伸型通知</string>
+  <string name="pref_desc__language">更改應用程式使用的語言。要重新開啟應用程式才會生效</string>
   <string name="pref_title__language">語言</string>
+  <string name="language_system">系統設定語言</string>
   <!-- Font size -->
+  <string name="pref_desc__font_size">控制網頁視圖中的文字大小</string>
+  <string name="pref_title__font_size">字型大小</string>
   <!-- prefix 's' is needed to make this a string array. Otherwise ListPreference would crash -->
+  <string name="font_size_normal">一般</string>
+  <string name="font_size_large">較大</string>
+  <string name="font_size_huge">超大</string>
   <!-- Load images -->
   <!-- Screen rotation -->
   <!-- Proxy -->
   <!-- Chrome custom tabs -->
   <!-- Diaspora Settings -->
+  <string name="pref_desc__intellihide_toolbars">當捲動畫面時，自動隱藏上下兩邊的工具列</string>
+  <string name="pref_title__intellihide_toolbars">自動隱藏工具列</string>
   <!-- More -->
   <!-- Recently added - Please move to right section-->
   <!-- Sorry -->
