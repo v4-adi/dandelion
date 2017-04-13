@@ -52,7 +52,15 @@
   <string name="rotation_portrait">直向</string>
   <string name="rotation_landscape">横向</string>
   <!-- Proxy -->
+  <string name="pref_title__http_proxy_load_tor_preset">載入 Tor 的預設值</string>
+  <string name="pref_desc__http_proxy_load_tor_preset">載入使用 Tor (Orbot) HTTP 代理伺服器的設定</string>
   <string name="pref_title__sub_proxy">代理伺服器</string>
+  <string name="pref_title__proxy_enabled">啓用代理伺服器</string>
+  <string name="pref_desc__http_proxy_enabled">透用代理伺服器連網來避開防火牆。\n設定後可能需要重新啟動。某些手機上可能會沒有作用。</string>
+  <string name="pref_title__http_proxy_host">主機</string>
+  <string name="pref_title__http_proxy_port">通訊埠</string>
+  <string name="toast__proxy_disabled__restart_required">應用程式要重新啟動以停止使用代理伺服器</string>
+  <string name="toast__proxy_orbot_preset_loaded">已經載入 Orbot 的代理伺服器設定了</string>
   <!-- Chrome custom tabs -->
   <string name="pref_desc__chrome_custom_tabs_enabled">使用 Chrome Custom Tabs 開啟外部連結。必須要安裝 Chromium 或是 Google Chrome 才能使用這個功能。
 \n請留意：Chrome Custom Tabs 不會使用應用程式設定的代理伺服器！</string>
@@ -60,6 +68,8 @@
   <string name="pref_title__personal_settings">個人設定</string>
   <string name="pref_desc__personal_settings">打開你的 diaspora* 帳號設定頁面</string>
   <string name="pref_desc__manage_contacts">管理聯絡人清單</string>
+  <string name="pref_title__manage_tags">管理雜湊標籤</string>
+  <string name="pref_desc__manage_tags">停止追蹤目前正在追蹤中的雜湊標籤</string>
   <string name="pref_title__change_account">更換帳號</string>
   <string name="pref_desc__change_account">刪除本機連線 session 資料，並改用另外一個 diaspora* 豆莢或帳號</string>
   <string name="pref_warning__change_account">將要清除所有的 cookie 和 session 資料。確定真的要切換帳號嗎？</string>
@@ -70,6 +80,9 @@
   <string name="pref_title__append_shared_via_app">分享時附加應用程式標記</string>
   <string name="pref_desc__append_shared_via_app">在分享的文字之後附加以下應用程式標記: [via #dandelion]</string>
   <!-- More -->
+  <string name="pref_title__sub_miscelaneous">其他</string>
+  <string name="pref_title__wipe_settings">完全重置</string>
+  <string name="pref_desc__wipe_settings">將本機上此應用程式的設定全部刪掉，並將所有帳號都登出</string>
   <!-- Recently added - Please move to right section-->
   <!-- Sorry -->
 </resources>
