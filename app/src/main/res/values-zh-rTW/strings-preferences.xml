@@ -11,6 +11,11 @@
   <string name="pref_cat__visuals">外觀</string>
   <!-- Visuals -->
   <!-- Navigiation Slider -->
+  <string name="pref_title__sub_nav_slider">側邊導覽選單</string>
+  <string name="pref_desc__sub_nav_slider">控制側邊導覽選單中顯示的項目</string>
+  <string name="pref_cat__visibility_nav_items__user">使用者</string>
+  <string name="pref_cat__visibility_nav_items__general">平常</string>
+  <string name="pref_cat__visibility_nav_items__admin">管理員</string>
   <!-- Themes -->
   <string name="pref_title__themes">佈景主題和色彩</string>
   <string name="pref_desc__themes">控制應用程式使用的顏色</string>
@@ -19,6 +24,7 @@
   <string name="pref_title__accent_color">強調顏色</string>
   <string name="pref_desc__accent_color">進度條使用的顏色</string>
   <!-- Notifications dropdown -->
+  <string name="pref_title__language">語言</string>
   <!-- Font size -->
   <!-- prefix 's' is needed to make this a string array. Otherwise ListPreference would crash -->
   <!-- Load images -->
