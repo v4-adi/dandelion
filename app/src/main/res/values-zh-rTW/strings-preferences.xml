@@ -4,6 +4,7 @@
   <!-- Key Names (Untranslatable) -->
   <!-- Themes -->
   <!-- Operability -->
+  <string name="pref_title__topbar_stream_shortcut">上方工具列可以重載流水帳</string>
   <!-- Navigiation Slider -->
   <!-- PodProfile -->
   <!-- More -->
@@ -26,6 +27,7 @@
   <string name="pref_desc__accent_color">進度條使用的顏色</string>
   <!-- Notifications dropdown -->
   <string name="pref_title__extended_notifications">延伸型通知</string>
+  <string name="pref_desc__extended_notifications">將通知鈴伸展成為顯示通知類別的下拉式選單</string>
   <string name="pref_desc__language">更改應用程式使用的語言。要重新開啟應用程式才會生效</string>
   <string name="pref_title__language">語言</string>
   <string name="language_system">系統設定語言</string>
@@ -40,9 +42,13 @@
   <!-- Screen rotation -->
   <!-- Proxy -->
   <!-- Chrome custom tabs -->
+  <string name="pref_desc__chrome_custom_tabs_enabled">使用 Chrome Custom Tabs 開啟外部連結。必須要安裝 Chromium 或是 Google Chrome 才能使用這個功能。
+\n請留意：Chrome Custom Tabs 不會使用應用程式設定的代理伺服器！</string>
   <!-- Diaspora Settings -->
   <string name="pref_desc__intellihide_toolbars">當捲動畫面時，自動隱藏上下兩邊的工具列</string>
   <string name="pref_title__intellihide_toolbars">自動隱藏工具列</string>
+  <string name="pref_title__append_shared_via_app">分享時附加應用程式標記</string>
+  <string name="pref_desc__append_shared_via_app">在分享的文字之後附加以下應用程式標記: [via #dandelion]</string>
   <!-- More -->
   <!-- Recently added - Please move to right section-->
   <!-- Sorry -->
