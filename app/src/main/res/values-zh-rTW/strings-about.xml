@@ -16,7 +16,7 @@
   <string name="fragment_debug__pod_profile_name">豆莢設定名稱: %1$s</string>
   <string name="fragment_debug__pod_profile_url">豆莢網址: %1$s</string>
   <string name="fragment_debug__toast_log_copied">已經複製除錯紀錄到剪貼簿了</string>
-  <string name="fragment_about__about_text">dandelion* 是你瀏覽 diaspora* 社交網站的好朋友。它讓你的體驗增加了好用的工具列，並且支援像是 Tor 之類的代理伺服器服務。</string>
+  <string name="fragment_about__about_text">dandelion* (蒲公英*) 是你瀏覽 diaspora* 社交網站的好朋友。它讓你的體驗增加了好用的工具列，並且支援像是 Tor 之類的代理伺服器服務。</string>
   <string name="fragment_about__contribute">貢獻程式碼！</string>
   <string name="fragment_about__contribute_text">dandelion* 是自由軟體開發專案，並且追隨 diaspora* 專案的理想。想要貢獻你的心力嗎？那就來吧！目前我們還只是個很小的團隊，任何形式的幫忙都會讓我們足感心！</string>
   <string name="fragment_about__contribute_button">取得源碼</string>
