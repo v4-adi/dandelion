@@ -4,5 +4,9 @@
   <string name="about_activity__title_about_app">說明</string>
   <string name="fragment_debug__app_version">程式版本: %1$s</string>
   <string name="fragment_about__about_text">dandelion* 是你瀏覽 diaspora* 社交網站的好朋友。它讓你的體驗增加了好用的工具列，並且支援像是 Tor 之類的代理伺服器服務。</string>
+  <string name="fragment_about__contribute">貢獻程式碼！</string>
+  <string name="fragment_about__contribute_text">dandelion* 是自由軟體開發專案，並且追隨 diaspora* 專案的理想。想要貢獻你的心力嗎？那就來吧！目前我們還只是個很小的團隊，任何形式的幫忙都會讓我們足感心！</string>
+  <string name="fragment_about__contribute_button">取得源碼</string>
+  <string name="fragment_about__translate">翻譯應用程式！</string>
   <!-- License & help (large amount of text) -->
 </resources>
