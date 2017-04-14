@@ -8,5 +8,13 @@
   <string name="fragment_about__contribute_text">dandelion* 是自由軟體開發專案，並且追隨 diaspora* 專案的理想。想要貢獻你的心力嗎？那就來吧！目前我們還只是個很小的團隊，任何形式的幫忙都會讓我們足感心！</string>
   <string name="fragment_about__contribute_button">取得源碼</string>
   <string name="fragment_about__translate">翻譯應用程式！</string>
+  <string name="fragment_about__translate_text">應用程式沒有你使用語言的版本嗎？你可以改變現狀！何不來幫忙我們翻譯呢？我們使用 crowdin 平台，好讓每個人都能夠參與應用程式的翻譯工作。</string>
+  <string name="fragment_about__translate_button">我來翻譯</string>
+  <string name="fragment_about__feedback">意見回饋！</string>
+  <string name="fragment_about__feedback_text">dandelion* 還在開發階段，所以如果你有任何建議，或是有其他的意見要回饋，請使用我們的臭蟲追蹤網站來讓我們知道！</string>
+  <string name="fragment_about__feedback_button">回報臭蟲</string>
+  <string name="fragment_about__spread_the_word">報給人知！</string>
+  <string name="fragment_about__spread_the_word_text">告訴你的朋友和家人有 #dandelion 這個好東西！何不部落格一下你的使用經驗呢？我們期待聽聽你的故事！</string>
+  <string name="fragment_about__spread_the_word_button">分享應用程式</string>
   <!-- License & help (large amount of text) -->
 </resources>
