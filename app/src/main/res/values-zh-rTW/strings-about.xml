@@ -3,7 +3,19 @@
 <resources>
   <string name="about_activity__title_about_app">說明</string>
   <string name="about_activity__title_about_license">授權條款</string>
-  <string name="fragment_debug__app_version">程式版本: %1$s</string>
+  <string name="about_activity__title_debug_info">除錯</string>
+  <string name="fragment_debug__section_app">應用程式</string>
+  <string name="fragment_debug__section_device">裝置</string>
+  <string name="fragment_debug__section_pod">diaspora* 豆莢</string>
+  <string name="fragment_debug__section_log">除錯紀錄</string>
+  <string name="fragment_debug__section_log_spam">除錯紀錄(詳細版)</string>
+  <string name="fragment_debug__app_version">應用程式版本: %1$s</string>
+  <string name="fragment_debug__android_version">Android 版本: %1$s</string>
+  <string name="fragment_debug__device_name">裝置名稱: %1$s</string>
+  <string name="fragment_debug__app_codename">代號: %1$s</string>
+  <string name="fragment_debug__pod_profile_name">豆莢設定名稱: %1$s</string>
+  <string name="fragment_debug__pod_profile_url">豆莢網址: %1$s</string>
+  <string name="fragment_debug__toast_log_copied">已經複製除錯紀錄到剪貼簿了</string>
   <string name="fragment_about__about_text">dandelion* 是你瀏覽 diaspora* 社交網站的好朋友。它讓你的體驗增加了好用的工具列，並且支援像是 Tor 之類的代理伺服器服務。</string>
   <string name="fragment_about__contribute">貢獻程式碼！</string>
   <string name="fragment_about__contribute_text">dandelion* 是自由軟體開發專案，並且追隨 diaspora* 專案的理想。想要貢獻你的心力嗎？那就來吧！目前我們還只是個很小的團隊，任何形式的幫忙都會讓我們足感心！</string>
@@ -27,4 +39,5 @@
   <string name="fragment_license__thirdparty_libs">第三方程式庫</string>
   <string name="fragment_license__thirdparty_libs_text">我們使用了下列程式庫：</string>
   <string name="fragment_license__misc_leafpic">我們從 LeafPic 應用程式得到一些啟發以及程式碼。去看看吧，它也是自由軟體喔！</string>
+  <string name="fragment_license__misc_leafpic_button">再多說一些</string>
 </resources>
