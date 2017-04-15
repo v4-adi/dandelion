@@ -412,6 +412,10 @@ public class AppSettings {
         return getBool(prefApp, R.string.pref_key__visibility_nav__contacts, false);
     }
 
+    public boolean isVisibleInNavStatistics() {
+        return getBool(prefApp, R.string.pref_key__visibility_nav__statistics, false);
+    }
+
     public boolean isVisibleInNavReports() {
         return getBool(prefApp, R.string.pref_key__visibility_nav__reports, false);
     }

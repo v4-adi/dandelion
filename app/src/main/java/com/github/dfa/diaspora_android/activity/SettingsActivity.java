@@ -218,7 +218,7 @@ public class SettingsActivity extends ThemedActivity implements SharedPreference
                 } else if (settings.isKeyEqual(key, R.string.pref_key__manage_contacts)) {
                     Intent intent = new Intent(getActivity(), MainActivity.class);
                     intent.setAction(MainActivity.ACTION_OPEN_URL);
-                    intent.putExtra(MainActivity.URL_MESSAGE, diasporaUrlHelper.getManageContactsUrl());
+                    intent.putExtra(MainActivity.URL_MESSAGE, diasporaUrlHelper.getContactsUrl());
                     startActivity(intent);
                     getActivity().finish();
                     return true;

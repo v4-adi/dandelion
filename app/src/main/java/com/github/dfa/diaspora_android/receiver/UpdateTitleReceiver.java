@@ -63,6 +63,10 @@ public class UpdateTitleReceiver extends BroadcastReceiver {
                 setTitle(R.string.conversations);
             } else if (subUrl.startsWith(DiasporaUrlHelper.SUBURL_NEW_POST)) {
                 setTitle(R.string.new_post);
+            } else if (subUrl.startsWith(DiasporaUrlHelper.SUBURL_STATISTICS)) {
+                setTitle(R.string.statistics);
+            } else if (subUrl.startsWith(DiasporaUrlHelper.SUBURL_CONTACTS)) {
+                setTitle(R.string.contacts);
             } else if (subUrl.startsWith(DiasporaUrlHelper.SUBURL_PEOPLE + appSettings.getProfileId())) {
                 setTitle(R.string.nav_profile);
             } else if (subUrl.startsWith(DiasporaUrlHelper.SUBURL_ACTIVITY)) {

@@ -31,6 +31,7 @@ import com.github.dfa.diaspora_android.data.DiasporaPodList.DiasporaPod;
 public class DiasporaUrlHelper {
     private final AppSettings settings;
 
+    public static final String URL_BLANK = "about:blank";
     public static final String SUBURL_NOTIFICATIONS = "/notifications";
     public static final String SUBURL_POSTS = "/posts/";
     public static final String SUBURL_STREAM = "/stream";
@@ -53,9 +54,8 @@ public class DiasporaUrlHelper {
     public static final String SUBURL_PERSONAL_SETTINGS = "/user/edit";
     public static final String SUBURL_MANAGE_TAGS = "/tag_followings/manage";
     public static final String SUBURL_SIGN_IN = "/users/sign_in";
-    public static final String SUBURL_MANAGE_CONTACTS = "/contacts";
+    public static final String SUBURL_CONTACTS = "/contacts";
     public static final String SUBURL_REPORTS = "/reports";
-    public static final String URL_BLANK = "about:blank";
     public static final String SUBURL_NOTIFICATIONS_ALSO_COMMENTED = "/notifications?type=also_commented";
     public static final String SUBURL_NOTIFICATIONS_COMMENT_ON_POST = "/notifications?type=comment_on_post";
     public static final String SUBURL_NOTIFICATIONS_LIKED = "/notifications?type=liked";
@@ -290,8 +290,8 @@ public class DiasporaUrlHelper {
      *
      * @return https://(pod-domain.tld)/contacts
      */
-    public String getManageContactsUrl() {
-        return getPodUrl() + SUBURL_MANAGE_CONTACTS;
+    public String getContactsUrl() {
+        return getPodUrl() + SUBURL_CONTACTS;
     }
 
     public String getSuburlNotificationsAlsoCommentedUrl() {

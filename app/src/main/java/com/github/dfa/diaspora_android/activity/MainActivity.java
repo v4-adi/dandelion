@@ -445,6 +445,7 @@ public class MainActivity extends ThemedActivity
         navMenu.findItem(R.id.nav_profile).setVisible(appSettings.isVisibleInNavProfile());
         navMenu.findItem(R.id.nav_public).setVisible(appSettings.isVisibleInNavPublic_activities());
         navMenu.findItem(R.id.nav_stream).setVisible(true);
+        navMenu.findItem(R.id.nav_statistics).setVisible(appSettings.isVisibleInNavStatistics());
         navMenu.findItem(R.id.nav_reports).setVisible(appSettings.isVisibleInNavReports());
         navMenu.findItem(R.id.nav_toggle_desktop_page).setVisible(appSettings.isVisibleToggleMobileDesktop());
 
@@ -1046,11 +1047,12 @@ public class MainActivity extends ThemedActivity
 
             case R.id.nav_contacts: {
                 if (WebHelper.isOnline(MainActivity.this)) {
-                    openDiasporaUrl(urls.getManageContactsUrl());
+                    openDiasporaUrl(urls.getContactsUrl());
                 } else {
                     snackbarNoInternet.show();
                 }
             }
+            break;
 
             case R.id.nav_activities: {
                 if (WebHelper.isOnline(MainActivity.this)) {
@@ -1100,6 +1102,15 @@ public class MainActivity extends ThemedActivity
             case R.id.nav_reports: {
                 if (WebHelper.isOnline(MainActivity.this)) {
                     openDiasporaUrl(urls.getReportsUrl());
+                } else {
+                    snackbarNoInternet.show();
+                }
+            }
+            break;
+
+            case R.id.nav_statistics: {
+                if (WebHelper.isOnline(MainActivity.this)) {
+                    openDiasporaUrl(urls.getStatisticsUrl());
                 } else {
                     snackbarNoInternet.show();
                 }

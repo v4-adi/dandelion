@@ -5,8 +5,9 @@
     <string name="diaspora_for_android" translatable="false">Diaspora for Android</string>
     <string name="app_hashtag" translatable="false">#dandelion</string>
     <string name="app_subtitle" translatable="false">The community-run distributed social network</string>
-    <string name="shared_via_app" translatable="false">*[via #dandelion]*</string>
-
+    <string name="shared_via_app" translatable="false">
+        \n\n\n_________________________\n
+        *via [dandelion*](/people?q=dandelion00%40diasp.org) client / #dandelíon*</string>
 
     <!-- Application -->
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -28,6 +29,7 @@
     <string name="search">Search</string>
     <string name="contacts">Contacts</string>
     <string name="changelog">Changelog</string>
+    <string name="statistics">Statistics</string>
     <string name="tor" translatable="false">Tor</string>
 
     <!-- Notifications dropdown menu -->
@@ -56,6 +58,7 @@
     <string name="nav_activities" translatable="false">@string/activities</string>
     <string name="nav_aspects" translatable="false">@string/aspects</string>
     <string name="nav_profile" translatable="false">@string/profile</string>
+    <string name="nav_statistics" translatable="false">@string/statistics</string>
     <string name="nav_menu_more">More</string>
     <string name="nav_help_license">About | Help</string>
     <string name="nav_followed_tags">Followed Tags</string>

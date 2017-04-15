@@ -73,5 +73,10 @@
             android:key="@string/pref_key__visibility_nav__reports"
             android:title="@string/nav_reports"/>
 
+        <com.github.dfa.diaspora_android.ui.theme.ThemedVisibilityPreference
+            android:defaultValue="false"
+            android:key="@string/pref_key__visibility_nav__statistics"
+            android:title="@string/nav_statistics"/>
+
     </com.github.dfa.diaspora_android.ui.theme.ThemedPreferenceCategory>
 </PreferenceScreen>
