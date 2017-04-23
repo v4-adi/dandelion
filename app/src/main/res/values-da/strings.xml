@@ -23,8 +23,15 @@
   <!-- Notifications dropdown menu -->
   <string name="notifications__all">Alle notifikationer</string>
   <string name="notifications__also_commented">Kommenterede også</string>
+  <string name="notifications__comment_on_post">Kommenter på opslag</string>
+  <string name="notifications__liked">Syntes om</string>
+  <string name="notifications__mentioned">Nævnte</string>
+  <string name="notifications__reshared">Gendelte</string>
   <!-- Pod Activity -->
   <!-- Drawer, Menu, Toolbar, ContextMenu -->
+  <string name="context_menu_share_image">Del billede</string>
+  <string name="context_menu_open_external_browser">Åben i ekstern browser&#8230;</string>
+  <string name="context_menu_copy_link">Kopier link-adresse til udklipsholder</string>
   <!-- More from MainActivity -->
   <!-- Permissions -->
 </resources>
