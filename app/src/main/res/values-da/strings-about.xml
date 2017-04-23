@@ -24,5 +24,8 @@
   <string name="fragment_about__translate_text">Findes applikationen ikke på dit sprog? Det kan du ændre! Hvorfor ikke hjælpe os med at oversætte den? Vi burer crowdin-platformen som gør dig i stand til at oversætte.</string>
   <string name="fragment_about__translate_button">Lad mig oversætte</string>
   <string name="fragment_about__feedback">Meld tilbage!</string>
+  <string name="fragment_about__feedback_text">dandelion* udvikles stadig, så hvis du har forslag eller anden form for tilbagemelding, så lad os det venligst vide via vores problem-tracker!</string>
+  <string name="fragment_about__feedback_button">Rapporter fejl</string>
+  <string name="fragment_about__spread_the_word">Spred ordet!</string>
   <!-- License & help (large amount of text) -->
 </resources>
