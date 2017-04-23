@@ -17,5 +17,12 @@
   <string name="fragment_debug__pod_profile_url">Pod-domæne: %1$s</string>
   <string name="fragment_debug__toast_log_copied">Fejlsøgningslog kopieret til udklipsbord</string>
   <string name="fragment_about__about_text">dandelion* er dine hjælpe-applikationer til at finde rundt på det sociale netværk diaspora*. Den tilføjer funktionaliteter som værktøjslinker og understøttelse for proxy-servere som Tor til din sociale oplevelse.</string>
+  <string name="fragment_about__contribute">Bidrag med kode!</string>
+  <string name="fragment_about__contribute_text">dandelion* udvikles som fri software og følger ideerne bag diaspora*-projektet. Hvis du har lyst til at bidrage, så sæt i gang! For nuværende er vi et meget lille hold der står bag, og vi sætter stor pris på enhver form for hjælp!</string>
+  <string name="fragment_about__contribute_button">Hent kildekoden</string>
+  <string name="fragment_about__translate">Oversæt applikationen!</string>
+  <string name="fragment_about__translate_text">Findes applikationen ikke på dit sprog? Det kan du ændre! Hvorfor ikke hjælpe os med at oversætte den? Vi burer crowdin-platformen som gør dig i stand til at oversætte.</string>
+  <string name="fragment_about__translate_button">Lad mig oversætte</string>
+  <string name="fragment_about__feedback">Meld tilbage!</string>
   <!-- License & help (large amount of text) -->
 </resources>
