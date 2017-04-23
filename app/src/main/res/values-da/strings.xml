@@ -3,7 +3,16 @@
 <resources>
   <!-- App - AppName specific -->
   <!-- Application -->
+  <string name="reload">Genindlæs</string>
   <!-- Common Words -->
+  <string name="settings">Indstillinger</string>
+  <string name="notifications">Notifikationer</string>
+  <string name="conversations">Samtaler</string>
+  <string name="stream">Strøm</string>
+  <string name="profile">Profil</string>
+  <string name="aspects">Aspekter</string>
+  <string name="activities">Aktiviteter</string>
+  <string name="liked">Synes om</string>
   <!-- Notifications dropdown menu -->
   <!-- Pod Activity -->
   <!-- Drawer, Menu, Toolbar, ContextMenu -->
