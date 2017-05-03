@@ -467,11 +467,12 @@ public class AppSettings {
 
     public int[] getPrimaryColorSettings() {
         return new int[]{
-                getInt(prefApp, R.string.pref_key__primary_color_base, getColorRes(R.color.md_blue_500)),
+                getInt(prefApp, R.string.pref_key__primary_color_base, getColorRes(R.color.md_blue_650)),
                 getInt(prefApp, R.string.pref_key__primary_color_shade, getColorRes(R.color.primary))
         };
     }
 
+    @SuppressWarnings("ConstantConditions")
     public int getPrimaryColor() {
         return getInt(prefApp, R.string.pref_key__primary_color_shade, getColorRes(
                 BuildConfig.IS_TEST_BUILD ? R.color.md_brown_800 : R.color.primary));
@@ -484,7 +485,7 @@ public class AppSettings {
 
     public int[] getAccentColorSettings() {
         return new int[]{
-                getInt(prefApp, R.string.pref_key__accent_color_base, getColorRes(R.color.md_deep_orange_500)),
+                getInt(prefApp, R.string.pref_key__accent_color_base, getColorRes(R.color.md_green_400)),
                 getInt(prefApp, R.string.pref_key__accent_color_shade, getColorRes(R.color.accent))
         };
     }

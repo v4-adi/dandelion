@@ -2,14 +2,14 @@
 <resources xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="UnusedResources">
 
-    <color name="colorPrimary">@color/md_blue_650</color>
-    <color name="colorPrimaryDark">@color/md_blue_750</color>
-    <color name="colorAccent">@color/md_deep_orange_650</color>
+    <color name="colorPrimary">@color/primary</color>
+    <color name="colorPrimaryDark">@color/primary_dark</color>
+    <color name="colorAccent">@color/accent</color>
 
     <!-- Colors from Palette -->
-    <color name="primary">@color/md_blue_650</color>
-    <color name="primary_dark">@color/md_blue_750</color>
-    <color name="accent">@color/md_deep_orange_650</color>
+    <color name="primary">@color/md_blue_750</color>
+    <color name="primary_dark">@color/md_blue_900</color>
+    <color name="accent">@color/accent_green</color>
     <color name="primary_light">#BBDEFB</color>
     <color name="primary_text">#212121</color>
     <color name="secondary_text">#727272</color>
@@ -29,7 +29,7 @@
     <color name="accent_pink">#e91e63</color>
     <color name="accent_purple">#9c27b0</color>
     <color name="accent_deep_purple">#673ab7</color>
-    <color name="accent_indago">#3f51b5</color>
+    <color name="accent_indigo">#3f51b5</color>
     <color name="accent_blue">#2196f3</color>
     <color name="accent_cyan">#00bcd4</color>
     <color name="accent_teal">#009688</color>

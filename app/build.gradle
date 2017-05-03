@@ -5,15 +5,16 @@ android {
     compileSdkVersion 24
     buildToolsVersion "24.0.3"
 
-    def VERSION_CODE = 15
-    def VERSION_NAME = "0.2.5"
-    def APP_NAME = "dandelion*"
-    def APP_PACKAGE = "com.github.dfa.diaspora_android"
-    def APP_ICON = "@drawable/ic_launcher"
-
     defaultConfig {
         minSdkVersion 17
         targetSdkVersion 24
+
+        versionCode 16
+        versionName "0.2.6"
+
+        applicationId "com.github.dfa.diaspora_android"
+        resValue 'string', 'app_name', "dandelion*"
+        manifestPlaceholders = [appIcon: "@drawable/ic_launcher"]
 
         buildConfigField "boolean", "IS_TEST_BUILD", "false"
         buildConfigField "boolean", "IS_GPLAY_BUILD", "false"
@@ -29,29 +30,22 @@ android {
 
     productFlavors {
         flavorDefault {
-            applicationId APP_PACKAGE
-            resValue 'string', 'app_name', APP_NAME
-            manifestPlaceholders = [appIcon: APP_ICON]
-            versionCode VERSION_CODE; versionName VERSION_NAME
         }
 
+        /*
+        flavorGplay {
+            buildConfigField "boolean", "IS_GPLAY_BUILD", "true"
+        }
+        */
+
         flavorTest {
-            applicationId APP_PACKAGE.replace("diaspora_android", "secondlion")
+            applicationId "com.github.dfa.secondlion"
             resValue 'string', 'app_name', "secondlion*"
-            manifestPlaceholders = [appIcon: APP_ICON + "_test"]
+            manifestPlaceholders = [appIcon: "@drawable/ic_launcher_test"]
             versionCode = Integer.parseInt(new Date().format('yyMMdd'))
             versionName = new Date().format('yyMMdd')
             buildConfigField "boolean", "IS_TEST_BUILD", "true"
         }
-
- /*       flavorGplay {
-            applicationId APP_PACKAGE
-            resValue 'string', 'app_name', APP_NAME
-            manifestPlaceholders = [appIcon: APP_ICON]
-            versionCode VERSION_CODE; versionName VERSION_NAME
-            buildConfigField "boolean", "IS_GPLAY_BUILD", "true"
-        }
-*/
     }
     lintOptions {
         disable 'MissingTranslation'
