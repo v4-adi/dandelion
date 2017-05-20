@@ -47,7 +47,7 @@ public class ThemedColorPickerPreference extends Preference implements Themeable
         Drawable circle;
         if (colorPreview != null && (circle = colorPreview.getDrawable()) != null) {
             Context c = getContext();
-            AppSettings appSettings = new AppSettings(getContext());
+            AppSettings appSettings = AppSettings.get();
             String key = getKey();
 
             int color = Helpers.getColorFromRessource(c, R.color.primary);

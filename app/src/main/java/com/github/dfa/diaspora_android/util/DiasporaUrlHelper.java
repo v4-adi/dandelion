@@ -68,7 +68,7 @@ public class DiasporaUrlHelper {
     }
 
     /**
-     * Return a url of the pod set in AppSettings.
+     * Return a url of the pod set in AppSettingsBase.
      * Eg. https://pod.geraspora.de
      *
      * @return https://(pod-domain.tld)

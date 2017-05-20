@@ -35,17 +35,22 @@ import com.github.dfa.diaspora_android.util.AppSettings;
 import com.github.dfa.diaspora_android.util.DiasporaUrlHelper;
 
 public class App extends Application {
-
+    private volatile static App app;
     private AppSettings appSettings;
     private AvatarImageLoader avatarImageLoader;
     private CookieManager cookieManager;
     private DiasporaUserProfile diasporaUserProfile;
 
+    public static App get() {
+        return app;
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
+        app = this;
         final Context c = getApplicationContext();
-        appSettings = new AppSettings(c);
+        appSettings = AppSettings.get();
 
         // Init app log
         AppLog.setLoggingEnabled(appSettings.isLoggingEnabled());
@@ -79,9 +84,9 @@ public class App extends Application {
         new AvatarImageLoader(this).clearAvatarImage();
 
         // Clear preferences__master
-        appSettings.clearPodSettings();
+        appSettings.resetPodSettings();
 
-        // Clear User profile  - reload empty AppSettings data
+        // Clear User profile  - reload empty AppSettingsBase data
         diasporaUserProfile.loadFromAppSettings();
 
         // Clear cookies

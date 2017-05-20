@@ -68,7 +68,7 @@ public class SettingsActivity extends ThemedActivity implements SharedPreference
                 SettingsActivity.this.onBackPressed();
             }
         });
-        getAppSettings().registerPrefAppPreferenceChangedListener(this);
+        getAppSettings().registerPreferenceChangedListener(this);
         oldProxySettings = getAppSettings().getProxySettings();
         showFragment(SettingsFragmentMaster.TAG, false);
     }
@@ -126,7 +126,7 @@ public class SettingsActivity extends ThemedActivity implements SharedPreference
                 ProxyHandler.getInstance().updateProxySettings(this);
             }
         }
-        getAppSettings().unregisterPrefAppPreferenceChangedListener(this);
+        getAppSettings().unregisterPreferenceChangedListener(this);
         super.onStop();
     }
 
@@ -223,7 +223,7 @@ public class SettingsActivity extends ThemedActivity implements SharedPreference
                     getActivity().finish();
                     return true;
                 } else if (settings.isKeyEqual(key, R.string.pref_key__change_account)) {
-                    new ThemedAlertDialogBuilder(getActivity(), new AppSettings(getActivity().getApplication()))
+                    new ThemedAlertDialogBuilder(getActivity(), AppSettings.get())
                             .setTitle(getString(R.string.confirmation))
                             .setMessage(getString(R.string.pref_warning__change_account))
                             .setNegativeButton(android.R.string.no, null)
@@ -398,8 +398,8 @@ public class SettingsActivity extends ThemedActivity implements SharedPreference
         public void updateSummaries() {
             if (isAdded()) {
                 AppSettings settings = ((App) getActivity().getApplication()).getSettings();
-                findPreference(settings.getKey(R.string.pref_key__http_proxy_host)).setSummary(settings.getProxyHttpHost());
-                findPreference(settings.getKey(R.string.pref_key__http_proxy_port)).setSummary(Integer.toString(settings.getProxyHttpPort()));
+                findPreference(settings.rstr(R.string.pref_key__http_proxy_host)).setSummary(settings.getProxyHttpHost());
+                findPreference(settings.rstr(R.string.pref_key__http_proxy_port)).setSummary(Integer.toString(settings.getProxyHttpPort()));
             }
         }
 
@@ -472,7 +472,7 @@ public class SettingsActivity extends ThemedActivity implements SharedPreference
         }
 
         private void showWipeSettingsDialog() {
-            final AppSettings appSettings = new AppSettings(this.getActivity().getApplication());
+            final AppSettings appSettings = AppSettings.get();
 
             ThemedAlertDialogBuilder builder = new ThemedAlertDialogBuilder(getActivity(), appSettings);
             builder.setTitle(R.string.confirmation)
@@ -480,8 +480,8 @@ public class SettingsActivity extends ThemedActivity implements SharedPreference
                     .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                            appSettings.clearAppSettings();
-                            appSettings.clearPodSettings();
+                            appSettings.resetAppSettings();
+                            appSettings.resetPodSettings();
                             Intent restartActivity = new Intent(getActivity(), MainActivity.class);
                             PendingIntent pendingIntent = PendingIntent.getActivity(getActivity(), 12374, restartActivity, PendingIntent.FLAG_CANCEL_CURRENT);
                             AlarmManager mgr = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);

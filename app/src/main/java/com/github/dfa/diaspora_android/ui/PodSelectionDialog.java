@@ -159,7 +159,7 @@ public class PodSelectionDialog extends ThemedAppCompatDialogFragment {
         if (isAdded()) {
             return ((App) getActivity().getApplication()).getSettings();
         } else {
-            return new AppSettings(getContext().getApplicationContext());
+            return AppSettings.get();
         }
     }
 

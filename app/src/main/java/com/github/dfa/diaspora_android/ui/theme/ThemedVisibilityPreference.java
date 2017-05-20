@@ -29,7 +29,7 @@ public class ThemedVisibilityPreference extends ThemedCheckBoxPreference {
     public void setColors() {
         CheckBox checkBox = (CheckBox) rootLayout.findViewById(android.R.id.checkbox);
         checkBox.setButtonDrawable(R.drawable.ic_visibility_selector);
-        ThemeHelper.getInstance(new AppSettings(getContext()));
+        ThemeHelper.getInstance(AppSettings.get());
         ThemeHelper.updateCheckBoxColor(checkBox);
     }
 }

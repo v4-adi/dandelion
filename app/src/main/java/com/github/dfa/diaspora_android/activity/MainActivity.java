@@ -77,7 +77,7 @@ import com.github.dfa.diaspora_android.util.AppLog;
 import com.github.dfa.diaspora_android.util.AppSettings;
 import com.github.dfa.diaspora_android.util.DiasporaUrlHelper;
 import com.github.dfa.diaspora_android.util.Helpers;
-import com.github.dfa.diaspora_android.util.SimpleMarkdownParser;
+import io.github.gsantner.opoc.util.SimpleMarkdownParser;
 import com.github.dfa.diaspora_android.web.BrowserFragment;
 import com.github.dfa.diaspora_android.web.ContextMenuWebView;
 import com.github.dfa.diaspora_android.web.ProxyHandler;

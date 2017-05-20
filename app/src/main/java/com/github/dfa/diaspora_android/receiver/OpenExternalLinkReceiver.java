@@ -48,7 +48,7 @@ public class OpenExternalLinkReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context c, Intent receiveIntent) {
-        AppSettings appSettings = new AppSettings(c);
+        AppSettings appSettings = AppSettings.get();
         ThemeHelper.getInstance(appSettings);
 
         AppLog.v(this, "OpenExternalLinkReceiver.onReceive(): url");

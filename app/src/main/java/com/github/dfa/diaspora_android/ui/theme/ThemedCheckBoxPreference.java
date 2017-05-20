@@ -42,7 +42,7 @@ public class ThemedCheckBoxPreference extends CheckBoxPreference implements Them
     @Override
     public void setColors() {
         CheckBox checkBox = (CheckBox) rootLayout.findViewById(android.R.id.checkbox);
-        ThemeHelper.getInstance(new AppSettings(getContext()));
+        ThemeHelper.getInstance(AppSettings.get());
         ThemeHelper.updateCheckBoxColor(checkBox);
     }
 }

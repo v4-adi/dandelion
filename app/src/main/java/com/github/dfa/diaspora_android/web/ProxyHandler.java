@@ -55,7 +55,7 @@ public class ProxyHandler {
 
     public void updateProxySettings(Context context) {
         AppLog.d(this, "UpdateProxySettings()");
-        AppSettings appSettings = new AppSettings(context);
+        AppSettings appSettings = AppSettings.get();
         StrictMode.ThreadPolicy old = StrictMode.getThreadPolicy();
         StrictMode.ThreadPolicy tmp = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(tmp);
@@ -86,7 +86,7 @@ public class ProxyHandler {
 
     private void updateWebViewProxySettings(WebView wv, Context context) {
         AppLog.d(this, "UpdateWebViewProxySettings()");
-        AppSettings appSettings = new AppSettings(context);
+        AppSettings appSettings = AppSettings.get();
         StrictMode.ThreadPolicy old = StrictMode.getThreadPolicy();
         StrictMode.ThreadPolicy tmp = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(tmp);

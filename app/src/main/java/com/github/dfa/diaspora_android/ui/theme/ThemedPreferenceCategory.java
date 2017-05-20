@@ -44,7 +44,7 @@ public class ThemedPreferenceCategory extends PreferenceCategory implements Them
     @Override
     public void setColors() {
         if (titleTextView != null) {
-            ThemeHelper.getInstance(new AppSettings(getContext()));
+            ThemeHelper.getInstance(AppSettings.get());
             ThemeHelper.updateTextViewTextColor(titleTextView);
         }
     }

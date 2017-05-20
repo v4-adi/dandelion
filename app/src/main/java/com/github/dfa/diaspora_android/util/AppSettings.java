@@ -17,9 +17,8 @@ package com.github.dfa.diaspora_android.util;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.support.annotation.ColorRes;
-import android.support.v4.content.ContextCompat;
 
+import com.github.dfa.diaspora_android.App;
 import com.github.dfa.diaspora_android.BuildConfig;
 import com.github.dfa.diaspora_android.R;
 import com.github.dfa.diaspora_android.data.DiasporaAspect;
@@ -31,24 +30,24 @@ import org.json.JSONObject;
 
 import java.util.List;
 
+import io.github.gsantner.opoc.util.AppSettingsBase;
+
 /**
  * Settings
  * Created by gsantner (https://gsantner.github.io/) on 20.03.16. Part of dandelion*.
  */
-public class AppSettings {
-    private final SharedPreferences prefApp;
+@SuppressWarnings("ConstantConditions")
+public class AppSettings extends AppSettingsBase {
     private final SharedPreferences prefPod;
-    private final Context context;
     private DiasporaPod currentPod0Cached;
 
-    public AppSettings(Context context) {
-        this.context = context.getApplicationContext();
-        prefApp = this.context.getSharedPreferences("app", Context.MODE_PRIVATE);
-        prefPod = this.context.getSharedPreferences("pod0", Context.MODE_PRIVATE);
+    public static AppSettings get() {
+        return new AppSettings(App.get());
     }
 
-    public Context getApplicationContext() {
-        return context;
+    private AppSettings(Context context) {
+        super(context);
+        prefPod = this.context.getSharedPreferences("pod0", Context.MODE_PRIVATE);
     }
 
     /**
@@ -58,8 +57,8 @@ public class AppSettings {
      * kills the app after the calling this, so we have to block until we are finished.
      */
     @SuppressLint("CommitPrefEdits")
-    public void clearPodSettings() {
-        prefPod.edit().clear().commit();
+    public void resetPodSettings() {
+        super.resetSettings(prefPod);
     }
 
     /**
@@ -69,92 +68,13 @@ public class AppSettings {
      * kills the app after the calling this, so we have to block until we are finished.
      */
     @SuppressLint("CommitPrefEdits")
-    public void clearAppSettings() {
-        prefApp.edit().clear().commit();
+    public void resetAppSettings() {
+        super.resetSettings(prefApp);
     }
 
-    public String getKey(int stringKeyResourceId) {
-        return context.getString(stringKeyResourceId);
-    }
-
-    public boolean isKeyEqual(String key, int stringKeyRessourceId) {
-        return key.equals(getKey(stringKeyRessourceId));
-    }
-
-    private void setString(SharedPreferences pref, int keyRessourceId, String value) {
-        pref.edit().putString(context.getString(keyRessourceId), value).apply();
-    }
-
-    private void setInt(SharedPreferences pref, int keyRessourceId, int value) {
-        pref.edit().putInt(context.getString(keyRessourceId), value).apply();
-    }
-
-    private void setLong(SharedPreferences pref, int keyRessourceId, long value) {
-        pref.edit().putLong(context.getString(keyRessourceId), value).apply();
-    }
-
-    private void setBool(SharedPreferences pref, int keyRessourceId, boolean value) {
-        pref.edit().putBoolean(context.getString(keyRessourceId), value).apply();
-    }
-
-    private void setStringArray(SharedPreferences pref, int keyRessourceId, Object[] values) {
-        StringBuilder sb = new StringBuilder();
-        for (Object value : values) {
-            sb.append("%%%");
-            sb.append(value.toString());
-        }
-        setString(pref, keyRessourceId, sb.toString().replaceFirst("%%%", ""));
-    }
-
-    private String[] getStringArray(SharedPreferences pref, int keyRessourceId) {
-        String value = pref.getString(context.getString(keyRessourceId), "%%%");
-        if (value.equals("%%%")) {
-            return new String[0];
-        }
-        return value.split("%%%");
-    }
-
-    private String getString(SharedPreferences pref, int ressourceId, String defaultValue) {
-        return pref.getString(context.getString(ressourceId), defaultValue);
-    }
-
-    private String getString(SharedPreferences pref, int ressourceId, int ressourceIdDefaultValue) {
-        return pref.getString(context.getString(ressourceId), context.getString(ressourceIdDefaultValue));
-    }
-
-    private boolean getBool(SharedPreferences pref, int ressourceId, boolean defaultValue) {
-        return pref.getBoolean(context.getString(ressourceId), defaultValue);
-    }
-
-    private int getInt(SharedPreferences pref, int ressourceId, int defaultValue) {
-        return pref.getInt(context.getString(ressourceId), defaultValue);
-    }
-
-    private long getLong(SharedPreferences pref, int ressourceId, long defaultValue) {
-        return pref.getLong(context.getString(ressourceId), defaultValue);
-    }
-
-
-    public int getColor(SharedPreferences pref, String key, int defaultColor) {
-        return pref.getInt(key, defaultColor);
-    }
-
-    public int getColorRes(@ColorRes int resColorId){
-        return ContextCompat.getColor(context, resColorId);
-    }
-
-    public void registerPrefAppPreferenceChangedListener(SharedPreferences.OnSharedPreferenceChangeListener listener) {
-        prefApp.registerOnSharedPreferenceChangeListener(listener);
-    }
-
-    public void unregisterPrefAppPreferenceChangedListener(SharedPreferences.OnSharedPreferenceChangeListener listener) {
-        prefApp.unregisterOnSharedPreferenceChangeListener(listener);
-    }
-
-
-    /*
-    //     Setters & Getters
-    */
+    //#################################
+    //## Getter & Setter for settings
+    //#################################
     public String getProfileId() {
         return getString(prefPod, R.string.pref_key__podprofile_id, "");
     }
@@ -249,7 +169,7 @@ public class AppSettings {
     }
 
     public void setFollowedTagsFavs(List<String> values) {
-        setStringArray(prefPod, R.string.pref_key__podprofile_followed_tags_favs, values.toArray(new String[values.size()]));
+        setStringList(prefPod, R.string.pref_key__podprofile_followed_tags_favs, values);
     }
 
     public String[] getAspectFavs() {
@@ -257,7 +177,7 @@ public class AppSettings {
     }
 
     public void setAspectFavs(List<String> values) {
-        setStringArray(prefPod, R.string.pref_key__podprofile_aspects_favs, values.toArray(new String[values.size()]));
+        setStringList(prefPod, R.string.pref_key__podprofile_aspects_favs, values);
     }
 
     public int getUnreadMessageCount() {
@@ -432,13 +352,13 @@ public class AppSettings {
         return getString(prefApp, R.string.pref_key__screen_rotation, R.string.rotation_val_system);
     }
 
-    public boolean isAppFirstStart(){
+    public boolean isAppFirstStart() {
         boolean value = getBool(prefApp, R.string.pref_key__app_first_start, true);
         setBool(prefApp, R.string.pref_key__app_first_start, false);
         return value;
     }
 
-    public boolean isAppCurrentVersionFirstStart(){
+    public boolean isAppCurrentVersionFirstStart() {
         int value = getInt(prefApp, R.string.pref_key__app_first_start_current_version, -1);
         setInt(prefApp, R.string.pref_key__app_first_start_current_version, BuildConfig.VERSION_CODE);
         return value != BuildConfig.VERSION_CODE && !BuildConfig.IS_TEST_BUILD;
@@ -452,11 +372,11 @@ public class AppSettings {
         setLong(prefPod, R.string.pref_key__podprofile_last_stream_position, timestamp);
     }
 
-    public void setLanguage(String value){
+    public void setLanguage(String value) {
         setString(prefApp, R.string.pref_key__language, value);
     }
 
-    public String getLanguage(){
+    public String getLanguage() {
         return getString(prefApp, R.string.pref_key__language, "");
     }
 
@@ -467,14 +387,14 @@ public class AppSettings {
 
     public int[] getPrimaryColorSettings() {
         return new int[]{
-                getInt(prefApp, R.string.pref_key__primary_color_base, getColorRes(R.color.md_blue_650)),
-                getInt(prefApp, R.string.pref_key__primary_color_shade, getColorRes(R.color.primary))
+                getInt(prefApp, R.string.pref_key__primary_color_base, rcolor(R.color.md_blue_650)),
+                getInt(prefApp, R.string.pref_key__primary_color_shade, rcolor(R.color.primary))
         };
     }
 
     @SuppressWarnings("ConstantConditions")
     public int getPrimaryColor() {
-        return getInt(prefApp, R.string.pref_key__primary_color_shade, getColorRes(
+        return getInt(prefApp, R.string.pref_key__primary_color_shade, rcolor(
                 BuildConfig.IS_TEST_BUILD ? R.color.md_brown_800 : R.color.primary));
     }
 
@@ -485,13 +405,13 @@ public class AppSettings {
 
     public int[] getAccentColorSettings() {
         return new int[]{
-                getInt(prefApp, R.string.pref_key__accent_color_base, getColorRes(R.color.md_green_400)),
-                getInt(prefApp, R.string.pref_key__accent_color_shade, getColorRes(R.color.accent))
+                getInt(prefApp, R.string.pref_key__accent_color_base, rcolor(R.color.md_green_400)),
+                getInt(prefApp, R.string.pref_key__accent_color_shade, rcolor(R.color.accent))
         };
     }
 
     public int getAccentColor() {
-        return getInt(prefApp, R.string.pref_key__accent_color_shade, getColorRes(R.color.accent));
+        return getInt(prefApp, R.string.pref_key__accent_color_shade, rcolor(R.color.accent));
     }
 
     public boolean isExtendedNotificationsActivated() {

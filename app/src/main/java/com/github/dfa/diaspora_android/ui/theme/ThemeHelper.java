@@ -64,7 +64,7 @@ public class ThemeHelper {
 
     public static ThemeHelper getInstance() {
         if (instance == null)
-            throw new IllegalStateException("ThemeHelper must be initialized using getInstance(AppSettings) before it can be used!");
+            throw new IllegalStateException("ThemeHelper must be initialized using getInstance(AppSettingsBase) before it can be used!");
         return instance;
     }
 
@@ -154,7 +154,7 @@ public class ThemeHelper {
     }
 
     public static int getNeutralGreyColor() {
-        return ContextCompat.getColor(getInstance().appSettings.getApplicationContext(), R.color.md_grey_800);
+        return ContextCompat.getColor(getInstance().appSettings.getContext(), R.color.md_grey_800);
     }
 
     public static void updateAlertDialogColor(AlertDialog alertDialog) {

@@ -62,7 +62,7 @@ public class DiasporaStreamWebChromeClient extends FileUploadWebChromeClient {
 
     @Override
     public boolean onJsConfirm(WebView view, String url, String message, final JsResult result) {
-        ThemedAlertDialogBuilder builder = new ThemedAlertDialogBuilder(view.getContext(), new AppSettings(view.getContext()));
+        ThemedAlertDialogBuilder builder = new ThemedAlertDialogBuilder(view.getContext(), AppSettings.get());
         builder.setTitle(view.getContext().getString(R.string.confirmation))
                 .setMessage(message)
                 .setPositiveButton(android.R.string.ok,

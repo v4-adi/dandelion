@@ -52,6 +52,8 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.Locale;
 
+import io.github.gsantner.opoc.util.SimpleMarkdownParser;
+
 public class Helpers {
     public static int getColorFromRessource(Context context, int ressourceId) {
         Resources res = context.getResources();
