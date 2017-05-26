@@ -39,67 +39,15 @@ import javax.net.ssl.HttpsURLConnection;
 import info.guardianproject.netcipher.NetCipher;
 
 public class FetchPodsService extends Service {
-    public static final String EXTRA_PODLIST = "pods";
     public static final String MESSAGE_PODS_RECEIVED = "com.github.dfa.diaspora.podsreceived";
-    public static final String PODDY_PODLIST_URL = "https://raw.githubusercontent.com/Diaspora-for-Android/dandelion/master/app/src/main/res/raw/podlist.json";
-
+    public static final String EXTRA_PODLIST = "pods";
     public FetchPodsService() {
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        getPods();
+        new GetPodsTask(this).execute();
         return super.onStartCommand(intent, flags, startId);
-    }
-
-    private void getPods() {
-        AsyncTask<Void, Void, DiasporaPodList> getPodsAsync = new AsyncTask<Void, Void, DiasporaPodList>() {
-            @Override
-            protected DiasporaPodList doInBackground(Void... params) {
-                StringBuilder sb = new StringBuilder();
-                BufferedReader br = null;
-                try {
-                    HttpsURLConnection con = NetCipher.getHttpsURLConnection(PODDY_PODLIST_URL);
-                    if (con.getResponseCode() == HttpsURLConnection.HTTP_OK) {
-                        br = new BufferedReader(new InputStreamReader(con.getInputStream()));
-                        String line;
-                        while ((line = br.readLine()) != null) {
-                            sb.append(line);
-                        }
-
-                        // Parse JSON & return pod list
-                        JSONObject json = new JSONObject(sb.toString());
-                        return new DiasporaPodList().fromJson(json);
-                    } else {
-                        AppLog.e(this, "Failed to download list of pods");
-                    }
-                } catch (IOException | JSONException e) {
-                    e.printStackTrace();
-                } finally {
-                    if (br != null) {
-                        try {
-                            br.close();
-                        } catch (IOException ignored) {
-                        }
-                    }
-                }
-
-                // Could not fetch list of pods :(
-                return new DiasporaPodList();
-            }
-
-            @Override
-            protected void onPostExecute(DiasporaPodList pods) {
-                if (pods == null) {
-                    pods = new DiasporaPodList();
-                }
-                Intent broadcastIntent = new Intent(MESSAGE_PODS_RECEIVED);
-                broadcastIntent.putExtra(EXTRA_PODLIST, pods);
-                LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(broadcastIntent);
-                stopSelf();
-            }
-        };
-        getPodsAsync.execute();
     }
 
     @Override
@@ -107,5 +55,59 @@ public class FetchPodsService extends Service {
         // TODO: Return the communication channel to the service.
         throw new UnsupportedOperationException("Not yet implemented");
     }
+}
 
+class GetPodsTask extends AsyncTask<Void, Void, DiasporaPodList> {
+    private static final String PODDY_PODLIST_URL = "https://raw.githubusercontent.com/Diaspora-for-Android/dandelion/master/app/src/main/res/raw/podlist.json";
+
+    private final Service service;
+
+    GetPodsTask(Service service) {
+        this.service = service;
+    }
+
+    @Override
+    protected DiasporaPodList doInBackground(Void... params) {
+        StringBuilder sb = new StringBuilder();
+        BufferedReader br = null;
+        try {
+            HttpsURLConnection con = NetCipher.getHttpsURLConnection(PODDY_PODLIST_URL);
+            if (con.getResponseCode() == HttpsURLConnection.HTTP_OK) {
+                br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+                String line;
+                while ((line = br.readLine()) != null) {
+                    sb.append(line);
+                }
+
+                // Parse JSON & return pod list
+                JSONObject json = new JSONObject(sb.toString());
+                return new DiasporaPodList().fromJson(json);
+            } else {
+                AppLog.e(this, "Failed to download list of pods");
+            }
+        } catch (IOException | JSONException e) {
+            e.printStackTrace();
+        } finally {
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (IOException ignored) {
+                }
+            }
+        }
+
+        // Could not fetch list of pods :(
+        return new DiasporaPodList();
+    }
+
+    @Override
+    protected void onPostExecute(DiasporaPodList pods) {
+        if (pods == null) {
+            pods = new DiasporaPodList();
+        }
+        Intent broadcastIntent = new Intent(FetchPodsService.MESSAGE_PODS_RECEIVED);
+        broadcastIntent.putExtra(FetchPodsService.EXTRA_PODLIST, pods);
+        LocalBroadcastManager.getInstance(service.getApplicationContext()).sendBroadcast(broadcastIntent);
+        service.stopSelf();
+    }
 }

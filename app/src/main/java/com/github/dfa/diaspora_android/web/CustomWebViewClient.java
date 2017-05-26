@@ -27,6 +27,7 @@ import android.webkit.WebViewClient;
 import com.github.dfa.diaspora_android.App;
 import com.github.dfa.diaspora_android.activity.MainActivity;
 import com.github.dfa.diaspora_android.data.DiasporaPodList;
+import com.github.dfa.diaspora_android.util.AppSettings;
 
 public class CustomWebViewClient extends WebViewClient {
     private final App app;
@@ -38,11 +39,15 @@ public class CustomWebViewClient extends WebViewClient {
 
     //Open non-diaspora links in customtab/external browser
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
-        String host = app.getSettings().getPod().getPodUrl().getHost();
+        DiasporaPodList.DiasporaPod pod = AppSettings.get().getPod();
+        String host = null;
+        if (pod != null && pod.getPodUrl() != null && pod.getPodUrl().getHost() != null) {
+            host = pod.getPodUrl().getHost();
+        }
 
-        if (url.startsWith("https://" + host)
-                || url.startsWith("http://" + host)
-                || url.startsWith("https://dia.so/")) {
+        if (url.startsWith("https://dia.so/")
+                || (host != null && (url.startsWith("https://" + host)
+                || url.startsWith("http://" + host)))) {
             return false;
         } else {
             Intent i = new Intent(MainActivity.ACTION_OPEN_EXTERNAL_URL);
@@ -57,7 +62,7 @@ public class CustomWebViewClient extends WebViewClient {
 
         final CookieManager cookieManager = app.getCookieManager();
         String cookies = cookieManager.getCookie(url);
-        DiasporaPodList.DiasporaPod pod = app.getSettings().getPod();
+        DiasporaPodList.DiasporaPod pod = AppSettings.get().getPod();
 
         if (cookies != null) {
             cookieManager.setCookie(url, cookies);
