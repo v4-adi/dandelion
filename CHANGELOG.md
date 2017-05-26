@@ -1,3 +1,6 @@
+### v0.2.7 (2017-05-26)
+- Small improvements
+
 ### v0.2.6 (2017-05-03)
 - Fixed #156 #158 #159
 - Added chinese traditional language
