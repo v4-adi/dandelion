@@ -159,7 +159,7 @@ public class AspectListFragment extends ThemedFragment implements OnSomethingCli
             final DiasporaAspect aspect = aspectList[position];
             holder.title.setText(aspect.name);
             if (position % 2 == 1) {
-                holder.root.setBackgroundColor(Helpers.getColorFromRessource(c, R.color.alternate_row_color));
+                holder.root.setBackgroundColor(Helpers.get().color(R.color.alternate_row_color));
             }
 
             // Favourite (Star) Image

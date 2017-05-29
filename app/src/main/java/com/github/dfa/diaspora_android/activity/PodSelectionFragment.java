@@ -116,11 +116,11 @@ public class PodSelectionFragment extends ThemedFragment implements SearchView.O
             }
         });
         LocalBroadcastManager.getInstance(getContext()).registerReceiver(podListReceiver, new IntentFilter(FetchPodsService.MESSAGE_PODS_RECEIVED));
-        Helpers.showInfoIfUserNotConnectedToInternet(getContext(), listViewPod);
+        Helpers.get().showInfoIfUserNotConnectedToInternet(getActivity(), listViewPod);
     }
 
     public void mergePodlistWithRessources(DiasporaPodList podlist) {
-        String sPodlist = Helpers.readTextfileFromRawRessource(getContext(), R.raw.podlist, "", "");
+        String sPodlist = Helpers.get().readTextfileFromRawRes(R.raw.podlist, "", "");
         try {
             JSONObject jPodlist = new JSONObject(sPodlist);
             podlist.mergeWithNewerEntries(new DiasporaPodList().fromJson(jPodlist));
@@ -219,7 +219,7 @@ public class PodSelectionFragment extends ThemedFragment implements SearchView.O
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_reload: {
-                if (!Helpers.showInfoIfUserNotConnectedToInternet(getContext(), listViewPod)) {
+                if (!Helpers.get().showInfoIfUserNotConnectedToInternet(getActivity(), listViewPod)) {
                     Intent i = new Intent(getContext(), FetchPodsService.class);
                     getContext().startService(i);
                     return true;

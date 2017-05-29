@@ -271,7 +271,7 @@ public class DiasporaStreamFragment extends BrowserFragment {
                 // Create the File where the photo should go
                 File photoFile;
                 try {
-                    photoFile = Helpers.createImageFile();
+                    photoFile = Helpers.get().createImageFile();
                     takePictureIntent.putExtra("PhotoPath", mCameraPhotoPath);
                 } catch (IOException ex) {
                     AppLog.e(this, "ERROR creating temp file: " + ex.toString());

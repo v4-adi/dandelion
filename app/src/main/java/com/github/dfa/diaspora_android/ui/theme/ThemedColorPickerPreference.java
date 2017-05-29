@@ -50,7 +50,7 @@ public class ThemedColorPickerPreference extends Preference implements Themeable
             AppSettings appSettings = AppSettings.get();
             String key = getKey();
 
-            int color = Helpers.getColorFromRessource(c, R.color.primary);
+            int color = Helpers.get().color(R.color.primary);
             if ((appSettings.isKeyEqual(key, R.string.pref_key__primary_color_shade))) {
                 color = appSettings.getPrimaryColor();
             } else if ((appSettings.isKeyEqual(key, R.string.pref_key__accent_color_shade))) {

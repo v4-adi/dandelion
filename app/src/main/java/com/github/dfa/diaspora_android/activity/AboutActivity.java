@@ -212,13 +212,13 @@ public class AboutActivity extends ThemedActivity
         public void buttonClicked(View view) {
             switch (view.getId()) {
                 case R.id.fragment_about__contribute_button:
-                    Helpers.openInExternalBrowser(getContext(), getString(R.string.fragment_about__contribute_link));
+                    Helpers.get().openWebpageInExternalBrowser(getString(R.string.fragment_about__contribute_link));
                     break;
                 case R.id.fragment_about__translate_button:
-                    Helpers.openInExternalBrowser(getContext(), getString(R.string.fragment_about__translate_link));
+                    Helpers.get().openWebpageInExternalBrowser(getString(R.string.fragment_about__translate_link));
                     break;
                 case R.id.fragment_about__feedback_button:
-                    Helpers.openInExternalBrowser(getContext(), getString(R.string.fragment_About__feedback_link));
+                    Helpers.get().openWebpageInExternalBrowser(getString(R.string.fragment_About__feedback_link));
                     break;
                 case R.id.fragment_about__spread_the_word_button:
                     Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
@@ -263,14 +263,14 @@ public class AboutActivity extends ThemedActivity
             View rootView = inflater.inflate(R.layout.about__fragment_license, container, false);
             ButterKnife.bind(this, rootView);
             final Context context = rootView.getContext();
-            accentColor = Helpers.colorToHex(ThemeHelper.getAccentColor());
+            accentColor = Helpers.get().colorToHexString(ThemeHelper.getAccentColor());
 
             maintainers.setTextFormatted(getString(R.string.fragment_license__maintainers_text,
-                    Helpers.loadMarkdownFromRawForTextView(context, R.raw.maintainers, "")));
+                    Helpers.get().loadMarkdownForTextViewFromRaw(R.raw.maintainers, "")));
             contributors.setTextFormatted(getString(R.string.fragment_license__contributors_thank_you,
-                    Helpers.loadMarkdownFromRawForTextView(context, R.raw.contributors, "* ")));
+                    Helpers.get().loadMarkdownForTextViewFromRaw(R.raw.contributors, "* ")));
             thirdPartyLibs.setTextFormatted(
-                    Helpers.loadMarkdownFromRawForTextView(context, R.raw.license_third_party, ""));
+                    Helpers.get().loadMarkdownForTextViewFromRaw(R.raw.license_third_party, ""));
             return rootView;
         }
 
@@ -278,10 +278,10 @@ public class AboutActivity extends ThemedActivity
         public void buttonClicked(View v) {
             switch (v.getId()) {
                 case R.id.fragment_license__leafpic_button:
-                    Helpers.openInExternalBrowser(getContext(), getString(R.string.fragment_licesen__misc_leafpic_link));
+                    Helpers.get().openWebpageInExternalBrowser(getString(R.string.fragment_licesen__misc_leafpic_link));
                     break;
                 case R.id.fragment_license__license_button:
-                    Helpers.openInExternalBrowser(getContext(), getString(R.string.fragment_license__license_gpl_link));
+                    Helpers.get().openWebpageInExternalBrowser(getString(R.string.fragment_license__license_gpl_link));
                     break;
             }
         }

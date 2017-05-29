@@ -1,3 +1,6 @@
+### v0.2.9
+- Use opoc/Helpers
+
 ### v0.2.7 (2017-05-26)
 - Small improvements
 

@@ -118,4 +118,10 @@
     <string name="pod_address">Pod address</string>
     <string name="missing_value">Missing value</string>
     <string name="jump_to_last_visited_timestamp_in_stream">Jump to last visited page in stream?</string>
+
+    <string name="not_implemented" translatable="false">not_implemented</string>
+    <string name="donate__bitcoin_id" translatable="false">@string/not_implemented</string>
+    <string name="donate__bitcoin_message" translatable="false">@string/not_implemented</string>
+    <string name="donate__bitcoin_amount" translatable="false">@string/not_implemented</string>
+    <string name="donate__bitcoin_url" translatable="false">@string/not_implemented</string>
 </resources>

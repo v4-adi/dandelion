@@ -158,7 +158,7 @@ public class TagListFragment extends ThemedFragment implements OnSomethingClickL
             final String tag = followedTagsList[position];
             holder.title.setText(tag);
             if (position % 2 == 1) {
-                holder.root.setBackgroundColor(Helpers.getColorFromRessource(c, R.color.alternate_row_color));
+                holder.root.setBackgroundColor(Helpers.get().color(R.color.alternate_row_color));
             }
 
             // Favourite (Star) Image
