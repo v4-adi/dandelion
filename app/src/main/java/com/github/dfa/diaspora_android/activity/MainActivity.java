@@ -25,6 +25,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.graphics.drawable.LayerDrawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -424,6 +426,14 @@ public class MainActivity extends ThemedActivity
             navheaderImage.setImageResource(R.drawable.ic_launcher_test);
         }
         updateNavigationViewEntryVisibilities();
+
+        if (appSettings.isAmoledColorMode()) {
+            navView.setItemTextColor(ColorStateList.valueOf(Color.LTGRAY));
+            navView.setItemIconTintList(ColorStateList.valueOf(Color.LTGRAY));
+            navView.setBackgroundColor(Color.BLACK);
+            navheaderTitle.setTextColor(Color.LTGRAY);
+            navheaderDescription.setTextColor(Color.GRAY);
+        }
     }
 
     protected void updateNavigationViewEntryVisibilities() {

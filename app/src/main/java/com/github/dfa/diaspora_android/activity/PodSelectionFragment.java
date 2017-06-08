@@ -22,6 +22,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -176,10 +177,18 @@ public class PodSelectionFragment extends ThemedFragment implements SearchView.O
             listedPodsList.add(pod.getPodUrl().getHost());
         }
 
-        listViewPodAdapter = new ArrayAdapter<>(
+        listViewPodAdapter = new ArrayAdapter<String>(
                 getContext(),
                 android.R.layout.simple_list_item_1,
-                listedPodsList);
+                listedPodsList) {
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                View view = super.getView(position, convertView, parent);
+                TextView textView = (TextView) view.findViewById(android.R.id.text1);
+                textView.setTextColor(Color.BLACK);
+                return view;
+            }
+        };
 
         // save index and top position
         int index = listViewPod.getFirstVisiblePosition();

@@ -17,6 +17,7 @@ package com.github.dfa.diaspora_android.util;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 
 import com.github.dfa.diaspora_android.App;
 import com.github.dfa.diaspora_android.BuildConfig;
@@ -394,8 +395,12 @@ public class AppSettings extends AppSettingsBase {
 
     @SuppressWarnings("ConstantConditions")
     public int getPrimaryColor() {
-        return getInt(prefApp, R.string.pref_key__primary_color_shade, rcolor(
-                BuildConfig.IS_TEST_BUILD ? R.color.md_brown_800 : R.color.primary));
+        if (isAmoledColorMode()) {
+            return Color.BLACK;
+        } else {
+            return getInt(prefApp, R.string.pref_key__primary_color_shade, rcolor(
+                    BuildConfig.IS_TEST_BUILD ? R.color.md_brown_800 : R.color.primary));
+        }
     }
 
     public void setAccentColorSettings(int base, int shade) {
@@ -416,5 +421,13 @@ public class AppSettings extends AppSettingsBase {
 
     public boolean isExtendedNotificationsActivated() {
         return getBool(prefApp, R.string.pref_key__extended_notifications, false);
+    }
+
+    public boolean isAmoledColorMode() {
+        return getBool(prefApp, R.string.pref_key__primary_color__amoled_mode, false);
+    }
+
+    public boolean isAdBlockEnabled() {
+        return getBool(prefApp, R.string.pref_key__adblock_enable, true);
     }
 }

@@ -128,6 +128,13 @@
             android:summary="@string/pref_desc__load_images"
             android:title="@string/pref_title__load_images"/>
 
+        <com.github.dfa.diaspora_android.ui.theme.ThemedCheckBoxPreference
+            android:defaultValue="true"
+            android:icon="@drawable/ic_file_download_black_24px"
+            android:key="@string/pref_key__adblock_enable"
+            android:summary="@string/pref_desc__adblock_enable"
+            android:title="@string/pref_title__adblock_enable"/>
+
         <Preference
             android:icon="@drawable/ic_clear_black_24px"
             android:key="@string/pref_key__clear_cache"

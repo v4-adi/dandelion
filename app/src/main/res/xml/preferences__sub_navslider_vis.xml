@@ -49,7 +49,7 @@
         android:title="@string/pref_cat__visibility_nav_items__general">
 
         <com.github.dfa.diaspora_android.ui.theme.ThemedVisibilityPreference
-            android:defaultValue="false"
+            android:defaultValue="true"
             android:key="@string/pref_key__visibility_nav__exit"
             android:title="@string/action_exit_app"/>
         <com.github.dfa.diaspora_android.ui.theme.ThemedVisibilityPreference

@@ -34,6 +34,8 @@ import com.github.dfa.diaspora_android.util.AppLog;
 import com.github.dfa.diaspora_android.util.AppSettings;
 import com.github.dfa.diaspora_android.util.DiasporaUrlHelper;
 
+import io.github.gsantner.opoc.util.AdBlock;
+
 public class App extends Application {
     private volatile static App app;
     private AppSettings appSettings;
@@ -69,6 +71,7 @@ public class App extends Application {
         }
         cookieManager.setAcceptCookie(true);
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+        AdBlock.getInstance().loadHostsFromRawAssetsAsync(this);
     }
 
     public void resetPodData(@Nullable WebView webView) {
