@@ -7,7 +7,8 @@
     <string name="app_subtitle" translatable="false">Your companion app for browsing diaspora*</string>
     <string name="shared_via_app" translatable="false">
         \n\n\n_________________________\n
-        *via [dandelion*](/people?q=dandelion00%40diasp.org) client / #dandelíon*</string>
+        **Tags:** #dandelíon  \n\n
+        *via [dandelion*](/people?q=dandelion00%40diasp.org) client / [GitHub](https://github.com/Diaspora-for-Android/dandelion)*</string>
 
     <!-- Application -->
     <string name="navigation_drawer_open">Open navigation drawer</string>
