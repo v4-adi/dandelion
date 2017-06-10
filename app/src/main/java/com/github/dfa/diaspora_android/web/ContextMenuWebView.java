@@ -31,7 +31,6 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Environment;
-import android.support.v4.content.LocalBroadcastManager;
 import android.util.AttributeSet;
 import android.view.ContextMenu;
 import android.view.MenuItem;
@@ -110,14 +109,14 @@ public class ContextMenuWebView extends NestedWebView {
                         if (writeToStoragePermitted) {
                             //Make sure, Diaspora Folder exists
                             File destinationFolder = new File(Environment.getExternalStorageDirectory() + "/Pictures/Diaspora");
-                            if(!destinationFolder.exists()) {
+                            if (!destinationFolder.exists()) {
                                 destinationFolder.mkdirs();
                             }
 
                             if (url != null) {
                                 Uri source = Uri.parse(url);
                                 DownloadManager.Request request = new DownloadManager.Request(source);
-                                File destinationFile = new File(Environment.getExternalStorageDirectory() + "/Pictures/Diaspora/"+ System.currentTimeMillis() + ".png");
+                                File destinationFile = new File(Environment.getExternalStorageDirectory() + "/Pictures/Diaspora/" + System.currentTimeMillis() + ".png");
 
                                 request.setDestinationUri(Uri.fromFile(destinationFile));
                                 ((DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE)).enqueue(request);
@@ -158,7 +157,7 @@ public class ContextMenuWebView extends NestedWebView {
                             if (writeToStoragePermitted) {
                                 //Make sure, Diaspora Folder exists
                                 File destinationFolder = new File(Environment.getExternalStorageDirectory() + "/Pictures/Diaspora");
-                                if(!destinationFolder.exists()) {
+                                if (!destinationFolder.exists()) {
                                     destinationFolder.mkdirs();
                                 }
 

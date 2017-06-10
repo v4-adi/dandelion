@@ -28,6 +28,8 @@
   <string name="pref_desc__primary_color">Färgen på verktygspanelerna</string>
   <string name="pref_title__accent_color">Accentfärg</string>
   <string name="pref_desc__accent_color">Färg på förloppsindikatorn</string>
+  <string name="pref_title__primary_color__amoled_mode">AMOLED-läge</string>
+  <string name="pref_desc__primary_color__amoled_mode">Överskrid färger med svart i flera delar av appen, anpassad AMOLED-skärmar. Du behöver starta om för att verkställa. För att använda Diaspora* i mörkt läge behöver du också aktivera Dark theme, som du hittar bland dina personliga Diaspora*-kontoinställningar.</string>
   <!-- Notifications dropdown -->
   <string name="pref_title__extended_notifications">Utökade notifikationer</string>
   <string name="pref_desc__extended_notifications">Utöka notifikationsklockan med en rullgardinsmeny som visar kategorier för notifieringar</string>
@@ -85,4 +87,6 @@
   <string name="dialog_content__wipe_settings">Detta kommer att återställa alla ändrade inställningarna på appen till deras standardvärden och loggar ut dig från alla poddar. Dina nedladdade bilder förblir orörda. Är du säker på att du vill fortsätta?</string>
   <!-- Recently added - Please move to right section-->
   <!-- Sorry -->
+  <string name="pref_desc__adblock_enable">Använd lätt reklamblockering. Reklam finns bland annat i inbyggda vyer</string>
+  <string name="pref_title__adblock_enable">Blockera reklam</string>
 </resources>

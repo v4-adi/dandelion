@@ -41,6 +41,7 @@ import info.guardianproject.netcipher.NetCipher;
 public class FetchPodsService extends Service {
     public static final String MESSAGE_PODS_RECEIVED = "com.github.dfa.diaspora.podsreceived";
     public static final String EXTRA_PODLIST = "pods";
+
     public FetchPodsService() {
     }
 

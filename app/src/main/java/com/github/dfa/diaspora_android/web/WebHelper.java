@@ -107,10 +107,11 @@ public class WebHelper {
                 "})();");
     }
 
-    private static String lastUpdateTitleByUrl ="";
-    public static synchronized void sendUpdateTitleByUrlIntent(String url, Context context){
+    private static String lastUpdateTitleByUrl = "";
+
+    public static synchronized void sendUpdateTitleByUrlIntent(String url, Context context) {
         // Ignore javascript stuff
-        if (url != null && url.startsWith("javascript:")){
+        if (url != null && url.startsWith("javascript:")) {
             return;
         }
 

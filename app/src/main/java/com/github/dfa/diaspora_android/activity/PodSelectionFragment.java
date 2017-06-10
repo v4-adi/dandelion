@@ -22,12 +22,15 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.MenuItemCompat;
+import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -39,6 +42,7 @@ import android.webkit.CookieManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.github.dfa.diaspora_android.App;
@@ -72,6 +76,13 @@ public class PodSelectionFragment extends ThemedFragment implements SearchView.O
 
     @BindView(R.id.podselection__fragment__listpods)
     protected ListView listViewPod;
+
+    @BindView(R.id.podselection__fragment__root)
+    RelativeLayout rootView;
+
+    @BindView(R.id.podselection__fragment__button_use_custom_pod)
+    AppCompatButton buttonUseCustomPod;
+
 
     protected App app;
     protected AppSettings appSettings;
@@ -161,7 +172,12 @@ public class PodSelectionFragment extends ThemedFragment implements SearchView.O
 
     @Override
     protected void applyColorToViews() {
-        /* Not really anything to do. Maybe later */
+        int dividerHeight = listViewPod.getDividerHeight();
+        rootView.setBackgroundColor(appSettings.isAmoledColorMode() ? Color.BLACK : Color.WHITE);
+        listViewPod.setDivider(new ColorDrawable(Color.GRAY));
+        listViewPod.setDividerHeight(dividerHeight);
+        buttonUseCustomPod.setSupportBackgroundTintList(ColorStateList.valueOf(appSettings.isAmoledColorMode() ? Color.DKGRAY : Color.WHITE));
+        buttonUseCustomPod.setTextColor(appSettings.isAmoledColorMode() ? Color.WHITE : Color.BLACK);
     }
 
     @Override
@@ -185,7 +201,7 @@ public class PodSelectionFragment extends ThemedFragment implements SearchView.O
             public View getView(int position, View convertView, ViewGroup parent) {
                 View view = super.getView(position, convertView, parent);
                 TextView textView = (TextView) view.findViewById(android.R.id.text1);
-                textView.setTextColor(Color.BLACK);
+                textView.setTextColor(appSettings.isAmoledColorMode() ? Color.GRAY : Color.BLACK);
                 return view;
             }
         };

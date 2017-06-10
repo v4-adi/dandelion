@@ -19,6 +19,7 @@
 package com.github.dfa.diaspora_android.activity;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatImageView;
@@ -56,7 +57,15 @@ public class AspectListFragment extends ThemedFragment implements OnSomethingCli
 
     public static final String TAG = "com.github.dfa.diaspora_android.AspectListFragment";
 
-    protected RecyclerView aspectsRecyclerView;
+    @BindView(R.id.fragment_list__recycler_view)
+    public RecyclerView aspectsRecyclerView;
+
+    @BindView(R.id.fragment_list__spacer)
+    public View space;
+
+    @BindView(R.id.fragment_list__root)
+    public RelativeLayout rootView;
+
     protected App app;
     protected DiasporaUrlHelper urls;
 
@@ -69,7 +78,7 @@ public class AspectListFragment extends ThemedFragment implements OnSomethingCli
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        aspectsRecyclerView = (RecyclerView) view.findViewById(R.id.fragment_list__recycler_view);
+        ButterKnife.bind(this, view);
         app = (App) getActivity().getApplication();
         AppSettings appSettings = app.getSettings();
         urls = new DiasporaUrlHelper(appSettings);
@@ -110,9 +119,14 @@ public class AspectListFragment extends ThemedFragment implements OnSomethingCli
     @Override
     protected void applyColorToViews() {
         aspectsRecyclerView.invalidate();
+        if (getAppSettings().isAmoledColorMode()) {
+            rootView.setBackgroundColor(Color.BLACK);
+            space.setBackgroundColor(Color.BLACK);
+        }
     }
 
     public static class AspectAdapter extends RecyclerView.Adapter<AspectAdapter.ViewHolder> {
+        private boolean isAmoledColorMode;
         private final AppSettings appSettings;
         private final DiasporaAspect[] aspectList;
         private final List<String> aspectFavsList;
@@ -138,6 +152,7 @@ public class AspectListFragment extends ThemedFragment implements OnSomethingCli
             this.aspectList = appSettings.getAspects();
             this.aspectFavsList = new ArrayList<>(Arrays.asList(appSettings.getAspectFavs()));
             this.aspectClickedListener = aspectClickedListener;
+            this.isAmoledColorMode = appSettings.isAmoledColorMode();
         }
 
         @Override
@@ -159,7 +174,11 @@ public class AspectListFragment extends ThemedFragment implements OnSomethingCli
             final DiasporaAspect aspect = aspectList[position];
             holder.title.setText(aspect.name);
             if (position % 2 == 1) {
-                holder.root.setBackgroundColor(Helpers.get().color(R.color.alternate_row_color));
+                holder.root.setBackgroundColor(isAmoledColorMode ? Color.BLACK : Helpers.get().color(R.color.alternate_row_color));
+                holder.title.setTextColor(isAmoledColorMode ? Color.GRAY : Color.BLACK);
+            } else {
+                holder.root.setBackgroundColor(isAmoledColorMode ? Color.BLACK : Color.WHITE);
+                holder.title.setTextColor(isAmoledColorMode ? Color.GRAY : Color.BLACK);
             }
 
             // Favourite (Star) Image
@@ -191,7 +210,7 @@ public class AspectListFragment extends ThemedFragment implements OnSomethingCli
 
         private void applyFavouriteImage(AppCompatImageView imageView, boolean isFaved) {
             imageView.setImageResource(isFaved ? R.drawable.ic_star_filled_48px : R.drawable.ic_star_border_black_48px);
-            imageView.setColorFilter(isFaved ? appSettings.getAccentColor() : 0, PorterDuff.Mode.SRC_ATOP);
+            imageView.setColorFilter(isFaved ? appSettings.getAccentColor() : (isAmoledColorMode ? Color.GRAY : 0), PorterDuff.Mode.SRC_ATOP);
         }
     }
 }

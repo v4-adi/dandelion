@@ -28,6 +28,8 @@
   <string name="pref_desc__primary_color">Cor das barras de ferramentas</string>
   <string name="pref_title__accent_color">Cor acentuada</string>
   <string name="pref_desc__accent_color">Cor da barra de progreso</string>
+  <string name="pref_title__primary_color__amoled_mode">Modo AMOLED</string>
+  <string name="pref_desc__primary_color__amoled_mode">Substitúe cores negras con outras compatibles con pantallas AMOLED. É necesario activar o tema Escuro nos axustes persoais diaspora* e reiniciar a aplicación.</string>
   <!-- Notifications dropdown -->
   <string name="pref_title__extended_notifications">Notificacións extendidas</string>
   <string name="pref_desc__extended_notifications">Extensión da campá de notificacións que desprega un menú onde amosa as categorías das notificacións</string>
@@ -85,4 +87,6 @@
   <string name="dialog_content__wipe_settings">Isto vai restaurar todos os axustes aos seus valores por defecto e saír de todos os pods. As imaxes descargadas non se tocan. Estás seguro de querer facelo?</string>
   <!-- Recently added - Please move to right section-->
   <!-- Sorry -->
+  <string name="pref_desc__adblock_enable">Activar AdBlocker básico. Aínda poden aparecer algúns anuncios, por exemplo, en visualizacións incrustadas</string>
+  <string name="pref_title__adblock_enable">Bloquear publicidade</string>
 </resources>

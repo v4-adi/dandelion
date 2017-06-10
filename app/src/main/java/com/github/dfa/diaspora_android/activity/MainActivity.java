@@ -426,14 +426,6 @@ public class MainActivity extends ThemedActivity
             navheaderImage.setImageResource(R.drawable.ic_launcher_test);
         }
         updateNavigationViewEntryVisibilities();
-
-        if (appSettings.isAmoledColorMode()) {
-            navView.setItemTextColor(ColorStateList.valueOf(Color.LTGRAY));
-            navView.setItemIconTintList(ColorStateList.valueOf(Color.LTGRAY));
-            navView.setBackgroundColor(Color.BLACK);
-            navheaderTitle.setTextColor(Color.LTGRAY);
-            navheaderDescription.setTextColor(Color.GRAY);
-        }
     }
 
     protected void updateNavigationViewEntryVisibilities() {
@@ -1203,6 +1195,13 @@ public class MainActivity extends ThemedActivity
         ThemeHelper.updateActionMenuViewColor(toolbarBottom);
         navDrawerLayout.setBackgroundColor(appSettings.getPrimaryColor());
         navProfilePictureArea.setBackgroundColor(appSettings.getPrimaryColor());
+        if (appSettings.isAmoledColorMode()) {
+            navView.setItemTextColor(ColorStateList.valueOf(Color.GRAY));
+            navView.setItemIconTintList(ColorStateList.valueOf(Color.GRAY));
+            navView.setBackgroundColor(Color.BLACK);
+            navheaderTitle.setTextColor(Color.GRAY);
+            navheaderDescription.setTextColor(Color.DKGRAY);
+        }
     }
 
     @Override

@@ -19,6 +19,7 @@
 package com.github.dfa.diaspora_android.activity;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatImageView;
@@ -55,7 +56,15 @@ public class TagListFragment extends ThemedFragment implements OnSomethingClickL
 
     public static final String TAG = "com.github.dfa.diaspora_android.TagListFragment";
 
-    protected RecyclerView followedTagsRecyclerView;
+    @BindView(R.id.fragment_list__recycler_view)
+    public RecyclerView followedTagsRecyclerView;
+
+    @BindView(R.id.fragment_list__spacer)
+    public View space;
+
+    @BindView(R.id.fragment_list__root)
+    public RelativeLayout rootView;
+
     protected App app;
     protected DiasporaUrlHelper urls;
 
@@ -68,7 +77,7 @@ public class TagListFragment extends ThemedFragment implements OnSomethingClickL
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        followedTagsRecyclerView = (RecyclerView) view.findViewById(R.id.fragment_list__recycler_view);
+        ButterKnife.bind(this, view);
         app = (App) getActivity().getApplication();
         AppSettings appSettings = app.getSettings();
         urls = new DiasporaUrlHelper(appSettings);
@@ -109,9 +118,14 @@ public class TagListFragment extends ThemedFragment implements OnSomethingClickL
     @Override
     protected void applyColorToViews() {
         followedTagsRecyclerView.invalidate();
+        if (getAppSettings().isAmoledColorMode()) {
+            rootView.setBackgroundColor(Color.BLACK);
+            space.setBackgroundColor(Color.BLACK);
+        }
     }
 
     public static class FollowedTagsAdapter extends RecyclerView.Adapter<FollowedTagsAdapter.ViewHolder> {
+        private boolean isAmoledColorMode;
         private AppSettings appSettings;
         private String[] followedTagsList;
         private List<String> followedTagsFavsList;
@@ -137,6 +151,7 @@ public class TagListFragment extends ThemedFragment implements OnSomethingClickL
             this.followedTagsList = appSettings.getFollowedTags();
             this.followedTagsFavsList = new ArrayList<>(Arrays.asList(appSettings.getFollowedTagsFavs()));
             this.tagClickedListener = tagClickedListener;
+            this.isAmoledColorMode = appSettings.isAmoledColorMode();
         }
 
         @Override
@@ -158,7 +173,11 @@ public class TagListFragment extends ThemedFragment implements OnSomethingClickL
             final String tag = followedTagsList[position];
             holder.title.setText(tag);
             if (position % 2 == 1) {
-                holder.root.setBackgroundColor(Helpers.get().color(R.color.alternate_row_color));
+                holder.root.setBackgroundColor(isAmoledColorMode ? Color.BLACK : Helpers.get().color(R.color.alternate_row_color));
+                holder.title.setTextColor(isAmoledColorMode ? Color.GRAY : Color.BLACK);
+            } else {
+                holder.root.setBackgroundColor(isAmoledColorMode ? Color.BLACK : Color.WHITE);
+                holder.title.setTextColor(isAmoledColorMode ? Color.GRAY : Color.BLACK);
             }
 
             // Favourite (Star) Image
@@ -190,7 +209,7 @@ public class TagListFragment extends ThemedFragment implements OnSomethingClickL
 
         private void applyFavouriteImage(AppCompatImageView imageView, boolean isFaved) {
             imageView.setImageResource(isFaved ? R.drawable.ic_star_filled_48px : R.drawable.ic_star_border_black_48px);
-            imageView.setColorFilter(isFaved ? appSettings.getAccentColor() : 0, PorterDuff.Mode.SRC_ATOP);
+            imageView.setColorFilter(isFaved ? appSettings.getAccentColor() : (isAmoledColorMode ? Color.GRAY : 0), PorterDuff.Mode.SRC_ATOP);
         }
     }
 }
