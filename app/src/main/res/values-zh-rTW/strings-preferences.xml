@@ -86,4 +86,6 @@
   <string name="dialog_content__wipe_settings">將要重設此應用程式的所有設定為預設值，並登出你在所有豆莢的帳號。不過不會變動已經下載了的圖片。確定要繼續嗎？</string>
   <!-- Recently added - Please move to right section-->
   <!-- Sorry -->
+  <string name="pref_desc__adblock_enable">開啟基本的廣告封鎖器。廣告可能會出現在嵌入式視圖之類的地方。</string>
+  <string name="pref_title__adblock_enable">廣告封鎖</string>
 </resources>
