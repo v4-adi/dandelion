@@ -1,8 +1,8 @@
-### v0.2.9
-- Use opoc/Helpers
-- Use opoc/AdBlock
+### v1.0.0 (2017-06-14)
 - Added AMOLED mode
 - Improve NavDrawer
+- Improve Shared by notice
+- Use opoc/Helpers,AdBlock
 
 ### v0.2.7 (2017-05-26)
 - Small improvements
