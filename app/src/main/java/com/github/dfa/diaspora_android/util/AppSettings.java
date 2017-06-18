@@ -290,7 +290,7 @@ public class AppSettings extends AppSettingsBase {
     }
 
     public boolean isVisibleInNavExit() {
-        return getBool(prefApp, R.string.pref_key__visibility_nav__exit, false);
+        return getBool(prefApp, R.string.pref_key__visibility_nav__exit, true);
     }
 
     public boolean isVisibleInNavHelp_license() {
