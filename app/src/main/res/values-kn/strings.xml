@@ -10,6 +10,7 @@
   <string name="public_">ಸಾರ್ವಜನಿಕ</string>
   <string name="search">ಹುಡುಕಿ</string>
   <!-- Notifications dropdown menu -->
+  <string name="notifications__liked">ಇಷ್ಟವಾದ</string>
   <!-- Pod Activity -->
   <!-- Drawer, Menu, Toolbar, ContextMenu -->
   <string name="new_post">ಹೊಸ ಪೊಸ್ಟ್</string>
