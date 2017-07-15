@@ -88,4 +88,5 @@
   <!-- Recently added - Please move to right section-->
   <!-- Sorry -->
   <string name="pref_desc__adblock_enable">Увімкнути базовий AdBlocker. Реклама може зберегтися, напр., у вбудованих переглядах</string>
+  <string name="pref_title__adblock_enable">Блокувати рекламу</string>
 </resources>
