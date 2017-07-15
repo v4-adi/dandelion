@@ -61,8 +61,14 @@
   <string name="pref_desc__http_proxy_enabled">Пускати трафік dandelion* через проксі для обходу фаєрволів.\nМоже потребувати перезапуску. На деяких телефонах може не працювати.</string>
   <string name="pref_title__http_proxy_host">Хост</string>
   <string name="pref_title__http_proxy_port">Порт</string>
+  <string name="toast__proxy_disabled__restart_required">Потрібен перезапуск програмки, щоб вимкнути використання проксі</string>
+  <string name="toast__proxy_orbot_preset_loaded">Завантажено шаблон налаштувань Orbot</string>
   <!-- Chrome custom tabs -->
+  <string name="pref_desc__chrome_custom_tabs_enabled">Відкривати зовнішні посилання у Chrome Custom Tabs. Для використання цієї функції має бути встановлений Chromium або Google Chrome.\nВАЖЛИВО: Chrome Custom Tabs не використовують налаштовані проксі-сервери!</string>
   <!-- Diaspora Settings -->
+  <string name="pref_title__personal_settings">Персональні налаштування</string>
+  <string name="pref_desc__personal_settings">Відкрити налаштування обліковки Діаспори*</string>
+  <string name="pref_desc__manage_contacts">Налаштувати список контактів</string>
   <!-- More -->
   <!-- Recently added - Please move to right section-->
   <!-- Sorry -->
