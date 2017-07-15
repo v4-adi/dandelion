@@ -3,10 +3,43 @@
 <resources>
   <!-- App - AppName specific -->
   <!-- Application -->
+  <string name="reload">Перезавантажити</string>
   <!-- Common Words -->
+  <string name="settings">Налаштування</string>
+  <string name="notifications">Сповіщення</string>
+  <string name="conversations">Розмови</string>
+  <string name="stream">Потік</string>
+  <string name="profile">Профіль</string>
+  <string name="aspects">Аспекти</string>
+  <string name="activities">Діяльність</string>
+  <string name="liked">Вподобане</string>
+  <string name="commented">Коментоване</string>
+  <string name="mentions">Згадки</string>
+  <string name="public_">Публічне</string>
+  <string name="search">Пошук</string>
+  <string name="contacts">Контакти</string>
+  <string name="changelog">Журнал змін</string>
+  <string name="statistics">Статистика</string>
   <!-- Notifications dropdown menu -->
+  <string name="notifications__all">Усі сповіщення</string>
+  <string name="notifications__also_commented">Також прокоментували</string>
+  <string name="notifications__comment_on_post">Коментар до допису</string>
+  <string name="notifications__liked">Вподобано</string>
+  <string name="notifications__mentioned">Згадано</string>
+  <string name="notifications__reshared">Поширено</string>
+  <string name="notifications__started_sharing">Додано</string>
   <!-- Pod Activity -->
+  <string name="podlist_error">Помилка: Не вдалося отримати список подів</string>
+  <string name="no_internet">На жаль, для продовження потрібне з\'єднання з інтернетом</string>
+  <string name="confirmation">Підтвердження</string>
+  <string name="confirm_exit">Ви дійсно бажаєте вийти?</string>
   <!-- Drawer, Menu, Toolbar, ContextMenu -->
+  <string name="nav_menu_more">Ще</string>
+  <string name="nav_help_license">Про | Допомога</string>
+  <string name="nav_followed_tags">Відстежувані мітки</string>
+  <string name="nav_public_activities">Публічна діяльність</string>
+  <string name="nav_reports">Звіти</string>
+  <string name="share__share_link_as_text">Поширити посилання як текст</string>
   <string name="share__share_screenshot">Поширити знімок екрану веб-сторінки</string>
   <string name="share__take_screenshot">Зробити знімок екрану веб-сторінки</string>
   <string name="share__toast_saved_image_to_location">Збереження зображення в</string>
