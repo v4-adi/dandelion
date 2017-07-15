@@ -69,6 +69,14 @@
   <string name="pref_title__personal_settings">Персональні налаштування</string>
   <string name="pref_desc__personal_settings">Відкрити налаштування обліковки Діаспори*</string>
   <string name="pref_desc__manage_contacts">Налаштувати список контактів</string>
+  <string name="pref_title__manage_tags">Керувати мітками</string>
+  <string name="pref_desc__manage_tags">Відписатися від поточних міток</string>
+  <string name="pref_title__change_account">Змінити обліковий запис</string>
+  <string name="pref_desc__change_account">Стерти локальні дані сесії і перемкнутися на інший под/обліковий запис Діаспори*</string>
+  <string name="pref_warning__change_account">Це видалить усі куки та дані сесії. Ви справді хочете змінити обліковку?</string>
+  <string name="pref_title__clear_cache">Очистити кеш</string>
+  <string name="pref_desc__clear_cache">Очистити кеш WebView</string>
+  <string name="pref_desc__intellihide_toolbars">Автоматично приховувати верхню і нижню панелі при прокручуванні</string>
   <!-- More -->
   <!-- Recently added - Please move to right section-->
   <!-- Sorry -->
