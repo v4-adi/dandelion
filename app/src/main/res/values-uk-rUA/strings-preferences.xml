@@ -77,7 +77,15 @@
   <string name="pref_title__clear_cache">Очистити кеш</string>
   <string name="pref_desc__clear_cache">Очистити кеш WebView</string>
   <string name="pref_desc__intellihide_toolbars">Автоматично приховувати верхню і нижню панелі при прокручуванні</string>
+  <string name="pref_title__intellihide_toolbars">Інтелектуальне приховування панелей</string>
+  <string name="pref_title__append_shared_via_app">Додати примітку via</string>
+  <string name="pref_desc__append_shared_via_app">Додати до поширюваних текстів примітку: [via #dandelion]</string>
   <!-- More -->
+  <string name="pref_title__sub_miscelaneous">Різне</string>
+  <string name="pref_title__wipe_settings">Повне скидання</string>
+  <string name="pref_desc__wipe_settings">Стерти усі локальні налаштування програмки і вийти з усіх обліковок</string>
+  <string name="dialog_content__wipe_settings">Це зітре усі змінені налаштування застосунку до їхніх значень за замовчуванням і вилогінить вас з усіх подів. Ваші завантажені зображення залишаться на міці. Бажаєте продовжити?</string>
   <!-- Recently added - Please move to right section-->
   <!-- Sorry -->
+  <string name="pref_desc__adblock_enable">Увімкнути базовий AdBlocker. Реклама може зберегтися, напр., у вбудованих переглядах</string>
 </resources>
