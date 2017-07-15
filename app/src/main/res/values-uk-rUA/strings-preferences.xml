@@ -31,11 +31,36 @@
   <string name="pref_title__primary_color__amoled_mode">Режим AMOLED</string>
   <string name="pref_desc__primary_color__amoled_mode">Замінити кольори у багатьох частинах програмки на чорний, сприядливий для AMOLED-дисплеїв. Вам треба здійснити перезавантаження, щоб це налаштування запрацювало. Щоб перекладати Діаспору* в темних тонах, Вам також треба активувати темну тему у своїх налаштуваннях обліковки Діаспори*.</string>
   <!-- Notifications dropdown -->
+  <string name="pref_title__extended_notifications">Розширені сповіщення</string>
+  <string name="pref_desc__extended_notifications">Додає до дзвоника сповіщень випадне меню з категоріями сповіщень</string>
+  <string name="pref_desc__language">Змінює мову цієї програмки. Перезавантажте застосунок, щоб зміни запрацювали</string>
+  <string name="pref_title__language">Мова</string>
+  <string name="language_system">Мова системи</string>
   <!-- Font size -->
+  <string name="pref_desc__font_size">Контролюйте розмір тексту WebView</string>
+  <string name="pref_title__font_size">Розмір шрифту</string>
   <!-- prefix 's' is needed to make this a string array. Otherwise ListPreference would crash -->
+  <string name="font_size_normal">Звичайний</string>
+  <string name="font_size_large">Великий</string>
+  <string name="font_size_huge">Величезний</string>
   <!-- Load images -->
+  <string name="pref_title__load_images">Завантаження зображень</string>
+  <string name="pref_desc__load_images">Вимкнути завантаження зображень, напр. для зменшення трафіку</string>
   <!-- Screen rotation -->
+  <string name="pref_title__screen_rotation">Поворот екрану</string>
+  <string name="pref_desc__screen_rotation">Контролюйте автоматичне повертання екрану</string>
+  <string name="rotation_system">За замовчуванням</string>
+  <string name="rotation_sensor">Сенсор\n(ігнорувати системні налаштування)</string>
+  <string name="rotation_portrait">Портрет</string>
+  <string name="rotation_landscape">Пейзаж</string>
   <!-- Proxy -->
+  <string name="pref_title__http_proxy_load_tor_preset">Завантажити шаблон налаштувань Tor</string>
+  <string name="pref_desc__http_proxy_load_tor_preset">Завантажити налаштування проксі для Tor (Orbot)</string>
+  <string name="pref_title__sub_proxy">Проксі</string>
+  <string name="pref_title__proxy_enabled">Увімкнути проксі</string>
+  <string name="pref_desc__http_proxy_enabled">Пускати трафік dandelion* через проксі для обходу фаєрволів.\nМоже потребувати перезапуску. На деяких телефонах може не працювати.</string>
+  <string name="pref_title__http_proxy_host">Хост</string>
+  <string name="pref_title__http_proxy_port">Порт</string>
   <!-- Chrome custom tabs -->
   <!-- Diaspora Settings -->
   <!-- More -->
