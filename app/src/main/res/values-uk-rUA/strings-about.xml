@@ -20,5 +20,12 @@
   <string name="fragment_about__contribute">Зробіть внесок у код!</string>
   <string name="fragment_about__contribute_text">dandelion* розробляється як вільне програмне забезпечення і слідує ідеям проекту Діаспора*. Якщо ви хочете зробити внесок, приєднуйтеся! Зараз ми дуже маленька команда, тож будемо раді будь-якій допомозі!</string>
   <string name="fragment_about__contribute_button">Отримати вихідний код</string>
+  <string name="fragment_about__translate">Перекласти цю програмку</string>
+  <string name="fragment_about__translate_text">Цей застосунок недоступний вашою мовою? Ви можете це змінити! Чому б не допомогти нам, переклавши його? Ми використовуємо платформу crowdin, де будь-хто може перекласти програмку.</string>
+  <string name="fragment_about__translate_button">Хочу перекладати</string>
+  <string name="fragment_about__feedback">Залишіть відгук!</string>
+  <string name="fragment_about__feedback_text">dandelion* все ще перебуває у розробці, тому якщо у вас є побажання або відгуки, будь ласка, скористайтеся нашим баг-трекером, щоб ми знали!</string>
+  <string name="fragment_about__feedback_button">Повідомити про помилку</string>
+  <string name="fragment_about__spread_the_word">Поділіться з друзями!</string>
   <!-- License & help (large amount of text) -->
 </resources>
