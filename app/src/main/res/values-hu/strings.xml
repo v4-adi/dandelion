@@ -49,7 +49,7 @@
   <string name="action_go_to_top">Ugrás az oldal tetejére</string>
   <string name="action_search_by_tags_or_persons">Címkék vagy emberek keresése</string>
   <string name="action_exit_app">Kilépés az alkalmazásból</string>
-  <string name="action_toggle_desktop_page">Mobil-/asztali megjelenítési mód</string>
+  <string name="action_toggle_desktop_page">Mobil-/asztali mód</string>
   <string name="action_share_dotdotdot">Megosztás&#8230;</string>
   <string name="search_alert_tag">címkékre</string>
   <string name="search_alert_people">emberekre</string>
