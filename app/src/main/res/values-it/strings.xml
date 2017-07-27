@@ -7,7 +7,6 @@
   <!-- Common Words -->
   <string name="settings">Impostazioni</string>
   <string name="notifications">Notifiche</string>
-  <string name="conversations">Conversazioni</string>
   <string name="stream">Stream</string>
   <string name="profile">Profilo</string>
   <string name="aspects">Aspetti</string>
@@ -16,7 +15,6 @@
   <string name="commented">Commentati</string>
   <string name="mentions">Menzioni</string>
   <string name="public_">Pubblico</string>
-  <string name="search">Cerca</string>
   <string name="contacts">Contatti</string>
   <string name="changelog">Log delle modifiche</string>
   <string name="statistics">Statistiche</string>
