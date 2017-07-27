@@ -10,36 +10,16 @@
   <!-- Category Titles -->
   <!-- Visuals -->
   <!-- Navigiation Slider -->
-  <string name="pref_title__sub_nav_slider">Navigační Slider</string>
-  <string name="pref_desc__sub_nav_slider">Nastavení viditelnosti záznamů v navigačním Slideru</string>
   <!-- Themes -->
-  <string name="pref_title__themes">Barevné schéma</string>
-  <string name="pref_desc__themes">Nastavení barev v aplikaci</string>
   <!-- Notifications dropdown -->
   <!-- Font size -->
   <!-- prefix 's' is needed to make this a string array. Otherwise ListPreference would crash -->
   <!-- Load images -->
-  <string name="pref_desc__load_images">Deaktivuj načítání obrázků ke snížení spotřeby objemu dat</string>
   <!-- Screen rotation -->
   <!-- Proxy -->
-  <string name="toast__proxy_disabled__restart_required">Aplikace musí být restartována, aby mohlo být vypnuto použití proxy</string>
-  <string name="toast__proxy_orbot_preset_loaded">Orbot proxy přednastavení bylo načteno</string>
   <!-- Chrome custom tabs -->
-  <string name="pref_desc__chrome_custom_tabs_enabled">Otevři externí linky s Chrome Custom Tabs. Chromium nebo Google Chrome musí být nainstalovány, pokud chceš tuto funkci používat. \nDŮLEŽITÁ POZNÁMKA: Chrome Custom Tabs nepoužívá žádné konfigurované proxy servery!</string>
   <!-- Diaspora Settings -->
-  <string name="pref_desc__personal_settings">Otevře nastavení Tvého účtu diaspora*</string>
-  <string name="pref_desc__manage_contacts">Spravuj svůj seznam kontaktů</string>
-  <string name="pref_title__manage_tags">Spravuj hashtagy</string>
-  <string name="pref_desc__manage_tags">Přestat sledovat dosud sledované hashtagy</string>
-  <string name="pref_desc__change_account">Smazat lokální session data a přepnout na jiný diaspora* pod/účet</string>
-  <string name="pref_warning__change_account">Toto vymaže vše cookies a session data. Chceš opravdu změnit účet?</string>
-  <string name="pref_desc__clear_cache">Vyčistit WebView cache</string>
-  <string name="pref_desc__intellihide_toolbars">Automaticky schovat horní a dolní nástrojovou lištu během scrollování</string>
-  <string name="pref_title__intellihide_toolbars">Inteligentně schovat nástrojovou lištu</string>
-  <string name="pref_title__append_shared_via_app">Přidej „sdíleno pomocí“-poznámku</string>
   <!-- More -->
-  <string name="pref_desc__wipe_settings">Smaž lokálně všechna nastavení této aplikace a odhlaš ze všech účtů</string>
-  <string name="dialog_content__wipe_settings">Toto zresetuje všechna změněná nastavení aplikace na jejich původně nastavené hodnoty a odhlásí Tě ze všech podů. Tvé stažené obrázky zůstanou nedotknuty. Jsi si jistý, že chceš pokračovat?</string>
   <!-- Recently added - Please move to right section-->
   <!-- Sorry -->
 </resources>
