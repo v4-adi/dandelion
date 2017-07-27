@@ -7,11 +7,6 @@
   <!-- Notifications dropdown menu -->
   <!-- Pod Activity -->
   <!-- Drawer, Menu, Toolbar, ContextMenu -->
-  <string name="search_alert_people">podle lidí</string>
-  <string name="search_alert_bypeople_validate_needsomedata">Prosím, vyplň jméno</string>
-  <string name="context_menu_share_link">Sdílet adresu linku</string>
-  <string name="context_menu_copy_image_link">Zkopíovat adresu obrázku do schránky</string>
   <!-- More from MainActivity -->
   <!-- Permissions -->
-  <string name="permissions_screenshot">Aby mohl být screenshot uložen, musíš nejprve aplikaci povolit přístup k datovému úložišti. Poté by měla být aplikace uzavřena, případně restartován celý přístroj. Pokud přístupu zabráníš, ale tuto funkci se rozhodneš používat později, můžeš to oprávnění povolit později. Otevři: Systémové nastavení - Aplikace - dandelion*. V oblasti oprávnění  poté můžeš změnit vybraná nastavení.</string>
 </resources>
