@@ -50,7 +50,7 @@
   <string name="pref_title__screen_rotation">Schermrotatie</string>
   <string name="pref_desc__screen_rotation">Configureer automatische schermrotatie</string>
   <string name="rotation_system">Standaard</string>
-  <string name="rotation_sensor">Sensor\n(negeer Systeem instellingen)</string>
+  <string name="rotation_sensor">Sensor\n(negeer systeem instellingen)</string>
   <string name="rotation_portrait">Portret</string>
   <string name="rotation_landscape">Landschap</string>
   <!-- Proxy -->
@@ -61,10 +61,10 @@
   <string name="pref_desc__http_proxy_enabled">Proxy dandelion*-verkeer om firewalls te omzeilen. \nVereist mogelijk app herstart. Dit kan op sommige telefoons niet werken.</string>
   <string name="pref_title__http_proxy_host">Host</string>
   <string name="pref_title__http_proxy_port">Poort</string>
-  <string name="toast__proxy_disabled__restart_required">App moet opnieuw opstarten om het gebruik van de proxy uitgeschakeld</string>
+  <string name="toast__proxy_disabled__restart_required">App moet opnieuw opstarten om het gebruik van de proxy uit te schakelen</string>
   <string name="toast__proxy_orbot_preset_loaded">Orbot proxy voorinstelling geladen</string>
   <!-- Chrome custom tabs -->
-  <string name="pref_desc__chrome_custom_tabs_enabled">Open externe links met Chrome aangepaste tabbladen. Chromium of Google Chrome moet worden geïnstalleerd om deze functie te gebruiken. \nIMPORTANT Opmerking: Chrome aangepaste tabbladen gebruiken niet geconfigureerde proxyservers!</string>
+  <string name="pref_desc__chrome_custom_tabs_enabled">Open externe links met Chrome aangepaste tabbladen. Chromium of Google Chrome moet worden geïnstalleerd om deze functie te gebruiken. \nBELANGRIJK Opmerking: Chrome aangepaste tabbladen gebruiken niet geconfigureerde proxyservers!</string>
   <!-- Diaspora Settings -->
   <string name="pref_title__personal_settings">Persoonlijke instellingen</string>
   <string name="pref_desc__personal_settings">Open uw accountinstellingen van diaspora*</string>
@@ -79,7 +79,14 @@
   <string name="pref_desc__intellihide_toolbars">Boven- en onderkant werkbalken automatisch verbergen tijdens het scrollen</string>
   <string name="pref_title__intellihide_toolbars">Werkbalken slim wegwerken</string>
   <string name="pref_title__append_shared_via_app">Gedeeld-via-aankondiging toevoegen</string>
+  <string name="pref_desc__append_shared_via_app">Een verwijzing naar deze app toevoegen aan gedeelde teksten: [via #dandelion]</string>
   <!-- More -->
+  <string name="pref_title__sub_miscelaneous">Overige</string>
+  <string name="pref_title__wipe_settings">Volledige Reset</string>
+  <string name="pref_desc__wipe_settings">Veeg alle lokale instellingen uit gerelateerd aan deze app en log op alle accounts uit</string>
+  <string name="dialog_content__wipe_settings">Dit zal alle instellingen terugzetten en je uitloggen bij elke pod. Je gedownloade afbeeldingen blijven onaangeraakt. Weet je zeker dat je door wilt gaan?</string>
   <!-- Recently added - Please move to right section-->
   <!-- Sorry -->
+  <string name="pref_desc__adblock_enable">Simpele AdBlocker inschakelen. Advertenties kunnen bijvoorbeeld bij ingesloten weergaven erbij zitten</string>
+  <string name="pref_title__adblock_enable">Blokkeer advertenties</string>
 </resources>
