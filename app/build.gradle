@@ -9,8 +9,8 @@ android {
         minSdkVersion 17
         targetSdkVersion 24
 
-        versionCode 20
-        versionName "1.0.0"
+        versionCode 21
+        versionName "1.0.1-dev"
 
         applicationId "com.github.dfa.diaspora_android"
         resValue 'string', 'app_name', "dandelion*"
@@ -86,7 +86,7 @@ dependencies {
 //  Groovy Coding Area
 //  #####################
 final String RAW_DIR = "app/src/main/res/raw"
-final String[] ROOT_TO_RAW_COPYFILES = ["README.md", "LICENSE.md", "CHANGELOG.md", "CONTRIBUTORS.txt"]
+final String[] ROOT_TO_RAW_COPYFILES = ["README.md", "LICENSE.md", "CHANGELOG.md", "CONTRIBUTORS.md"]
 
 // Called before building
 task copyRepoFiles(type: Copy) {
@@ -96,17 +96,6 @@ task copyRepoFiles(type: Copy) {
     into RAW_DIR.replaceFirst("app/", "")
     rename { String fileName ->
         fileName.replace(fileName, fileName.toLowerCase())
-    }
-
-    // Filter Contributors file
-    from(rootProject.file("CONTRIBUTORS.txt")) {
-        into '.'    // Target already changed to 'src/main/res/raw'
-        rename { String fileName ->
-            fileName.replace(fileName, fileName.toLowerCase())
-        }
-        filter { line ->
-            (line.toString().matches("..l>>.*") || line.toString().startsWith("## 99l CONTRIBUTORS")) ? null : line.toString().trim().replaceAll(" \\(.*\\)", "")
-        }
     }
 }
 tasks.copyRepoFiles.execute()

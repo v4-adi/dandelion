@@ -268,7 +268,7 @@ public class AboutActivity extends ThemedActivity
             maintainers.setTextFormatted(getString(R.string.fragment_license__maintainers_text,
                     Helpers.get().loadMarkdownForTextViewFromRaw(R.raw.maintainers, "")));
             contributors.setTextFormatted(getString(R.string.fragment_license__contributors_thank_you,
-                    Helpers.get().loadMarkdownForTextViewFromRaw(R.raw.contributors, "* ")));
+                    Helpers.get().loadMarkdownForTextViewFromRaw(R.raw.contributors, "")));
             thirdPartyLibs.setTextFormatted(
                     Helpers.get().loadMarkdownForTextViewFromRaw(R.raw.license_third_party, ""));
             return rootView;

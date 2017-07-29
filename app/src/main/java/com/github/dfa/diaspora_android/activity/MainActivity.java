@@ -221,22 +221,20 @@ public class MainActivity extends ThemedActivity
 
         // Show first start dialog
         try {
+            SimpleMarkdownParser mdParser = SimpleMarkdownParser.get().setDefaultSmpFilter(SimpleMarkdownParser.FILTER_ANDROID_TEXTVIEW);
             if (appSettings.isAppFirstStart()) {
-                SimpleMarkdownParser smp = new SimpleMarkdownParser().parse(
-                        getResources().openRawResource(R.raw.license),
-                        SimpleMarkdownParser.FILTER_ANDROID_TEXTVIEW, "");
-                String html = smp.getHtml()
+                mdParser.parse(
+                        getResources().openRawResource(R.raw.license), "");
+                String html = mdParser.getHtml()
                         + "<br/><br/><br/>"
                         + "<h1>" + getString(R.string.fragment_license__thirdparty_libs) + "</h1>"
-                        + smp.parse(getResources().openRawResource(R.raw.license_third_party),
-                        SimpleMarkdownParser.FILTER_ANDROID_TEXTVIEW, "");
-                html = smp.setHtml(html).removeMultiNewlines().getHtml();
+                        + mdParser.parse(getResources().openRawResource(R.raw.license_third_party), "");
+                html = mdParser.setHtml(html).removeMultiNewlines().getHtml();
                 HelpersA.get(this).showDialogWithHtmlTextView(R.string.about_activity__title_about_license, html);
                 appSettings.isAppCurrentVersionFirstStart();
             } else if (appSettings.isAppCurrentVersionFirstStart()) {
                 SimpleMarkdownParser smp = new SimpleMarkdownParser().parse(
-                        getResources().openRawResource(R.raw.changelog),
-                        SimpleMarkdownParser.FILTER_ANDROID_TEXTVIEW, "");
+                        getResources().openRawResource(R.raw.changelog), "");
                 HelpersA.get(this).showDialogWithHtmlTextView(R.string.changelog, smp.getHtml());
             }
         } catch (IOException e) {
