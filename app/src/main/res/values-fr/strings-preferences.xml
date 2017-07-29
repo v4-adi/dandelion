@@ -25,6 +25,7 @@
   <string name="pref_title__accent_color">Couleur secondaire</string>
   <string name="pref_desc__accent_color">Couleur de la barre de progression</string>
   <string name="pref_title__primary_color__amoled_mode">Mode AMOLED</string>
+  <string name="pref_desc__primary_color__amoled_mode">Remplacez les couleurs avec du noir compatible avec les affichages AMOLED, sur plusieurs parties de l\'application. Pour naviguer dans diaspora* avec un affichage sombre, vous pouvez aussi utiliser le thème Dark, que vous trouverez dans vos paramètres personnels de votre compte diaspora*.</string>
   <!-- Notifications dropdown -->
   <string name="pref_title__extended_notifications">Notifications étendues</string>
   <string name="pref_desc__extended_notifications">Étendre la cloche de notifications avec un menu déroulant qui affiche les catégories de notification</string>
@@ -58,6 +59,7 @@
   <string name="toast__proxy_disabled__restart_required">L\'application a besoin d\'être redémarrée pour désactiver l\'usage du proxy</string>
   <string name="toast__proxy_orbot_preset_loaded">Préréglages proxy Orbot chargés</string>
   <!-- Chrome custom tabs -->
+  <string name="pref_desc__chrome_custom_tabs_enabled">Ouvrez les liens externes avec Chrome Custom Tabs. Chromium ou Google Chrome doit être installé pour cette fonctionnalité. \nNOTE IMPORTANTE : Chrome Custom Tabs n\'utilisent pas les serveurs proxy configurés !</string>
   <!-- Diaspora Settings -->
   <string name="pref_title__personal_settings">Paramètres personnels</string>
   <string name="pref_desc__personal_settings">Ouvrir vos paramètres de compte diaspora*</string>
