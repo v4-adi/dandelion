@@ -3,9 +3,20 @@
 <resources>
   <!-- Key Names (Untranslatable) -->
   <!-- Operability -->
+  <string name="pref_title__topbar_stream_shortcut">Den øvre verktøylinjen laster inn strømmen</string>
+  <string name="pref_desc__topbar_stream_shortcut">Klikk på en tom plass i den øvre verktøylinjen for å åpne strømmen</string>
   <!-- Category Titles -->
+  <string name="pref_cat__visuals">Utseende</string>
+  <string name="pref_cat__network">Nettverk</string>
+  <string name="pref_cat__pod_settings">Pod-innstillinger</string>
+  <string name="pref_cat__operability">Brukbarhet</string>
   <!-- Visuals -->
   <!-- Navigiation Slider -->
+  <string name="pref_title__sub_nav_slider">Navigasjonsbryter</string>
+  <string name="pref_desc__sub_nav_slider">Kontrollér synligheten for innlegg i navigasjonsskuffen</string>
+  <string name="pref_cat__visibility_nav_items__user">Bruker</string>
+  <string name="pref_cat__visibility_nav_items__general">Generelt</string>
+  <string name="pref_cat__visibility_nav_items__admin">Administrator</string>
   <!-- Themes -->
   <!-- Notifications dropdown -->
   <!-- Font size -->
