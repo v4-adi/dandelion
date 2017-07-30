@@ -4,9 +4,6 @@
   <!-- Key Names (Untranslatable) -->
   <!-- Operability -->
   <!-- Category Titles -->
-  <string name="pref_cat__visuals">Aparência</string>
-  <string name="pref_cat__network">Rede</string>
-  <string name="pref_cat__pod_settings">Configurações do Pod</string>
   <!-- Visuals -->
   <!-- Navigiation Slider -->
   <string name="pref_title__sub_nav_slider">Controle deslizante de navegação</string>
@@ -14,25 +11,13 @@
   <!-- Themes -->
   <!-- Notifications dropdown -->
   <!-- Font size -->
-  <string name="pref_title__font_size">Tamanho da fonte</string>
   <!-- Load images -->
-  <string name="pref_title__load_images">Carregar imagens</string>
   <!-- Screen rotation -->
   <!-- Proxy -->
-  <string name="pref_title__proxy_enabled">Habilitar o Proxy</string>
   <!-- Chrome custom tabs -->
   <!-- Diaspora Settings -->
-  <string name="pref_title__personal_settings">Configurações pessoais</string>
   <string name="pref_desc__personal_settings">Abra suas configurações de usuário diaspora*</string>
-  <string name="pref_desc__manage_contacts">Gerenciar sua lista de contatos</string>
-  <string name="pref_title__manage_tags">Gerenciar Hashtags</string>
-  <string name="pref_title__change_account">Alterar conta</string>
   <string name="pref_desc__change_account">Apagar dados de sessão local e mudar para outro usuário de outro Pod diaspora*</string>
-  <string name="pref_warning__change_account">Isto apagará todos os dados de sessão e cookies. Você quer realmente mudar sua conta?</string>
-  <string name="pref_title__clear_cache">Limpar cache</string>
-  <string name="pref_desc__clear_cache">Limpar o cache do WebView</string>
   <string name="pref_desc__intellihide_toolbars">Ocultar as barras de ferramentas superior e inferior automaticamente durante a rolagem</string>
-  <string name="pref_title__intellihide_toolbars">Barras de ferramentas auto ocultante</string>
-  <string name="pref_title__append_shared_via_app">Acrescentar compartilhado-por-aviso</string>
   <!-- More -->
 </resources>
