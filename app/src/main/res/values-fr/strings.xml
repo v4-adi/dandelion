@@ -4,18 +4,12 @@
   <!-- Application -->
   <string name="reload">Rafraîchir</string>
   <!-- Common Words -->
-  <string name="settings">Paramètres</string>
-  <string name="notifications">Notifications</string>
   <string name="conversations">Discussions</string>
   <string name="stream">Flux</string>
   <string name="profile">Profil</string>
-  <string name="aspects">Aspects</string>
   <string name="activities">Activités</string>
   <string name="liked">Aimés</string>
   <string name="commented">Commentés</string>
-  <string name="mentions">Mentions</string>
-  <string name="public_">Publique</string>
-  <string name="search">Rechercher</string>
   <string name="contacts">Contacts</string>
   <string name="changelog">Nouveautés</string>
   <string name="statistics">Statistiques</string>
@@ -30,7 +24,6 @@
   <!-- Pod Activity -->
   <string name="podlist_error">Erreur : impossible de récupérer la liste des pods !</string>
   <string name="no_internet">Désolé, vous devez être connecté à Internet pour continuer</string>
-  <string name="confirmation">Confirmation</string>
   <string name="confirm_exit">Souhaitez-vous quitter ?</string>
   <!-- Drawer, Menu, Toolbar, ContextMenu -->
   <string name="nav_menu_more">Plus</string>
@@ -48,7 +41,6 @@
   <string name="action_go_to_top">Retour en haut</string>
   <string name="action_search_by_tags_or_persons">Recherche par tags ou par personnes</string>
   <string name="action_exit_app">Quitter l\'application</string>
-  <string name="action_toggle_desktop_page">Activer/désactiver la version mobile</string>
   <string name="action_share_dotdotdot">Partager&#8230;</string>
   <string name="search_alert_tag">par tags</string>
   <string name="search_alert_people">par personne</string>
