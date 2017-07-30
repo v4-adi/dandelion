@@ -27,6 +27,7 @@ Note that the main project members are working on this project for free during l
 
 ### License
 dandelion\* is released under GNU GENERAL PUBLIC LICENSE (see [LICENCE](https://github.com/Diaspora-for-Android/dandelion/blob/master/LICENSE.md)).
+The translations (strings.xml) are licensed CC0 1.0.
 
 ### WebApp
 The app is developed as a WebApp because currently diaspora\* doesn't have an API that can be used to create a native interface to retrieve the user's data, publications, direct messages and so on. That's why there are only WebApps for diaspora\* out there.
