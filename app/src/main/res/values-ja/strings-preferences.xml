@@ -42,8 +42,12 @@
   <string name="pref_title__load_images">画像の読み込み</string>
   <string name="pref_desc__load_images">安全なモバイルデータのため、画像の読み込みを無効にします</string>
   <!-- Screen rotation -->
+  <string name="pref_title__screen_rotation">画面の回転</string>
+  <string name="pref_desc__screen_rotation">画面の自動回転をコントロール</string>
   <string name="rotation_system">デフォルト</string>
   <string name="rotation_sensor">センサー\n(システムの設定を無視)</string>
+  <string name="rotation_portrait">ポートレート (縦向き)</string>
+  <string name="rotation_landscape">ランドスケープ (横向き)</string>
   <!-- Proxy -->
   <string name="pref_title__http_proxy_load_tor_preset">Tor プリセットを読み込む</string>
   <string name="pref_desc__http_proxy_load_tor_preset">Tor (Orbot) HTTP プロキシのプロキシ設定を読み込みます</string>
