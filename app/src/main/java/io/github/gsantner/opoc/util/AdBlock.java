@@ -5,7 +5,7 @@
  * worth it, you can buy me a coke in return. Provided as is without any kind
  * of warranty. No attribution required.                  - Gregor Santner
  *
- * License: Creative Commons Zero (CC0 1.0)
+ * License of this file: Creative Commons Zero (CC0 1.0)
  *  http://creativecommons.org/publicdomain/zero/1.0/
  * ----------------------------------------------------------------------------
  */
@@ -47,6 +47,7 @@ import java.util.Set;
 /**
  * Simple Host-Based AdBlocker
  */
+@SuppressWarnings({"WeakerAccess", "SpellCheckingInspection"})
 public class AdBlock {
     private static final AdBlock instance = new AdBlock();
 
@@ -163,7 +164,7 @@ public class AdBlock {
                 if (resFilename.startsWith("adblock_domains__")) {
                     adblockResIds.add(resId);
                 }
-            } catch (IllegalAccessException ignored) {
+            } catch (IllegalAccessException | IllegalArgumentException ignored) {
             }
         }
         return adblockResIds;
