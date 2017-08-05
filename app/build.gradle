@@ -2,14 +2,14 @@ apply plugin: 'com.android.application'
 
 ext {
     version_sdk = [
-        compileSdk : 26,
+        compileSdk : 24,
         buildTools : "26.0.1",
         minSdk     : 17,
         //targetSdk: compileSdk,
     ]
     version_sdk.targetSdk = version_sdk.compileSdk
     version_lib = [
-        appcompat   : "26.0.0",
+        appcompat   : "24.2.1",
         butterknife : "8.7.0",
         netcipher   : "2.0.0-alpha1",
     ]
@@ -76,7 +76,8 @@ dependencies {
 
     // Android standard libs
     compile "com.android.support:appcompat-v7:${version_lib.appcompat}"
-    compile "com.android.support:design:${version_lib.appcompat}"
+    //compile "com.android.support:design:${version_lib.appcompat}" // Broken after 24.1.0, Fix announced at 26.0.0, but still not fixed... See https://issuetracker.google.com/issues/37118105
+    compile "com.android.support:design:24.1.0"
     compile "com.android.support:support-v4:${version_lib.appcompat}"
     compile "com.android.support:customtabs:${version_lib.appcompat}"
     compile "com.android.support:cardview-v7:${version_lib.appcompat}"

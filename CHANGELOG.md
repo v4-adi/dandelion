@@ -1,5 +1,4 @@
 ### v1.0.2
-- Update to android sdk26
 - Improve build script
 - Update translation file license
 
