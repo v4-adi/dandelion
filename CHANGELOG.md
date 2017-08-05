@@ -1,4 +1,4 @@
-### v1.0.2
+### v1.0.2 (2017-08-05)
 - Improve build script
 - Update translation file license
 
