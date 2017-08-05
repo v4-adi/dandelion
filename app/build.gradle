@@ -4,14 +4,14 @@ ext {
     version_sdk = [
         compileSdk : 26,
         buildTools : "26.0.1",
-        minSdk     : 17
+        minSdk     : 17,
         //targetSdk: compileSdk,
     ]
     version_sdk.targetSdk = version_sdk.compileSdk
     version_lib = [
         appcompat   : "26.0.0",
         butterknife : "8.7.0",
-        netcipher   : "2.0.0-alpha1"
+        netcipher   : "2.0.0-alpha1",
     ]
 }
 
@@ -24,7 +24,7 @@ android {
         targetSdkVersion version_sdk.targetSdk
 
         versionCode 22
-        versionName "1.0.2-dev"
+        versionName "1.0.2"
 
         applicationId "com.github.dfa.diaspora_android"
         resValue 'string', 'app_name', "dandelion*"
@@ -66,14 +66,6 @@ android {
     }
 }
 
-// Additional repositories
-repositories {
-    google()
-    maven {
-        url "https://jitpack.io"
-    }
-}
-
 dependencies {
     // Sub-Projects
     //compile project(':subprojectFromRoot')
@@ -89,11 +81,13 @@ dependencies {
     compile "com.android.support:customtabs:${version_lib.appcompat}"
     compile "com.android.support:cardview-v7:${version_lib.appcompat}"
 
-    // More libraries
+    // UI libraries
+    compile "com.github.DASAR:ShiftColorPicker:v0.5"
+
+    // Tool libraries
     compile "com.jakewharton:butterknife:${version_lib.butterknife}"
     compile "info.guardianproject.netcipher:netcipher:${version_lib.netcipher}"
     compile "info.guardianproject.netcipher:netcipher-webkit:${version_lib.netcipher}"
-    compile "com.github.DASAR:ShiftColorPicker:v0.5"
 
     annotationProcessor "com.jakewharton:butterknife-compiler:${version_lib.butterknife}"
 }
