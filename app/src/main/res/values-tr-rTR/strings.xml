@@ -22,6 +22,7 @@
   <!-- Notifications dropdown menu -->
   <string name="notifications__all">Tüm Bildimler</string>
   <string name="notifications__also_commented">Ayrıca Yorumlar</string>
+  <string name="notifications__comment_on_post">Gönderine Yorumlar</string>
   <string name="notifications__liked">Beğeniler</string>
   <!-- Pod Activity -->
   <!-- Drawer, Menu, Toolbar, ContextMenu -->
