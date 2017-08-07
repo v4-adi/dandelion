@@ -4,8 +4,12 @@
   <!-- Key Names (Untranslatable) -->
   <!-- Operability -->
   <!-- Category Titles -->
+  <string name="pref_cat__visuals">Görünüş</string>
+  <string name="pref_cat__network">Ağ</string>
+  <string name="pref_cat__pod_settings">Pod Ayarları</string>
   <!-- Visuals -->
   <!-- Navigiation Slider -->
+  <string name="pref_title__sub_nav_slider">Menü Kaydırıcı</string>
   <!-- Themes -->
   <!-- Notifications dropdown -->
   <!-- Font size -->
