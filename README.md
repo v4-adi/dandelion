@@ -2,12 +2,11 @@
 
 <a name="badgers"></a>[![CircleCI](https://circleci.com/gh/Diaspora-for-Android/dandelion.svg?style=shield)](https://circleci.com/gh/Diaspora-for-Android/dandelion)
 [![Crowdin](https://d322cqt584bo4o.cloudfront.net/diaspora-for-android/localized.svg)](https://crowdin.com/project/diaspora-for-android)
-[![Chat - Matrix](https://img.shields.io/badge/chat-on%20matrix-blue.svg)](https://matrix.to/#/#dandelion:matrix.org)
+[![Chat - Matrix](https://img.shields.io/badge/chat-on%20matrix-blue.svg)](https://matrix.to/#/#dandelion:matrix.org) [![Chat - FreeNode IRC](https://img.shields.io/badge/chat-on%20irc-blue.svg)](https://kiwiirc.com/client/irc.freenode.net/?nick=dandelion-anon|?##dandelion)
 
 
 
 # dandelion\*
-FORMERLY KNOWN AS DIASPORA-FOR-ANDROID
 
 This is an unofficial webview based client for the community-run, distributed social network **[diaspora*](https://diasporafoundation.org/)**. It's currently under development and should be used with that in mind. Please submit any bugs you might find.
 
@@ -30,7 +29,7 @@ dandelion\* is released under GNU GENERAL PUBLIC LICENSE (see [LICENCE](https://
 The translations (strings.xml) are licensed CC0 1.0.
 
 ### WebApp
-The app is developed as a WebApp because currently diaspora\* doesn't have an API that can be used to create a native interface to retrieve the user's data, publications, direct messages and so on. That's why there are only WebApps for diaspora\* out there.
+The app is developed as a WebApp because currently diaspora\* doesn't have an functional API that can be used to create a native interface to retrieve the user's data, publications, direct messages and so on. That's why there are currently only WebApps for diaspora\* out there.
 [Stay tuned on diaspora\* issues](https://github.com/diaspora/diaspora/labels/api) about API.
 
 Why is a WebApp better than using the mobile site on a browser?
