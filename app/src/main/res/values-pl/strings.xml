@@ -43,7 +43,7 @@
   <string name="share__take_screenshot">Wykonaj zrzut ekranu strony internetowej</string>
   <string name="share__toast_saved_image_to_location">Zapisywanie obrazu do</string>
   <string name="share__toast_screenshot">Zapisywanie zrzutu ekranu jako:</string>
-  <string name="share__toast_link_address_copied">Skopiowano adres linku &#8230;</string>
+  <string name="share__toast_link_address_copied">Skopiowano adres linku&#8230;</string>
   <string name="new_post">Nowy wpis</string>
   <string name="action_go_to_top">Przejdź do góry</string>
   <string name="action_search_by_tags_or_persons">Szukaj tagów lub osób</string>
