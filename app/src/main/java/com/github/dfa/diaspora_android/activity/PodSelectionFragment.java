@@ -56,6 +56,7 @@ import com.github.dfa.diaspora_android.util.AppLog;
 import com.github.dfa.diaspora_android.util.AppSettings;
 import com.github.dfa.diaspora_android.util.DiasporaUrlHelper;
 import com.github.dfa.diaspora_android.util.Helpers;
+import com.github.dfa.diaspora_android.util.HelpersA;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -128,7 +129,7 @@ public class PodSelectionFragment extends ThemedFragment implements SearchView.O
             }
         });
         LocalBroadcastManager.getInstance(getContext()).registerReceiver(podListReceiver, new IntentFilter(FetchPodsService.MESSAGE_PODS_RECEIVED));
-        Helpers.get().showInfoIfUserNotConnectedToInternet(getActivity(), listViewPod);
+        HelpersA.get(getActivity()).showInfoIfUserNotConnectedToInternet(listViewPod);
     }
 
     public void mergePodlistWithRessources(DiasporaPodList podlist) {
@@ -244,7 +245,7 @@ public class PodSelectionFragment extends ThemedFragment implements SearchView.O
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_reload: {
-                if (!Helpers.get().showInfoIfUserNotConnectedToInternet(getActivity(), listViewPod)) {
+                if (!HelpersA.get(getActivity()).showInfoIfUserNotConnectedToInternet(listViewPod)) {
                     Intent i = new Intent(getContext(), FetchPodsService.class);
                     getContext().startService(i);
                     return true;

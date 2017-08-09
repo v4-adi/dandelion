@@ -1,10 +1,12 @@
 package com.github.dfa.diaspora_android.util;
 
-import android.content.Context;
+import android.app.Activity;
 import android.os.Bundle;
 import android.os.Environment;
+import android.view.View;
 
-import com.github.dfa.diaspora_android.App;
+import com.github.dfa.diaspora_android.R;
+import com.github.dfa.diaspora_android.web.WebHelper;
 
 import java.io.File;
 import java.io.IOException;
@@ -14,21 +16,21 @@ import java.util.Date;
 import java.util.Locale;
 
 @SuppressWarnings({"WeakerAccess", "unused", "SameParameterValue"})
-public class Helpers extends io.github.gsantner.opoc.util.Helpers {
-    protected Helpers(Context context) {
-        super(context);
+public class HelpersA extends io.github.gsantner.opoc.util.HelpersA {
+    protected HelpersA(Activity activity) {
+        super(activity);
     }
 
 
-    public static Helpers get() {
-        return new Helpers(App.get());
+    public static HelpersA get(Activity activity) {
+        return new HelpersA(activity);
     }
 
     public File createImageFile() throws IOException {
         // Create an image file name
         String timeStamp = new SimpleDateFormat("dd-MM-yy_HH-mm", Locale.getDefault()).format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
-        AppLog.d(Helpers.class, Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath());
+        AppLog.d(HelpersA.class, Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath());
         File storageDir = Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_PICTURES);
         return new File(
@@ -36,6 +38,19 @@ public class Helpers extends io.github.gsantner.opoc.util.Helpers {
                         ".jpg",         /* suffix */
                 storageDir.getAbsolutePath()      /* directory */
         );
+    }
+
+    /**
+     * Show Information if user is offline, returns true if is not connected to internet
+     *
+     * @param anchor A view anchor
+     */
+    public boolean showInfoIfUserNotConnectedToInternet(View anchor) {
+        boolean isOnline = WebHelper.isOnline(_context);
+        if (!isOnline) {
+            showSnackBar(R.string.no_internet, true);
+        }
+        return !isOnline;
     }
 
     public void logBundle(Bundle savedInstanceState, String k) {

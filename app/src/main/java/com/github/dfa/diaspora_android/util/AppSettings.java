@@ -48,7 +48,7 @@ public class AppSettings extends AppSettingsBase {
 
     private AppSettings(Context context) {
         super(context);
-        prefPod = this.context.getSharedPreferences("pod0", Context.MODE_PRIVATE);
+        prefPod = _context.getSharedPreferences("pod0", Context.MODE_PRIVATE);
     }
 
     /**
@@ -63,14 +63,14 @@ public class AppSettings extends AppSettingsBase {
     }
 
     /**
-     * Clear all settings in prefApp (related to the App itself)
+     * Clear all settings in _prefApp (related to the App itself)
      * This uses commit instead of apply, since
      * SettingsActivity.SettingsFragmentDebugging.showWipeSettingsDialog()
      * kills the app after the calling this, so we have to block until we are finished.
      */
     @SuppressLint("CommitPrefEdits")
     public void resetAppSettings() {
-        super.resetSettings(prefApp);
+        super.resetSettings(_prefApp);
     }
 
     //#################################
@@ -85,11 +85,11 @@ public class AppSettings extends AppSettingsBase {
     }
 
     public boolean isLoadImages() {
-        return getBool(prefApp, R.string.pref_key__load_images, true);
+        return getBool(_prefApp, R.string.pref_key__load_images, true);
     }
 
     public int getMinimumFontSize() {
-        switch (getString(prefApp, R.string.pref_key__font_size, "")) {
+        switch (getString(_prefApp, R.string.pref_key__font_size, "")) {
             case "huge":
                 return 20;
             case "large":
@@ -97,7 +97,7 @@ public class AppSettings extends AppSettingsBase {
             case "normal":
                 return 8;
             default:
-                setString(prefApp, R.string.pref_key__font_size, "normal");
+                setString(_prefApp, R.string.pref_key__font_size, "normal");
                 return 8;
         }
     }
@@ -198,13 +198,13 @@ public class AppSettings extends AppSettingsBase {
     }
 
     public boolean isAppendSharedViaApp() {
-        return getBool(prefApp, R.string.pref_key__append_shared_via_app, true);
+        return getBool(_prefApp, R.string.pref_key__append_shared_via_app, true);
     }
 
     @SuppressLint("CommitPrefEdits")
     public void setProxyHttpEnabled(boolean enabled) {
         //commit instead of apply because the app is likely to be killed before apply is called.
-        prefApp.edit().putBoolean(context.getString(R.string.pref_key__http_proxy_enabled), enabled).commit();
+        _prefApp.edit().putBoolean(rstr(R.string.pref_key__http_proxy_enabled), enabled).commit();
     }
 
     /**
@@ -214,7 +214,7 @@ public class AppSettings extends AppSettingsBase {
      */
     public boolean isProxyHttpEnabled() {
         try {
-            return getBool(prefApp, R.string.pref_key__http_proxy_enabled, false);
+            return getBool(_prefApp, R.string.pref_key__http_proxy_enabled, false);
         } catch (ClassCastException e) {
             setProxyHttpEnabled(false);
             return false;
@@ -222,7 +222,7 @@ public class AppSettings extends AppSettingsBase {
     }
 
     public boolean wasProxyEnabled() {
-        return getBool(prefApp, R.string.pref_key__proxy_was_enabled, false);
+        return getBool(_prefApp, R.string.pref_key__proxy_was_enabled, false);
     }
 
     /**
@@ -233,7 +233,7 @@ public class AppSettings extends AppSettingsBase {
      */
     @SuppressLint("CommitPrefEdits")
     public void setProxyWasEnabled(boolean b) {
-        prefApp.edit().putBoolean(context.getString(R.string.pref_key__proxy_was_enabled), b).commit();
+        _prefApp.edit().putBoolean(rstr(R.string.pref_key__proxy_was_enabled), b).commit();
     }
 
     /**
@@ -242,11 +242,11 @@ public class AppSettings extends AppSettingsBase {
      * @return proxy host
      */
     public String getProxyHttpHost() {
-        return getString(prefApp, R.string.pref_key__http_proxy_host, "");
+        return getString(_prefApp, R.string.pref_key__http_proxy_host, "");
     }
 
     public void setProxyHttpHost(String value) {
-        setString(prefApp, R.string.pref_key__http_proxy_host, value);
+        setString(_prefApp, R.string.pref_key__http_proxy_host, value);
     }
 
     /**
@@ -256,17 +256,17 @@ public class AppSettings extends AppSettingsBase {
      */
     public int getProxyHttpPort() {
         try {
-            String str = getString(prefApp, R.string.pref_key__http_proxy_port, "0");
+            String str = getString(_prefApp, R.string.pref_key__http_proxy_port, "0");
             return Integer.parseInt(str);
         } catch (ClassCastException e) {
-            int port = getInt(prefApp, R.string.pref_key__http_proxy_port, 0);
+            int port = getInt(_prefApp, R.string.pref_key__http_proxy_port, 0);
             setProxyHttpPort(port);
             return port;
         }
     }
 
     public void setProxyHttpPort(int value) {
-        setString(prefApp, R.string.pref_key__http_proxy_port, Integer.toString(value));
+        setString(_prefApp, R.string.pref_key__http_proxy_port, Integer.toString(value));
     }
 
     public ProxyHandler.ProxySettings getProxySettings() {
@@ -274,94 +274,94 @@ public class AppSettings extends AppSettingsBase {
     }
 
     public boolean isIntellihideToolbars() {
-        return getBool(prefApp, R.string.pref_key__intellihide_toolbars, true);
+        return getBool(_prefApp, R.string.pref_key__intellihide_toolbars, true);
     }
 
     public boolean isChromeCustomTabsEnabled() {
-        return getBool(prefApp, R.string.pref_key__chrome_custom_tabs_enabled, true);
+        return getBool(_prefApp, R.string.pref_key__chrome_custom_tabs_enabled, true);
     }
 
     public boolean isLoggingEnabled() {
-        return getBool(prefApp, R.string.pref_key__logging_enabled, false);
+        return getBool(_prefApp, R.string.pref_key__logging_enabled, false);
     }
 
     public boolean isLoggingSpamEnabled() {
-        return getBool(prefApp, R.string.pref_key__logging_spam_enabled, false);
+        return getBool(_prefApp, R.string.pref_key__logging_spam_enabled, false);
     }
 
     public boolean isVisibleInNavExit() {
-        return getBool(prefApp, R.string.pref_key__visibility_nav__exit, true);
+        return getBool(_prefApp, R.string.pref_key__visibility_nav__exit, true);
     }
 
     public boolean isVisibleInNavHelp_license() {
-        return getBool(prefApp, R.string.pref_key__visibility_nav__help_license, true);
+        return getBool(_prefApp, R.string.pref_key__visibility_nav__help_license, true);
     }
 
     public boolean isVisibleInNavPublic_activities() {
-        return getBool(prefApp, R.string.pref_key__visibility_nav__public_activities, false);
+        return getBool(_prefApp, R.string.pref_key__visibility_nav__public_activities, false);
     }
 
     public boolean isVisibleInNavMentions() {
-        return getBool(prefApp, R.string.pref_key__visibility_nav__mentions, false);
+        return getBool(_prefApp, R.string.pref_key__visibility_nav__mentions, false);
     }
 
     public boolean isVisibleInNavCommented() {
-        return getBool(prefApp, R.string.pref_key__visibility_nav__commented, true);
+        return getBool(_prefApp, R.string.pref_key__visibility_nav__commented, true);
     }
 
     public boolean isVisibleInNavLiked() {
-        return getBool(prefApp, R.string.pref_key__visibility_nav__liked, true);
+        return getBool(_prefApp, R.string.pref_key__visibility_nav__liked, true);
     }
 
     public boolean isVisibleInNavActivities() {
-        return getBool(prefApp, R.string.pref_key__visibility_nav__activities, true);
+        return getBool(_prefApp, R.string.pref_key__visibility_nav__activities, true);
     }
 
     public boolean isVisibleInNavAspects() {
-        return getBool(prefApp, R.string.pref_key__visibility_nav__aspects, true);
+        return getBool(_prefApp, R.string.pref_key__visibility_nav__aspects, true);
     }
 
     public boolean isVisibleInNavFollowed_tags() {
-        return getBool(prefApp, R.string.pref_key__visibility_nav__followed_tags, true);
+        return getBool(_prefApp, R.string.pref_key__visibility_nav__followed_tags, true);
     }
 
     public boolean isVisibleInNavProfile() {
-        return getBool(prefApp, R.string.pref_key__visibility_nav__profile, true);
+        return getBool(_prefApp, R.string.pref_key__visibility_nav__profile, true);
     }
 
     public boolean isVisibleInNavContacts() {
-        return getBool(prefApp, R.string.pref_key__visibility_nav__contacts, false);
+        return getBool(_prefApp, R.string.pref_key__visibility_nav__contacts, false);
     }
 
     public boolean isVisibleInNavStatistics() {
-        return getBool(prefApp, R.string.pref_key__visibility_nav__statistics, false);
+        return getBool(_prefApp, R.string.pref_key__visibility_nav__statistics, false);
     }
 
     public boolean isVisibleInNavReports() {
-        return getBool(prefApp, R.string.pref_key__visibility_nav__reports, false);
+        return getBool(_prefApp, R.string.pref_key__visibility_nav__reports, false);
     }
 
     public boolean isVisibleToggleMobileDesktop() {
-        return getBool(prefApp, R.string.pref_key__visibility_nav__toggle_mobile_desktop, false);
+        return getBool(_prefApp, R.string.pref_key__visibility_nav__toggle_mobile_desktop, false);
     }
 
     public boolean isTopbarStreamShortcutEnabled() {
-        return getBool(prefApp, R.string.pref_key__topbar_stream_shortcut, false);
+        return getBool(_prefApp, R.string.pref_key__topbar_stream_shortcut, false);
     }
 
     public String getScreenRotation() {
-        return getString(prefApp, R.string.pref_key__screen_rotation, R.string.rotation_val_system);
+        return getString(_prefApp, R.string.pref_key__screen_rotation, R.string.rotation_val_system);
     }
 
     public boolean isAppFirstStart() {
-        boolean value = getBool(prefApp, R.string.pref_key__app_first_start, true);
-        setBool(prefApp, R.string.pref_key__app_first_start, false);
+        boolean value = getBool(_prefApp, R.string.pref_key__app_first_start, true);
+        setBool(_prefApp, R.string.pref_key__app_first_start, false);
         return value;
     }
 
     public boolean isAppCurrentVersionFirstStart() {
-        int value = getInt(prefApp, R.string.pref_key__app_first_start_current_version, -1);
-        setInt(prefApp, R.string.pref_key__app_first_start_current_version, BuildConfig.VERSION_CODE);
+        int value = getInt(_prefApp, R.string.pref_key__app_first_start_current_version, -1);
+        setInt(_prefApp, R.string.pref_key__app_first_start_current_version, BuildConfig.VERSION_CODE);
         return value != BuildConfig.VERSION_CODE && !BuildConfig.IS_TEST_BUILD;
     }
 
@@ -374,22 +374,22 @@ public class AppSettings extends AppSettingsBase {
     }
 
     public void setLanguage(String value) {
-        setString(prefApp, R.string.pref_key__language, value);
+        setString(_prefApp, R.string.pref_key__language, value);
     }
 
     public String getLanguage() {
-        return getString(prefApp, R.string.pref_key__language, "");
+        return getString(_prefApp, R.string.pref_key__language, "");
     }
 
     public void setPrimaryColorSettings(int base, int shade) {
-        setInt(prefApp, R.string.pref_key__primary_color_base, base);
-        setInt(prefApp, R.string.pref_key__primary_color_shade, shade);
+        setInt(_prefApp, R.string.pref_key__primary_color_base, base);
+        setInt(_prefApp, R.string.pref_key__primary_color_shade, shade);
     }
 
     public int[] getPrimaryColorSettings() {
         return new int[]{
-                getInt(prefApp, R.string.pref_key__primary_color_base, rcolor(R.color.md_blue_650)),
-                getInt(prefApp, R.string.pref_key__primary_color_shade, rcolor(R.color.primary))
+                getInt(_prefApp, R.string.pref_key__primary_color_base, rcolor(R.color.md_blue_650)),
+                getInt(_prefApp, R.string.pref_key__primary_color_shade, rcolor(R.color.primary))
         };
     }
 
@@ -398,36 +398,36 @@ public class AppSettings extends AppSettingsBase {
         if (isAmoledColorMode()) {
             return Color.BLACK;
         } else {
-            return getInt(prefApp, R.string.pref_key__primary_color_shade, rcolor(
+            return getInt(_prefApp, R.string.pref_key__primary_color_shade, rcolor(
                     BuildConfig.IS_TEST_BUILD ? R.color.md_brown_800 : R.color.primary));
         }
     }
 
     public void setAccentColorSettings(int base, int shade) {
-        setInt(prefApp, R.string.pref_key__accent_color_base, base);
-        setInt(prefApp, R.string.pref_key__accent_color_shade, shade);
+        setInt(_prefApp, R.string.pref_key__accent_color_base, base);
+        setInt(_prefApp, R.string.pref_key__accent_color_shade, shade);
     }
 
     public int[] getAccentColorSettings() {
         return new int[]{
-                getInt(prefApp, R.string.pref_key__accent_color_base, rcolor(R.color.md_green_400)),
-                getInt(prefApp, R.string.pref_key__accent_color_shade, rcolor(R.color.accent))
+                getInt(_prefApp, R.string.pref_key__accent_color_base, rcolor(R.color.md_green_400)),
+                getInt(_prefApp, R.string.pref_key__accent_color_shade, rcolor(R.color.accent))
         };
     }
 
     public int getAccentColor() {
-        return getInt(prefApp, R.string.pref_key__accent_color_shade, rcolor(R.color.accent));
+        return getInt(_prefApp, R.string.pref_key__accent_color_shade, rcolor(R.color.accent));
     }
 
     public boolean isExtendedNotificationsActivated() {
-        return getBool(prefApp, R.string.pref_key__extended_notifications, false);
+        return getBool(_prefApp, R.string.pref_key__extended_notifications, false);
     }
 
     public boolean isAmoledColorMode() {
-        return getBool(prefApp, R.string.pref_key__primary_color__amoled_mode, false);
+        return getBool(_prefApp, R.string.pref_key__primary_color__amoled_mode, false);
     }
 
     public boolean isAdBlockEnabled() {
-        return getBool(prefApp, R.string.pref_key__adblock_enable, true);
+        return getBool(_prefApp, R.string.pref_key__adblock_enable, true);
     }
 }
