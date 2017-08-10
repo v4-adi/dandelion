@@ -3,5 +3,9 @@
 <resources>
   <string name="about_activity__title_about_app">Hakkında</string>
   <string name="about_activity__title_about_license">Lisans</string>
+  <string name="about_activity__title_debug_info">Hata Ayıklama</string>
+  <string name="fragment_debug__section_app">Uygulama</string>
+  <string name="fragment_debug__section_device">Cihaz</string>
+  <string name="fragment_debug__section_pod">diaspora* Pod</string>
   <!-- License & help (large amount of text) -->
 </resources>
