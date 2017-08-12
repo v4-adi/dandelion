@@ -7,5 +7,9 @@
   <string name="fragment_debug__section_app">Uygulama</string>
   <string name="fragment_debug__section_device">Cihaz</string>
   <string name="fragment_debug__section_pod">diaspora* Pod</string>
+  <string name="fragment_debug__section_log">Hata Ayıklama Günlükleri</string>
+  <string name="fragment_debug__section_log_spam">Hata Ayıklama Günlüğü (Detaylı)</string>
+  <string name="fragment_debug__app_version">Uygulama Sürümü: %1$s</string>
+  <string name="fragment_debug__android_version">Android Sürümü: %1$s</string>
   <!-- License & help (large amount of text) -->
 </resources>
