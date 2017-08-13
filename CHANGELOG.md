@@ -1,5 +1,9 @@
 ### v1.0.3
 - Update opoc
+- Better visibility for counter badge
+- Refactor DiasporaPod model
+- Update PodList (many new pods!)
+- Fix CustomTab bug
 
 ### v1.0.2 (2017-08-05)
 - Improve build script

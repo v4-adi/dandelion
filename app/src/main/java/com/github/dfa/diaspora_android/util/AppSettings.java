@@ -341,7 +341,11 @@ public class AppSettings extends AppSettingsBase {
         return getBool(_prefApp, R.string.pref_key__visibility_nav__reports, false);
     }
 
-    public boolean isVisibleToggleMobileDesktop() {
+    public boolean isVisibleInNavDandelionAccount() {
+        return getBool(_prefApp, R.string.pref_key__visibility_nav__dandelion_account, false);
+    }
+
+    public boolean isVisibleInNavToggleMobileDesktop() {
         return getBool(_prefApp, R.string.pref_key__visibility_nav__toggle_mobile_desktop, false);
     }
 

@@ -28,95 +28,80 @@ import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
-import android.support.v4.content.ContextCompat;
+import android.support.annotation.NonNull;
 
 import com.github.dfa.diaspora_android.R;
 import com.github.dfa.diaspora_android.util.AppSettings;
+import com.github.dfa.diaspora_android.util.Helpers;
 
+@SuppressWarnings("WeakerAccess")
 public class BadgeDrawable extends Drawable {
     // Source: http://mobikul.com/adding-badge-count-on-menu-items-like-cart-notification-etc/
     private static final String BADGE_VALUE_OVERFLOW = "*";
 
-    private Paint badgeBackground;
-    private Paint badgeStroke;
-    private Paint badgeText;
-    private Rect textRect = new Rect();
+    private Paint _badgeBackground;
+    private Paint _badgeText;
+    private Rect _textRect = new Rect();
 
-    private String badgeValue = "";
-    private boolean shouldDraw;
+    private String _badgeValue = "";
+    private boolean _shouldDraw;
 
     public BadgeDrawable(Context context) {
         float textSize = context.getResources().getDimension(R.dimen.textsize_badge_count);
 
         AppSettings settings = AppSettings.get();
-        badgeBackground = new Paint();
-        badgeBackground.setColor(settings.getAccentColor());
-        badgeBackground.setAntiAlias(true);
-        badgeBackground.setStyle(Paint.Style.FILL);
-        badgeStroke = new Paint();
-        badgeStroke.setColor(ContextCompat.getColor(context.getApplicationContext(), R.color.colorPrimaryDark));
-        badgeStroke.setAntiAlias(true);
-        badgeStroke.setStyle(Paint.Style.FILL);
+        _badgeBackground = new Paint();
+        _badgeBackground.setColor(settings.getAccentColor());
+        _badgeBackground.setAntiAlias(true);
+        _badgeBackground.setStyle(Paint.Style.FILL);
 
-        badgeText = new Paint();
-        badgeText.setColor(Color.WHITE);
-        badgeText.setTypeface(Typeface.DEFAULT);
-        badgeText.setTextSize(textSize);
-        badgeText.setAntiAlias(true);
-        badgeText.setTextAlign(Paint.Align.CENTER);
+        _badgeText = new Paint();
+        _badgeText.setColor(Helpers.get().shouldColorOnTopBeLight(settings.getAccentColor()) ? Color.WHITE : Color.BLACK);
+        _badgeText.setTypeface(Typeface.DEFAULT);
+        _badgeText.setTextSize(textSize);
+        _badgeText.setAntiAlias(true);
+        _badgeText.setTextAlign(Paint.Align.CENTER);
     }
 
     @Override
-    public void draw(Canvas canvas) {
-        if (!shouldDraw) {
+    public void draw(@NonNull Canvas canvas) {
+        if (!_shouldDraw) {
             return;
         }
         Rect bounds = getBounds();
         float width = bounds.right - bounds.left;
         float height = bounds.bottom - bounds.top;
+        float oneDp = Helpers.get().dp2px(1);
 
         // Position the badge in the top-right quadrant of the icon.
         float radius = ((Math.max(width, height) / 2)) / 2;
-        float centerX = (width - radius - 1) + 5;
-        float centerY = radius - 5;
-        if (badgeValue.length() <= 2) {
-            // Draw badge circle.
-            canvas.drawCircle(centerX, centerY, (int) (radius + 7.5), badgeStroke);
-            canvas.drawCircle(centerX, centerY, (int) (radius + 5.5), badgeBackground);
-        } else {
-            canvas.drawCircle(centerX, centerY, (int) (radius + 8.5), badgeStroke);
-            canvas.drawCircle(centerX, centerY, (int) (radius + 6.5), badgeBackground);
-            //canvas.drawRoundRect(radius, radius, radius, radius, 10, 10, badgeBackground);
-        }
+        float centerX = (width - radius - 1) + oneDp * 2;
+        float centerY = radius - 2 * oneDp;
+        canvas.drawCircle(centerX, centerY, (int) (radius + oneDp * 5), _badgeBackground);
+
         // Draw badge count message inside the circle.
-        badgeText.getTextBounds(badgeValue, 0, badgeValue.length(), textRect);
-        float textHeight = textRect.bottom - textRect.top;
+        _badgeText.getTextBounds(_badgeValue, 0, _badgeValue.length(), _textRect);
+        float textHeight = _textRect.bottom - _textRect.top;
         float textY = centerY + (textHeight / 2f);
-        if (badgeValue.length() > 2)
-            canvas.drawText(BADGE_VALUE_OVERFLOW, centerX, textY, badgeText);
-        else
-            canvas.drawText(badgeValue, centerX, textY, badgeText);
+        canvas.drawText(_badgeValue.length() > 2 ? BADGE_VALUE_OVERFLOW : _badgeValue,
+                centerX, textY, _badgeText);
     }
 
-    /*
-    Sets the count (i.e notifications) to display.
-     */
-    public void setCount(String count) {
-        badgeValue = count;
+    // Sets the text to display. Badge displays a '*' if more than 2 characters
+    private void setBadgeText(String text) {
+        _badgeValue = text;
 
-        // Only draw a badge if there are notifications.
-        shouldDraw = !count.equalsIgnoreCase("0");
+        // Only draw a badge if the value isn't a zero
+        _shouldDraw = !text.equalsIgnoreCase("0");
         invalidateSelf();
     }
 
     @Override
     public void setAlpha(int alpha) {
-        // do nothing
     }
 
     @Override
     public void setColorFilter(ColorFilter cf) {
-        // do nothing
     }
 
     @Override
@@ -125,11 +110,11 @@ public class BadgeDrawable extends Drawable {
     }
 
     public static void setBadgeCount(Context context, LayerDrawable icon, Integer count) {
-        setBadgeCount(context, icon, count.toString());
+        setBadgeText(context, icon, count.toString());
     }
 
-    public static void setBadgeCount(Context context, LayerDrawable icon, String count) {
-
+    // Max of 2 characters
+    public static void setBadgeText(Context context, LayerDrawable icon, String text) {
         BadgeDrawable badge;
 
         // Reuse drawable if possible
@@ -140,7 +125,7 @@ public class BadgeDrawable extends Drawable {
             badge = new BadgeDrawable(context);
         }
 
-        badge.setCount(count);
+        badge.setBadgeText(text);
         icon.mutate();
         icon.setDrawableByLayerId(R.id.ic_badge, badge);
     }

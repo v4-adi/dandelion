@@ -23,8 +23,8 @@ android {
         minSdkVersion version_sdk.minSdk
         targetSdkVersion version_sdk.targetSdk
 
-        versionCode 22
-        versionName "1.0.2"
+        versionCode 23
+        versionName "1.0.3"
 
         applicationId "com.github.dfa.diaspora_android"
         resValue 'string', 'app_name', "dandelion*"

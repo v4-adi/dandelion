@@ -54,6 +54,11 @@
             android:title="@string/nav_public_activities" />
 
         <item
+            android:id="@+id/nav_dandelion"
+            android:icon="@drawable/ic_person_black_24px"
+            android:title="@string/dandelion" />
+
+        <item
             android:id="@+id/nav_statistics"
             android:icon="@drawable/ic_timeline_black_48px"
             android:title="@string/nav_statistics" />

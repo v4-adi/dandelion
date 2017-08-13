@@ -6,6 +6,7 @@ import org.json.JSONObject;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -18,8 +19,9 @@ import java.util.List;
  * DiasporaPodUrl   - A Url of an DiasporaPod
  * For all Classes a loading and saving to JSON method is available
  */
+@SuppressWarnings({"WeakerAccess", "unused", "SameParameterValue", "SpellCheckingInspection", "UnusedReturnValue", "JavaDoc", "FieldCanBeLocal"})
 public class DiasporaPodList implements Iterable<DiasporaPodList.DiasporaPod>, Serializable {
-    private static final boolean EXPORT_TOJSON_ACTIVE6 = false;
+    private static final boolean EXPORT_TOJSON_POST_COUNT_LOCAL = true;
     private List<DiasporaPod> pods = new ArrayList<>();
     private boolean trackMergeChanges = false;
     private Integer trackAddedIndexStart = -1;
@@ -88,8 +90,8 @@ public class DiasporaPodList implements Iterable<DiasporaPodList.DiasporaPod>, S
                 if (updatePodBak.getId() != 0 && updatePod.getId() == 0) {
                     updatePod.setId(updatePodBak.getId());
                 }
-                if (updatePodBak.getActive6() != 0 && updatePod.getActive6() == 0) {
-                    updatePod.setActive6(updatePodBak.getActive6());
+                if (updatePodBak.getPostCountLocal() != 0 && updatePod.getPostCountLocal() == 0) {
+                    updatePod.setPostCountLocal(updatePodBak.getPostCountLocal());
                 }
                 if (updatePodBak.getScore() != 0 && updatePod.getScore() == 0) {
                     updatePod.setScore(updatePodBak.getScore());
@@ -179,12 +181,12 @@ public class DiasporaPodList implements Iterable<DiasporaPodList.DiasporaPod>, S
      *      ╚═╝      ╚═════╝ ╚═════╝
      */
     public static class DiasporaPod implements Iterable<DiasporaPodList.DiasporaPod.DiasporaPodUrl>, Comparable<DiasporaPod>, Serializable {
-        private List<DiasporaPodUrl> podUrls = new ArrayList<>();
-        private List<String> mainLangs = new ArrayList<>();
-        private String name = "";
-        private int score = 0;
-        private int id = 0;
-        private long active6 = 0;
+        private List<DiasporaPodUrl> _podUrls = new ArrayList<>();
+        private List<String> _mainLangs = new ArrayList<>();
+        private String _name = "";
+        private int _score = 0;
+        private int _id = 0;
+        private long _postCountLocal = 0;
 
 
         public DiasporaPod() {
@@ -199,14 +201,14 @@ public class DiasporaPodList implements Iterable<DiasporaPodList.DiasporaPod>, S
             JSONArray jarr;
 
             if (json.has("name")) {
-                name = json.getString("name");
+                _name = json.getString("name");
             }
             if (json.has("mainLangs")) {
                 jarr = json.getJSONArray("mainLangs");
                 for (int i = 0; i < jarr.length(); i++) {
                     String val = jarr.getString(i);
-                    if (!mainLangs.contains(val)) {
-                        mainLangs.add(val);
+                    if (!_mainLangs.contains(val)) {
+                        _mainLangs.add(val);
                     }
                 }
             }
@@ -214,19 +216,19 @@ public class DiasporaPodList implements Iterable<DiasporaPodList.DiasporaPod>, S
                 jarr = json.getJSONArray("podUrls");
                 for (int i = 0; i < jarr.length(); i++) {
                     DiasporaPodUrl podUrl = new DiasporaPodUrl().fromJson(jarr.getJSONObject(i));
-                    if (!podUrls.contains(podUrl)) {
-                        podUrls.add(podUrl);
+                    if (!_podUrls.contains(podUrl)) {
+                        _podUrls.add(podUrl);
                     }
                 }
             }
             if (json.has("score")) {
-                score = json.getInt("score");
+                _score = json.getInt("score");
             }
-            if (json.has("active6")) {
-                active6 = json.getLong("active6");
+            if (json.has("postCountLocal")) {
+                _postCountLocal = json.getLong("postCountLocal");
             }
             if (json.has("id")) {
-                id = json.getInt("id");
+                _id = json.getInt("id");
             }
             return this;
         }
@@ -236,25 +238,28 @@ public class DiasporaPodList implements Iterable<DiasporaPodList.DiasporaPod>, S
          */
         public JSONObject toJson() throws JSONException {
             JSONObject json = new JSONObject();
-            json.put("name", name);
-            json.put("score", score);
-            json.put("id", id);
+            json.put("name", _name);
+            json.put("id", _id);
+
+            if (_score != 0) {
+                json.put("score", _score);
+            }
 
             // Only export active6 (frequently changing if told to do)
-            if (EXPORT_TOJSON_ACTIVE6) {
-                json.put("active6", active6);
+            if (EXPORT_TOJSON_POST_COUNT_LOCAL && _postCountLocal > 0) {
+                json.put("postCountLocal", _postCountLocal);
             }
 
             // Pod urls
             JSONArray jarr = new JSONArray();
-            for (DiasporaPodUrl value : podUrls) {
+            for (DiasporaPodUrl value : _podUrls) {
                 jarr.put(value.toJson());
             }
             json.put("podUrls", jarr);
 
             // main langs
             jarr = new JSONArray();
-            for (String value : mainLangs) {
+            for (String value : _mainLangs) {
                 jarr.put(value);
             }
             json.put("mainLangs", jarr);
@@ -268,11 +273,11 @@ public class DiasporaPodList implements Iterable<DiasporaPodList.DiasporaPod>, S
                 DiasporaPod otherPod = (DiasporaPod) o;
 
                 // Check if id is equal
-                ret = this.id != 0 && this.id == otherPod.id;
+                ret = _id != 0 && _id == otherPod._id;
 
-                // Check if host is the same (fallback if id is 0)
+                // Check if _host is the same (fallback if id is 0)
                 if (!ret) {
-                    for (DiasporaPodUrl podUrl : podUrls) {
+                    for (DiasporaPodUrl podUrl : _podUrls) {
                         for (DiasporaPodUrl otherPodUrl : otherPod.getPodUrls()) {
                             if (podUrl.getBaseUrl().equals(otherPodUrl.getBaseUrl())) {
                                 ret = true;
@@ -292,45 +297,46 @@ public class DiasporaPodList implements Iterable<DiasporaPodList.DiasporaPod>, S
                 if (!myPodUrls.isEmpty() && !otherPodUrls.isEmpty()) {
                     return myPodUrls.get(0).getHost().compareTo(otherPodUrls.get(0).getHost());
                 }
+                return _name.compareTo(otherPod.getName());
             }
-            return name.compareTo(otherPod.getName());
+            return _name.compareTo("");
         }
 
         @Override
         public String toString() {
-            return name + "(" + id + ")";
+            return _name + "(" + _id + ")";
         }
 
         /**
          * Iterator for Iterable interface (forEach, ..)
          */
         public Iterator<DiasporaPodUrl> iterator() {
-            return podUrls.iterator();
+            return _podUrls.iterator();
         }
 
         /*
         * Getter & Setter
         */
         public List<DiasporaPodUrl> getPodUrls() {
-            return podUrls;
+            return _podUrls;
         }
 
         public DiasporaPod setPodUrls(List<DiasporaPodUrl> podUrls) {
-            this.podUrls = podUrls;
+            _podUrls = podUrls;
             return this;
         }
 
         public List<String> getMainLangs() {
-            return mainLangs;
+            return _mainLangs;
         }
 
         public DiasporaPod setMainLangs(List<String> mainLangs) {
-            this.mainLangs = mainLangs;
+            _mainLangs = mainLangs;
             return this;
         }
 
         public DiasporaPod appendMainLangs(String... values) {
-            Collections.addAll(this.mainLangs, values);
+            _mainLangs.addAll(Arrays.asList(values));
             return this;
         }
 
@@ -338,50 +344,50 @@ public class DiasporaPodList implements Iterable<DiasporaPodList.DiasporaPod>, S
          * Returns the first DiasporaPodUrl in the list
          */
         public DiasporaPodUrl getPodUrl() {
-            if (podUrls.size() > 0) {
-                return podUrls.get(0);
+            if (_podUrls.size() > 0) {
+                return _podUrls.get(0);
             }
             return null;
         }
 
         public DiasporaPod appendPodUrls(DiasporaPodUrl... values) {
-            Collections.addAll(this.podUrls, values);
+            _podUrls.addAll(Arrays.asList(values));
             return this;
         }
 
         public String getName() {
-            return name;
+            return _name;
         }
 
         public DiasporaPod setName(String name) {
-            this.name = name;
+            _name = name;
             return this;
         }
 
         public int getScore() {
-            return score;
+            return _score;
         }
 
         public DiasporaPod setScore(int score) {
-            this.score = score;
+            _score = score;
             return this;
         }
 
-        public long getActive6() {
-            return active6;
+        public long getPostCountLocal() {
+            return _postCountLocal;
         }
 
-        public DiasporaPod setActive6(long active6) {
-            this.active6 = active6;
+        public DiasporaPod setPostCountLocal(long postCountLocal) {
+            _postCountLocal = postCountLocal;
             return this;
         }
 
         public int getId() {
-            return id;
+            return _id;
         }
 
         public DiasporaPod setId(int id) {
-            this.id = id;
+            _id = id;
             return this;
         }
 
@@ -393,9 +399,9 @@ public class DiasporaPodList implements Iterable<DiasporaPodList.DiasporaPod>, S
          *      ╚═╝      ╚═════╝ ╚═════╝      ╚═════╝ ╚═╝  ╚═╝╚══════╝
          */
         public static class DiasporaPodUrl implements Serializable {
-            private String host = "";
-            private String protocol = "https";
-            private Integer port = 443;
+            private String _host = "";
+            private String _protocol = "https";
+            private Integer _port = 443;
 
             public DiasporaPodUrl() {
             }
@@ -407,10 +413,10 @@ public class DiasporaPodList implements Iterable<DiasporaPodList.DiasporaPod>, S
             /**
              * Get the base url
              *
-             * @return base url with port
+             * @return
              */
             public String getBaseUrl() {
-                return protocol + "://" + host + (isPortNeeded() ? port : "");
+                return _protocol + "://" + _host + (isPortNeeded() ? _port : "");
             }
 
             /**
@@ -420,13 +426,13 @@ public class DiasporaPodList implements Iterable<DiasporaPodList.DiasporaPod>, S
              */
             public DiasporaPodUrl fromJson(JSONObject json) throws JSONException {
                 if (json.has("host")) {
-                    host = json.getString("host");
+                    _host = json.getString("host");
                 }
                 if (json.has("protocol")) {
-                    protocol = json.getString("protocol");
+                    _protocol = json.getString("protocol");
                 }
                 if (json.has("port")) {
-                    port = json.getInt("port");
+                    _port = json.getInt("port");
                 }
                 return this;
             }
@@ -436,12 +442,12 @@ public class DiasporaPodList implements Iterable<DiasporaPodList.DiasporaPod>, S
              */
             public JSONObject toJson() throws JSONException {
                 JSONObject json = new JSONObject();
-                json.put("host", host);
-                if (!protocol.equals("https")) {
-                    json.put("protocol", protocol);
+                json.put("host", _host);
+                if (!_protocol.equals("https")) {
+                    json.put("protocol", _protocol);
                 }
-                if (port != 443) {
-                    json.put("port", port);
+                if (_port != 443) {
+                    json.put("port", _port);
                 }
                 return json;
             }
@@ -467,7 +473,7 @@ public class DiasporaPodList implements Iterable<DiasporaPodList.DiasporaPod>, S
              * Tells if the ports needs to shown
              */
             public boolean isPortNeeded() {
-                return !((port == 80 && protocol.equals("http")) || (port == 443 && protocol.equals("https")));
+                return !((_port == 80 && _protocol.equals("http")) || (_port == 443 && _protocol.equals("https")));
             }
 
             @Override
@@ -476,6 +482,7 @@ public class DiasporaPodList implements Iterable<DiasporaPodList.DiasporaPod>, S
             }
 
             @Override
+            @SuppressWarnings("SimplifiableIfStatement")
             public boolean equals(Object o) {
                 if (o instanceof DiasporaPodUrl) {
                     return getBaseUrl().equals(((DiasporaPodUrl) o).getBaseUrl());
@@ -487,29 +494,29 @@ public class DiasporaPodList implements Iterable<DiasporaPodList.DiasporaPod>, S
              *  GETTER & SETTER
              */
             public String getHost() {
-                return host;
+                return _host;
             }
 
             public DiasporaPodUrl setHost(String host) {
-                this.host = host;
+                _host = host;
                 return this;
             }
 
             public String getProtocol() {
-                return protocol;
+                return _protocol;
             }
 
             public DiasporaPodUrl setProtocol(String protocol) {
-                this.protocol = protocol;
+                _protocol = protocol;
                 return this;
             }
 
             public Integer getPort() {
-                return port;
+                return _port;
             }
 
             public DiasporaPodUrl setPort(Integer port) {
-                this.port = port;
+                _port = port;
                 return this;
             }
         }

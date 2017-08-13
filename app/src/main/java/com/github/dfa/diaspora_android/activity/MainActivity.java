@@ -447,7 +447,8 @@ public class MainActivity extends ThemedActivity
         navMenu.findItem(R.id.nav_stream).setVisible(true);
         navMenu.findItem(R.id.nav_statistics).setVisible(appSettings.isVisibleInNavStatistics());
         navMenu.findItem(R.id.nav_reports).setVisible(appSettings.isVisibleInNavReports());
-        navMenu.findItem(R.id.nav_toggle_desktop_page).setVisible(appSettings.isVisibleToggleMobileDesktop());
+        navMenu.findItem(R.id.nav_toggle_desktop_page).setVisible(appSettings.isVisibleInNavToggleMobileDesktop());
+        navMenu.findItem(R.id.nav_dandelion).setVisible(appSettings.isVisibleInNavDandelionAccount());
 
 
         // Hide whole group (for logged in use) if no pod was selected
@@ -1119,6 +1120,11 @@ public class MainActivity extends ThemedActivity
 
             case R.id.nav_toggle_desktop_page: {
                 openDiasporaUrl(urls.getToggleMobileUrl());
+            }
+            break;
+
+            case R.id.nav_dandelion: {
+                openDiasporaUrl(urls.getProfileUrl("48b78420923501341ef3782bcb452bd5"));
             }
             break;
 

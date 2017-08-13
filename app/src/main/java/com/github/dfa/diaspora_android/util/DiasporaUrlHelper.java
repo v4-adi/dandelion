@@ -27,7 +27,7 @@ import com.github.dfa.diaspora_android.data.DiasporaPodList.DiasporaPod;
  * Helper class that provides easy access to specific urls related to diaspora
  * Created by vanitasvitae on 10.08.16.
  */
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "SpellCheckingInspection", "SameParameterValue", "WeakerAccess"})
 public class DiasporaUrlHelper {
     private final AppSettings settings;
 
@@ -151,7 +151,7 @@ public class DiasporaUrlHelper {
      * @param profileId Id of the profile to be shown
      * @return https://(pod-domain.tld)/people/(profileId)
      */
-    public String getProfileUrl(long profileId) {
+    public String getProfileUrl(String profileId) {
         return getPodUrl() + SUBURL_PEOPLE + profileId;
     }
 

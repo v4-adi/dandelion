@@ -11,6 +11,6 @@
      https://developer.android.com/design/patterns/navigation-drawer.html -->
 
 
-    <dimen name="textsize_badge_count">11sp</dimen>
+    <dimen name="textsize_badge_count">13sp</dimen>
     <dimen name="color_picker_circle_size">30dp</dimen>
 </resources>

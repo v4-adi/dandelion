@@ -21,6 +21,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -296,6 +297,13 @@ public class Helpers {
         Configuration config = _context.getResources().getConfiguration();
         config.locale = locale != null ? locale : Locale.getDefault();
         _context.getResources().updateConfiguration(config, null);
+    }
+
+    // Find out if color above the given color should be light or dark. true if light
+    public boolean shouldColorOnTopBeLight(int colorOnBottomInt) {
+        return 186 > (((0.299 * Color.red(colorOnBottomInt))
+                + ((0.587 * Color.green(colorOnBottomInt))
+                + (0.114 * Color.blue(colorOnBottomInt)))));
     }
 
     public float px2dp(final float px) {

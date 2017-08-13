@@ -177,8 +177,13 @@ public class PodSelectionFragment extends ThemedFragment implements SearchView.O
         rootView.setBackgroundColor(appSettings.isAmoledColorMode() ? Color.BLACK : Color.WHITE);
         listViewPod.setDivider(new ColorDrawable(Color.GRAY));
         listViewPod.setDividerHeight(dividerHeight);
-        buttonUseCustomPod.setSupportBackgroundTintList(ColorStateList.valueOf(appSettings.isAmoledColorMode() ? Color.DKGRAY : Color.WHITE));
-        buttonUseCustomPod.setTextColor(appSettings.isAmoledColorMode() ? Color.WHITE : Color.BLACK);
+        if (appSettings.isAmoledColorMode()) {
+            buttonUseCustomPod.setSupportBackgroundTintList(ColorStateList.valueOf(Color.DKGRAY));
+            buttonUseCustomPod.setTextColor(Color.WHITE);
+        } else {
+            buttonUseCustomPod.setSupportBackgroundTintList(ColorStateList.valueOf(appSettings.getAccentColor()));
+            buttonUseCustomPod.setTextColor(Helpers.get().shouldColorOnTopBeLight(appSettings.getAccentColor()) ? Color.WHITE : Color.BLACK);
+        }
     }
 
     @Override
