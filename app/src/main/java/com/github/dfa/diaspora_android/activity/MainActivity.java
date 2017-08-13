@@ -78,6 +78,7 @@ import com.github.dfa.diaspora_android.ui.theme.ThemedAlertDialogBuilder;
 import com.github.dfa.diaspora_android.util.AppLog;
 import com.github.dfa.diaspora_android.util.AppSettings;
 import com.github.dfa.diaspora_android.util.DiasporaUrlHelper;
+import com.github.dfa.diaspora_android.util.HelpersA;
 import com.github.dfa.diaspora_android.web.BrowserFragment;
 import com.github.dfa.diaspora_android.web.ContextMenuWebView;
 import com.github.dfa.diaspora_android.web.ProxyHandler;
@@ -90,7 +91,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.github.gsantner.opoc.util.SimpleMarkdownParser;
-import com.github.dfa.diaspora_android.util.HelpersA;
 
 public class MainActivity extends ThemedActivity
         implements NavigationView.OnNavigationItemSelectedListener,
