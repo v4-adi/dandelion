@@ -22,9 +22,26 @@
   <!-- Notifications dropdown menu -->
   <string name="notifications__all">എല്ലാ അറിയിപ്പുകളും</string>
   <string name="notifications__also_commented">അഭിപ്രായപ്പെട്ടു</string>
+  <string name="notifications__comment_on_post">പോസ്റ്റിൽ അഭിപ്രായപ്പെടുക</string>
   <string name="notifications__liked">ലൈക്ക് ചെയ്തു</string>
+  <string name="notifications__mentioned">പ്രസ്താവിച്ചു</string>
+  <string name="notifications__reshared">വീണ്ടും ഷെയർ ചെയ്തു</string>
+  <string name="notifications__started_sharing">ഷെയർ ചെയ്യാൻ തുടങ്ങി</string>
   <!-- Pod Activity -->
+  <string name="podlist_error">പിഴവ്: പോഡുകളുടെ പട്ടിക പുതുക്കുവാൻ കഴിയുന്നില്ല!</string>
+  <string name="no_internet">ക്ഷമിക്കുക, നിങ്ങൾക്ക് മുന്നോട്ട് പോകുവാൻ ഇന്റർനെറ്റ് ബന്ധം ആവശ്യമാണ്</string>
+  <string name="confirmation">ഉറപ്പാക്കൽ</string>
+  <string name="confirm_exit">നിങ്ങൾക്ക് പുറത്തുകടക്കണോ?</string>
   <!-- Drawer, Menu, Toolbar, ContextMenu -->
+  <string name="nav_menu_more">കൂടുതൽ</string>
+  <string name="nav_help_license">അതേക്കുറിച്ചു | സഹായം</string>
+  <string name="nav_followed_tags">പിന്തുടർന്ന ടാഗുകൾ</string>
+  <string name="nav_public_activities">പൊതു പ്രവർത്തനങ്ങൾ</string>
+  <string name="nav_reports">റിപ്പോർട്ടുകൾ</string>
+  <string name="share__share_link_as_text">ലിങ്ക് ടെക്സ്റ്റായി പങ്കുവയ്ക്കുക</string>
+  <string name="share__share_screenshot">വെബ്‌പേജിന്റെ സ്ക്രീൻഷോട്ട് പങ്കുവയ്ക്കുക</string>
+  <string name="share__take_screenshot">വെബ്‌പേജിന്റെ സ്ക്രീൻഷോട്ട് എടുക്കുക</string>
+  <string name="share__toast_saved_image_to_location">ചിത്രം സംരക്ഷിക്കേണ്ട സ്ഥലം</string>
   <!-- More from MainActivity -->
   <!-- Permissions -->
 </resources>
