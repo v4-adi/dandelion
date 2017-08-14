@@ -42,6 +42,20 @@
   <string name="share__share_screenshot">വെബ്‌പേജിന്റെ സ്ക്രീൻഷോട്ട് പങ്കുവയ്ക്കുക</string>
   <string name="share__take_screenshot">വെബ്‌പേജിന്റെ സ്ക്രീൻഷോട്ട് എടുക്കുക</string>
   <string name="share__toast_saved_image_to_location">ചിത്രം സംരക്ഷിക്കേണ്ട സ്ഥലം</string>
+  <string name="share__toast_screenshot">സ്ക്രീൻഷോട്ട് സംരക്ഷിക്കേണ്ട ഫോർമാറ്റ്:</string>
+  <string name="share__toast_link_address_copied">ലിങ്കിന്റെ വിലാസം പകർത്തി&#8230;</string>
+  <string name="new_post">പുതിയ പോസ്റ്റ്</string>
+  <string name="action_go_to_top">മുകളിലേക്ക് പോകുക</string>
+  <string name="action_search_by_tags_or_persons">ടാഗുകളെയോ വ്യക്തികളെയോ തിരയുക</string>
+  <string name="action_exit_app">ആപ്പിന് പുറത്തുകടക്കുക</string>
+  <string name="action_toggle_desktop_page">മൊബൈൽ/ഡെസ്ക്ടോപ്പ് വ്യൂവിലേക്ക് മാറുക</string>
+  <string name="action_share_dotdotdot">പങ്കുവയ്ക്കുക&#8230;</string>
+  <string name="search_alert_tag">ടാഗുകളെ</string>
+  <string name="search_alert_people">ആളുകളെ</string>
+  <string name="search_alert_bypeople_validate_needsomedata">പേര് ചേർക്കുക</string>
+  <string name="context_menu_share_link">ലിങ്ക് വിലാസം പങ്കുവയ്ക്കുക</string>
+  <string name="context_menu_save_image">ചിത്രം സംരക്ഷിക്കുക</string>
+  <string name="context_menu_share_image">ചിത്രം പങ്കുവയ്ക്കുക</string>
   <!-- More from MainActivity -->
   <!-- Permissions -->
 </resources>
