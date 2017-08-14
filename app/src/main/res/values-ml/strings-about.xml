@@ -8,5 +8,10 @@
   <string name="fragment_debug__section_device">ഉപകരണം</string>
   <string name="fragment_debug__section_pod">ഡയസ്പോറ* പോഡ്</string>
   <string name="fragment_debug__section_log">തിരുത്തിയ തെറ്റുകളുടെ പട്ടിക</string>
+  <string name="fragment_debug__section_log_spam">തിരുത്തിയ തെറ്റുകൾ (വേർബോസ്)</string>
+  <string name="fragment_debug__app_version">ആപ്പ് വേർഷൻ: %1$s</string>
+  <string name="fragment_debug__android_version">ആൻഡ്രോയ്ഡ് വേർഷൻ: %1$s</string>
+  <string name="fragment_debug__device_name">ഉപകരണത്തിന്റെ പേര്:%1$s</string>
+  <string name="fragment_debug__app_codename">കോഡ്നെയിം: %1$s</string>
   <!-- License & help (large amount of text) -->
 </resources>
