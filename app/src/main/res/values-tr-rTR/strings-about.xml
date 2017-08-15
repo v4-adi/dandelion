@@ -28,4 +28,10 @@
   <string name="fragment_about__spread_the_word_share_text">Hey %1$s ! #dandelion’a bir göz at!</string>
   <!-- License & help (large amount of text) -->
   <string name="fragment_license__maintainers">Yardımcılar</string>
+  <string name="fragment_license__contributors">Katkıda Bulunanlar</string>
+  <string name="fragment_license__contributors_thank_you">%1$s&lt;br&gt;&lt;br&gt;Teşekkürler!</string>
+  <string name="fragment_license__license_button">GNU GPLv3+ License</string>
+  <string name="fragment_license__thirdparty_libs">Üçüncü Parti Kütüphaneler</string>
+  <string name="fragment_license__thirdparty_libs_text">Şu kütüphaneler kullanıldı:</string>
+  <string name="fragment_license__misc_leafpic_button">Daha fazla göster</string>
 </resources>
