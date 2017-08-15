@@ -11,5 +11,21 @@
   <string name="fragment_debug__section_log_spam">Hata Ayıklama Günlüğü (Detaylı)</string>
   <string name="fragment_debug__app_version">Uygulama Sürümü: %1$s</string>
   <string name="fragment_debug__android_version">Android Sürümü: %1$s</string>
+  <string name="fragment_debug__device_name">Cihaz Adı: %1$s</string>
+  <string name="fragment_debug__app_codename">Kod adı: %1$s</string>
+  <string name="fragment_debug__pod_profile_name">Pod Profil Adı: %1$s</string>
+  <string name="fragment_debug__pod_profile_url">Pod Adresi: %1$s</string>
+  <string name="fragment_debug__toast_log_copied">Hata ayıklama günlüğü panoya kopyalandı</string>
+  <string name="fragment_about__contribute">Koda katkıda bulun!</string>
+  <string name="fragment_about__contribute_button">Kaynağı al</string>
+  <string name="fragment_about__translate">Uygulamayı tercüme et!</string>
+  <string name="fragment_about__translate_text">Uygulamayı kendi dilinde kullanamıyor musun? Bunu değiştirebilirsin. Neden çeviride bize yardımcı olmuyorsun? Herkesin çeviriye katkıda bulunabilmesi için Crowdin platformunu kullanıyoruz.</string>
+  <string name="fragment_about__translate_button">Hadi çevirelim</string>
+  <string name="fragment_about__feedback">Geri bildirimde bulun!</string>
+  <string name="fragment_about__feedback_button">Hataları Bildir</string>
+  <string name="fragment_about__spread_the_word">Herkese duyur!</string>
+  <string name="fragment_about__spread_the_word_button">Uygulamayı paylaş</string>
+  <string name="fragment_about__spread_the_word_share_text">Hey %1$s ! #dandelion’a bir göz at!</string>
   <!-- License & help (large amount of text) -->
+  <string name="fragment_license__maintainers">Yardımcılar</string>
 </resources>
