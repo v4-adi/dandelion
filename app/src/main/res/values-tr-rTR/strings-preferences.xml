@@ -49,6 +49,7 @@
   <string name="pref_title__sub_proxy">Proxy</string>
   <string name="pref_title__proxy_enabled">Proxy etkinleştir</string>
   <string name="pref_title__http_proxy_host">Sunucu</string>
+  <string name="pref_title__http_proxy_port">Port</string>
   <!-- Chrome custom tabs -->
   <!-- Diaspora Settings -->
   <!-- More -->
