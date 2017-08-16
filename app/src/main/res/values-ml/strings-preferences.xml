@@ -3,9 +3,16 @@
 <resources>
   <!-- Key Names (Untranslatable) -->
   <!-- Operability -->
+  <string name="pref_title__topbar_stream_shortcut">മുകളിലെ ടൂൾബാർ സ്‌ട്രീം ലോഡ് ചെയ്യുന്നു</string>
+  <string name="pref_desc__topbar_stream_shortcut">ടൂൾബാറിലെ ഒഴിഞ്ഞ സ്ഥലത്തു ക്ലിക്ക് ചെയ്തു സ്‌ട്രീം തുറക്കുക</string>
   <!-- Category Titles -->
+  <string name="pref_cat__visuals">രൂപം</string>
+  <string name="pref_cat__network">ശൃംഖല</string>
+  <string name="pref_cat__pod_settings">പോഡ് ക്രമീകരണങ്ങൾ</string>
+  <string name="pref_cat__operability">പ്രവർത്തിക്കുവാൻ കഴിയുന്നത്</string>
   <!-- Visuals -->
   <!-- Navigiation Slider -->
+  <string name="pref_title__sub_nav_slider">നാവിഗേഷൻ സ്ലൈഡർ</string>
   <!-- Themes -->
   <!-- Notifications dropdown -->
   <!-- Font size -->
