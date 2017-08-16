@@ -29,9 +29,25 @@
   <!-- Notifications dropdown -->
   <string name="pref_title__extended_notifications">വ്യാപിപ്പിച്ച വിജ്ഞാപനങ്ങൾ</string>
   <string name="pref_desc__extended_notifications">വിജ്ഞാപന വിഭാഗങ്ങൾ കാണിക്കുന്ന താഴേക്ക് വലിക്കാവുന്ന മെനുവിൽ വിജ്ഞാപന മണി വലുതാക്കുക</string>
+  <string name="pref_desc__language">ആപ്പിന്റെ ഭാഷ മാറ്റുക. മാറ്റം ഫലപ്രദമാകുവാൻ ആപ്പ് വീണ്ടും തുറക്കുക</string>
+  <string name="pref_title__language">ഭാഷ</string>
+  <string name="language_system">സിസ്റ്റത്തിലെ ഭാഷ</string>
   <!-- Font size -->
+  <string name="pref_desc__font_size">വെബ്‌വ്യൂ അക്ഷരങ്ങളുടെ വലിപ്പം നിയന്ത്രിക്കുക</string>
+  <string name="pref_title__font_size">അക്ഷരങ്ങളുടെ വലിപ്പം</string>
+  <string name="font_size_normal">സാധാരണ</string>
+  <string name="font_size_large">വലിയ</string>
+  <string name="font_size_huge">ഭീമാകാരമായ</string>
   <!-- Load images -->
+  <string name="pref_title__load_images">ചിത്രങ്ങൾ ലോഡ് ചെയ്യുക</string>
+  <string name="pref_desc__load_images">ചിത്രം ലോഡ് ചെയ്യുന്നത് മാറ്റുക. ഉദാ:- മൊബൈൽ ഡാറ്റാ ലഭിക്കുന്നതിനായി</string>
   <!-- Screen rotation -->
+  <string name="pref_title__screen_rotation">സ്‌ക്രീൻ കറക്കുക</string>
+  <string name="pref_desc__screen_rotation">തനിയെ സ്‌ക്രീൻ ചുറ്റുന്നത് നിയന്ത്രിക്കുക</string>
+  <string name="rotation_system">സ്വതേ ഉള്ള മൂല്യം</string>
+  <string name="rotation_sensor">സെൻസർ\n (സിസ്റ്റം ക്രമീകരണങ്ങളെ അവഗണിക്കുക)</string>
+  <string name="rotation_portrait">പോർട്രൈറ്റ്</string>
+  <string name="rotation_landscape">ലാൻസ്‌കേപ്</string>
   <!-- Proxy -->
   <!-- Chrome custom tabs -->
   <!-- Diaspora Settings -->
