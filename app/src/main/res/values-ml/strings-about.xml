@@ -14,5 +14,7 @@
   <string name="fragment_debug__device_name">ഉപകരണത്തിന്റെ പേര്:%1$s</string>
   <string name="fragment_debug__app_codename">കോഡ്നെയിം: %1$s</string>
   <!-- License & help (large amount of text) -->
+  <string name="fragment_license__thirdparty_libs_text">താഴെ പറഞ്ഞിരിക്കുന്ന ലൈബ്രറികൾ ഉപയോഗിച്ചിരിക്കുന്നു:</string>
+  <string name="fragment_license__misc_leafpic">ഞങ്ങൾ ചില കോഡുകൾ കടമെടുത്തതും പ്രചോദനമായതും ലീഫ്പിക് ഇൽ നിന്നാണ്. ഒന്നു പരിശോധിക്കൂ.. അതും സ്വതന്ത്ര സോഫ്റ്റ്‌വേർ ആണ്!</string>
   <string name="fragment_license__misc_leafpic_button">വിശദീകരിക്കുക</string>
 </resources>
