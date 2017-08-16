@@ -13,7 +13,18 @@
   <!-- Visuals -->
   <!-- Navigiation Slider -->
   <string name="pref_title__sub_nav_slider">നാവിഗേഷൻ സ്ലൈഡർ</string>
+  <string name="pref_desc__sub_nav_slider">നാവിഗേഷൻ വലിപ്പിലെ രേഖപ്പെടുത്തലുകളുടെ കാഴ്ച്ച നിയന്ത്രിക്കുക</string>
+  <string name="pref_cat__visibility_nav_items__user">ഉപയോക്താവ്</string>
+  <string name="pref_cat__visibility_nav_items__general">പൊതു</string>
+  <string name="pref_cat__visibility_nav_items__admin">അഡ്മിൻ</string>
   <!-- Themes -->
+  <string name="pref_title__themes">തീമും നിറവും</string>
+  <string name="pref_desc__themes">ആപ്പിൽ മൊത്തമായി ഉപയോഗിക്കുന്ന നിറങ്ങൾ ക്രമീകരിക്കുക</string>
+  <string name="pref_title__primary_color">പ്രധാന നിറം</string>
+  <string name="pref_desc__primary_color">ടൂൾബാറുകളുടെ നിറം</string>
+  <string name="pref_title__accent_color">എടുത്തുകാണിക്കുന്ന നിറം</string>
+  <string name="pref_desc__accent_color">പ്രോഗ്രസ് ബാറിന്റെ നിറം</string>
+  <string name="pref_title__primary_color__amoled_mode">അമോൾഡ് മോഡ്</string>
   <!-- Notifications dropdown -->
   <!-- Font size -->
   <!-- Load images -->
