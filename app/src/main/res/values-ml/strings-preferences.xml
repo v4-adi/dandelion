@@ -49,6 +49,10 @@
   <string name="rotation_portrait">പോർട്രൈറ്റ്</string>
   <string name="rotation_landscape">ലാൻസ്‌കേപ്</string>
   <!-- Proxy -->
+  <string name="pref_title__http_proxy_load_tor_preset">ടോറിൽ മുൻകൂറായി രേഖപ്പെടുത്തിയ മൂല്യങ്ങൾ ലോഡ് ചെയ്യുക</string>
+  <string name="pref_desc__http_proxy_load_tor_preset">ടോർ (ഓർബോട്ട്) HTTP പ്രോക്സി ക്രമീകരണങ്ങൾ ലോഡ് ചെയ്യുക</string>
+  <string name="pref_title__sub_proxy">പ്രോക്സി</string>
+  <string name="pref_title__proxy_enabled">പ്രോക്സി പ്രയോഗിക്കുക</string>
   <!-- Chrome custom tabs -->
   <!-- Diaspora Settings -->
   <string name="pref_desc__intellihide_toolbars">മുകളിലെയും ചുവട്ടിലെയും ടൂൾബാറുകൾ സ്ക്രോൾ ചെയ്യുമ്പോൾ താനേ അപ്രത്യക്ഷമാക്കുക</string>
