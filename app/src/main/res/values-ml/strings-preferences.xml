@@ -25,7 +25,10 @@
   <string name="pref_title__accent_color">എടുത്തുകാണിക്കുന്ന നിറം</string>
   <string name="pref_desc__accent_color">പ്രോഗ്രസ് ബാറിന്റെ നിറം</string>
   <string name="pref_title__primary_color__amoled_mode">അമോൾഡ് മോഡ്</string>
+  <string name="pref_desc__primary_color__amoled_mode">അമോലെഡ് ഡിസ്പ്ലേ സൗഹൃദമായ കറുപ്പ് നിറം ആപ്പിന്റെ പല ഭാഗങ്ങളിലും മറ്റു നിറങ്ങളെ മറികടക്കും. ഈ ക്രമീകരണം മാറ്റുവാൻ ആപ്പ് വീണ്ടും തുറക്കേണ്ടി വരും. നിങ്ങളുടെ സ്വകാര്യ ഡയസ്പോറ* അകൗണ്ട് ക്രമീകരണങ്ങളിലെ ഇരുണ്ട തീം പ്രയോഗിച്ചാൽ ഡയസ്പോറ* നിങ്ങൾക്ക് ഇരുണ്ട പശ്ചാത്തലത്തിൽ ഉപയോഗിക്കാം.</string>
   <!-- Notifications dropdown -->
+  <string name="pref_title__extended_notifications">വ്യാപിപ്പിച്ച വിജ്ഞാപനങ്ങൾ</string>
+  <string name="pref_desc__extended_notifications">വിജ്ഞാപന വിഭാഗങ്ങൾ കാണിക്കുന്ന താഴേക്ക് വലിക്കാവുന്ന മെനുവിൽ വിജ്ഞാപന മണി വലുതാക്കുക</string>
   <!-- Font size -->
   <!-- Load images -->
   <!-- Screen rotation -->
