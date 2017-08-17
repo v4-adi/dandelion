@@ -6,7 +6,7 @@
   <string name="about_activity__title_debug_info">തെറ്റു കണ്ടുപിടിക്കുക</string>
   <string name="fragment_debug__section_app">ആപ്പ്ളിക്കേഷൻ</string>
   <string name="fragment_debug__section_device">ഉപകരണം</string>
-  <string name="fragment_debug__section_pod">ഡയസ്പോറ* പോഡ്</string>
+  <string name="fragment_debug__section_pod">diaspora* പോഡ്</string>
   <string name="fragment_debug__section_log">തിരുത്തിയ തെറ്റുകളുടെ പട്ടിക</string>
   <string name="fragment_debug__section_log_spam">തിരുത്തിയ തെറ്റുകൾ (വേർബോസ്)</string>
   <string name="fragment_debug__app_version">ആപ്പ് വേർഷൻ: %1$s</string>
