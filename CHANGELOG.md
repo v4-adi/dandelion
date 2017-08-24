@@ -1,3 +1,6 @@
+### v1.0.4
+- Updated: README
+
 ### v1.0.3
 - Update opoc
 - Better visibility for counter badge
