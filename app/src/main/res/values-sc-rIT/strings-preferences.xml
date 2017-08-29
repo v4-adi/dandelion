@@ -40,6 +40,7 @@
   <string name="font_size_huge">Mannu meda</string>
   <!-- Load images -->
   <string name="pref_title__load_images">Iscàrriga sas immàgines</string>
+  <string name="pref_desc__load_images">Allughe/istuda su carrigamentu de sas immàgines pro risparmiare sos datos mòbiles</string>
   <!-- Screen rotation -->
   <string name="pref_title__screen_rotation">Rotatzione de s\'ischermu</string>
   <string name="pref_desc__screen_rotation">Controlla sa rotatzione automàtica de s\'ischermu</string>
@@ -49,7 +50,15 @@
   <string name="rotation_landscape">Orizontale</string>
   <!-- Proxy -->
   <string name="pref_title__http_proxy_load_tor_preset">Càrriga sos valores predefinidos de Tor</string>
+  <string name="pref_desc__http_proxy_load_tor_preset">Càrriga sas impostatziones pro su sèrver intermèdiu HTTP de Tor (Orbot)</string>
+  <string name="pref_title__sub_proxy">Server intermèdiu (Proxy)</string>
+  <string name="pref_title__proxy_enabled">Abìlita unu server intermèdiu</string>
+  <string name="pref_desc__http_proxy_enabled">Faghe colare su tràficu de dandelion* in unu server intermèdiu pro isfrancare sos firewalls.\nDiat pòdere èssere netzessàriu a torrare a allùghere s\'aplicatzione. Diat pòdere non funtzionare pro carchi telèfono.</string>
+  <string name="pref_title__http_proxy_host">Host</string>
+  <string name="pref_title__http_proxy_port">Ghenna</string>
+  <string name="toast__proxy_disabled__restart_required">Depes torrare a allùghere s\'aplicatzione pro istudare s\'impreu de su server intermediàriu</string>
   <!-- Chrome custom tabs -->
   <!-- Diaspora Settings -->
   <!-- More -->
+  <string name="pref_title__adblock_enable">Bloca sa publitzidade</string>
 </resources>
