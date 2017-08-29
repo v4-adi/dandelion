@@ -62,4 +62,20 @@
   <!-- More from MainActivity -->
   <string name="unable_to_load_image">Impossìbile carrigare s\'immàgine</string>
   <!-- Permissions -->
+  <string name="permissions_screenshot">Depes frunire \"Permissu de atzessu a sa memòria\" pro sarvare sas ischermadas. A pustis dias dèpere
+        serrare de su totu s\'aplicatzione o torrare a allùghere su dispositivu. Si no as a frunire su permissu a sa memòria ma cheres impreare sa
+        funtzionalidade de ischermada, prus a tardu, l\'as a pòdere fàghere tando. Pro praghere aberi: systemsettings - apps -
+        dandelion*. In sa setzione pro sos permissosas a pòdere frunire su \"permissu de atzessu a sa memòria\".</string>
+  <string name="permissions_image">Depes frunire \"Permissu de atzessu a sa memòria\" pro sarvare e carrigare sas immàgines. A pustis dias dèpere
+        serrare de su totu s\'aplicatzione o torrare a allùghere su dispositivu. Si no as a frunire su permissu a sa memòria ma cheres impreare sa
+        funtzionalidade de ischermada, prus a tardu, l\'as a pòdere fàghere tando. Pro praghere aberi: systemsettings - apps -
+        dandelion*. In sa setzione pro sos permissosas a pòdere frunire su \"permissu de atzessu a sa memòria\".</string>
+  <string name="permission_denied">Permissu dennegadu.</string>
+  <string name="permission_granted_try_again">Permissu cuntzessu. Pro praghere torra a proare.</string>
+  <string name="podselection__custom_pod">Pod personalizadu</string>
+  <string name="pod_name">Nùmene de su pod</string>
+  <string name="http_protocol">Protocollu</string>
+  <string name="pod_address">Indiritzu de su pod</string>
+  <string name="missing_value">Valore fartante</string>
+  <string name="jump_to_last_visited_timestamp_in_stream">Brincare a s\'ùrtima pàgina visitada in su flussu?</string>
 </resources>
