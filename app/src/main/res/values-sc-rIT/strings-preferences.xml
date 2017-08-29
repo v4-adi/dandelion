@@ -57,8 +57,20 @@
   <string name="pref_title__http_proxy_host">Host</string>
   <string name="pref_title__http_proxy_port">Ghenna</string>
   <string name="toast__proxy_disabled__restart_required">Depes torrare a allùghere s\'aplicatzione pro istudare s\'impreu de su server intermediàriu</string>
+  <string name="toast__proxy_orbot_preset_loaded">Impostatziones de su server de Orbot carrigadas</string>
   <!-- Chrome custom tabs -->
+  <string name="pref_desc__chrome_custom_tabs_enabled">Aberi sos ligàmenes esternos cun sas ischedas personalizadas de Chrome. Chromium o Google Chrome depent èssere installados pro lu pòdere fàghere. \nNOTA DE IMPORTU: sas ischedas personalizadas de Chrome no impreant sos servers intermediàrios configurados!</string>
   <!-- Diaspora Settings -->
+  <string name="pref_title__personal_settings">Impostatziones personales</string>
+  <string name="pref_desc__personal_settings">Aberi sas impostatziones de su contu de diaspora* tuo</string>
+  <string name="pref_desc__manage_contacts">Amministra sa lista de sos contatos tuos</string>
+  <string name="pref_title__manage_tags">Amministra sas etichetas</string>
+  <string name="pref_desc__manage_tags">Acaba·la de sighire sas etichetas sighidas</string>
+  <string name="pref_title__change_account">Càmbia contu</string>
+  <string name="pref_desc__change_account">Iscantzella sos datos de sa sessione locale e cola a un\'àteru contu o pod de diaspora*</string>
+  <string name="pref_warning__change_account">Custu at a iscantzellare totu sos cookies e sos datos de sa sessione. Seguru ses de chèrrere cambiare su contu tuo?</string>
+  <string name="pref_title__clear_cache">Iscantzella sa cache</string>
+  <string name="pref_desc__clear_cache">Iscantzella sa cache de sa vista web</string>
   <!-- More -->
   <string name="pref_title__adblock_enable">Bloca sa publitzidade</string>
 </resources>
