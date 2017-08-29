@@ -6,11 +6,14 @@
   <string name="pref_title__topbar_stream_shortcut">La barre du haut charge le flux</string>
   <string name="pref_desc__topbar_stream_shortcut">Cliquez sur un espace vide sur la barre du haut pour ouvrir le flux</string>
   <!-- Category Titles -->
+  <string name="pref_cat__visuals">Apparence</string>
   <string name="pref_cat__network">Paramètres du réseau</string>
   <string name="pref_cat__pod_settings">Paramètres du pod</string>
   <string name="pref_cat__operability">Opérabilité</string>
   <!-- Visuals -->
   <!-- Navigiation Slider -->
+  <string name="pref_title__sub_nav_slider">Curseur de navigation</string>
+  <string name="pref_desc__sub_nav_slider">Visibilité de contrôle des entrées dans le volet de navigation</string>
   <string name="pref_cat__visibility_nav_items__user">Utilisateur</string>
   <string name="pref_cat__visibility_nav_items__general">Général</string>
   <string name="pref_cat__visibility_nav_items__admin">Admin</string>
@@ -60,13 +63,17 @@
   <!-- Diaspora Settings -->
   <string name="pref_title__personal_settings">Paramètres personnels</string>
   <string name="pref_desc__personal_settings">Ouvrir vos paramètres de compte diaspora*</string>
+  <string name="pref_desc__manage_contacts">Gérez vos contacts</string>
   <string name="pref_title__manage_tags">Gérer les Hashtags</string>
   <string name="pref_desc__manage_tags">Ne plus suivre les tags suivis</string>
   <string name="pref_title__change_account">Changer de compte</string>
   <string name="pref_desc__change_account">Effacer les données de session locale et passer à un autre pod/compte diaspora*</string>
   <string name="pref_warning__change_account">Cette opération va effacer les cookies et données de session. Voulez-vous vraiment changer de compte/pod?</string>
   <string name="pref_title__clear_cache">Vider le cache</string>
+  <string name="pref_desc__clear_cache">Vider le cache</string>
   <string name="pref_desc__intellihide_toolbars">Masquer les barres d’outils en haut et en bas automatiquement lors du défilement</string>
+  <string name="pref_title__intellihide_toolbars">Masquer la barre d\'outils</string>
+  <string name="pref_title__append_shared_via_app">Ajouter partagé par avis-</string>
   <string name="pref_desc__append_shared_via_app">Ajouter une référence à cette application aux partages: [via #dandelion]</string>
   <!-- More -->
   <string name="pref_title__sub_miscelaneous">Divers</string>
