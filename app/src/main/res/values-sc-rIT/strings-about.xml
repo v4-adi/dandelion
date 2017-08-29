@@ -3,16 +3,22 @@
 <resources>
   <string name="about_activity__title_about_app">Informatziones</string>
   <string name="about_activity__title_about_license">Litzèntzia</string>
+  <string name="about_activity__title_debug_info">Depuratzione dae sos errores</string>
   <string name="fragment_debug__section_app">Aplicatzione</string>
   <string name="fragment_debug__section_device">Dispositivu</string>
   <string name="fragment_debug__section_pod">Pod de diaspora*</string>
+  <string name="fragment_debug__section_log">Registru de depuratzione</string>
+  <string name="fragment_debug__section_log_spam">Registru de depuratzione (a sa minuda)</string>
   <string name="fragment_debug__app_version">Versione aplicatzione: %1$s</string>
   <string name="fragment_debug__android_version">Versione Android: %1$s</string>
   <string name="fragment_debug__device_name">Nùmene dispositivu: %1$s</string>
   <string name="fragment_debug__app_codename">Nùmene còdighe: %1$s</string>
   <string name="fragment_debug__pod_profile_name">Nùmene de profilu de su pod: %1$s</string>
   <string name="fragment_debug__pod_profile_url">Domìniu de su pod: %1$s</string>
+  <string name="fragment_debug__toast_log_copied">Registru de depuratzione copiadu in sos apuntos</string>
+  <string name="fragment_about__about_text">dandelion* est s\'aplicatzione tua pro s\'esploratzione de sa retza sotziale diaspora*. Annanghet funtzionalidades comente a barras de ainas utilosas e a su suportu pro server intermediàrios (proxies) comente a sa retza Tor pro s\'esperièntzia sotziale tua.</string>
   <string name="fragment_about__contribute">Contribui a su còdighe!</string>
+  <string name="fragment_about__contribute_text">dandelion* est iscvilupada liberamente e sighit sas idea de su progetu diaspora*. Si cheres contribuire, faghe·lu! In custu momentu semus unu grupu minore meda, nos diat agradare a tènnere cale si siat casta de agiudu!</string>
   <string name="fragment_about__contribute_button">Otenne su còdighe mitza</string>
   <string name="fragment_about__translate">Tradui s\'aplicatzione!</string>
   <string name="fragment_about__translate_text">S\'aplicatzione no est disponìbile in sa limba tua? Lu podes cambiare! Proite non nos agiudas traduinde·la? Nois impreamus sa prataforma crowdin pro permìtere a totus de traduire s\'aplicatzione.</string>
