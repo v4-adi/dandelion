@@ -8,5 +8,13 @@
   <string name="fragment_debug__section_pod">Pod de diaspora*</string>
   <string name="fragment_debug__app_version">Versione aplicatzione: %1$s</string>
   <string name="fragment_debug__android_version">Versione Android: %1$s</string>
+  <string name="fragment_debug__device_name">Nùmene dispositivu: %1$s</string>
+  <string name="fragment_debug__pod_profile_name">Nùmene de profilu de su pod: %1$s</string>
+  <string name="fragment_debug__pod_profile_url">Domìniu de su pod: %1$s</string>
+  <string name="fragment_about__contribute">Contribui a su còdighe!</string>
+  <string name="fragment_about__spread_the_word_button">Cumpartzi s\'aplicatzione</string>
   <!-- License & help (large amount of text) -->
+  <string name="fragment_license__contributors">Contribuidores</string>
+  <string name="fragment_license__contributors_thank_you">%1$s&lt;br&gt;&lt;br&gt;Gràtzias!</string>
+  <string name="fragment_license__license_button">Litzèntzia GNU GPLv3+</string>
 </resources>
