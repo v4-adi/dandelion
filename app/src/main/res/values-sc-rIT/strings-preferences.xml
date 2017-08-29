@@ -27,12 +27,28 @@
   <string name="pref_title__primary_color__amoled_mode">Modalidade AMOLED</string>
   <string name="pref_desc__primary_color__amoled_mode">Remplasa sos colores cun su nigheddu pro ischermos AMOLED in medas tretos de s\'aplicatzione. As a dèpere torrare a allùghere s\'aplicatzione pro ativare custa impostatzione. Pro navigare in diaspora* cun su tema iscuru lu depes fintzas allùghere dae sas optziones personales de su contu de diaspora* tuo.</string>
   <!-- Notifications dropdown -->
+  <string name="pref_title__extended_notifications">Notìficas ismanniadas</string>
+  <string name="pref_desc__extended_notifications">Ismànnia su butone de sas notìficas cun unu menù chi ammustrat sas categorias de sas notìficas</string>
+  <string name="pref_desc__language">Càmbia sa limba de custa aplicatzione. Torra·la a allùghere pro fàghere tènnere efetu a su cambiamentu</string>
   <string name="pref_title__language">Limba</string>
   <string name="language_system">Limba de sistema</string>
   <!-- Font size -->
+  <string name="pref_desc__font_size">Controlla sa mannària de su testu de sa vista web</string>
+  <string name="pref_title__font_size">Mannària de su testu</string>
+  <string name="font_size_normal">Normale</string>
+  <string name="font_size_large">Mannu</string>
+  <string name="font_size_huge">Mannu meda</string>
   <!-- Load images -->
+  <string name="pref_title__load_images">Iscàrriga sas immàgines</string>
   <!-- Screen rotation -->
+  <string name="pref_title__screen_rotation">Rotatzione de s\'ischermu</string>
+  <string name="pref_desc__screen_rotation">Controlla sa rotatzione automàtica de s\'ischermu</string>
+  <string name="rotation_system">Predefinidu</string>
+  <string name="rotation_sensor">Sensore\n(ignora sas impostatziones de sistema)</string>
+  <string name="rotation_portrait">Verticale</string>
+  <string name="rotation_landscape">Orizontale</string>
   <!-- Proxy -->
+  <string name="pref_title__http_proxy_load_tor_preset">Càrriga sos valores predefinidos de Tor</string>
   <!-- Chrome custom tabs -->
   <!-- Diaspora Settings -->
   <!-- More -->
