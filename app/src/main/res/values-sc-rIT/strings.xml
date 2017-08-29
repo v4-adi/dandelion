@@ -46,6 +46,20 @@
   <string name="share__toast_link_address_copied">Ligàmene copiadu&#8230;</string>
   <string name="new_post">Publicatzione noa</string>
   <string name="action_go_to_top">Torra a s\'incumintzu</string>
+  <string name="action_search_by_tags_or_persons">Chirca etichetas o persones</string>
+  <string name="action_exit_app">Essi dae s\'aplicatzione</string>
+  <string name="action_toggle_desktop_page">Allughe/istuda sa versione mòbile</string>
+  <string name="action_share_dotdotdot">Cumpartzi&#8230;</string>
+  <string name="search_alert_tag">pro eticheta</string>
+  <string name="search_alert_people">pro persone</string>
+  <string name="search_alert_bypeople_validate_needsomedata">Pro praghere annanghe unu nùmene</string>
+  <string name="context_menu_share_link">Cumpartzi ligàmene</string>
+  <string name="context_menu_save_image">Sarva s\'immàgine</string>
+  <string name="context_menu_share_image">Cumpartzi s\'immàgine</string>
+  <string name="context_menu_open_external_browser">Aberi in un\'esploradore (browser) esternu&#8230;</string>
+  <string name="context_menu_copy_link">Còpia su ligàmenes in sos apuntos</string>
+  <string name="context_menu_copy_image_link">Còpia s\'indiritzu de s\'immàgine in sos apuntos</string>
   <!-- More from MainActivity -->
+  <string name="unable_to_load_image">Impossìbile carrigare s\'immàgine</string>
   <!-- Permissions -->
 </resources>
