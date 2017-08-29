@@ -56,7 +56,7 @@ public class ThemedColorPickerPreference extends Preference implements Themeable
             } else if ((appSettings.isKeyEqual(key, R.string.pref_key__accent_color_shade))) {
                 color = appSettings.getAccentColor();
             } else {
-                color = appSettings.getColor(getSharedPreferences(), key, color);
+                color = appSettings.getColor(key, color, getSharedPreferences());
             }
             circle.setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
         }

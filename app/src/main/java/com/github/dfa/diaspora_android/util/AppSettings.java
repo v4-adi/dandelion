@@ -77,19 +77,19 @@ public class AppSettings extends AppSettingsBase {
     //## Getter & Setter for settings
     //#################################
     public String getProfileId() {
-        return getString(prefPod, R.string.pref_key__podprofile_id, "");
+        return getString(R.string.pref_key__podprofile_id, "");
     }
 
     public void setProfileId(String profileId) {
-        setString(prefPod, R.string.pref_key__podprofile_id, profileId);
+        setString(R.string.pref_key__podprofile_id, profileId,prefPod);
     }
 
     public boolean isLoadImages() {
-        return getBool(_prefApp, R.string.pref_key__load_images, true);
+        return getBool(R.string.pref_key__load_images, true);
     }
 
     public int getMinimumFontSize() {
-        switch (getString(_prefApp, R.string.pref_key__font_size, "")) {
+        switch (getString(R.string.pref_key__font_size, "")) {
             case "huge":
                 return 20;
             case "large":
@@ -97,30 +97,30 @@ public class AppSettings extends AppSettingsBase {
             case "normal":
                 return 8;
             default:
-                setString(_prefApp, R.string.pref_key__font_size, "normal");
+                setString(R.string.pref_key__font_size, "normal");
                 return 8;
         }
     }
 
     public String getAvatarUrl() {
-        return getString(prefPod, R.string.pref_key__podprofile_avatar_url, "");
+        return getString(R.string.pref_key__podprofile_avatar_url, "",prefPod);
     }
 
     public void setAvatarUrl(String avatarUrl) {
-        setString(prefPod, R.string.pref_key__podprofile_avatar_url, avatarUrl);
+        setString(R.string.pref_key__podprofile_avatar_url, avatarUrl,prefPod);
     }
 
     public String getName() {
-        return getString(prefPod, R.string.pref_key__podprofile_name, "");
+        return getString(R.string.pref_key__podprofile_name, "",prefPod);
     }
 
     public void setName(String name) {
-        setString(prefPod, R.string.pref_key__podprofile_name, name);
+        setString(R.string.pref_key__podprofile_name, name,prefPod);
     }
 
     public DiasporaPod getPod() {
         if (currentPod0Cached == null) {
-            String pref = getString(prefPod, R.string.pref_key__current_pod_0, "");
+            String pref = getString(R.string.pref_key__current_pod_0, "",prefPod);
 
             try {
                 currentPod0Cached = new DiasporaPod().fromJson(new JSONObject(pref));
@@ -133,23 +133,23 @@ public class AppSettings extends AppSettingsBase {
 
     public void setPod(DiasporaPod pod) {
         try {
-            setString(prefPod, R.string.pref_key__current_pod_0,
-                    pod == null ? null : pod.toJson().toString());
+            setString(R.string.pref_key__current_pod_0,
+                    pod == null ? null : pod.toJson().toString(),prefPod);
             currentPod0Cached = pod;
         } catch (JSONException ignored) {
         }
     }
 
     public boolean hasPod() {
-        return !getString(prefPod, R.string.pref_key__current_pod_0, "").equals("");
+        return !getString(R.string.pref_key__current_pod_0, "",prefPod).equals("");
     }
 
     public void setPodAspects(DiasporaAspect[] aspects) {
-        setStringArray(prefPod, R.string.pref_key__podprofile_aspects, aspects);
+        setStringArray(R.string.pref_key__podprofile_aspects, aspects,prefPod);
     }
 
     public DiasporaAspect[] getAspects() {
-        String[] s = getStringArray(prefPod, R.string.pref_key__podprofile_aspects);
+        String[] s = getStringArray(R.string.pref_key__podprofile_aspects,prefPod);
         DiasporaAspect[] aspects = new DiasporaAspect[s.length];
         for (int i = 0; i < aspects.length; i++) {
             aspects[i] = new DiasporaAspect(s[i]);
@@ -158,47 +158,47 @@ public class AppSettings extends AppSettingsBase {
     }
 
     public String[] getFollowedTags() {
-        return getStringArray(prefPod, R.string.pref_key__podprofile_followed_tags);
+        return getStringArray(R.string.pref_key__podprofile_followed_tags,prefPod);
     }
 
     public void setFollowedTags(String[] values) {
-        setStringArray(prefPod, R.string.pref_key__podprofile_followed_tags, values);
+        setStringArray(R.string.pref_key__podprofile_followed_tags, values,prefPod);
     }
 
     public String[] getFollowedTagsFavs() {
-        return getStringArray(prefPod, R.string.pref_key__podprofile_followed_tags_favs);
+        return getStringArray(R.string.pref_key__podprofile_followed_tags_favs,prefPod);
     }
 
     public void setFollowedTagsFavs(List<String> values) {
-        setStringList(prefPod, R.string.pref_key__podprofile_followed_tags_favs, values);
+        setStringList(R.string.pref_key__podprofile_followed_tags_favs, values,prefPod);
     }
 
     public String[] getAspectFavs() {
-        return getStringArray(prefPod, R.string.pref_key__podprofile_aspects_favs);
+        return getStringArray(R.string.pref_key__podprofile_aspects_favs,prefPod);
     }
 
     public void setAspectFavs(List<String> values) {
-        setStringList(prefPod, R.string.pref_key__podprofile_aspects_favs, values);
+        setStringList(R.string.pref_key__podprofile_aspects_favs, values,prefPod);
     }
 
     public int getUnreadMessageCount() {
-        return getInt(prefPod, R.string.pref_key__podprofile_unread_message_count, 0);
+        return getInt(R.string.pref_key__podprofile_unread_message_count, 0,prefPod);
     }
 
     public void setUnreadMessageCount(int unreadMessageCount) {
-        setInt(prefPod, R.string.pref_key__podprofile_unread_message_count, unreadMessageCount);
+        setInt(R.string.pref_key__podprofile_unread_message_count, unreadMessageCount,prefPod);
     }
 
     public int getNotificationCount() {
-        return getInt(prefPod, R.string.pref_key__podprofile_notification_count, 0);
+        return getInt(R.string.pref_key__podprofile_notification_count, 0,prefPod);
     }
 
     public void setNotificationCount(int notificationCount) {
-        setInt(prefPod, R.string.pref_key__podprofile_notification_count, notificationCount);
+        setInt(R.string.pref_key__podprofile_notification_count, notificationCount,prefPod);
     }
 
     public boolean isAppendSharedViaApp() {
-        return getBool(_prefApp, R.string.pref_key__append_shared_via_app, true);
+        return getBool(R.string.pref_key__append_shared_via_app, true);
     }
 
     @SuppressLint("CommitPrefEdits")
@@ -214,7 +214,7 @@ public class AppSettings extends AppSettingsBase {
      */
     public boolean isProxyHttpEnabled() {
         try {
-            return getBool(_prefApp, R.string.pref_key__http_proxy_enabled, false);
+            return getBool(R.string.pref_key__http_proxy_enabled, false);
         } catch (ClassCastException e) {
             setProxyHttpEnabled(false);
             return false;
@@ -222,7 +222,7 @@ public class AppSettings extends AppSettingsBase {
     }
 
     public boolean wasProxyEnabled() {
-        return getBool(_prefApp, R.string.pref_key__proxy_was_enabled, false);
+        return getBool(R.string.pref_key__proxy_was_enabled, false);
     }
 
     /**
@@ -242,11 +242,11 @@ public class AppSettings extends AppSettingsBase {
      * @return proxy host
      */
     public String getProxyHttpHost() {
-        return getString(_prefApp, R.string.pref_key__http_proxy_host, "");
+        return getString(R.string.pref_key__http_proxy_host, "");
     }
 
     public void setProxyHttpHost(String value) {
-        setString(_prefApp, R.string.pref_key__http_proxy_host, value);
+        setString(R.string.pref_key__http_proxy_host, value);
     }
 
     /**
@@ -256,17 +256,17 @@ public class AppSettings extends AppSettingsBase {
      */
     public int getProxyHttpPort() {
         try {
-            String str = getString(_prefApp, R.string.pref_key__http_proxy_port, "0");
+            String str = getString(R.string.pref_key__http_proxy_port, "0");
             return Integer.parseInt(str);
         } catch (ClassCastException e) {
-            int port = getInt(_prefApp, R.string.pref_key__http_proxy_port, 0);
+            int port = getInt(R.string.pref_key__http_proxy_port, 0);
             setProxyHttpPort(port);
             return port;
         }
     }
 
     public void setProxyHttpPort(int value) {
-        setString(_prefApp, R.string.pref_key__http_proxy_port, Integer.toString(value));
+        setString(R.string.pref_key__http_proxy_port, Integer.toString(value));
     }
 
     public ProxyHandler.ProxySettings getProxySettings() {
@@ -274,126 +274,126 @@ public class AppSettings extends AppSettingsBase {
     }
 
     public boolean isIntellihideToolbars() {
-        return getBool(_prefApp, R.string.pref_key__intellihide_toolbars, true);
+        return getBool(R.string.pref_key__intellihide_toolbars, true);
     }
 
     public boolean isChromeCustomTabsEnabled() {
-        return getBool(_prefApp, R.string.pref_key__chrome_custom_tabs_enabled, true);
+        return getBool(R.string.pref_key__chrome_custom_tabs_enabled, true);
     }
 
     public boolean isLoggingEnabled() {
-        return getBool(_prefApp, R.string.pref_key__logging_enabled, false);
+        return getBool(R.string.pref_key__logging_enabled, false);
     }
 
     public boolean isLoggingSpamEnabled() {
-        return getBool(_prefApp, R.string.pref_key__logging_spam_enabled, false);
+        return getBool(R.string.pref_key__logging_spam_enabled, false);
     }
 
     public boolean isVisibleInNavExit() {
-        return getBool(_prefApp, R.string.pref_key__visibility_nav__exit, true);
+        return getBool(R.string.pref_key__visibility_nav__exit, true);
     }
 
     public boolean isVisibleInNavHelp_license() {
-        return getBool(_prefApp, R.string.pref_key__visibility_nav__help_license, true);
+        return getBool(R.string.pref_key__visibility_nav__help_license, true);
     }
 
     public boolean isVisibleInNavPublic_activities() {
-        return getBool(_prefApp, R.string.pref_key__visibility_nav__public_activities, false);
+        return getBool(R.string.pref_key__visibility_nav__public_activities, false);
     }
 
     public boolean isVisibleInNavMentions() {
-        return getBool(_prefApp, R.string.pref_key__visibility_nav__mentions, false);
+        return getBool(R.string.pref_key__visibility_nav__mentions, false);
     }
 
     public boolean isVisibleInNavCommented() {
-        return getBool(_prefApp, R.string.pref_key__visibility_nav__commented, true);
+        return getBool(R.string.pref_key__visibility_nav__commented, true);
     }
 
     public boolean isVisibleInNavLiked() {
-        return getBool(_prefApp, R.string.pref_key__visibility_nav__liked, true);
+        return getBool(R.string.pref_key__visibility_nav__liked, true);
     }
 
     public boolean isVisibleInNavActivities() {
-        return getBool(_prefApp, R.string.pref_key__visibility_nav__activities, true);
+        return getBool(R.string.pref_key__visibility_nav__activities, true);
     }
 
     public boolean isVisibleInNavAspects() {
-        return getBool(_prefApp, R.string.pref_key__visibility_nav__aspects, true);
+        return getBool(R.string.pref_key__visibility_nav__aspects, true);
     }
 
     public boolean isVisibleInNavFollowed_tags() {
-        return getBool(_prefApp, R.string.pref_key__visibility_nav__followed_tags, true);
+        return getBool(R.string.pref_key__visibility_nav__followed_tags, true);
     }
 
     public boolean isVisibleInNavProfile() {
-        return getBool(_prefApp, R.string.pref_key__visibility_nav__profile, true);
+        return getBool(R.string.pref_key__visibility_nav__profile, true);
     }
 
     public boolean isVisibleInNavContacts() {
-        return getBool(_prefApp, R.string.pref_key__visibility_nav__contacts, false);
+        return getBool(R.string.pref_key__visibility_nav__contacts, false);
     }
 
     public boolean isVisibleInNavStatistics() {
-        return getBool(_prefApp, R.string.pref_key__visibility_nav__statistics, false);
+        return getBool(R.string.pref_key__visibility_nav__statistics, false);
     }
 
     public boolean isVisibleInNavReports() {
-        return getBool(_prefApp, R.string.pref_key__visibility_nav__reports, false);
+        return getBool(R.string.pref_key__visibility_nav__reports, false);
     }
 
     public boolean isVisibleInNavDandelionAccount() {
-        return getBool(_prefApp, R.string.pref_key__visibility_nav__dandelion_account, false);
+        return getBool(R.string.pref_key__visibility_nav__dandelion_account, false);
     }
 
     public boolean isVisibleInNavToggleMobileDesktop() {
-        return getBool(_prefApp, R.string.pref_key__visibility_nav__toggle_mobile_desktop, false);
+        return getBool(R.string.pref_key__visibility_nav__toggle_mobile_desktop, false);
     }
 
     public boolean isTopbarStreamShortcutEnabled() {
-        return getBool(_prefApp, R.string.pref_key__topbar_stream_shortcut, false);
+        return getBool(R.string.pref_key__topbar_stream_shortcut, false);
     }
 
     public String getScreenRotation() {
-        return getString(_prefApp, R.string.pref_key__screen_rotation, R.string.rotation_val_system);
+        return getString(R.string.pref_key__screen_rotation, R.string.rotation_val_system);
     }
 
     public boolean isAppFirstStart() {
-        boolean value = getBool(_prefApp, R.string.pref_key__app_first_start, true);
-        setBool(_prefApp, R.string.pref_key__app_first_start, false);
+        boolean value = getBool(R.string.pref_key__app_first_start, true);
+        setBool(R.string.pref_key__app_first_start, false);
         return value;
     }
 
     public boolean isAppCurrentVersionFirstStart() {
-        int value = getInt(_prefApp, R.string.pref_key__app_first_start_current_version, -1);
-        setInt(_prefApp, R.string.pref_key__app_first_start_current_version, BuildConfig.VERSION_CODE);
+        int value = getInt(R.string.pref_key__app_first_start_current_version, -1);
+        setInt(R.string.pref_key__app_first_start_current_version, BuildConfig.VERSION_CODE);
         return value != BuildConfig.VERSION_CODE && !BuildConfig.IS_TEST_BUILD;
     }
 
     public long getLastVisitedPositionInStream() {
-        return getLong(prefPod, R.string.pref_key__podprofile_last_stream_position, -1);
+        return getLong(R.string.pref_key__podprofile_last_stream_position, -1,prefPod);
     }
 
     public void setLastVisitedPositionInStream(long timestamp) {
-        setLong(prefPod, R.string.pref_key__podprofile_last_stream_position, timestamp);
+        setLong(R.string.pref_key__podprofile_last_stream_position, timestamp,prefPod);
     }
 
     public void setLanguage(String value) {
-        setString(_prefApp, R.string.pref_key__language, value);
+        setString(R.string.pref_key__language, value);
     }
 
     public String getLanguage() {
-        return getString(_prefApp, R.string.pref_key__language, "");
+        return getString(R.string.pref_key__language, "");
     }
 
     public void setPrimaryColorSettings(int base, int shade) {
-        setInt(_prefApp, R.string.pref_key__primary_color_base, base);
-        setInt(_prefApp, R.string.pref_key__primary_color_shade, shade);
+        setInt(R.string.pref_key__primary_color_base, base);
+        setInt(R.string.pref_key__primary_color_shade, shade);
     }
 
     public int[] getPrimaryColorSettings() {
         return new int[]{
-                getInt(_prefApp, R.string.pref_key__primary_color_base, rcolor(R.color.md_blue_650)),
-                getInt(_prefApp, R.string.pref_key__primary_color_shade, rcolor(R.color.primary))
+                getInt(R.string.pref_key__primary_color_base, rcolor(R.color.md_blue_650)),
+                getInt(R.string.pref_key__primary_color_shade, rcolor(R.color.primary))
         };
     }
 
@@ -402,36 +402,36 @@ public class AppSettings extends AppSettingsBase {
         if (isAmoledColorMode()) {
             return Color.BLACK;
         } else {
-            return getInt(_prefApp, R.string.pref_key__primary_color_shade, rcolor(
+            return getInt(R.string.pref_key__primary_color_shade, rcolor(
                     BuildConfig.IS_TEST_BUILD ? R.color.md_brown_800 : R.color.primary));
         }
     }
 
     public void setAccentColorSettings(int base, int shade) {
-        setInt(_prefApp, R.string.pref_key__accent_color_base, base);
-        setInt(_prefApp, R.string.pref_key__accent_color_shade, shade);
+        setInt(R.string.pref_key__accent_color_base, base);
+        setInt(R.string.pref_key__accent_color_shade, shade);
     }
 
     public int[] getAccentColorSettings() {
         return new int[]{
-                getInt(_prefApp, R.string.pref_key__accent_color_base, rcolor(R.color.md_green_400)),
-                getInt(_prefApp, R.string.pref_key__accent_color_shade, rcolor(R.color.accent))
+                getInt(R.string.pref_key__accent_color_base, rcolor(R.color.md_green_400)),
+                getInt(R.string.pref_key__accent_color_shade, rcolor(R.color.accent))
         };
     }
 
     public int getAccentColor() {
-        return getInt(_prefApp, R.string.pref_key__accent_color_shade, rcolor(R.color.accent));
+        return getInt(R.string.pref_key__accent_color_shade, rcolor(R.color.accent));
     }
 
     public boolean isExtendedNotificationsActivated() {
-        return getBool(_prefApp, R.string.pref_key__extended_notifications, false);
+        return getBool(R.string.pref_key__extended_notifications, false);
     }
 
     public boolean isAmoledColorMode() {
-        return getBool(_prefApp, R.string.pref_key__primary_color__amoled_mode, false);
+        return getBool(R.string.pref_key__primary_color__amoled_mode, false);
     }
 
     public boolean isAdBlockEnabled() {
-        return getBool(_prefApp, R.string.pref_key__adblock_enable, true);
+        return getBool(R.string.pref_key__adblock_enable, true);
     }
 }
