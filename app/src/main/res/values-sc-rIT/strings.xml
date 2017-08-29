@@ -25,8 +25,27 @@
   <string name="notifications__comment_on_post">Cummentu in una publicatzione</string>
   <string name="notifications__liked">Agradèssidas</string>
   <string name="notifications__mentioned">Numenada</string>
+  <string name="notifications__reshared">Torrada a cumparzire</string>
+  <string name="notifications__started_sharing">At incumintzadu a cumpartzire</string>
   <!-- Pod Activity -->
+  <string name="podlist_error">Errore: Impossìbile recuperare sa lista de sos pods!</string>
+  <string name="no_internet">Depes èssere connessu a ìnternet pro sighire</string>
+  <string name="confirmation">Cunfirma</string>
+  <string name="confirm_exit">Cheres essire?</string>
   <!-- Drawer, Menu, Toolbar, ContextMenu -->
+  <string name="nav_menu_more">Àteru</string>
+  <string name="nav_help_license">Informatziones |Agiudu</string>
+  <string name="nav_followed_tags">Etichetas sighidas</string>
+  <string name="nav_public_activities">Atividades pùblicas</string>
+  <string name="nav_reports">Sinnalatziones</string>
+  <string name="share__share_link_as_text">Cumpartzi unu ligàmene comente testu</string>
+  <string name="share__share_screenshot">Cumpartzi s\'ischermada de sa pàgina web</string>
+  <string name="share__take_screenshot">Faghe un\'ischermada de sa pàgina web</string>
+  <string name="share__toast_saved_image_to_location">Sarbende s\'immàgine in</string>
+  <string name="share__toast_screenshot">Sarbende s\'ischermada in:</string>
+  <string name="share__toast_link_address_copied">Ligàmene copiadu&#8230;</string>
+  <string name="new_post">Publicatzione noa</string>
+  <string name="action_go_to_top">Torra a s\'incumintzu</string>
   <!-- More from MainActivity -->
   <!-- Permissions -->
 </resources>
