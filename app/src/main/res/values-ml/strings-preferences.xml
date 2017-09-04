@@ -57,4 +57,6 @@
   <!-- Diaspora Settings -->
   <string name="pref_desc__intellihide_toolbars">മുകളിലെയും ചുവട്ടിലെയും ടൂൾബാറുകൾ സ്ക്രോൾ ചെയ്യുമ്പോൾ താനേ അപ്രത്യക്ഷമാക്കുക</string>
   <!-- More -->
+  <string name="pref_desc__adblock_enable">ലളിതമായ ആഡ്ബ്ലോക്കർ സജ്ജമാക്കുക. പരസ്യങ്ങൾ ചിലപ്പോൾ ഉൾപ്പെടാം. ഉദാ: എംബെഡ്ഡ് ചെയ്‌ത കാഴ്ചയിൽ</string>
+  <string name="pref_title__adblock_enable">പരസ്യങ്ങൾ തടയുക</string>
 </resources>
