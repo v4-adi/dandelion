@@ -53,8 +53,16 @@
   <string name="pref_desc__http_proxy_load_tor_preset">ടോർ (ഓർബോട്ട്) HTTP പ്രോക്സി ക്രമീകരണങ്ങൾ ലോഡ് ചെയ്യുക</string>
   <string name="pref_title__sub_proxy">പ്രോക്സി</string>
   <string name="pref_title__proxy_enabled">പ്രോക്സി പ്രയോഗിക്കുക</string>
+  <string name="pref_title__http_proxy_host">ഹോസ്റ്റ്</string>
+  <string name="pref_title__http_proxy_port">പോർട്ട്</string>
+  <string name="toast__proxy_disabled__restart_required">പ്രോക്സി ഉപയോഗം പ്രവർത്തനരഹിതമാക്കുവാൻ ആപ്പ് വീണ്ടും തുറക്കുക</string>
+  <string name="toast__proxy_orbot_preset_loaded">മുൻകൂറായി ഉണ്ടായിരുന്ന ഓർബോട്ട് പ്രോക്സി ലോഡ് ചെയ്തു</string>
   <!-- Chrome custom tabs -->
+  <string name="pref_desc__chrome_custom_tabs_enabled">പുറമെയുള്ള ലിങ്കുകൾ ക്രോം കസ്റ്റം ടാബിൽ തുറക്കുക. ക്രോമിയം അല്ലെങ്കിൽ ഗൂഗിൾ ക്രോം ഈ സൗകര്യം ലഭിക്കുന്നതിനായി ഇൻസ്റ്റാൾ ചെയ്തിരിക്കണം.
+\n പ്രധാന അറിയിപ്പ്: ക്രമീകരിച്ച പ്രോക്സി സെർവറുകൾ ക്രോം കസ്റ്റം ടാബുകൾ ഉപയോഗിക്കാറില്ല!</string>
   <!-- Diaspora Settings -->
+  <string name="pref_title__personal_settings">സ്വകാര്യ ക്രമീകരണങ്ങൾ</string>
+  <string name="pref_desc__personal_settings">നിങ്ങളുടെ ഡയസ്പോറ* അക്കൗണ്ട് ക്രമീകരണങ്ങൾ തുറക്കുക</string>
   <string name="pref_desc__intellihide_toolbars">മുകളിലെയും ചുവട്ടിലെയും ടൂൾബാറുകൾ സ്ക്രോൾ ചെയ്യുമ്പോൾ താനേ അപ്രത്യക്ഷമാക്കുക</string>
   <!-- More -->
   <string name="pref_desc__adblock_enable">ലളിതമായ ആഡ്ബ്ലോക്കർ സജ്ജമാക്കുക. പരസ്യങ്ങൾ ചിലപ്പോൾ ഉൾപ്പെടാം. ഉദാ: എംബെഡ്ഡ് ചെയ്‌ത കാഴ്ചയിൽ</string>
