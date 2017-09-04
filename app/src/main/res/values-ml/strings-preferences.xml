@@ -63,6 +63,11 @@
   <!-- Diaspora Settings -->
   <string name="pref_title__personal_settings">സ്വകാര്യ ക്രമീകരണങ്ങൾ</string>
   <string name="pref_desc__personal_settings">നിങ്ങളുടെ ഡയസ്പോറ* അക്കൗണ്ട് ക്രമീകരണങ്ങൾ തുറക്കുക</string>
+  <string name="pref_desc__manage_contacts">നിങ്ങളുടെ സമ്പർക്കങ്ങളുടെ പട്ടിക കൈകാര്യം ചെയ്യുക</string>
+  <string name="pref_title__manage_tags">ഹാഷ്ടാഗുകൾ കൈകാര്യം ചെയ്യുക</string>
+  <string name="pref_desc__manage_tags">പിന്തുടർന്ന് വന്ന ഹാഷ്ടാഗുകൾ പിന്തുടരാതിരിക്കുക</string>
+  <string name="pref_title__change_account">അക്കൗണ്ട് മാറ്റുക</string>
+  <string name="pref_desc__change_account">പ്രാദേശികമായ സെഷൻ ഡാറ്റ മായ്ച്ച ശേഷം മറ്റൊരു ഡയസ്പോറ* പോഡ്/അക്കൗണ്ട് ലേക്ക് മാറുക</string>
   <string name="pref_desc__intellihide_toolbars">മുകളിലെയും ചുവട്ടിലെയും ടൂൾബാറുകൾ സ്ക്രോൾ ചെയ്യുമ്പോൾ താനേ അപ്രത്യക്ഷമാക്കുക</string>
   <!-- More -->
   <string name="pref_desc__adblock_enable">ലളിതമായ ആഡ്ബ്ലോക്കർ സജ്ജമാക്കുക. പരസ്യങ്ങൾ ചിലപ്പോൾ ഉൾപ്പെടാം. ഉദാ: എംബെഡ്ഡ് ചെയ്‌ത കാഴ്ചയിൽ</string>
