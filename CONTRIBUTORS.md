@@ -29,3 +29,4 @@ Where:
 * **[Âng Iōngchun](https://pubpod.alqualonde.org/u/iongchun)**<br/>~° Chinese traditional translation
 * **[Mikkel Kirkgaard Nielsen](http://www.mikini.dk)**<br/>~° Danish translation
 * **[Jean Lucas](jean AT 4ray DOT co)**<br/>~° Spanish translation
+* **[asereze](https://github.com/asereze)**<br/>~° Sardinian translation 
