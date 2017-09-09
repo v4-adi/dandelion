@@ -14,21 +14,21 @@ import java.util.Date;
 import java.util.Locale;
 
 @SuppressWarnings({"WeakerAccess", "unused", "SameParameterValue"})
-public class Helpers extends io.github.gsantner.opoc.util.Helpers {
-    protected Helpers(Context context) {
+public class ContextUtils extends net.gsantner.opoc.util.ContextUtils {
+    protected ContextUtils(Context context) {
         super(context);
     }
 
 
-    public static Helpers get() {
-        return new Helpers(App.get());
+    public static ContextUtils get() {
+        return new ContextUtils(App.get());
     }
 
     public File createImageFile() throws IOException {
         // Create an image file name
         String timeStamp = new SimpleDateFormat("dd-MM-yy_HH-mm", Locale.getDefault()).format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
-        AppLog.d(Helpers.class, Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath());
+        AppLog.d(ContextUtils.class, Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath());
         File storageDir = Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_PICTURES);
         return new File(

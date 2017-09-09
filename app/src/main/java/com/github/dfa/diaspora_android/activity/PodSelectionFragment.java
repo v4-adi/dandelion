@@ -55,8 +55,8 @@ import com.github.dfa.diaspora_android.ui.theme.ThemedFragment;
 import com.github.dfa.diaspora_android.util.AppLog;
 import com.github.dfa.diaspora_android.util.AppSettings;
 import com.github.dfa.diaspora_android.util.DiasporaUrlHelper;
-import com.github.dfa.diaspora_android.util.Helpers;
-import com.github.dfa.diaspora_android.util.HelpersA;
+import com.github.dfa.diaspora_android.util.ContextUtils;
+import com.github.dfa.diaspora_android.util.ActivityUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -129,11 +129,11 @@ public class PodSelectionFragment extends ThemedFragment implements SearchView.O
             }
         });
         LocalBroadcastManager.getInstance(getContext()).registerReceiver(podListReceiver, new IntentFilter(FetchPodsService.MESSAGE_PODS_RECEIVED));
-        HelpersA.get(getActivity()).showInfoIfUserNotConnectedToInternet(listViewPod);
+        ActivityUtils.get(getActivity()).showInfoIfUserNotConnectedToInternet(listViewPod);
     }
 
     public void mergePodlistWithRessources(DiasporaPodList podlist) {
-        String sPodlist = Helpers.get().readTextfileFromRawRes(R.raw.podlist, "", "");
+        String sPodlist = ContextUtils.get().readTextfileFromRawRes(R.raw.podlist, "", "");
         try {
             JSONObject jPodlist = new JSONObject(sPodlist);
             podlist.mergeWithNewerEntries(new DiasporaPodList().fromJson(jPodlist));
@@ -182,7 +182,7 @@ public class PodSelectionFragment extends ThemedFragment implements SearchView.O
             buttonUseCustomPod.setTextColor(Color.WHITE);
         } else {
             buttonUseCustomPod.setSupportBackgroundTintList(ColorStateList.valueOf(appSettings.getAccentColor()));
-            buttonUseCustomPod.setTextColor(Helpers.get().shouldColorOnTopBeLight(appSettings.getAccentColor()) ? Color.WHITE : Color.BLACK);
+            buttonUseCustomPod.setTextColor(ContextUtils.get().shouldColorOnTopBeLight(appSettings.getAccentColor()) ? Color.WHITE : Color.BLACK);
         }
     }
 
@@ -250,7 +250,7 @@ public class PodSelectionFragment extends ThemedFragment implements SearchView.O
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_reload: {
-                if (!HelpersA.get(getActivity()).showInfoIfUserNotConnectedToInternet(listViewPod)) {
+                if (!ActivityUtils.get(getActivity()).showInfoIfUserNotConnectedToInternet(listViewPod)) {
                     Intent i = new Intent(getContext(), FetchPodsService.class);
                     getContext().startService(i);
                     return true;

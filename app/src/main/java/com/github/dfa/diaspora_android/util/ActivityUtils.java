@@ -16,21 +16,21 @@ import java.util.Date;
 import java.util.Locale;
 
 @SuppressWarnings({"WeakerAccess", "unused", "SameParameterValue"})
-public class HelpersA extends io.github.gsantner.opoc.util.HelpersA {
-    protected HelpersA(Activity activity) {
+public class ActivityUtils extends net.gsantner.opoc.util.ActivityUtils {
+    protected ActivityUtils(Activity activity) {
         super(activity);
     }
 
 
-    public static HelpersA get(Activity activity) {
-        return new HelpersA(activity);
+    public static ActivityUtils get(Activity activity) {
+        return new ActivityUtils(activity);
     }
 
     public File createImageFile() throws IOException {
         // Create an image file name
         String timeStamp = new SimpleDateFormat("dd-MM-yy_HH-mm", Locale.getDefault()).format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
-        AppLog.d(HelpersA.class, Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath());
+        AppLog.d(ActivityUtils.class, Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getAbsolutePath());
         File storageDir = Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_PICTURES);
         return new File(

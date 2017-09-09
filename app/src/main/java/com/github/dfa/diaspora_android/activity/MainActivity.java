@@ -78,7 +78,7 @@ import com.github.dfa.diaspora_android.ui.theme.ThemedAlertDialogBuilder;
 import com.github.dfa.diaspora_android.util.AppLog;
 import com.github.dfa.diaspora_android.util.AppSettings;
 import com.github.dfa.diaspora_android.util.DiasporaUrlHelper;
-import com.github.dfa.diaspora_android.util.HelpersA;
+import com.github.dfa.diaspora_android.util.ActivityUtils;
 import com.github.dfa.diaspora_android.web.BrowserFragment;
 import com.github.dfa.diaspora_android.web.ContextMenuWebView;
 import com.github.dfa.diaspora_android.web.ProxyHandler;
@@ -90,7 +90,7 @@ import java.io.IOException;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import io.github.gsantner.opoc.util.SimpleMarkdownParser;
+import net.gsantner.opoc.util.SimpleMarkdownParser;
 
 public class MainActivity extends ThemedActivity
         implements NavigationView.OnNavigationItemSelectedListener,
@@ -230,12 +230,12 @@ public class MainActivity extends ThemedActivity
                         + "<h1>" + getString(R.string.fragment_license__thirdparty_libs) + "</h1>"
                         + mdParser.parse(getResources().openRawResource(R.raw.license_third_party), "");
                 html = mdParser.setHtml(html).removeMultiNewlines().getHtml();
-                HelpersA.get(this).showDialogWithHtmlTextView(R.string.about_activity__title_about_license, html);
+                ActivityUtils.get(this).showDialogWithHtmlTextView(R.string.about_activity__title_about_license, html);
                 appSettings.isAppCurrentVersionFirstStart();
             } else if (appSettings.isAppCurrentVersionFirstStart()) {
                 SimpleMarkdownParser smp = new SimpleMarkdownParser().parse(
                         getResources().openRawResource(R.raw.changelog), "");
-                HelpersA.get(this).showDialogWithHtmlTextView(R.string.changelog, smp.getHtml());
+                ActivityUtils.get(this).showDialogWithHtmlTextView(R.string.changelog, smp.getHtml());
             }
         } catch (IOException e) {
             e.printStackTrace();

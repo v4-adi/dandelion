@@ -45,7 +45,7 @@ import com.github.dfa.diaspora_android.data.DiasporaUserProfile;
 import com.github.dfa.diaspora_android.ui.theme.ThemedAlertDialogBuilder;
 import com.github.dfa.diaspora_android.util.AppLog;
 import com.github.dfa.diaspora_android.util.DiasporaUrlHelper;
-import com.github.dfa.diaspora_android.util.Helpers;
+import com.github.dfa.diaspora_android.util.ContextUtils;
 import com.github.dfa.diaspora_android.web.BrowserFragment;
 import com.github.dfa.diaspora_android.web.DiasporaStreamWebChromeClient;
 import com.github.dfa.diaspora_android.web.FileUploadWebChromeClient;
@@ -271,7 +271,7 @@ public class DiasporaStreamFragment extends BrowserFragment {
                 // Create the File where the photo should go
                 File photoFile;
                 try {
-                    photoFile = Helpers.get().createImageFile();
+                    photoFile = ContextUtils.get().createImageFile();
                     takePictureIntent.putExtra("PhotoPath", mCameraPhotoPath);
                 } catch (IOException ex) {
                     AppLog.e(this, "ERROR creating temp file: " + ex.toString());

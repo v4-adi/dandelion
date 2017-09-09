@@ -34,7 +34,7 @@ import com.github.dfa.diaspora_android.util.AppLog;
 import com.github.dfa.diaspora_android.util.AppSettings;
 import com.github.dfa.diaspora_android.util.DiasporaUrlHelper;
 
-import io.github.gsantner.opoc.util.AdBlock;
+import net.gsantner.opoc.util.AdBlock;
 
 public class App extends Application {
     private volatile static App app;

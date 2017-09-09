@@ -24,7 +24,7 @@ public WebResourceResponse shouldInterceptRequest(WebView view, String url) {
             : super.shouldInterceptRequest(view, url);
 }
 */
-package io.github.gsantner.opoc.util;
+package net.gsantner.opoc.util;
 
 import android.content.Context;
 import android.util.Log;
@@ -47,7 +47,7 @@ import java.util.Set;
 /**
  * Simple Host-Based AdBlocker
  */
-@SuppressWarnings({"WeakerAccess", "SpellCheckingInspection"})
+@SuppressWarnings({"WeakerAccess", "SpellCheckingInspection", "unused"})
 public class AdBlock {
     private static final AdBlock instance = new AdBlock();
 
@@ -60,9 +60,9 @@ public class AdBlock {
     //##     Members
     //##
     //########################
-    private final Set<String> adblockHostsFromRaw = new HashSet<>();
-    private final Set<String> adblockHosts = new HashSet<>();
-    private boolean isLoaded;
+    private final Set<String> _adblockHostsFromRaw = new HashSet<>();
+    private final Set<String> _adblockHosts = new HashSet<>();
+    private boolean _isLoaded;
 
     //########################
     //##
@@ -80,7 +80,7 @@ public class AdBlock {
                 if (host.startsWith("www.") && host.length() >= 4) {
                     host = host.substring(4);
                 }
-                return adblockHosts.contains(host) || adblockHosts.contains("www." + host);
+                return _adblockHosts.contains(host) || _adblockHosts.contains("www." + host);
             } catch (URISyntaxException e) {
                 e.printStackTrace();
             }
@@ -90,9 +90,13 @@ public class AdBlock {
     }
 
     public AdBlock reset() {
-        adblockHosts.clear();
-        adblockHosts.addAll(adblockHostsFromRaw);
+        _adblockHosts.clear();
+        _adblockHosts.addAll(_adblockHostsFromRaw);
         return this;
+    }
+
+    public boolean isLoaded() {
+        return _isLoaded;
     }
 
     public static WebResourceResponse createEmptyResponse() {
@@ -107,7 +111,7 @@ public class AdBlock {
                     host = host.substring(4);
                 }
                 if (!host.startsWith("#") && !host.startsWith("\"")) {
-                    adblockHosts.add(host);
+                    _adblockHosts.add(host);
                 }
             }
         }
@@ -120,7 +124,7 @@ public class AdBlock {
             public void run() {
                 try {
                     loadHostsFromRawAssets(context);
-                    isLoaded = true;
+                    _isLoaded = true;
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -132,7 +136,7 @@ public class AdBlock {
         BufferedReader br = null;
         String host;
 
-        adblockHosts.clear();
+        _adblockHosts.clear();
         for (int rawId : getAdblockIdsInRaw()) {
             try {
                 br = new BufferedReader(new InputStreamReader(context.getResources().openRawResource(rawId)));
@@ -150,8 +154,8 @@ public class AdBlock {
                 }
             }
         }
-        adblockHostsFromRaw.clear();
-        adblockHostsFromRaw.addAll(adblockHosts);
+        _adblockHostsFromRaw.clear();
+        _adblockHostsFromRaw.addAll(_adblockHosts);
     }
 
     private List<Integer> getAdblockIdsInRaw() {

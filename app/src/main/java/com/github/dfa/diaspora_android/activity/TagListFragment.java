@@ -40,7 +40,7 @@ import com.github.dfa.diaspora_android.ui.theme.ThemedFragment;
 import com.github.dfa.diaspora_android.util.AppLog;
 import com.github.dfa.diaspora_android.util.AppSettings;
 import com.github.dfa.diaspora_android.util.DiasporaUrlHelper;
-import com.github.dfa.diaspora_android.util.Helpers;
+import com.github.dfa.diaspora_android.util.ContextUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -173,7 +173,7 @@ public class TagListFragment extends ThemedFragment implements OnSomethingClickL
             final String tag = followedTagsList[position];
             holder.title.setText(tag);
             if (position % 2 == 1) {
-                holder.root.setBackgroundColor(isAmoledColorMode ? Color.BLACK : Helpers.get().color(R.color.alternate_row_color));
+                holder.root.setBackgroundColor(isAmoledColorMode ? Color.BLACK : ContextUtils.get().color(R.color.alternate_row_color));
                 holder.title.setTextColor(isAmoledColorMode ? Color.GRAY : Color.BLACK);
             } else {
                 holder.root.setBackgroundColor(isAmoledColorMode ? Color.BLACK : Color.WHITE);

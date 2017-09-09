@@ -32,7 +32,7 @@ import android.support.annotation.NonNull;
 
 import com.github.dfa.diaspora_android.R;
 import com.github.dfa.diaspora_android.util.AppSettings;
-import com.github.dfa.diaspora_android.util.Helpers;
+import com.github.dfa.diaspora_android.util.ContextUtils;
 
 @SuppressWarnings("WeakerAccess")
 public class BadgeDrawable extends Drawable {
@@ -56,7 +56,7 @@ public class BadgeDrawable extends Drawable {
         _badgeBackground.setStyle(Paint.Style.FILL);
 
         _badgeText = new Paint();
-        _badgeText.setColor(Helpers.get().shouldColorOnTopBeLight(settings.getAccentColor()) ? Color.WHITE : Color.BLACK);
+        _badgeText.setColor(ContextUtils.get().shouldColorOnTopBeLight(settings.getAccentColor()) ? Color.WHITE : Color.BLACK);
         _badgeText.setTypeface(Typeface.DEFAULT);
         _badgeText.setTextSize(textSize);
         _badgeText.setAntiAlias(true);
@@ -71,7 +71,7 @@ public class BadgeDrawable extends Drawable {
         Rect bounds = getBounds();
         float width = bounds.right - bounds.left;
         float height = bounds.bottom - bounds.top;
-        float oneDp = Helpers.get().dp2px(1);
+        float oneDp = ContextUtils.get().dp2px(1);
 
         // Position the badge in the top-right quadrant of the icon.
         float radius = ((Math.max(width, height) / 2)) / 2;

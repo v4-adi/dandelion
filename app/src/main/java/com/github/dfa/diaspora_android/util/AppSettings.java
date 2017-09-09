@@ -31,7 +31,7 @@ import org.json.JSONObject;
 
 import java.util.List;
 
-import io.github.gsantner.opoc.util.AppSettingsBase;
+import net.gsantner.opoc.util.AppSettingsBase;
 
 /**
  * Settings

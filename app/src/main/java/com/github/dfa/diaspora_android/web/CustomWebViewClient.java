@@ -32,7 +32,7 @@ import com.github.dfa.diaspora_android.activity.MainActivity;
 import com.github.dfa.diaspora_android.data.DiasporaPodList;
 import com.github.dfa.diaspora_android.util.AppSettings;
 
-import io.github.gsantner.opoc.util.AdBlock;
+import net.gsantner.opoc.util.AdBlock;
 
 public class CustomWebViewClient extends WebViewClient {
     private final App app;
