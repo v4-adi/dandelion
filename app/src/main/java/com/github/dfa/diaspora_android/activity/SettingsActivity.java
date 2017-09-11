@@ -38,11 +38,6 @@ import butterknife.ButterKnife;
 import uz.shift.colorpicker.LineColorPicker;
 import uz.shift.colorpicker.OnColorChangedListener;
 
-/**
- * SettingsActivity
- * Created by vanitas on 24.10.16.
- */
-
 public class SettingsActivity extends ThemedActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
 
     //Toolbar
@@ -191,6 +186,10 @@ public class SettingsActivity extends ThemedActivity implements SharedPreference
                 } else if (settings.isKeyEqual(key, R.string.pref_key__cat_debugging)) {
                     ((SettingsActivity) getActivity()).showFragment(SettingsFragmentDebugging.TAG, true);
                     return true;
+                }
+                /** Usability */
+                else if (settings.isKeyEqual(key, R.string.pref_key__is_overview_statusbar_hidden)){
+                    AppSettings.get().setRecreateMainActivity(true);
                 }
                 /** Network */
                 else if (settings.isKeyEqual(key, R.string.pref_key__clear_cache)) {

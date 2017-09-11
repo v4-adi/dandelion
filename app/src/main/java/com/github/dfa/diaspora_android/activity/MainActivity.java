@@ -75,22 +75,24 @@ import com.github.dfa.diaspora_android.ui.theme.CustomFragment;
 import com.github.dfa.diaspora_android.ui.theme.ThemeHelper;
 import com.github.dfa.diaspora_android.ui.theme.ThemedActivity;
 import com.github.dfa.diaspora_android.ui.theme.ThemedAlertDialogBuilder;
+import com.github.dfa.diaspora_android.util.ActivityUtils;
+import com.github.dfa.diaspora_android.util.AndroidBug5497Workaround;
 import com.github.dfa.diaspora_android.util.AppLog;
 import com.github.dfa.diaspora_android.util.AppSettings;
 import com.github.dfa.diaspora_android.util.DiasporaUrlHelper;
-import com.github.dfa.diaspora_android.util.ActivityUtils;
 import com.github.dfa.diaspora_android.web.BrowserFragment;
 import com.github.dfa.diaspora_android.web.ContextMenuWebView;
 import com.github.dfa.diaspora_android.web.ProxyHandler;
 import com.github.dfa.diaspora_android.web.WebHelper;
 import com.github.dfa.diaspora_android.web.custom_tab.CustomTabActivityHelper;
 
+import net.gsantner.opoc.util.SimpleMarkdownParser;
+
 import java.io.IOException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import net.gsantner.opoc.util.SimpleMarkdownParser;
 
 public class MainActivity extends ThemedActivity
         implements NavigationView.OnNavigationItemSelectedListener,
@@ -116,7 +118,7 @@ public class MainActivity extends ThemedActivity
 
     private App app;
     private CustomTabActivityHelper customTabActivityHelper;
-    private AppSettings appSettings;
+    private AppSettings _appSettings;
     private DiasporaUrlHelper urls;
     private DiasporaUserProfile diasporaUserProfile;
     private final Handler uiHandler = new Handler();
@@ -170,15 +172,21 @@ public class MainActivity extends ThemedActivity
         AppLog.v(this, "onCreate()");
 
         // Bind UI
+        if (AppSettings.get().isEditorStatusBarHidden()) {
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        }
         setContentView(R.layout.main__activity);
         ButterKnife.bind(this);
+        if (AppSettings.get().isEditorStatusBarHidden()) {
+            AndroidBug5497Workaround.assistActivity(this);
+        }
 
         app = (App) getApplication();
-        appSettings = app.getSettings();
+        _appSettings = app.getSettings();
         diasporaUserProfile = app.getDiasporaUserProfile();
         diasporaUserProfile.setCallbackHandler(uiHandler);
         diasporaUserProfile.setListener(this);
-        urls = new DiasporaUrlHelper(appSettings);
+        urls = new DiasporaUrlHelper(_appSettings);
         customTabActivityHelper = new CustomTabActivityHelper();
         customTabActivityHelper.setConnectionCallback(this);
         ProxyHandler.getInstance().updateProxySettings(this);
@@ -204,7 +212,7 @@ public class MainActivity extends ThemedActivity
             }
         });
 
-        if (!appSettings.hasPod()) {
+        if (!_appSettings.hasPod()) {
             AppLog.d(this, "We have no pod. Show PodSelectionFragment");
             updateNavigationViewEntryVisibilities();
             showFragment(getFragment(PodSelectionFragment.TAG));
@@ -222,7 +230,7 @@ public class MainActivity extends ThemedActivity
         // Show first start dialog
         try {
             SimpleMarkdownParser mdParser = SimpleMarkdownParser.get().setDefaultSmpFilter(SimpleMarkdownParser.FILTER_ANDROID_TEXTVIEW);
-            if (appSettings.isAppFirstStart()) {
+            if (_appSettings.isAppFirstStart()) {
                 mdParser.parse(
                         getResources().openRawResource(R.raw.license), "");
                 String html = mdParser.getHtml()
@@ -231,8 +239,8 @@ public class MainActivity extends ThemedActivity
                         + mdParser.parse(getResources().openRawResource(R.raw.license_third_party), "");
                 html = mdParser.setHtml(html).removeMultiNewlines().getHtml();
                 ActivityUtils.get(this).showDialogWithHtmlTextView(R.string.about_activity__title_about_license, html);
-                appSettings.isAppCurrentVersionFirstStart();
-            } else if (appSettings.isAppCurrentVersionFirstStart()) {
+                _appSettings.isAppCurrentVersionFirstStart();
+            } else if (_appSettings.isAppCurrentVersionFirstStart()) {
                 SimpleMarkdownParser smp = new SimpleMarkdownParser().parse(
                         getResources().openRawResource(R.raw.changelog), "");
                 ActivityUtils.get(this).showDialogWithHtmlTextView(R.string.changelog, smp.getHtml());
@@ -361,7 +369,7 @@ public class MainActivity extends ThemedActivity
             AppLog.v(this, "Fragment was not visible. Replace it.");
             fm.beginTransaction().addToBackStack(null).replace(R.id.fragment_container, fragment, fragment.getFragmentTag()).commit();
             invalidateOptionsMenu();
-            if (appSettings.isIntellihideToolbars() && fragment.isAllowedIntellihide()) {
+            if (_appSettings.isIntellihideToolbars() && fragment.isAllowedIntellihide()) {
                 this.enableToolbarHiding();
             } else {
                 this.disableToolbarHiding();
@@ -390,7 +398,7 @@ public class MainActivity extends ThemedActivity
         navProfilePictureArea.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 navDrawer.closeDrawer(GravityCompat.START);
-                if (!appSettings.getProfileId().equals("")) {
+                if (!_appSettings.getProfileId().equals("")) {
                     openDiasporaUrl(urls.getProfileUrl());
                 }
             }
@@ -399,13 +407,13 @@ public class MainActivity extends ThemedActivity
         navheaderDescription = ButterKnife.findById(navHeader, R.id.podselection__podupti_notice);
         navheaderImage = ButterKnife.findById(navHeader, R.id.navheader_user_image);
 
-        if (!appSettings.getName().equals("")) {
-            navheaderTitle.setText(appSettings.getName());
+        if (!_appSettings.getName().equals("")) {
+            navheaderTitle.setText(_appSettings.getName());
         }
-        if (appSettings.getPod() != null) {
-            navheaderDescription.setText(appSettings.getPod().getName());
+        if (_appSettings.getPod() != null) {
+            navheaderDescription.setText(_appSettings.getPod().getName());
         }
-        String avatarUrl = appSettings.getAvatarUrl();
+        String avatarUrl = _appSettings.getAvatarUrl();
         if (!avatarUrl.equals("")) {
             //Display app launcher icon instead of default avatar asset
             //(Which would by the way not load because of missing pod domain prefix in the url)
@@ -433,26 +441,26 @@ public class MainActivity extends ThemedActivity
         navMenu.setGroupVisible(navMenu.findItem(R.id.nav_exit).getGroupId(), true);
 
         // Hide by app settings
-        navMenu.findItem(R.id.nav_exit).setVisible(appSettings.isVisibleInNavExit());
-        navMenu.findItem(R.id.nav_activities).setVisible(appSettings.isVisibleInNavActivities());
-        navMenu.findItem(R.id.nav_aspects).setVisible(appSettings.isVisibleInNavAspects());
-        navMenu.findItem(R.id.nav_contacts).setVisible(appSettings.isVisibleInNavContacts());
-        navMenu.findItem(R.id.nav_commented).setVisible(appSettings.isVisibleInNavCommented());
-        navMenu.findItem(R.id.nav_followed_tags).setVisible(appSettings.isVisibleInNavFollowed_tags());
-        navMenu.findItem(R.id.nav_about).setVisible(appSettings.isVisibleInNavHelp_license());
-        navMenu.findItem(R.id.nav_liked).setVisible(appSettings.isVisibleInNavLiked());
-        navMenu.findItem(R.id.nav_mentions).setVisible(appSettings.isVisibleInNavMentions());
-        navMenu.findItem(R.id.nav_profile).setVisible(appSettings.isVisibleInNavProfile());
-        navMenu.findItem(R.id.nav_public).setVisible(appSettings.isVisibleInNavPublic_activities());
+        navMenu.findItem(R.id.nav_exit).setVisible(_appSettings.isVisibleInNavExit());
+        navMenu.findItem(R.id.nav_activities).setVisible(_appSettings.isVisibleInNavActivities());
+        navMenu.findItem(R.id.nav_aspects).setVisible(_appSettings.isVisibleInNavAspects());
+        navMenu.findItem(R.id.nav_contacts).setVisible(_appSettings.isVisibleInNavContacts());
+        navMenu.findItem(R.id.nav_commented).setVisible(_appSettings.isVisibleInNavCommented());
+        navMenu.findItem(R.id.nav_followed_tags).setVisible(_appSettings.isVisibleInNavFollowed_tags());
+        navMenu.findItem(R.id.nav_about).setVisible(_appSettings.isVisibleInNavHelp_license());
+        navMenu.findItem(R.id.nav_liked).setVisible(_appSettings.isVisibleInNavLiked());
+        navMenu.findItem(R.id.nav_mentions).setVisible(_appSettings.isVisibleInNavMentions());
+        navMenu.findItem(R.id.nav_profile).setVisible(_appSettings.isVisibleInNavProfile());
+        navMenu.findItem(R.id.nav_public).setVisible(_appSettings.isVisibleInNavPublic_activities());
         navMenu.findItem(R.id.nav_stream).setVisible(true);
-        navMenu.findItem(R.id.nav_statistics).setVisible(appSettings.isVisibleInNavStatistics());
-        navMenu.findItem(R.id.nav_reports).setVisible(appSettings.isVisibleInNavReports());
-        navMenu.findItem(R.id.nav_toggle_desktop_page).setVisible(appSettings.isVisibleInNavToggleMobileDesktop());
-        navMenu.findItem(R.id.nav_dandelion).setVisible(appSettings.isVisibleInNavDandelionAccount());
+        navMenu.findItem(R.id.nav_statistics).setVisible(_appSettings.isVisibleInNavStatistics());
+        navMenu.findItem(R.id.nav_reports).setVisible(_appSettings.isVisibleInNavReports());
+        navMenu.findItem(R.id.nav_toggle_desktop_page).setVisible(_appSettings.isVisibleInNavToggleMobileDesktop());
+        navMenu.findItem(R.id.nav_dandelion).setVisible(_appSettings.isVisibleInNavDandelionAccount());
 
 
         // Hide whole group (for logged in use) if no pod was selected
-        if (!appSettings.hasPod()) {
+        if (!_appSettings.hasPod()) {
             navMenu.setGroupVisible(navMenu.findItem(R.id.nav_exit).getGroupId(), false);
         }
     }
@@ -465,7 +473,7 @@ public class MainActivity extends ThemedActivity
     @OnClick(R.id.main__topbar)
     public void onToolBarClicked(View view) {
         AppLog.i(this, "onToolBarClicked()");
-        if (appSettings.isTopbarStreamShortcutEnabled() && appSettings.hasPod()) {
+        if (_appSettings.isTopbarStreamShortcutEnabled() && _appSettings.hasPod()) {
             onNavigationItemSelected(navView.getMenu().findItem(R.id.nav_stream));
         }
     }
@@ -512,7 +520,7 @@ public class MainActivity extends ThemedActivity
             }
         } else if (ACTION_CHANGE_ACCOUNT.equals(action)) {
             AppLog.v(this, "Reset pod data and  show PodSelectionFragment");
-            appSettings.setPod(null);
+            _appSettings.setPod(null);
             runOnUiThread(new Runnable() {
                 public void run() {
                     navheaderTitle.setText(R.string.app_name);
@@ -645,8 +653,11 @@ public class MainActivity extends ThemedActivity
         LocalBroadcastManager.getInstance(this).registerReceiver(brSetTitle, new IntentFilter(ACTION_UPDATE_TITLE_FROM_URL));
         LocalBroadcastManager.getInstance(this).registerReceiver(brOpenExternalLink, new IntentFilter(ACTION_OPEN_EXTERNAL_URL));
         invalidateOptionsMenu();
-        this.appSettings = getAppSettings();
-        if (appSettings.isIntellihideToolbars()) {
+        _appSettings = getAppSettings();
+        if (_appSettings.isRecreateMainActivity()){
+            recreate();
+        }
+        if (_appSettings.isIntellihideToolbars()) {
             enableToolbarHiding();
         } else {
             disableToolbarHiding();
@@ -676,7 +687,7 @@ public class MainActivity extends ThemedActivity
                 ///Hide bottom toolbar
                 toolbarBottom.setVisibility(View.GONE);
             } else {
-                getMenuInflater().inflate(appSettings.isExtendedNotificationsActivated() ?
+                getMenuInflater().inflate(_appSettings.isExtendedNotificationsActivated() ?
                         R.menu.main__menu_top__notifications_dropdown : R.menu.main__menu_top, menu);
                 getMenuInflater().inflate(R.menu.main__menu_bottom, toolbarBottom.getMenu());
                 top.onCreateBottomOptionsMenu(toolbarBottom.getMenu(), getMenuInflater());
@@ -719,7 +730,7 @@ public class MainActivity extends ThemedActivity
         AppLog.i(this, "onOptionsItemSelected()");
         switch (item.getItemId()) {
             case R.id.action_notifications: {
-                if (appSettings.isExtendedNotificationsActivated()) {
+                if (_appSettings.isExtendedNotificationsActivated()) {
                     return true;
                 }
                 //Otherwise we execute the action of action_notifications_all
@@ -837,7 +848,7 @@ public class MainActivity extends ThemedActivity
                         }
                     };
 
-                    final AlertDialog dialog = new ThemedAlertDialogBuilder(this, appSettings)
+                    final AlertDialog dialog = new ThemedAlertDialogBuilder(this, _appSettings)
                             .setView(layout).setTitle(R.string.search_alert_title)
                             .setCancelable(true)
                             .setPositiveButton(R.string.search_alert_tag, clickListener)
@@ -943,7 +954,7 @@ public class MainActivity extends ThemedActivity
     private void setSharedTexts(String sharedSubject, String sharedBody) {
         AppLog.i(this, "setSharedTexts()");
         String body = WebHelper.replaceUrlWithMarkdown(sharedBody);
-        if (appSettings.isAppendSharedViaApp()) {
+        if (_appSettings.isAppendSharedViaApp()) {
             AppLog.v(this, "Append app reference to shared text");
             body = body + "\n\n" + getString(R.string.shared_via_app);
         }
@@ -1030,7 +1041,7 @@ public class MainActivity extends ThemedActivity
             break;
 
             case R.id.nav_profile: {
-                if (!appSettings.getProfileId().equals("")) {
+                if (!_appSettings.getProfileId().equals("")) {
                     openDiasporaUrl(urls.getProfileUrl());
                 }
             }
@@ -1197,9 +1208,9 @@ public class MainActivity extends ThemedActivity
     protected void applyColorToViews() {
         ThemeHelper.updateToolbarColor(toolbarTop);
         ThemeHelper.updateActionMenuViewColor(toolbarBottom);
-        navDrawerLayout.setBackgroundColor(appSettings.getPrimaryColor());
-        navProfilePictureArea.setBackgroundColor(appSettings.getPrimaryColor());
-        if (appSettings.isAmoledColorMode()) {
+        navDrawerLayout.setBackgroundColor(_appSettings.getPrimaryColor());
+        navProfilePictureArea.setBackgroundColor(_appSettings.getPrimaryColor());
+        if (_appSettings.isAmoledColorMode()) {
             navView.setItemTextColor(ColorStateList.valueOf(Color.GRAY));
             navView.setItemIconTintList(ColorStateList.valueOf(Color.GRAY));
             navView.setBackgroundColor(Color.BLACK);
