@@ -1,8 +1,10 @@
 [![GitHub release](https://img.shields.io/github/tag/diaspora-for-android/dandelion.svg)](https://github.com/diaspora-for-android/dandelion/releases)
-[![Donate](https://img.shields.io/badge/donate-bitcoin-orange.svg)](https://gsantner.github.io/#donate)
 [![CircleCI](https://circleci.com/gh/Diaspora-for-Android/dandelion.svg?style=shield)](https://circleci.com/gh/Diaspora-for-Android/dandelion)
 [![Crowdin](https://d322cqt584bo4o.cloudfront.net/diaspora-for-android/localized.svg)](https://crowdin.com/project/diaspora-for-android)
 [![Chat - Matrix](https://img.shields.io/badge/chat-on%20matrix-blue.svg)](https://matrix.to/#/#dandelion:matrix.org) [![Chat - FreeNode IRC](https://img.shields.io/badge/chat-on%20irc-blue.svg)](https://kiwiirc.com/client/irc.freenode.net/?nick=dandelion-anon|?##dandelion)
+[![Donate Bitcoin](https://img.shields.io/badge/donate-bitcoin-orange.svg)](https://gsantner.github.io/#donate)
+[![Donate LiberaPay](https://img.shields.io/badge/donate-liberapay-orange.svg)](https://liberapay.com/gsantner/donate)
+[![Donate GratiPay](https://img.shields.io/gratipay/team/dandelion.svg)](https://gratipay.com/dandelion/)
 
 # dandelion\*
 <img src="/app/src/main/ic_launcher-web.png" align="left" width="100" hspace="10" vspace="10">
@@ -12,9 +14,9 @@ This is an unofficial webview based client for the community-run, distributed so
 <a href="https://f-droid.org/repository/browse/?fdid=com.github.dfa.diaspora_android">
     <img src="https://f-droid.org/badge/get-it-on.png" alt="Get it on F-Droid" height="80">
 </a>
-<a href="https://play.google.com/store/apps/details?id=com.github.dfa.diaspora_android">
+<!--<a href="https://play.google.com/store/apps/details?id=com.github.dfa.diaspora_android">
     <img alt="Get it on Google Play" height="80" src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" />
-</a>
+</a>-->
 </div></br>
 
 
