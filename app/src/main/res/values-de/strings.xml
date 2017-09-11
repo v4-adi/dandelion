@@ -77,4 +77,6 @@ nachträglich erteilen. Öffne dafür: Systemeinstellungen - Apps - dandelion*. 
   <string name="pod_address">Pod Adresse</string>
   <string name="missing_value">Fehlender Wert</string>
   <string name="jump_to_last_visited_timestamp_in_stream">Zuletzt besuchte Seite im Stream aufrufen?</string>
+  <string name="pref_summary__is_statusbar_hidden">Statusleiste in Hauptansicht verstecken</string>
+  <string name="pref_title__is_statusbar_hidden">Statusleiste verstecken</string>
 </resources>
