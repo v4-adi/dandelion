@@ -188,7 +188,7 @@ public class SettingsActivity extends ThemedActivity implements SharedPreference
                     return true;
                 }
                 /** Usability */
-                else if (settings.isKeyEqual(key, R.string.pref_key__is_overview_statusbar_hidden)){
+                else if (settings.isKeyEqual(key, R.string.pref_key__is_overview_statusbar_hidden)) {
                     AppSettings.get().setRecreateMainActivity(true);
                 }
                 /** Network */

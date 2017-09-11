@@ -52,11 +52,11 @@ import com.github.dfa.diaspora_android.data.DiasporaPodList.DiasporaPod;
 import com.github.dfa.diaspora_android.service.FetchPodsService;
 import com.github.dfa.diaspora_android.ui.PodSelectionDialog;
 import com.github.dfa.diaspora_android.ui.theme.ThemedFragment;
+import com.github.dfa.diaspora_android.util.ActivityUtils;
 import com.github.dfa.diaspora_android.util.AppLog;
 import com.github.dfa.diaspora_android.util.AppSettings;
-import com.github.dfa.diaspora_android.util.DiasporaUrlHelper;
 import com.github.dfa.diaspora_android.util.ContextUtils;
-import com.github.dfa.diaspora_android.util.ActivityUtils;
+import com.github.dfa.diaspora_android.util.DiasporaUrlHelper;
 
 import org.json.JSONException;
 import org.json.JSONObject;

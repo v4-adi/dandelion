@@ -99,9 +99,6 @@ public abstract class ThemedActivity extends AppCompatActivity {
 
     public void updateLanguage() {
         AppSettings appSettings = getAppSettings();
-        Locale locale = ContextUtils.get().getLocaleByAndroidCode(appSettings.getLanguage());
-        Configuration config = appSettings.getContext().getResources().getConfiguration();
-        config.locale = locale != null ? locale : Locale.getDefault();
-        appSettings.getContext().getResources().updateConfiguration(config, null);
+        ContextUtils.get().setAppLanguage(appSettings.getLanguage());
     }
 }

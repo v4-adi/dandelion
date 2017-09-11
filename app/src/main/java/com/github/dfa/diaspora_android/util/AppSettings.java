@@ -39,7 +39,7 @@ import java.util.List;
  */
 @SuppressWarnings("ConstantConditions")
 public class AppSettings extends AppSettingsBase {
-    private final SharedPreferences prefPod;
+    private final SharedPreferences _prefPod;
     private DiasporaPod currentPod0Cached;
 
     public static AppSettings get() {
@@ -48,18 +48,18 @@ public class AppSettings extends AppSettingsBase {
 
     private AppSettings(Context context) {
         super(context);
-        prefPod = _context.getSharedPreferences("pod0", Context.MODE_PRIVATE);
+        _prefPod = _context.getSharedPreferences("pod0", Context.MODE_PRIVATE);
     }
 
     /**
-     * Clear all settings in prefPod (Settings related to the configured pod)
+     * Clear all settings in _prefPod (Settings related to the configured pod)
      * This uses commit instead of apply, since
      * SettingsActivity.SettingsFragmentDebugging.showWipeSettingsDialog()
      * kills the app after the calling this, so we have to block until we are finished.
      */
     @SuppressLint("CommitPrefEdits")
     public void resetPodSettings() {
-        super.resetSettings(prefPod);
+        super.resetSettings(_prefPod);
     }
 
     /**
@@ -77,11 +77,11 @@ public class AppSettings extends AppSettingsBase {
     //## Getter & Setter for settings
     //#################################
     public String getProfileId() {
-        return getString(R.string.pref_key__podprofile_id, "");
+        return getString(R.string.pref_key__podprofile_id, "", _prefPod);
     }
 
     public void setProfileId(String profileId) {
-        setString(R.string.pref_key__podprofile_id, profileId, prefPod);
+        setString(R.string.pref_key__podprofile_id, profileId, _prefPod);
     }
 
     public boolean isLoadImages() {
@@ -103,24 +103,24 @@ public class AppSettings extends AppSettingsBase {
     }
 
     public String getAvatarUrl() {
-        return getString(R.string.pref_key__podprofile_avatar_url, "", prefPod);
+        return getString(R.string.pref_key__podprofile_avatar_url, "", _prefPod);
     }
 
     public void setAvatarUrl(String avatarUrl) {
-        setString(R.string.pref_key__podprofile_avatar_url, avatarUrl, prefPod);
+        setString(R.string.pref_key__podprofile_avatar_url, avatarUrl, _prefPod);
     }
 
     public String getName() {
-        return getString(R.string.pref_key__podprofile_name, "", prefPod);
+        return getString(R.string.pref_key__podprofile_name, "", _prefPod);
     }
 
     public void setName(String name) {
-        setString(R.string.pref_key__podprofile_name, name, prefPod);
+        setString(R.string.pref_key__podprofile_name, name, _prefPod);
     }
 
     public DiasporaPod getPod() {
         if (currentPod0Cached == null) {
-            String pref = getString(R.string.pref_key__current_pod_0, "", prefPod);
+            String pref = getString(R.string.pref_key__current_pod_0, "", _prefPod);
 
             try {
                 currentPod0Cached = new DiasporaPod().fromJson(new JSONObject(pref));
@@ -134,22 +134,22 @@ public class AppSettings extends AppSettingsBase {
     public void setPod(DiasporaPod pod) {
         try {
             setString(R.string.pref_key__current_pod_0,
-                    pod == null ? null : pod.toJson().toString(), prefPod);
+                    pod == null ? null : pod.toJson().toString(), _prefPod);
             currentPod0Cached = pod;
         } catch (JSONException ignored) {
         }
     }
 
     public boolean hasPod() {
-        return !getString(R.string.pref_key__current_pod_0, "", prefPod).equals("");
+        return !getString(R.string.pref_key__current_pod_0, "", _prefPod).equals("");
     }
 
     public void setPodAspects(DiasporaAspect[] aspects) {
-        setStringArray(R.string.pref_key__podprofile_aspects, aspects, prefPod);
+        setStringArray(R.string.pref_key__podprofile_aspects, aspects, _prefPod);
     }
 
     public DiasporaAspect[] getAspects() {
-        String[] s = getStringArray(R.string.pref_key__podprofile_aspects, prefPod);
+        String[] s = getStringArray(R.string.pref_key__podprofile_aspects, _prefPod);
         DiasporaAspect[] aspects = new DiasporaAspect[s.length];
         for (int i = 0; i < aspects.length; i++) {
             aspects[i] = new DiasporaAspect(s[i]);
@@ -158,43 +158,43 @@ public class AppSettings extends AppSettingsBase {
     }
 
     public String[] getFollowedTags() {
-        return getStringArray(R.string.pref_key__podprofile_followed_tags, prefPod);
+        return getStringArray(R.string.pref_key__podprofile_followed_tags, _prefPod);
     }
 
     public void setFollowedTags(String[] values) {
-        setStringArray(R.string.pref_key__podprofile_followed_tags, values, prefPod);
+        setStringArray(R.string.pref_key__podprofile_followed_tags, values, _prefPod);
     }
 
     public String[] getFollowedTagsFavs() {
-        return getStringArray(R.string.pref_key__podprofile_followed_tags_favs, prefPod);
+        return getStringArray(R.string.pref_key__podprofile_followed_tags_favs, _prefPod);
     }
 
     public void setFollowedTagsFavs(List<String> values) {
-        setStringList(R.string.pref_key__podprofile_followed_tags_favs, values, prefPod);
+        setStringList(R.string.pref_key__podprofile_followed_tags_favs, values, _prefPod);
     }
 
     public String[] getAspectFavs() {
-        return getStringArray(R.string.pref_key__podprofile_aspects_favs, prefPod);
+        return getStringArray(R.string.pref_key__podprofile_aspects_favs, _prefPod);
     }
 
     public void setAspectFavs(List<String> values) {
-        setStringList(R.string.pref_key__podprofile_aspects_favs, values, prefPod);
+        setStringList(R.string.pref_key__podprofile_aspects_favs, values, _prefPod);
     }
 
     public int getUnreadMessageCount() {
-        return getInt(R.string.pref_key__podprofile_unread_message_count, 0, prefPod);
+        return getInt(R.string.pref_key__podprofile_unread_message_count, 0, _prefPod);
     }
 
     public void setUnreadMessageCount(int unreadMessageCount) {
-        setInt(R.string.pref_key__podprofile_unread_message_count, unreadMessageCount, prefPod);
+        setInt(R.string.pref_key__podprofile_unread_message_count, unreadMessageCount, _prefPod);
     }
 
     public int getNotificationCount() {
-        return getInt(R.string.pref_key__podprofile_notification_count, 0, prefPod);
+        return getInt(R.string.pref_key__podprofile_notification_count, 0, _prefPod);
     }
 
     public void setNotificationCount(int notificationCount) {
-        setInt(R.string.pref_key__podprofile_notification_count, notificationCount, prefPod);
+        setInt(R.string.pref_key__podprofile_notification_count, notificationCount, _prefPod);
     }
 
     public boolean isAppendSharedViaApp() {
@@ -370,11 +370,11 @@ public class AppSettings extends AppSettingsBase {
     }
 
     public long getLastVisitedPositionInStream() {
-        return getLong(R.string.pref_key__podprofile_last_stream_position, -1, prefPod);
+        return getLong(R.string.pref_key__podprofile_last_stream_position, -1, _prefPod);
     }
 
     public void setLastVisitedPositionInStream(long timestamp) {
-        setLong(R.string.pref_key__podprofile_last_stream_position, timestamp, prefPod);
+        setLong(R.string.pref_key__podprofile_last_stream_position, timestamp, _prefPod);
     }
 
     public void setLanguage(String value) {

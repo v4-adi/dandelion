@@ -68,16 +68,16 @@ public class AboutActivity extends ThemedActivity
         implements IntellihideToolbarActivityListener {
 
     @BindView(R.id.about__appbar)
-    protected AppBarLayout appBarLayout;
+    protected AppBarLayout _appBarLayout;
 
     @BindView(R.id.main__topbar)
-    protected Toolbar toolbar;
+    protected Toolbar _toolbar;
 
     @BindView(R.id.appbar_linear_layout)
-    protected LinearLayout linearLayout;
+    protected LinearLayout _linearLayout;
 
     @BindView(R.id.tabs)
-    protected TabLayout tabLayout;
+    protected TabLayout _tabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,9 +85,9 @@ public class AboutActivity extends ThemedActivity
         setContentView(R.layout.about__activity);
         ButterKnife.bind(this);
 
-        setSupportActionBar(toolbar);
-        toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_arrow_back_white_24px));
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+        setSupportActionBar(_toolbar);
+        _toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_arrow_back_white_24px));
+        _toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AboutActivity.this.onBackPressed();
@@ -101,7 +101,7 @@ public class AboutActivity extends ThemedActivity
         ViewPager mViewPager = ButterKnife.findById(this, R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        tabLayout.setupWithViewPager(mViewPager);
+        _tabLayout.setupWithViewPager(mViewPager);
     }
 
     @Override
@@ -116,26 +116,26 @@ public class AboutActivity extends ThemedActivity
 
     @Override
     protected void applyColorToViews() {
-        ThemeHelper.updateToolbarColor(toolbar);
-        ThemeHelper.updateTabLayoutColor(tabLayout);
-        ThemeHelper.setPrimaryColorAsBackground(linearLayout);
+        ThemeHelper.updateToolbarColor(_toolbar);
+        ThemeHelper.updateTabLayoutColor(_tabLayout);
+        ThemeHelper.setPrimaryColorAsBackground(_linearLayout);
     }
 
     @Override
     public void enableToolbarHiding() {
         AppLog.d(this, "Enable Intellihide");
-        AppBarLayout.LayoutParams params = (AppBarLayout.LayoutParams) linearLayout.getLayoutParams();
+        AppBarLayout.LayoutParams params = (AppBarLayout.LayoutParams) _linearLayout.getLayoutParams();
         //scroll|enterAlways|snap
         params.setScrollFlags(toolbarDefaultScrollFlags);
-        appBarLayout.setExpanded(true, true);
+        _appBarLayout.setExpanded(true, true);
     }
 
     @Override
     public void disableToolbarHiding() {
         AppLog.d(this, "Disable Intellihide");
-        AppBarLayout.LayoutParams params = (AppBarLayout.LayoutParams) linearLayout.getLayoutParams();
+        AppBarLayout.LayoutParams params = (AppBarLayout.LayoutParams) _linearLayout.getLayoutParams();
         params.setScrollFlags(0);  // clear all scroll flags
-        appBarLayout.setExpanded(true, true);
+        _appBarLayout.setExpanded(true, true);
     }
 
     /**

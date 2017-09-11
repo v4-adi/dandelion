@@ -79,6 +79,7 @@ import com.github.dfa.diaspora_android.util.ActivityUtils;
 import com.github.dfa.diaspora_android.util.AndroidBug5497Workaround;
 import com.github.dfa.diaspora_android.util.AppLog;
 import com.github.dfa.diaspora_android.util.AppSettings;
+import com.github.dfa.diaspora_android.util.ContextUtils;
 import com.github.dfa.diaspora_android.util.DiasporaUrlHelper;
 import com.github.dfa.diaspora_android.web.BrowserFragment;
 import com.github.dfa.diaspora_android.web.ContextMenuWebView;
@@ -171,10 +172,13 @@ public class MainActivity extends ThemedActivity
         super.onCreate(savedInstanceState);
         AppLog.v(this, "onCreate()");
 
-        // Bind UI
+        // Pre UI
+        ContextUtils.get().setAppLanguage(AppSettings.get().getLanguage());
         if (AppSettings.get().isEditorStatusBarHidden()) {
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         }
+
+        // Bind UI
         setContentView(R.layout.main__activity);
         ButterKnife.bind(this);
         if (AppSettings.get().isEditorStatusBarHidden()) {
@@ -257,7 +261,7 @@ public class MainActivity extends ThemedActivity
     private void setupUI() {
         AppLog.i(this, "setupUI()");
 
-        // Setup toolbar
+        // Setup _toolbar
         setSupportActionBar(toolbarTop);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -466,7 +470,7 @@ public class MainActivity extends ThemedActivity
     }
 
     /**
-     * Open Stream when clicked on top toolbar AND preference stream shortcut is true
+     * Open Stream when clicked on top _toolbar AND preference stream shortcut is true
      *
      * @param view selected view
      */
@@ -654,7 +658,7 @@ public class MainActivity extends ThemedActivity
         LocalBroadcastManager.getInstance(this).registerReceiver(brOpenExternalLink, new IntentFilter(ACTION_OPEN_EXTERNAL_URL));
         invalidateOptionsMenu();
         _appSettings = getAppSettings();
-        if (_appSettings.isRecreateMainActivity()){
+        if (_appSettings.isRecreateMainActivity()) {
             recreate();
         }
         if (_appSettings.isIntellihideToolbars()) {
@@ -666,10 +670,10 @@ public class MainActivity extends ThemedActivity
     }
 
     /**
-     * Clear and repopulate top and bottom toolbar.
+     * Clear and repopulate top and bottom _toolbar.
      * Also add menu items of the displayed fragment
      *
-     * @param menu top toolbar
+     * @param menu top _toolbar
      * @return boolean
      */
     @Override
@@ -684,7 +688,7 @@ public class MainActivity extends ThemedActivity
         if (top != null) {
             //PodSelectionFragment?
             if (top.getFragmentTag().equals(PodSelectionFragment.TAG)) {
-                ///Hide bottom toolbar
+                ///Hide bottom _toolbar
                 toolbarBottom.setVisibility(View.GONE);
             } else {
                 getMenuInflater().inflate(_appSettings.isExtendedNotificationsActivated() ?
@@ -697,7 +701,7 @@ public class MainActivity extends ThemedActivity
     }
 
     /**
-     * Set the notification and messages counter in the top toolbar
+     * Set the notification and messages counter in the top _toolbar
      *
      * @param menu menu
      * @return boolean
@@ -991,7 +995,7 @@ public class MainActivity extends ThemedActivity
     public void onNotificationCountChanged(DiasporaUserProfile diasporaUserProfile, int notificationCount) {
         AppLog.i(this, "onNotificationCountChanged()");
         // Count saved in DiasporaUserProfile
-        // Invalidate the top toolbar to update the unread messages counter
+        // Invalidate the top _toolbar to update the unread messages counter
         invalidateOptionsMenu();
     }
 
@@ -1000,7 +1004,7 @@ public class MainActivity extends ThemedActivity
     public void onUnreadMessageCountChanged(DiasporaUserProfile diasporaUserProfile, int unreadMessageCount) {
         AppLog.i(this, "onUnreadMessageCountChanged()");
         // Count saved in DiasporaUserProfile
-        // Invalidate the top toolbar to update the unread messages counter
+        // Invalidate the top _toolbar to update the unread messages counter
         invalidateOptionsMenu();
     }
 

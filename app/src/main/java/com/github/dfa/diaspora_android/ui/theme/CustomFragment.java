@@ -51,7 +51,7 @@ public abstract class CustomFragment extends Fragment {
     public abstract String getFragmentTag();
 
     /**
-     * Add fragment-dependent options to the bottom options toolbar
+     * Add fragment-dependent options to the bottom options _toolbar
      *
      * @param menu     bottom menu
      * @param inflater inflater

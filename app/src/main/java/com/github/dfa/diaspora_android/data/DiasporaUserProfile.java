@@ -103,7 +103,7 @@ public class DiasporaUserProfile {
             }
 
             // GUID (User id)
-            if (json.has("guid") && loadGuid(json.getString("guid"))) {
+            if (json.has("guid") && loadGuid(json.getString("guid")) && !guid.isEmpty()) {
                 appSettings.setProfileId(guid);
             }
 

@@ -1,5 +1,8 @@
 ### v1.0.4
 - Updated: README
+- Added: Hide statusbar option
+- Fixed: Language list
+- Added: Sardinian,Malayalam,Turkish translation
 
 ### v1.0.3
 - Update opoc
