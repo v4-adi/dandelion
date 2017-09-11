@@ -78,4 +78,6 @@
   <string name="pod_address">Indiritzu de su pod</string>
   <string name="missing_value">Valore fartante</string>
   <string name="jump_to_last_visited_timestamp_in_stream">Brincare a s\'ùrtima pàgina visitada in su flussu?</string>
+  <string name="pref_summary__is_statusbar_hidden">Istichi sa barra de s\'istadu in sa vista printzipale</string>
+  <string name="pref_title__is_statusbar_hidden">Istichi sa barra de s\'istadu</string>
 </resources>
