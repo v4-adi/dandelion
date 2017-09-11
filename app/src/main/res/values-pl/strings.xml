@@ -72,4 +72,6 @@
   <string name="pod_address">Adres Poda</string>
   <string name="missing_value">Nie podano danych</string>
   <string name="jump_to_last_visited_timestamp_in_stream">Przejść do ostatnio odwiedzonej strony w strumieniu?</string>
+  <string name="pref_summary__is_statusbar_hidden">Ukryj pasek stanu w głównym widoku</string>
+  <string name="pref_title__is_statusbar_hidden">Ukryj pasek stanu</string>
 </resources>
