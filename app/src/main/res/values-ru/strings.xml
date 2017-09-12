@@ -54,16 +54,24 @@
   <string name="search_alert_people">по людям</string>
   <string name="search_alert_bypeople_validate_needsomedata">Пожалуйста, добавьте имя</string>
   <string name="context_menu_share_link">Поделиться адресом ссылки</string>
+  <string name="context_menu_save_image">Сохранить изображение</string>
+  <string name="context_menu_share_image">Поделиться изображением</string>
   <string name="context_menu_open_external_browser">Открыть во внешнем браузере&#8230;</string>
+  <string name="context_menu_copy_link">Скопировать адрес ссылки в буфер обмена</string>
   <string name="context_menu_copy_image_link">Скопировать адрес изображения в буфер обмена</string>
   <!-- More from MainActivity -->
+  <string name="unable_to_load_image">Не удаётся загрузить изображение</string>
   <!-- Permissions -->
   <string name="permissions_screenshot">Необходимо предоставить «Разрешение на доступ к хранилищу» для сохранения скриншотов. После этого вы должны полностью закрыть приложение или перезагрузите телефон. Если вы не разрешаете доступ к хранилищу, но хотите использовать функцию скриншотов позже, можно предоставить разрешение позднее. Затем откройте: Системные настройки  - приложения - dandelion*. В разделе разрешения можно предоставить «разрешение на запись в хранилище».</string>
   <string name="permissions_image">Необходимо предоставить «Разрешение на доступ к хранилищу» для сохранения/выгрузки изображений. После этого вам необходимо полностью закрыть приложение или перезагрузить телефон. Если вы не разрешаете доступ к хранилищу, но хотите сохранять изображения позже, можно предоставить разрешение позднее. В таком случае откройте: Системные настройки  - приложения - dandelion*. В разделе разрешений можно будет предоставить «разрешение на запись в хранилище».</string>
+  <string name="permission_denied">В разрешении отказано.</string>
+  <string name="permission_granted_try_again">Разрешение получено. Пожалуйста, попытайтесь снова.</string>
   <string name="podselection__custom_pod">Произвольный под</string>
   <string name="pod_name">Название пода</string>
   <string name="http_protocol">Протокол</string>
   <string name="pod_address">Адрес пода</string>
   <string name="missing_value">Значение отсутствует</string>
   <string name="jump_to_last_visited_timestamp_in_stream">Перейти к последней просмотренной странице в Потоке?</string>
+  <string name="pref_summary__is_statusbar_hidden">Скрыть строку состояния в главном окне</string>
+  <string name="pref_title__is_statusbar_hidden">Скрыть строку состояния</string>
 </resources>
