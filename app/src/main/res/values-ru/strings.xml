@@ -9,6 +9,13 @@
   <string name="conversations">Разговоры</string>
   <string name="stream">Поток</string>
   <string name="profile">Профиль</string>
+  <string name="aspects">Аспекты</string>
+  <string name="activities">Активность</string>
+  <string name="liked">Понравившееся</string>
+  <string name="commented">Прокомментированное</string>
+  <string name="mentions">Упоминания</string>
+  <string name="public_">Публичное</string>
+  <string name="search">Поиск</string>
   <string name="contacts">Контакты</string>
   <string name="changelog">История изменений</string>
   <string name="statistics">Статистика</string>
@@ -21,10 +28,32 @@
   <string name="notifications__reshared">Поделились</string>
   <string name="notifications__started_sharing">Добавили вас</string>
   <!-- Pod Activity -->
+  <string name="podlist_error">Ошибка: Не удалось получить список подов!</string>
+  <string name="no_internet">Извините, вы должны быть подключены к Интернету, чтобы продолжить</string>
+  <string name="confirmation">Подтверждение</string>
+  <string name="confirm_exit">Вы хотите выйти?</string>
   <!-- Drawer, Menu, Toolbar, ContextMenu -->
   <string name="nav_menu_more">Дополнительно</string>
   <string name="nav_help_license">Информация | Помощь</string>
+  <string name="nav_followed_tags">Теги</string>
+  <string name="nav_public_activities">Публичное</string>
   <string name="nav_reports">Отчёты</string>
+  <string name="share__share_link_as_text">Поделиться ссылкой как текстом</string>
+  <string name="share__share_screenshot">Поделиться скриншотом страницы</string>
+  <string name="share__take_screenshot">Сделать скриншот страницы</string>
+  <string name="share__toast_saved_image_to_location">Сохранение изображения в</string>
+  <string name="share__toast_screenshot">Сохранение скриншота как:</string>
+  <string name="share__toast_link_address_copied">Адрес ссылки скопирован&#8230;</string>
+  <string name="new_post">Новый пост</string>
+  <string name="action_go_to_top">В начало</string>
+  <string name="action_search_by_tags_or_persons">Искать по тегам и людям</string>
+  <string name="action_exit_app">Выйти из приложения</string>
+  <string name="action_toggle_desktop_page">Переключить мобильный вид</string>
+  <string name="action_share_dotdotdot">Поделиться&#8230;</string>
+  <string name="search_alert_tag">по тегам</string>
+  <string name="search_alert_people">по людям</string>
+  <string name="search_alert_bypeople_validate_needsomedata">Пожалуйста, добавьте имя</string>
+  <string name="context_menu_share_link">Поделиться адресом ссылки</string>
   <string name="context_menu_open_external_browser">Открыть во внешнем браузере&#8230;</string>
   <string name="context_menu_copy_image_link">Скопировать адрес изображения в буфер обмена</string>
   <!-- More from MainActivity -->
