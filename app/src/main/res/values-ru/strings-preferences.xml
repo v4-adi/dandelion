@@ -6,6 +6,9 @@
   <string name="pref_title__topbar_stream_shortcut">Верхняя панель инструментов загружает Поток</string>
   <string name="pref_desc__topbar_stream_shortcut">Нажмите на пустое пространство на верхней панели инструментов, чтобы открыть Поток</string>
   <!-- Category Titles -->
+  <string name="pref_cat__visuals">Внешний вид</string>
+  <string name="pref_cat__network">Сеть</string>
+  <string name="pref_cat__pod_settings">Настройки пода</string>
   <string name="pref_cat__operability">Работоспособность</string>
   <!-- Visuals -->
   <!-- Navigiation Slider -->
@@ -31,10 +34,12 @@
   <string name="language_system">Язык системы</string>
   <!-- Font size -->
   <string name="pref_desc__font_size">Управление размером текста WebView</string>
+  <string name="pref_title__font_size">Размер шрифта</string>
   <string name="font_size_normal">Нормальный</string>
   <string name="font_size_large">Крупный</string>
   <string name="font_size_huge">Огромный</string>
   <!-- Load images -->
+  <string name="pref_title__load_images">Загружать изображения</string>
   <string name="pref_desc__load_images">Отключить загрузку изображений для экономии трафика</string>
   <!-- Screen rotation -->
   <string name="pref_title__screen_rotation">Поворот экрана</string>
@@ -47,6 +52,7 @@
   <string name="pref_title__http_proxy_load_tor_preset">Загрузить шаблон конфигурации Tor</string>
   <string name="pref_desc__http_proxy_load_tor_preset">Загрузить настройки прокси для Tor (Orbot)</string>
   <string name="pref_title__sub_proxy">Прокси</string>
+  <string name="pref_title__proxy_enabled">Включить прокси</string>
   <string name="pref_desc__http_proxy_enabled">Проксировать трафик dandelion* для обхода брандмауэров.\nМожет потребоваться перезапуск</string>
   <string name="pref_title__http_proxy_host">Хост</string>
   <string name="pref_title__http_proxy_port">Порт</string>
@@ -55,10 +61,18 @@
   <!-- Chrome custom tabs -->
   <string name="pref_desc__chrome_custom_tabs_enabled">Открывать внешние ссылки с помощью Chrome Custom Tabs. Для этого должен быть установлен Chromium или Google Chrome. \nВАЖНОЕ ЗАМЕЧАНИЕ: Chrome Custom Tabs не использует настройки прокси-серверов!</string>
   <!-- Diaspora Settings -->
+  <string name="pref_title__personal_settings">Личные настройки</string>
   <string name="pref_desc__personal_settings">Открыть настройки аккаунта diaspora*</string>
+  <string name="pref_desc__manage_contacts">Управление списком контактов</string>
+  <string name="pref_title__manage_tags">Управление тегами</string>
   <string name="pref_desc__manage_tags">Отписаться от тегов</string>
+  <string name="pref_title__change_account">Сменить учётную запись</string>
   <string name="pref_desc__change_account">Стереть данные локального сеанса и переключиться на другой под/аккаунт diaspora*</string>
+  <string name="pref_warning__change_account">Это сотрёт все куки и данные сеанса. Вы действительно хотите сменить учётную запись?</string>
+  <string name="pref_title__clear_cache">Очистить кэш</string>
+  <string name="pref_desc__clear_cache">Очистить кэш WebView</string>
   <string name="pref_desc__intellihide_toolbars">Скрывать верхнюю и нижнюю панели инструментов автоматически во время прокрутки</string>
+  <string name="pref_title__intellihide_toolbars">Интеллектуальное скрытие панелей инструментов</string>
   <string name="pref_title__append_shared_via_app">Добавлять \"Опубликовано из\" к сообщению</string>
   <string name="pref_desc__append_shared_via_app">Добавлять к сообщениям ссылку на это приложение: [via #dandelion]</string>
   <!-- More -->
