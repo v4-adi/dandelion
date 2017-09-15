@@ -32,6 +32,7 @@ android {
 
         buildConfigField "boolean", "IS_TEST_BUILD", "false"
         buildConfigField "boolean", "IS_GPLAY_BUILD", "false"
+        buildConfigField("String[]", "APPLICATION_LANGUAGES", '{' + getUsedAndroidLanguages().collect {"\"${it}\""}.join(",")  + '}')
 
         vectorDrawables.useSupportLibrary = true
     }
@@ -90,6 +91,23 @@ dependencies {
     compile "info.guardianproject.netcipher:netcipher-webkit:${version_lib.netcipher}"
 
     annotationProcessor "com.jakewharton:butterknife-compiler:${version_lib.butterknife}"
+}
+
+@SuppressWarnings(["UnnecessaryQualifiedReference", "SpellCheckingInspection"])
+static String[] getUsedAndroidLanguages() {
+    Set<String> langs = new HashSet<>()
+    new File('.').eachFileRecurse(groovy.io.FileType.DIRECTORIES) {
+        final foldername = it.name
+        if (foldername.startsWith('values-') && !it.canonicalPath.contains("build" + File.separator + "intermediates")) {
+            new File(it.toString()).eachFileRecurse(groovy.io.FileType.FILES) {
+                if (it.name.toLowerCase().endsWith(".xml") && it.getCanonicalFile().getText('UTF-8').contains("<string")) {
+                    langs.add(foldername.replace("values-", ""))
+
+                }
+            }
+        }
+    }
+    return langs.toArray(new String[langs.size()])
 }
 
 //  #####################

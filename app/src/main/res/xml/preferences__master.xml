@@ -17,15 +17,11 @@
             android:summary="@string/pref_desc__sub_nav_slider"
             android:title="@string/pref_title__sub_nav_slider"/>
 
-        <ListPreference
-            android:defaultValue=""
-            android:entries="@array/pref_arrdisp__language"
-            android:entryValues="@array/pref_arrkeys__language"
+        <net.gsantner.opoc.ui.LanguagePreference
             android:icon="@drawable/ic_language_black_48px"
             android:key="@string/pref_key__language"
             android:summary="@string/pref_desc__language"
             android:title="@string/pref_title__language"/>
-
 
         <ListPreference
             android:dialogTitle="@string/pref_title__font_size"
