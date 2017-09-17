@@ -61,7 +61,6 @@ dandelion\* is released under GNU GENERAL PUBLIC LICENSE (see [LICENCE](https://
 The app is licensed GPL v3. Localization files and resources (strings\*.xml) are licensed CC0 1.0.
 For more licensing informations, see [`3rd party licenses`](/app/src/main/res/raw/licenses_3rd_party.md).
 
-<!--
 ## Screenshots
 <div style="display:flex;" >
 	<img src="https://raw.githubusercontent.com/diaspora-for-android/dandelion-metadata-latest/master/en-US/phoneScreenshots/01.png" width="19%" >
@@ -77,7 +76,6 @@ For more licensing informations, see [`3rd party licenses`](/app/src/main/res/ra
 	<img src="https://raw.githubusercontent.com/diaspora-for-android/dandelion-metadata-latest/master/en-US/phoneScreenshots/08.png" width="19%" style="margin-left:10px;" >
 	<img src="https://raw.githubusercontent.com/diaspora-for-android/dandelion-metadata-latest/master/en-US/phoneScreenshots/09.png" width="19%" style="margin-left:10px;" >
 </div>
--->
 
 ### Notice
 #### Maintainers
