@@ -1,3 +1,6 @@
+### v1.0.5
+- Updated: Language preference
+
 ### v1.0.4
 - Updated: README
 - Added: Hide statusbar option
