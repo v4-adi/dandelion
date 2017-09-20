@@ -7,7 +7,7 @@
   <string name="settings">Axustes</string>
   <string name="notifications">Notificacións</string>
   <string name="conversations">Conversas</string>
-  <string name="stream">Fluxo</string>
+  <string name="stream">Conversa</string>
   <string name="profile">Perfil</string>
   <string name="aspects">Aspecto</string>
   <string name="activities">Actividades</string>
@@ -75,5 +75,7 @@
   <string name="http_protocol">Protocolo</string>
   <string name="pod_address">Enderezo do nodo</string>
   <string name="missing_value">Faltan datos</string>
-  <string name="jump_to_last_visited_timestamp_in_stream">Ir a última paxina lida no fluxo?</string>
+  <string name="jump_to_last_visited_timestamp_in_stream">Ir a última paxina lida na conversa?</string>
+  <string name="pref_summary__is_statusbar_hidden">Agochar a barra de estado na vista principal</string>
+  <string name="pref_title__is_statusbar_hidden">Agochar barra de estado</string>
 </resources>
