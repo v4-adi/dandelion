@@ -40,9 +40,32 @@
   <string name="font_size_huge">Enorme</string>
   <!-- Load images -->
   <string name="pref_title__load_images">Cargar imaxes</string>
+  <string name="pref_desc__load_images">Xestionar a carga de imaxes ex. para aforrar datos do móbil</string>
   <!-- Screen rotation -->
+  <string name="pref_title__screen_rotation">Rotación da pantalla</string>
+  <string name="pref_desc__screen_rotation">Controlar a rotación automática da pantalla</string>
+  <string name="rotation_system">Por omisión</string>
+  <string name="rotation_sensor">Sensor\n(ignorar axustes do dispositivo)</string>
+  <string name="rotation_portrait">Retrato</string>
+  <string name="rotation_landscape">Paisaxe</string>
   <!-- Proxy -->
+  <string name="pref_title__http_proxy_load_tor_preset">Cargar perfil Tor</string>
+  <string name="pref_desc__http_proxy_load_tor_preset">Cargar axustes proxy para Tor (Orbot) HTTP Proxy</string>
+  <string name="pref_title__sub_proxy">Proxy</string>
+  <string name="pref_title__proxy_enabled">Habilitar Proxy</string>
+  <string name="pref_desc__http_proxy_enabled">Proxy para o tráfico de dandelion* para saltar cortalumes.\nPodería precisar reinicio. Esto podería non funcionar en algúns móbiles.</string>
+  <string name="pref_title__http_proxy_host">Servidor</string>
+  <string name="pref_title__http_proxy_port">Porto</string>
+  <string name="toast__proxy_disabled__restart_required">Precisa reiniciar o app para deshabilitar o uso do proxy</string>
+  <string name="toast__proxy_orbot_preset_loaded">Cargadas as preferencias do proxy Orbot</string>
   <!-- Chrome custom tabs -->
+  <string name="pref_desc__chrome_custom_tabs_enabled">Abrir ligazóns externas con Chrome Custom Tabs. Chromium ou Google Chrome ten que estar instalado para utilizar esta característica.\nIMPORTANTE: Chrome Custom Tabs non utiliza os servidores proxy configurados!</string>
   <!-- Diaspora Settings -->
+  <string name="pref_title__personal_settings">Axustes personais</string>
+  <string name="pref_desc__personal_settings">Abrir os axustes da conta diaspora*</string>
+  <string name="pref_desc__manage_contacts">Xestione a súa lista de contactos</string>
+  <string name="pref_title__manage_tags">Xestionar etiquetas</string>
+  <string name="pref_desc__manage_tags">Deixar de seguir etiquetas que segue</string>
+  <string name="pref_title__change_account">Mudar de conta</string>
   <!-- More -->
 </resources>
