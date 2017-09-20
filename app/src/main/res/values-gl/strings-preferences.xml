@@ -67,5 +67,19 @@
   <string name="pref_title__manage_tags">Xestionar etiquetas</string>
   <string name="pref_desc__manage_tags">Deixar de seguir etiquetas que segue</string>
   <string name="pref_title__change_account">Mudar de conta</string>
+  <string name="pref_desc__change_account">Eliminar os datos locais da sesión e cambiar a outro nodo/conta de diaspora*</string>
+  <string name="pref_warning__change_account">Esto eliminará todas as cookies e datos de sesión. Seguro que quere mudar de conta?</string>
+  <string name="pref_title__clear_cache">Limpar cache</string>
+  <string name="pref_desc__clear_cache">Limpar a cache da VistaWeb</string>
+  <string name="pref_desc__intellihide_toolbars">Agochar automáticamente as barras superior e inferior mentras desplaza</string>
+  <string name="pref_title__intellihide_toolbars">Barras de ferramentas intelixentes</string>
+  <string name="pref_title__append_shared_via_app">Engadir aviso-compartido-por</string>
+  <string name="pref_desc__append_shared_via_app">Engadir unha referencia a que foi compartido desde este aplicativo: [via #dandelion]</string>
   <!-- More -->
+  <string name="pref_title__sub_miscelaneous">Varios</string>
+  <string name="pref_title__wipe_settings">Restablecer completamente</string>
+  <string name="pref_desc__wipe_settings">Eliminar todas os axustes locais do app e desconectar todas as contas</string>
+  <string name="dialog_content__wipe_settings">Esto restablecerá todos os axustes do aplicativo ao valor por omisión e desconectarao de todos os nodos. As súas imaxes descargadas permanecerán. Seguro que quere proceder?</string>
+  <string name="pref_desc__adblock_enable">Habilitar un AdBlocker básico. Poderían verse anuncios por exemplo en vistas incrustadas</string>
+  <string name="pref_title__adblock_enable">Bloquear anunciios</string>
 </resources>
