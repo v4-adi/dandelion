@@ -60,5 +60,20 @@
   <string name="context_menu_copy_link">Copiar ligazón ao portapapeis</string>
   <string name="context_menu_copy_image_link">Copia enderezo da imaxe ao portapapeis</string>
   <!-- More from MainActivity -->
+  <string name="unable_to_load_image">Non se cargou a imaxe</string>
   <!-- Permissions -->
+  <string name="permissions_screenshot">Ten que permitir \"Permiso de acceso a almacenamento\" para gardar capturas. Despois de iso debería 
+        pechar o aplicativo ou reiniciar o dispositivo. Se non permite acceder ao almacenamento pero que utilizar máis tarde a captura de pantalla, poderá permitir entón o acceso abrindo: preferencias do sistema - apps - dandelion* no dispositivo.
+   Na sección de permisos pode activar o \"permiso de acceso a almacenamento\".</string>
+  <string name="permissions_image">Ten que permitir \"Permiso de acceso a almacenamento\" para gardar/subir imaxes. Despois de iso debería 
+        pechar o aplicativo ou reiniciar o dispositivo. Se non permite acceder ao almacenamento, para poder gardar imaxes posteriormente, deberá abrir: preferencias do sistema - apps - dandelion* no dispositivo.
+   Na sección de permisos pode activar o \"permiso de escritura no almacenamento\".</string>
+  <string name="permission_denied">Permiso denegado.</string>
+  <string name="permission_granted_try_again">Permiso concedido. Inténteo de novo.</string>
+  <string name="podselection__custom_pod">Nodo personalizado</string>
+  <string name="pod_name">Nome do nodo</string>
+  <string name="http_protocol">Protocolo</string>
+  <string name="pod_address">Enderezo do nodo</string>
+  <string name="missing_value">Faltan datos</string>
+  <string name="jump_to_last_visited_timestamp_in_stream">Ir a última paxina lida no fluxo?</string>
 </resources>
