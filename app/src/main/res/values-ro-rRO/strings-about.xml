@@ -13,6 +13,8 @@
   <string name="fragment_debug__android_version">Versiune Android: %1$s</string>
   <string name="fragment_debug__device_name">Nume Dispozitiv: %1$s</string>
   <string name="fragment_debug__app_codename">Nume de cod: %1$s</string>
-  <string name="fragment_debug__pod_profile_name">Pod nume profil: %1$s</string>
+  <string name="fragment_debug__pod_profile_name">Nume Profil Pod: %1$s</string>
+  <string name="fragment_debug__pod_profile_url">Domeniu Pod: %1$s</string>
+  <string name="fragment_debug__toast_log_copied">Jurnal Depanare copiat în clipboard</string>
   <!-- License & help (large amount of text) -->
 </resources>
