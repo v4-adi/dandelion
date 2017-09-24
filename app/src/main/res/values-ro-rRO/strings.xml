@@ -28,7 +28,13 @@
   <string name="notifications__reshared">Repartajate</string>
   <string name="notifications__started_sharing">Început Partajare</string>
   <!-- Pod Activity -->
+  <string name="podlist_error">Eroare: Lista de Pod-uri nu poate fi preluată!</string>
+  <string name="no_internet">Ne pare rău, trebuie să fi conectat la Internet pentru a continua</string>
+  <string name="confirmation">Confirmare</string>
+  <string name="confirm_exit">Doriţi să ieşiţi?</string>
   <!-- Drawer, Menu, Toolbar, ContextMenu -->
+  <string name="nav_menu_more">Extra</string>
+  <string name="nav_help_license">Despre | Ajutor</string>
   <!-- More from MainActivity -->
   <!-- Permissions -->
 </resources>
