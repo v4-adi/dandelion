@@ -47,6 +47,15 @@
   <string name="new_post">Postare nouă</string>
   <string name="action_go_to_top">Du-te la partea de sus</string>
   <string name="action_search_by_tags_or_persons">Căutare după Tag-uri sau persoane</string>
+  <string name="action_exit_app">Ieșire din Aplicatie</string>
+  <string name="action_toggle_desktop_page">Comuta Vezi mobil/desktop</string>
+  <string name="action_share_dotdotdot">Distribuire&#8230;</string>
+  <string name="search_alert_tag">după etichete</string>
+  <string name="search_alert_people">dupa persoane</string>
+  <string name="search_alert_bypeople_validate_needsomedata">Adauga nume</string>
+  <string name="context_menu_share_link">Partajează adresa</string>
+  <string name="context_menu_save_image">Salvează imaginea</string>
+  <string name="context_menu_share_image">Partajează imaginea</string>
   <!-- More from MainActivity -->
   <!-- Permissions -->
 </resources>
