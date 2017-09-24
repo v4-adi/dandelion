@@ -21,7 +21,12 @@
   <string name="statistics">Statistici</string>
   <!-- Notifications dropdown menu -->
   <string name="notifications__all">Toate notificările</string>
+  <string name="notifications__also_commented">Si comentate</string>
+  <string name="notifications__comment_on_post">Comentariu pe Post</string>
   <string name="notifications__liked">Apreciate</string>
+  <string name="notifications__mentioned">Menţionate</string>
+  <string name="notifications__reshared">Repartajate</string>
+  <string name="notifications__started_sharing">Început Partajare</string>
   <!-- Pod Activity -->
   <!-- Drawer, Menu, Toolbar, ContextMenu -->
   <!-- More from MainActivity -->
