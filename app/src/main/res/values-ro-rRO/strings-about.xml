@@ -16,5 +16,6 @@
   <string name="fragment_debug__pod_profile_name">Nume Profil Pod: %1$s</string>
   <string name="fragment_debug__pod_profile_url">Domeniu Pod: %1$s</string>
   <string name="fragment_debug__toast_log_copied">Jurnal Depanare copiat în clipboard</string>
+  <string name="fragment_about__about_text">dandelion* este companionul tau pentru navigarea reţelei sociale diaspora *. Adaugă caracteristici cum ar fi utilele bare de instrumente şi suport pentru proxy servere ca Tor Network pentru experienţa ta socială.</string>
   <!-- License & help (large amount of text) -->
 </resources>
