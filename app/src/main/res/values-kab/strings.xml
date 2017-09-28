@@ -6,6 +6,10 @@
   <!-- Notifications dropdown menu -->
   <!-- Pod Activity -->
   <!-- Drawer, Menu, Toolbar, ContextMenu -->
+  <string name="action_go_to_top">Ddu ar usnas</string>
+  <string name="action_exit_app">Ffeɣ seg usnas</string>
+  <string name="context_menu_save_image">Sekles tugna</string>
+  <string name="context_menu_share_image">Bḍu tugna</string>
   <!-- More from MainActivity -->
   <!-- Permissions -->
 </resources>
