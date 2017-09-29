@@ -14,11 +14,16 @@
   <string name="pref_cat__visibility_nav_items__admin">Anedbal</string>
   <!-- Themes -->
   <string name="pref_title__themes">Isental d yiniten</string>
+  <string name="pref_title__primary_color">Ini amezwaru</string>
   <!-- Notifications dropdown -->
   <!-- Font size -->
   <!-- Load images -->
   <!-- Screen rotation -->
+  <string name="rotation_portrait">S teɣzi</string>
+  <string name="rotation_landscape">S tehri</string>
   <!-- Proxy -->
+  <string name="pref_title__http_proxy_host">Asenneftaɣ</string>
+  <string name="pref_title__http_proxy_port">Tawwurt</string>
   <!-- Chrome custom tabs -->
   <!-- Diaspora Settings -->
   <!-- More -->
