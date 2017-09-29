@@ -8,8 +8,21 @@
   <string name="stream">Agdil</string>
   <string name="profile">Amaɣnu</string>
   <string name="activities">Irmuden</string>
+  <string name="liked">Aḥemmel</string>
+  <string name="mentions">Tummliwin</string>
+  <string name="public_">Azayez</string>
   <string name="search">Nadi</string>
+  <string name="contacts">Inermisen</string>
+  <string name="changelog">Amaynut</string>
+  <string name="statistics">Tidaddanin</string>
   <!-- Notifications dropdown menu -->
+  <string name="notifications__all">Meṛṛa ilɣa</string>
+  <string name="notifications__also_commented">Iwennet daɣen</string>
+  <string name="notifications__comment_on_post">Iwenniten ɣef yizen</string>
+  <string name="notifications__liked">Aḥemmel</string>
+  <string name="notifications__mentioned">Tummliwin</string>
+  <string name="notifications__reshared">Yules beṭṭu</string>
+  <string name="notifications__started_sharing">Yebda beṭṭu</string>
   <!-- Pod Activity -->
   <!-- Drawer, Menu, Toolbar, ContextMenu -->
   <string name="action_go_to_top">Ddu ar usnas</string>
