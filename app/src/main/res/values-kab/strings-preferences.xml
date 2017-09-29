@@ -4,10 +4,16 @@
   <!-- Key Names (Untranslatable) -->
   <!-- Operability -->
   <!-- Category Titles -->
+  <string name="pref_cat__visuals">Udem</string>
+  <string name="pref_cat__network">Aẓeṭṭa</string>
+  <string name="pref_cat__pod_settings">Iɣewwaṛen Pod</string>
   <!-- Visuals -->
   <!-- Navigiation Slider -->
+  <string name="pref_cat__visibility_nav_items__user">Aseqdac</string>
+  <string name="pref_cat__visibility_nav_items__general">Amatu</string>
   <string name="pref_cat__visibility_nav_items__admin">Anedbal</string>
   <!-- Themes -->
+  <string name="pref_title__themes">Isental d yiniten</string>
   <!-- Notifications dropdown -->
   <!-- Font size -->
   <!-- Load images -->
