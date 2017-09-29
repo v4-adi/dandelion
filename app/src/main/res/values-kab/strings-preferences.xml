@@ -3,12 +3,15 @@
 <resources>
   <!-- Key Names (Untranslatable) -->
   <!-- Operability -->
+  <string name="pref_title__topbar_stream_shortcut">Afeggag n ufella yessalay-d asuddem</string>
+  <string name="pref_desc__topbar_stream_shortcut">Sit ɣef tallunt tilemt n ufella akken ad d-ldiḍ asuddem</string>
   <!-- Category Titles -->
   <string name="pref_cat__visuals">Udem</string>
   <string name="pref_cat__network">Aẓeṭṭa</string>
   <string name="pref_cat__pod_settings">Iɣewwaṛen Pod</string>
   <!-- Visuals -->
   <!-- Navigiation Slider -->
+  <string name="pref_title__sub_nav_slider">Taḥnaccaḍt n iminig</string>
   <string name="pref_cat__visibility_nav_items__user">Aseqdac</string>
   <string name="pref_cat__visibility_nav_items__general">Amatu</string>
   <string name="pref_cat__visibility_nav_items__admin">Anedbal</string>
@@ -16,6 +19,7 @@
   <string name="pref_title__themes">Isental d yiniten</string>
   <string name="pref_title__primary_color">Ini amezwaru</string>
   <!-- Notifications dropdown -->
+  <string name="pref_desc__language">Snifel tutlayt n usnas-agi. Ales tanekra n usnas akken ad tbeddel tutlayt</string>
   <string name="pref_title__language">Tutlayt</string>
   <string name="language_system">Tutlayt n unagraw</string>
   <!-- Font size -->
@@ -33,5 +37,7 @@
   <string name="pref_title__http_proxy_port">Tawwurt</string>
   <!-- Chrome custom tabs -->
   <!-- Diaspora Settings -->
+  <string name="pref_title__change_account">Beddel amiḍan</string>
+  <string name="pref_title__clear_cache">Sfeḍ tuffirt</string>
   <!-- More -->
 </resources>
