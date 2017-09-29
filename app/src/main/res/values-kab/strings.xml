@@ -3,6 +3,11 @@
 <resources>
   <!-- Application -->
   <!-- Common Words -->
+  <string name="notifications">Ilɣa</string>
+  <string name="conversations">Idiwenniyen</string>
+  <string name="stream">Agdil</string>
+  <string name="profile">Amaɣnu</string>
+  <string name="activities">Irmuden</string>
   <!-- Notifications dropdown menu -->
   <!-- Pod Activity -->
   <!-- Drawer, Menu, Toolbar, ContextMenu -->
