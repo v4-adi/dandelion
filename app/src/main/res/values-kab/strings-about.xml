@@ -3,10 +3,18 @@
 <resources>
   <string name="about_activity__title_about_app">Γef</string>
   <string name="about_activity__title_about_license">Turagt</string>
+  <string name="about_activity__title_debug_info">Tamseɣtayt</string>
   <string name="fragment_debug__section_app">Asnas</string>
   <string name="fragment_debug__section_device">Ibenk</string>
+  <string name="fragment_debug__section_pod">diaspora* Pod</string>
+  <string name="fragment_about__translate_button">Eǧǧ-iyi ad suqleɣ</string>
+  <string name="fragment_about__feedback">Mudd-d tikti!</string>
+  <string name="fragment_about__feedback_button">Azen ibugen</string>
+  <string name="fragment_about__spread_the_word">Siqeḍ awal!</string>
+  <string name="fragment_about__spread_the_word_button">Bḍu asnas</string>
   <!-- License & help (large amount of text) -->
   <string name="fragment_license__contributors">Iwiziwen</string>
   <string name="fragment_license__contributors_thank_you">%1$s&lt;br&gt;&lt;br&gt;Tanemmirt!</string>
   <string name="fragment_license__license_button">Turagt GNU GPLv3+</string>
+  <string name="fragment_license__misc_leafpic_button">Ini-yid ugar</string>
 </resources>
