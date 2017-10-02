@@ -7,6 +7,9 @@
   <string name="fragment_debug__section_app">Asnas</string>
   <string name="fragment_debug__section_device">Ibenk</string>
   <string name="fragment_debug__section_pod">diaspora* Pod</string>
+  <string name="fragment_about__contribute">Ttekki di tengalt!</string>
+  <string name="fragment_about__contribute_button">Awi aɣbalu</string>
+  <string name="fragment_about__translate">Suqel asnas!</string>
   <string name="fragment_about__translate_button">Eǧǧ-iyi ad suqleɣ</string>
   <string name="fragment_about__feedback">Mudd-d tikti!</string>
   <string name="fragment_about__feedback_button">Azen ibugen</string>
