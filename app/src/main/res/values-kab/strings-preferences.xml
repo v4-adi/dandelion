@@ -30,6 +30,7 @@
   <!-- Load images -->
   <string name="pref_title__load_images">Sali-d tugniwin</string>
   <!-- Screen rotation -->
+  <string name="pref_title__screen_rotation">Tuzya n ugdil</string>
   <string name="rotation_portrait">S teɣzi</string>
   <string name="rotation_landscape">S tehri</string>
   <!-- Proxy -->
