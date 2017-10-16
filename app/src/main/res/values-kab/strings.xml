@@ -68,4 +68,6 @@
   <string name="http_protocol">Aneggaf</string>
   <string name="pod_address">Tansa n upod</string>
   <string name="missing_value">Azal yettwazgel</string>
+  <string name="pref_summary__is_statusbar_hidden">Ffer afeggag n waddad di tmeẓri tagejdant</string>
+  <string name="pref_title__is_statusbar_hidden">Ffer afeggag n waddad</string>
 </resources>
