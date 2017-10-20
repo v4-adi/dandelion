@@ -56,9 +56,24 @@
   <string name="toast__proxy_disabled__restart_required">É necessário reiniciar para desabilitar o proxy</string>
   <string name="toast__proxy_orbot_preset_loaded">Predefinição de proxy orbot carregado</string>
   <!-- Chrome custom tabs -->
+  <string name="pref_desc__chrome_custom_tabs_enabled">Abrir links externos com guias de predefinidas do Chrome. O Chromium ou o Google Chrome precisa ser instalado para utilizar esse recurso. \nNOTA IMPORTANTE: Guias Chrome predefinidas não usam servidores proxy!</string>
   <!-- Diaspora Settings -->
+  <string name="pref_title__personal_settings">Configurações pessoais</string>
   <string name="pref_desc__personal_settings">Abra suas configurações de usuário diaspora*</string>
+  <string name="pref_desc__manage_contacts">Gerenciar seus contatos</string>
+  <string name="pref_title__manage_tags">Gerenciar Hashtags</string>
+  <string name="pref_desc__manage_tags">Parar de seguir hashtags</string>
+  <string name="pref_title__change_account">Alterar conta</string>
   <string name="pref_desc__change_account">Apagar dados de sessão local e mudar para outro usuário de outro Pod diaspora*</string>
+  <string name="pref_warning__change_account">Isto apagará todos os dados de sessão e cookies. Você quer realmente mudar sua conta?</string>
+  <string name="pref_title__clear_cache">Limpar cache</string>
   <string name="pref_desc__intellihide_toolbars">Ocultar as barras de ferramentas superior e inferior automaticamente durante a rolagem</string>
+  <string name="pref_desc__append_shared_via_app">Acrescentar referência a este aplicativo aos textos compartilhados: [via #dandelion]</string>
   <!-- More -->
+  <string name="pref_title__sub_miscelaneous">Diversos</string>
+  <string name="pref_title__wipe_settings">Zerar tudo</string>
+  <string name="pref_desc__wipe_settings">Limpar localmente todas as configurações relacionadas ao aplicativo e sair de todas as contas</string>
+  <string name="dialog_content__wipe_settings">Isto irá retornar todas as configurações alteradas do aplicativo para seus valores padrão e encerrar as sessões de todos os pods. Suas imagens baixadas permanecerão intactas. Tem certeza que deseja prosseguir?</string>
+  <string name="pref_desc__adblock_enable">Habilite AdBlocker básico. Anúncios incorporados, p.ex., podem ser vistos</string>
+  <string name="pref_title__adblock_enable">Bloquear anúncios</string>
 </resources>
