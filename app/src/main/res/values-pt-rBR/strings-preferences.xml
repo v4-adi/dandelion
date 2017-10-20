@@ -3,6 +3,7 @@
 <resources>
   <!-- Key Names (Untranslatable) -->
   <!-- Operability -->
+  <string name="pref_desc__topbar_stream_shortcut">Clique em um espaço vazio na barra de ferramentas superior para abrir o fluxo</string>
   <!-- Category Titles -->
   <!-- Visuals -->
   <!-- Navigiation Slider -->
