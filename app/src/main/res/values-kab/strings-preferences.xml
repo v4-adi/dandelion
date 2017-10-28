@@ -9,14 +9,17 @@
   <string name="pref_cat__visuals">Udem</string>
   <string name="pref_cat__network">Aẓeṭṭa</string>
   <string name="pref_cat__pod_settings">Iɣewwaṛen Pod</string>
+  <string name="pref_cat__operability">Tasnemhelt</string>
   <!-- Visuals -->
   <!-- Navigiation Slider -->
   <string name="pref_title__sub_nav_slider">Taḥnaccaḍt n iminig</string>
+  <string name="pref_desc__sub_nav_slider">Ad iqareɛ askan n inekcam deg ugalis n tunigin</string>
   <string name="pref_cat__visibility_nav_items__user">Aseqdac</string>
   <string name="pref_cat__visibility_nav_items__general">Amatu</string>
   <string name="pref_cat__visibility_nav_items__admin">Anedbal</string>
   <!-- Themes -->
   <string name="pref_title__themes">Isental d yiniten</string>
+  <string name="pref_desc__themes">Ad iqareɛ initen yettwasqedcen i usnas</string>
   <string name="pref_title__primary_color">Ini amezwaru</string>
   <string name="pref_desc__primary_color">Ini n ufeggag n ifecka</string>
   <string name="pref_title__accent_color">Ini asnawan</string>
@@ -30,6 +33,7 @@
   <string name="pref_title__language">Tutlayt</string>
   <string name="language_system">Tutlayt n unagraw</string>
   <!-- Font size -->
+  <string name="pref_desc__font_size">Ad iqareɛ teɣzi n uḍris i uskan Web</string>
   <string name="pref_title__font_size">Teɣzi n tsefsit</string>
   <string name="font_size_normal">Amagnu</string>
   <string name="font_size_large">Hraw</string>
@@ -67,12 +71,15 @@
   <string name="pref_warning__change_account">Tamhelt-agi ad tsewḥel inagan n tuqqna akked isefka n tɣimit. Tebɣiḍ ad tbeddleḍ amiḍan?</string>
   <string name="pref_title__clear_cache">Sfeḍ tuffirt</string>
   <string name="pref_desc__clear_cache">Sfeḍ tuffirt n WebView</string>
+  <string name="pref_desc__intellihide_toolbars">Ad yeffer ifeggagen n ifecka n ufella d wadda s wudem awurman deg udrurem</string>
   <string name="pref_title__intellihide_toolbars">Ffer afeggag n ifecka</string>
   <string name="pref_title__append_shared_via_app">Rnu yebḍa s tikti</string>
   <string name="pref_desc__append_shared_via_app">Rnu tamsisɣelt ar usnas-agi i beṭṭu: [s #dandelion]</string>
   <!-- More -->
   <string name="pref_title__sub_miscelaneous">Ayen nniḍen</string>
   <string name="pref_title__wipe_settings">Tulsa n uwennez ummid</string>
+  <string name="pref_desc__wipe_settings">Ad yesfeḍ s wudem adigan akk iɣewwaṛen icudden ar usnas sakin ad yekkes si tuqqna akk imiḍanen</string>
   <string name="dialog_content__wipe_settings">Ayagi ad yales awennez n ibeddilen meṛṛa ar wazalen-nsen n tazwara sakin ad isuffeɣ si tuqqna akk ipuden. Tugniwin-ik yudren ad qqiment akken llant. Tebɣiḍ ad tkemmleḍ?</string>
+  <string name="pref_desc__adblock_enable">Rmd amsewḥal n udellel. Adelle yezmer ad ddunt, m.d. deg tmeẓriyin tusliɣin</string>
   <string name="pref_title__adblock_enable">Sewḥel adellel</string>
 </resources>
