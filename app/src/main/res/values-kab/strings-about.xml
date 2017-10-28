@@ -7,6 +7,14 @@
   <string name="fragment_debug__section_app">Asnas</string>
   <string name="fragment_debug__section_device">Ibenk</string>
   <string name="fragment_debug__section_pod">diaspora* Pod</string>
+  <string name="fragment_debug__section_log">Aɣmis n temseɣtayt</string>
+  <string name="fragment_debug__section_log_spam">Aɣmis n temseɣtayt (Verbose)</string>
+  <string name="fragment_debug__app_version">Lqem n usnas: %1$s</string>
+  <string name="fragment_debug__android_version">Lqem Android: %1$s</string>
+  <string name="fragment_debug__device_name">Isem n yibenk: %1$s</string>
+  <string name="fragment_debug__app_codename">Isem n tengalt: %1$s</string>
+  <string name="fragment_debug__pod_profile_name">Isem n umaɣnu n upud: %1$s</string>
+  <string name="fragment_debug__pod_profile_url">Tansa n upud: %1$s</string>
   <string name="fragment_about__contribute">Ttekki di tengalt!</string>
   <string name="fragment_about__contribute_button">Awi aɣbalu</string>
   <string name="fragment_about__translate">Suqel asnas!</string>
