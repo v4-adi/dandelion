@@ -62,6 +62,14 @@
   <!-- More from MainActivity -->
   <string name="unable_to_load_image">Ur izmir ara ad d-isali tugna</string>
   <!-- Permissions -->
+  <string name="permissions_screenshot">Yessefk ad tmuddeḍ tasiregt \"Snifel neɣ kkes agbur di tkarḍa Sd \" akken ad teskelseḍ tuṭṭfiwin n                 
+        ugdil. Sakin, yessefk ad tmedleḍ asnas neɣ ad talseḍ tanekra n tiliɣri-ik. Ma yella ur tmuddeḍ ara tasiregt n unelcum 
+        ar umḍiq n usekles acu kan tebɣiḍ ad tesqedceḍ tamahilt n tuṭṭfa n ugdil ar zdat, yessefk ad tmuddeḍ tasiregt ticki. Ma ulac aṣili ldi: Iɣewwaren  - isnasen - 
+        dandelion*. Di tgezmi Tisirag, yessefk ad tmuddeḍ tasiregt \"Snifel neɣ kkes agbur n tkarḍa Sd\".</string>
+  <string name="permissions_image">Yessefk ad tmuddeḍ tasiregt \"Mudd tisirag n usekles \" akken ad teskelseḍ/ad tessaliḍ 
+        tiwlafin. Sakin, yessefk ad tmedleḍ asnas neɣ ad talseḍ tanekra n tiliɣri-ik. Ma yella ur tmuddeḍ ara tasiregt n unekcum 
+        ar umḍiq n usekles acu kan tebɣiḍ ad tesqedceḍ tamahilt n tuṭṭfa n ugdil ar zdat, yessefk ad tmuddeḍ tasiregt ticki. Ma ulac aṣili ldi: Iɣewwaren  - isnasen - 
+        dandelion*. Di tgezmi Tisirag, yessefk ad tmuddeḍ tasiregt \"Tisiragt n usekles n tira\".</string>
   <string name="permission_denied">Tasiregt tettwagi.</string>
   <string name="permission_granted_try_again">Tasiregt tettunefk. Ɛreḍ tikelt nniḍen.</string>
   <string name="podselection__custom_pod">Apod udmawan</string>
@@ -69,6 +77,7 @@
   <string name="http_protocol">Aneggaf</string>
   <string name="pod_address">Tansa n upod</string>
   <string name="missing_value">Azal yettwazgel</string>
+  <string name="jump_to_last_visited_timestamp_in_stream">Ddu ar usebter aneggaru yettwarzan deg usuddem?</string>
   <string name="pref_summary__is_statusbar_hidden">Ffer afeggag n waddad di tmeẓri tagejdant</string>
   <string name="pref_title__is_statusbar_hidden">Ffer afeggag n waddad</string>
 </resources>
