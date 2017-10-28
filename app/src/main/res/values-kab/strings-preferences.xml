@@ -31,13 +31,23 @@
   <string name="pref_title__load_images">Sali-d tugniwin</string>
   <!-- Screen rotation -->
   <string name="pref_title__screen_rotation">Tuzya n ugdil</string>
+  <string name="rotation_system">Amezwer</string>
   <string name="rotation_portrait">S teɣzi</string>
   <string name="rotation_landscape">S tehri</string>
   <!-- Proxy -->
+  <string name="pref_title__http_proxy_load_tor_preset">Sali-d tawila tuzwirt Tor</string>
+  <string name="pref_desc__http_proxy_load_tor_preset">Sali-d iɣewwaṛen n upṛuksi i upṛuksi HTTP Tor (Orbot)</string>
+  <string name="pref_title__sub_proxy">Apṛuksu</string>
+  <string name="pref_title__proxy_enabled">Rmed apṛuksi</string>
+  <string name="pref_desc__http_proxy_enabled">Apṛuksi i dandelion* akken ur tseqdaceḍ ara aɣrab n tmes.\nIzmer ilaq-ak tulsa n tnekra.</string>
   <string name="pref_title__http_proxy_host">Asenneftaɣ</string>
   <string name="pref_title__http_proxy_port">Tawwurt</string>
   <!-- Chrome custom tabs -->
   <!-- Diaspora Settings -->
+  <string name="pref_title__personal_settings">Iɣewwaṛen udmawanen</string>
+  <string name="pref_desc__personal_settings">Ldi iɣewwaṛen-ik n umiḍan diaspora*</string>
+  <string name="pref_desc__manage_contacts">Sefrek tabdart-ik n unermes</string>
+  <string name="pref_title__manage_tags">Sefrek Hashtag</string>
   <string name="pref_title__change_account">Beddel amiḍan</string>
   <string name="pref_title__clear_cache">Sfeḍ tuffirt</string>
   <!-- More -->
