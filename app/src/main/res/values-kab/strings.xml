@@ -63,6 +63,7 @@
   <string name="unable_to_load_image">Ur izmir ara ad d-isali tugna</string>
   <!-- Permissions -->
   <string name="permission_denied">Tasiregt tettwagi.</string>
+  <string name="permission_granted_try_again">Tasiregt tettunefk. Ɛreḍ tikelt nniḍen.</string>
   <string name="podselection__custom_pod">Apod udmawan</string>
   <string name="pod_name">Isem n upod</string>
   <string name="http_protocol">Aneggaf</string>
