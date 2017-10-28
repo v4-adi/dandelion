@@ -18,6 +18,8 @@
   <!-- Themes -->
   <string name="pref_title__themes">Isental d yiniten</string>
   <string name="pref_title__primary_color">Ini amezwaru</string>
+  <string name="pref_desc__primary_color">Ini n ufeggag n ifecka</string>
+  <string name="pref_title__accent_color">Ini asnawan</string>
   <string name="pref_desc__accent_color">Ini n ufeggag n usfari</string>
   <string name="pref_title__primary_color__amoled_mode">Askar AMOLED</string>
   <!-- Notifications dropdown -->
@@ -32,9 +34,12 @@
   <string name="font_size_huge">Meqqer</string>
   <!-- Load images -->
   <string name="pref_title__load_images">Sali-d tugniwin</string>
+  <string name="pref_desc__load_images">Sens abeddel n tugniwin akken ad tḥerzeḍ isefka n uziraz</string>
   <!-- Screen rotation -->
   <string name="pref_title__screen_rotation">Tuzya n ugdil</string>
+  <string name="pref_desc__screen_rotation">Tuzya tawurmant n ugdil</string>
   <string name="rotation_system">Amezwer</string>
+  <string name="rotation_sensor">Amaṭṭaf\n(ad yezgel iɣewwaṛen n unagraw)</string>
   <string name="rotation_portrait">S teɣzi</string>
   <string name="rotation_landscape">S tehri</string>
   <!-- Proxy -->
@@ -45,6 +50,7 @@
   <string name="pref_desc__http_proxy_enabled">Apṛuksi i dandelion* akken ur tseqdaceḍ ara aɣrab n tmes.\nIzmer ilaq-ak tulsa n tnekra.</string>
   <string name="pref_title__http_proxy_host">Asenneftaɣ</string>
   <string name="pref_title__http_proxy_port">Tawwurt</string>
+  <string name="toast__proxy_orbot_preset_loaded">Aseggem uzwir n upṛuksi Orbot i d-yulin</string>
   <!-- Chrome custom tabs -->
   <!-- Diaspora Settings -->
   <string name="pref_title__personal_settings">Iɣewwaṛen udmawanen</string>
@@ -52,6 +58,14 @@
   <string name="pref_desc__manage_contacts">Sefrek tabdart-ik n unermes</string>
   <string name="pref_title__manage_tags">Sefrek Hashtag</string>
   <string name="pref_title__change_account">Beddel amiḍan</string>
+  <string name="pref_warning__change_account">Tamhelt-agi ad tsewḥel inagan n tuqqna akked isefka n tɣimit. Tebɣiḍ ad tbeddleḍ amiḍan?</string>
   <string name="pref_title__clear_cache">Sfeḍ tuffirt</string>
+  <string name="pref_desc__clear_cache">Sfeḍ tuffirt n WebView</string>
+  <string name="pref_title__intellihide_toolbars">Ffer afeggag n ifecka</string>
+  <string name="pref_title__append_shared_via_app">Rnu yebḍa s tikti</string>
+  <string name="pref_desc__append_shared_via_app">Rnu tamsisɣelt ar usnas-agi i beṭṭu: [s #dandelion]</string>
   <!-- More -->
+  <string name="pref_title__sub_miscelaneous">Ayen nniḍen</string>
+  <string name="pref_title__wipe_settings">Tulsa n uwennez ummid</string>
+  <string name="pref_title__adblock_enable">Sewḥel adellel</string>
 </resources>
