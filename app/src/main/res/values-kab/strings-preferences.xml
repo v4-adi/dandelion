@@ -18,7 +18,10 @@
   <!-- Themes -->
   <string name="pref_title__themes">Isental d yiniten</string>
   <string name="pref_title__primary_color">Ini amezwaru</string>
+  <string name="pref_desc__accent_color">Ini n ufeggag n usfari</string>
+  <string name="pref_title__primary_color__amoled_mode">Askar AMOLED</string>
   <!-- Notifications dropdown -->
+  <string name="pref_title__extended_notifications">Ilɣa n usiɣzef</string>
   <string name="pref_desc__language">Snifel tutlayt n usnas-agi. Ales tanekra n usnas akken ad tbeddel tutlayt</string>
   <string name="pref_title__language">Tutlayt</string>
   <string name="language_system">Tutlayt n unagraw</string>
