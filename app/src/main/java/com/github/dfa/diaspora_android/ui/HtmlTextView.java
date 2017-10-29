@@ -18,7 +18,6 @@
  */
 package com.github.dfa.diaspora_android.ui;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.support.v7.widget.AppCompatTextView;
 import android.text.Html;

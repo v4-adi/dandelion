@@ -10,7 +10,5 @@ import android.support.design.widget.AppBarLayout;
 public interface IntellihideToolbarActivityListener {
     int toolbarDefaultScrollFlags = AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL | AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS | AppBarLayout.LayoutParams.SCROLL_FLAG_SNAP;
 
-    void enableToolbarHiding();
-
-    void disableToolbarHiding();
+    void setToolbarIntellihide(boolean enable);
 }

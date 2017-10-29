@@ -20,8 +20,6 @@ package com.github.dfa.diaspora_android.ui.theme;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.view.Menu;
-import android.view.MenuInflater;
 
 /**
  * Customized abstract Fragment class with some useful methods

@@ -448,4 +448,8 @@ public class AppSettings extends AppSettingsBase {
         setRecreateMainActivity(false);
         return value;
     }
+
+    public boolean isShowTitleInMainView() {
+        return getBool(R.string.pref_key__show_title, false);
+    }
 }

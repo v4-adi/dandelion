@@ -21,7 +21,6 @@ package com.github.dfa.diaspora_android.ui.theme;
 import android.annotation.TargetApi;
 import android.app.ActivityManager;
 import android.content.pm.ActivityInfo;
-import android.content.res.Configuration;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
@@ -30,8 +29,6 @@ import com.github.dfa.diaspora_android.App;
 import com.github.dfa.diaspora_android.R;
 import com.github.dfa.diaspora_android.util.AppSettings;
 import com.github.dfa.diaspora_android.util.ContextUtils;
-
-import java.util.Locale;
 
 /**
  * Activity that supports color schemes

@@ -80,6 +80,13 @@
             android:summary="@string/pref_desc__topbar_stream_shortcut"
             android:title="@string/pref_title__topbar_stream_shortcut"/>
 
+        <com.github.dfa.diaspora_android.ui.theme.ThemedCheckBoxPreference
+            android:defaultValue="false"
+            android:icon="@drawable/ic_visibility_black_24dp"
+            android:key="@string/pref_key__show_title"
+            android:summary="@string/pref_summary__show_title"
+            android:title="@string/pref_title__show_title"/>
+
         <ListPreference
             android:defaultValue="@string/rotation_val_system"
             android:entries="@array/pref_entries__screen_rotation"

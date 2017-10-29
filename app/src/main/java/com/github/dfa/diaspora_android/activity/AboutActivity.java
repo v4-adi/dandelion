@@ -34,8 +34,6 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -107,11 +105,7 @@ public class AboutActivity extends ThemedActivity
     @Override
     public void onResume() {
         super.onResume();
-        if (getAppSettings().isIntellihideToolbars()) {
-            this.enableToolbarHiding();
-        } else {
-            this.disableToolbarHiding();
-        }
+        setToolbarIntellihide(getAppSettings().isIntellihideToolbars());
     }
 
     @Override
@@ -121,20 +115,16 @@ public class AboutActivity extends ThemedActivity
         ThemeHelper.setPrimaryColorAsBackground(_linearLayout);
     }
 
-    @Override
-    public void enableToolbarHiding() {
-        AppLog.d(this, "Enable Intellihide");
+    public void setToolbarIntellihide(boolean enable) {
         AppBarLayout.LayoutParams params = (AppBarLayout.LayoutParams) _linearLayout.getLayoutParams();
-        //scroll|enterAlways|snap
-        params.setScrollFlags(toolbarDefaultScrollFlags);
-        _appBarLayout.setExpanded(true, true);
-    }
+        if (enable) {
+            AppLog.d(this, "Enable Intellihide");
+            params.setScrollFlags(toolbarDefaultScrollFlags);
 
-    @Override
-    public void disableToolbarHiding() {
-        AppLog.d(this, "Disable Intellihide");
-        AppBarLayout.LayoutParams params = (AppBarLayout.LayoutParams) _linearLayout.getLayoutParams();
-        params.setScrollFlags(0);  // clear all scroll flags
+        } else {
+            AppLog.d(this, "Disable Intellihide");
+            params.setScrollFlags(0);  // clear all scroll flags
+        }
         _appBarLayout.setExpanded(true, true);
     }
 

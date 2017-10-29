@@ -90,7 +90,6 @@ import com.github.dfa.diaspora_android.web.custom_tab.CustomTabActivityHelper;
 import net.gsantner.opoc.util.SimpleMarkdownParser;
 
 import java.io.IOException;
-import java.lang.reflect.Method;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -366,11 +365,7 @@ public class MainActivity extends ThemedActivity
             AppLog.v(this, "Fragment was not visible. Replace it.");
             fm.beginTransaction().addToBackStack(null).replace(R.id.fragment_container, fragment, fragment.getFragmentTag()).commit();
             invalidateOptionsMenu();
-            if (_appSettings.isIntellihideToolbars() && fragment.isAllowedIntellihide()) {
-                this.enableToolbarHiding();
-            } else {
-                this.disableToolbarHiding();
-            }
+            setToolbarIntellihide(_appSettings.isIntellihideToolbars() && fragment.isAllowedIntellihide());
         } else {
             AppLog.v(this, "Fragment was already visible. Do nothing.");
         }
@@ -654,10 +649,9 @@ public class MainActivity extends ThemedActivity
         if (_appSettings.isRecreateMainActivity()) {
             recreate();
         }
-        if (_appSettings.isIntellihideToolbars()) {
-            enableToolbarHiding();
-        } else {
-            disableToolbarHiding();
+        setToolbarIntellihide(_appSettings.isIntellihideToolbars());
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayShowTitleEnabled(AppSettings.get().isShowTitleInMainView());
         }
         updateNavigationViewEntryVisibilities();
     }
@@ -679,13 +673,12 @@ public class MainActivity extends ThemedActivity
 
         CustomFragment top = getTopFragment();
         if (top != null) {
-            boolean isPodSel = top.getFragmentTag().equals(PodSelectionFragment.TAG);
-
-            // Extended notifications
-            cache = _appSettings.isExtendedNotificationsActivated();
-            getMenuInflater().inflate(R.menu.main__menu_top, menu);
-            menu.findItem(R.id.action_notifications).setVisible(!cache);
-            menu.findItem(R.id.action_notifications_extended).setVisible(cache);
+            if (!top.getFragmentTag().equals(PodSelectionFragment.TAG)) {
+                cache = _appSettings.isExtendedNotificationsActivated();
+                getMenuInflater().inflate(R.menu.main__menu_top, menu);
+                menu.findItem(R.id.action_notifications).setVisible(!cache);
+                menu.findItem(R.id.action_notifications_extended).setVisible(cache);
+            }
         }
 
         final boolean darkBg = ContextUtils.get().shouldColorOnTopBeLight(AppSettings.get().getPrimaryColor());
@@ -1222,20 +1215,16 @@ public class MainActivity extends ThemedActivity
         toolbarTop.setPopupTheme(popupTheme);
     }
 
-    @Override
-    public void enableToolbarHiding() {
-        AppLog.d(this, "Enable Intellihide");
+    public void setToolbarIntellihide(boolean enable) {
         AppBarLayout.LayoutParams params = (AppBarLayout.LayoutParams) toolbarTop.getLayoutParams();
-        //scroll|enterAlways|snap
-        params.setScrollFlags(toolbarDefaultScrollFlags);
-        appBarLayout.setExpanded(true, true);
-    }
+        if (enable) {
+            AppLog.d(this, "Enable Intellihide");
+            params.setScrollFlags(toolbarDefaultScrollFlags);
 
-    @Override
-    public void disableToolbarHiding() {
-        AppLog.d(this, "Disable Intellihide");
-        AppBarLayout.LayoutParams params = (AppBarLayout.LayoutParams) toolbarTop.getLayoutParams();
-        params.setScrollFlags(0);  // clear all scroll flags
+        } else {
+            AppLog.d(this, "Disable Intellihide");
+            params.setScrollFlags(0);  // clear all scroll flags
+        }
         appBarLayout.setExpanded(true, true);
     }
 }

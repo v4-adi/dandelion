@@ -96,4 +96,6 @@
     <string name="jump_to_last_visited_timestamp_in_stream">Jump to last visited page in stream?</string>
     <string name="pref_summary__is_statusbar_hidden">Hide statusbar at main view</string>
     <string name="pref_title__is_statusbar_hidden">Hide statusbar</string>
+    <string name="pref_summary__show_title">Show title in the main view</string>
+    <string name="pref_title__show_title">Show title</string>
 </resources>
