@@ -28,22 +28,5 @@
         android:layout_height="fill_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:theme="@style/AppTheme.AppBarOverlay"
-        app:layout_behavior="com.github.dfa.diaspora_android.ui.BottomBarBehavior">
-
-        <android.support.v7.widget.ActionMenuView
-            android:id="@+id/main__bottombar"
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:background="@color/colorPrimary"
-            android:theme="@style/BottomToolbarMenuOverflowStyle"
-            app:layout_scrollFlags="scroll|enterAlways|snap"
-            app:popupTheme="@style/Theme.AppCompat.NoActionBar" />
-
-    </android.support.design.widget.AppBarLayout>
 
 </android.support.design.widget.CoordinatorLayout>

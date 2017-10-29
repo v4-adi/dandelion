@@ -30,6 +30,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -44,6 +45,7 @@ import com.github.dfa.diaspora_android.R;
 import com.github.dfa.diaspora_android.data.DiasporaUserProfile;
 import com.github.dfa.diaspora_android.ui.theme.ThemedAlertDialogBuilder;
 import com.github.dfa.diaspora_android.util.AppLog;
+import com.github.dfa.diaspora_android.util.AppSettings;
 import com.github.dfa.diaspora_android.util.ContextUtils;
 import com.github.dfa.diaspora_android.util.DiasporaUrlHelper;
 import com.github.dfa.diaspora_android.web.BrowserFragment;
@@ -92,13 +94,12 @@ public class DiasporaStreamFragment extends BrowserFragment {
     }
 
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.stream__menu_top, menu);
         super.onCreateOptionsMenu(menu, inflater);
-    }
+        inflater.inflate(R.menu.stream__menu_top, menu);
 
-    @Override
-    public void onCreateBottomOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.stream__menu_bottom, menu);
+
+        final boolean darkBg = ContextUtils.get().shouldColorOnTopBeLight(AppSettings.get().getPrimaryColor());
+        ContextUtils.get().tintMenuItems(menu, true, ContextCompat.getColor(getActivity(), darkBg ? R.color.white : R.color.black));
     }
 
     @Override

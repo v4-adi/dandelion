@@ -4,29 +4,5 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="AlwaysShowAction">
 
-    <item
-        android:icon="@drawable/ic_share_white_48px"
-        android:orderInCategory="300"
-        android:title="@string/action_share_dotdotdot"
-        app:showAsAction="always">
-        <menu>
-            <item
-                android:id="@+id/action_share_screenshot"
-                android:title="@string/share__share_screenshot" />
-            <item
-                android:id="@+id/action_take_screenshot"
-                android:title="@string/share__take_screenshot" />
-            <item
-                android:id="@+id/action_share_link"
-                android:title="@string/share__share_link_as_text" />
-        </menu>
-    </item>
-
-    <item
-        android:id="@+id/action_go_to_top"
-        android:icon="@drawable/ic_arrow_upward_white_48px"
-        android:orderInCategory="400"
-        android:title="@string/action_go_to_top"
-        app:showAsAction="always" />
 
 </menu>

@@ -28,6 +28,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.AppCompatButton;
@@ -178,10 +179,8 @@ public class PodSelectionFragment extends ThemedFragment implements SearchView.O
         listViewPod.setDivider(new ColorDrawable(Color.GRAY));
         listViewPod.setDividerHeight(dividerHeight);
         if (appSettings.isAmoledColorMode()) {
-            buttonUseCustomPod.setSupportBackgroundTintList(ColorStateList.valueOf(Color.DKGRAY));
             buttonUseCustomPod.setTextColor(Color.WHITE);
         } else {
-            buttonUseCustomPod.setSupportBackgroundTintList(ColorStateList.valueOf(appSettings.getAccentColor()));
             buttonUseCustomPod.setTextColor(ContextUtils.get().shouldColorOnTopBeLight(appSettings.getAccentColor()) ? Color.WHITE : Color.BLACK);
         }
     }
@@ -235,6 +234,7 @@ public class PodSelectionFragment extends ThemedFragment implements SearchView.O
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.podselection__menu, menu);
 
         MenuItem searchItem = menu.findItem(R.id.podselection__action_search);
@@ -243,7 +243,8 @@ public class PodSelectionFragment extends ThemedFragment implements SearchView.O
             searchView.setOnQueryTextListener(this);
         }
 
-        super.onCreateOptionsMenu(menu, inflater);
+        final boolean darkBg = ContextUtils.get().shouldColorOnTopBeLight(AppSettings.get().getPrimaryColor());
+        ContextUtils.get().tintMenuItems(menu, true, ContextCompat.getColor(getActivity(), darkBg ? R.color.white : R.color.black));
     }
 
     @Override
@@ -299,11 +300,6 @@ public class PodSelectionFragment extends ThemedFragment implements SearchView.O
     /*
      *  Dummy implementations
      */
-
-    @Override
-    public void onCreateBottomOptionsMenu(Menu menu, MenuInflater inflater) {
-    }
-
     @Override
     public boolean onQueryTextSubmit(String query) {
         return false;

@@ -37,13 +37,13 @@ import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.ActionMenuView;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -90,6 +90,7 @@ import com.github.dfa.diaspora_android.web.custom_tab.CustomTabActivityHelper;
 import net.gsantner.opoc.util.SimpleMarkdownParser;
 
 import java.io.IOException;
+import java.lang.reflect.Method;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -138,9 +139,6 @@ public class MainActivity extends ThemedActivity
     @BindView(R.id.main__topbar)
     Toolbar toolbarTop;
 
-    @BindView(R.id.main__bottombar)
-    ActionMenuView toolbarBottom;
-
     @BindView(R.id.fragment_container)
     FrameLayout fragmentContainer;
 
@@ -177,6 +175,7 @@ public class MainActivity extends ThemedActivity
         if (AppSettings.get().isEditorStatusBarHidden()) {
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         }
+
 
         // Bind UI
         setContentView(R.layout.main__activity);
@@ -267,12 +266,6 @@ public class MainActivity extends ThemedActivity
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-        toolbarBottom.setOnMenuItemClickListener(new ActionMenuView.OnMenuItemClickListener() {
-            public boolean onMenuItemClick(MenuItem item) {
-                CustomFragment top = getTopFragment();
-                return MainActivity.this.onOptionsItemSelected(item) || (top != null && top.onOptionsItemSelected(item));
-            }
-        });
         setTitle(R.string.app_name);
 
         //Setup snackbar
@@ -683,22 +676,23 @@ public class MainActivity extends ThemedActivity
 
         //Clear the menus
         menu.clear();
-        toolbarBottom.getMenu().clear();
-        toolbarBottom.setVisibility(View.VISIBLE);
 
         CustomFragment top = getTopFragment();
         if (top != null) {
-            //PodSelectionFragment?
-            if (top.getFragmentTag().equals(PodSelectionFragment.TAG)) {
-                ///Hide bottom _toolbar
-                toolbarBottom.setVisibility(View.GONE);
-            } else {
-                cache = _appSettings.isExtendedNotificationsActivated();
-                getMenuInflater().inflate(R.menu.main__menu_top, menu);
-                menu.findItem(R.id.action_notifications).setVisible(!cache);
-                menu.findItem(R.id.action_notifications_extended).setVisible(cache);
-            }
+            boolean isPodSel = top.getFragmentTag().equals(PodSelectionFragment.TAG);
+
+            // Extended notifications
+            cache = _appSettings.isExtendedNotificationsActivated();
+            getMenuInflater().inflate(R.menu.main__menu_top, menu);
+            menu.findItem(R.id.action_notifications).setVisible(!cache);
+            menu.findItem(R.id.action_notifications_extended).setVisible(cache);
         }
+
+        final boolean darkBg = ContextUtils.get().shouldColorOnTopBeLight(AppSettings.get().getPrimaryColor());
+        ContextUtils.get()
+                .tintMenuItems(menu, true, ContextCompat.getColor(this, darkBg ? R.color.white : R.color.black))
+                .setSubMenuIconsVisiblity(menu, true);
+
         return true;
     }
 
@@ -1213,7 +1207,6 @@ public class MainActivity extends ThemedActivity
     @Override
     protected void applyColorToViews() {
         ThemeHelper.updateToolbarColor(toolbarTop);
-        ThemeHelper.updateActionMenuViewColor(toolbarBottom);
         navDrawerLayout.setBackgroundColor(_appSettings.getPrimaryColor());
         navProfilePictureArea.setBackgroundColor(_appSettings.getPrimaryColor());
         if (_appSettings.isAmoledColorMode()) {
@@ -1223,6 +1216,10 @@ public class MainActivity extends ThemedActivity
             navheaderTitle.setTextColor(Color.GRAY);
             navheaderDescription.setTextColor(Color.DKGRAY);
         }
+
+        int popupTheme = ContextUtils.get().shouldColorOnTopBeLight(AppSettings.get().getPrimaryColor())
+                ? R.style.AppTheme_PopupOverlay_Dark : R.style.AppTheme_PopupOverlay_Light;
+        toolbarTop.setPopupTheme(popupTheme);
     }
 
     @Override

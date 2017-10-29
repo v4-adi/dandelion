@@ -51,14 +51,6 @@ public abstract class CustomFragment extends Fragment {
     public abstract String getFragmentTag();
 
     /**
-     * Add fragment-dependent options to the bottom options _toolbar
-     *
-     * @param menu     bottom menu
-     * @param inflater inflater
-     */
-    public abstract void onCreateBottomOptionsMenu(Menu menu, MenuInflater inflater);
-
-    /**
      * Return true if the fragment reacted to a back button press, false else.
      * In case the fragment returned false, the parent activity should handle the backPress.
      *

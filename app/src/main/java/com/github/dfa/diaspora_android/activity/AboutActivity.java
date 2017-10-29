@@ -199,11 +199,6 @@ public class AboutActivity extends ThemedActivity
         }
 
         @Override
-        public void onCreateBottomOptionsMenu(Menu menu, MenuInflater inflater) {
-            /* Nothing to do */
-        }
-
-        @Override
         public boolean onBackPressed() {
             return false;
         }
@@ -298,11 +293,6 @@ public class AboutActivity extends ThemedActivity
         @Override
         public String getFragmentTag() {
             return TAG;
-        }
-
-        @Override
-        public void onCreateBottomOptionsMenu(Menu menu, MenuInflater inflater) {
-            /* Nothing to do */
         }
 
         @Override

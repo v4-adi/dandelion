@@ -102,11 +102,6 @@ public class AspectListFragment extends ThemedFragment implements OnSomethingCli
     }
 
     @Override
-    public void onCreateBottomOptionsMenu(Menu menu, MenuInflater inflater) {
-        /* Nothing to do */
-    }
-
-    @Override
     public boolean onBackPressed() {
         return false;
     }

@@ -6,9 +6,9 @@ ext {
             minSdk    : 17,
     ]
     version_lib = [
-            appcompat: "27.0.0",
+            appcompat   : "27.0.0",
             butterknife: "8.8.1",
-            netcipher: "2.0.0-alpha1",
+            netcipher   : "2.0.0-alpha1",
     ]
 }
 
@@ -22,9 +22,7 @@ android {
         targetSdkVersion version_sdk.compileSdk
         buildConfigField "boolean", "IS_TEST_BUILD", "false"
         buildConfigField "boolean", "IS_GPLAY_BUILD", "false"
-        buildConfigField("String[]", "APPLICATION_LANGUAGES", '{' + getUsedAndroidLanguages().collect {
-            "\"${it}\""
-        }.join(",") + '}')
+        buildConfigField("String[]", "APPLICATION_LANGUAGES", '{' + getUsedAndroidLanguages().collect {"\"${it}\""}.join(",")  + '}')
         buildConfigField "String", "GITHASH", "\"${getGitHash()}\""
 
         applicationId "com.github.dfa.diaspora_android"
@@ -52,7 +50,9 @@ android {
     productFlavors {
         flavorDefault {
         }
-        /*flavorGplay {
+
+        /*
+flavorGplay {
             buildConfigField "boolean", "IS_GPLAY_BUILD", "true"
         }*/
         flavorTest {

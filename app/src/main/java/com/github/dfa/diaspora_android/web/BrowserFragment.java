@@ -253,11 +253,6 @@ public class BrowserFragment extends ThemedFragment {
     }
 
     @Override
-    public void onCreateBottomOptionsMenu(Menu menu, MenuInflater inflater) {
-        /* Nothing to do here */
-    }
-
-    @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         if (webView != null && webView.getContext() instanceof MutableContextWrapper) {
