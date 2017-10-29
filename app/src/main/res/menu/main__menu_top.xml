@@ -5,6 +5,13 @@
     tools:ignore="AlwaysShowAction">
 
     <item
+        android:id="@+id/action_search"
+        android:icon="@drawable/ic_search_white_48px"
+        android:orderInCategory="100"
+        android:title="@string/action_search_by_tags_or_persons"
+        app:showAsAction="always" />
+
+    <item
         android:id="@+id/action_notifications"
         android:icon="@drawable/ic_notifications_white_48px__layer"
         android:orderInCategory="100"
@@ -59,6 +66,13 @@
         android:icon="@drawable/ic_mail_white_48px__layer"
         android:orderInCategory="200"
         android:title="@string/conversations"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_compose"
+        android:icon="@drawable/ic_mode_edit_white_48px"
+        android:orderInCategory="200"
+        android:title="@string/action_compose_new_post"
         app:showAsAction="always" />
 
 </menu>

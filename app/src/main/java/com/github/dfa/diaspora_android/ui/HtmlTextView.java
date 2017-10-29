@@ -20,12 +20,12 @@ package com.github.dfa.diaspora_android.ui;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.support.v7.widget.AppCompatTextView;
 import android.text.Html;
 import android.text.SpannableString;
 import android.text.util.Linkify;
 import android.util.AttributeSet;
 import android.util.Patterns;
-import android.widget.TextView;
 
 import com.github.dfa.diaspora_android.activity.MainActivity;
 
@@ -38,7 +38,7 @@ import java.util.regex.Pattern;
  * Hashtags open the MainActivity, load the new-post site of the selected pod and insert the
  * hashtag into the post editor. See data/HashtagContentProvider.
  */
-public class HtmlTextView extends TextView {
+public class HtmlTextView extends AppCompatTextView {
 
     public HtmlTextView(Context context) {
         super(context);
@@ -52,12 +52,6 @@ public class HtmlTextView extends TextView {
 
     public HtmlTextView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init();
-    }
-
-    @TargetApi(21)
-    public HtmlTextView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
         init();
     }
 
