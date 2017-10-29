@@ -80,4 +80,5 @@
   <string name="jump_to_last_visited_timestamp_in_stream">Salta all\'ultima pagina visitata nello stream?</string>
   <string name="pref_summary__is_statusbar_hidden">Nascondi barra di stato nella schermata principale</string>
   <string name="pref_title__is_statusbar_hidden">Nascondi barra di stato</string>
+  <string name="pref_summary__show_title">Mostra titolo nella schermata principale</string>
 </resources>
