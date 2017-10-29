@@ -1,3 +1,9 @@
+### v1.0.8
+- Modified: Navigation - Merge bottom toolbar into top
+- Updated: Build for Android O/27
+- Updated: Language change preference
+- Added: B/W coloring of toolbar popup
+
 ### v1.0.5
 - Updated: Language preference
 
