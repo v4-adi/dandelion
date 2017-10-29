@@ -1,5 +1,5 @@
 [![GitHub release](https://img.shields.io/github/tag/diaspora-for-android/dandelion.svg)](https://github.com/diaspora-for-android/dandelion/releases)
-[![CircleCI](https://circleci.com/gh/Diaspora-for-Android/dandelion.svg?style=shield)](https://circleci.com/gh/Diaspora-for-Android/dandelion)
+[![Build Status](https://travis-ci.org/Diaspora-for-Android/dandelion.svg?branch=master)](https://travis-ci.org/Diaspora-for-Android/dandelion)
 [![Crowdin](https://d322cqt584bo4o.cloudfront.net/diaspora-for-android/localized.svg)](https://crowdin.com/project/diaspora-for-android)
 [![Chat - Matrix](https://img.shields.io/badge/chat-on%20matrix-blue.svg)](https://matrix.to/#/#dandelion:matrix.org) [![Chat - FreeNode IRC](https://img.shields.io/badge/chat-on%20irc-blue.svg)](https://kiwiirc.com/client/irc.freenode.net/?nick=dandelion-anon|?##dandelion)
 [![Donate Bitcoin](https://img.shields.io/badge/donate-bitcoin-orange.svg)](https://gsantner.github.io/#donate)
