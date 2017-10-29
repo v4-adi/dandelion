@@ -1,38 +1,48 @@
 language: android
-jdk:
-  - oraclejdk8
-android:
-  components:
-    - tools
-    - tools # TODO https://github.com/travis-ci/travis-ci/issues/6193
-    - platform-tools
-    - build-tools-24.0.3
-    - android-24
-    - extra-android-m2repository
+jdk: oraclejdk8
+
 before_cache:
-  - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
+  # Do not cache a few Gradle files/directories (see https://docs.travis-ci.com/user/languages/java/#Caching)
+  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+
 cache:
   directories:
+    # Android SDK
+    - $HOME/android-sdk-dl
+    - $HOME/android-sdk
+
+    # Gradle dependencies
     - $HOME/.gradle/caches/
     - $HOME/.gradle/wrapper/
-script: "./gradlew $TASK"
-env:
-    - TASK="lintFlavorDefaultDebug"
-    - TASK="build check --stacktrace"
+
+    # Android build cache (see http://tools.android.com/tech-docs/build-cache)
+    - $HOME/.android/build-cache
+
+install:
+  # Download and unzip the Android SDK tools (if not already there thanks to the cache mechanism)
+  # Latest version available here: https://developer.android.com/studio/index.html#downloads
+  - if test ! -e $HOME/android-sdk-dl/sdk-tools.zip ; then curl https://dl.google.com/android/repository/sdk-tools-linux-3859397.zip > $HOME/android-sdk-dl/sdk-tools.zip ; fi
+  - unzip -qq -n $HOME/android-sdk-dl/sdk-tools.zip -d $HOME/android-sdk
+
+  # Install or update Android SDK components (will not do anything if already up to date thanks to the cache mechanism)
+  - echo y | $HOME/android-sdk/tools/bin/sdkmanager 'tools' > /dev/null
+  - echo y | $HOME/android-sdk/tools/bin/sdkmanager 'platform-tools' > /dev/null
+  - echo y | $HOME/android-sdk/tools/bin/sdkmanager 'build-tools;26.0.2' > /dev/null
+  - echo y | $HOME/android-sdk/tools/bin/sdkmanager 'platforms;android-27' > /dev/null
+  - echo y | $HOME/android-sdk/tools/bin/sdkmanager 'extras;google;m2repository' > /dev/null
 
 branches:
   except:
-  - l10n_master
-  - l10n_master2
-  - crowdin
-notifications:
-  webhooks:
-    urls:
-      - "https://webhooks.gitter.im/e/e462044d3105a7bb4b4f"
-      - "https://scalar.vector.im/api/neb/services/hooks/dHJhdmlzLWNpLyU0MGdzYW50bmVyJTNBbWF0cml4Lm9yZy8lMjFNUERTYURTaVBMZXdSQXBxa24lM0FtYXRyaXgub3Jn"
-    on_success: change  # options: [always|never|change] default: always
-    on_failure: always  # options: [always|never|change] default: always
-    on_start: never     # options: [always|never|change] default: always
+    - gh-pages
+    - l10n_master
+    - crowdin
 
-after_success:
-  - bash <(curl -s https://codecov.io/bash)
+env:
+  global:
+    - ANDROID_HOME=$HOME/android-sdk
+  matrix:
+    - TASK="lintFlavorDefaultDebug --stacktrace"
+    - TASK="build check --stacktrace"
+
+script: "./gradlew --no-daemon --parallel $TASK"
