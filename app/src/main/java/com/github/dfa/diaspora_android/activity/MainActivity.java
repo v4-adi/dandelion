@@ -679,6 +679,8 @@ public class MainActivity extends ThemedActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         AppLog.v(this, "onCreateOptionsMenu()");
+        boolean cache;
+
         //Clear the menus
         menu.clear();
         toolbarBottom.getMenu().clear();
@@ -691,10 +693,10 @@ public class MainActivity extends ThemedActivity
                 ///Hide bottom _toolbar
                 toolbarBottom.setVisibility(View.GONE);
             } else {
-                getMenuInflater().inflate(_appSettings.isExtendedNotificationsActivated() ?
-                        R.menu.main__menu_top__notifications_dropdown : R.menu.main__menu_top, menu);
-                getMenuInflater().inflate(R.menu.main__menu_bottom, toolbarBottom.getMenu());
-                top.onCreateBottomOptionsMenu(toolbarBottom.getMenu(), getMenuInflater());
+                cache = _appSettings.isExtendedNotificationsActivated();
+                getMenuInflater().inflate(R.menu.main__menu_top, menu);
+                menu.findItem(R.id.action_notifications).setVisible(!cache);
+                menu.findItem(R.id.action_notifications_extended).setVisible(cache);
             }
         }
         return true;
