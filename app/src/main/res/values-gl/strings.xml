@@ -78,4 +78,6 @@
   <string name="jump_to_last_visited_timestamp_in_stream">Ir a última paxina lida na conversa?</string>
   <string name="pref_summary__is_statusbar_hidden">Agochar a barra de estado na vista principal</string>
   <string name="pref_title__is_statusbar_hidden">Agochar barra de estado</string>
+  <string name="pref_summary__show_title">Mostrar título na vista principal</string>
+  <string name="pref_title__show_title">Mostrar título</string>
 </resources>
