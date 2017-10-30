@@ -74,4 +74,6 @@
   <string name="jump_to_last_visited_timestamp_in_stream">¿Saltar a la última página visitada?</string>
   <string name="pref_summary__is_statusbar_hidden">Ocultar barra de estado en la vista principal</string>
   <string name="pref_title__is_statusbar_hidden">Ocultar barra de estado</string>
+  <string name="pref_summary__show_title">Mostrar título en la vista princial</string>
+  <string name="pref_title__show_title">Mostrar título</string>
 </resources>
