@@ -29,7 +29,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.design.widget.Snackbar;
-import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,11 +38,11 @@ import android.webkit.WebView;
 import android.widget.ProgressBar;
 
 import com.github.dfa.diaspora_android.App;
-import com.github.dfa.diaspora_android.BuildConfig;
 import com.github.dfa.diaspora_android.R;
 import com.github.dfa.diaspora_android.activity.MainActivity;
 import com.github.dfa.diaspora_android.ui.theme.ThemeHelper;
 import com.github.dfa.diaspora_android.ui.theme.ThemedFragment;
+import com.github.dfa.diaspora_android.util.ActivityUtils;
 import com.github.dfa.diaspora_android.util.AppLog;
 import com.github.dfa.diaspora_android.util.AppSettings;
 
@@ -231,7 +230,7 @@ public class BrowserFragment extends ThemedFragment {
         // Only show share intent when Action Share Screenshot was selected
         if (hasToShareScreenshot) {
 
-            Uri bmpUri = FileProvider.getUriForFile(getContext(), BuildConfig.APPLICATION_ID, new File(fileSaveDirectory, fileSaveName));
+            Uri bmpUri = ActivityUtils.getFileSharingUri(getContext(),new File(fileSaveDirectory, fileSaveName));
 
             Intent sharingIntent = new Intent(Intent.ACTION_SEND);
             sharingIntent.setType("image/jpeg");

@@ -20,7 +20,7 @@
             android:authorities="${applicationId}.mainactivity"
             android:exported="false" />
 
-        <!--File provider for sharinf files-->
+        <!--File provider for sharing files-->
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="${applicationId}"

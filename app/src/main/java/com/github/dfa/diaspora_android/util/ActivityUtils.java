@@ -1,10 +1,14 @@
 package com.github.dfa.diaspora_android.util;
 
 import android.app.Activity;
+import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.v4.content.FileProvider;
 import android.view.View;
 
+import com.github.dfa.diaspora_android.BuildConfig;
 import com.github.dfa.diaspora_android.R;
 import com.github.dfa.diaspora_android.web.WebHelper;
 
@@ -69,5 +73,14 @@ public class ActivityUtils extends net.gsantner.opoc.util.ActivityUtils {
                 }
             }
         }
+    }
+
+    /**
+     * This method creates file sharing uri by using FileProvider
+     * @return
+     */
+    public static Uri getFileSharingUri(Context context,File file) {
+
+        return FileProvider.getUriForFile(context, BuildConfig.APPLICATION_ID,file);
     }
 }
