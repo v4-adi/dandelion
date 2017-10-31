@@ -20,6 +20,16 @@
             android:authorities="${applicationId}.mainactivity"
             android:exported="false" />
 
+        <!--File provider for sharinf files-->
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_provider_paths" />
+        </provider>
         <service
             android:name="com.github.dfa.diaspora_android.service.FetchPodsService"
             android:enabled="true"
