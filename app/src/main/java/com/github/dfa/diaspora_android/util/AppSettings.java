@@ -35,7 +35,7 @@ import java.util.List;
 
 /**
  * Settings
- * Created by gsantner (https://gsantner.github.io/) on 20.03.16. Part of dandelion*.
+ * Created by gsantner (http://gsantner.net/) on 20.03.16. Part of dandelion*.
  */
 @SuppressWarnings("ConstantConditions")
 public class AppSettings extends AppSettingsBase {

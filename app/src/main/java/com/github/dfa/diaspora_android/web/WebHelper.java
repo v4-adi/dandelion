@@ -32,7 +32,7 @@ import com.github.dfa.diaspora_android.activity.MainActivity;
 
 /**
  * Created by Gregor Santner on 07.08.16.
- * https://gsantner.github.io
+ * http://gsantner.net
  */
 public class WebHelper {
 

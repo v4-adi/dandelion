@@ -72,4 +72,8 @@
   <string name="pod_address">豆莢網址</string>
   <string name="missing_value">沒有填值</string>
   <string name="jump_to_last_visited_timestamp_in_stream">回到最近瀏覽的流水帳頁面嗎？</string>
+  <string name="pref_summary__is_statusbar_hidden">隱藏主畫面中的狀態列</string>
+  <string name="pref_title__is_statusbar_hidden">隱藏狀態列</string>
+  <string name="pref_summary__show_title">在主畫面中顯示標題列</string>
+  <string name="pref_title__show_title">顯示標題列</string>
 </resources>

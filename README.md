@@ -2,7 +2,7 @@
 [![Build Status](https://travis-ci.org/Diaspora-for-Android/dandelion.svg?branch=master)](https://travis-ci.org/Diaspora-for-Android/dandelion)
 [![Crowdin](https://d322cqt584bo4o.cloudfront.net/diaspora-for-android/localized.svg)](https://crowdin.com/project/diaspora-for-android)
 [![Chat - Matrix](https://img.shields.io/badge/chat-on%20matrix-blue.svg)](https://matrix.to/#/#dandelion:matrix.org) [![Chat - FreeNode IRC](https://img.shields.io/badge/chat-on%20irc-blue.svg)](https://kiwiirc.com/client/irc.freenode.net/?nick=dandelion-anon|?##dandelion)
-[![Donate Bitcoin](https://img.shields.io/badge/donate-bitcoin-orange.svg)](https://gsantner.github.io/#donate)
+[![Donate Bitcoin](https://img.shields.io/badge/donate-bitcoin-orange.svg)](http://gsantner.net/#donate)
 [![Donate LiberaPay](https://img.shields.io/badge/donate-liberapay-orange.svg)](https://liberapay.com/gsantner/donate)
 [![Donate GratiPay](https://img.shields.io/gratipay/team/dandelion.svg)](https://gratipay.com/dandelion/)
 
@@ -79,7 +79,7 @@ For more licensing informations, see [`3rd party licenses`](/app/src/main/res/ra
 
 ### Notice
 #### Maintainers
-- gsantner ([GitHub](https://github.com/gsantner), [Web](https://gsantner.github.io), [diaspora*](https://pod.geraspora.de/people/d1cbdd70095301341e834860008dbc6c))
-  - Bitcoin: [1B9ZyYdQoY9BxMe9dRUEKaZbJWsbQqfXU5](https://gsantner.github.io/donate/#donate)
+- gsantner ([GitHub](https://github.com/gsantner), [Web](http://gsantner.net), [diaspora*](https://pod.geraspora.de/people/d1cbdd70095301341e834860008dbc6c))
+  - Bitcoin: [1B9ZyYdQoY9BxMe9dRUEKaZbJWsbQqfXU5](http://gsantner.net/donate/#donate)
 - vanitasvitae ([GitHub](https://github.com/vanitasvitae), [diaspora*](https://pod.geraspora.de/people/bbd7af90fbec013213e34860008dbc6c))
   - Bitcoin: 1Ao3W6NaQv3xKppviB7RSFKjHo6PGd8RTy

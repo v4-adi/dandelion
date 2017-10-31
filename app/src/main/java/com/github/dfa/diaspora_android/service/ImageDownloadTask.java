@@ -36,7 +36,7 @@ import info.guardianproject.netcipher.NetCipher;
 
 /**
  * Task that can be used to download images from URLs and store them in storage
- * Created by gsantner (https://gsantner.github.io/) on 24.03.16.
+ * Created by gsantner (http://gsantner.net/) on 24.03.16.
  */
 public class ImageDownloadTask extends AsyncTask<String, Void, Bitmap> {
     private final ImageView imageView;

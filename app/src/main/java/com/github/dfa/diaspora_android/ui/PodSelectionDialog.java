@@ -37,7 +37,7 @@ import butterknife.OnItemSelected;
 
 /**
  * Dialog that helps the user configure a pod
- * Created by gsantner (https://gsantner.github.io) on 06.10.16.
+ * Created by gsantner (http://gsantner.net) on 06.10.16.
  */
 public class PodSelectionDialog extends ThemedAppCompatDialogFragment {
     public static final String TAG = "com.github.dfa.diaspora_android.ui.PodSelectionDialog";
